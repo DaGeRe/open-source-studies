@@ -1,0 +1,64 @@
+/**
+ * Decode the base 64 encoded byte data writing it to the given output stream,
+ * whitespace characters will be ignored.
+ *
+ * @return the number of bytes produced.
+ */
+public static int decode(byte[] data, int off, int length, OutputStream out) throws IOException {
+    byte b1, b2, b3, b4;
+    int outLen = 0;
+    int end = off + length;
+    while (end > 0) {
+        if (!ignore((char) data[end - 1])) {
+            break;
+        }
+        end--;
+    }
+    int i = off;
+    int finish = end - MASK_4BITS;
+    while (i < finish) {
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b1 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b2 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b3 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b4 = DECODING_TABLE[data[i++]];
+        out.write((b1 << MASK_2BITS) | (b2 >> MASK_4BITS));
+        out.write((b2 << MASK_4BITS) | (b3 >> MASK_2BITS));
+        out.write((b3 << MASK_6BITS) | b4);
+        outLen += BYTES_PER_UNENCODED_BLOCK;
+    }
+    if (data[end - MASK_2BITS] == PADDING) {
+        b1 = DECODING_TABLE[data[end - MASK_4BITS]];
+        b2 = DECODING_TABLE[data[end - BYTES_PER_UNENCODED_BLOCK]];
+        out.write((b1 << MASK_2BITS) | (b2 >> MASK_4BITS));
+        outLen += 1;
+    } else if (data[end - 1] == PADDING) {
+        b1 = DECODING_TABLE[data[end - MASK_4BITS]];
+        b2 = DECODING_TABLE[data[end - BYTES_PER_UNENCODED_BLOCK]];
+        b3 = DECODING_TABLE[data[end - MASK_2BITS]];
+        out.write((b1 << MASK_2BITS) | (b2 >> MASK_4BITS));
+        out.write((b2 << MASK_4BITS) | (b3 >> MASK_2BITS));
+        outLen += MASK_2BITS;
+    } else {
+        b1 = DECODING_TABLE[data[end - MASK_4BITS]];
+        b2 = DECODING_TABLE[data[end - BYTES_PER_UNENCODED_BLOCK]];
+        b3 = DECODING_TABLE[data[end - MASK_2BITS]];
+        b4 = DECODING_TABLE[data[end - 1]];
+        out.write((b1 << MASK_2BITS) | (b2 >> MASK_4BITS));
+        out.write((b2 << MASK_4BITS) | (b3 >> MASK_2BITS));
+        out.write((b3 << MASK_6BITS) | b4);
+        outLen += BYTES_PER_UNENCODED_BLOCK;
+    }
+    return outLen;
+}

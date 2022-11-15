@@ -1,0 +1,11 @@
+/**
+ * Retrieves the file name from the <code>Content-disposition</code>
+ * header.
+ *
+ * @param headers The HTTP headers object.
+ *
+ * @return The file name for the current <code>encapsulation</code>.
+ */
+protected String getFileName(FileItemHeaders headers) {
+    return getFileName(headers.getHeader(CONTENT_DISPOSITION));
+}

@@ -1,0 +1,28 @@
+/**
+ * Tests, whether an {@link InvalidFileNameException} is thrown.
+ */
+public void testInvalidFileNameException() throws Exception {
+    final String fileName = "foo.exe\u0000.png";
+    final String request = "-----1234\r\n" + "Content-Disposition: form-data; name=\"file\"; filename=\"" + fileName + "\"\r\n" + "Content-Type: text/whatever\r\n" + "\r\n" + "This is the content of the file\n" + "\r\n" + "-----1234\r\n" + "Content-Disposition: form-data; name=\"field\"\r\n" + "\r\n" + "fieldValue\r\n" + "-----1234\r\n" + "Content-Disposition: form-data; name=\"multi\"\r\n" + "\r\n" + "value1\r\n" + "-----1234\r\n" + "Content-Disposition: form-data; name=\"multi\"\r\n" + "\r\n" + "value2\r\n" + "-----1234--\r\n";
+    final byte[] reqBytes = request.getBytes("US-ASCII");
+    FileItemIterator fileItemIter = parseUpload(reqBytes.length, new ByteArrayInputStream(reqBytes));
+    final FileItemStream fileItemStream = fileItemIter.next();
+    try {
+        fileItemStream.getName();
+        fail("Expected exception");
+    } catch (InvalidFileNameException e) {
+        assertEquals(fileName, e.getName());
+        assertTrue(e.getMessage().indexOf(fileName) == -1);
+        assertTrue(e.getMessage().indexOf("foo.exe\\0.png") != -1);
+    }
+    List<FileItem> fileItems = parseUpload(reqBytes);
+    final FileItem fileItem = fileItems.get(0);
+    try {
+        fileItem.getName();
+        fail("Expected exception");
+    } catch (InvalidFileNameException e) {
+        assertEquals(fileName, e.getName());
+        assertTrue(e.getMessage().indexOf(fileName) == -1);
+        assertTrue(e.getMessage().indexOf("foo.exe\\0.png") != -1);
+    }
+}

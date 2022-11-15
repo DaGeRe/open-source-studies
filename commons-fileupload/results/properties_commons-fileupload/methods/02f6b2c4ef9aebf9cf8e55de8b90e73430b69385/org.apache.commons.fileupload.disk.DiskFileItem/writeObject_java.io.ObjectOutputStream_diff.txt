@@ -1,0 +1,19 @@
+// -------------------------------------------------- Serialization methods                          |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* Writes the state of this object during serialization.                                              |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param out The stream to which the state should be written.                                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @throws IOException if an error occurs.                                                            |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private void writeObject(ObjectOutputStream out) throws IOException {                                |                                                                                                     
+// Read the data                                                                                     |                                                                                                     
+if (dfos.isInMemory()) {                                                                             |                                                                                                     
+cachedContent = get();                                                                               |                                                                                                     
+} else {                                                                                             |                                                                                                     
+cachedContent = null;                                                                                |                                                                                                     
+dfosFile = dfos.getFile();                                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+// write out values                                                                                  |                                                                                                     
+out.defaultWriteObject();                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,154 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 1000000,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_312",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "T_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "c61ff05b3241cb14d989b67209e57aa71540417a",
+      "commitOld" : "401ba23732e9ae96c3e4797eb624d357cb9ae2d0"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.apache.commons.fileupload.ServletFileUploadTest",
+      "method" : "testWithNullContentType",
+      "module" : "",
+      "params" : null
+    },
+    "propertyFolder" : "/home/reichelt/workspaces/dissworkspace/peass/results/properties_commons-fileupload"
+  },
+  "nodes" : {
+    "call" : "org.apache.commons.fileupload.ServletFileUploadTest#testWithNullContentType",
+    "kiekerPattern" : "public void org.apache.commons.fileupload.ServletFileUploadTest.testWithNullContentType()",
+    "otherKiekerPattern" : "public void org.apache.commons.fileupload.ServletFileUploadTest.testWithNullContentType()",
+    "module" : "",
+    "statistic" : {
+      "meanOld" : 3.085784265813333E9,
+      "meanCurrent" : 3.089575083246666E9,
+      "deviationOld" : 6.304852646981984E7,
+      "deviationCurrent" : 6.878105517957443E7,
+      "vms" : 30,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : -0.22252837997622646
+    },
+    "childs" : [ {
+      "call" : "org.apache.commons.fileupload.FileUploadBase#parseRequest",
+      "kiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(javax.servlet.http.HttpServletRequest)",
+      "otherKiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(javax.servlet.http.HttpServletRequest)",
+      "module" : "",
+      "statistic" : {
+        "meanOld" : 2.934219888293333E9,
+        "meanCurrent" : 2.93960715586E9,
+        "deviationOld" : 5.922556856763269E7,
+        "deviationCurrent" : 6.351065254360367E7,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : -0.3397871107873722
+      },
+      "childs" : [ {
+        "call" : "org.apache.commons.fileupload.FileUploadBase#parseRequest",
+        "kiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(org.apache.commons.fileupload.RequestContext)",
+        "otherKiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(org.apache.commons.fileupload.RequestContext)",
+        "module" : "",
+        "statistic" : {
+          "meanOld" : 2.8070617151800003E9,
+          "meanCurrent" : 2.811459231933333E9,
+          "deviationOld" : 5.964994994679207E7,
+          "deviationCurrent" : 6.2908552647112444E7,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -0.27783453524907814
+        },
+        "childs" : [ {
+          "call" : "org.apache.commons.fileupload.FileUploadBase#getItemIterator",
+          "kiekerPattern" : "public org.apache.commons.fileupload.FileItemIterator org.apache.commons.fileupload.FileUploadBase.getItemIterator(org.apache.commons.fileupload.RequestContext)",
+          "otherKiekerPattern" : "public org.apache.commons.fileupload.FileItemIterator org.apache.commons.fileupload.FileUploadBase.getItemIterator(org.apache.commons.fileupload.RequestContext)",
+          "module" : "",
+          "statistic" : {
+            "meanOld" : 2.762148406106666E9,
+            "meanCurrent" : 2.76641044152E9,
+            "deviationOld" : 5.9598955672288254E7,
+            "deviationCurrent" : 6.321201088167184E7,
+            "vms" : 30,
+            "callsOld" : 150,
+            "calls" : 150,
+            "tvalue" : -0.26870000017873125
+          },
+          "childs" : [ {
+            "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl#<init>",
+            "kiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.<init>(org.apache.commons.fileupload.FileUploadBase,org.apache.commons.fileupload.RequestContext)",
+            "otherKiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.<init>(org.apache.commons.fileupload.FileUploadBase,org.apache.commons.fileupload.RequestContext)",
+            "module" : "",
+            "statistic" : {
+              "meanOld" : 2.6112306831266665E9,
+              "meanCurrent" : 2.615024652613333E9,
+              "deviationOld" : 5.098291385624969E7,
+              "deviationCurrent" : 5.420323102427968E7,
+              "vms" : 30,
+              "callsOld" : 150,
+              "calls" : 150,
+              "tvalue" : -0.2792591958252088
+            },
+            "childs" : [ ]
+          } ]
+        } ]
+      } ]
+    } ]
+  }
+}

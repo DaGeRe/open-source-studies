@@ -1,0 +1,10 @@
+@Test
+public void testThreeParamConstructor() throws Exception {
+    final String strData = "foobar";
+    final byte[] contents = strData.getBytes();
+    InputStream input = new ByteArrayInputStream(contents);
+    byte[] boundary = BOUNDARY_TEXT.getBytes();
+    int iBufSize = boundary.length;
+    MultipartStream ms = new MultipartStream(input, boundary, iBufSize, new MultipartStream.ProgressNotifier(null, contents.length));
+    assertNotNull(ms);
+}

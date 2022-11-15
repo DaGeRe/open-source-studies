@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Create a FileItem with the specfied content bytes and repository.                                 
+                                                                                                     | */                                                                                                  
+                                                                                                     | private FileItem createFileItem(byte[] contentBytes, File repository) {                             
+                                                                                                     | FileItemFactory factory = new DiskFileItemFactory(threshold, repository);                           
+                                                                                                     | String textFieldName = "textField";                                                                 
+                                                                                                     | FileItem item = factory.createItem(textFieldName, textContentType, true, "My File Name");           
+                                                                                                     | try {                                                                                               
+                                                                                                     | OutputStream os = item.getOutputStream();                                                           
+                                                                                                     | os.write(contentBytes);                                                                             
+                                                                                                     | os.close();                                                                                         
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | fail("Unexpected IOException" + e);                                                                 
+                                                                                                     | }                                                                                                   
+                                                                                                     | return item;                                                                                        
+                                                                                                     | }                                                                                                   

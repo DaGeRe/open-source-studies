@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Test serialization and deserialization when repository is not null.                                  * Test serialization and deserialization when repository is not null.                               
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testValidRepository() throws Exception {                                                   public void testValidRepository() throws Exception {                                                
+// Create the FileItem                                                                                 // Create the FileItem                                                                              
+byte[] testFieldValueBytes = createContentBytes(threshold);                                            byte[] testFieldValueBytes = createContentBytes(threshold);                                         
+File repository = new File(System.getProperty("java.io.tmpdir"));                                    | testInMemoryObject(testFieldValueBytes, REPO);                                                      
+testInMemoryObject(testFieldValueBytes, repository);                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+/**
+ * @see javax.servlet.ServletRequest#getContentLength()
+ */
+public int getContentLength() {
+    int iLength = 0;
+    if (null == m_requestData) {
+        iLength = -1;
+    } else {
+        if (length > Integer.MAX_VALUE) {
+            throw new RuntimeException("Value '" + length + "' is too large to be converted to int");
+        }
+        iLength = (int) length;
+    }
+    return iLength;
+}

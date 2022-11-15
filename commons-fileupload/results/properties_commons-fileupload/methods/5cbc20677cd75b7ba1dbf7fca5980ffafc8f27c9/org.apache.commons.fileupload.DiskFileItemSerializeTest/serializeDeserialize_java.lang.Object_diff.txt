@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Do serialization and deserialization.                                                                * Do serialization and deserialization.                                                             
+*/                                                                                                     */                                                                                                  
+private Object serializeDeserialize(Object target) {                                                   private Object serializeDeserialize(Object target) {                                                
+// Serialize the test object                                                                           // Serialize the test object                                                                        
+ByteArrayOutputStream baos = null;                                                                     ByteArrayOutputStream baos = null;                                                                  
+try {                                                                                                  try {                                                                                               
+baos = serialize(target);                                                                              baos = serialize(target);                                                                           
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Exception during serialization: " + e);                                                          fail("Exception during serialization: " + e);                                                       
+}                                                                                                      }                                                                                                   
+// Deserialize the test object                                                                         // Deserialize the test object                                                                      
+Object result = null;                                                                                  Object result = null;                                                                               
+try {                                                                                                  try {                                                                                               
+result = deserialize(baos);                                                                            result = deserialize(baos);                                                                         
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Exception during deserialization: " + e);                                                        fail("Exception during deserialization: " + e);                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | IOUtils.closeQuietly(baos);                                                                         
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

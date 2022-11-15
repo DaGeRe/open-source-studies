@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Reads &lt;code&gt;body-data&lt;/code&gt; from the current                                   * &lt;p&gt;Reads &lt;code&gt;body-data&lt;/code&gt; from the current                                
+* &lt;code&gt;encapsulation&lt;/code&gt; and writes its contents into the                              * &lt;code&gt;encapsulation&lt;/code&gt; and writes its contents into the                           
+* output &lt;code&gt;Stream&lt;/code&gt;.                                                              * output &lt;code&gt;Stream&lt;/code&gt;.                                                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Arbitrary large amounts of data can be processed by this                                    * &lt;p&gt;Arbitrary large amounts of data can be processed by this                                 
+* method using a constant size buffer. (see {@link                                                     * method using a constant size buffer. (see {@link                                                  
+* #MultipartStream(InputStream,byte[],int,                                                             * #MultipartStream(InputStream,byte[],int,                                                          
+*   MultipartStream.ProgressNotifier) constructor}).                                                   *   MultipartStream.ProgressNotifier) constructor}).                                                
+*                                                                                                      *                                                                                                   
+* @param output The &lt;code&gt;Stream&lt;/code&gt; to write data into. May                            * @param output The &lt;code&gt;Stream&lt;/code&gt; to write data into. May                         
+*               be null, in which case this method is equivalent                                       *               be null, in which case this method is equivalent                                    
+*               to {@link #discardBodyData()}.                                                         *               to {@link #discardBodyData()}.                                                      
+*                                                                                                      *                                                                                                   
+* @return the amount of data written.                                                                  * @return the amount of data written.                                                               
+*                                                                                                      *                                                                                                   
+* @throws MalformedStreamException if the stream ends unexpectedly.                                    * @throws MalformedStreamException if the stream ends unexpectedly.                                 
+* @throws IOException              if an i/o error occurs.                                             * @throws IOException              if an i/o error occurs.                                          
+*/                                                                                                     */                                                                                                  
+public int readBodyData(OutputStream output) throws MalformedStreamException, IOException {            public int readBodyData(OutputStream output) throws MalformedStreamException, IOException {         
+final InputStream istream = newInputStream();                                                        |                                                                                                     
+// N.B. Streams.copy closes the input stream                                                           // N.B. Streams.copy closes the input stream                                                        
+return (int) Streams.copy(istream, output, false);                                                   | return (int) Streams.copy(newInputStream(), output, false);                                         
+}                                                                                                      }                                                                                                   

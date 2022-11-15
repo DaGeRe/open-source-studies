@@ -1,0 +1,138 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 200000,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_312",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "T_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "032425f8e838f5e7f5044cf1152b2f1d3e541993",
+      "commitOld" : "99492f85ca7849d4c20e1f7f816c67f365fb5568"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.apache.commons.fileupload.DiskFileItemSerializeTest",
+      "method" : "testAboveThreshold",
+      "module" : "",
+      "params" : null
+    },
+    "propertyFolder" : "/home/reichelt/workspaces/dissworkspace/peass/results/properties_commons-fileupload"
+  },
+  "nodes" : {
+    "call" : "org.apache.commons.fileupload.DiskFileItemSerializeTest#testAboveThreshold",
+    "kiekerPattern" : "public void org.apache.commons.fileupload.DiskFileItemSerializeTest.testAboveThreshold()",
+    "otherKiekerPattern" : "public void org.apache.commons.fileupload.DiskFileItemSerializeTest.testAboveThreshold()",
+    "module" : "",
+    "statistic" : {
+      "meanOld" : 2.766995458172667E10,
+      "meanCurrent" : 2.0213310504359993E10,
+      "deviationOld" : 3.4448560826143104E8,
+      "deviationCurrent" : 2.9064158730893284E8,
+      "vms" : 30,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : 90.61565892014437
+    },
+    "childs" : [ {
+      "call" : "org.apache.commons.fileupload.DiskFileItemSerializeTest#serializeDeserialize",
+      "kiekerPattern" : "private java.lang.Object org.apache.commons.fileupload.DiskFileItemSerializeTest.serializeDeserialize(java.lang.Object)",
+      "otherKiekerPattern" : "private java.lang.Object org.apache.commons.fileupload.DiskFileItemSerializeTest.serializeDeserialize(java.lang.Object)",
+      "module" : "",
+      "statistic" : {
+        "meanOld" : 1.888395012301333E10,
+        "meanCurrent" : 1.1460656221926664E10,
+        "deviationOld" : 2.38852356079892E8,
+        "deviationCurrent" : 2.1201825348182866E8,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 127.30707480570038
+      },
+      "childs" : [ {
+        "call" : "org.apache.commons.fileupload.DiskFileItemSerializeTest#deserialize",
+        "kiekerPattern" : "private java.lang.Object org.apache.commons.fileupload.DiskFileItemSerializeTest.deserialize(java.io.ByteArrayOutputStream)",
+        "otherKiekerPattern" : "private java.lang.Object org.apache.commons.fileupload.DiskFileItemSerializeTest.deserialize(java.io.ByteArrayOutputStream)",
+        "module" : "",
+        "statistic" : {
+          "meanOld" : 1.7880628593259995E10,
+          "meanCurrent" : 1.0506964979213335E10,
+          "deviationOld" : 2.3078228058215767E8,
+          "deviationCurrent" : 2.1488872719287112E8,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : 128.0762416017493
+        },
+        "childs" : [ {
+          "call" : "org.apache.commons.fileupload.disk.DiskFileItem#readObject",
+          "kiekerPattern" : "private void org.apache.commons.fileupload.disk.DiskFileItem.readObject(java.io.ObjectInputStream)",
+          "otherKiekerPattern" : "private void org.apache.commons.fileupload.disk.DiskFileItem.readObject(java.io.ObjectInputStream)",
+          "module" : "",
+          "statistic" : {
+            "meanOld" : 1.5709065253106668E10,
+            "meanCurrent" : 8.456192056286669E9,
+            "deviationOld" : 1.9386763580397248E8,
+            "deviationCurrent" : 1.6149679219454178E8,
+            "vms" : 30,
+            "callsOld" : 150,
+            "calls" : 150,
+            "tvalue" : 157.44082578623602
+          },
+          "childs" : [ ]
+        } ]
+      } ]
+    } ]
+  }
+}

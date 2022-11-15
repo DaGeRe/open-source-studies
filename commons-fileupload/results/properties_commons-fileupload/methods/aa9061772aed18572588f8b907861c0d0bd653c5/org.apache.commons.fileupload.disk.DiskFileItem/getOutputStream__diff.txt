@@ -1,0 +1,16 @@
+/**
+ * Returns an {@link java.io.OutputStream OutputStream} that can
+ * be used for storing the contents of the file.
+ *
+ * @return An {@link java.io.OutputStream OutputStream} that can be used
+ *         for storing the contents of the file.
+ *
+ * @throws IOException if an error occurs.
+ */
+public OutputStream getOutputStream() throws IOException {
+    if (dfos == null) {
+        File outputFile = getTempFile();
+        dfos = new DeferredFileOutputStream(sizeThreshold, outputFile);
+    }
+    return dfos;
+}

@@ -1,0 +1,20 @@
+/**
+ * Returns the field name, which is given by the content-disposition
+ * header.
+ * @param pContentDisposition The content-dispositions header value.
+ * @return The field jake
+ */
+private String getFieldName(String pContentDisposition) {
+    String fieldName = null;
+    if (pContentDisposition != null && pContentDisposition.toLowerCase().startsWith(FORM_DATA)) {
+        ParameterParser parser = new ParameterParser();
+        parser.setLowerCaseNames(true);
+        // Parameter parser can handle null input
+        Map<String, String> params = parser.parse(pContentDisposition, ';');
+        fieldName = params.get("name");
+        if (fieldName != null) {
+            fieldName = fieldName.trim();
+        }
+    }
+    return fieldName;
+}

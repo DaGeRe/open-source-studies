@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Copies the contents of the given {@link InputStream}                                                 * Copies the contents of the given {@link InputStream}                                              
+* to the given {@link OutputStream}. Shortcut for                                                      * to the given {@link OutputStream}. Shortcut for                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   copy(pInputStream, pOutputStream, new byte[8192]);                                                 *   copy(pInputStream, pOutputStream, new byte[8192]);                                              
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param pInputStream The input stream, which is being read.                                         | * @param inputStream The input stream, which is being read.                                         
+* It is guaranteed, that {@link InputStream#close()} is called                                         * It is guaranteed, that {@link InputStream#close()} is called                                      
+* on the stream.                                                                                       * on the stream.                                                                                    
+* @param outputStream The output stream, to which data should                                          * @param outputStream The output stream, to which data should                                       
+* be written. May be null, in which case the input streams                                             * be written. May be null, in which case the input streams                                          
+* contents are simply discarded.                                                                       * contents are simply discarded.                                                                    
+* @param closeOutputStream True guarantees, that {@link OutputStream#close()}                          * @param closeOutputStream True guarantees, that {@link OutputStream#close()}                       
+* is called on the stream. False indicates, that only                                                  * is called on the stream. False indicates, that only                                               
+* {@link OutputStream#flush()} should be called finally.                                               * {@link OutputStream#flush()} should be called finally.                                            
+*                                                                                                      *                                                                                                   
+* @return Number of bytes, which have been copied.                                                     * @return Number of bytes, which have been copied.                                                  
+* @throws IOException An I/O error occurred.                                                           * @throws IOException An I/O error occurred.                                                        
+*/                                                                                                     */                                                                                                  
+public static long copy(InputStream pInputStream, OutputStream outputStream, boolean closeOutputStre | public static long copy(InputStream inputStream, OutputStream outputStream, boolean closeOutputStrea
+return copy(pInputStream, outputStream, closeOutputStream, new byte[DEFAULT_BUFFER_SIZE]);           | return copy(inputStream, outputStream, closeOutputStream, new byte[DEFAULT_BUFFER_SIZE]);           
+}                                                                                                      }                                                                                                   

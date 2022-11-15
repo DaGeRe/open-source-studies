@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* Do serialization and deserialization.                                                                * Do serialization and deserialization.                                                             
+*/                                                                                                     */                                                                                                  
+private Object serializeDeserialize(Object target) {                                                   private Object serializeDeserialize(Object target) {                                                
+// Serialize the test object                                                                           // Serialize the test object                                                                        
+ByteArrayOutputStream baos = new ByteArrayOutputStream();                                            | ByteArrayOutputStream baos = null;                                                                  
+try {                                                                                                  try {                                                                                               
+ObjectOutputStream oos = new ObjectOutputStream(baos);                                               | baos = serialize(target);                                                                           
+oos.writeObject(target);                                                                             |                                                                                                     
+oos.flush();                                                                                         |                                                                                                     
+oos.close();                                                                                         |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Exception during serialization: " + e);                                                          fail("Exception during serialization: " + e);                                                       
+}                                                                                                      }                                                                                                   
+// Deserialize the test object                                                                         // Deserialize the test object                                                                      
+Object result = null;                                                                                  Object result = null;                                                                               
+try {                                                                                                  try {                                                                                               
+ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());                            | result = deserialize(baos);                                                                         
+ObjectInputStream ois = new ObjectInputStream(bais);                                                 |                                                                                                     
+result = ois.readObject();                                                                           |                                                                                                     
+bais.close();                                                                                        |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Exception during deserialization: " + e);                                                        fail("Exception during deserialization: " + e);                                                     
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

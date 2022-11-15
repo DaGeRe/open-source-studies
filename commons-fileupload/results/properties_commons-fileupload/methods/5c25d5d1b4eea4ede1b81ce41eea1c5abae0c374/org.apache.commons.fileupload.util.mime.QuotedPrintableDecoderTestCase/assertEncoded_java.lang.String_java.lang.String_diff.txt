@@ -1,0 +1,8 @@
+private static void assertEncoded(String clearText, String encoded) throws Exception {
+    byte[] expected = clearText.getBytes(US_ASCII_CHARSET);
+    ByteArrayOutputStream out = new ByteArrayOutputStream(encoded.length());
+    byte[] encodedData = encoded.getBytes(US_ASCII_CHARSET);
+    QuotedPrintableDecoder.decode(encodedData, out);
+    byte[] actual = out.toByteArray();
+    assertArrayEquals(expected, actual);
+}

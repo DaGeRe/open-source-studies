@@ -1,0 +1,24 @@
+/**
+ * Test creation of a field for which the amount of data falls below the
+ * configured threshold.
+ */
+@Test
+public void testBelowThreshold() {
+    FileItemFactory factory = createFactory(null);
+    String textFieldName = "textField";
+    String textFieldValue = "0123456789";
+    byte[] testFieldValueBytes = textFieldValue.getBytes();
+    FileItem item = factory.createItem(textFieldName, textContentType, true, null);
+    assertNotNull(item);
+    try {
+        OutputStream os = item.getOutputStream();
+        os.write(testFieldValueBytes);
+        os.close();
+    } catch (IOException e) {
+        fail("Unexpected IOException");
+    }
+    assertTrue(item.isInMemory());
+    assertEquals(item.getSize(), testFieldValueBytes.length);
+    assertTrue(Arrays.equals(item.get(), testFieldValueBytes));
+    assertEquals(item.getString(), textFieldValue);
+}

@@ -1,0 +1,7 @@
+private FileItemIterator parseUpload(int pLength, InputStream pStream) throws FileUploadException, IOException {
+    String contentType = "multipart/form-data; boundary=---1234";
+    FileUploadBase upload = new ServletFileUpload();
+    upload.setFileItemFactory(new DiskFileItemFactory());
+    HttpServletRequest request = new MockHttpServletRequest(pStream, pLength, contentType);
+    return upload.getItemIterator(new ServletRequestContext(request));
+}

@@ -1,0 +1,18 @@
+/**
+ * Translate a MIME standard character set name into the Java
+ * equivalent.
+ *
+ * @param charset The MIME standard name.
+ *
+ * @return The Java equivalent for this name.
+ */
+private static String javaCharset(String charset) {
+    // nothing in, nothing out.
+    if (charset == null) {
+        return null;
+    }
+    String mappedCharset = MIME2JAVA.get(charset.toLowerCase(Locale.ENGLISH));
+    // if there is no mapping, then the original name is used.  Many of the MIME character set
+    // names map directly back into Java.  The reverse isn't necessarily true.
+    return mappedCharset == null ? charset : mappedCharset;
+}

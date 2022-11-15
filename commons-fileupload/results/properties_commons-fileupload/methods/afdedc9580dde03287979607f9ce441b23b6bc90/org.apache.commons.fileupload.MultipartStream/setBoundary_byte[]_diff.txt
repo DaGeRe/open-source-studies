@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Changes the boundary token used for partitioning the stream.                                * &lt;p&gt;Changes the boundary token used for partitioning the stream.                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method allows single pass processing of nested multipart                               * &lt;p&gt;This method allows single pass processing of nested multipart                            
+* streams.                                                                                             * streams.                                                                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The boundary token of the nested stream is &lt;code&gt;required&lt;/code&gt;                * &lt;p&gt;The boundary token of the nested stream is &lt;code&gt;required&lt;/code&gt;             
+* to be of the same length as the boundary token in parent stream.                                     * to be of the same length as the boundary token in parent stream.                                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Restoring the parent stream boundary token after processing of a                            * &lt;p&gt;Restoring the parent stream boundary token after processing of a                         
+* nested stream is left to the application.                                                            * nested stream is left to the application.                                                         
+*                                                                                                      *                                                                                                   
+* @param boundary The boundary to be used for parsing of the nested                                    * @param boundary The boundary to be used for parsing of the nested                                 
+*                 stream.                                                                              *                 stream.                                                                           
+*                                                                                                      *                                                                                                   
+* @throws IllegalBoundaryException if the &lt;code&gt;boundary&lt;/code&gt;                            * @throws IllegalBoundaryException if the &lt;code&gt;boundary&lt;/code&gt;                         
+*                                  has a different length than the one                                 *                                  has a different length than the one                              
+*                                  being currently parsed.                                             *                                  being currently parsed.                                          
+*/                                                                                                     */                                                                                                  
+public void setBoundary(byte[] boundary) throws IllegalBoundaryException {                             public void setBoundary(byte[] boundary) throws IllegalBoundaryException {                          
+if (boundary.length != boundaryLength - BOUNDARY_PREFIX.length) {                                      if (boundary.length != boundaryLength - BOUNDARY_PREFIX.length) {                                   
+throw new IllegalBoundaryException("The length of a boundary token can not be changed");               throw new IllegalBoundaryException("The length of a boundary token can not be changed");            
+}                                                                                                      }                                                                                                   
+System.arraycopy(boundary, 0, this.boundary, BOUNDARY_PREFIX.length, boundary.length);                 System.arraycopy(boundary, 0, this.boundary, BOUNDARY_PREFIX.length, boundary.length);              
+                                                                                                     | computeBoundaryTable();                                                                             
+}                                                                                                      }                                                                                                   

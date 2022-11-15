@@ -1,0 +1,11 @@
+                                                                                                     | @SuppressWarnings("unused")                                                                         
+@Test(expected = IllegalArgumentException.class)                                                       @Test(expected = IllegalArgumentException.class)                                                    
+public void testSmallBuffer() throws Exception {                                                       public void testSmallBuffer() throws Exception {                                                    
+final String strData = "foobar";                                                                       final String strData = "foobar";                                                                    
+final byte[] contents = strData.getBytes();                                                            final byte[] contents = strData.getBytes();                                                         
+InputStream input = new ByteArrayInputStream(contents);                                                InputStream input = new ByteArrayInputStream(contents);                                             
+byte[] boundary = BOUNDARY_TEXT.getBytes();                                                            byte[] boundary = BOUNDARY_TEXT.getBytes();                                                         
+int iBufSize = 1;                                                                                      int iBufSize = 1;                                                                                   
+@SuppressWarnings("unused")                                                                          | new MultipartStream(input, boundary, iBufSize, new MultipartStream.ProgressNotifier(null, contents.l
+MultipartStream ms = new MultipartStream(input, boundary, iBufSize, new MultipartStream.ProgressNoti |                                                                                                     
+}                                                                                                      }                                                                                                   

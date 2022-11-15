@@ -1,0 +1,26 @@
+/**
+ * <p>Changes the boundary token used for partitioning the stream.
+ *
+ * <p>This method allows single pass processing of nested multipart
+ * streams.
+ *
+ * <p>The boundary token of the nested stream is <code>required</code>
+ * to be of the same length as the boundary token in parent stream.
+ *
+ * <p>Restoring the parent stream boundary token after processing of a
+ * nested stream is left to the application.
+ *
+ * @param boundary The boundary to be used for parsing of the nested
+ *                 stream.
+ *
+ * @throws IllegalBoundaryException if the <code>boundary</code>
+ *                                  has a different length than the one
+ *                                  being currently parsed.
+ */
+public void setBoundary(byte[] boundary) throws IllegalBoundaryException {
+    if (boundary.length != boundaryLength - BOUNDARY_PREFIX.length) {
+        throw new IllegalBoundaryException("The length of a boundary token can not be changed");
+    }
+    System.arraycopy(boundary, 0, this.boundary, BOUNDARY_PREFIX.length, boundary.length);
+    computeBoundaryTable();
+}

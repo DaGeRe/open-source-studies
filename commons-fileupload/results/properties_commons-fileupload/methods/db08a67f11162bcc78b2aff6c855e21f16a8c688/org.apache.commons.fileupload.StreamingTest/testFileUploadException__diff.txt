@@ -1,0 +1,15 @@
+/**
+ * Tests, whether an invalid request throws a proper
+ * exception.
+ */
+public void testFileUploadException() throws IOException, FileUploadException {
+    byte[] request = newRequest();
+    byte[] invalidRequest = new byte[request.length - 11];
+    System.arraycopy(request, 0, invalidRequest, 0, request.length - 11);
+    try {
+        parseUpload(invalidRequest);
+        fail("Expected EndOfStreamException");
+    } catch (IOFileUploadException e) {
+        assertTrue(e.getCause() instanceof MultipartStream.MalformedStreamException);
+    }
+}

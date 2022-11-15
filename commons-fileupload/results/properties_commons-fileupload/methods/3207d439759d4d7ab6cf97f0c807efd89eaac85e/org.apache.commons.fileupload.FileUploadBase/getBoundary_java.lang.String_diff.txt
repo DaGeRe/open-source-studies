@@ -1,0 +1,27 @@
+// ------------------------------------------------------ Protected methods
+/**
+ * Retrieves the boundary from the <code>Content-type</code> header.
+ *
+ * @param contentType The value of the content type header from which to
+ *                    extract the boundary value.
+ *
+ * @return The boundary, as a byte array.
+ */
+protected byte[] getBoundary(String contentType) {
+    ParameterParser parser = new ParameterParser();
+    parser.setLowerCaseNames(true);
+    // Parameter parser can handle null input
+    Map<String, String> params = parser.parse(contentType, new char[] { ';', ',' });
+    String boundaryStr = params.get("boundary");
+    if (boundaryStr == null) {
+        return null;
+    }
+    byte[] boundary;
+    try {
+        boundary = boundaryStr.getBytes("ISO-8859-1");
+    } catch (UnsupportedEncodingException e) {
+        // Intentionally falls back to default charset
+        boundary = boundaryStr.getBytes();
+    }
+    return boundary;
+}

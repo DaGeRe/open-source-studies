@@ -1,0 +1,14 @@
+// ------------------------------------------------------ Protected methods                            // ------------------------------------------------------ Protected methods                         
+/**                                                                                                    /**                                                                                                 
+* Removes the file contents from the temporary storage.                                                * Removes the file contents from the temporary storage.                                             
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+protected void finalize() {                                                                            protected void finalize() {                                                                         
+                                                                                                     | if (dfos == null) {                                                                                 
+                                                                                                     | return;                                                                                             
+                                                                                                     | }                                                                                                   
+File outputFile = dfos.getFile();                                                                      File outputFile = dfos.getFile();                                                                   
+if (outputFile != null && outputFile.exists()) {                                                       if (outputFile != null && outputFile.exists()) {                                                    
+outputFile.delete();                                                                                   outputFile.delete();                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

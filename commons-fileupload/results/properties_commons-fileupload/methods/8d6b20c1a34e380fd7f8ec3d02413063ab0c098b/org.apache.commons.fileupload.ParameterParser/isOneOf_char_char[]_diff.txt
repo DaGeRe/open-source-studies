@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Tests if the given character is present in the array of characters.                                  * Tests if the given character is present in the array of characters.                               
+*                                                                                                      *                                                                                                   
+* @param ch the character to test for presense in the array of characters                              * @param ch the character to test for presense in the array of characters                           
+* @param charray the array of characters to test against                                               * @param charray the array of characters to test against                                            
+*                                                                                                      *                                                                                                   
+* @return &lt;tt&gt;true&lt;/tt&gt; if the character is present in the array of                        * @return &lt;tt&gt;true&lt;/tt&gt; if the character is present in the array of                     
+*   characters, &lt;tt&gt;false&lt;/tt&gt; otherwise.                                                  *   characters, &lt;tt&gt;false&lt;/tt&gt; otherwise.                                               
+*/                                                                                                     */                                                                                                  
+private boolean isOneOf(char ch, final char[] charray) {                                               private boolean isOneOf(char ch, final char[] charray) {                                            
+boolean result = false;                                                                                boolean result = false;                                                                             
+for (int i = 0; i &lt; charray.length; i++) {                                                        | for (char element : charray) {                                                                      
+if (ch == charray[i]) {                                                                              | if (ch == element) {                                                                                
+result = true;                                                                                         result = true;                                                                                      
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

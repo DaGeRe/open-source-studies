@@ -1,0 +1,14 @@
+/**
+ * Returns the number of bytes, which are currently
+ * available, without blocking.
+ *
+ * @throws IOException An I/O error occurs.
+ * @return Number of bytes in the buffer.
+ */
+@Override
+public int available() throws IOException {
+    if (pos == -1) {
+        return tail - head - pad;
+    }
+    return pos - head;
+}

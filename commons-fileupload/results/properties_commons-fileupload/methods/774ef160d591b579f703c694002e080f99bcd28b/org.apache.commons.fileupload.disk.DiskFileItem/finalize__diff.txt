@@ -1,0 +1,14 @@
+// ------------------------------------------------------ Protected methods
+/**
+ * Removes the file contents from the temporary storage.
+ */
+@Override
+protected void finalize() {
+    if (dfos == null) {
+        return;
+    }
+    File outputFile = dfos.getFile();
+    if (outputFile != null && outputFile.exists()) {
+        outputFile.delete();
+    }
+}

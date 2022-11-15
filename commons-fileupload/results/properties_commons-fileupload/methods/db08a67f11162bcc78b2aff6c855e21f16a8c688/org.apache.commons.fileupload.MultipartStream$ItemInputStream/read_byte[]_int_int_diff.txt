@@ -1,0 +1,31 @@
+/**
+ * Reads bytes into the given buffer.
+ *
+ * @param b The destination buffer, where to write to.
+ * @param off Offset of the first byte in the buffer.
+ * @param len Maximum number of bytes to read.
+ * @return Number of bytes, which have been actually read,
+ *   or -1 for EOF.
+ * @throws IOException An I/O error occurred.
+ */
+@Override
+public int read(byte[] b, int off, int len) throws IOException {
+    if (closed) {
+        throw new FileItemStream.ItemSkippedException();
+    }
+    if (len == 0) {
+        return 0;
+    }
+    int res = available();
+    if (res == 0) {
+        res = makeAvailable();
+        if (res == 0) {
+            return -1;
+        }
+    }
+    res = Math.min(res, len);
+    System.arraycopy(buffer, head, b, off, res);
+    head += res;
+    total += res;
+    return res;
+}

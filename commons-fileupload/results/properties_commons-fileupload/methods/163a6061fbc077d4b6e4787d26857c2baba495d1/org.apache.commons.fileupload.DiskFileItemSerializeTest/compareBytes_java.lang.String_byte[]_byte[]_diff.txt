@@ -1,0 +1,11 @@
+/**
+ * Compare content bytes.
+ */
+private void compareBytes(String text, byte[] origBytes, byte[] newBytes) {
+    assertNotNull("origBytes must not be null", origBytes);
+    assertNotNull("newBytes must not be null", newBytes);
+    assertEquals(text + " byte[] length", origBytes.length, newBytes.length);
+    for (int i = 0; i < origBytes.length; i++) {
+        assertEquals(text + " byte[" + i + "]", origBytes[i], newBytes[i]);
+    }
+}

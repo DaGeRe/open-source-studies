@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt; Constructs a &lt;code&gt;MultipartStream&lt;/code&gt; with a default size buffer.          * &lt;p&gt; Constructs a &lt;code&gt;MultipartStream&lt;/code&gt; with a default size buffer.       
+*                                                                                                      *                                                                                                   
+* @param input    The &lt;code&gt;InputStream&lt;/code&gt; to serve as a data source.                  * @param input    The &lt;code&gt;InputStream&lt;/code&gt; to serve as a data source.               
+* @param boundary The token used for dividing the stream into                                          * @param boundary The token used for dividing the stream into                                       
+*                 &lt;code&gt;encapsulations&lt;/code&gt;.                                             *                 &lt;code&gt;encapsulations&lt;/code&gt;.                                          
+* @param pNotifier An object for calling the progress listener, if any.                                * @param pNotifier An object for calling the progress listener, if any.                             
+*                                                                                                      *                                                                                                   
+* @see #MultipartStream(InputStream, byte[], int,                                                    | * @see #MultipartStream(InputStream, byte[], int, ProgressNotifier)                                 
+*     MultipartStream.ProgressNotifier)                                                              |                                                                                                     
+*/                                                                                                     */                                                                                                  
+MultipartStream(InputStream input, byte[] boundary, ProgressNotifier pNotifier) {                      MultipartStream(InputStream input, byte[] boundary, ProgressNotifier pNotifier) {                   
+this(input, boundary, DEFAULT_BUFSIZE, pNotifier);                                                     this(input, boundary, DEFAULT_BUFSIZE, pNotifier);                                                  
+}                                                                                                      }                                                                                                   

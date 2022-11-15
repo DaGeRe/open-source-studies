@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Helper method to test creation of a field when a repository is used.                                 * Helper method to test creation of a field when a repository is used.                              
+*/                                                                                                     */                                                                                                  
+public void testInMemoryObject(byte[] testFieldValueBytes, File repository) {                          public void testInMemoryObject(byte[] testFieldValueBytes, File repository) {                       
+FileItem item = createFileItem(testFieldValueBytes, repository);                                       FileItem item = createFileItem(testFieldValueBytes, repository);                                    
+// Check state is as expected                                                                          // Check state is as expected                                                                       
+assertTrue("Initial: in memory", item.isInMemory());                                                   assertTrue("Initial: in memory", item.isInMemory());                                                
+assertEquals("Initial: size", item.getSize(), testFieldValueBytes.length);                             assertEquals("Initial: size", item.getSize(), testFieldValueBytes.length);                          
+compareBytes("Initial", item.get(), testFieldValueBytes);                                              compareBytes("Initial", item.get(), testFieldValueBytes);                                           
+// Serialize & Deserialize                                                                           | item.delete();                                                                                      
+FileItem newItem = (FileItem) serializeDeserialize(item);                                            |                                                                                                     
+// Test deserialized content is as expected                                                          |                                                                                                     
+assertTrue("Check in memory", newItem.isInMemory());                                                 |                                                                                                     
+compareBytes("Check", testFieldValueBytes, newItem.get());                                           |                                                                                                     
+// Compare FileItem's (except byte[])                                                                |                                                                                                     
+compareFileItems(item, newItem);                                                                     |                                                                                                     
+}                                                                                                      }                                                                                                   

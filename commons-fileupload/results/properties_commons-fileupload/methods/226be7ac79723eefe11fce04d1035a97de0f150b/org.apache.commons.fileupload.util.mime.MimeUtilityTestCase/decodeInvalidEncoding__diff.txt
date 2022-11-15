@@ -1,0 +1,4 @@
+@Test(expected = UnsupportedEncodingException.class)
+public void decodeInvalidEncoding() throws Exception {
+    MimeUtility.decodeText("=?invalid?B?xyz-?=");
+}

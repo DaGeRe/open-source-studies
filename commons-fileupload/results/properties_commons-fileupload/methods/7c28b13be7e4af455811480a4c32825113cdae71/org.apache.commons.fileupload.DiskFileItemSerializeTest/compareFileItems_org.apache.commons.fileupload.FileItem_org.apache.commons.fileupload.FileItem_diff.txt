@@ -1,0 +1,10 @@
+/**
+ * Compare FileItem's (except the byte[] content)
+ */
+private void compareFileItems(FileItem origItem, FileItem newItem) {
+    assertTrue("Compare: is in Memory", origItem.isInMemory() == newItem.isInMemory());
+    assertTrue("Compare: is Form Field", origItem.isFormField() == newItem.isFormField());
+    assertEquals("Compare: Field Name", origItem.getFieldName(), newItem.getFieldName());
+    assertEquals("Compare: Content Type", origItem.getContentType(), newItem.getContentType());
+    assertEquals("Compare: File Name", origItem.getName(), newItem.getName());
+}

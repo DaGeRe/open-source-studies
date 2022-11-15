@@ -1,0 +1,15 @@
+/**
+ * Test construction of a file field.
+ */
+@Test
+public void testFileFieldConstruction() {
+    FileItemFactory factory = createFactory(null);
+    String fileFieldName = "fileField";
+    String fileName = "originalFileName";
+    FileItem item = factory.createItem(fileFieldName, fileContentType, false, fileName);
+    assertNotNull(item);
+    assertEquals(item.getFieldName(), fileFieldName);
+    assertEquals(item.getContentType(), fileContentType);
+    assertFalse(item.isFormField());
+    assertEquals(item.getName(), fileName);
+}

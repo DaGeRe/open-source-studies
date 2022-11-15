@@ -1,0 +1,10 @@
+private byte[] newShortRequest() throws IOException {
+    final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    final OutputStreamWriter osw = new OutputStreamWriter(baos, "US-ASCII");
+    osw.write(getHeader("field"));
+    osw.write("123");
+    osw.write("\r\n");
+    osw.write(getFooter());
+    osw.close();
+    return baos.toByteArray();
+}

@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Extracts a map of name/value pairs from the given string. Names are                                  * Extracts a map of name/value pairs from the given string. Names are                               
+* expected to be unique. Multiple separators may be specified and                                      * expected to be unique. Multiple separators may be specified and                                   
+* the earliest found in the input string is used.                                                      * the earliest found in the input string is used.                                                   
+*                                                                                                      *                                                                                                   
+* @param str the string that contains a sequence of name/value pairs                                   * @param str the string that contains a sequence of name/value pairs                                
+* @param separators the name/value pairs separators                                                    * @param separators the name/value pairs separators                                                 
+*                                                                                                      *                                                                                                   
+* @return a map of name/value pairs                                                                    * @return a map of name/value pairs                                                                 
+*/                                                                                                     */                                                                                                  
+public Map&lt;String, String&gt; parse(final String str, char[] separators) {                          public Map&lt;String, String&gt; parse(final String str, char[] separators) {                       
+if (separators == null || separators.length == 0) {                                                    if (separators == null || separators.length == 0) {                                                 
+return new HashMap&lt;String, String&gt;();                                                            return new HashMap&lt;String, String&gt;();                                                         
+}                                                                                                      }                                                                                                   
+char separator = separators[0];                                                                        char separator = separators[0];                                                                     
+if (str != null) {                                                                                     if (str != null) {                                                                                  
+int idx = str.length();                                                                                int idx = str.length();                                                                             
+for (int i = 0; i &lt; separators.length; i++) {                                                     | for (char separator2 : separators) {                                                                
+int tmp = str.indexOf(separators[i]);                                                                | int tmp = str.indexOf(separator2);                                                                  
+if (tmp != -1 && tmp &lt; idx) {                                                                       if (tmp != -1 && tmp &lt; idx) {                                                                    
+idx = tmp;                                                                                             idx = tmp;                                                                                          
+separator = separators[i];                                                                           | separator = separator2;                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return parse(str, separator);                                                                          return parse(str, separator);                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+/**
+ * Throws ArrayIndexOutOfBoundsException on some non-BASE64 bytes.
+ *
+ * This is fixed in Apache Commons-Codec.
+ *
+ * @throws Exception
+ * @see <a href="https://issues.apache.org/jira/browse/CODEC-68">CODEC-68</a>
+ */
+@Test(expected = ArrayIndexOutOfBoundsException.class)
+public void nonBase64Bytes() throws Exception {
+    final byte[] x = new byte[] { 'n', 'A', '=', '=', (byte) 0x9c };
+    Base64Decoder.decode(x, new ByteArrayOutputStream());
+}

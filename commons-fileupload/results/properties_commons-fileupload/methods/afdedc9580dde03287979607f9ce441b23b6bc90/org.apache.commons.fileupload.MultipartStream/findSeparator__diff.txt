@@ -1,0 +1,29 @@
+/**                                                                                                    /**                                                                                                 
+* Searches for the &lt;code&gt;boundary&lt;/code&gt; in the &lt;code&gt;buffer&lt;/code&gt;            * Searches for the &lt;code&gt;boundary&lt;/code&gt; in the &lt;code&gt;buffer&lt;/code&gt;         
+* region delimited by &lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt;.                 * region delimited by &lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt;.              
+*                                                                                                      *                                                                                                   
+* @return The position of the boundary found, counting from the                                        * @return The position of the boundary found, counting from the                                     
+*         beginning of the &lt;code&gt;buffer&lt;/code&gt;, or &lt;code&gt;-1&lt;/code&gt; if          *         beginning of the &lt;code&gt;buffer&lt;/code&gt;, or &lt;code&gt;-1&lt;/code&gt; if       
+*         not found.                                                                                   *         not found.                                                                                
+*/                                                                                                     */                                                                                                  
+protected int findSeparator() {                                                                        protected int findSeparator() {                                                                     
+int first;                                                                                           | int bufferPos = this.head;                                                                          
+int match = 0;                                                                                       | int tablePos = 0;                                                                                   
+int maxpos = tail - boundaryLength;                                                                  | while (bufferPos &lt; this.tail) {                                                                  
+for (first = head; first &lt;= maxpos && match != boundaryLength; first++) {                         | while (tablePos &gt;= 0 && buffer[bufferPos] != boundary[tablePos]) {                               
+first = findByte(boundary[0], first);                                                                | tablePos = boundaryTable[tablePos];                                                                 
+if (first == -1 || first &gt; maxpos) {                                                              |                                                                                                     
+return -1;                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+for (match = 1; match &lt; boundaryLength; match++) {                                                | bufferPos++;                                                                                        
+if (buffer[first + match] != boundary[match]) {                                                      | tablePos++;                                                                                         
+break;                                                                                               | if (tablePos == boundaryLength) {                                                                   
+                                                                                                     | return bufferPos - boundaryLength;                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+if (match == boundaryLength) {                                                                       |                                                                                                     
+return first - 1;                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,10 @@
+/**
+ * Throws IOException for non-BASE64 bytes.
+ *
+ * @throws Exception
+ */
+@Test(expected = IOException.class)
+public void nonBase64Bytes() throws Exception {
+    final byte[] x = new byte[] { 'n', 'A', (byte) 0x9c };
+    Base64Decoder.decode(x, new ByteArrayOutputStream());
+}

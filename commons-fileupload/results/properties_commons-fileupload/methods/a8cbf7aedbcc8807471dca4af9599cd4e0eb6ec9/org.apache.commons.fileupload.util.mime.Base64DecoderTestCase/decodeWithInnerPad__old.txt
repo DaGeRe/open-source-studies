@@ -1,0 +1,11 @@
+/**
+ * Test our decode with a pad character in the middle.
+ *
+ * Contrary to Apache Commons-Codec implementation, doesn't halt decode and return what we've got so far.
+ *
+ * @throws Exception if any error occurs while decoding the input string.
+ */
+@Test
+public void decodeWithInnerPad() throws Exception {
+    assertEncoded("Hello World\0Hello World", "SGVsbG8gV29ybGQ=SGVsbG8gV29ybGQ=");
+}

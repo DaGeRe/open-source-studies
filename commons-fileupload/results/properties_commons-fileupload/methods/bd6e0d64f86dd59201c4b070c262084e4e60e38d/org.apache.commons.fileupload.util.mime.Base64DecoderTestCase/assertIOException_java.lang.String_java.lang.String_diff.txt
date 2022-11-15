@@ -1,0 +1,11 @@
+private static void assertIOException(String messageText, String encoded) throws UnsupportedEncodingException {
+    ByteArrayOutputStream out = new ByteArrayOutputStream(encoded.length());
+    byte[] encodedData = encoded.getBytes(US_ASCII_CHARSET);
+    try {
+        Base64Decoder.decode(encodedData, out);
+        fail("Expected IOException");
+    } catch (IOException e) {
+        String em = e.getMessage();
+        assertTrue("Expected to find " + messageText + " in '" + em + "'", em.contains(messageText));
+    }
+}

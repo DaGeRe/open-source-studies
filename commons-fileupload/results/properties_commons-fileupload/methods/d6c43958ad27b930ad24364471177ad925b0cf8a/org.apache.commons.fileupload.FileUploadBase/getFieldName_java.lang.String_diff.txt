@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the field name, which is given by the content-disposition                                    * Returns the field name, which is given by the content-disposition                                 
+* header.                                                                                              * header.                                                                                           
+* @param pContentDisposition The content-dispositions header value.                                    * @param pContentDisposition The content-dispositions header value.                                 
+* @return The field jake                                                                               * @return The field jake                                                                            
+*/                                                                                                     */                                                                                                  
+private String getFieldName(String pContentDisposition) {                                              private String getFieldName(String pContentDisposition) {                                           
+String fieldName = null;                                                                               String fieldName = null;                                                                            
+if (pContentDisposition != null && pContentDisposition.toLowerCase().startsWith(FORM_DATA)) {        | if (pContentDisposition != null && pContentDisposition.toLowerCase(Locale.ENGLISH).startsWith(FORM_D
+ParameterParser parser = new ParameterParser();                                                        ParameterParser parser = new ParameterParser();                                                     
+parser.setLowerCaseNames(true);                                                                        parser.setLowerCaseNames(true);                                                                     
+// Parameter parser can handle null input                                                              // Parameter parser can handle null input                                                           
+Map&lt;String, String&gt; params = parser.parse(pContentDisposition, ';');                             Map&lt;String, String&gt; params = parser.parse(pContentDisposition, ';');                          
+fieldName = params.get("name");                                                                        fieldName = params.get("name");                                                                     
+if (fieldName != null) {                                                                               if (fieldName != null) {                                                                            
+fieldName = fieldName.trim();                                                                          fieldName = fieldName.trim();                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return fieldName;                                                                                      return fieldName;                                                                                   
+}                                                                                                      }                                                                                                   

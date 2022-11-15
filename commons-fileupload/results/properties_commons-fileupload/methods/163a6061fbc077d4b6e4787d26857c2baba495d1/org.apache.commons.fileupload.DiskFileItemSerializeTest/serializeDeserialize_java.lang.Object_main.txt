@@ -1,0 +1,20 @@
+/**
+ * Do serialization and deserialization.
+ */
+private Object serializeDeserialize(Object target) {
+    // Serialize the test object
+    ByteArrayOutputStream baos = null;
+    try {
+        baos = serialize(target);
+    } catch (Exception e) {
+        fail("Exception during serialization: " + e);
+    }
+    // Deserialize the test object
+    Object result = null;
+    try {
+        result = deserialize(baos);
+    } catch (Exception e) {
+        fail("Exception during deserialization: " + e);
+    }
+    return result;
+}

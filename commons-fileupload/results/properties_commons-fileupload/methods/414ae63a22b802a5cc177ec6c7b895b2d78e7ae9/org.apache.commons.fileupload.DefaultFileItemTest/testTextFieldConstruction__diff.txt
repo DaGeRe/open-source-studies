@@ -1,0 +1,14 @@
+/**
+ * Test construction of a regular text field.
+ */
+@Test
+public void testTextFieldConstruction() {
+    FileItemFactory factory = createFactory(null);
+    String textFieldName = "textField";
+    FileItem item = factory.createItem(textFieldName, textContentType, true, null);
+    assertNotNull(item);
+    assertEquals(item.getFieldName(), textFieldName);
+    assertEquals(item.getContentType(), textContentType);
+    assertTrue(item.isFormField());
+    assertNull(item.getName());
+}

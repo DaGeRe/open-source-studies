@@ -1,0 +1,22 @@
+// --------------------------------------------------------- Public Methods
+/**
+ * Create a new {@link org.apache.commons.fileupload.DefaultFileItem}
+ * instance from the supplied parameters and the local factory
+ * configuration.
+ *
+ * @param fieldName   The name of the form field.
+ * @param contentType The content type of the form field.
+ * @param isFormField <code>true</code> if this is a plain form field;
+ *                    <code>false</code> otherwise.
+ * @param fileName    The name of the uploaded file, if any, as supplied
+ *                    by the browser or other client.
+ *
+ * @return The newly created file item.
+ *
+ * @deprecated 1.1 Use <code>DiskFileItemFactory</code> instead.
+ */
+@Override
+@Deprecated
+public FileItem createItem(String fieldName, String contentType, boolean isFormField, String fileName) {
+    return new DefaultFileItem(fieldName, contentType, isFormField, fileName, getSizeThreshold(), getRepository());
+}

@@ -1,0 +1,23 @@
+/**
+ * Tests a file upload with varying file sizes.
+ */
+public void testFileUpload() throws IOException, FileUploadException {
+    byte[] request = newRequest();
+    List<FileItem> fileItems = parseUpload(request);
+    Iterator<FileItem> fileIter = fileItems.iterator();
+    int add = 16;
+    int num = 0;
+    for (int i = 0; i < 16384; i += add) {
+        if (++add == 32) {
+            add = 16;
+        }
+        FileItem item = fileIter.next();
+        assertEquals("field" + (num++), item.getFieldName());
+        byte[] bytes = item.get();
+        assertEquals(i, bytes.length);
+        for (int j = 0; j < i; j++) {
+            assertEquals((byte) j, bytes[j]);
+        }
+    }
+    assertTrue(!fileIter.hasNext());
+}

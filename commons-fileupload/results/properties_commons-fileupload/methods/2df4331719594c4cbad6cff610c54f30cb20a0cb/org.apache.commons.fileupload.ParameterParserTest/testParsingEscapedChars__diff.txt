@@ -1,0 +1,13 @@
+@Test
+public void testParsingEscapedChars() {
+    String s = "param = \"stuff\\\"; more stuff\"";
+    ParameterParser parser = new ParameterParser();
+    Map<String, String> params = parser.parse(s, ';');
+    assertEquals(1, params.size());
+    assertEquals("stuff\\\"; more stuff", params.get("param"));
+    s = "param = \"stuff\\\\\"; anotherparam";
+    params = parser.parse(s, ';');
+    assertEquals(2, params.size());
+    assertEquals("stuff\\\\", params.get("param"));
+    assertNull(params.get("anotherparam"));
+}

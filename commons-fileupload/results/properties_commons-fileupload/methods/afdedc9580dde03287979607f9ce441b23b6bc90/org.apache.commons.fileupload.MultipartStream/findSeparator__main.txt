@@ -1,0 +1,23 @@
+/**
+ * Searches for the <code>boundary</code> in the <code>buffer</code>
+ * region delimited by <code>head</code> and <code>tail</code>.
+ *
+ * @return The position of the boundary found, counting from the
+ *         beginning of the <code>buffer</code>, or <code>-1</code> if
+ *         not found.
+ */
+protected int findSeparator() {
+    int bufferPos = this.head;
+    int tablePos = 0;
+    while (bufferPos < this.tail) {
+        while (tablePos >= 0 && buffer[bufferPos] != boundary[tablePos]) {
+            tablePos = boundaryTable[tablePos];
+        }
+        bufferPos++;
+        tablePos++;
+        if (tablePos == boundaryLength) {
+            return bufferPos - boundaryLength;
+        }
+    }
+    return -1;
+}

@@ -1,0 +1,8 @@
+@Before
+public void setUp() throws Exception {
+    if (REPO.exists()) {
+        FileUtils.deleteDirectory(REPO);
+    }
+    assertFalse("Must not exist", REPO.exists());
+    REPO.mkdir();
+}

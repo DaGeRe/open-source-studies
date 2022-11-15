@@ -1,0 +1,8 @@
+@After
+public void tearDown() {
+    for (File file : FileUtils.listFiles(REPO, null, true)) {
+        System.out.println("Found leftover file " + file);
+    }
+    REPO.delete();
+    assertFalse(REPO + " is not empty", REPO.exists());
+}

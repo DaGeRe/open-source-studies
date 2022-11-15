@@ -1,0 +1,15 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Convert a hex digit to the binary value it represents.                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param b the ascii hex byte to convert (0-0, A-F, a-f)                                            
+                                                                                                     | * @return the int value of the hex byte, 0-15                                                       
+                                                                                                     | * @throws IOException if the byte is not a valid hex digit.                                         
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static int hexToBinary(final byte b) throws IOException {                                   
+                                                                                                     | // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE                                                    
+                                                                                                     | final int i = Character.digit((char) b, 16);                                                        
+                                                                                                     | if (i == -1) {                                                                                      
+                                                                                                     | throw new IOException("Invalid quoted printable encoding: not a valid hex digit: " + b);            
+                                                                                                     | }                                                                                                   
+                                                                                                     | return i;                                                                                           
+                                                                                                     | }                                                                                                   

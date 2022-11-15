@@ -1,0 +1,10 @@
+/**
+ * Creates a new instance with the given request data
+ * and content type.
+ */
+public MockHttpServletRequest(final InputStream requestData, final long requestLength, final String strContentType) {
+    m_requestData = requestData;
+    length = requestLength;
+    m_strContentType = strContentType;
+    m_headers.put(FileUploadBase.CONTENT_TYPE, strContentType);
+}

@@ -1,0 +1,11 @@
+/**
+ * Test deserialization fails when repository contains a null character.
+ */
+@Test(expected = IOException.class)
+public void testInvalidRepositoryWithNullChar() throws Exception {
+    // Create the FileItem
+    byte[] testFieldValueBytes = createContentBytes(threshold);
+    File repository = new File(System.getProperty("java.io.tmpdir") + "\0");
+    FileItem item = createFileItem(testFieldValueBytes, repository);
+    deserialize(serialize(item));
+}

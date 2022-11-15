@@ -1,0 +1,9 @@
+@Test
+public void testTwoParamConstructor() throws Exception {
+    final String strData = "foobar";
+    final byte[] contents = strData.getBytes();
+    InputStream input = new ByteArrayInputStream(contents);
+    byte[] boundary = BOUNDARY_TEXT.getBytes();
+    MultipartStream ms = new MultipartStream(input, boundary, new MultipartStream.ProgressNotifier(null, contents.length));
+    assertNotNull(ms);
+}

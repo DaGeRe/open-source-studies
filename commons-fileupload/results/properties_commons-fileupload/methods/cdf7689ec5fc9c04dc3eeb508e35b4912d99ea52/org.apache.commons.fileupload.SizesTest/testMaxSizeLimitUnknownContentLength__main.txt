@@ -1,0 +1,40 @@
+@Test
+public void testMaxSizeLimitUnknownContentLength() throws IOException, FileUploadException {
+    final String request = "-----1234\r\n" + "Content-Disposition: form-data; name=\"file1\"; filename=\"foo1.tab\"\r\n" + "Content-Type: text/whatever\r\n" + "Content-Length: 10\r\n" + "\r\n" + "This is the content of the file\n" + "\r\n" + "-----1234\r\n" + "Content-Disposition: form-data; name=\"file2\"; filename=\"foo2.tab\"\r\n" + "Content-Type: text/whatever\r\n" + "\r\n" + "This is the content of the file\n" + "\r\n" + "-----1234--\r\n";
+    ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+    upload.setFileSizeMax(-1);
+    upload.setSizeMax(300);
+    // the first item should be within the max size limit
+    // set the read limit to 10 to simulate a "real" stream
+    // otherwise the buffer would be immediately filled
+    MockHttpServletRequest req = new MockHttpServletRequest(request.getBytes("US-ASCII"), CONTENT_TYPE);
+    req.setContentLength(-1);
+    req.setReadLimit(10);
+    FileItemIterator it = upload.getItemIterator(req);
+    assertTrue(it.hasNext());
+    FileItemStream item = it.next();
+    assertFalse(item.isFormField());
+    assertEquals("file1", item.getFieldName());
+    assertEquals("foo1.tab", item.getName());
+    {
+        InputStream stream = item.openStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Streams.copy(stream, baos, true);
+    }
+    // the second item is over the size max, thus we expect an error
+    try {
+        // the header is still within size max -> this shall still succeed
+        assertTrue(it.hasNext());
+    } catch (SizeException e) {
+        fail();
+    }
+    item = it.next();
+    try {
+        InputStream stream = item.openStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Streams.copy(stream, baos, true);
+        fail();
+    } catch (FileUploadIOException e) {
+        // expected
+    }
+}

@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+public Iterator&lt;String&gt; getHeaders(String name) {                                                public Iterator&lt;String&gt; getHeaders(String name) {                                             
+String nameLower = name.toLowerCase();                                                               | String nameLower = name.toLowerCase(Locale.ENGLISH);                                                
+List&lt;String&gt; headerValueList = headerNameToValueListMap.get(nameLower);                          List&lt;String&gt; headerValueList = headerNameToValueListMap.get(nameLower);                       
+if (null == headerValueList) {                                                                         if (null == headerValueList) {                                                                      
+headerValueList = Collections.emptyList();                                                             headerValueList = Collections.emptyList();                                                          
+}                                                                                                      }                                                                                                   
+return headerValueList.iterator();                                                                     return headerValueList.iterator();                                                                  
+}                                                                                                      }                                                                                                   

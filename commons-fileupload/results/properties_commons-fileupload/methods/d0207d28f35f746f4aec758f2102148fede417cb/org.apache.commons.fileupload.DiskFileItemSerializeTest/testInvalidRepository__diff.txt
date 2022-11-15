@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Test deserialization fails when repository is not valid.                                             * Test deserialization fails when repository is not valid.                                          
+*/                                                                                                     */                                                                                                  
+@Test(expected = IOException.class)                                                                    @Test(expected = IOException.class)                                                                 
+public void testInvalidRepository() throws Exception {                                                 public void testInvalidRepository() throws Exception {                                              
+// Create the FileItem                                                                                 // Create the FileItem                                                                              
+byte[] testFieldValueBytes = createContentBytes(threshold);                                            byte[] testFieldValueBytes = createContentBytes(threshold);                                         
+File repository = new File(System.getProperty("java.io.tmpdir") + "file");                           | File repository = new File(System.getProperty("java.io.tmpdir"), "file");                           
+FileItem item = createFileItem(testFieldValueBytes, repository);                                       FileItem item = createFileItem(testFieldValueBytes, repository);                                    
+deserialize(serialize(item));                                                                          deserialize(serialize(item));                                                                       
+}                                                                                                      }                                                                                                   

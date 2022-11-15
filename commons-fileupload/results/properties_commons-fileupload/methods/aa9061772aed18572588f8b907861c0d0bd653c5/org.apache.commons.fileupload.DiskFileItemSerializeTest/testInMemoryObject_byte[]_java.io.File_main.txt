@@ -1,0 +1,11 @@
+/**
+ * Helper method to test creation of a field when a repository is used.
+ */
+public void testInMemoryObject(byte[] testFieldValueBytes, File repository) {
+    FileItem item = createFileItem(testFieldValueBytes, repository);
+    // Check state is as expected
+    assertTrue("Initial: in memory", item.isInMemory());
+    assertEquals("Initial: size", item.getSize(), testFieldValueBytes.length);
+    compareBytes("Initial", item.get(), testFieldValueBytes);
+    item.delete();
+}

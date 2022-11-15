@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Create content bytes of a specified size.                                                            * Create content bytes of a specified size.                                                         
+*/                                                                                                     */                                                                                                  
+private byte[] createContentBytes(int size) {                                                          private byte[] createContentBytes(int size) {                                                       
+StringBuffer buffer = new StringBuffer(size);                                                        | StringBuilder buffer = new StringBuilder(size);                                                     
+byte count = 0;                                                                                        byte count = 0;                                                                                     
+for (int i = 0; i &lt; size; i++) {                                                                    for (int i = 0; i &lt; size; i++) {                                                                 
+buffer.append(count + "");                                                                             buffer.append(count + "");                                                                          
+count++;                                                                                               count++;                                                                                            
+if (count &gt; 9) {                                                                                    if (count &gt; 9) {                                                                                 
+count = 0;                                                                                             count = 0;                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return buffer.toString().getBytes();                                                                   return buffer.toString().getBytes();                                                                
+}                                                                                                      }                                                                                                   

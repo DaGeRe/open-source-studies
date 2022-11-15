@@ -1,0 +1,5 @@
+// If there are valid trailing Base64 chars, complain
+@Test
+public void decodeTrailing2() throws Exception {
+    assertIOException("truncated", "Zm9vYmFy12");
+}

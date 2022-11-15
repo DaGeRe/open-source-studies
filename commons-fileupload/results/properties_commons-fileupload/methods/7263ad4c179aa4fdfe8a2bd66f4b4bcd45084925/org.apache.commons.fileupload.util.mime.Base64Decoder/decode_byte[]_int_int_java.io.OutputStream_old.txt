@@ -1,0 +1,81 @@
+/**
+ * Decode the base 64 encoded byte data writing it to the given output stream,
+ * whitespace characters will be ignored.
+ *
+ * @param data the buffer containing the Base64-encoded data
+ * @param off the start offset (zero-based)
+ * @param length the number of bytes to convert
+ * @param out the output stream to hold the decoded bytes
+ *
+ * @return the number of bytes produced.
+ */
+public static int decode(byte[] data, int off, int length, OutputStream out) throws IOException {
+    byte b1, b2, b3, b4;
+    int outLen = 0;
+    int end = off + length;
+    while (end > 0) {
+        if (!ignore((char) data[end - 1])) {
+            break;
+        }
+        end--;
+    }
+    int i = off;
+    // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE
+    // last set of 4 bytes might include padding
+    int finish = end - 4;
+    while (i < finish) {
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b1 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b2 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b3 = DECODING_TABLE[data[i++]];
+        while ((i < finish) && ignore((char) data[i])) {
+            i++;
+        }
+        b4 = DECODING_TABLE[data[i++]];
+        // Convert 4 6-bit bytes to 3 8-bit bytes
+        // CHECKSTYLE IGNORE MagicNumber FOR NEXT 3 LINES
+        // 6 bits of b1 plus 2 bits of b2
+        out.write((b1 << 2) | (b2 >> 4));
+        // 4 bits of b2 plus 4 bits of b3
+        out.write((b2 << 4) | (b3 >> 2));
+        // 2 bits of b3 plus 6 bits of b4
+        out.write((b3 << 6) | b4);
+        // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE
+        outLen += 3;
+    }
+    // Get the last 4 bytes; only last two can be padding
+    b1 = DECODING_TABLE[data[i++]];
+    b2 = DECODING_TABLE[data[i++]];
+    // always write the first byte
+    // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE
+    // 6 bits of b1 plus 2 bits of b2
+    out.write((b1 << 2) | (b2 >> 4));
+    outLen++;
+    byte p1 = data[i++];
+    byte p2 = data[i++];
+    // may be needed later
+    b3 = DECODING_TABLE[p1];
+    if (p1 != PADDING) {
+        // Nothing more to do if p1 == PADDING
+        // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE
+        // 4 bits of b2 plus 4 bits of b3
+        out.write((b2 << 4) | (b3 >> 2));
+        outLen++;
+    } else if (p2 != PADDING) {
+        // Nothing more to do if p2 == PADDING
+        b4 = DECODING_TABLE[p2];
+        // CHECKSTYLE IGNORE MagicNumber FOR NEXT 1 LINE
+        // 2 bits of b3 plus 6 bits of b4
+        out.write((b3 << 6) | b4);
+        outLen++;
+    }
+    return outLen;
+}

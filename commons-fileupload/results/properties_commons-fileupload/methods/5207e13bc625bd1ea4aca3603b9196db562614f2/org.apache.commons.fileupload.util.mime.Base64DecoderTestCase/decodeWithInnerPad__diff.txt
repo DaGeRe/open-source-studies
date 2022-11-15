@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Test our decode with pad character in the middle.                                                    * Test our decode with pad character in the middle.                                                 
+* Returns data up to pad character.                                                                  | * Continues provided that the padding is in the correct place,                                      
+*                                                                                                    | * i.e. concatenated valid strings decode OK.                                                        
+* @throws Exception if any error occurs while decoding the input string.                             |                                                                                                     
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void decodeWithInnerPad() throws Exception {                                                    public void decodeWithInnerPad() throws Exception {                                                 
+assertEncoded("Hello World", "SGVsbG8gV29ybGQ=SGVsbG8gV29ybGQ=");                                    | assertEncoded("Hello WorldHello World", "SGVsbG8gV29ybGQ=SGVsbG8gV29ybGQ=");                        
+}                                                                                                      }                                                                                                   

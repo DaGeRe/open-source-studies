@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Method to add header values to this instance.                                                        * Method to add header values to this instance.                                                     
+*                                                                                                      *                                                                                                   
+* @param name name of this header                                                                      * @param name name of this header                                                                   
+* @param value value of this header                                                                    * @param value value of this header                                                                 
+*/                                                                                                     */                                                                                                  
+public synchronized void addHeader(String name, String value) {                                        public synchronized void addHeader(String name, String value) {                                     
+String nameLower = name.toLowerCase();                                                               | String nameLower = name.toLowerCase(Locale.ENGLISH);                                                
+List&lt;String&gt; headerValueList = headerNameToValueListMap.get(nameLower);                          List&lt;String&gt; headerValueList = headerNameToValueListMap.get(nameLower);                       
+if (null == headerValueList) {                                                                         if (null == headerValueList) {                                                                      
+headerValueList = new ArrayList&lt;String&gt;();                                                       headerValueList = new ArrayList&lt;String&gt;();                                                    
+headerNameToValueListMap.put(nameLower, headerValueList);                                              headerNameToValueListMap.put(nameLower, headerValueList);                                           
+}                                                                                                      }                                                                                                   
+headerValueList.add(value);                                                                            headerValueList.add(value);                                                                         
+}                                                                                                      }                                                                                                   

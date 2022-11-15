@@ -1,0 +1,11 @@
+/**
+ * Do serialization
+ */
+private ByteArrayOutputStream serialize(Object target) throws Exception {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(baos);
+    oos.writeObject(target);
+    oos.flush();
+    oos.close();
+    return baos;
+}

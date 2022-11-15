@@ -1,0 +1,21 @@
+/**
+ * Test creation of a field for which the amount of data equals the
+ * configured threshold.
+ */
+@Test
+public void testThreshold() throws Exception {
+    // Create the FileItem
+    byte[] testFieldValueBytes = createContentBytes(threshold);
+    FileItem item = createFileItem(testFieldValueBytes);
+    // Check state is as expected
+    assertTrue("Initial: in memory", item.isInMemory());
+    assertEquals("Initial: size", item.getSize(), testFieldValueBytes.length);
+    compareBytes("Initial", item.get(), testFieldValueBytes);
+    // Serialize & Deserialize
+    FileItem newItem = (FileItem) serializeDeserialize(item);
+    // Test deserialized content is as expected
+    assertTrue("Check in memory", newItem.isInMemory());
+    compareBytes("Check", testFieldValueBytes, newItem.get());
+    // Compare FileItem's (except byte[])
+    compareFileItems(item, newItem);
+}

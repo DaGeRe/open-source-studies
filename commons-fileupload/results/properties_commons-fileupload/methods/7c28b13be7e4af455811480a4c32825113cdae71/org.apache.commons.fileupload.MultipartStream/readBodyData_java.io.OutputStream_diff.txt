@@ -1,0 +1,24 @@
+/**
+ * <p>Reads <code>body-data</code> from the current
+ * <code>encapsulation</code> and writes its contents into the
+ * output <code>Stream</code>.
+ *
+ * <p>Arbitrary large amounts of data can be processed by this
+ * method using a constant size buffer. (see {@link
+ * #MultipartStream(InputStream,byte[],int,
+ *   MultipartStream.ProgressNotifier) constructor}).
+ *
+ * @param output The <code>Stream</code> to write data into. May
+ *               be null, in which case this method is equivalent
+ *               to {@link #discardBodyData()}.
+ *
+ * @return the amount of data written.
+ *
+ * @throws MalformedStreamException if the stream ends unexpectedly.
+ * @throws IOException              if an i/o error occurs.
+ */
+public int readBodyData(OutputStream output) throws MalformedStreamException, IOException {
+    final InputStream istream = newInputStream();
+    // N.B. Streams.copy closes the input stream
+    return (int) Streams.copy(istream, output, false);
+}

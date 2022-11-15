@@ -1,0 +1,8 @@
+private static void assertEncoded(String clearText, String encoded) throws Exception {                 private static void assertEncoded(String clearText, String encoded) throws Exception {              
+byte[] expected = clearText.getBytes(US_ASCII_CHARSET);                                                byte[] expected = clearText.getBytes(US_ASCII_CHARSET);                                             
+ByteArrayOutputStream out = new ByteArrayOutputStream(encoded.length());                               ByteArrayOutputStream out = new ByteArrayOutputStream(encoded.length());                            
+byte[] encodedData = encoded.getBytes(US_ASCII_CHARSET);                                               byte[] encodedData = encoded.getBytes(US_ASCII_CHARSET);                                            
+Base64Decoder.decode(encodedData, 0, encodedData.length, out);                                       | Base64Decoder.decode(encodedData, out);                                                             
+byte[] actual = out.toByteArray();                                                                     byte[] actual = out.toByteArray();                                                                  
+assertArrayEquals(expected, actual);                                                                   assertArrayEquals(expected, actual);                                                                
+}                                                                                                      }                                                                                                   

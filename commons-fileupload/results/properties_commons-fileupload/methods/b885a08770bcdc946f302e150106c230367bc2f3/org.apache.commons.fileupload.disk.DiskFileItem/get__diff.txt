@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the contents of the file as an array of bytes.  If the                                       * Returns the contents of the file as an array of bytes.  If the                                    
+* contents of the file were not yet cached in memory, they will be                                     * contents of the file were not yet cached in memory, they will be                                  
+* loaded from the disk storage and cached.                                                             * loaded from the disk storage and cached.                                                          
+*                                                                                                      *                                                                                                   
+* @return The contents of the file as an array of bytes.                                             | * @return The contents of the file as an array of bytes                                             
+                                                                                                     | * or {@code null} if the data cannot be read                                                        
+*/                                                                                                     */                                                                                                  
+public byte[] get() {                                                                                  public byte[] get() {                                                                               
+if (isInMemory()) {                                                                                    if (isInMemory()) {                                                                                 
+if (cachedContent == null) {                                                                         | if (cachedContent == null && dfos != null) {                                                        
+cachedContent = dfos.getData();                                                                        cachedContent = dfos.getData();                                                                     
+}                                                                                                      }                                                                                                   
+return cachedContent;                                                                                  return cachedContent;                                                                               
+}                                                                                                      }                                                                                                   
+byte[] fileData = new byte[(int) getSize()];                                                           byte[] fileData = new byte[(int) getSize()];                                                        
+InputStream fis = null;                                                                                InputStream fis = null;                                                                             
+try {                                                                                                  try {                                                                                               
+fis = new BufferedInputStream(new FileInputStream(dfos.getFile()));                                    fis = new BufferedInputStream(new FileInputStream(dfos.getFile()));                                 
+IOUtils.readFully(fis, fileData);                                                                      IOUtils.readFully(fis, fileData);                                                                   
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+fileData = null;                                                                                       fileData = null;                                                                                    
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(fis);                                                                             IOUtils.closeQuietly(fis);                                                                          
+}                                                                                                      }                                                                                                   
+return fileData;                                                                                       return fileData;                                                                                    
+}                                                                                                      }                                                                                                   

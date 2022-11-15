@@ -1,0 +1,29 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the given content-disposition headers file name.                                             * Returns the given content-disposition headers file name.                                          
+* @param pContentDisposition The content-disposition headers value.                                    * @param pContentDisposition The content-disposition headers value.                                 
+* @return The file name                                                                                * @return The file name                                                                             
+*/                                                                                                     */                                                                                                  
+private String getFileName(String pContentDisposition) {                                               private String getFileName(String pContentDisposition) {                                            
+String fileName = null;                                                                                String fileName = null;                                                                             
+if (pContentDisposition != null) {                                                                     if (pContentDisposition != null) {                                                                  
+String cdl = pContentDisposition.toLowerCase();                                                      | String cdl = pContentDisposition.toLowerCase(Locale.ENGLISH);                                       
+if (cdl.startsWith(FORM_DATA) || cdl.startsWith(ATTACHMENT)) {                                         if (cdl.startsWith(FORM_DATA) || cdl.startsWith(ATTACHMENT)) {                                      
+ParameterParser parser = new ParameterParser();                                                        ParameterParser parser = new ParameterParser();                                                     
+parser.setLowerCaseNames(true);                                                                        parser.setLowerCaseNames(true);                                                                     
+// Parameter parser can handle null input                                                              // Parameter parser can handle null input                                                           
+Map&lt;String, String&gt; params = parser.parse(pContentDisposition, ';');                             Map&lt;String, String&gt; params = parser.parse(pContentDisposition, ';');                          
+if (params.containsKey("filename")) {                                                                  if (params.containsKey("filename")) {                                                               
+fileName = params.get("filename");                                                                     fileName = params.get("filename");                                                                  
+if (fileName != null) {                                                                                if (fileName != null) {                                                                             
+fileName = fileName.trim();                                                                            fileName = fileName.trim();                                                                         
+} else {                                                                                               } else {                                                                                            
+// Even if there is no value, the parameter is present,                                                // Even if there is no value, the parameter is present,                                             
+// so we return an empty file name rather than no file                                                 // so we return an empty file name rather than no file                                              
+// name.                                                                                               // name.                                                                                            
+fileName = "";                                                                                         fileName = "";                                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return fileName;                                                                                       return fileName;                                                                                    
+}                                                                                                      }                                                                                                   

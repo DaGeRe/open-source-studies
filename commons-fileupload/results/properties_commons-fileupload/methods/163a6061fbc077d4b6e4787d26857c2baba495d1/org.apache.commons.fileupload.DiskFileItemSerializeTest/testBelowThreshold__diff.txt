@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Test creation of a field for which the amount of data falls below the                                * Test creation of a field for which the amount of data falls below the                             
+* configured threshold.                                                                                * configured threshold.                                                                             
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testBelowThreshold() throws Exception {                                                    public void testBelowThreshold() throws Exception {                                                 
+// Create the FileItem                                                                                 // Create the FileItem                                                                              
+byte[] testFieldValueBytes = createContentBytes(threshold - 1);                                        byte[] testFieldValueBytes = createContentBytes(threshold - 1);                                     
+FileItem item = createFileItem(testFieldValueBytes);                                                 | testInMemoryObject(testFieldValueBytes);                                                            
+// Check state is as expected                                                                        |                                                                                                     
+assertTrue("Initial: in memory", item.isInMemory());                                                 |                                                                                                     
+assertEquals("Initial: size", item.getSize(), testFieldValueBytes.length);                           |                                                                                                     
+compareBytes("Initial", item.get(), testFieldValueBytes);                                            |                                                                                                     
+// Serialize & Deserialize                                                                           |                                                                                                     
+FileItem newItem = (FileItem) serializeDeserialize(item);                                            |                                                                                                     
+// Test deserialized content is as expected                                                          |                                                                                                     
+assertTrue("Check in memory", newItem.isInMemory());                                                 |                                                                                                     
+compareBytes("Check", testFieldValueBytes, newItem.get());                                           |                                                                                                     
+// Compare FileItem's (except byte[])                                                                |                                                                                                     
+compareFileItems(item, newItem);                                                                     |                                                                                                     
+}                                                                                                      }                                                                                                   

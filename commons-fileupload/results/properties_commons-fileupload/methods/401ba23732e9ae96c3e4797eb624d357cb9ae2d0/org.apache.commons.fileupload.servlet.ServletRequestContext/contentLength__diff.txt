@@ -1,0 +1,15 @@
+/**
+ * Retrieve the content length of the request.
+ *
+ * @return The content length of the request.
+ * @since 1.3
+ */
+public long contentLength() {
+    long size;
+    try {
+        size = Long.parseLong(request.getHeader(FileUploadBase.CONTENT_LENGTH));
+    } catch (NumberFormatException e) {
+        size = request.getContentLength();
+    }
+    return size;
+}

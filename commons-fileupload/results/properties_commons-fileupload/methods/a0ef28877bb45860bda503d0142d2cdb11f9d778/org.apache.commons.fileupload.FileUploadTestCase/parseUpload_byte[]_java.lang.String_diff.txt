@@ -1,0 +1,6 @@
+protected List<FileItem> parseUpload(byte[] bytes, String contentType) throws FileUploadException {
+    ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+    HttpServletRequest request = new MockHttpServletRequest(bytes, contentType);
+    List<FileItem> fileItems = upload.parseRequest(request);
+    return fileItems;
+}

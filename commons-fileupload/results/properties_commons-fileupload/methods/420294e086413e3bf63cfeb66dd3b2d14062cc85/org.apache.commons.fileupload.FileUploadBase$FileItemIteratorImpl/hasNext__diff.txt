@@ -1,0 +1,24 @@
+/**
+ * Returns, whether another instance of {@link FileItemStream}
+ * is available.
+ *
+ * @throws FileUploadException Parsing or processing the
+ *   file item failed.
+ * @throws IOException Reading the file item failed.
+ * @return True, if one or more additional file items
+ *   are available, otherwise false.
+ */
+public boolean hasNext() throws FileUploadException, IOException {
+    if (eof) {
+        return false;
+    }
+    if (itemValid) {
+        return true;
+    }
+    try {
+        return findNextItem();
+    } catch (FileUploadIOException e) {
+        // unwrap encapsulated SizeException
+        throw (FileUploadException) e.getCause();
+    }
+}

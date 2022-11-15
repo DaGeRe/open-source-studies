@@ -1,0 +1,959 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 320,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_312",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "T_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "afdedc9580dde03287979607f9ce441b23b6bc90",
+      "commitOld" : "cdf7689ec5fc9c04dc3eeb508e35b4912d99ea52"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.apache.commons.fileupload.SizesTest",
+      "method" : "testFileUpload",
+      "module" : "",
+      "params" : null
+    },
+    "propertyFolder" : "/home/reichelt/workspaces/dissworkspace/peass/results/properties_commons-fileupload"
+  },
+  "nodes" : {
+    "call" : "org.apache.commons.fileupload.SizesTest#testFileUpload",
+    "kiekerPattern" : "public void org.apache.commons.fileupload.SizesTest.testFileUpload()",
+    "otherKiekerPattern" : "public void org.apache.commons.fileupload.SizesTest.testFileUpload()",
+    "module" : "",
+    "statistic" : {
+      "meanOld" : 1.1325280071710346E10,
+      "meanCurrent" : 1.4133860164241377E10,
+      "deviationOld" : 1.2981656547647531E8,
+      "deviationCurrent" : 9.687501710646163E7,
+      "vms" : 29,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : -93.3743985282301
+    },
+    "childs" : [ {
+      "call" : "org.apache.commons.fileupload.FileUploadTestCase#parseUpload",
+      "kiekerPattern" : "protected java.util.List org.apache.commons.fileupload.FileUploadTestCase.parseUpload(byte[])",
+      "otherKiekerPattern" : "protected java.util.List org.apache.commons.fileupload.FileUploadTestCase.parseUpload(byte[])",
+      "module" : "",
+      "statistic" : {
+        "meanOld" : 5.041859208099998E9,
+        "meanCurrent" : 7.923276660373334E9,
+        "deviationOld" : 1.4441344853704837E8,
+        "deviationCurrent" : 1.113394278707533E8,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : -86.54855122438161
+      },
+      "childs" : [ {
+        "call" : "org.apache.commons.fileupload.FileUploadTestCase#parseUpload",
+        "kiekerPattern" : "protected java.util.List org.apache.commons.fileupload.FileUploadTestCase.parseUpload(byte[],java.lang.String)",
+        "otherKiekerPattern" : "protected java.util.List org.apache.commons.fileupload.FileUploadTestCase.parseUpload(byte[],java.lang.String)",
+        "module" : "",
+        "statistic" : {
+          "meanOld" : 5.033011303626668E9,
+          "meanCurrent" : 7.916745832846666E9,
+          "deviationOld" : 1.1753750410992393E8,
+          "deviationCurrent" : 1.0439903822437115E8,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -100.47139104265267
+        },
+        "childs" : [ {
+          "call" : "org.apache.commons.fileupload.servlet.ServletFileUpload#parseRequest",
+          "kiekerPattern" : "public java.util.List org.apache.commons.fileupload.servlet.ServletFileUpload.parseRequest(javax.servlet.http.HttpServletRequest)",
+          "otherKiekerPattern" : "public java.util.List org.apache.commons.fileupload.servlet.ServletFileUpload.parseRequest(javax.servlet.http.HttpServletRequest)",
+          "module" : "",
+          "statistic" : {
+            "meanOld" : 5.030572924346666E9,
+            "meanCurrent" : 7.920608305100001E9,
+            "deviationOld" : 1.175391799292597E8,
+            "deviationCurrent" : 1.1136570901634334E8,
+            "vms" : 30,
+            "callsOld" : 150,
+            "calls" : 150,
+            "tvalue" : -97.76104377410874
+          },
+          "childs" : [ {
+            "call" : "org.apache.commons.fileupload.FileUploadBase#parseRequest",
+            "kiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(org.apache.commons.fileupload.RequestContext)",
+            "otherKiekerPattern" : "public java.util.List org.apache.commons.fileupload.FileUploadBase.parseRequest(org.apache.commons.fileupload.RequestContext)",
+            "module" : "",
+            "statistic" : {
+              "meanOld" : 5.038816541206668E9,
+              "meanCurrent" : 7.9202194088E9,
+              "deviationOld" : 1.444160102961286E8,
+              "deviationCurrent" : 1.1136354584470679E8,
+              "vms" : 30,
+              "callsOld" : 150,
+              "calls" : 150,
+              "tvalue" : -86.54016126393886
+            },
+            "childs" : [ {
+              "call" : "org.apache.commons.fileupload.FileUploadBase#getItemIterator",
+              "kiekerPattern" : "public org.apache.commons.fileupload.FileItemIterator org.apache.commons.fileupload.FileUploadBase.getItemIterator(org.apache.commons.fileupload.RequestContext)",
+              "otherKiekerPattern" : "public org.apache.commons.fileupload.FileItemIterator org.apache.commons.fileupload.FileUploadBase.getItemIterator(org.apache.commons.fileupload.RequestContext)",
+              "module" : "",
+              "statistic" : {
+                "meanOld" : 1.978554996666667E7,
+                "meanCurrent" : 1.988333632E7,
+                "deviationOld" : 318397.1857305451,
+                "deviationCurrent" : 268815.25203604775,
+                "vms" : 30,
+                "callsOld" : 150,
+                "calls" : 150,
+                "tvalue" : -1.2853339557250414
+              },
+              "childs" : [ {
+                "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl#<init>",
+                "kiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.<init>(org.apache.commons.fileupload.FileUploadBase,org.apache.commons.fileupload.RequestContext)",
+                "otherKiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.<init>(org.apache.commons.fileupload.FileUploadBase,org.apache.commons.fileupload.RequestContext)",
+                "module" : "",
+                "statistic" : {
+                  "meanOld" : 1.989238622E7,
+                  "meanCurrent" : 1.93705248E7,
+                  "deviationOld" : 368939.2716013709,
+                  "deviationCurrent" : 253714.6036009925,
+                  "vms" : 30,
+                  "callsOld" : 150,
+                  "calls" : 150,
+                  "tvalue" : 6.383698987105258
+                },
+                "childs" : [ {
+                  "call" : "org.apache.commons.fileupload.MultipartStream#<init>",
+                  "kiekerPattern" : "public new org.apache.commons.fileupload.MultipartStream.<init>(java.io.InputStream,byte[],int,org.apache.commons.fileupload.MultipartStream$ProgressNotifier)",
+                  "otherKiekerPattern" : "public new org.apache.commons.fileupload.MultipartStream.<init>(java.io.InputStream,byte[],int,org.apache.commons.fileupload.MultipartStream$ProgressNotifier)",
+                  "module" : "",
+                  "statistic" : {
+                    "meanOld" : 480675.33103448263,
+                    "meanCurrent" : 477978.92666666664,
+                    "deviationOld" : 21992.586934645264,
+                    "deviationCurrent" : 14041.076221496878,
+                    "vms" : 29,
+                    "callsOld" : 150,
+                    "calls" : 150,
+                    "tvalue" : 0.5592065677461556
+                  },
+                  "childs" : [ {
+                    "call" : "ADDED",
+                    "kiekerPattern" : "ADDED",
+                    "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream.computeBoundaryTable()",
+                    "statistic" : {
+                      "meanOld" : "NaN",
+                      "meanCurrent" : "NaN",
+                      "deviationOld" : "NaN",
+                      "deviationCurrent" : "NaN",
+                      "vms" : 0,
+                      "callsOld" : 0,
+                      "calls" : 0,
+                      "tvalue" : -1.0,
+                      "change" : true
+                    },
+                    "childs" : [ ]
+                  } ]
+                }, {
+                  "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl#findNextItem",
+                  "kiekerPattern" : "private boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.findNextItem()",
+                  "otherKiekerPattern" : "private boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.findNextItem()",
+                  "module" : "",
+                  "statistic" : {
+                    "meanOld" : 2259544.366915734,
+                    "meanCurrent" : 3273283.340983667,
+                    "deviationOld" : 64151.92926269559,
+                    "deviationCurrent" : 42027.74694235402,
+                    "vms" : 30,
+                    "callsOld" : 209850,
+                    "calls" : 209850,
+                    "tvalue" : -72.39883662590307
+                  },
+                  "childs" : [ {
+                    "call" : "org.apache.commons.fileupload.MultipartStream#skipPreamble",
+                    "kiekerPattern" : "public boolean org.apache.commons.fileupload.MultipartStream.skipPreamble()",
+                    "otherKiekerPattern" : "public boolean org.apache.commons.fileupload.MultipartStream.skipPreamble()",
+                    "module" : "",
+                    "statistic" : {
+                      "meanOld" : 429173.53844381066,
+                      "meanCurrent" : 461714.40815092885,
+                      "deviationOld" : 29994.720448838874,
+                      "deviationCurrent" : 24560.71504074147,
+                      "vms" : 30,
+                      "callsOld" : 209850,
+                      "calls" : 209850,
+                      "tvalue" : -4.597513471324629
+                    },
+                    "childs" : [ {
+                      "call" : "org.apache.commons.fileupload.MultipartStream#discardBodyData",
+                      "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.discardBodyData()",
+                      "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.discardBodyData()",
+                      "module" : "",
+                      "statistic" : {
+                        "meanOld" : 404751.57515854016,
+                        "meanCurrent" : 411415.50735805323,
+                        "deviationOld" : 30169.50988952295,
+                        "deviationCurrent" : 24883.897654069893,
+                        "vms" : 30,
+                        "callsOld" : 209850,
+                        "calls" : 209850,
+                        "tvalue" : -0.9333178296914753
+                      },
+                      "childs" : [ {
+                        "call" : "org.apache.commons.fileupload.MultipartStream#readBodyData",
+                        "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.readBodyData(java.io.OutputStream)",
+                        "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.readBodyData(java.io.OutputStream)",
+                        "module" : "",
+                        "statistic" : {
+                          "meanOld" : 388655.94264191954,
+                          "meanCurrent" : 395786.82721468137,
+                          "deviationOld" : 30007.025796507492,
+                          "deviationCurrent" : 24884.00364312961,
+                          "vms" : 30,
+                          "callsOld" : 209850,
+                          "calls" : 209850,
+                          "tvalue" : -1.0019230238490424
+                        },
+                        "childs" : [ {
+                          "call" : "org.apache.commons.fileupload.MultipartStream#newInputStream",
+                          "kiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                          "otherKiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : 168726.49923732397,
+                            "meanCurrent" : 685033.7190044702,
+                            "deviationOld" : 3094.780405644716,
+                            "deviationCurrent" : 3085.3855508708825,
+                            "vms" : 30,
+                            "callsOld" : 419550,
+                            "calls" : 419550,
+                            "tvalue" : -647.1175587421661
+                          },
+                          "childs" : [ {
+                            "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#<init>",
+                            "kiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                            "otherKiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                            "module" : "",
+                            "statistic" : {
+                              "meanOld" : 150083.81247102076,
+                              "meanCurrent" : 667392.9000945349,
+                              "deviationOld" : 3007.4172061191366,
+                              "deviationCurrent" : 2846.1920802784257,
+                              "vms" : 30,
+                              "callsOld" : 419550,
+                              "calls" : 419550,
+                              "tvalue" : -684.2854955229344
+                            },
+                            "childs" : [ {
+                              "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                              "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                              "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                              "module" : "",
+                              "statistic" : {
+                                "meanOld" : 275009.6420412306,
+                                "meanCurrent" : 1580650.9259697278,
+                                "deviationOld" : 5580.587390736493,
+                                "deviationCurrent" : 20670.42841464301,
+                                "vms" : 29,
+                                "callsOld" : 841350,
+                                "calls" : 841350,
+                                "tvalue" : -328.7670906548981
+                              },
+                              "childs" : [ {
+                                "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                                "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                                "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                                "module" : "",
+                                "statistic" : {
+                                  "meanOld" : 257906.23268729486,
+                                  "meanCurrent" : 1564342.2225677904,
+                                  "deviationOld" : 5500.01872783855,
+                                  "deviationCurrent" : 20540.73223587738,
+                                  "vms" : 29,
+                                  "callsOld" : 841350,
+                                  "calls" : 841350,
+                                  "tvalue" : -331.22273112227845
+                                },
+                                "childs" : [ ]
+                              } ]
+                            } ]
+                          } ]
+                        }, {
+                          "call" : "org.apache.commons.fileupload.util.Streams#copy",
+                          "kiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean)",
+                          "otherKiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean)",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : 3019215.2461039713,
+                            "meanCurrent" : 5100339.446420578,
+                            "deviationOld" : 60900.73510193886,
+                            "deviationCurrent" : 71300.93273261117,
+                            "vms" : 30,
+                            "callsOld" : 419550,
+                            "calls" : 419550,
+                            "tvalue" : -121.5617496279409
+                          },
+                          "childs" : [ {
+                            "call" : "org.apache.commons.fileupload.util.Streams#copy",
+                            "kiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean,byte[])",
+                            "otherKiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean,byte[])",
+                            "module" : "",
+                            "statistic" : {
+                              "meanOld" : 2823160.5707214307,
+                              "meanCurrent" : 4901405.23555236,
+                              "deviationOld" : 46238.075221713596,
+                              "deviationCurrent" : 63331.4600171548,
+                              "vms" : 30,
+                              "callsOld" : 419550,
+                              "calls" : 419550,
+                              "tvalue" : -145.16467213514704
+                            },
+                            "childs" : [ {
+                              "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#read",
+                              "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream$ItemInputStream.read(byte[],int,int)",
+                              "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream$ItemInputStream.read(byte[],int,int)",
+                              "module" : "",
+                              "statistic" : {
+                                "meanOld" : 218120.55660890686,
+                                "meanCurrent" : 918263.3529589364,
+                                "deviationOld" : 2916.669594182663,
+                                "deviationCurrent" : 14192.9800449703,
+                                "vms" : 29,
+                                "callsOld" : 1258950,
+                                "calls" : 1258950,
+                                "tvalue" : -260.38958455737924
+                              },
+                              "childs" : [ {
+                                "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#makeAvailable",
+                                "kiekerPattern" : "private int org.apache.commons.fileupload.MultipartStream$ItemInputStream.makeAvailable()",
+                                "otherKiekerPattern" : "private int org.apache.commons.fileupload.MultipartStream$ItemInputStream.makeAvailable()",
+                                "module" : "",
+                                "statistic" : {
+                                  "meanOld" : 193205.4653472077,
+                                  "meanCurrent" : 891972.7812238565,
+                                  "deviationOld" : 2851.6497047240273,
+                                  "deviationCurrent" : 14053.692786614609,
+                                  "vms" : 29,
+                                  "callsOld" : 1260750,
+                                  "calls" : 1260750,
+                                  "tvalue" : -262.5827075001073
+                                },
+                                "childs" : [ {
+                                  "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                                  "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                                  "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                                  "module" : "",
+                                  "statistic" : {
+                                    "meanOld" : 275009.6420412306,
+                                    "meanCurrent" : 1580650.9259697278,
+                                    "deviationOld" : 5580.587390736493,
+                                    "deviationCurrent" : 20670.42841464301,
+                                    "vms" : 29,
+                                    "callsOld" : 841350,
+                                    "calls" : 841350,
+                                    "tvalue" : -328.7670906548981
+                                  },
+                                  "childs" : [ {
+                                    "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                                    "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                                    "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                                    "module" : "",
+                                    "statistic" : {
+                                      "meanOld" : 257906.23268729486,
+                                      "meanCurrent" : 1564342.2225677904,
+                                      "deviationOld" : 5500.01872783855,
+                                      "deviationCurrent" : 20540.73223587738,
+                                      "vms" : 29,
+                                      "callsOld" : 841350,
+                                      "calls" : 841350,
+                                      "tvalue" : -331.22273112227845
+                                    },
+                                    "childs" : [ {
+                                      "call" : "org.apache.commons.fileupload.MultipartStream#findByte",
+                                      "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findByte(byte,int)",
+                                      "otherKiekerPattern" : "ADDED",
+                                      "module" : "",
+                                      "statistic" : {
+                                        "meanOld" : "NaN",
+                                        "meanCurrent" : "NaN",
+                                        "deviationOld" : "NaN",
+                                        "deviationCurrent" : "NaN",
+                                        "vms" : 0,
+                                        "callsOld" : 0,
+                                        "calls" : 0,
+                                        "tvalue" : -1.0,
+                                        "change" : true
+                                      },
+                                      "childs" : [ ]
+                                    } ]
+                                  } ]
+                                } ]
+                              } ]
+                            } ]
+                          } ]
+                        } ]
+                      } ]
+                    }, {
+                      "call" : "ADDED",
+                      "kiekerPattern" : "ADDED",
+                      "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream.computeBoundaryTable()",
+                      "statistic" : {
+                        "meanOld" : "NaN",
+                        "meanCurrent" : "NaN",
+                        "deviationOld" : "NaN",
+                        "deviationCurrent" : "NaN",
+                        "vms" : 0,
+                        "callsOld" : 0,
+                        "calls" : 0,
+                        "tvalue" : -1.0,
+                        "change" : true
+                      },
+                      "childs" : [ ]
+                    } ]
+                  }, {
+                    "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl#<init>",
+                    "kiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl.<init>(org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl,java.lang.String,java.lang.String,java.lang.String,boolean,long)",
+                    "otherKiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl.<init>(org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl,java.lang.String,java.lang.String,java.lang.String,boolean,long)",
+                    "module" : "",
+                    "statistic" : {
+                      "meanOld" : 293935.39384654816,
+                      "meanCurrent" : 1322706.6588202624,
+                      "deviationOld" : 5931.058309988838,
+                      "deviationCurrent" : 4006.083936539357,
+                      "vms" : 30,
+                      "callsOld" : 209550,
+                      "calls" : 209550,
+                      "tvalue" : -787.2878457810532
+                    },
+                    "childs" : [ {
+                      "call" : "org.apache.commons.fileupload.MultipartStream#newInputStream",
+                      "kiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                      "otherKiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                      "module" : "",
+                      "statistic" : {
+                        "meanOld" : 168726.49923732397,
+                        "meanCurrent" : 685033.7190044702,
+                        "deviationOld" : 3094.780405644716,
+                        "deviationCurrent" : 3085.3855508708825,
+                        "vms" : 30,
+                        "callsOld" : 419550,
+                        "calls" : 419550,
+                        "tvalue" : -647.1175587421661
+                      },
+                      "childs" : [ {
+                        "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#<init>",
+                        "kiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                        "otherKiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                        "module" : "",
+                        "statistic" : {
+                          "meanOld" : 150083.81247102076,
+                          "meanCurrent" : 667392.9000945349,
+                          "deviationOld" : 3007.4172061191366,
+                          "deviationCurrent" : 2846.1920802784257,
+                          "vms" : 30,
+                          "callsOld" : 419550,
+                          "calls" : 419550,
+                          "tvalue" : -684.2854955229344
+                        },
+                        "childs" : [ {
+                          "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                          "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                          "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : 275009.6420412306,
+                            "meanCurrent" : 1580650.9259697278,
+                            "deviationOld" : 5580.587390736493,
+                            "deviationCurrent" : 20670.42841464301,
+                            "vms" : 29,
+                            "callsOld" : 841350,
+                            "calls" : 841350,
+                            "tvalue" : -328.7670906548981
+                          },
+                          "childs" : [ {
+                            "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                            "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                            "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                            "module" : "",
+                            "statistic" : {
+                              "meanOld" : 257906.23268729486,
+                              "meanCurrent" : 1564342.2225677904,
+                              "deviationOld" : 5500.01872783855,
+                              "deviationCurrent" : 20540.73223587738,
+                              "vms" : 29,
+                              "callsOld" : 841350,
+                              "calls" : 841350,
+                              "tvalue" : -331.22273112227845
+                            },
+                            "childs" : [ {
+                              "call" : "org.apache.commons.fileupload.MultipartStream#findByte",
+                              "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findByte(byte,int)",
+                              "otherKiekerPattern" : "ADDED",
+                              "module" : "",
+                              "statistic" : {
+                                "meanOld" : "NaN",
+                                "meanCurrent" : "NaN",
+                                "deviationOld" : "NaN",
+                                "deviationCurrent" : "NaN",
+                                "vms" : 0,
+                                "callsOld" : 0,
+                                "calls" : 0,
+                                "tvalue" : -1.0,
+                                "change" : true
+                              },
+                              "childs" : [ ]
+                            } ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            }, {
+              "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl#hasNext",
+              "kiekerPattern" : "public boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.hasNext()",
+              "otherKiekerPattern" : "public boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.hasNext()",
+              "module" : "",
+              "statistic" : {
+                "meanOld" : 2268025.0085296384,
+                "meanCurrent" : 3281993.995772617,
+                "deviationOld" : 63605.51732762309,
+                "deviationCurrent" : 42394.45023502102,
+                "vms" : 30,
+                "callsOld" : 209850,
+                "calls" : 209850,
+                "tvalue" : -72.65561248236982
+              },
+              "childs" : [ {
+                "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl#findNextItem",
+                "kiekerPattern" : "private boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.findNextItem()",
+                "otherKiekerPattern" : "private boolean org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl.findNextItem()",
+                "module" : "",
+                "statistic" : {
+                  "meanOld" : 2259544.366915734,
+                  "meanCurrent" : 3273283.340983667,
+                  "deviationOld" : 64151.92926269559,
+                  "deviationCurrent" : 42027.74694235402,
+                  "vms" : 30,
+                  "callsOld" : 209850,
+                  "calls" : 209850,
+                  "tvalue" : -72.39883662590307
+                },
+                "childs" : [ {
+                  "call" : "org.apache.commons.fileupload.MultipartStream#skipPreamble",
+                  "kiekerPattern" : "public boolean org.apache.commons.fileupload.MultipartStream.skipPreamble()",
+                  "otherKiekerPattern" : "public boolean org.apache.commons.fileupload.MultipartStream.skipPreamble()",
+                  "module" : "",
+                  "statistic" : {
+                    "meanOld" : 429173.53844381066,
+                    "meanCurrent" : 461714.40815092885,
+                    "deviationOld" : 29994.720448838874,
+                    "deviationCurrent" : 24560.71504074147,
+                    "vms" : 30,
+                    "callsOld" : 209850,
+                    "calls" : 209850,
+                    "tvalue" : -4.597513471324629
+                  },
+                  "childs" : [ {
+                    "call" : "org.apache.commons.fileupload.MultipartStream#discardBodyData",
+                    "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.discardBodyData()",
+                    "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.discardBodyData()",
+                    "module" : "",
+                    "statistic" : {
+                      "meanOld" : 404751.57515854016,
+                      "meanCurrent" : 411415.50735805323,
+                      "deviationOld" : 30169.50988952295,
+                      "deviationCurrent" : 24883.897654069893,
+                      "vms" : 30,
+                      "callsOld" : 209850,
+                      "calls" : 209850,
+                      "tvalue" : -0.9333178296914753
+                    },
+                    "childs" : [ {
+                      "call" : "org.apache.commons.fileupload.MultipartStream#readBodyData",
+                      "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.readBodyData(java.io.OutputStream)",
+                      "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream.readBodyData(java.io.OutputStream)",
+                      "module" : "",
+                      "statistic" : {
+                        "meanOld" : 388655.94264191954,
+                        "meanCurrent" : 395786.82721468137,
+                        "deviationOld" : 30007.025796507492,
+                        "deviationCurrent" : 24884.00364312961,
+                        "vms" : 30,
+                        "callsOld" : 209850,
+                        "calls" : 209850,
+                        "tvalue" : -1.0019230238490424
+                      },
+                      "childs" : [ {
+                        "call" : "org.apache.commons.fileupload.MultipartStream#newInputStream",
+                        "kiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                        "otherKiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                        "module" : "",
+                        "statistic" : {
+                          "meanOld" : 168726.49923732397,
+                          "meanCurrent" : 685033.7190044702,
+                          "deviationOld" : 3094.780405644716,
+                          "deviationCurrent" : 3085.3855508708825,
+                          "vms" : 30,
+                          "callsOld" : 419550,
+                          "calls" : 419550,
+                          "tvalue" : -647.1175587421661
+                        },
+                        "childs" : [ {
+                          "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#<init>",
+                          "kiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                          "otherKiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : 150083.81247102076,
+                            "meanCurrent" : 667392.9000945349,
+                            "deviationOld" : 3007.4172061191366,
+                            "deviationCurrent" : 2846.1920802784257,
+                            "vms" : 30,
+                            "callsOld" : 419550,
+                            "calls" : 419550,
+                            "tvalue" : -684.2854955229344
+                          },
+                          "childs" : [ {
+                            "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                            "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                            "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                            "module" : "",
+                            "statistic" : {
+                              "meanOld" : 275009.6420412306,
+                              "meanCurrent" : 1580650.9259697278,
+                              "deviationOld" : 5580.587390736493,
+                              "deviationCurrent" : 20670.42841464301,
+                              "vms" : 29,
+                              "callsOld" : 841350,
+                              "calls" : 841350,
+                              "tvalue" : -328.7670906548981
+                            },
+                            "childs" : [ {
+                              "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                              "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                              "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                              "module" : "",
+                              "statistic" : {
+                                "meanOld" : 257906.23268729486,
+                                "meanCurrent" : 1564342.2225677904,
+                                "deviationOld" : 5500.01872783855,
+                                "deviationCurrent" : 20540.73223587738,
+                                "vms" : 29,
+                                "callsOld" : 841350,
+                                "calls" : 841350,
+                                "tvalue" : -331.22273112227845
+                              },
+                              "childs" : [ {
+                                "call" : "org.apache.commons.fileupload.MultipartStream#findByte",
+                                "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findByte(byte,int)",
+                                "otherKiekerPattern" : "ADDED",
+                                "module" : "",
+                                "statistic" : {
+                                  "meanOld" : "NaN",
+                                  "meanCurrent" : "NaN",
+                                  "deviationOld" : "NaN",
+                                  "deviationCurrent" : "NaN",
+                                  "vms" : 0,
+                                  "callsOld" : 0,
+                                  "calls" : 0,
+                                  "tvalue" : -1.0,
+                                  "change" : true
+                                },
+                                "childs" : [ ]
+                              } ]
+                            } ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  }, {
+                    "call" : "ADDED",
+                    "kiekerPattern" : "ADDED",
+                    "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream.computeBoundaryTable()",
+                    "statistic" : {
+                      "meanOld" : "NaN",
+                      "meanCurrent" : "NaN",
+                      "deviationOld" : "NaN",
+                      "deviationCurrent" : "NaN",
+                      "vms" : 0,
+                      "callsOld" : 0,
+                      "calls" : 0,
+                      "tvalue" : -1.0,
+                      "change" : true
+                    },
+                    "childs" : [ ]
+                  } ]
+                }, {
+                  "call" : "org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl#<init>",
+                  "kiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl.<init>(org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl,java.lang.String,java.lang.String,java.lang.String,boolean,long)",
+                  "otherKiekerPattern" : "new org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl.<init>(org.apache.commons.fileupload.FileUploadBase$FileItemIteratorImpl,java.lang.String,java.lang.String,java.lang.String,boolean,long)",
+                  "module" : "",
+                  "statistic" : {
+                    "meanOld" : 293935.39384654816,
+                    "meanCurrent" : 1322706.6588202624,
+                    "deviationOld" : 5931.058309988838,
+                    "deviationCurrent" : 4006.083936539357,
+                    "vms" : 30,
+                    "callsOld" : 209550,
+                    "calls" : 209550,
+                    "tvalue" : -787.2878457810532
+                  },
+                  "childs" : [ {
+                    "call" : "org.apache.commons.fileupload.MultipartStream#newInputStream",
+                    "kiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                    "otherKiekerPattern" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream org.apache.commons.fileupload.MultipartStream.newInputStream()",
+                    "module" : "",
+                    "statistic" : {
+                      "meanOld" : 168726.49923732397,
+                      "meanCurrent" : 685033.7190044702,
+                      "deviationOld" : 3094.780405644716,
+                      "deviationCurrent" : 3085.3855508708825,
+                      "vms" : 30,
+                      "callsOld" : 419550,
+                      "calls" : 419550,
+                      "tvalue" : -647.1175587421661
+                    },
+                    "childs" : [ {
+                      "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#<init>",
+                      "kiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                      "otherKiekerPattern" : "new org.apache.commons.fileupload.MultipartStream$ItemInputStream.<init>(org.apache.commons.fileupload.MultipartStream)",
+                      "module" : "",
+                      "statistic" : {
+                        "meanOld" : 150083.81247102076,
+                        "meanCurrent" : 667392.9000945349,
+                        "deviationOld" : 3007.4172061191366,
+                        "deviationCurrent" : 2846.1920802784257,
+                        "vms" : 30,
+                        "callsOld" : 419550,
+                        "calls" : 419550,
+                        "tvalue" : -684.2854955229344
+                      },
+                      "childs" : [ {
+                        "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                        "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                        "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                        "module" : "",
+                        "statistic" : {
+                          "meanOld" : 275009.6420412306,
+                          "meanCurrent" : 1580650.9259697278,
+                          "deviationOld" : 5580.587390736493,
+                          "deviationCurrent" : 20670.42841464301,
+                          "vms" : 29,
+                          "callsOld" : 841350,
+                          "calls" : 841350,
+                          "tvalue" : -328.7670906548981
+                        },
+                        "childs" : [ {
+                          "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                          "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                          "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : 257906.23268729486,
+                            "meanCurrent" : 1564342.2225677904,
+                            "deviationOld" : 5500.01872783855,
+                            "deviationCurrent" : 20540.73223587738,
+                            "vms" : 29,
+                            "callsOld" : 841350,
+                            "calls" : 841350,
+                            "tvalue" : -331.22273112227845
+                          },
+                          "childs" : [ {
+                            "call" : "org.apache.commons.fileupload.MultipartStream#findByte",
+                            "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findByte(byte,int)",
+                            "otherKiekerPattern" : "ADDED",
+                            "module" : "",
+                            "statistic" : {
+                              "meanOld" : "NaN",
+                              "meanCurrent" : "NaN",
+                              "deviationOld" : "NaN",
+                              "deviationCurrent" : "NaN",
+                              "vms" : 0,
+                              "callsOld" : 0,
+                              "calls" : 0,
+                              "tvalue" : -1.0,
+                              "change" : true
+                            },
+                            "childs" : [ ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            }, {
+              "call" : "org.apache.commons.fileupload.util.Streams#copy",
+              "kiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean)",
+              "otherKiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean)",
+              "module" : "",
+              "statistic" : {
+                "meanOld" : 3019215.2461039713,
+                "meanCurrent" : 5100339.446420578,
+                "deviationOld" : 60900.73510193886,
+                "deviationCurrent" : 71300.93273261117,
+                "vms" : 30,
+                "callsOld" : 419550,
+                "calls" : 419550,
+                "tvalue" : -121.5617496279409
+              },
+              "childs" : [ {
+                "call" : "org.apache.commons.fileupload.util.Streams#copy",
+                "kiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean,byte[])",
+                "otherKiekerPattern" : "public static long org.apache.commons.fileupload.util.Streams.copy(java.io.InputStream,java.io.OutputStream,boolean,byte[])",
+                "module" : "",
+                "statistic" : {
+                  "meanOld" : 2823160.5707214307,
+                  "meanCurrent" : 4901405.23555236,
+                  "deviationOld" : 46238.075221713596,
+                  "deviationCurrent" : 63331.4600171548,
+                  "vms" : 30,
+                  "callsOld" : 419550,
+                  "calls" : 419550,
+                  "tvalue" : -145.16467213514704
+                },
+                "childs" : [ {
+                  "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#read",
+                  "kiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream$ItemInputStream.read(byte[],int,int)",
+                  "otherKiekerPattern" : "public int org.apache.commons.fileupload.MultipartStream$ItemInputStream.read(byte[],int,int)",
+                  "module" : "",
+                  "statistic" : {
+                    "meanOld" : 218120.55660890686,
+                    "meanCurrent" : 918263.3529589364,
+                    "deviationOld" : 2916.669594182663,
+                    "deviationCurrent" : 14192.9800449703,
+                    "vms" : 29,
+                    "callsOld" : 1258950,
+                    "calls" : 1258950,
+                    "tvalue" : -260.38958455737924
+                  },
+                  "childs" : [ {
+                    "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#makeAvailable",
+                    "kiekerPattern" : "private int org.apache.commons.fileupload.MultipartStream$ItemInputStream.makeAvailable()",
+                    "otherKiekerPattern" : "private int org.apache.commons.fileupload.MultipartStream$ItemInputStream.makeAvailable()",
+                    "module" : "",
+                    "statistic" : {
+                      "meanOld" : 193205.4653472077,
+                      "meanCurrent" : 891972.7812238565,
+                      "deviationOld" : 2851.6497047240273,
+                      "deviationCurrent" : 14053.692786614609,
+                      "vms" : 29,
+                      "callsOld" : 1260750,
+                      "calls" : 1260750,
+                      "tvalue" : -262.5827075001073
+                    },
+                    "childs" : [ {
+                      "call" : "org.apache.commons.fileupload.MultipartStream$ItemInputStream#findSeparator",
+                      "kiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                      "otherKiekerPattern" : "private void org.apache.commons.fileupload.MultipartStream$ItemInputStream.findSeparator()",
+                      "module" : "",
+                      "statistic" : {
+                        "meanOld" : 275009.6420412306,
+                        "meanCurrent" : 1580650.9259697278,
+                        "deviationOld" : 5580.587390736493,
+                        "deviationCurrent" : 20670.42841464301,
+                        "vms" : 29,
+                        "callsOld" : 841350,
+                        "calls" : 841350,
+                        "tvalue" : -328.7670906548981
+                      },
+                      "childs" : [ {
+                        "call" : "org.apache.commons.fileupload.MultipartStream#findSeparator",
+                        "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                        "otherKiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findSeparator()",
+                        "module" : "",
+                        "statistic" : {
+                          "meanOld" : 257906.23268729486,
+                          "meanCurrent" : 1564342.2225677904,
+                          "deviationOld" : 5500.01872783855,
+                          "deviationCurrent" : 20540.73223587738,
+                          "vms" : 29,
+                          "callsOld" : 841350,
+                          "calls" : 841350,
+                          "tvalue" : -331.22273112227845
+                        },
+                        "childs" : [ {
+                          "call" : "org.apache.commons.fileupload.MultipartStream#findByte",
+                          "kiekerPattern" : "protected int org.apache.commons.fileupload.MultipartStream.findByte(byte,int)",
+                          "otherKiekerPattern" : "ADDED",
+                          "module" : "",
+                          "statistic" : {
+                            "meanOld" : "NaN",
+                            "meanCurrent" : "NaN",
+                            "deviationOld" : "NaN",
+                            "deviationCurrent" : "NaN",
+                            "vms" : 0,
+                            "callsOld" : 0,
+                            "calls" : 0,
+                            "tvalue" : -1.0,
+                            "change" : true
+                          },
+                          "childs" : [ ]
+                        } ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            } ]
+          } ]
+        } ]
+      } ]
+    } ]
+  }
+}

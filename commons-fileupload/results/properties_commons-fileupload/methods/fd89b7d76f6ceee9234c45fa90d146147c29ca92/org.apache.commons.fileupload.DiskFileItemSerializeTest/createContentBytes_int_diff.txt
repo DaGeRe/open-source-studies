@@ -1,0 +1,15 @@
+/**
+ * Create content bytes of a specified size.
+ */
+private byte[] createContentBytes(int size) {
+    StringBuilder buffer = new StringBuilder(size);
+    byte count = 0;
+    for (int i = 0; i < size; i++) {
+        buffer.append(count + "");
+        count++;
+        if (count > 9) {
+            count = 0;
+        }
+    }
+    return buffer.toString().getBytes();
+}

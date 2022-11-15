@@ -1,0 +1,12 @@
+/**
+ * This is what the browser does if you submit the form without choosing a file.
+ */
+@Test
+public void testEmptyFile() throws UnsupportedEncodingException, FileUploadException {
+    List<FileItem> fileItems = parseUpload("-----1234\r\n" + "Content-Disposition: form-data; name=\"file\"; filename=\"\"\r\n" + "\r\n" + "\r\n" + "-----1234--\r\n");
+    assertEquals(1, fileItems.size());
+    FileItem file = fileItems.get(0);
+    assertFalse(file.isFormField());
+    assertEquals("", file.getString());
+    assertEquals("", file.getName());
+}

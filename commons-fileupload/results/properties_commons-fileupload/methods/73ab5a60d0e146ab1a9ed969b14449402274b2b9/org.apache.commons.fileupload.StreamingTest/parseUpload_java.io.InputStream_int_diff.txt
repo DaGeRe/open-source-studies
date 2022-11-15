@@ -1,0 +1,8 @@
+private List<FileItem> parseUpload(InputStream pStream, int pLength) throws FileUploadException {
+    String contentType = "multipart/form-data; boundary=---1234";
+    FileUploadBase upload = new ServletFileUpload();
+    upload.setFileItemFactory(new DiskFileItemFactory());
+    HttpServletRequest request = new MockHttpServletRequest(pStream, pLength, contentType);
+    List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
+    return fileItems;
+}

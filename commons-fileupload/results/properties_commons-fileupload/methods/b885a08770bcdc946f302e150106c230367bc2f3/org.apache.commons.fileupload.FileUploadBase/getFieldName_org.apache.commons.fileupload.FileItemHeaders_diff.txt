@@ -1,0 +1,11 @@
+/**
+ * Retrieves the field name from the <code>Content-disposition</code>
+ * header.
+ *
+ * @param headers A <code>Map</code> containing the HTTP request headers.
+ *
+ * @return The field name for the current <code>encapsulation</code>.
+ */
+protected String getFieldName(FileItemHeaders headers) {
+    return getFieldName(headers.getHeader(CONTENT_DISPOSITION));
+}
