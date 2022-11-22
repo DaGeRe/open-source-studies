@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFilterSet() throws Exception {                                                         public void testFilterSet() throws Exception {                                                      
+final File fileA = TestUtils.newFile(getTestDirectory(), "A");                                         final File fileA = TestUtils.newFile(getTestDirectory(), "A");                                      
+final File fileB = TestUtils.newFile(getTestDirectory(), "B");                                         final File fileB = TestUtils.newFile(getTestDirectory(), "B");                                      
+final Set&lt;File&gt; fileList = new HashSet&lt;File&gt;(Arrays.asList(fileA, fileB));               | final Set&lt;File&gt; fileList = new HashSet&lt;&gt;(Arrays.asList(fileA, fileB));                  
+final IOFileFilter filter = FileFilterUtils.nameFileFilter("A");                                       final IOFileFilter filter = FileFilterUtils.nameFileFilter("A");                                    
+final Set&lt;File&gt; filteredSet = FileFilterUtils.filterSet(filter, fileList);                       final Set&lt;File&gt; filteredSet = FileFilterUtils.filterSet(filter, fileList);                    
+assertTrue(filteredSet.contains(fileA));                                                               assertTrue(filteredSet.contains(fileA));                                                            
+assertFalse(filteredSet.contains(fileB));                                                              assertFalse(filteredSet.contains(fileB));                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+public synchronized void writeTo(final OutputStream out) throws IOException {
+    int remaining = count;
+    for (final byte[] buf : buffers) {
+        final int c = Math.min(buf.length, remaining);
+        out.write(buf, 0, c);
+        remaining -= c;
+        if (remaining == 0) {
+            break;
+        }
+    }
+}

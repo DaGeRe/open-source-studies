@@ -1,0 +1,9 @@
+public void testIsFileNewer() {
+    if (!m_testFile1.exists())
+        throw new IllegalStateException("The m_testFile1 should exist");
+    long fileLastModified = m_testFile1.lastModified();
+    final long TWO_SECOND = 2000;
+    testIsFileNewer("two second earlier is not newer", m_testFile1, fileLastModified + TWO_SECOND, false);
+    testIsFileNewer("same time is not newer", m_testFile1, fileLastModified, false);
+    testIsFileNewer("two second later is newer", m_testFile1, fileLastModified - TWO_SECOND, true);
+}

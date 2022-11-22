@@ -1,0 +1,10 @@
+public boolean deleteQuietly(final File fileToDelete) {
+    if (fileToDelete == null || fileToDelete.exists() == false) {
+        return true;
+    }
+    try {
+        return doDelete(fileToDelete);
+    } catch (final IOException ex) {
+        return false;
+    }
+}

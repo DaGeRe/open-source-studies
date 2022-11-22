@@ -1,0 +1,17 @@
+public static void assertEqualContent(final char[] c0, final File file) throws IOException {           public static void assertEqualContent(final char[] c0, final File file) throws IOException {        
+final Reader ir = new java.io.FileReader(file);                                                      |                                                                                                     
+int count = 0, numRead = 0;                                                                            int count = 0, numRead = 0;                                                                         
+final char[] c1 = new char[c0.length];                                                                 final char[] c1 = new char[c0.length];                                                              
+try {                                                                                                | try (Reader ir = new FileReader(file)) {                                                            
+while (count &lt; c0.length && numRead &gt;= 0) {                                                      while (count &lt; c0.length && numRead &gt;= 0) {                                                   
+numRead = ir.read(c1, count, c0.length);                                                               numRead = ir.read(c1, count, c0.length);                                                            
+count += numRead;                                                                                      count += numRead;                                                                                   
+}                                                                                                      }                                                                                                   
+assertEquals("Different number of chars: ", c0.length, count);                                         assertEquals("Different number of chars: ", c0.length, count);                                      
+for (int i = 0; i &lt; count; i++) {                                                                   for (int i = 0; i &lt; count; i++) {                                                                
+assertEquals("char " + i + " differs", c0[i], c1[i]);                                                  assertEquals("char " + i + " differs", c0[i], c1[i]);                                               
+}                                                                                                      }                                                                                                   
+} finally {                                                                                          |                                                                                                     
+ir.close();                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

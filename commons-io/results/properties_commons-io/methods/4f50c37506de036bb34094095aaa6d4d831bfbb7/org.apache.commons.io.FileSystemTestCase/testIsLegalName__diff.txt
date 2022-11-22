@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsLegalName() {                                                                        public void testIsLegalName() {                                                                     
+for (FileSystem fs : FileSystem.values()) {                                                          | for (final FileSystem fs : FileSystem.values()) {                                                   
+Assert.assertFalse(fs.name(), fs.isLegalFileName(""));                                                 Assert.assertFalse(fs.name(), fs.isLegalFileName(""));                                              
+Assert.assertFalse(fs.name(), fs.isLegalFileName(null));                                               Assert.assertFalse(fs.name(), fs.isLegalFileName(null));                                            
+Assert.assertFalse(fs.name(), fs.isLegalFileName("\0"));                                               Assert.assertFalse(fs.name(), fs.isLegalFileName("\0"));                                            
+Assert.assertTrue(fs.name(), fs.isLegalFileName("0"));                                                 Assert.assertTrue(fs.name(), fs.isLegalFileName("0"));                                              
+                                                                                                     | for (final String candidate : fs.getReservedFileNames()) {                                          
+                                                                                                     | Assert.assertFalse(fs.isLegalFileName(candidate));                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

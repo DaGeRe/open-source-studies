@@ -1,0 +1,13 @@
+private void testWithBufferedWrite(final String testString, final String charsetName) throws IOException {
+    final byte[] expected = testString.getBytes(charsetName);
+    final StringWriter writer = new StringWriter();
+    final WriterOutputStream out = new WriterOutputStream(writer, charsetName);
+    int offset = 0;
+    while (offset < expected.length) {
+        final int length = Math.min(random.nextInt(128), expected.length - offset);
+        out.write(expected, offset, length);
+        offset += length;
+    }
+    out.close();
+    assertEquals(testString, writer.toString());
+}

@@ -1,0 +1,34 @@
+public void testGetFreeSpace_String() throws Exception {                                               public void testGetFreeSpace_String() throws Exception {                                            
+if (File.separatorChar == '/') {                                                                       if (File.separatorChar == '/') {                                                                    
+String[] cmd = null;                                                                                   String[] cmd = null;                                                                                
+String osName = System.getProperty("os.name");                                                         String osName = System.getProperty("os.name");                                                      
+if (osName.indexOf("hp-ux") &gt;= 0 || osName.indexOf("aix") &gt;= 0) {                                if (osName.indexOf("hp-ux") &gt;= 0 || osName.indexOf("aix") &gt;= 0) {                             
+cmd = new String[] { "df", "-P", "/" };                                                                cmd = new String[] { "df", "-P", "/" };                                                             
+} else {                                                                                               } else {                                                                                            
+cmd = new String[] { "df", "/" };                                                                      cmd = new String[] { "df", "/" };                                                                   
+}                                                                                                      }                                                                                                   
+Process proc = Runtime.getRuntime().exec(cmd);                                                         Process proc = Runtime.getRuntime().exec(cmd);                                                      
+boolean kilobyteBlock = true;                                                                          boolean kilobyteBlock = true;                                                                       
+BufferedReader r = null;                                                                               BufferedReader r = null;                                                                            
+try {                                                                                                  try {                                                                                               
+r = new BufferedReader(new InputStreamReader(proc.getInputStream()));                                  r = new BufferedReader(new InputStreamReader(proc.getInputStream()));                               
+String line = r.readLine();                                                                            String line = r.readLine();                                                                         
+if (line.toLowerCase().indexOf("512") &gt;= 0) {                                                       if (line.toLowerCase().indexOf("512") &gt;= 0) {                                                    
+kilobyteBlock = false;                                                                                 kilobyteBlock = false;                                                                              
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(r);                                                                               IOUtils.closeQuietly(r);                                                                            
+}                                                                                                      }                                                                                                   
+long free = FileSystemUtils.freeSpace("/");                                                            long free = FileSystemUtils.freeSpace("/");                                                         
+long kb = FileSystemUtils.freeSpaceKb("/");                                                            long kb = FileSystemUtils.freeSpaceKb("/");                                                         
+if (kilobyteBlock) {                                                                                   if (kilobyteBlock) {                                                                                
+assertEquals((double) free, (double) kb, 256d);                                                      | assertEquals(free, kb, 256d);                                                                       
+} else {                                                                                               } else {                                                                                            
+assertEquals((double) free / 2d, (double) kb, 256d);                                                 | assertEquals(free / 2d, kb, 256d);                                                                  
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+long bytes = FileSystemUtils.freeSpace("");                                                            long bytes = FileSystemUtils.freeSpace("");                                                         
+long kb = FileSystemUtils.freeSpaceKb("");                                                             long kb = FileSystemUtils.freeSpaceKb("");                                                          
+assertEquals((double) bytes / 1024, (double) kb, 256d);                                              | assertEquals((double) bytes / 1024, kb, 256d);                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

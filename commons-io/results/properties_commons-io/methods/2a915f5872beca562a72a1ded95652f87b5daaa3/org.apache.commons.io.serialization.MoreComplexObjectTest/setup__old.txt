@@ -1,0 +1,8 @@
+@Before
+public void setup() throws IOException {
+    original = new MoreComplexObject();
+    final ByteArrayOutputStream bos = willClose(new ByteArrayOutputStream());
+    final ObjectOutputStream oos = willClose(new ObjectOutputStream(bos));
+    oos.writeObject(original);
+    inputStream = willClose(new ByteArrayInputStream(bos.toByteArray()));
+}

@@ -1,0 +1,15 @@
+public void testFileCleanerExitWhenFinished_NoTrackAfter() throws Exception {
+    assertEquals(false, FileCleaner.exitWhenFinished);
+    FileCleaner.exitWhenFinished();
+    assertEquals(true, FileCleaner.exitWhenFinished);
+    assertEquals(null, FileCleaner.reaper);
+    String path = testFile.getPath();
+    Object marker = new Object();
+    try {
+        FileCleaner.track(path, marker);
+        fail();
+    } catch (IllegalStateException ex) {
+    }
+    assertEquals(true, FileCleaner.exitWhenFinished);
+    assertEquals(null, FileCleaner.reaper);
+}

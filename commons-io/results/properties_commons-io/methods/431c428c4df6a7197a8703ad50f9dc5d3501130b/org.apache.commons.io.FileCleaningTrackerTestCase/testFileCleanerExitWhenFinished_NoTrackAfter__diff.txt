@@ -1,0 +1,15 @@
+                                                                                                     | public void testFileCleanerExitWhenFinished_NoTrackAfter() throws Exception {                       
+                                                                                                     | assertEquals(false, theInstance.exitWhenFinished);                                                  
+                                                                                                     | theInstance.exitWhenFinished();                                                                     
+                                                                                                     | assertEquals(true, theInstance.exitWhenFinished);                                                   
+                                                                                                     | assertEquals(null, theInstance.reaper);                                                             
+                                                                                                     | String path = testFile.getPath();                                                                   
+                                                                                                     | Object marker = new Object();                                                                       
+                                                                                                     | try {                                                                                               
+                                                                                                     | theInstance.track(path, marker);                                                                    
+                                                                                                     | fail();                                                                                             
+                                                                                                     | } catch (IllegalStateException ex) {                                                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | assertEquals(true, theInstance.exitWhenFinished);                                                   
+                                                                                                     | assertEquals(null, theInstance.reaper);                                                             
+                                                                                                     | }                                                                                                   

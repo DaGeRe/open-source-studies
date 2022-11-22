@@ -1,0 +1,15 @@
+@Test
+public void testConstructor_File_encoding_badEncoding() throws IOException {
+    Writer writer = null;
+    try {
+        writer = new LockableFileWriter(file, "BAD-ENCODE");
+        fail();
+    } catch (final UnsupportedCharsetException ex) {
+        assertFalse(file.exists());
+        assertFalse(lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+    assertFalse(file.exists());
+    assertFalse(lockFile.exists());
+}

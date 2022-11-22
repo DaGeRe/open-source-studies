@@ -1,0 +1,13 @@
+public static void moveDirectoryToDirectory(final File src, final File destDir, final boolean createDestDir) throws IOException {
+    validateMoveParameters(src, destDir);
+    if (!destDir.exists() && createDestDir) {
+        destDir.mkdirs();
+    }
+    if (!destDir.exists()) {
+        throw new FileNotFoundException("Destination directory '" + destDir + "' does not exist [createDestDir=" + createDestDir + "]");
+    }
+    if (!destDir.isDirectory()) {
+        throw new IOException("Destination '" + destDir + "' is not a directory");
+    }
+    moveDirectory(src, new File(destDir, src.getName()));
+}

@@ -1,0 +1,13 @@
+public void testCopy_readerToWriter() throws Exception {                                               public void testCopy_readerToWriter() throws Exception {                                            
+InputStream in = new ByteArrayInputStream(inData);                                                     InputStream in = new ByteArrayInputStream(inData);                                                  
+in = new YellOnCloseInputStream(in);                                                                   in = new YellOnCloseInputStream(in);                                                                
+Reader reader = new java.io.InputStreamReader(in, "US-ASCII");                                         Reader reader = new java.io.InputStreamReader(in, "US-ASCII");                                      
+ByteArrayOutputStream baout = new ByteArrayOutputStream();                                             ByteArrayOutputStream baout = new ByteArrayOutputStream();                                          
+OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);                            OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);                         
+Writer writer = new java.io.OutputStreamWriter(baout, "US-ASCII");                                   | Writer writer = new java.io.OutputStreamWriter(out, "US-ASCII");                                    
+int count = CopyUtils.copy(reader, writer);                                                            int count = CopyUtils.copy(reader, writer);                                                         
+writer.flush();                                                                                        writer.flush();                                                                                     
+assertEquals("The number of characters returned by copy is wrong", inData.length, count);              assertEquals("The number of characters returned by copy is wrong", inData.length, count);           
+assertEquals("Sizes differ", inData.length, baout.size());                                             assertEquals("Sizes differ", inData.length, baout.size());                                          
+assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));                             assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));                          
+}                                                                                                      }                                                                                                   

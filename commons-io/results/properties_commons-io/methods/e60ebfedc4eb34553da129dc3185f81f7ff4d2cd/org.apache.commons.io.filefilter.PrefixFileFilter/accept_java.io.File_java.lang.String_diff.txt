@@ -1,0 +1,9 @@
+@Override
+public boolean accept(File file, String name) {
+    for (String prefix : prefixes) {
+        if (caseSensitivity.checkStartsWith(name, prefix)) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,9 @@
+public void _testHttpValid(String cT, String bomEnc, String streamEnc, String prologEnc) throws Exception {
+    InputStream is = getXmlStream(bomEnc, (prologEnc == null) ? XML1 : XML3, streamEnc, prologEnc);
+    XmlStreamReader xmlReader = new XmlStreamReader(is, cT, false);
+    if (!streamEnc.equals("UTF-16")) {
+        assertEquals(xmlReader.getEncoding(), streamEnc);
+    } else {
+        assertEquals(xmlReader.getEncoding().substring(0, streamEnc.length()), streamEnc);
+    }
+}

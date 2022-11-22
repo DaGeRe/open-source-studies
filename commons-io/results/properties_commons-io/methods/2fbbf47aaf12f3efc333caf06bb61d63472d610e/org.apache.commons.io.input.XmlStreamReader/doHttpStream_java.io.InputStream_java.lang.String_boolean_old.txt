@@ -1,0 +1,10 @@
+private void doHttpStream(InputStream is, String httpContentType, boolean lenient) throws IOException {
+    BufferedInputStream pis = new BufferedInputStream(is, BUFFER_SIZE);
+    String cTMime = getContentTypeMime(httpContentType);
+    String cTEnc = getContentTypeEncoding(httpContentType);
+    String bomEnc = getBOMEncoding(pis);
+    String xmlGuessEnc = getXMLGuessEncoding(pis);
+    String xmlEnc = getXmlProlog(pis, xmlGuessEnc);
+    String encoding = calculateHttpEncoding(cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc, pis, lenient);
+    prepareReader(pis, encoding);
+}

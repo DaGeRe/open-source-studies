@@ -1,0 +1,9 @@
+public void testGetFreeSpaceWindows_String_NoSuchDirectoryResponse() throws Exception {                public void testGetFreeSpaceWindows_String_NoSuchDirectoryResponse() throws Exception {             
+String lines = " Volume in drive C is HDD\n" + " Volume Serial Number is XXXX-YYYY\n" + "\n" + " Dir   String lines = " Volume in drive C is HDD\n" + " Volume Serial Number is XXXX-YYYY\n" + "\n" + " Dir
+FileSystemUtils fsu = new MockFileSystemUtils(1, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(1, lines);                                            
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceWindows("C:");                                                                          | fsu.freeSpaceWindows("C:", -1);                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

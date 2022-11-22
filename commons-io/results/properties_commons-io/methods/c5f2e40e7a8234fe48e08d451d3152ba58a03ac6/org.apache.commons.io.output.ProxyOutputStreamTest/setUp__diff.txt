@@ -1,0 +1,13 @@
+@Before
+public void setUp() {
+    original = new ByteArrayOutputStream() {
+
+        @Override
+        public void write(final byte[] ba) throws IOException {
+            if (ba != null) {
+                super.write(ba);
+            }
+        }
+    };
+    proxied = new ProxyOutputStream(original);
+}

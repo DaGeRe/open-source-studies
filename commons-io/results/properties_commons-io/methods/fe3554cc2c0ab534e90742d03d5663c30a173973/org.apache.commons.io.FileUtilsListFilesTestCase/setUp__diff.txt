@@ -1,0 +1,30 @@
+protected void setUp() throws Exception {
+    File dir = getLocalTestDirectory();
+    if (dir.exists()) {
+        FileUtils.deleteDirectory(dir);
+    }
+    dir.mkdirs();
+    File file = new File(dir, "dummy-build.xml");
+    FileUtils.touch(file);
+    file = new File(dir, "README");
+    FileUtils.touch(file);
+    dir = new File(dir, "subdir1");
+    dir.mkdirs();
+    file = new File(dir, "dummy-build.xml");
+    FileUtils.touch(file);
+    file = new File(dir, "dummy-readme.txt");
+    FileUtils.touch(file);
+    dir = new File(dir, "subsubdir1");
+    dir.mkdirs();
+    file = new File(dir, "dummy-file.txt");
+    FileUtils.touch(file);
+    file = new File(dir, "dummy-index.html");
+    FileUtils.touch(file);
+    dir = dir.getParentFile();
+    dir = new File(dir, "CVS");
+    dir.mkdirs();
+    file = new File(dir, "Entries");
+    FileUtils.touch(file);
+    file = new File(dir, "Repository");
+    FileUtils.touch(file);
+}

@@ -1,0 +1,9 @@
+@Test
+public void testWriteString() throws IOException {
+    try (final Writer writer = new StringBuilderWriter()) {
+        writer.write("Foo");
+        assertEquals("Foo", writer.toString());
+        writer.write("Bar");
+        assertEquals("FooBar", writer.toString());
+    }
+}

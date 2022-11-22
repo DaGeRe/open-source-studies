@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAvailable() throws Exception {                                                         public void testAvailable() throws Exception {                                                      
+for (final String csName : Charset.availableCharsets().keySet()) {                                     for (final String csName : Charset.availableCharsets().keySet()) {                                  
+try {                                                                                                  try {                                                                                               
+if (isAvailabilityTestableForCharset(csName)) {                                                        if (isAvailabilityTestableForCharset(csName)) {                                                     
+testAvailableSkip(csName);                                                                             testAvailableSkip(csName);                                                                          
+testAvailableRead(csName);                                                                             testAvailableRead(csName);                                                                          
+}                                                                                                      }                                                                                                   
+} catch (UnsupportedOperationException e) {                                                          | } catch (final UnsupportedOperationException e) {                                                   
+fail("Operation not supported for " + csName);                                                         fail("Operation not supported for " + csName);                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

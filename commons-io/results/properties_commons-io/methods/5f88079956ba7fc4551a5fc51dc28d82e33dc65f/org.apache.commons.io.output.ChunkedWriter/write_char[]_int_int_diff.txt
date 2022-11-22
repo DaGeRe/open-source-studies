@@ -1,0 +1,11 @@
+@Override                                                                                              @Override                                                                                           
+public void write(char[] data, int srcOffset, int length) throws IOException {                       | public void write(final char[] data, final int srcOffset, final int length) throws IOException {    
+int bytes = length;                                                                                    int bytes = length;                                                                                 
+int dstOffset = srcOffset;                                                                             int dstOffset = srcOffset;                                                                          
+while (bytes &gt; 0) {                                                                                 while (bytes &gt; 0) {                                                                              
+int chunk = Math.min(bytes, chunkSize);                                                              | final int chunk = Math.min(bytes, chunkSize);                                                       
+out.write(data, dstOffset, chunk);                                                                     out.write(data, dstOffset, chunk);                                                                  
+bytes -= chunk;                                                                                        bytes -= chunk;                                                                                     
+dstOffset += chunk;                                                                                    dstOffset += chunk;                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

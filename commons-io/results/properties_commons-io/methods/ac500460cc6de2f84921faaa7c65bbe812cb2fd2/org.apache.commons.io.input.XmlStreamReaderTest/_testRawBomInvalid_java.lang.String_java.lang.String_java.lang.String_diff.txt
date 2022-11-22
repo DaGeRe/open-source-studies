@@ -1,0 +1,10 @@
+protected void _testRawBomInvalid(String bomEnc, String streamEnc, String prologEnc) throws Exception {
+    InputStream is = getXmlStream(bomEnc, XML3, streamEnc, prologEnc);
+    try {
+        XmlStreamReader xmlReader = new XmlStreamReader(is, false);
+        String foundEnc = xmlReader.getEncoding();
+        fail("It should have failed for BOM " + bomEnc + ", streamEnc " + streamEnc + " and prologEnc " + prologEnc + ": found " + foundEnc);
+    } catch (IOException ex) {
+        assertTrue(ex.getMessage().indexOf("Invalid encoding,") > -1);
+    }
+}

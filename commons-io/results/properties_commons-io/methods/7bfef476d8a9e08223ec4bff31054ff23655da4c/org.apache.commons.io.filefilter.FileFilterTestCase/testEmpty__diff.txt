@@ -1,0 +1,17 @@
+public void testEmpty() throws Exception {
+    File emptyDir = new File(getTestDirectory(), "empty-dir");
+    emptyDir.mkdirs();
+    assertFiltering(EmptyFileFilter.EMPTY, emptyDir, true);
+    assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, false);
+    File emptyFile = new File(emptyDir, "empty-file.txt");
+    createFile(emptyFile, 0);
+    assertFiltering(EmptyFileFilter.EMPTY, emptyFile, true);
+    assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyFile, false);
+    assertFiltering(EmptyFileFilter.EMPTY, emptyDir, false);
+    assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, true);
+    File notEmptyFile = new File(emptyDir, "not-empty-file.txt");
+    createFile(notEmptyFile, 32);
+    assertFiltering(EmptyFileFilter.EMPTY, notEmptyFile, false);
+    assertFiltering(EmptyFileFilter.NOT_EMPTY, notEmptyFile, true);
+    FileUtils.forceDelete(emptyDir);
+}

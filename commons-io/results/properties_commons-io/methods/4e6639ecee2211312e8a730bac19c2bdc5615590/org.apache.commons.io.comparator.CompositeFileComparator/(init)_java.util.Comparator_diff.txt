@@ -1,0 +1,9 @@
+@SuppressWarnings("unchecked")
+public CompositeFileComparator(Comparator<File>... delegates) {
+    if (delegates == null) {
+        this.delegates = (Comparator<File>[]) NO_COMPARATORS;
+    } else {
+        this.delegates = (Comparator<File>[]) new Comparator<?>[delegates.length];
+        System.arraycopy(delegates, 0, this.delegates, 0, delegates.length);
+    }
+}

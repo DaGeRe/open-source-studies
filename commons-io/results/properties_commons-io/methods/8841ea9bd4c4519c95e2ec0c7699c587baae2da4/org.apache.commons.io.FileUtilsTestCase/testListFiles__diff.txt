@@ -1,0 +1,27 @@
+public void testListFiles() throws Exception {                                                         public void testListFiles() throws Exception {                                                      
+File srcDir = getTestDirectory();                                                                      File srcDir = getTestDirectory();                                                                   
+File subDir = new File(srcDir, "list_test");                                                           File subDir = new File(srcDir, "list_test");                                                        
+subDir.mkdir();                                                                                        subDir.mkdir();                                                                                     
+String[] fileNames = { "a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt" };                         String[] fileNames = { "a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt" };                      
+int[] fileSizes = { 123, 234, 345, 456, 678, 789 };                                                    int[] fileSizes = { 123, 234, 345, 456, 678, 789 };                                                 
+for (int i = 0; i &lt; fileNames.length; ++i) {                                                        for (int i = 0; i &lt; fileNames.length; ++i) {                                                     
+File theFile = new File(subDir, fileNames[i]);                                                         File theFile = new File(subDir, fileNames[i]);                                                      
+createFile(theFile, fileSizes[i]);                                                                     createFile(theFile, fileSizes[i]);                                                                  
+}                                                                                                      }                                                                                                   
+Collection files = FileUtils.listFiles(subDir, new WildcardFileFilter("*.*"), new WildcardFileFilter | Collection&lt;File&gt; files = FileUtils.listFiles(subDir, new WildcardFileFilter("*.*"), new Wildca
+int count = files.size();                                                                              int count = files.size();                                                                           
+Object[] fileObjs = files.toArray();                                                                   Object[] fileObjs = files.toArray();                                                                
+assertEquals(files.size(), fileNames.length);                                                          assertEquals(files.size(), fileNames.length);                                                       
+Map foundFileNames = new HashMap();                                                                  | Map&lt;String, String&gt; foundFileNames = new HashMap&lt;String, String&gt;();                     
+for (int i = 0; i &lt; count; ++i) {                                                                   for (int i = 0; i &lt; count; ++i) {                                                                
+boolean found = false;                                                                                 boolean found = false;                                                                              
+for (int j = 0; ((!found) && (j &lt; fileNames.length)); ++j) {                                        for (int j = 0; ((!found) && (j &lt; fileNames.length)); ++j) {                                     
+if (fileNames[j].equals(((File) fileObjs[i]).getName())) {                                             if (fileNames[j].equals(((File) fileObjs[i]).getName())) {                                          
+foundFileNames.put(fileNames[j], fileNames[j]);                                                        foundFileNames.put(fileNames[j], fileNames[j]);                                                     
+found = true;                                                                                          found = true;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+assertEquals(foundFileNames.size(), fileNames.length);                                                 assertEquals(foundFileNames.size(), fileNames.length);                                              
+subDir.delete();                                                                                       subDir.delete();                                                                                    
+}                                                                                                      }                                                                                                   

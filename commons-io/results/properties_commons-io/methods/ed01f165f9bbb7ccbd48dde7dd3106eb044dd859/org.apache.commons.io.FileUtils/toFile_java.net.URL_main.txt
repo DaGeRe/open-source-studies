@@ -1,0 +1,9 @@
+public static File toFile(URL url) {
+    if (url == null || !"file".equalsIgnoreCase(url.getProtocol())) {
+        return null;
+    } else {
+        String filename = url.getFile().replace('/', File.separatorChar);
+        filename = decodeUrl(filename);
+        return new File(filename);
+    }
+}

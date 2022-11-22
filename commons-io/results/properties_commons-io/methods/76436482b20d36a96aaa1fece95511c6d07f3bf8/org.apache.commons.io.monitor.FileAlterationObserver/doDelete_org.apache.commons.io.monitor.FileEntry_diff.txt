@@ -1,0 +1,9 @@
+private void doDelete(FileEntry entry) {
+    for (FileAlterationListener listener : listeners) {
+        if (entry.isDirectory()) {
+            listener.onDirectoryDelete(entry.getFile());
+        } else {
+            listener.onFileDelete(entry.getFile());
+        }
+    }
+}

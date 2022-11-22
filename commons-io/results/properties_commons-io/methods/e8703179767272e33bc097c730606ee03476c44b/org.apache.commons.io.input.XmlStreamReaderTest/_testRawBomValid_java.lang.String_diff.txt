@@ -1,0 +1,9 @@
+protected void _testRawBomValid(String encoding) throws Exception {
+    InputStream is = getXmlStream(encoding + "-bom", XML3, encoding, encoding);
+    XmlStreamReader xmlReader = new XmlStreamReader(is, false);
+    if (!encoding.equals("UTF-16")) {
+        assertEquals(xmlReader.getEncoding(), encoding);
+    } else {
+        assertEquals(xmlReader.getEncoding().substring(0, encoding.length()), encoding);
+    }
+}

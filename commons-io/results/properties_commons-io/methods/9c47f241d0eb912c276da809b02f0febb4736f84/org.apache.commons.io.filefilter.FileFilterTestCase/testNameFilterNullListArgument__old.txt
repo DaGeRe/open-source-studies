@@ -1,0 +1,8 @@
+public void testNameFilterNullListArgument() throws Exception {
+    List test = null;
+    try {
+        new NameFileFilter(test);
+        fail("constructing a NameFileFilter with a null List argument should fail.");
+    } catch (IllegalArgumentException iae) {
+    }
+}

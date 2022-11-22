@@ -1,0 +1,17 @@
+public void testOtherException() {
+    IOException exception = new IOException("test exception");
+    OutputStream closed = new ClosedOutputStream();
+    TaggedOutputStream stream = new TaggedOutputStream(closed);
+    assertFalse(stream.isCauseOf(exception));
+    assertFalse(stream.isCauseOf(new TaggedIOException(exception, closed)));
+    try {
+        stream.throwIfCauseOf(exception);
+    } catch (IOException e) {
+        fail("Unexpected exception thrown");
+    }
+    try {
+        stream.throwIfCauseOf(new TaggedIOException(exception, closed));
+    } catch (IOException e) {
+        fail("Unexpected exception thrown");
+    }
+}

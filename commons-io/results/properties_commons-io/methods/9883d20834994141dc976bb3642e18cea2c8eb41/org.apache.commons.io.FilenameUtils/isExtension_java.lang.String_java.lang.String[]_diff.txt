@@ -1,0 +1,15 @@
+public static boolean isExtension(String filename, String[] extensions) {
+    if (filename == null) {
+        return false;
+    }
+    if (extensions == null || extensions.length == 0) {
+        return (indexOfExtension(filename) == -1);
+    }
+    String fileExt = getExtension(filename);
+    for (String extension : extensions) {
+        if (fileExt.equals(extension)) {
+            return true;
+        }
+    }
+    return false;
+}

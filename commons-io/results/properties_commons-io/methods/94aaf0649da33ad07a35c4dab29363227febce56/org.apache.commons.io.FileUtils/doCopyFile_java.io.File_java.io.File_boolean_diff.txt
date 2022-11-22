@@ -1,0 +1,30 @@
+private static void doCopyFile(final File srcFile, final File destFile, final boolean preserveFileDa   private static void doCopyFile(final File srcFile, final File destFile, final boolean preserveFileDa
+if (destFile.exists() && destFile.isDirectory()) {                                                     if (destFile.exists() && destFile.isDirectory()) {                                                  
+throw new IOException("Destination '" + destFile + "' exists but is a directory");                     throw new IOException("Destination '" + destFile + "' exists but is a directory");                  
+}                                                                                                      }                                                                                                   
+try (FileInputStream fis = new FileInputStream(srcFile);                                             | Path srcPath = srcFile.toPath();                                                                    
+FileChannel input = fis.getChannel();                                                                | Path destPath = destFile.toPath();                                                                  
+FileOutputStream fos = new FileOutputStream(destFile);                                               | final long newLastModifed = preserveFileDate ? srcFile.lastModified() : destFile.lastModified();    
+FileChannel output = fos.getChannel()) {                                                             | Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);                                 
+final long size = input.size();                                                                      | checkEqualSizes(srcFile, destFile, Files.size(srcPath), Files.size(destPath));                      
+long pos = 0;                                                                                        | checkEqualSizes(srcFile, destFile, srcFile.length(), destFile.length());                            
+long count = 0;                                                                                      | destFile.setLastModified(newLastModifed);                                                           
+while (pos &lt; size) {                                                                              |                                                                                                     
+final long remain = size - pos;                                                                      |                                                                                                     
+count = remain &gt; FILE_COPY_BUFFER_SIZE ? FILE_COPY_BUFFER_SIZE : remain;                          |                                                                                                     
+final long bytesCopied = output.transferFrom(input, pos, count);                                     |                                                                                                     
+if (bytesCopied == 0) {                                                                              |                                                                                                     
+break;                                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   
+pos += bytesCopied;                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+final long srcLen = srcFile.length();                                                                |                                                                                                     
+final long dstLen = destFile.length();                                                               |                                                                                                     
+if (srcLen != dstLen) {                                                                              |                                                                                                     
+throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "' Exp |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (preserveFileDate) {                                                                              |                                                                                                     
+destFile.setLastModified(srcFile.lastModified());                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

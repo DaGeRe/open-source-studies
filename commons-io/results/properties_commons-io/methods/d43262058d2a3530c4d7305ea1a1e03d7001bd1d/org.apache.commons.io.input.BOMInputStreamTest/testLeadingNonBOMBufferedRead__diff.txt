@@ -1,0 +1,6 @@
+public void testLeadingNonBOMBufferedRead() throws Exception {
+    byte[] data = new byte[] { (byte) 0xEF, (byte) 0xAB, (byte) 0xCD };
+    InputStream in = new BOMInputStream(createDataStream(data, false));
+    byte[] buf = new byte[1024];
+    assertData(data, buf, 0, in.read(buf));
+}

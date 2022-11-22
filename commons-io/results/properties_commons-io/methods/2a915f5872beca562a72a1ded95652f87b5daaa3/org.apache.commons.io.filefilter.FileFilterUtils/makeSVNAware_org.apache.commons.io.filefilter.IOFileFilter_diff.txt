@@ -1,0 +1,7 @@
+public static IOFileFilter makeSVNAware(final IOFileFilter filter) {
+    if (filter == null) {
+        return svnFilter;
+    } else {
+        return and(filter, svnFilter);
+    }
+}

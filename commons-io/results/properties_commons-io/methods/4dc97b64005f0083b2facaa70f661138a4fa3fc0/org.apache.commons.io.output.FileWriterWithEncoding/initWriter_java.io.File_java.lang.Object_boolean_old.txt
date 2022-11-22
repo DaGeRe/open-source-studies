@@ -1,0 +1,36 @@
+private static Writer initWriter(final File file, final Object encoding, final boolean append) throws IOException {
+    if (file == null) {
+        throw new NullPointerException("File is missing");
+    }
+    if (encoding == null) {
+        throw new NullPointerException("Encoding is missing");
+    }
+    final boolean fileExistedAlready = file.exists();
+    OutputStream stream = null;
+    Writer writer = null;
+    try {
+        stream = new FileOutputStream(file, append);
+        if (encoding instanceof Charset) {
+            writer = new OutputStreamWriter(stream, (Charset) encoding);
+        } else if (encoding instanceof CharsetEncoder) {
+            writer = new OutputStreamWriter(stream, (CharsetEncoder) encoding);
+        } else {
+            writer = new OutputStreamWriter(stream, (String) encoding);
+        }
+    } catch (final IOException ex) {
+        IOUtils.closeQuietly(writer);
+        IOUtils.closeQuietly(stream);
+        if (fileExistedAlready == false) {
+            FileUtils.deleteQuietly(file);
+        }
+        throw ex;
+    } catch (final RuntimeException ex) {
+        IOUtils.closeQuietly(writer);
+        IOUtils.closeQuietly(stream);
+        if (fileExistedAlready == false) {
+            FileUtils.deleteQuietly(file);
+        }
+        throw ex;
+    }
+    return writer;
+}

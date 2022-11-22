@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testResourceToByteArray_ExistingResourceAtRootPackage() throws Exception {                 public void testResourceToByteArray_ExistingResourceAtRootPackage() throws Exception {              
+final long fileSize = new File(getClass().getResource("/test-file-utf8.bin").getFile()).length();    | final long fileSize = new File(getClass().getResource("/test-file-utf8.bin").toURI()).length();     
+final byte[] bytes = IOUtils.resourceToByteArray("/test-file-utf8.bin");                               final byte[] bytes = IOUtils.resourceToByteArray("/test-file-utf8.bin");                            
+assertNotNull(bytes);                                                                                  assertNotNull(bytes);                                                                               
+assertEquals(fileSize, bytes.length);                                                                  assertEquals(fileSize, bytes.length);                                                               
+}                                                                                                      }                                                                                                   

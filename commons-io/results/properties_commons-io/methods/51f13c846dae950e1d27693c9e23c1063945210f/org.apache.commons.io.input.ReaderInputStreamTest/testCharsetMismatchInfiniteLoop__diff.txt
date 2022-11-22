@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testCharsetMismatchInfiniteLoop() throws IOException {                                     public void testCharsetMismatchInfiniteLoop() throws IOException {                                  
+final char[] inputChars = new char[] { (char) 0xE0, (char) 0xB2, (char) 0xA0 };                        final char[] inputChars = new char[] { (char) 0xE0, (char) 0xB2, (char) 0xA0 };                     
+final Charset charset = Charset.forName("ASCII");                                                      final Charset charset = Charset.forName("ASCII");                                                   
+final ReaderInputStream stream = new ReaderInputStream(new CharArrayReader(inputChars), charset);    | try (ReaderInputStream stream = new ReaderInputStream(new CharArrayReader(inputChars), charset)) {  
+try {                                                                                                |                                                                                                     
+while (stream.read() != -1) {                                                                          while (stream.read() != -1) {                                                                       
+}                                                                                                      }                                                                                                   
+} finally {                                                                                          |                                                                                                     
+stream.close();                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

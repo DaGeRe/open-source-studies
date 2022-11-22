@@ -1,0 +1,7 @@
+public static void touch(File file) throws IOException {
+    if (!file.exists()) {
+        OutputStream out = new FileOutputStream(file);
+        IOUtils.closeQuietly(out);
+    }
+    file.setLastModified(System.currentTimeMillis());
+}

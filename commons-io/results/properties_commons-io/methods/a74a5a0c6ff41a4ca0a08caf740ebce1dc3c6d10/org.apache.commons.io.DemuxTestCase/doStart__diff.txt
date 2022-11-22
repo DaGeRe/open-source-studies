@@ -1,0 +1,8 @@
+private void doStart() throws Exception {
+    Iterator iterator = m_threadMap.keySet().iterator();
+    while (iterator.hasNext()) {
+        String name = (String) iterator.next();
+        Thread thread = (Thread) m_threadMap.get(name);
+        thread.start();
+    }
+}

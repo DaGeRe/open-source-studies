@@ -1,0 +1,6 @@
+public void testClose() throws IOException {
+    Reader reader = new CharSequenceReader("FooBar");
+    checkRead(reader, "Foo");
+    reader.close();
+    checkRead(reader, "Foo");
+}

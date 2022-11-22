@@ -1,0 +1,10 @@
+public void testChecksumCRC32() throws Exception {
+    String text = "Imagination is more important than knowledge - Einstein";
+    File file = new File(getTestDirectory(), "checksum-test.txt");
+    FileUtils.writeStringToFile(file, text, "US-ASCII");
+    Checksum expectedChecksum = new CRC32();
+    expectedChecksum.update(text.getBytes("US-ASCII"), 0, text.length());
+    long expectedValue = expectedChecksum.getValue();
+    long resultValue = FileUtils.checksumCRC32(file);
+    assertEquals(expectedValue, resultValue);
+}

@@ -1,0 +1,26 @@
+public static void cleanDirectory(File directory) throws IOException {                                 public static void cleanDirectory(File directory) throws IOException {                              
+if (!directory.exists()) {                                                                             if (!directory.exists()) {                                                                          
+String message = directory + " does not exist";                                                        String message = directory + " does not exist";                                                     
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+if (!directory.isDirectory()) {                                                                        if (!directory.isDirectory()) {                                                                     
+String message = directory + " is not a directory";                                                    String message = directory + " is not a directory";                                                 
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+File[] files = directory.listFiles();                                                                  File[] files = directory.listFiles();                                                               
+if (files == null) {                                                                                   if (files == null) {                                                                                
+throw new IOException("Failed to list contents of " + directory);                                      throw new IOException("Failed to list contents of " + directory);                                   
+}                                                                                                      }                                                                                                   
+IOException exception = null;                                                                          IOException exception = null;                                                                       
+for (int i = 0; i &lt; files.length; i++) {                                                          | for (File file : files) {                                                                           
+File file = files[i];                                                                                |                                                                                                     
+try {                                                                                                  try {                                                                                               
+forceDelete(file);                                                                                     forceDelete(file);                                                                                  
+} catch (IOException ioe) {                                                                            } catch (IOException ioe) {                                                                         
+exception = ioe;                                                                                       exception = ioe;                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if (null != exception) {                                                                               if (null != exception) {                                                                            
+throw exception;                                                                                       throw exception;                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

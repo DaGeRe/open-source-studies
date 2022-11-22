@@ -1,0 +1,17 @@
+public void testSkipStream() throws Exception {
+    final int size = 1027;
+    InputStream input = new ByteArrayInputStream(new byte[size]);
+    try {
+        IOUtils.skipFully(input, -1);
+        fail("Should have failed with IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+    IOUtils.skipFully(input, 0);
+    IOUtils.skipFully(input, size - 1);
+    try {
+        IOUtils.skipFully(input, 2);
+        fail("Should have failed with IOException");
+    } catch (IOException expected) {
+    }
+    IOUtils.closeQuietly(input);
+}

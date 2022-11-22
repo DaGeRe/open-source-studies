@@ -1,0 +1,24 @@
+public void testMatch() {                                                                              public void testMatch() {                                                                           
+assertEquals(false, FilenameUtils.wildcardMatch(null, "Foo"));                                         assertEquals(false, FilenameUtils.wildcardMatch(null, "Foo"));                                      
+assertEquals(false, FilenameUtils.wildcardMatch("Foo", null));                                         assertEquals(false, FilenameUtils.wildcardMatch("Foo", null));                                      
+assertEquals(true, FilenameUtils.wildcardMatch(null, null));                                           assertEquals(true, FilenameUtils.wildcardMatch(null, null));                                        
+assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Foo"));                                         assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Foo"));                                      
+assertEquals(true, FilenameUtils.wildcardMatch("", ""));                                               assertEquals(true, FilenameUtils.wildcardMatch("", ""));                                            
+                                                                                                     | assertEquals(true, FilenameUtils.wildcardMatch("", "*"));                                           
+                                                                                                     | assertEquals(false, FilenameUtils.wildcardMatch("", "?"));                                          
+assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Fo*"));                                         assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Fo*"));                                      
+assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Fo?"));                                         assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Fo?"));                                      
+assertEquals(true, FilenameUtils.wildcardMatch("Foo Bar and Catflap", "Fo*"));                         assertEquals(true, FilenameUtils.wildcardMatch("Foo Bar and Catflap", "Fo*"));                      
+assertEquals(true, FilenameUtils.wildcardMatch("New Bookmarks", "N?w ?o?k??r?s"));                     assertEquals(true, FilenameUtils.wildcardMatch("New Bookmarks", "N?w ?o?k??r?s"));                  
+assertEquals(false, FilenameUtils.wildcardMatch("Foo", "Bar"));                                        assertEquals(false, FilenameUtils.wildcardMatch("Foo", "Bar"));                                     
+assertEquals(true, FilenameUtils.wildcardMatch("Foo Bar Foo", "F*o Bar*"));                            assertEquals(true, FilenameUtils.wildcardMatch("Foo Bar Foo", "F*o Bar*"));                         
+assertEquals(true, FilenameUtils.wildcardMatch("Adobe Acrobat Installer", "Ad*er"));                   assertEquals(true, FilenameUtils.wildcardMatch("Adobe Acrobat Installer", "Ad*er"));                
+assertEquals(true, FilenameUtils.wildcardMatch("Foo", "*Foo"));                                        assertEquals(true, FilenameUtils.wildcardMatch("Foo", "*Foo"));                                     
+assertEquals(true, FilenameUtils.wildcardMatch("BarFoo", "*Foo"));                                     assertEquals(true, FilenameUtils.wildcardMatch("BarFoo", "*Foo"));                                  
+assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Foo*"));                                        assertEquals(true, FilenameUtils.wildcardMatch("Foo", "Foo*"));                                     
+assertEquals(true, FilenameUtils.wildcardMatch("FooBar", "Foo*"));                                     assertEquals(true, FilenameUtils.wildcardMatch("FooBar", "Foo*"));                                  
+assertEquals(false, FilenameUtils.wildcardMatch("FOO", "*Foo"));                                       assertEquals(false, FilenameUtils.wildcardMatch("FOO", "*Foo"));                                    
+assertEquals(false, FilenameUtils.wildcardMatch("BARFOO", "*Foo"));                                    assertEquals(false, FilenameUtils.wildcardMatch("BARFOO", "*Foo"));                                 
+assertEquals(false, FilenameUtils.wildcardMatch("FOO", "Foo*"));                                       assertEquals(false, FilenameUtils.wildcardMatch("FOO", "Foo*"));                                    
+assertEquals(false, FilenameUtils.wildcardMatch("FOOBAR", "Foo*"));                                    assertEquals(false, FilenameUtils.wildcardMatch("FOOBAR", "Foo*"));                                 
+}                                                                                                      }                                                                                                   

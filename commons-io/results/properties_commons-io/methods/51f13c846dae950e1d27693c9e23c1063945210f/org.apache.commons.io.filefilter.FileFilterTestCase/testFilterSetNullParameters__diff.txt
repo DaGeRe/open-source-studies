@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFilterSetNullParameters() {                                                            public void testFilterSetNullParameters() {                                                         
+try {                                                                                                  try {                                                                                               
+FileFilterUtils.filterSet(null, Collections.&lt;File&gt;emptySet());                                   FileFilterUtils.filterSet(null, Collections.&lt;File&gt;emptySet());                                
+fail();                                                                                                fail();                                                                                             
+} catch (final IllegalArgumentException iae) {                                                         } catch (final IllegalArgumentException iae) {                                                      
+}                                                                                                      }                                                                                                   
+final IOFileFilter filter = FileFilterUtils.trueFileFilter();                                          final IOFileFilter filter = FileFilterUtils.trueFileFilter();                                       
+try {                                                                                                  try {                                                                                               
+FileFilterUtils.filterSet(filter, new HashSet&lt;File&gt;(Arrays.asList((File) null)));              | FileFilterUtils.filterSet(filter, new HashSet&lt;&gt;(Arrays.asList((File) null)));                 
+fail();                                                                                                fail();                                                                                             
+} catch (final IllegalArgumentException iae) {                                                         } catch (final IllegalArgumentException iae) {                                                      
+}                                                                                                      }                                                                                                   
+final Set&lt;File&gt; filteredSet = FileFilterUtils.filterSet(filter, (Set&lt;File&gt;) null);         final Set&lt;File&gt; filteredSet = FileFilterUtils.filterSet(filter, (Set&lt;File&gt;) null);      
+assertEquals(0, filteredSet.size());                                                                   assertEquals(0, filteredSet.size());                                                                
+}                                                                                                      }                                                                                                   

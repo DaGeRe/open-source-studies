@@ -1,0 +1,30 @@
+public void testCancel() {                                                                             public void testCancel() {                                                                          
+String cancelName = null;                                                                              String cancelName = null;                                                                           
+try {                                                                                                  try {                                                                                               
+cancelName = "DirectoryWalker.java";                                                                   cancelName = "DirectoryWalker.java";                                                                
+List results = new TestCancelWalker(cancelName, false).find(javaDir);                                | new TestCancelWalker(cancelName, false).find(javaDir);                                              
+fail("CancelException not thrown for '" + cancelName + "'");                                           fail("CancelException not thrown for '" + cancelName + "'");                                        
+} catch (DirectoryWalker.CancelException cancel) {                                                     } catch (DirectoryWalker.CancelException cancel) {                                                  
+assertEquals("File:  " + cancelName, cancelName, cancel.getFile().getName());                          assertEquals("File:  " + cancelName, cancelName, cancel.getFile().getName());                       
+assertEquals("Depth: " + cancelName, 5, cancel.getDepth());                                            assertEquals("Depth: " + cancelName, 5, cancel.getDepth());                                         
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail("IOException: " + cancelName + " " + ex);                                                         fail("IOException: " + cancelName + " " + ex);                                                      
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+cancelName = "commons";                                                                                cancelName = "commons";                                                                             
+List results = new TestCancelWalker(cancelName, false).find(javaDir);                                | new TestCancelWalker(cancelName, false).find(javaDir);                                              
+fail("CancelException not thrown for '" + cancelName + "'");                                           fail("CancelException not thrown for '" + cancelName + "'");                                        
+} catch (DirectoryWalker.CancelException cancel) {                                                     } catch (DirectoryWalker.CancelException cancel) {                                                  
+assertEquals("File:  " + cancelName, cancelName, cancel.getFile().getName());                          assertEquals("File:  " + cancelName, cancelName, cancel.getFile().getName());                       
+assertEquals("Depth: " + cancelName, 3, cancel.getDepth());                                            assertEquals("Depth: " + cancelName, 3, cancel.getDepth());                                         
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail("IOException: " + cancelName + " " + ex);                                                         fail("IOException: " + cancelName + " " + ex);                                                      
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+List results = new TestCancelWalker(cancelName, true).find(javaDir);                                   List results = new TestCancelWalker(cancelName, true).find(javaDir);                                
+File lastFile = (File) results.get(results.size() - 1);                                                File lastFile = (File) results.get(results.size() - 1);                                             
+assertEquals("Suppress:  " + cancelName, cancelName, lastFile.getName());                              assertEquals("Suppress:  " + cancelName, cancelName, lastFile.getName());                           
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail("Suppress threw " + ex);                                                                          fail("Suppress threw " + ex);                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

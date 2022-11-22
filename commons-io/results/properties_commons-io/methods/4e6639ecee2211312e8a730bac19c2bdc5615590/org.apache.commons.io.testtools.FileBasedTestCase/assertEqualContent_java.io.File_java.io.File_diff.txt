@@ -1,0 +1,22 @@
+private void assertEqualContent(File f0, File f1) throws IOException {
+    InputStream is0 = new java.io.FileInputStream(f0);
+    try {
+        InputStream is1 = new java.io.FileInputStream(f1);
+        try {
+            byte[] buf0 = new byte[1024];
+            byte[] buf1 = new byte[1024];
+            int n0 = 0;
+            int n1 = 0;
+            while (-1 != n0) {
+                n0 = is0.read(buf0);
+                n1 = is1.read(buf1);
+                assertTrue("The files " + f0 + " and " + f1 + " have differing number of bytes available (" + n0 + " vs " + n1 + ")", (n0 == n1));
+                assertTrue("The files " + f0 + " and " + f1 + " have different content", Arrays.equals(buf0, buf1));
+            }
+        } finally {
+            is1.close();
+        }
+    } finally {
+        is0.close();
+    }
+}

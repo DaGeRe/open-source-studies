@@ -1,0 +1,7 @@
+public void testAppendConstructStringBuilder() {                                                       public void testAppendConstructStringBuilder() {                                                    
+StringBuilder builder = new StringBuilder("Foo");                                                      StringBuilder builder = new StringBuilder("Foo");                                                   
+StringBuilderWriter writer = new StringBuilderWriter(builder);                                         StringBuilderWriter writer = new StringBuilderWriter(builder);                                      
+writer.append("Bar");                                                                                  writer.append("Bar");                                                                               
+assertEquals("FooBar", writer.toString());                                                             assertEquals("FooBar", writer.toString());                                                          
+assertEquals(builder, writer.getBuilder());                                                          | assertSame(builder, writer.getBuilder());                                                           
+}                                                                                                      }                                                                                                   

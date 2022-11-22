@@ -1,0 +1,15 @@
+public static File createSymbolicLink(File symlink, File target) throws IOException {
+    try {
+        if (!exists(symlink)) {
+            Object link = toPath.invoke(symlink);
+            Object path = createSymlink.invoke(null, link, toPath.invoke(target), emptyFileAttributes);
+            return (File) toFile.invoke(path);
+        }
+        return symlink;
+    } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+    } catch (InvocationTargetException e) {
+        final Throwable targetException = e.getTargetException();
+        throw (IOException) targetException;
+    }
+}

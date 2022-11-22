@@ -1,0 +1,22 @@
+@Override
+public synchronized void reset() throws IOException {
+    if (this.mark_cbuf != NO_MARK) {
+        if (this.cbuf.position() != 0) {
+            this.encoder.reset();
+            this.cbuf.rewind();
+            this.bbuf.rewind();
+            this.bbuf.limit(0);
+            while (this.cbuf.position() < this.mark_cbuf) {
+                this.bbuf.rewind();
+                this.bbuf.limit(0);
+                fillBuffer();
+            }
+        }
+        if (this.cbuf.position() != this.mark_cbuf) {
+            throw new IllegalStateException("Unexpected CharBuffer postion: actual=" + cbuf.position() + " " + "expected=" + this.mark_cbuf);
+        }
+        this.bbuf.position(this.mark_bbuf);
+        this.mark_cbuf = NO_MARK;
+        this.mark_bbuf = NO_MARK;
+    }
+}

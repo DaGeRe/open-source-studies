@@ -1,0 +1,9 @@
+public static Collection<File> listFilesAndDirs(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
+    validateListFilesParameters(directory, fileFilter);
+    final IOFileFilter effFileFilter = setUpEffectiveFileFilter(fileFilter);
+    final IOFileFilter effDirFilter = setUpEffectiveDirFilter(dirFilter);
+    final Collection<File> files = new java.util.LinkedList<>();
+    files.add(directory);
+    innerListFiles(files, directory, FileFilterUtils.or(effFileFilter, effDirFilter), true);
+    return files;
+}

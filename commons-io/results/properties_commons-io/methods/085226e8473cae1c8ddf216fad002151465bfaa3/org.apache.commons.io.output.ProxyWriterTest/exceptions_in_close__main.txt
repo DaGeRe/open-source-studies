@@ -1,0 +1,13 @@
+@Test(expected = UnsupportedEncodingException.class)
+public void exceptions_in_close() throws IOException {
+    try (final OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {
+
+        @Override
+        public void close() throws IOException {
+            throw new UnsupportedEncodingException("Bah");
+        }
+    }) {
+        try (final ProxyWriter proxy = new ProxyWriter(osw)) {
+        }
+    }
+}

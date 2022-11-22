@@ -1,0 +1,16 @@
+@Test(expected = UnsupportedEncodingException.class)
+public void exceptions_in_write_string_offset() throws IOException {
+    OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {
+
+        @Override
+        public void write(String str, int off, int len) throws IOException {
+            throw new UnsupportedEncodingException("Bah");
+        }
+    };
+    final ProxyWriter proxy = new ProxyWriter(osw);
+    try {
+        proxy.write("ABCE", 1, 3);
+    } finally {
+        proxy.close();
+    }
+}

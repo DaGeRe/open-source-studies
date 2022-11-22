@@ -1,0 +1,24 @@
+public void testGetFreeSpaceUnix_String_EmptyResponse() throws Exception {                             public void testGetFreeSpaceUnix_String_EmptyResponse() throws Exception {                          
+String lines = "";                                                                                     String lines = "";                                                                                  
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("/home/users/s", false, false);                                                    | fsu.freeSpaceUnix("/home/users/s", false, false, -1);                                               
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("/home/users/s", true, false);                                                     | fsu.freeSpaceUnix("/home/users/s", true, false, -1);                                                
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("/home/users/s", false, true);                                                     | fsu.freeSpaceUnix("/home/users/s", false, true, -1);                                                
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("/home/users/s", true, true);                                                      | fsu.freeSpaceUnix("/home/users/s", true, true, -1);                                                 
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

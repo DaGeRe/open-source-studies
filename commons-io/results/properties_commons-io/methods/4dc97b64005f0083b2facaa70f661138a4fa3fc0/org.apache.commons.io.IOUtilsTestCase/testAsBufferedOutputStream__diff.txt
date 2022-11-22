@@ -1,0 +1,12 @@
+@Test
+public void testAsBufferedOutputStream() {
+    OutputStream is = new OutputStream() {
+
+        @Override
+        public void write(int b) throws IOException {
+        }
+    };
+    final BufferedOutputStream bis = IOUtils.buffer(is);
+    assertNotSame(is, bis);
+    assertSame(bis, IOUtils.buffer(bis));
+}

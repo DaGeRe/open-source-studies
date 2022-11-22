@@ -1,0 +1,33 @@
+public void testPrefixCaseInsensitive() throws Exception {                                             public void testPrefixCaseInsensitive() throws Exception {                                          
+IOFileFilter filter = new PrefixFileFilter(new String[] { "foo", "bar" }, IOCase.INSENSITIVE);         IOFileFilter filter = new PrefixFileFilter(new String[] { "foo", "bar" }, IOCase.INSENSITIVE);      
+assertFiltering(filter, new File("foo.test1"), true);                                                  assertFiltering(filter, new File("foo.test1"), true);                                               
+assertFiltering(filter, new File("bar.test1"), true);                                                  assertFiltering(filter, new File("bar.test1"), true);                                               
+assertFiltering(filter, new File("FOO.test1"), true);                                                  assertFiltering(filter, new File("FOO.test1"), true);                                               
+assertFiltering(filter, new File("BAR.test1"), true);                                                  assertFiltering(filter, new File("BAR.test1"), true);                                               
+filter = new PrefixFileFilter("bar", IOCase.INSENSITIVE);                                              filter = new PrefixFileFilter("bar", IOCase.INSENSITIVE);                                           
+assertFiltering(filter, new File("foo.test2"), false);                                                 assertFiltering(filter, new File("foo.test2"), false);                                              
+assertFiltering(filter, new File("bar.test2"), true);                                                  assertFiltering(filter, new File("bar.test2"), true);                                               
+assertFiltering(filter, new File("FOO.test2"), false);                                                 assertFiltering(filter, new File("FOO.test2"), false);                                              
+assertFiltering(filter, new File("BAR.test2"), true);                                                  assertFiltering(filter, new File("BAR.test2"), true);                                               
+List prefixes = Arrays.asList(new String[] { "foo", "bar" });                                        | List&lt;String&gt; prefixes = Arrays.asList(new String[] { "foo", "bar" });                         
+filter = new PrefixFileFilter(prefixes, IOCase.INSENSITIVE);                                           filter = new PrefixFileFilter(prefixes, IOCase.INSENSITIVE);                                        
+assertFiltering(filter, new File("foo.test3"), true);                                                  assertFiltering(filter, new File("foo.test3"), true);                                               
+assertFiltering(filter, new File("bar.test3"), true);                                                  assertFiltering(filter, new File("bar.test3"), true);                                               
+assertFiltering(filter, new File("FOO.test3"), true);                                                  assertFiltering(filter, new File("FOO.test3"), true);                                               
+assertFiltering(filter, new File("BAR.test3"), true);                                                  assertFiltering(filter, new File("BAR.test3"), true);                                               
+try {                                                                                                  try {                                                                                               
+new PrefixFileFilter((String) null, IOCase.INSENSITIVE);                                               new PrefixFileFilter((String) null, IOCase.INSENSITIVE);                                            
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+new PrefixFileFilter((String[]) null, IOCase.INSENSITIVE);                                             new PrefixFileFilter((String[]) null, IOCase.INSENSITIVE);                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+new PrefixFileFilter((List) null, IOCase.INSENSITIVE);                                               | new PrefixFileFilter((List&lt;String&gt;) null, IOCase.INSENSITIVE);                                
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

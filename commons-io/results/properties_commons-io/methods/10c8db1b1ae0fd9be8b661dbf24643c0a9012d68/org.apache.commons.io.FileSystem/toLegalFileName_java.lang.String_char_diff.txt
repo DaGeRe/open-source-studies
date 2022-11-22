@@ -1,0 +1,15 @@
+public String toLegalFileName(final String candidate, final char replacement) {                        public String toLegalFileName(final String candidate, final char replacement) {                     
+if (isIllegalFileNameChar(replacement)) {                                                              if (isIllegalFileNameChar(replacement)) {                                                           
+throw new IllegalArgumentException(String.format("The replacement character '%s' cannot be one of th | throw new IllegalArgumentException(String.format("The replacement character '%s' cannot be one of th
+}                                                                                                      }                                                                                                   
+final String truncated = candidate.length() &gt; maxFileNameLength ? candidate.substring(0, maxFileN   final String truncated = candidate.length() &gt; maxFileNameLength ? candidate.substring(0, maxFileN
+boolean changed = false;                                                                               boolean changed = false;                                                                            
+final char[] charArray = truncated.toCharArray();                                                      final char[] charArray = truncated.toCharArray();                                                   
+for (int i = 0; i &lt; charArray.length; i++) {                                                        for (int i = 0; i &lt; charArray.length; i++) {                                                     
+if (isIllegalFileNameChar(charArray[i])) {                                                             if (isIllegalFileNameChar(charArray[i])) {                                                          
+charArray[i] = replacement;                                                                            charArray[i] = replacement;                                                                         
+changed = true;                                                                                        changed = true;                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return changed ? String.valueOf(charArray) : truncated;                                                return changed ? String.valueOf(charArray) : truncated;                                             
+}                                                                                                      }                                                                                                   

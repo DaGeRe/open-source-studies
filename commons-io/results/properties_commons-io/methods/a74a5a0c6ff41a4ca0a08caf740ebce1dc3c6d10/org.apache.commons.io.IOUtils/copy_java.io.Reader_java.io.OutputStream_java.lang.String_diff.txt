@@ -1,0 +1,9 @@
+public static void copy(Reader input, OutputStream output, String encoding) throws IOException {
+    if (encoding == null) {
+        copy(input, output);
+    } else {
+        OutputStreamWriter out = new OutputStreamWriter(output, encoding);
+        copy(input, out);
+        out.flush();
+    }
+}

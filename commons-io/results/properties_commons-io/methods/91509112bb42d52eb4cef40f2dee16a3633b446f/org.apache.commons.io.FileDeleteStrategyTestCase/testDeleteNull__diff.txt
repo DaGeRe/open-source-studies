@@ -1,0 +1,8 @@
+public void testDeleteNull() throws Exception {
+    try {
+        FileDeleteStrategy.NORMAL.delete((File) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    assertEquals(true, FileDeleteStrategy.NORMAL.deleteQuietly((File) null));
+}

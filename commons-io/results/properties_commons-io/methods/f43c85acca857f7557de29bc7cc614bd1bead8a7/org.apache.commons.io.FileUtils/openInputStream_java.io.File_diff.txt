@@ -1,0 +1,13 @@
+public static FileInputStream openInputStream(File file) throws IOException {                          public static FileInputStream openInputStream(File file) throws IOException {                       
+if (file.exists()) {                                                                                   if (file.exists()) {                                                                                
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+throw new IOException("File '" + file + "' exists but is a directory");                                throw new IOException("File '" + file + "' exists but is a directory");                             
+}                                                                                                      }                                                                                                   
+if (file.canRead() == false) {                                                                         if (file.canRead() == false) {                                                                      
+throw new IOException("File '" + file + "' cannot be read");                                           throw new IOException("File '" + file + "' cannot be read");                                        
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+throw new IOException("File '" + file + "' does not exist");                                         | throw new FileNotFoundException("File '" + file + "' does not exist");                              
+}                                                                                                      }                                                                                                   
+return new FileInputStream(file);                                                                      return new FileInputStream(file);                                                                   
+}                                                                                                      }                                                                                                   

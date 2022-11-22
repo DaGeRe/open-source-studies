@@ -1,0 +1,9 @@
+                                                                                                     | @Override                                                                                           
+@Before                                                                                                @Before                                                                                             
+public void setup() throws IOException {                                                               public void setup() throws IOException {                                                            
+testObject = new MockSerializedClass(UUID.randomUUID().toString());                                    testObject = new MockSerializedClass(UUID.randomUUID().toString());                                 
+final ByteArrayOutputStream bos = willClose(new ByteArrayOutputStream());                              final ByteArrayOutputStream bos = willClose(new ByteArrayOutputStream());                           
+final ObjectOutputStream oos = willClose(new ObjectOutputStream(bos));                                 final ObjectOutputStream oos = willClose(new ObjectOutputStream(bos));                              
+oos.writeObject(testObject);                                                                           oos.writeObject(testObject);                                                                        
+testStream = willClose(new ByteArrayInputStream(bos.toByteArray()));                                   testStream = willClose(new ByteArrayInputStream(bos.toByteArray()));                                
+}                                                                                                      }                                                                                                   

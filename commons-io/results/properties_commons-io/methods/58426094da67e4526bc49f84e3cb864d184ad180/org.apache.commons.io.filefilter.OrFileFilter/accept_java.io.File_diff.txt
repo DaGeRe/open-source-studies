@@ -1,0 +1,8 @@
+public boolean accept(final File file) {
+    for (IOFileFilter fileFilter : fileFilters) {
+        if (fileFilter.accept(file)) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,12 @@
+@Test(expected = UnsupportedEncodingException.class)                                                   @Test(expected = UnsupportedEncodingException.class)                                                
+public void exceptions_in_close() throws IOException {                                                 public void exceptions_in_close() throws IOException {                                              
+OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {                       | final OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {                
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void close() throws IOException {                                                               public void close() throws IOException {                                                            
+throw new UnsupportedEncodingException("Bah");                                                         throw new UnsupportedEncodingException("Bah");                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final ProxyWriter proxy = new ProxyWriter(osw);                                                        final ProxyWriter proxy = new ProxyWriter(osw);                                                     
+proxy.close();                                                                                         proxy.close();                                                                                      
+}                                                                                                      }                                                                                                   

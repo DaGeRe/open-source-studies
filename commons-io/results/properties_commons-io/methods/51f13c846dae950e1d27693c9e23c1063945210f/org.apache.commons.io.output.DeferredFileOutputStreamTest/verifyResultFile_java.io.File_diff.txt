@@ -1,0 +1,18 @@
+private void verifyResultFile(final File testFile) {
+    try {
+        final FileInputStream fis = new FileInputStream(testFile);
+        assertEquals(testBytes.length, fis.available());
+        final byte[] resultBytes = new byte[testBytes.length];
+        assertEquals(testBytes.length, fis.read(resultBytes));
+        assertTrue(Arrays.equals(resultBytes, testBytes));
+        assertEquals(-1, fis.read(resultBytes));
+        try {
+            fis.close();
+        } catch (final IOException e) {
+        }
+    } catch (final FileNotFoundException e) {
+        fail("Unexpected FileNotFoundException");
+    } catch (final IOException e) {
+        fail("Unexpected IOException");
+    }
+}

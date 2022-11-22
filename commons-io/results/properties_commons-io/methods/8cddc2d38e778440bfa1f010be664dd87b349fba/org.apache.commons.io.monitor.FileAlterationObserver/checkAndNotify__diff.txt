@@ -1,0 +1,15 @@
+public void checkAndNotify() {
+    for (FileAlterationListener listener : listeners) {
+        listener.onStart(this);
+    }
+    File rootFile = rootEntry.getFile();
+    if (rootFile.exists()) {
+        checkAndNotify(rootEntry, rootEntry.getChildren(), listFiles(rootFile));
+    } else if (rootEntry.isExists()) {
+        checkAndNotify(rootEntry, rootEntry.getChildren(), FileUtils.EMPTY_FILE_ARRAY);
+    } else {
+    }
+    for (FileAlterationListener listener : listeners) {
+        listener.onStop(this);
+    }
+}

@@ -1,0 +1,13 @@
+public RegexFilter(List patterns) {                                                                  |                                                                                                     
+if (patterns == null) {                                                                              |                                                                                                     
+throw new java.lang.IllegalArgumentException();                                                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (patterns.size() == 0)                                                                            |                                                                                                     
+return;                                                                                              |                                                                                                     
+this.patterns = new Pattern[patterns.size()];                                                        |                                                                                                     
+int i = 0;                                                                                           |                                                                                                     
+for (Iterator it = patterns.iterator(); it.hasNext(); i++) {                                         |                                                                                                     
+Object pattern = it.next();                                                                          |                                                                                                     
+this.patterns[i] = (pattern instanceof Pattern) ? (Pattern) pattern : Pattern.compile(pattern.toStri |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

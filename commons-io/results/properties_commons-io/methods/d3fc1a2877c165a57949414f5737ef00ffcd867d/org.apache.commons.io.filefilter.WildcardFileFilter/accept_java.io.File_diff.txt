@@ -1,0 +1,10 @@
+@Override
+public boolean accept(final File file) {
+    final String name = file.getName();
+    for (final String wildcard : wildcards) {
+        if (FilenameUtils.wildcardMatch(name, wildcard, caseSensitivity)) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,7 @@
+public NameFileFilter(final String name, final IOCase caseSensitivity) {
+    if (name == null) {
+        throw new IllegalArgumentException("The wildcard must not be null");
+    }
+    this.names = new String[] { name };
+    this.caseSensitivity = caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity;
+}

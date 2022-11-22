@@ -1,0 +1,15 @@
+long freeSpaceWindows(String path, long timeout) throws IOException {
+    path = FilenameUtils.normalize(path, false);
+    if (path.length() > 0 && path.charAt(0) != '"') {
+        path = "\"" + path + "\"";
+    }
+    String[] cmdAttribs = new String[] { "cmd.exe", "/C", "dir /-c " + path };
+    List<String> lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);
+    for (int i = lines.size() - 1; i >= 0; i--) {
+        String line = lines.get(i);
+        if (line.length() > 0) {
+            return parseDir(line, path);
+        }
+    }
+    throw new IOException("Command line 'dir /-c' did not return any info " + "for path '" + path + "'");
+}

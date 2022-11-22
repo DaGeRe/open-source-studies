@@ -1,0 +1,15 @@
+@SuppressWarnings("javadoc")
+@Test
+public void testToInputStream_String() throws Exception {
+    final String str = "Abc123Xyz!";
+    @SuppressWarnings("deprecation")
+    InputStream inStream = IOUtils.toInputStream(str);
+    byte[] bytes = IOUtils.toByteArray(inStream);
+    assertEqualContent(str.getBytes(), bytes);
+    inStream = IOUtils.toInputStream(str, (String) null);
+    bytes = IOUtils.toByteArray(inStream);
+    assertEqualContent(str.getBytes(), bytes);
+    inStream = IOUtils.toInputStream(str, "UTF-8");
+    bytes = IOUtils.toByteArray(inStream);
+    assertEqualContent(str.getBytes("UTF-8"), bytes);
+}

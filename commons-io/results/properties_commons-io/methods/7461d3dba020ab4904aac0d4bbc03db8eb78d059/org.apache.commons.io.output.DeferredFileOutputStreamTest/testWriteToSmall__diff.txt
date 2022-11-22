@@ -1,0 +1,23 @@
+public void testWriteToSmall() {
+    File testFile = new File("testWriteToMem.dat");
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    testFile.delete();
+    DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length * 2, testFile);
+    try {
+        dfos.write(testBytes);
+        assertFalse(testFile.exists());
+        assertTrue(dfos.isInMemory());
+        try {
+            dfos.writeTo(baos);
+            fail("Should not have been able to write before closing");
+        } catch (IOException ioe) {
+        }
+        dfos.close();
+        dfos.writeTo(baos);
+    } catch (IOException ioe) {
+        fail("Unexpected IOException");
+    }
+    byte[] copiedBytes = baos.toByteArray();
+    assertTrue(Arrays.equals(testBytes, copiedBytes));
+    testFile.delete();
+}

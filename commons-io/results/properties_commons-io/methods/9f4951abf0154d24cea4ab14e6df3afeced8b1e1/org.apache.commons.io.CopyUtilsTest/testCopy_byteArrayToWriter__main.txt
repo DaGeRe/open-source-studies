@@ -1,0 +1,9 @@
+public void testCopy_byteArrayToWriter() throws Exception {
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);
+    Writer writer = new java.io.OutputStreamWriter(out, "US-ASCII");
+    CopyUtils.copy(inData, writer);
+    writer.flush();
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

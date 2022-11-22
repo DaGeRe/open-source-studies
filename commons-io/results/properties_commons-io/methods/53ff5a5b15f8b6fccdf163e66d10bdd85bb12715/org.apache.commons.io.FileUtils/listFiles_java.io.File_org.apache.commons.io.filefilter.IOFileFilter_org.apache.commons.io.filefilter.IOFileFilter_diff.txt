@@ -1,0 +1,18 @@
+public static Collection listFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter) {
+    if (!directory.isDirectory()) {
+        throw new IllegalArgumentException("Parameter 'directory' is not a directory");
+    }
+    if (fileFilter == null) {
+        throw new NullPointerException("Parameter 'fileFilter' is null");
+    }
+    IOFileFilter effFileFilter = FileFilterUtils.andFileFilter(fileFilter, FileFilterUtils.notFileFilter(DirectoryFileFilter.INSTANCE));
+    IOFileFilter effDirFilter;
+    if (dirFilter == null) {
+        effDirFilter = FalseFileFilter.INSTANCE;
+    } else {
+        effDirFilter = FileFilterUtils.andFileFilter(dirFilter, DirectoryFileFilter.INSTANCE);
+    }
+    Collection files = new java.util.LinkedList();
+    innerListFiles(files, directory, FileFilterUtils.orFileFilter(effFileFilter, effDirFilter));
+    return files;
+}

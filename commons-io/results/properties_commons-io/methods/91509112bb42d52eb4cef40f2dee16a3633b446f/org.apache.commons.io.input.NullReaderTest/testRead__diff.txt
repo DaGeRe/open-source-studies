@@ -1,0 +1,16 @@
+public void testRead() throws Exception {
+    int size = 5;
+    TestNullReader reader = new TestNullReader(size);
+    for (int i = 0; i < size; i++) {
+        assertEquals("Check Value [" + i + "]", i, reader.read());
+    }
+    assertEquals("End of File", -1, reader.read());
+    try {
+        int result = reader.read();
+        fail("Should have thrown an IOException, value=[" + result + "]");
+    } catch (IOException e) {
+        assertEquals("Read after end of file", e.getMessage());
+    }
+    reader.close();
+    assertEquals("Available after close", 0, reader.getPosition());
+}

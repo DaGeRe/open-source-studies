@@ -1,0 +1,19 @@
+public static void writeLines(Collection lines, String lineEnding, OutputStream output, String encod | public static void writeLines(Collection&lt;?&gt; lines, String lineEnding, OutputStream output, Str
+if (encoding == null) {                                                                                if (encoding == null) {                                                                             
+writeLines(lines, lineEnding, output);                                                                 writeLines(lines, lineEnding, output);                                                              
+} else {                                                                                               } else {                                                                                            
+if (lines == null) {                                                                                   if (lines == null) {                                                                                
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+if (lineEnding == null) {                                                                              if (lineEnding == null) {                                                                           
+lineEnding = LINE_SEPARATOR;                                                                           lineEnding = LINE_SEPARATOR;                                                                        
+}                                                                                                      }                                                                                                   
+for (Iterator it = lines.iterator(); it.hasNext(); ) {                                               | for (Iterator&lt;?&gt; it = lines.iterator(); it.hasNext(); ) {                                     
+Object line = it.next();                                                                               Object line = it.next();                                                                            
+if (line != null) {                                                                                    if (line != null) {                                                                                 
+output.write(line.toString().getBytes(encoding));                                                      output.write(line.toString().getBytes(encoding));                                                   
+}                                                                                                      }                                                                                                   
+output.write(lineEnding.getBytes(encoding));                                                           output.write(lineEnding.getBytes(encoding));                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

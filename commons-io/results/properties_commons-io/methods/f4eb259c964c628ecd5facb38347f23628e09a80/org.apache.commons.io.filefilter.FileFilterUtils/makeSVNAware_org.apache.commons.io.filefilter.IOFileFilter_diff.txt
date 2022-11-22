@@ -1,0 +1,10 @@
+public static IOFileFilter makeSVNAware(IOFileFilter filter) {                                         public static IOFileFilter makeSVNAware(IOFileFilter filter) {                                      
+if (svnFilter == null) {                                                                             |                                                                                                     
+svnFilter = notFileFilter(andFileFilter(directoryFileFilter(), nameFileFilter(".svn")));             |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (filter == null) {                                                                                  if (filter == null) {                                                                               
+return svnFilter;                                                                                      return svnFilter;                                                                                   
+} else {                                                                                               } else {                                                                                            
+return andFileFilter(filter, svnFilter);                                                               return andFileFilter(filter, svnFilter);                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

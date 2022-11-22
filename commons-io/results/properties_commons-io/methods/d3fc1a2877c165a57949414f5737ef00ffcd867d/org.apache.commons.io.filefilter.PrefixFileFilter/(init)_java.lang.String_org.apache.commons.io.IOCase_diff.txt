@@ -1,0 +1,7 @@
+public PrefixFileFilter(final String prefix, final IOCase caseSensitivity) {
+    if (prefix == null) {
+        throw new IllegalArgumentException("The prefix must not be null");
+    }
+    this.prefixes = new String[] { prefix };
+    this.caseSensitivity = caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity;
+}

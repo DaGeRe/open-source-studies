@@ -1,0 +1,11 @@
+public void testInputStreamToString() throws Exception {
+    FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        String out = IOUtils.toString(fin);
+        assertNotNull(out);
+        assertEquals("Not all bytes were read", 0, fin.available());
+        assertEquals("Wrong output size", FILE_SIZE, out.length());
+    } finally {
+        fin.close();
+    }
+}

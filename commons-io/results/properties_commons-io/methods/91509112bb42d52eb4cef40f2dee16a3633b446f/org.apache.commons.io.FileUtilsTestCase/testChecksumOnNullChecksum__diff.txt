@@ -1,0 +1,10 @@
+public void testChecksumOnNullChecksum() throws Exception {
+    String text = "Imagination is more important than knowledge - Einstein";
+    File file = new File(getTestDirectory(), "checksum-test.txt");
+    FileUtils.writeStringToFile(file, text, "US-ASCII");
+    try {
+        FileUtils.checksum(file, (Checksum) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

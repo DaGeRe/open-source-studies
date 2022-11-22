@@ -1,0 +1,12 @@
+@Test
+public void appendCharSequence() throws Exception {
+    final StringBuilderWriter writer = new StringBuilderWriter();
+    final ProxyWriter proxy = new ProxyWriter(writer);
+    try {
+        proxy.append("ABC");
+    } catch (final Exception e) {
+        fail("Appending CharSequence threw " + e);
+    }
+    assertEquals("ABC", writer.toString());
+    proxy.close();
+}

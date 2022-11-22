@@ -1,0 +1,10 @@
+@Override
+public void setUp() {
+    try {
+        getTestDirectory().mkdirs();
+        m_testFile = new File(getTestDirectory(), "file2-test.txt");
+        createFile(m_testFile, FILE_SIZE);
+    } catch (IOException ioe) {
+        throw new RuntimeException("Can't run this test because " + "environment could not be built: " + ioe.getMessage());
+    }
+}

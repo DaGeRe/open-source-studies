@@ -1,0 +1,15 @@
+                                                                                                     | @Override                                                                                           
+public void run() {                                                                                    public void run() {                                                                                 
+while (running) {                                                                                      while (running) {                                                                                   
+for (final FileAlterationObserver observer : observers) {                                              for (final FileAlterationObserver observer : observers) {                                           
+observer.checkAndNotify();                                                                             observer.checkAndNotify();                                                                          
+}                                                                                                      }                                                                                                   
+if (!running) {                                                                                        if (!running) {                                                                                     
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Thread.sleep(interval);                                                                                Thread.sleep(interval);                                                                             
+} catch (final InterruptedException ignored) {                                                         } catch (final InterruptedException ignored) {                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

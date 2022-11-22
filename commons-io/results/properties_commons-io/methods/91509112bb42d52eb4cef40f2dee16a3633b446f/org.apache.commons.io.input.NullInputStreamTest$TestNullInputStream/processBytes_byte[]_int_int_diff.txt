@@ -1,0 +1,6 @@
+protected void processBytes(byte[] bytes, int offset, int length) {
+    int startPos = (int) getPosition() - length;
+    for (int i = offset; i < length; i++) {
+        bytes[i] = (byte) (startPos + i);
+    }
+}

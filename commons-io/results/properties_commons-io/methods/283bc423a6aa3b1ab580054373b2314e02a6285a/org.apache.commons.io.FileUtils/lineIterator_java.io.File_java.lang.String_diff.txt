@@ -1,0 +1,13 @@
+public static LineIterator lineIterator(File file, String encoding) throws IOException {               public static LineIterator lineIterator(File file, String encoding) throws IOException {            
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+in = new FileInputStream(file);                                                                      | in = openInputStream(file);                                                                         
+return IOUtils.lineIterator(in, encoding);                                                             return IOUtils.lineIterator(in, encoding);                                                          
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+throw ex;                                                                                              throw ex;                                                                                           
+} catch (RuntimeException ex) {                                                                        } catch (RuntimeException ex) {                                                                     
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+throw ex;                                                                                              throw ex;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

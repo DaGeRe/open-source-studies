@@ -1,0 +1,19 @@
+public void testMoveToDirectory_Errors() throws Exception {
+    try {
+        FileUtils.moveDirectoryToDirectory(null, new File("foo"), true);
+        fail("Expected IllegalArgumentException when source is null");
+    } catch (IllegalArgumentException e) {
+    }
+    try {
+        FileUtils.moveDirectoryToDirectory(new File("foo"), null, true);
+        fail("Expected IllegalArgumentException when destination is null");
+    } catch (IllegalArgumentException e) {
+    }
+    File nonexistant = new File(getTestDirectory(), "nonexistant");
+    File destDir = new File(getTestDirectory(), "MoveToDirectoryDestDir");
+    try {
+        FileUtils.moveToDirectory(nonexistant, destDir, true);
+        fail("Expected IOException when source does not exist");
+    } catch (IOException e) {
+    }
+}

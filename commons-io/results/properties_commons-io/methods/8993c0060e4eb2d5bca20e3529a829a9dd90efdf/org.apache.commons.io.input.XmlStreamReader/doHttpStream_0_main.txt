@@ -1,0 +1,13 @@
+private String doHttpStream(final BOMInputStream bom, final BOMInputStream pis, final String httpContentType, final boolean lenient) throws IOException {
+    final String bomEnc = bom.getBOMCharsetName();
+    final String xmlGuessEnc = pis.getBOMCharsetName();
+    final String xmlEnc = getXmlProlog(pis, xmlGuessEnc);
+    try {
+        return calculateHttpEncoding(httpContentType, bomEnc, xmlGuessEnc, xmlEnc, lenient);
+    } catch (final XmlStreamReaderException ex) {
+        if (lenient) {
+            return doLenientDetection(httpContentType, ex);
+        }
+        throw ex;
+    }
+}

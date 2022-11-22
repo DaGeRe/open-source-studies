@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void writeStringPartial() throws Exception {                                                    public void writeStringPartial() throws Exception {                                                 
+final StringBuilderWriter writer = new StringBuilderWriter();                                        | try (final StringBuilderWriter writer = new StringBuilderWriter();                                  
+final ProxyWriter proxy = new ProxyWriter(writer);                                                   | final ProxyWriter proxy = new ProxyWriter(writer)) {                                                
+proxy.write("ABC", 1, 2);                                                                              proxy.write("ABC", 1, 2);                                                                           
+assertEquals("BC", writer.toString());                                                                 assertEquals("BC", writer.toString());                                                              
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

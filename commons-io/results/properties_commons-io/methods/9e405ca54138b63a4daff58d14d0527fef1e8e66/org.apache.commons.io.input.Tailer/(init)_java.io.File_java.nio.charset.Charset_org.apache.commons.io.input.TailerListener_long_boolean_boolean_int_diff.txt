@@ -1,0 +1,10 @@
+public Tailer(final File file, final Charset cset, final TailerListener listener, final long delayMi | public Tailer(final File file, final Charset charset, final TailerListener listener, final long dela
+this.file = file;                                                                                      this.file = file;                                                                                   
+this.delayMillis = delayMillis;                                                                        this.delayMillis = delayMillis;                                                                     
+this.end = end;                                                                                        this.end = end;                                                                                     
+this.inbuf = new byte[bufSize];                                                                        this.inbuf = new byte[bufSize];                                                                     
+this.listener = listener;                                                                              this.listener = listener;                                                                           
+listener.init(this);                                                                                   listener.init(this);                                                                                
+this.reOpen = reOpen;                                                                                  this.reOpen = reOpen;                                                                               
+this.cset = cset;                                                                                    | this.charset = charset;                                                                             
+}                                                                                                      }                                                                                                   

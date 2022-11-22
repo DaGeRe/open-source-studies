@@ -1,0 +1,15 @@
+@Test                                                                                                  @Test                                                                                               
+public void testNullCharArray() throws Exception {                                                     public void testNullCharArray() throws Exception {                                                  
+final ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));                                final ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));                             
+try {                                                                                                |                                                                                                     
+proxy.read((char[]) null);                                                                             proxy.read((char[]) null);                                                                          
+} catch (final Exception e) {                                                                        |                                                                                                     
+fail("Writing null String threw " + e);                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+try {                                                                                                |                                                                                                     
+proxy.read(null, 0, 0);                                                                                proxy.read(null, 0, 0);                                                                             
+} catch (final Exception e) {                                                                        |                                                                                                     
+fail("Writing null String threw " + e);                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+proxy.close();                                                                                         proxy.close();                                                                                      
+}                                                                                                      }                                                                                                   

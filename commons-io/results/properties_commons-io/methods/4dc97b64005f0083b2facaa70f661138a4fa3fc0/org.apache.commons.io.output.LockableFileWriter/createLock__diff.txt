@@ -1,0 +1,8 @@
+private void createLock() throws IOException {
+    synchronized (LockableFileWriter.class) {
+        if (!lockFile.createNewFile()) {
+            throw new IOException("Can't write file, lock " + lockFile.getAbsolutePath() + " exists");
+        }
+        lockFile.deleteOnExit();
+    }
+}

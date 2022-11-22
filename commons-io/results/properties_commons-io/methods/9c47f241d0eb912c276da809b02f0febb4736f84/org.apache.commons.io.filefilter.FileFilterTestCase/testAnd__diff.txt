@@ -1,0 +1,18 @@
+public void testAnd() throws Exception {                                                               public void testAnd() throws Exception {                                                            
+IOFileFilter trueFilter = TrueFileFilter.INSTANCE;                                                     IOFileFilter trueFilter = TrueFileFilter.INSTANCE;                                                  
+IOFileFilter falseFilter = FalseFileFilter.INSTANCE;                                                   IOFileFilter falseFilter = FalseFileFilter.INSTANCE;                                                
+assertFiltering(new AndFileFilter(trueFilter, trueFilter), new File("foo.test"), true);                assertFiltering(new AndFileFilter(trueFilter, trueFilter), new File("foo.test"), true);             
+assertFiltering(new AndFileFilter(trueFilter, falseFilter), new File("foo.test"), false);              assertFiltering(new AndFileFilter(trueFilter, falseFilter), new File("foo.test"), false);           
+assertFiltering(new AndFileFilter(falseFilter, trueFilter), new File("foo.test"), false);              assertFiltering(new AndFileFilter(falseFilter, trueFilter), new File("foo.test"), false);           
+assertFiltering(new AndFileFilter(falseFilter, falseFilter), new File("foo.test"), false);             assertFiltering(new AndFileFilter(falseFilter, falseFilter), new File("foo.test"), false);          
+List filters = new ArrayList();                                                                      | List&lt;IOFileFilter&gt; filters = new ArrayList&lt;IOFileFilter&gt;();                             
+assertFiltering(new AndFileFilter(filters), new File("test"), false);                                  assertFiltering(new AndFileFilter(filters), new File("test"), false);                               
+assertFiltering(new AndFileFilter(), new File("test"), false);                                         assertFiltering(new AndFileFilter(), new File("test"), false);                                      
+try {                                                                                                  try {                                                                                               
+new AndFileFilter(falseFilter, null);                                                                  new AndFileFilter(falseFilter, null);                                                               
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+AndFileFilter f = new AndFileFilter((List) null);                                                    | AndFileFilter f = new AndFileFilter((List&lt;IOFileFilter&gt;) null);                               
+assertEquals(true, f.getFileFilters().isEmpty());                                                      assertEquals(true, f.getFileFilters().isEmpty());                                                   
+}                                                                                                      }                                                                                                   

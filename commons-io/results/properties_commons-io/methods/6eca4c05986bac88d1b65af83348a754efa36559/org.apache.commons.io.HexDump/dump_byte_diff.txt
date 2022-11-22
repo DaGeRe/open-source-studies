@@ -1,0 +1,7 @@
+private static StringBuffer dump(byte value) {
+    _cbuffer.setLength(0);
+    for (int j = 0; j < 2; j++) {
+        _cbuffer.append(_hexcodes[(value >> _shifts[j + 6]) & 15]);
+    }
+    return _cbuffer;
+}

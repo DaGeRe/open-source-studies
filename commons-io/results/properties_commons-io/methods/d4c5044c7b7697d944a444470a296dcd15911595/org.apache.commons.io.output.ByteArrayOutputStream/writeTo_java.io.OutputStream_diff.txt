@@ -1,0 +1,12 @@
+public synchronized void writeTo(OutputStream out) throws IOException {                                public synchronized void writeTo(OutputStream out) throws IOException {                             
+int remaining = count;                                                                                 int remaining = count;                                                                              
+for (int i = 0; i &lt; buffers.size(); i++) {                                                        | for (byte[] buf : buffers) {                                                                        
+byte[] buf = buffers.get(i);                                                                         |                                                                                                     
+int c = Math.min(buf.length, remaining);                                                               int c = Math.min(buf.length, remaining);                                                            
+out.write(buf, 0, c);                                                                                  out.write(buf, 0, c);                                                                               
+remaining -= c;                                                                                        remaining -= c;                                                                                     
+if (remaining == 0) {                                                                                  if (remaining == 0) {                                                                               
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

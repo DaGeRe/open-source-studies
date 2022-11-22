@@ -1,0 +1,11 @@
+private int eofGame(boolean previousWasSlashR) {
+    if (previousWasSlashR || !ensureLineFeedAtEndOfFile) {
+        return -1;
+    }
+    if (!slashNSeen) {
+        slashNSeen = true;
+        return '\n';
+    } else {
+        return -1;
+    }
+}

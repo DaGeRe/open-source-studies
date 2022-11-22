@@ -1,0 +1,9 @@
+public static LineIterator lineIterator(InputStream input, String encoding) throws IOException {
+    Reader reader = null;
+    if (encoding == null) {
+        reader = new InputStreamReader(input);
+    } else {
+        reader = new InputStreamReader(input, encoding);
+    }
+    return new LineIterator(reader);
+}

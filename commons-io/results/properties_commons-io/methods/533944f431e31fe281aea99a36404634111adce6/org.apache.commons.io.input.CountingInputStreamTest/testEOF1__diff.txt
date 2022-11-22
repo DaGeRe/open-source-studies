@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testEOF1() throws Exception {                                                              public void testEOF1() throws Exception {                                                           
+final ByteArrayInputStream bais = new ByteArrayInputStream(new byte[2]);                               final ByteArrayInputStream bais = new ByteArrayInputStream(new byte[2]);                            
+final CountingInputStream cis = new CountingInputStream(bais);                                       | try (final CountingInputStream cis = new CountingInputStream(bais)) {                               
+int found = cis.read();                                                                                int found = cis.read();                                                                             
+assertEquals(0, found);                                                                                assertEquals(0, found);                                                                             
+assertEquals(1, cis.getCount());                                                                       assertEquals(1, cis.getCount());                                                                    
+found = cis.read();                                                                                    found = cis.read();                                                                                 
+assertEquals(0, found);                                                                                assertEquals(0, found);                                                                             
+assertEquals(2, cis.getCount());                                                                       assertEquals(2, cis.getCount());                                                                    
+found = cis.read();                                                                                    found = cis.read();                                                                                 
+assertEquals(-1, found);                                                                               assertEquals(-1, found);                                                                            
+assertEquals(2, cis.getCount());                                                                       assertEquals(2, cis.getCount());                                                                    
+cis.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

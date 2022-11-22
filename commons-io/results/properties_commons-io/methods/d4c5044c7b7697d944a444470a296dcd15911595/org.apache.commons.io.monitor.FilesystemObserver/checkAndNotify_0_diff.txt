@@ -1,0 +1,25 @@
+private void checkAndNotify(FilesystemEntry parent, FilesystemEntry[] previous, File[] files) {        private void checkAndNotify(FilesystemEntry parent, FilesystemEntry[] previous, File[] files) {     
+int c = 0;                                                                                             int c = 0;                                                                                          
+FilesystemEntry[] current = files.length &gt; 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;   FilesystemEntry[] current = files.length &gt; 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;
+for (int p = 0; p &lt; previous.length; p++) {                                                       | for (FilesystemEntry entry : previous) {                                                            
+while (c &lt; files.length && comparator.compare(previous[p].getFile(), files[c]) &gt; 0) {          | while (c &lt; files.length && comparator.compare(entry.getFile(), files[c]) &gt; 0) {               
+current[c] = createFileEntry(parent, files[c]);                                                        current[c] = createFileEntry(parent, files[c]);                                                     
+doCreate(current[c]);                                                                                  doCreate(current[c]);                                                                               
+c++;                                                                                                   c++;                                                                                                
+}                                                                                                      }                                                                                                   
+if (c &lt; files.length && comparator.compare(previous[p].getFile(), files[c]) == 0) {               | if (c &lt; files.length && comparator.compare(entry.getFile(), files[c]) == 0) {                    
+doMatch(previous[p], files[c]);                                                                      | doMatch(entry, files[c]);                                                                           
+checkAndNotify(previous[p], previous[p].getChildren(), listFiles(files[c]));                         | checkAndNotify(entry, entry.getChildren(), listFiles(files[c]));                                    
+current[c] = previous[p];                                                                            | current[c] = entry;                                                                                 
+c++;                                                                                                   c++;                                                                                                
+} else {                                                                                               } else {                                                                                            
+checkAndNotify(previous[p], previous[p].getChildren(), EMPTY_FILES);                                 | checkAndNotify(entry, entry.getChildren(), EMPTY_FILES);                                            
+doDelete(previous[p]);                                                                               | doDelete(entry);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+for (; c &lt; files.length; c++) {                                                                     for (; c &lt; files.length; c++) {                                                                  
+current[c] = createFileEntry(parent, files[c]);                                                        current[c] = createFileEntry(parent, files[c]);                                                     
+doCreate(current[c]);                                                                                  doCreate(current[c]);                                                                               
+}                                                                                                      }                                                                                                   
+parent.setChildren(current);                                                                           parent.setChildren(current);                                                                        
+}                                                                                                      }                                                                                                   

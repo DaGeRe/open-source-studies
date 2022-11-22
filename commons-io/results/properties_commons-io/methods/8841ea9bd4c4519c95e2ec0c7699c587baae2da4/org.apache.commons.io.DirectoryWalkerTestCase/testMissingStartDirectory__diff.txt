@@ -1,0 +1,11 @@
+public void testMissingStartDirectory() {                                                              public void testMissingStartDirectory() {                                                           
+File invalidDir = new File("invalid-dir");                                                             File invalidDir = new File("invalid-dir");                                                          
+List results = new TestFileFinder(null, -1).find(invalidDir);                                        | List&lt;File&gt; results = new TestFileFinder(null, -1).find(invalidDir);                           
+assertEquals("Result Size", 1, results.size());                                                        assertEquals("Result Size", 1, results.size());                                                     
+assertTrue("Current Dir", results.contains(invalidDir));                                               assertTrue("Current Dir", results.contains(invalidDir));                                            
+try {                                                                                                  try {                                                                                               
+new TestFileFinder(null, -1).find(null);                                                               new TestFileFinder(null, -1).find(null);                                                            
+fail("Null start directory didn't throw Exception");                                                   fail("Null start directory didn't throw Exception");                                                
+} catch (NullPointerException ignore) {                                                                } catch (NullPointerException ignore) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

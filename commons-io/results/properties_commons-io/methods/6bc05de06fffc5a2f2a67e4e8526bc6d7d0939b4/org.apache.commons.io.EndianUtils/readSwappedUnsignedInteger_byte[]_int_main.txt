@@ -1,0 +1,5 @@
+public static long readSwappedUnsignedInteger(byte[] data, int offset) {
+    long low = (((data[offset + 0] & 0xff) << 0) + ((data[offset + 1] & 0xff) << 8) + ((data[offset + 2] & 0xff) << 16));
+    long high = data[offset + 3] & 0xff;
+    return (high << 24) + (0xffffffffL & low);
+}

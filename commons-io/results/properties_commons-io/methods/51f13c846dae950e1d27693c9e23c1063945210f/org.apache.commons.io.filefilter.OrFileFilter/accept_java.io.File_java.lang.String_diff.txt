@@ -1,0 +1,9 @@
+@Override
+public boolean accept(final File file, final String name) {
+    for (final IOFileFilter fileFilter : fileFilters) {
+        if (fileFilter.accept(file, name)) {
+            return true;
+        }
+    }
+    return false;
+}

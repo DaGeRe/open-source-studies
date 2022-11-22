@@ -1,0 +1,11 @@
+public void testNot() throws Exception {
+    IOFileFilter filter = FileFilterUtils.notFileFilter(FileFilterUtils.trueFileFilter());
+    assertFiltering(filter, new File("foo.test"), false);
+    assertFiltering(filter, new File("foo"), false);
+    assertFiltering(filter, null, false);
+    try {
+        new NotFileFilter(null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

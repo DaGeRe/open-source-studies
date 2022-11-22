@@ -1,0 +1,15 @@
+                                                                                                     | @Override                                                                                           
+public void run() {                                                                                    public void run() {                                                                                 
+m_demux.bindStream(m_input);                                                                           m_demux.bindStream(m_input);                                                                        
+try {                                                                                                  try {                                                                                               
+int ch = m_demux.read();                                                                               int ch = m_demux.read();                                                                            
+while (-1 != ch) {                                                                                     while (-1 != ch) {                                                                                  
+m_buffer.append((char) ch);                                                                            m_buffer.append((char) ch);                                                                         
+int sleepTime = Math.abs(c_random.nextInt() % 10);                                                     int sleepTime = Math.abs(c_random.nextInt() % 10);                                                  
+Thread.sleep(sleepTime);                                                                               Thread.sleep(sleepTime);                                                                            
+ch = m_demux.read();                                                                                   ch = m_demux.read();                                                                                
+}                                                                                                      }                                                                                                   
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

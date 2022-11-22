@@ -1,0 +1,6 @@
+private void startWriter(String name, String data, DemuxOutputStream demux) throws Exception {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    m_outputMap.put(name, output);
+    WriterThread thread = new WriterThread(name, data, output, demux);
+    m_threadMap.put(name, thread);
+}

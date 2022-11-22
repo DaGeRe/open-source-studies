@@ -1,0 +1,9 @@
+protected List<File> find(final File startDirectory) {
+    final List<File> results = new ArrayList<>();
+    try {
+        walk(startDirectory, results);
+    } catch (final IOException ex) {
+        fail(ex.toString());
+    }
+    return results;
+}

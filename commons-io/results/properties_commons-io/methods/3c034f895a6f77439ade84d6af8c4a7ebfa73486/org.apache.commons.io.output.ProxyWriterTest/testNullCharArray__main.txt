@@ -1,0 +1,13 @@
+public void testNullCharArray() {
+    ProxyWriter proxy = new ProxyWriter(new NullWriter());
+    try {
+        proxy.write((char[]) null);
+    } catch (Exception e) {
+        fail("Writing null char[] threw " + e);
+    }
+    try {
+        proxy.write((char[]) null, 0, 0);
+    } catch (Exception e) {
+        fail("Writing null char[] threw " + e);
+    }
+}

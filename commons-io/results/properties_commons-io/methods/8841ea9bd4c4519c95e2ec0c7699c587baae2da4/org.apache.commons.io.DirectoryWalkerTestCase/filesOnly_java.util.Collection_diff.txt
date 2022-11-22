@@ -1,0 +1,10 @@
+private List filesOnly(Collection results) {                                                         | private List&lt;File&gt; filesOnly(Collection&lt;File&gt; results) {                                
+List list = new ArrayList(results.size());                                                           | List&lt;File&gt; list = new ArrayList&lt;File&gt;(results.size());                                  
+for (Iterator it = results.iterator(); it.hasNext(); ) {                                             | for (Iterator&lt;File&gt; it = results.iterator(); it.hasNext(); ) {                                
+File file = (File) it.next();                                                                        | File file = it.next();                                                                              
+if (file.isFile()) {                                                                                   if (file.isFile()) {                                                                                
+list.add(file);                                                                                        list.add(file);                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

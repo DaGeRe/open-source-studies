@@ -1,0 +1,13 @@
+public void testNullString() {
+    ProxyWriter proxy = new ProxyWriter(new NullWriter());
+    try {
+        proxy.write((String) null);
+    } catch (Exception e) {
+        fail("Writing null String threw " + e);
+    }
+    try {
+        proxy.write((String) null, 0, 0);
+    } catch (Exception e) {
+        fail("Writing null String threw " + e);
+    }
+}

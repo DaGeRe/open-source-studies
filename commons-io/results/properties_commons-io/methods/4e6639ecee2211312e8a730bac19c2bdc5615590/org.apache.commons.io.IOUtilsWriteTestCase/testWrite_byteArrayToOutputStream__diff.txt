@@ -1,0 +1,9 @@
+public void testWrite_byteArrayToOutputStream() throws Exception {
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    IOUtils.write(inData, out);
+    out.off();
+    out.flush();
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

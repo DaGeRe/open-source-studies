@@ -1,0 +1,34 @@
+private void doTestFileWithSpecifiedLines(int lineCount) throws Exception {
+    String encoding = "UTF-8";
+    String fileName = "LineIterator-" + lineCount + "-test.txt";
+    File testFile = new File(getTestDirectory(), fileName);
+    List<String> lines = createFile(testFile, encoding, lineCount);
+    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);
+    try {
+        try {
+            iterator.remove();
+            fail("Remove is unsupported");
+        } catch (UnsupportedOperationException ex) {
+        }
+        int idx = 0;
+        while (iterator.hasNext()) {
+            String line = iterator.next();
+            assertEquals("Comparing line " + idx, lines.get(idx), line);
+            assertTrue("Exceeded expected idx=" + idx + " size=" + lines.size(), idx < lines.size());
+            idx++;
+        }
+        assertEquals("Line Count doesn't match", idx, lines.size());
+        try {
+            iterator.next();
+            fail("Expected NoSuchElementException");
+        } catch (NoSuchElementException expected) {
+        }
+        try {
+            iterator.nextLine();
+            fail("Expected NoSuchElementException");
+        } catch (NoSuchElementException expected) {
+        }
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

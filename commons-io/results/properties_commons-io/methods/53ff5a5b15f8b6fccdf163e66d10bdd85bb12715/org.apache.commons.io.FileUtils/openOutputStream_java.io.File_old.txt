@@ -1,0 +1,15 @@
+public static FileOutputStream openOutputStream(File file) throws IOException {
+    if (file.exists()) {
+        if (file.isDirectory()) {
+            throw new IOException("File '" + file + "' exists but is a directory");
+        }
+    } else {
+        File parent = file.getParentFile();
+        if (parent.exists() == false) {
+            if (parent.mkdirs() == false) {
+                throw new IOException("File '" + file + "' could not be created");
+            }
+        }
+    }
+    return new FileOutputStream(file);
+}

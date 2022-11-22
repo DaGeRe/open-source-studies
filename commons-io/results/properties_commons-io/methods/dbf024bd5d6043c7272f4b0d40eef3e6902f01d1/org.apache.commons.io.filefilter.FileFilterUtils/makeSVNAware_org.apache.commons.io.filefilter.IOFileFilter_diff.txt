@@ -1,0 +1,7 @@
+public static IOFileFilter makeSVNAware(IOFileFilter filter) {                                         public static IOFileFilter makeSVNAware(IOFileFilter filter) {                                      
+if (filter == null) {                                                                                  if (filter == null) {                                                                               
+return svnFilter;                                                                                      return svnFilter;                                                                                   
+} else {                                                                                               } else {                                                                                            
+return andFileFilter(filter, svnFilter);                                                             | return and(filter, svnFilter);                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

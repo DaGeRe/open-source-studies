@@ -1,0 +1,15 @@
+public void testForceMkdir() throws Exception {
+    FileUtils.forceMkdir(getTestDirectory());
+    File testFile = new File(getTestDirectory(), getName());
+    testFile.deleteOnExit();
+    testFile.createNewFile();
+    assertTrue("Test file does not exist.", testFile.exists());
+    try {
+        FileUtils.forceMkdir(testFile);
+        fail("Exception expected.");
+    } catch (IOException ex) {
+    }
+    testFile.delete();
+    FileUtils.forceMkdir(testFile);
+    assertTrue("Directory was not created.", testFile.exists());
+}

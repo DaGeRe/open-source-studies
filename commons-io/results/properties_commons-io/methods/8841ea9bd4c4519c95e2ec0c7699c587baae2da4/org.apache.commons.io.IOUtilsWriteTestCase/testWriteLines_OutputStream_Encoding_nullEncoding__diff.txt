@@ -1,0 +1,12 @@
+public void testWriteLines_OutputStream_Encoding_nullEncoding() throws Exception {                     public void testWriteLines_OutputStream_Encoding_nullEncoding() throws Exception {                  
+Object[] data = new Object[] { "hello", new StringBuffer("world"), "", "this is", null, "some text"    Object[] data = new Object[] { "hello", new StringBuffer("world"), "", "this is", null, "some text" 
+List list = Arrays.asList(data);                                                                     | List&lt;Object&gt; list = Arrays.asList(data);                                                      
+ByteArrayOutputStream baout = new ByteArrayOutputStream();                                             ByteArrayOutputStream baout = new ByteArrayOutputStream();                                          
+YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);         YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);      
+IOUtils.writeLines(list, "*", out, null);                                                              IOUtils.writeLines(list, "*", out, null);                                                           
+out.off();                                                                                             out.off();                                                                                          
+out.flush();                                                                                           out.flush();                                                                                        
+String expected = "hello*world**this is**some text*";                                                  String expected = "hello*world**this is**some text*";                                               
+String actual = baout.toString();                                                                      String actual = baout.toString();                                                                   
+assertEquals(expected, actual);                                                                        assertEquals(expected, actual);                                                                     
+}                                                                                                      }                                                                                                   

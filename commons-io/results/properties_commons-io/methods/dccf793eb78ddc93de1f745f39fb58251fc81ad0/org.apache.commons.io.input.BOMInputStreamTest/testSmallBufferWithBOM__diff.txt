@@ -1,0 +1,7 @@
+public void testSmallBufferWithBOM() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C' };
+    InputStream in = new BOMInputStream(createDataStream(data, true));
+    byte[] buf = new byte[1024];
+    assertData(new byte[] { 'A', 'B' }, buf, 0, in.read(buf, 0, 2));
+    assertData(new byte[] { 'C' }, buf, 0, in.read(buf, 0, 2));
+}

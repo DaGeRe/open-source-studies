@@ -1,0 +1,8 @@
+public void testLeadingNonBOMSingleRead() throws Exception {
+    byte[] data = new byte[] { (byte) 0xEF, (byte) 0xAB, (byte) 0xCD };
+    InputStream in = new BOMInputStream(createDataStream(data, false));
+    assertEquals(0xEF, in.read());
+    assertEquals(0xAB, in.read());
+    assertEquals(0xCD, in.read());
+    assertEquals(-1, in.read());
+}

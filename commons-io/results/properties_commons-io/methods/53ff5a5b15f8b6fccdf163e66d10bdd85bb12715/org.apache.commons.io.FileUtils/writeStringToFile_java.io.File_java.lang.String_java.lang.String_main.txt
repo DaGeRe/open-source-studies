@@ -1,0 +1,8 @@
+public static void writeStringToFile(File file, String data, String encoding) throws IOException {
+    OutputStream out = openOutputStream(file);
+    try {
+        IOUtils.write(data, out, encoding);
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+}

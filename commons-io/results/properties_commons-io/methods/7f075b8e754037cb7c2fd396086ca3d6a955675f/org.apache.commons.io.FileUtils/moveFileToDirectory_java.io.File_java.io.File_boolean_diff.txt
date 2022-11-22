@@ -1,0 +1,18 @@
+public static void moveFileToDirectory(File srcFile, File destDir, boolean createDestDir) throws IOE   public static void moveFileToDirectory(File srcFile, File destDir, boolean createDestDir) throws IOE
+if (srcFile == null) {                                                                                 if (srcFile == null) {                                                                              
+throw new NullPointerException("Source must not be null");                                           | throw new IllegalArgumentException("Source must not be null");                                      
+}                                                                                                      }                                                                                                   
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new NullPointerException("Destination directory must not be null");                            | throw new IllegalArgumentException("Destination directory must not be null");                       
+}                                                                                                      }                                                                                                   
+if (!destDir.exists() && createDestDir) {                                                              if (!destDir.exists() && createDestDir) {                                                           
+destDir.mkdirs();                                                                                      destDir.mkdirs();                                                                                   
+}                                                                                                      }                                                                                                   
+if (!destDir.exists()) {                                                                               if (!destDir.exists()) {                                                                            
+throw new FileNotFoundException("Destination directory '" + destDir + "' does not exist [createDestD   throw new FileNotFoundException("Destination directory '" + destDir + "' does not exist [createDestD
+}                                                                                                      }                                                                                                   
+if (!destDir.isDirectory()) {                                                                          if (!destDir.isDirectory()) {                                                                       
+throw new IOException("Destination '" + destDir + "' is not a directory");                             throw new IOException("Destination '" + destDir + "' is not a directory");                          
+}                                                                                                      }                                                                                                   
+moveFile(srcFile, new File(destDir, srcFile.getName()));                                               moveFile(srcFile, new File(destDir, srcFile.getName()));                                            
+}                                                                                                      }                                                                                                   

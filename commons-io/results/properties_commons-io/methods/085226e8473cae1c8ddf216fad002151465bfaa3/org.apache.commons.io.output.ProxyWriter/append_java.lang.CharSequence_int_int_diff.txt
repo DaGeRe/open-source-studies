@@ -1,0 +1,11 @@
+@Override
+public Writer append(final CharSequence csq, final int start, final int end) throws IOException {
+    try {
+        beforeWrite(end - start);
+        out.append(csq, start, end);
+        afterWrite(end - start);
+    } catch (final IOException e) {
+        handleIOException(e);
+    }
+    return this;
+}

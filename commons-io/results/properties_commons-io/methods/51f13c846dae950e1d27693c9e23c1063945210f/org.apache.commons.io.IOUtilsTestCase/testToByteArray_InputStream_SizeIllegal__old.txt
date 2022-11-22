@@ -1,0 +1,12 @@
+@Test
+public void testToByteArray_InputStream_SizeIllegal() throws Exception {
+    final FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        IOUtils.toByteArray(fin, m_testFile.length() + 1);
+        fail("IOException excepted");
+    } catch (final IOException exc) {
+        assertTrue("Exception message does not start with \"Unexpected readed size\"", exc.getMessage().startsWith("Unexpected readed size"));
+    } finally {
+        fin.close();
+    }
+}

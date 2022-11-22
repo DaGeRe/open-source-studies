@@ -1,0 +1,17 @@
+public void testSkipReader() throws Exception {
+    final int size = 1027;
+    Reader input = new CharArrayReader(new char[size]);
+    IOUtils.skipFully(input, 0);
+    IOUtils.skipFully(input, size - 3);
+    try {
+        IOUtils.skipFully(input, -1);
+        fail("Should have failed with IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+    try {
+        IOUtils.skipFully(input, 5);
+        fail("Should have failed with IOException");
+    } catch (IOException expected) {
+    }
+    IOUtils.closeQuietly(input);
+}

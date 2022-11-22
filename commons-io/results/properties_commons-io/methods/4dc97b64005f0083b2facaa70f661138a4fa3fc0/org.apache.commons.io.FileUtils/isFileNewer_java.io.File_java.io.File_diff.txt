@@ -1,0 +1,9 @@
+public static boolean isFileNewer(final File file, final File reference) {
+    if (reference == null) {
+        throw new IllegalArgumentException("No specified reference file");
+    }
+    if (!reference.exists()) {
+        throw new IllegalArgumentException("The reference file '" + reference + "' doesn't exist");
+    }
+    return isFileNewer(file, reference.lastModified());
+}

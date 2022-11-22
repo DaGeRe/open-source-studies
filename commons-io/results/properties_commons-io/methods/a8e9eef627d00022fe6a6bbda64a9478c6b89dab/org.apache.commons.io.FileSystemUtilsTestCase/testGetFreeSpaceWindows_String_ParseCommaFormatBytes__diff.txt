@@ -1,0 +1,5 @@
+public void testGetFreeSpaceWindows_String_ParseCommaFormatBytes() throws Exception {                  public void testGetFreeSpaceWindows_String_ParseCommaFormatBytes() throws Exception {               
+String lines = " Volume in drive C is HDD\n" + " Volume Serial Number is XXXX-YYYY\n" + "\n" + " Dir   String lines = " Volume in drive C is HDD\n" + " Volume Serial Number is XXXX-YYYY\n" + "\n" + " Dir
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+assertEquals(41411551232L, fsu.freeSpaceWindows(""));                                                | assertEquals(41411551232L, fsu.freeSpaceWindows("", -1));                                           
+}                                                                                                      }                                                                                                   

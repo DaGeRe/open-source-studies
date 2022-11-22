@@ -1,0 +1,22 @@
+private void waitUntilTrackCount() throws Exception {                                                  private void waitUntilTrackCount() throws Exception {                                               
+int count = 0;                                                                                         int count = 0;                                                                                      
+                                                                                                     | SoftReference&lt;?&gt; ref = new SoftReference&lt;Object&gt;(new Object());                         
+while (theInstance.getTrackCount() != 0 && count++ &lt; 5) {                                           while (theInstance.getTrackCount() != 0 && count++ &lt; 5) {                                        
+List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                               List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                            
+try {                                                                                                  try {                                                                                               
+long i = 0;                                                                                            long i = 0;                                                                                         
+while (true && theInstance.getTrackCount() != 0) {                                                   | while (ref.get() != null) {                                                                         
+list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String   list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String
+}                                                                                                      }                                                                                                   
+} catch (Throwable ignored) {                                                                          } catch (Throwable ignored) {                                                                       
+}                                                                                                      }                                                                                                   
+list.clear();                                                                                          list.clear();                                                                                       
+list = null;                                                                                           list = null;                                                                                        
+System.gc();                                                                                           System.gc();                                                                                        
+Thread.sleep(1000);                                                                                    Thread.sleep(1000);                                                                                 
+                                                                                                     | ref = new SoftReference&lt;Object&gt;(new Object());                                                
+}                                                                                                      }                                                                                                   
+if (theInstance.getTrackCount() != 0) {                                                                if (theInstance.getTrackCount() != 0) {                                                             
+throw new IllegalStateException("Your JVM is not releasing SoftReference, try running the testcase w   throw new IllegalStateException("Your JVM is not releasing SoftReference, try running the testcase w
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

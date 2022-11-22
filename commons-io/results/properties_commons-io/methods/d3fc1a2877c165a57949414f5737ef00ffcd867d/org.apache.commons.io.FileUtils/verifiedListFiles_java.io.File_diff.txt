@@ -1,0 +1,15 @@
+private static File[] verifiedListFiles(final File directory) throws IOException {
+    if (!directory.exists()) {
+        final String message = directory + " does not exist";
+        throw new IllegalArgumentException(message);
+    }
+    if (!directory.isDirectory()) {
+        final String message = directory + " is not a directory";
+        throw new IllegalArgumentException(message);
+    }
+    final File[] files = directory.listFiles();
+    if (files == null) {
+        throw new IOException("Failed to list contents of " + directory);
+    }
+    return files;
+}

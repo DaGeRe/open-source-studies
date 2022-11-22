@@ -1,0 +1,10 @@
+private void setupSymlink(File res, File link) throws Exception {                                      private void setupSymlink(File res, File link) throws Exception {                                   
+List args = new ArrayList();                                                                         | List&lt;String&gt; args = new ArrayList&lt;String&gt;();                                            
+args.add("ln");                                                                                        args.add("ln");                                                                                     
+args.add("-s");                                                                                        args.add("-s");                                                                                     
+args.add(res.getAbsolutePath());                                                                       args.add(res.getAbsolutePath());                                                                    
+args.add(link.getAbsolutePath());                                                                      args.add(link.getAbsolutePath());                                                                   
+Process proc;                                                                                          Process proc;                                                                                       
+proc = Runtime.getRuntime().exec((String[]) args.toArray(new String[args.size()]));                  | proc = Runtime.getRuntime().exec(args.toArray(new String[args.size()]));                            
+proc.waitFor();                                                                                        proc.waitFor();                                                                                     
+}                                                                                                      }                                                                                                   

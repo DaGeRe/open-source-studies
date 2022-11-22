@@ -1,0 +1,5 @@
+public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncoding) throws IOException {
+    this.defaultEncoding = defaultEncoding;
+    this.encoding = doHttpStream(is, httpContentType, lenient);
+    this.reader = new InputStreamReader(is, encoding);
+}

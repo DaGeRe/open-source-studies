@@ -1,0 +1,49 @@
+String calculateHttpEncoding(final String httpContentType, final String bomEnc, final String xmlGuessEnc, final String xmlEnc, final boolean lenient) throws IOException {
+    if (lenient && xmlEnc != null) {
+        return xmlEnc;
+    }
+    final String cTMime = getContentTypeMime(httpContentType);
+    final String cTEnc = getContentTypeEncoding(httpContentType);
+    final boolean appXml = isAppXml(cTMime);
+    final boolean textXml = isTextXml(cTMime);
+    if (!appXml && !textXml) {
+        final String msg = MessageFormat.format(HTTP_EX_3, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+        throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+    }
+    if (cTEnc == null) {
+        if (appXml) {
+            return calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);
+        } else {
+            return defaultEncoding == null ? US_ASCII : defaultEncoding;
+        }
+    }
+    if (cTEnc.equals(UTF_16BE) || cTEnc.equals(UTF_16LE)) {
+        if (bomEnc != null) {
+            final String msg = MessageFormat.format(HTTP_EX_1, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+            throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+        }
+        return cTEnc;
+    }
+    if (cTEnc.equals(UTF_16)) {
+        if (bomEnc != null && bomEnc.startsWith(UTF_16)) {
+            return bomEnc;
+        }
+        final String msg = MessageFormat.format(HTTP_EX_2, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+        throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+    }
+    if (cTEnc.equals(UTF_32BE) || cTEnc.equals(UTF_32LE)) {
+        if (bomEnc != null) {
+            final String msg = MessageFormat.format(HTTP_EX_1, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+            throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+        }
+        return cTEnc;
+    }
+    if (cTEnc.equals(UTF_32)) {
+        if (bomEnc != null && bomEnc.startsWith(UTF_32)) {
+            return bomEnc;
+        }
+        final String msg = MessageFormat.format(HTTP_EX_2, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+        throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
+    }
+    return cTEnc;
+}

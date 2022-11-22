@@ -1,0 +1,5 @@
+public void testIOExceptionStringThrowable() {
+    Throwable cause = new IllegalArgumentException("cause");
+    CausedIOException exception = new CausedIOException("message", cause);
+    this.validate(exception, cause, "message");
+}

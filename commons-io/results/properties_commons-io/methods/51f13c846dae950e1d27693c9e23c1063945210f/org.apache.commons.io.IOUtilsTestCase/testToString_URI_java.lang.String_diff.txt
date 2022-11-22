@@ -1,0 +1,6 @@
+private void testToString_URI(final String encoding) throws Exception {
+    final URI uri = m_testFile.toURI();
+    final String out = IOUtils.toString(uri, encoding);
+    assertNotNull(out);
+    assertEquals("Wrong output size", FILE_SIZE, out.length());
+}

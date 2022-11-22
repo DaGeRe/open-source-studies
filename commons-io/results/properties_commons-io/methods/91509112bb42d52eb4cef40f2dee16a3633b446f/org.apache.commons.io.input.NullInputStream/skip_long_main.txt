@@ -1,0 +1,16 @@
+@Override
+public long skip(long numberOfBytes) throws IOException {
+    if (eof) {
+        throw new IOException("Skip after end of file");
+    }
+    if (position == size) {
+        return doEndOfFile();
+    }
+    position += numberOfBytes;
+    long returnLength = numberOfBytes;
+    if (position > size) {
+        returnLength = numberOfBytes - (position - size);
+        position = size;
+    }
+    return returnLength;
+}

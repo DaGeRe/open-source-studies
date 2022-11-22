@@ -1,0 +1,9 @@
+@Test
+public void testMarkSupported() throws Exception {
+    final InputStream r = new CharSequenceInputStream("test", "UTF-8");
+    try {
+        assertTrue(r.markSupported());
+    } finally {
+        r.close();
+    }
+}

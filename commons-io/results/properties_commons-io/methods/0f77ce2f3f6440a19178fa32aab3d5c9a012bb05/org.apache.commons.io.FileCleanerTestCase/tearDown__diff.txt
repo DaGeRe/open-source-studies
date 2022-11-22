@@ -1,0 +1,7 @@
+protected void tearDown() throws Exception {
+    FileUtils.deleteDirectory(getTestDirectory());
+    FileCleaner.q = new ReferenceQueue();
+    FileCleaner.trackers = new Vector();
+    FileCleaner.exitWhenFinished = false;
+    FileCleaner.reaper = null;
+}

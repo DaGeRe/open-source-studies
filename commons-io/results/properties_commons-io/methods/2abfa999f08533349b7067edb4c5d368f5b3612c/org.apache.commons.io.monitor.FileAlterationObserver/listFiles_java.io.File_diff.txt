@@ -1,0 +1,13 @@
+private File[] listFiles(File file) {                                                                  private File[] listFiles(File file) {                                                               
+File[] children = null;                                                                                File[] children = null;                                                                             
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+children = (fileFilter == null) ? file.listFiles() : file.listFiles(fileFilter);                       children = (fileFilter == null) ? file.listFiles() : file.listFiles(fileFilter);                    
+}                                                                                                      }                                                                                                   
+if (children == null) {                                                                                if (children == null) {                                                                             
+children = EMPTY_FILES;                                                                              | children = FileUtils.EMPTY_FILE_ARRAY;                                                              
+}                                                                                                      }                                                                                                   
+if (comparator != null && children.length &gt; 1) {                                                    if (comparator != null && children.length &gt; 1) {                                                 
+Arrays.sort(children, comparator);                                                                     Arrays.sort(children, comparator);                                                                  
+}                                                                                                      }                                                                                                   
+return children;                                                                                       return children;                                                                                    
+}                                                                                                      }                                                                                                   

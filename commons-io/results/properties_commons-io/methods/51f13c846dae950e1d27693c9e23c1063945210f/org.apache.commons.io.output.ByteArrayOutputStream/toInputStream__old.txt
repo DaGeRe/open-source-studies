@@ -1,0 +1,17 @@
+public synchronized InputStream toInputStream() {
+    int remaining = count;
+    if (remaining == 0) {
+        return new ClosedInputStream();
+    }
+    final List<ByteArrayInputStream> list = new ArrayList<ByteArrayInputStream>(buffers.size());
+    for (final byte[] buf : buffers) {
+        final int c = Math.min(buf.length, remaining);
+        list.add(new ByteArrayInputStream(buf, 0, c));
+        remaining -= c;
+        if (remaining == 0) {
+            break;
+        }
+    }
+    reuseBuffers = false;
+    return new SequenceInputStream(Collections.enumeration(list));
+}

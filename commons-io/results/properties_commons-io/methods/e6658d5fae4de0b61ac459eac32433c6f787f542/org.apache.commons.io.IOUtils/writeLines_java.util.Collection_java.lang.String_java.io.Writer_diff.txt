@@ -1,0 +1,15 @@
+public static void writeLines(Collection&lt;?&gt; values, String lineEnding, Writer writer) throws I | public static void writeLines(Collection lines, String lineEnding, Writer writer) throws IOException
+if (values == null) {                                                                                | if (lines == null) {                                                                                
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+if (lineEnding == null) {                                                                              if (lineEnding == null) {                                                                           
+lineEnding = LINE_SEPARATOR;                                                                           lineEnding = LINE_SEPARATOR;                                                                        
+}                                                                                                      }                                                                                                   
+for (Iterator&lt;?&gt; it = values.iterator(); it.hasNext(); ) {                                     | for (Iterator it = lines.iterator(); it.hasNext(); ) {                                              
+Object line = it.next();                                                                               Object line = it.next();                                                                            
+if (line != null) {                                                                                    if (line != null) {                                                                                 
+writer.write(line.toString());                                                                         writer.write(line.toString());                                                                      
+}                                                                                                      }                                                                                                   
+writer.write(lineEnding);                                                                              writer.write(lineEnding);                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

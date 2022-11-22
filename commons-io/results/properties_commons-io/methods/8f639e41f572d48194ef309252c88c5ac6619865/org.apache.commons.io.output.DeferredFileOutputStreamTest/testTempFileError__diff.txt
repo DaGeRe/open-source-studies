@@ -1,0 +1,10 @@
+public void testTempFileError() {                                                                      public void testTempFileError() {                                                                   
+String prefix = null;                                                                                  String prefix = null;                                                                               
+String suffix = ".out";                                                                                String suffix = ".out";                                                                             
+File tempDir = new File(".");                                                                          File tempDir = new File(".");                                                                       
+try {                                                                                                  try {                                                                                               
+DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length - 5, prefix, suffix, t | new DeferredFileOutputStream(testBytes.length - 5, prefix, suffix, tempDir);                        
+fail("Expected IllegalArgumentException ");                                                            fail("Expected IllegalArgumentException ");                                                         
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

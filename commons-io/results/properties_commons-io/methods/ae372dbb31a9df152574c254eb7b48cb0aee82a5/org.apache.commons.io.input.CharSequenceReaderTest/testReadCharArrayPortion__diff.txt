@@ -1,0 +1,9 @@
+public void testReadCharArrayPortion() throws IOException {
+    char[] chars = new char[10];
+    Reader reader = new CharSequenceReader("FooBar");
+    assertEquals(3, reader.read(chars, 3, 3));
+    checkArray(new char[] { NONE, NONE, NONE, 'F', 'o', 'o' }, chars);
+    assertEquals(3, reader.read(chars, 0, 3));
+    checkArray(new char[] { 'B', 'a', 'r', 'F', 'o', 'o', NONE }, chars);
+    assertEquals(-1, reader.read(chars));
+}

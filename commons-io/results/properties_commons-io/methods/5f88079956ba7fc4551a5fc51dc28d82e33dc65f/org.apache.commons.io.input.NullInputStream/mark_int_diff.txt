@@ -1,0 +1,8 @@
+@Override
+public synchronized void mark(final int readlimit) {
+    if (!markSupported) {
+        throw new UnsupportedOperationException("Mark not supported");
+    }
+    mark = position;
+    this.readlimit = readlimit;
+}

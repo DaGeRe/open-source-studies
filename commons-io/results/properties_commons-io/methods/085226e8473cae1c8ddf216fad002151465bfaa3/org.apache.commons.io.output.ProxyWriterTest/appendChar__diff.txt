@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void appendChar() throws Exception {                                                            public void appendChar() throws Exception {                                                         
+final StringBuilderWriter writer = new StringBuilderWriter();                                        | try (final StringBuilderWriter writer = new StringBuilderWriter();                                  
+final ProxyWriter proxy = new ProxyWriter(writer);                                                   | final ProxyWriter proxy = new ProxyWriter(writer)) {                                                
+proxy.append('c');                                                                                     proxy.append('c');                                                                                  
+assertEquals("c", writer.toString());                                                                  assertEquals("c", writer.toString());                                                               
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

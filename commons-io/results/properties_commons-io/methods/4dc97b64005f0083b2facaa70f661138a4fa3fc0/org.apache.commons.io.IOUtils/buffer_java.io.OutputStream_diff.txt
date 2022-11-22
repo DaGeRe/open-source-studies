@@ -1,0 +1,6 @@
+public static BufferedOutputStream buffer(final OutputStream outputStream) {
+    if (outputStream == null) {
+        throw new NullPointerException();
+    }
+    return outputStream instanceof BufferedOutputStream ? (BufferedOutputStream) outputStream : new BufferedOutputStream(outputStream);
+}

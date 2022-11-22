@@ -1,0 +1,15 @@
+public void testNextOnly() throws Exception {                                                          public void testNextOnly() throws Exception {                                                       
+String encoding = null;                                                                                String encoding = null;                                                                             
+File testFile = new File(getTestDirectory(), "LineIterator-nextOnly.txt");                             File testFile = new File(getTestDirectory(), "LineIterator-nextOnly.txt");                          
+List&lt;String&gt; lines = createFile(testFile, encoding, 3);                                        | List&lt;String&gt; lines = createLinesFile(testFile, encoding, 3);                                  
+LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                 
+try {                                                                                                  try {                                                                                               
+for (int i = 0; i &lt; lines.size(); i++) {                                                            for (int i = 0; i &lt; lines.size(); i++) {                                                         
+String line = iterator.next();                                                                         String line = iterator.next();                                                                      
+assertEquals("next() line " + i, lines.get(i), line);                                                  assertEquals("next() line " + i, lines.get(i), line);                                               
+}                                                                                                      }                                                                                                   
+assertEquals("No more expected", false, iterator.hasNext());                                           assertEquals("No more expected", false, iterator.hasNext());                                        
+} finally {                                                                                            } finally {                                                                                         
+LineIterator.closeQuietly(iterator);                                                                   LineIterator.closeQuietly(iterator);                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

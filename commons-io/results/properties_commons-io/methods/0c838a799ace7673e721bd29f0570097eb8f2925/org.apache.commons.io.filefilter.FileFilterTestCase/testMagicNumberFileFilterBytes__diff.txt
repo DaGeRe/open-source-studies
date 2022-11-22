@@ -1,0 +1,27 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testMagicNumberFileFilterBytes() throws Exception {                                        public void testMagicNumberFileFilterBytes() throws Exception {                                     
+final byte[] classFileMagicNumber = new byte[] { (byte) 0xCA, (byte) 0xFE, (byte) 0xBA, (byte) 0xBE    final byte[] classFileMagicNumber = new byte[] { (byte) 0xCA, (byte) 0xFE, (byte) 0xBA, (byte) 0xBE 
+final String xmlFileContent = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"&gt;\n" + "&lt;element&gt;   final String xmlFileContent = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"&gt;\n" + "&lt;element&gt;
+final File classFileA = new File(getTestDirectory(), "A.class");                                       final File classFileA = new File(getTestDirectory(), "A.class");                                    
+final File xmlFileB = new File(getTestDirectory(), "B.xml");                                           final File xmlFileB = new File(getTestDirectory(), "B.xml");                                        
+final File emptyFile = new File(getTestDirectory(), "C.xml");                                          final File emptyFile = new File(getTestDirectory(), "C.xml");                                       
+final File dir = new File(getTestDirectory(), "D");                                                    final File dir = new File(getTestDirectory(), "D");                                                 
+dir.mkdirs();                                                                                          dir.mkdirs();                                                                                       
+final OutputStream classFileAStream = FileUtils.openOutputStream(classFileA);                          final OutputStream classFileAStream = FileUtils.openOutputStream(classFileA);                       
+IOUtils.write(classFileMagicNumber, classFileAStream);                                                 IOUtils.write(classFileMagicNumber, classFileAStream);                                              
+TestUtils.generateTestData(classFileAStream, (long) 32);                                               TestUtils.generateTestData(classFileAStream, (long) 32);                                            
+classFileAStream.close();                                                                              classFileAStream.close();                                                                           
+FileUtils.write(xmlFileB, xmlFileContent, Charsets.UTF_8);                                           | FileUtils.write(xmlFileB, xmlFileContent, StandardCharsets.UTF_8);                                  
+FileUtils.touch(emptyFile);                                                                            FileUtils.touch(emptyFile);                                                                         
+IOFileFilter filter = new MagicNumberFileFilter(classFileMagicNumber);                                 IOFileFilter filter = new MagicNumberFileFilter(classFileMagicNumber);                              
+assertFiltering(filter, classFileA, true);                                                             assertFiltering(filter, classFileA, true);                                                          
+assertFiltering(filter, xmlFileB, false);                                                              assertFiltering(filter, xmlFileB, false);                                                           
+assertFiltering(filter, emptyFile, false);                                                             assertFiltering(filter, emptyFile, false);                                                          
+assertFiltering(filter, dir, false);                                                                   assertFiltering(filter, dir, false);                                                                
+filter = FileFilterUtils.magicNumberFileFilter(classFileMagicNumber);                                  filter = FileFilterUtils.magicNumberFileFilter(classFileMagicNumber);                               
+assertFiltering(filter, classFileA, true);                                                             assertFiltering(filter, classFileA, true);                                                          
+assertFiltering(filter, xmlFileB, false);                                                              assertFiltering(filter, xmlFileB, false);                                                           
+assertFiltering(filter, emptyFile, false);                                                             assertFiltering(filter, emptyFile, false);                                                          
+assertFiltering(filter, dir, false);                                                                   assertFiltering(filter, dir, false);                                                                
+}                                                                                                      }                                                                                                   

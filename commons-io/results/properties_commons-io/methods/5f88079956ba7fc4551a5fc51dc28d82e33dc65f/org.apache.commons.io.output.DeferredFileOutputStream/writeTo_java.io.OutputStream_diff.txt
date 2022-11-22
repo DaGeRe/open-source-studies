@@ -1,0 +1,12 @@
+public void writeTo(final OutputStream out) throws IOException {
+    if (!closed) {
+        throw new IOException("Stream not closed");
+    }
+    if (isInMemory()) {
+        memoryOutputStream.writeTo(out);
+    } else {
+        try (FileInputStream fis = new FileInputStream(outputFile)) {
+            IOUtils.copy(fis, out);
+        }
+    }
+}

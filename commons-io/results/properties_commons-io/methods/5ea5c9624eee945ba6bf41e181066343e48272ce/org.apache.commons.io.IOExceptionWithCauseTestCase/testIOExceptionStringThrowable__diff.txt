@@ -1,0 +1,6 @@
+@Test
+public void testIOExceptionStringThrowable() {
+    final Throwable cause = new IllegalArgumentException("cause");
+    final IOException exception = new IOException("message", cause);
+    this.validate(exception, cause, "message");
+}

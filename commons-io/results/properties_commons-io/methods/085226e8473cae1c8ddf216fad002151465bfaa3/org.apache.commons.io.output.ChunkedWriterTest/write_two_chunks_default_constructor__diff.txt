@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void write_two_chunks_default_constructor() throws Exception {                                  public void write_two_chunks_default_constructor() throws Exception {                               
+final AtomicInteger numWrites = new AtomicInteger();                                                   final AtomicInteger numWrites = new AtomicInteger();                                                
+final OutputStreamWriter osw = getOutputStreamWriter(numWrites);                                     | try (final OutputStreamWriter osw = getOutputStreamWriter(numWrites)) {                             
+final ChunkedWriter chunked = new ChunkedWriter(osw);                                                | try (final ChunkedWriter chunked = new ChunkedWriter(osw)) {                                        
+chunked.write(new char[1024 * 4 + 1]);                                                                 chunked.write(new char[1024 * 4 + 1]);                                                              
+chunked.flush();                                                                                       chunked.flush();                                                                                    
+assertEquals(2, numWrites.get());                                                                      assertEquals(2, numWrites.get());                                                                   
+chunked.close();                                                                                     |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

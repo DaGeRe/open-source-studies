@@ -1,0 +1,13 @@
+private void doCreate(final FileEntry entry) {
+    for (final FileAlterationListener listener : listeners) {
+        if (entry.isDirectory()) {
+            listener.onDirectoryCreate(entry.getFile());
+        } else {
+            listener.onFileCreate(entry.getFile());
+        }
+    }
+    final FileEntry[] children = entry.getChildren();
+    for (final FileEntry aChildren : children) {
+        doCreate(aChildren);
+    }
+}

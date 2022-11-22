@@ -1,0 +1,7 @@
+public int resetCount() {
+    long result = resetByteCount();
+    if (result > Integer.MAX_VALUE) {
+        throw new ArithmeticException("The byte count " + result + " is too large to be converted to an int");
+    }
+    return (int) result;
+}

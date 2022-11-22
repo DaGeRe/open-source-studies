@@ -1,0 +1,33 @@
+private static void doCopyFile(File srcFile, File destFile, boolean preserveFileDate) throws IOExcep   private static void doCopyFile(File srcFile, File destFile, boolean preserveFileDate) throws IOExcep
+if (destFile.exists() && destFile.isDirectory()) {                                                     if (destFile.exists() && destFile.isDirectory()) {                                                  
+throw new IOException("Destination '" + destFile + "' exists but is a directory");                     throw new IOException("Destination '" + destFile + "' exists but is a directory");                  
+}                                                                                                      }                                                                                                   
+FileChannel input = new FileInputStream(srcFile).getChannel();                                       | FileInputStream fis = null;                                                                         
+                                                                                                     | FileOutputStream fos = null;                                                                        
+                                                                                                     | FileChannel input = null;                                                                           
+                                                                                                     | FileChannel output = null;                                                                          
+try {                                                                                                  try {                                                                                               
+FileChannel output = new FileOutputStream(destFile).getChannel();                                    | fis = new FileInputStream(srcFile);                                                                 
+try {                                                                                                | fos = new FileOutputStream(destFile);                                                               
+output.transferFrom(input, 0, input.size());                                                         | input = fis.getChannel();                                                                           
+} finally {                                                                                          | output = fos.getChannel();                                                                          
+IOUtils.closeQuietly(output);                                                                        | long size = input.size();                                                                           
+                                                                                                     | long pos = 0;                                                                                       
+                                                                                                     | long count = 0;                                                                                     
+                                                                                                     | while (pos &lt; size) {                                                                             
+                                                                                                     | count = (size - pos) &gt; FIFTY_MB ? FIFTY_MB : (size - pos);                                       
+                                                                                                     | pos += output.transferFrom(input, pos, count);                                                      
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+                                                                                                     | IOUtils.closeQuietly(output);                                                                       
+                                                                                                     | IOUtils.closeQuietly(fos);                                                                          
+IOUtils.closeQuietly(input);                                                                           IOUtils.closeQuietly(input);                                                                        
+                                                                                                     | IOUtils.closeQuietly(fis);                                                                          
+}                                                                                                      }                                                                                                   
+if (srcFile.length() != destFile.length()) {                                                           if (srcFile.length() != destFile.length()) {                                                        
+throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");    throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'"); 
+}                                                                                                      }                                                                                                   
+if (preserveFileDate) {                                                                                if (preserveFileDate) {                                                                             
+destFile.setLastModified(srcFile.lastModified());                                                      destFile.setLastModified(srcFile.lastModified());                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

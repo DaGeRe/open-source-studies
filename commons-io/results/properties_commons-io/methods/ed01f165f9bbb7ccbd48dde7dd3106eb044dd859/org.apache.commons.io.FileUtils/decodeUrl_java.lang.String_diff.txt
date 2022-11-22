@@ -1,0 +1,30 @@
+                                                                                                     | static String decodeUrl(String url) {                                                               
+                                                                                                     | String decoded = url;                                                                               
+                                                                                                     | if (url != null && url.indexOf('%') &gt;= 0) {                                                      
+                                                                                                     | int n = url.length();                                                                               
+                                                                                                     | StringBuffer buffer = new StringBuffer();                                                           
+                                                                                                     | ByteBuffer bytes = ByteBuffer.allocate(n);                                                          
+                                                                                                     | for (int i = 0; i &lt; n; ) {                                                                       
+                                                                                                     | if (url.charAt(i) == '%') {                                                                         
+                                                                                                     | try {                                                                                               
+                                                                                                     | do {                                                                                                
+                                                                                                     | byte octet = (byte) Integer.parseInt(url.substring(i + 1, i + 3), 16);                              
+                                                                                                     | bytes.put(octet);                                                                                   
+                                                                                                     | i += 3;                                                                                             
+                                                                                                     | } while (i &lt; n && url.charAt(i) == '%');                                                         
+                                                                                                     | continue;                                                                                           
+                                                                                                     | } catch (RuntimeException e) {                                                                      
+                                                                                                     | } finally {                                                                                         
+                                                                                                     | if (bytes.position() &gt; 0) {                                                                      
+                                                                                                     | bytes.flip();                                                                                       
+                                                                                                     | buffer.append(UTF8.decode(bytes).toString());                                                       
+                                                                                                     | bytes.clear();                                                                                      
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | buffer.append(url.charAt(i++));                                                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | decoded = buffer.toString();                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | return decoded;                                                                                     
+                                                                                                     | }                                                                                                   

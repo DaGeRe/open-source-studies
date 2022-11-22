@@ -1,0 +1,12 @@
+                                                                                                     | @Override                                                                                           
+public boolean accept(File dir, String name) {                                                         public boolean accept(File dir, String name) {                                                      
+if (dir != null && new File(dir, name).isDirectory()) {                                                if (dir != null && new File(dir, name).isDirectory()) {                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+for (int i = 0; i &lt; wildcards.length; i++) {                                                        for (int i = 0; i &lt; wildcards.length; i++) {                                                     
+if (FilenameUtils.wildcardMatch(name, wildcards[i])) {                                                 if (FilenameUtils.wildcardMatch(name, wildcards[i])) {                                              
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

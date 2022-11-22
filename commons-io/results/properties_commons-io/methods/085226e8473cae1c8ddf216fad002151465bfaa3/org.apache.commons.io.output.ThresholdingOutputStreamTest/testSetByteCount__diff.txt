@@ -1,0 +1,26 @@
+@Test                                                                                                  @Test                                                                                               
+public void testSetByteCount() throws Exception {                                                      public void testSetByteCount() throws Exception {                                                   
+final AtomicBoolean reached = new AtomicBoolean(false);                                                final AtomicBoolean reached = new AtomicBoolean(false);                                             
+final ThresholdingOutputStream tos = new ThresholdingOutputStream(3) {                               | try (final ThresholdingOutputStream tos = new ThresholdingOutputStream(3) {                         
+                                                                                                                                                                                                           
+{                                                                                                      {                                                                                                   
+setByteCount(2);                                                                                       setByteCount(2);                                                                                    
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected OutputStream getStream() throws IOException {                                                protected OutputStream getStream() throws IOException {                                             
+return new ByteArrayOutputStream(4);                                                                   return new ByteArrayOutputStream(4);                                                                
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected void thresholdReached() throws IOException {                                                 protected void thresholdReached() throws IOException {                                              
+reached.set(true);                                                                                     reached.set(true);                                                                                  
+}                                                                                                      }                                                                                                   
+};                                                                                                   | }) {                                                                                                
+tos.write(12);                                                                                         tos.write(12);                                                                                      
+assertFalse(reached.get());                                                                            assertFalse(reached.get());                                                                         
+tos.write(12);                                                                                         tos.write(12);                                                                                      
+assertTrue(reached.get());                                                                             assertTrue(reached.get());                                                                          
+tos.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

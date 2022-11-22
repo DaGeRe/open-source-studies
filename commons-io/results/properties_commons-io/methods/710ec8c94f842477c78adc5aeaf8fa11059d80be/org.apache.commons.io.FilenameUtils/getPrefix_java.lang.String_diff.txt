@@ -1,0 +1,13 @@
+public static String getPrefix(String filename) {
+    if (filename == null) {
+        return null;
+    }
+    int len = getPrefixLength(filename);
+    if (len < 0) {
+        return null;
+    }
+    if (len > filename.length()) {
+        return filename + UNIX_SEPARATOR;
+    }
+    return filename.substring(0, len);
+}

@@ -1,0 +1,37 @@
+public void testCopyDirectoryErrors() throws Exception {
+    try {
+        FileUtils.copyDirectory(null, null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(new File("a"), null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(null, new File("a"));
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(new File("doesnt-exist"), new File("a"));
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(testFile1, new File("a"));
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(getTestDirectory(), testFile1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        FileUtils.copyDirectory(getTestDirectory(), getTestDirectory());
+        fail();
+    } catch (IOException ex) {
+    }
+}

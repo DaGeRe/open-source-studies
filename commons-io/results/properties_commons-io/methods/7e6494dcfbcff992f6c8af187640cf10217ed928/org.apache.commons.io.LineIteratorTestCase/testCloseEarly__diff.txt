@@ -1,0 +1,35 @@
+public void testCloseEarly() throws Exception {                                                        public void testCloseEarly() throws Exception {                                                     
+String encoding = "UTF-8";                                                                             String encoding = "UTF-8";                                                                          
+File testFile = new File(getTestDirectory(), "LineIterator-closeEarly.txt");                           File testFile = new File(getTestDirectory(), "LineIterator-closeEarly.txt");                        
+createFile(testFile, encoding, 3);                                                                   | createLinesFile(testFile, encoding, 3);                                                             
+LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                 
+try {                                                                                                  try {                                                                                               
+assertTrue("Line expected", iterator.next() instanceof String);                                        assertTrue("Line expected", iterator.next() instanceof String);                                     
+assertTrue("More expected", iterator.hasNext());                                                       assertTrue("More expected", iterator.hasNext());                                                    
+iterator.close();                                                                                      iterator.close();                                                                                   
+assertFalse("No more expected", iterator.hasNext());                                                   assertFalse("No more expected", iterator.hasNext());                                                
+try {                                                                                                  try {                                                                                               
+iterator.next();                                                                                       iterator.next();                                                                                    
+fail();                                                                                                fail();                                                                                             
+} catch (NoSuchElementException ex) {                                                                  } catch (NoSuchElementException ex) {                                                               
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+iterator.nextLine();                                                                                   iterator.nextLine();                                                                                
+fail();                                                                                                fail();                                                                                             
+} catch (NoSuchElementException ex) {                                                                  } catch (NoSuchElementException ex) {                                                               
+}                                                                                                      }                                                                                                   
+iterator.close();                                                                                      iterator.close();                                                                                   
+try {                                                                                                  try {                                                                                               
+iterator.next();                                                                                       iterator.next();                                                                                    
+fail();                                                                                                fail();                                                                                             
+} catch (NoSuchElementException ex) {                                                                  } catch (NoSuchElementException ex) {                                                               
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+iterator.nextLine();                                                                                   iterator.nextLine();                                                                                
+fail();                                                                                                fail();                                                                                             
+} catch (NoSuchElementException ex) {                                                                  } catch (NoSuchElementException ex) {                                                               
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+LineIterator.closeQuietly(iterator);                                                                   LineIterator.closeQuietly(iterator);                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

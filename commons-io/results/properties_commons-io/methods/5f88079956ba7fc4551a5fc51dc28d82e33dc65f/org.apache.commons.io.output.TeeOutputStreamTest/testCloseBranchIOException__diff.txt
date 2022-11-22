@@ -1,0 +1,12 @@
+@Test
+public void testCloseBranchIOException() {
+    final ByteArrayOutputStream badOs = new ExceptionOnCloseByteArrayOutputStream();
+    final RecordCloseByteArrayOutputStream goodOs = new RecordCloseByteArrayOutputStream();
+    final TeeOutputStream tos = new TeeOutputStream(goodOs, badOs);
+    try {
+        tos.close();
+        Assert.fail("Expected " + IOException.class.getName());
+    } catch (final IOException e) {
+        Assert.assertTrue(goodOs.closed);
+    }
+}

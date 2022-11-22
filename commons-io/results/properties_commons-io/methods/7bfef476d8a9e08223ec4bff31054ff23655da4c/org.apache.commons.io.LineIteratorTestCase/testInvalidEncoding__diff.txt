@@ -1,0 +1,13 @@
+public void testInvalidEncoding() throws Exception {
+    String encoding = "XXXXXXXX";
+    File testFile = new File(getTestDirectory(), "LineIterator-invalidEncoding.txt");
+    createFile(testFile, "UTF-8", 3);
+    LineIterator iterator = null;
+    try {
+        iterator = FileUtils.lineIterator(testFile, encoding);
+        fail("Expected UnsupportedEncodingException");
+    } catch (UnsupportedEncodingException expected) {
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

@@ -1,0 +1,22 @@
+public void testRegex() throws Exception {
+    IOFileFilter filter = FileFilterUtils.regex("^.*[tT]est(-\\d+)?\\.java$");
+    assertFiltering(filter, new File("Test.java"), true);
+    assertFiltering(filter, new File("test-10.java"), true);
+    assertFiltering(filter, new File("test-.java"), false);
+    filter = FileFilterUtils.regex("^[Tt]est.java$");
+    assertFiltering(filter, new File("Test.java"), true);
+    assertFiltering(filter, new File("test.java"), true);
+    assertFiltering(filter, new File("tEST.java"), false);
+    filter = new RegexFilter(Pattern.compile("^test.java$", Pattern.CASE_INSENSITIVE));
+    assertFiltering(filter, new File("Test.java"), true);
+    assertFiltering(filter, new File("test.java"), true);
+    assertFiltering(filter, new File("tEST.java"), true);
+    filter = FileFilterUtils.regex("^test.java$", Pattern.CASE_INSENSITIVE);
+    assertFiltering(filter, new File("Test.java"), true);
+    assertFiltering(filter, new File("test.java"), true);
+    assertFiltering(filter, new File("tEST.java"), true);
+    filter = FileFilterUtils.regex("^test.java$", IOCase.INSENSITIVE);
+    assertFiltering(filter, new File("Test.java"), true);
+    assertFiltering(filter, new File("test.java"), true);
+    assertFiltering(filter, new File("tEST.java"), true);
+}

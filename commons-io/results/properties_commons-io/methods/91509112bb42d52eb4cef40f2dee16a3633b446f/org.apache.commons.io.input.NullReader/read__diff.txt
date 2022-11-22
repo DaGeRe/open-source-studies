@@ -1,0 +1,11 @@
+                                                                                                     | @Override                                                                                           
+public int read() throws IOException {                                                                 public int read() throws IOException {                                                              
+if (eof) {                                                                                             if (eof) {                                                                                          
+throw new IOException("Read after end of file");                                                       throw new IOException("Read after end of file");                                                    
+}                                                                                                      }                                                                                                   
+if (position == size) {                                                                                if (position == size) {                                                                             
+return doEndOfFile();                                                                                  return doEndOfFile();                                                                               
+}                                                                                                      }                                                                                                   
+position++;                                                                                            position++;                                                                                         
+return processChar();                                                                                  return processChar();                                                                               
+}                                                                                                      }                                                                                                   

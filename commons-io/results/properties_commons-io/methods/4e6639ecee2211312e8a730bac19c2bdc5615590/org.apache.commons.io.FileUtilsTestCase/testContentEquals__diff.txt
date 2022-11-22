@@ -1,0 +1,32 @@
+public void testContentEquals() throws Exception {
+    File file = new File(getTestDirectory(), getName());
+    File file2 = new File(getTestDirectory(), getName() + "2");
+    assertTrue(FileUtils.contentEquals(file, file));
+    assertTrue(FileUtils.contentEquals(file, file2));
+    assertTrue(FileUtils.contentEquals(file2, file2));
+    assertTrue(FileUtils.contentEquals(file2, file));
+    try {
+        FileUtils.contentEquals(getTestDirectory(), getTestDirectory());
+        fail("Comparing directories should fail with an IOException");
+    } catch (IOException ioe) {
+    }
+    File objFile1 = new File(getTestDirectory(), getName() + ".object");
+    objFile1.deleteOnExit();
+    FileUtils.copyURLToFile(getClass().getResource("/java/lang/Object.class"), objFile1);
+    File objFile1b = new File(getTestDirectory(), getName() + ".object2");
+    objFile1.deleteOnExit();
+    FileUtils.copyURLToFile(getClass().getResource("/java/lang/Object.class"), objFile1b);
+    File objFile2 = new File(getTestDirectory(), getName() + ".collection");
+    objFile2.deleteOnExit();
+    FileUtils.copyURLToFile(getClass().getResource("/java/util/Collection.class"), objFile2);
+    assertEquals(false, FileUtils.contentEquals(objFile1, objFile2));
+    assertEquals(false, FileUtils.contentEquals(objFile1b, objFile2));
+    assertEquals(true, FileUtils.contentEquals(objFile1, objFile1b));
+    assertEquals(true, FileUtils.contentEquals(objFile1, objFile1));
+    assertEquals(true, FileUtils.contentEquals(objFile1b, objFile1b));
+    assertEquals(true, FileUtils.contentEquals(objFile2, objFile2));
+    file.createNewFile();
+    file2.createNewFile();
+    assertEquals(true, FileUtils.contentEquals(file, file));
+    assertEquals(true, FileUtils.contentEquals(file, file2));
+}

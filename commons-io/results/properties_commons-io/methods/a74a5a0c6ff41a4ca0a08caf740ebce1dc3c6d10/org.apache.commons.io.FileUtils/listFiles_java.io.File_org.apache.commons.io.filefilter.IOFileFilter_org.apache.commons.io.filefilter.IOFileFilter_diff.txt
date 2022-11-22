@@ -1,0 +1,18 @@
+public static Collection listFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)  | public static Collection&lt;File&gt; listFiles(File directory, IOFileFilter fileFilter, IOFileFilter
+if (!directory.isDirectory()) {                                                                        if (!directory.isDirectory()) {                                                                     
+throw new IllegalArgumentException("Parameter 'directory' is not a directory");                        throw new IllegalArgumentException("Parameter 'directory' is not a directory");                     
+}                                                                                                      }                                                                                                   
+if (fileFilter == null) {                                                                              if (fileFilter == null) {                                                                           
+throw new NullPointerException("Parameter 'fileFilter' is null");                                      throw new NullPointerException("Parameter 'fileFilter' is null");                                   
+}                                                                                                      }                                                                                                   
+IOFileFilter effFileFilter = FileFilterUtils.andFileFilter(fileFilter, FileFilterUtils.notFileFilter   IOFileFilter effFileFilter = FileFilterUtils.andFileFilter(fileFilter, FileFilterUtils.notFileFilter
+IOFileFilter effDirFilter;                                                                             IOFileFilter effDirFilter;                                                                          
+if (dirFilter == null) {                                                                               if (dirFilter == null) {                                                                            
+effDirFilter = FalseFileFilter.INSTANCE;                                                               effDirFilter = FalseFileFilter.INSTANCE;                                                            
+} else {                                                                                               } else {                                                                                            
+effDirFilter = FileFilterUtils.andFileFilter(dirFilter, DirectoryFileFilter.INSTANCE);                 effDirFilter = FileFilterUtils.andFileFilter(dirFilter, DirectoryFileFilter.INSTANCE);              
+}                                                                                                      }                                                                                                   
+Collection files = new java.util.LinkedList();                                                       | Collection&lt;File&gt; files = new java.util.LinkedList&lt;File&gt;();                              
+innerListFiles(files, directory, FileFilterUtils.orFileFilter(effFileFilter, effDirFilter));           innerListFiles(files, directory, FileFilterUtils.orFileFilter(effFileFilter, effDirFilter));        
+return files;                                                                                          return files;                                                                                       
+}                                                                                                      }                                                                                                   

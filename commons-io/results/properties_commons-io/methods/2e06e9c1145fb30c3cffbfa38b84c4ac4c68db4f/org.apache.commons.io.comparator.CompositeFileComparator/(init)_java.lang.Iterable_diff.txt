@@ -1,0 +1,9 @@
+public CompositeFileComparator(Iterable<Comparator<File>> delegates) {
+    List<Comparator<File>> list = new ArrayList<Comparator<File>>();
+    if (delegates != null) {
+        for (Comparator<File> comparator : delegates) {
+            list.add(comparator);
+        }
+    }
+    this.delegates = list.toArray(new Comparator[list.size()]);
+}

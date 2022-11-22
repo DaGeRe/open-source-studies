@@ -1,0 +1,10 @@
+private void checkFile(String label, File file, long interval, Collection&lt;File&gt; files) throws  | private void checkFile(String label, File file, long interval, Collection&lt;File&gt; files) {      
+for (int i = 0; i &lt; 5; i++) {                                                                       for (int i = 0; i &lt; 5; i++) {                                                                    
+Thread.sleep(interval);                                                                              |                                                                                                     
+if (files.contains(file)) {                                                                            if (files.contains(file)) {                                                                         
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+                                                                                                     | sleepHandleInterruped(interval);                                                                    
+}                                                                                                      }                                                                                                   
+fail(label + " " + file + " not found");                                                               fail(label + " " + file + " not found");                                                            
+}                                                                                                      }                                                                                                   

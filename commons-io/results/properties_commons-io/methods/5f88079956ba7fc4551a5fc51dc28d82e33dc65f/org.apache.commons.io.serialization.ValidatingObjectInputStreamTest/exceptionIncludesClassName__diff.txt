@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void exceptionIncludesClassName() throws Exception {                                            public void exceptionIncludesClassName() throws Exception {                                         
+try {                                                                                                  try {                                                                                               
+assertSerialization(willClose(new ValidatingObjectInputStream(testStream)));                           assertSerialization(willClose(new ValidatingObjectInputStream(testStream)));                        
+fail("Expected an InvalidClassException");                                                             fail("Expected an InvalidClassException");                                                          
+} catch (InvalidClassException ice) {                                                                | } catch (final InvalidClassException ice) {                                                         
+final String name = MockSerializedClass.class.getName();                                               final String name = MockSerializedClass.class.getName();                                            
+assertTrue("Expecting message to contain " + name, ice.getMessage().contains(name));                   assertTrue("Expecting message to contain " + name, ice.getMessage().contains(name));                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

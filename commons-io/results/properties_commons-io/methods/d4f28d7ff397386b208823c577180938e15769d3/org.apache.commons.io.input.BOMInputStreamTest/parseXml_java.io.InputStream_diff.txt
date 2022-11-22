@@ -1,0 +1,5 @@
+private void parseXml(final InputStream in) throws SAXException, IOException, ParserConfigurationException {
+    final Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(in));
+    assertNotNull(doc);
+    assertEquals("X", doc.getFirstChild().getNodeName());
+}

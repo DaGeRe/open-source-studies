@@ -1,0 +1,8 @@
+private void doJoin() throws Exception {
+    Iterator<String> iterator = m_threadMap.keySet().iterator();
+    while (iterator.hasNext()) {
+        String name = iterator.next();
+        Thread thread = m_threadMap.get(name);
+        thread.join();
+    }
+}

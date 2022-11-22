@@ -1,0 +1,5 @@
+public static void throwCauseIfTaggedWith(Throwable throwable, Object tag) throws IOException {
+    if (isTaggedWith(throwable, tag)) {
+        throw ((TaggedIOException) throwable).getCause();
+    }
+}

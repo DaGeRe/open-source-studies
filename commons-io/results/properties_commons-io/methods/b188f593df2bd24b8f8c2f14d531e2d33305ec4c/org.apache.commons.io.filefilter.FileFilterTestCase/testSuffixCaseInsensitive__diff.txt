@@ -1,0 +1,41 @@
+public void testSuffixCaseInsensitive() throws Exception {
+    IOFileFilter filter = new SuffixFileFilter(new String[] { "tes", "est" }, IOCase.INSENSITIVE);
+    assertFiltering(filter, new File("foo.tes"), true);
+    assertFiltering(filter, new File("foo.est"), true);
+    assertFiltering(filter, new File("foo.EST"), true);
+    assertFiltering(filter, new File("foo.TES"), true);
+    assertFiltering(filter, new File("foo.exe"), false);
+    filter = new SuffixFileFilter("est", IOCase.INSENSITIVE);
+    assertFiltering(filter, new File("test"), true);
+    assertFiltering(filter, new File("TEST"), true);
+    List<String> suffixes = Arrays.asList(new String[] { "tes", "est" });
+    filter = new SuffixFileFilter(suffixes, IOCase.INSENSITIVE);
+    assertFiltering(filter, new File("bar.tes"), true);
+    assertFiltering(filter, new File("bar.est"), true);
+    assertFiltering(filter, new File("bar.EST"), true);
+    assertFiltering(filter, new File("bar.TES"), true);
+    assertFiltering(filter, new File("bar.exe"), false);
+    try {
+        new SuffixFileFilter((String) null, IOCase.INSENSITIVE);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new SuffixFileFilter((String[]) null, IOCase.INSENSITIVE);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new SuffixFileFilter((List<String>) null, IOCase.INSENSITIVE);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    filter = FileFilterUtils.suffixFileFilter("est", IOCase.INSENSITIVE);
+    assertFiltering(filter, new File("test"), true);
+    assertFiltering(filter, new File("TEST"), true);
+    try {
+        FileFilterUtils.suffixFileFilter((String) null, IOCase.INSENSITIVE);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

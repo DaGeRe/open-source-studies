@@ -1,0 +1,30 @@
+static String decodeUrl(final String url) {
+    String decoded = url;
+    if (url != null && url.indexOf('%') >= 0) {
+        final int n = url.length();
+        final StringBuilder buffer = new StringBuilder();
+        final ByteBuffer bytes = ByteBuffer.allocate(n);
+        for (int i = 0; i < n; ) {
+            if (url.charAt(i) == '%') {
+                try {
+                    do {
+                        final byte octet = (byte) Integer.parseInt(url.substring(i + 1, i + 3), 16);
+                        bytes.put(octet);
+                        i += 3;
+                    } while (i < n && url.charAt(i) == '%');
+                    continue;
+                } catch (final RuntimeException e) {
+                } finally {
+                    if (bytes.position() > 0) {
+                        bytes.flip();
+                        buffer.append(StandardCharsets.UTF_8.decode(bytes).toString());
+                        bytes.clear();
+                    }
+                }
+            }
+            buffer.append(url.charAt(i++));
+        }
+        decoded = buffer.toString();
+    }
+    return decoded;
+}

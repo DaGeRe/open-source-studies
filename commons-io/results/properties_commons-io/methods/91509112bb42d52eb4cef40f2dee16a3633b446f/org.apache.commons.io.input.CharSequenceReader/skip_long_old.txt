@@ -1,0 +1,12 @@
+public long skip(long n) {
+    if (n < 0) {
+        throw new IllegalArgumentException("Number of characters to skip is less than zero: " + n);
+    }
+    if (idx >= charSequence.length()) {
+        return -1;
+    }
+    int dest = (int) Math.min(charSequence.length(), (idx + n));
+    int count = dest - idx;
+    idx = dest;
+    return count;
+}

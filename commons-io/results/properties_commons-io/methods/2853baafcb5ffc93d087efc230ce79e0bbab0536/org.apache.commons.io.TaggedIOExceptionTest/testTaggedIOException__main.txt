@@ -1,0 +1,9 @@
+public void testTaggedIOException() {
+    Serializable tag = UUID.randomUUID();
+    IOException exception = new IOException("Test exception");
+    TaggedIOException tagged = new TaggedIOException(exception, tag);
+    assertTrue(TaggedIOException.isTaggedWith(tagged, tag));
+    assertFalse(TaggedIOException.isTaggedWith(tagged, UUID.randomUUID()));
+    assertEquals(exception, tagged.getCause());
+    assertEquals(exception.getMessage(), tagged.getMessage());
+}

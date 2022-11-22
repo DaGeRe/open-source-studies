@@ -1,0 +1,9 @@
+public static boolean isFileOlder(File file, File reference) {
+    if (reference == null) {
+        throw new IllegalArgumentException("No specified reference file");
+    }
+    if (!reference.exists()) {
+        throw new IllegalArgumentException("The reference file '" + file + "' doesn't exist");
+    }
+    return isFileOlder(file, reference.lastModified());
+}

@@ -1,0 +1,5 @@
+public void testGetFreeSpaceUnix_String_NormalResponseKbFreeBSD() throws Exception {                   public void testGetFreeSpaceUnix_String_NormalResponseKbFreeBSD() throws Exception {                
+String lines = "Filesystem  1K-blocks      Used    Avail Capacity  Mounted on\n" + "/dev/xxxxxx    1   String lines = "Filesystem  1K-blocks      Used    Avail Capacity  Mounted on\n" + "/dev/xxxxxx    1
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+assertEquals(15770L, fsu.freeSpaceUnix("/", true, false));                                           | assertEquals(15770L, fsu.freeSpaceUnix("/", true, false, -1));                                      
+}                                                                                                      }                                                                                                   

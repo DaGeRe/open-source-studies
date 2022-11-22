@@ -1,0 +1,6 @@
+public void testReadSwappedInteger() throws IOException {
+    byte[] bytes = new byte[] { 0x04, 0x03, 0x02, 0x01 };
+    assertEquals(0x01020304, EndianUtils.readSwappedInteger(bytes, 0));
+    ByteArrayInputStream input = new ByteArrayInputStream(bytes);
+    assertEquals(0x01020304, EndianUtils.readSwappedInteger(input));
+}

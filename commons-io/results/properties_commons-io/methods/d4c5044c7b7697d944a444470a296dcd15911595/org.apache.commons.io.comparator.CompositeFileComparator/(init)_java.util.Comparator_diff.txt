@@ -1,0 +1,8 @@
+public CompositeFileComparator(Comparator&lt;File&gt;... delegates) {                                  public CompositeFileComparator(Comparator&lt;File&gt;... delegates) {                               
+int size = (delegates == null ? 0 : delegates.length);                                               | if (delegates == null) {                                                                            
+this.delegates = new Comparator[size];                                                               | this.delegates = NO_COMPARATORS;                                                                    
+for (int i = 0; i &lt; size; i++) {                                                                  | } else {                                                                                            
+this.delegates[i] = delegates[i];                                                                    | this.delegates = new Comparator[delegates.length];                                                  
+                                                                                                     | System.arraycopy(delegates, 0, this.delegates, 0, delegates.length);                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,14 @@
+protected void setUp() throws Exception {
+    super.setUp();
+    comparator = new CompositeFileComparator(SizeFileComparator.SIZE_COMPARATOR, ExtensionFileComparator.EXTENSION_COMPARATOR);
+    reverse = new ReverseComparator(comparator);
+    File dir = getTestDirectory();
+    lessFile = new File(dir, "xyz.txt");
+    equalFile1 = new File(dir, "foo.txt");
+    equalFile2 = new File(dir, "bar.txt");
+    moreFile = new File(dir, "foo.xyz");
+    createFile(lessFile, 32);
+    createFile(equalFile1, 48);
+    createFile(equalFile2, 48);
+    createFile(moreFile, 48);
+}

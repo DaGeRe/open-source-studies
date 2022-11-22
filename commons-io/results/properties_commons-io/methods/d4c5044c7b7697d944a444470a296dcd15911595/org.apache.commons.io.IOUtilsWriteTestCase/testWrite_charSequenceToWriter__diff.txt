@@ -1,0 +1,11 @@
+public void testWrite_charSequenceToWriter() throws Exception {
+    CharSequence csq = new StringBuilder(new String(inData, "US-ASCII"));
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    Writer writer = new OutputStreamWriter(baout, "US-ASCII");
+    IOUtils.write(csq, writer);
+    out.off();
+    writer.flush();
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

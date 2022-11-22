@@ -1,0 +1,12 @@
+private static void innerListFiles(Collection files, File directory, IOFileFilter filter) {          | private static void innerListFiles(Collection&lt;File&gt; files, File directory, IOFileFilter filter
+File[] found = directory.listFiles((FileFilter) filter);                                               File[] found = directory.listFiles((FileFilter) filter);                                            
+if (found != null) {                                                                                   if (found != null) {                                                                                
+for (int i = 0; i &lt; found.length; i++) {                                                            for (int i = 0; i &lt; found.length; i++) {                                                         
+if (found[i].isDirectory()) {                                                                          if (found[i].isDirectory()) {                                                                       
+innerListFiles(files, found[i], filter);                                                               innerListFiles(files, found[i], filter);                                                            
+} else {                                                                                               } else {                                                                                            
+files.add(found[i]);                                                                                   files.add(found[i]);                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

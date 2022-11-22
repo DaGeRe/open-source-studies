@@ -1,0 +1,12 @@
+@SuppressWarnings("deprecation")
+@Test
+public void testToString_ByteArray() throws Exception {
+    final FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        final byte[] in = IOUtils.toByteArray(fin);
+        final String str = IOUtils.toString(in);
+        assertEqualContent(in, str.getBytes());
+    } finally {
+        fin.close();
+    }
+}

@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void appendCharSequence() throws Exception {                                                    public void appendCharSequence() throws Exception {                                                 
+final StringBuilderWriter writer = new StringBuilderWriter();                                          final StringBuilderWriter writer = new StringBuilderWriter();                                       
+final ProxyWriter proxy = new ProxyWriter(writer);                                                     final ProxyWriter proxy = new ProxyWriter(writer);                                                  
+try {                                                                                                |                                                                                                     
+proxy.append("ABC");                                                                                   proxy.append("ABC");                                                                                
+} catch (final Exception e) {                                                                        |                                                                                                     
+fail("Appending CharSequence threw " + e);                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+assertEquals("ABC", writer.toString());                                                                assertEquals("ABC", writer.toString());                                                             
+proxy.close();                                                                                         proxy.close();                                                                                      
+}                                                                                                      }                                                                                                   

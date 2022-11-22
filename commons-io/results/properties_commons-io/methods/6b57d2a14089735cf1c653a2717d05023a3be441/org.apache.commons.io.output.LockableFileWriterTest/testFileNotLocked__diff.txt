@@ -1,0 +1,23 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFileNotLocked() throws IOException {                                                   public void testFileNotLocked() throws IOException {                                                
+LockableFileWriter lfw1 = null;                                                                      | try (LockableFileWriter lfw1 = new LockableFileWriter(file)) {                                      
+try {                                                                                                |                                                                                                     
+lfw1 = new LockableFileWriter(file);                                                                 |                                                                                                     
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertTrue(lockFile.exists());                                                                         assertTrue(lockFile.exists());                                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(lfw1);                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+LockableFileWriter lfw2 = null;                                                                      | try (LockableFileWriter lfw2 = new LockableFileWriter(file)) {                                      
+try {                                                                                                |                                                                                                     
+lfw2 = new LockableFileWriter(file);                                                                 |                                                                                                     
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertTrue(lockFile.exists());                                                                         assertTrue(lockFile.exists());                                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(lfw2);                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+}                                                                                                      }                                                                                                   

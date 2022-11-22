@@ -1,0 +1,24 @@
+public ByteOrderMark getBOM() throws IOException {
+    if (firstBytes == null) {
+        int max = 0;
+        for (ByteOrderMark bom : boms) {
+            max = Math.max(max, bom.length());
+        }
+        firstBytes = new int[max];
+        for (int i = 0; i < firstBytes.length; i++) {
+            firstBytes[i] = in.read();
+            fbLength++;
+            if (firstBytes[i] < 0) {
+                break;
+            }
+            byteOrderMark = find();
+            if (byteOrderMark != null) {
+                if (!include) {
+                    fbLength = 0;
+                }
+                break;
+            }
+        }
+    }
+    return byteOrderMark;
+}

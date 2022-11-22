@@ -1,0 +1,15 @@
+public void testNullString() {                                                                         public void testNullString() {                                                                      
+ProxyWriter proxy = new ProxyWriter(new NullWriter());                                                 ProxyWriter proxy = new ProxyWriter(new NullWriter());                                              
+try {                                                                                                  try {                                                                                               
+proxy.write((String) null);                                                                            proxy.write((String) null);                                                                         
+} catch (NullPointerException e) {                                                                   |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Writing null String threw " + e);                                                                fail("Writing null String threw " + e);                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+proxy.write((String) null, 0, 0);                                                                      proxy.write((String) null, 0, 0);                                                                   
+} catch (NullPointerException e) {                                                                   |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Writing null String threw " + e);                                                                fail("Writing null String threw " + e);                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

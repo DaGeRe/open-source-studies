@@ -1,0 +1,11 @@
+public static void copyFileToDirectory(File srcFile, File destDir, boolean preserveFileDate) throws  | public static File copyFileToDirectory(File srcFile, File destDir, boolean preserveFileDate) throws 
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new NullPointerException("Destination must not be null");                                        throw new NullPointerException("Destination must not be null");                                     
+}                                                                                                      }                                                                                                   
+if (destDir.exists() && destDir.isDirectory() == false) {                                              if (destDir.exists() && destDir.isDirectory() == false) {                                           
+throw new IllegalArgumentException("Destination '" + destDir + "' is not a directory");                throw new IllegalArgumentException("Destination '" + destDir + "' is not a directory");             
+}                                                                                                      }                                                                                                   
+copyFile(srcFile, new File(destDir, srcFile.getName()), preserveFileDate);                           | File destFile = new File(destDir, srcFile.getName());                                               
+                                                                                                     | copyFile(srcFile, destFile, preserveFileDate);                                                      
+                                                                                                     | return destFile;                                                                                    
+}                                                                                                      }                                                                                                   

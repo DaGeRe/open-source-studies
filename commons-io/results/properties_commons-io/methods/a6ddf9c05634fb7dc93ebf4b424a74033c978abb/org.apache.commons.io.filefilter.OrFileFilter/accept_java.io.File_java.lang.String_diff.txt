@@ -1,0 +1,9 @@
+public boolean accept(final File file, final String name) {
+    for (Iterator iter = this.fileFilters.iterator(); iter.hasNext(); ) {
+        IOFileFilter fileFilter = (IOFileFilter) iter.next();
+        if (fileFilter.accept(file, name)) {
+            return true;
+        }
+    }
+    return false;
+}

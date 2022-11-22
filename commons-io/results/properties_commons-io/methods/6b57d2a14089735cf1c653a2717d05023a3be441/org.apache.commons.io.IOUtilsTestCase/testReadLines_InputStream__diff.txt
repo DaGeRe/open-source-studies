@@ -1,0 +1,17 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testReadLines_InputStream() throws Exception {                                             public void testReadLines_InputStream() throws Exception {                                          
+final File file = TestUtils.newFile(getTestDirectory(), "lines.txt");                                  final File file = TestUtils.newFile(getTestDirectory(), "lines.txt");                               
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+final String[] data = new String[] { "hello", "world", "", "this is", "some text" };                   final String[] data = new String[] { "hello", "world", "", "this is", "some text" };                
+TestUtils.createLineBasedFile(file, data);                                                             TestUtils.createLineBasedFile(file, data);                                                          
+in = new FileInputStream(file);                                                                        in = new FileInputStream(file);                                                                     
+final List&lt;String&gt; lines = IOUtils.readLines(in);                                                final List&lt;String&gt; lines = IOUtils.readLines(in);                                             
+assertEquals(Arrays.asList(data), lines);                                                              assertEquals(Arrays.asList(data), lines);                                                           
+assertEquals(-1, in.read());                                                                           assertEquals(-1, in.read());                                                                        
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+TestUtils.deleteFile(file);                                                                            TestUtils.deleteFile(file);                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+public static boolean contentEqualsIgnoreEOL(final File file1, final File file2, final String charsetName) throws IOException {
+    final boolean file1Exists = file1.exists();
+    if (file1Exists != file2.exists()) {
+        return false;
+    }
+    if (!file1Exists) {
+        return true;
+    }
+    if (file1.isDirectory() || file2.isDirectory()) {
+        throw new IOException("Can't compare directories, only files");
+    }
+    if (file1.getCanonicalFile().equals(file2.getCanonicalFile())) {
+        return true;
+    }
+    try (Reader input1 = charsetName == null ? new InputStreamReader(new FileInputStream(file1), Charset.defaultCharset()) : new InputStreamReader(new FileInputStream(file1), charsetName);
+        Reader input2 = charsetName == null ? new InputStreamReader(new FileInputStream(file2), Charset.defaultCharset()) : new InputStreamReader(new FileInputStream(file2), charsetName)) {
+        return IOUtils.contentEqualsIgnoreEOL(input1, input2);
+    }
+}

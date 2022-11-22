@@ -1,0 +1,12 @@
+@Override
+public int read() throws IOException {
+    for (; ; ) {
+        if (this.bbuf.hasRemaining()) {
+            return this.bbuf.get() & 0xFF;
+        }
+        fillBuffer();
+        if (!this.bbuf.hasRemaining() && !this.cbuf.hasRemaining()) {
+            return EOF;
+        }
+    }
+}

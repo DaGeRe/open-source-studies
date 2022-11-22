@@ -1,0 +1,18 @@
+public void testAnd() throws Exception {
+    IOFileFilter trueFilter = TrueFileFilter.INSTANCE;
+    IOFileFilter falseFilter = FalseFileFilter.INSTANCE;
+    assertFiltering(new AndFileFilter(trueFilter, trueFilter), new File("foo.test"), true);
+    assertFiltering(new AndFileFilter(trueFilter, falseFilter), new File("foo.test"), false);
+    assertFiltering(new AndFileFilter(falseFilter, trueFilter), new File("foo.test"), false);
+    assertFiltering(new AndFileFilter(falseFilter, falseFilter), new File("foo.test"), false);
+    List<IOFileFilter> filters = new ArrayList<IOFileFilter>();
+    assertFiltering(new AndFileFilter(filters), new File("test"), false);
+    assertFiltering(new AndFileFilter(), new File("test"), false);
+    try {
+        new AndFileFilter(falseFilter, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    AndFileFilter f = new AndFileFilter((List<IOFileFilter>) null);
+    assertEquals(true, f.getFileFilters().isEmpty());
+}

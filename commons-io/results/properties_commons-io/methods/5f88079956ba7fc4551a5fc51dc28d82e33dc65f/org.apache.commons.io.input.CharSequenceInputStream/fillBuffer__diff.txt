@@ -1,0 +1,8 @@
+private void fillBuffer() throws CharacterCodingException {
+    this.bbuf.compact();
+    final CoderResult result = this.encoder.encode(this.cbuf, this.bbuf, true);
+    if (result.isError()) {
+        result.throwException();
+    }
+    this.bbuf.flip();
+}

@@ -1,0 +1,57 @@
+public void run() {
+    RandomAccessFile reader = null;
+    try {
+        long last = 0;
+        long position = 0;
+        while (run && reader == null) {
+            try {
+                reader = new RandomAccessFile(file, "r");
+            } catch (FileNotFoundException e) {
+                listener.fileNotFound();
+            }
+            if (reader == null) {
+                try {
+                    Thread.sleep(delay);
+                } catch (InterruptedException e) {
+                }
+            } else {
+                position = end ? file.length() : 0;
+                last = System.currentTimeMillis();
+                reader.seek(position);
+            }
+        }
+        while (run) {
+            long length = file.length();
+            if (length < position) {
+                listener.fileRotated();
+                try {
+                    RandomAccessFile save = reader;
+                    reader = new RandomAccessFile(file, "r");
+                    position = 0;
+                    IOUtils.closeQuietly(save);
+                } catch (FileNotFoundException e) {
+                    listener.fileNotFound();
+                }
+                continue;
+            } else {
+                if (length > position) {
+                    last = System.currentTimeMillis();
+                    position = readLines(reader);
+                } else if (FileUtils.isFileNewer(file, last)) {
+                    position = 0;
+                    reader.seek(position);
+                    last = System.currentTimeMillis();
+                    position = readLines(reader);
+                }
+            }
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+            }
+        }
+    } catch (Exception e) {
+        listener.handle(e);
+    } finally {
+        IOUtils.closeQuietly(reader);
+    }
+}

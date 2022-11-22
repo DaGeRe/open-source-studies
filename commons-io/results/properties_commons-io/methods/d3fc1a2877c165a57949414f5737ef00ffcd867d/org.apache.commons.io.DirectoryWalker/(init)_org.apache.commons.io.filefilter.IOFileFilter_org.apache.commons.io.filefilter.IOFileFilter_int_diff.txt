@@ -1,0 +1,12 @@
+protected DirectoryWalker(IOFileFilter directoryFilter, IOFileFilter fileFilter, final int depthLimit) {
+    if (directoryFilter == null && fileFilter == null) {
+        this.filter = null;
+    } else {
+        directoryFilter = directoryFilter != null ? directoryFilter : TrueFileFilter.TRUE;
+        fileFilter = fileFilter != null ? fileFilter : TrueFileFilter.TRUE;
+        directoryFilter = FileFilterUtils.makeDirectoryOnly(directoryFilter);
+        fileFilter = FileFilterUtils.makeFileOnly(fileFilter);
+        this.filter = FileFilterUtils.or(directoryFilter, fileFilter);
+    }
+    this.depthLimit = depthLimit;
+}

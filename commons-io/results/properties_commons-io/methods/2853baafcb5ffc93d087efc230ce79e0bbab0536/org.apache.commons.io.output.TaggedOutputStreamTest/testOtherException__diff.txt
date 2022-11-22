@@ -1,0 +1,17 @@
+public void testOtherException() {                                                                     public void testOtherException() {                                                                  
+IOException exception = new IOException("test exception");                                             IOException exception = new IOException("test exception");                                          
+OutputStream closed = new ClosedOutputStream();                                                        OutputStream closed = new ClosedOutputStream();                                                     
+TaggedOutputStream stream = new TaggedOutputStream(closed);                                            TaggedOutputStream stream = new TaggedOutputStream(closed);                                         
+assertFalse(stream.isCauseOf(exception));                                                              assertFalse(stream.isCauseOf(exception));                                                           
+assertFalse(stream.isCauseOf(new TaggedIOException(exception, closed)));                             | assertFalse(stream.isCauseOf(new TaggedIOException(exception, UUID.randomUUID())));                 
+try {                                                                                                  try {                                                                                               
+stream.throwIfCauseOf(exception);                                                                      stream.throwIfCauseOf(exception);                                                                   
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+fail("Unexpected exception thrown");                                                                   fail("Unexpected exception thrown");                                                                
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+stream.throwIfCauseOf(new TaggedIOException(exception, closed));                                     | stream.throwIfCauseOf(new TaggedIOException(exception, UUID.randomUUID()));                         
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+fail("Unexpected exception thrown");                                                                   fail("Unexpected exception thrown");                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

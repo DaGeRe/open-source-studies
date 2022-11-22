@@ -1,0 +1,8 @@
+public void testNameFilterNullArrayArgument() throws Exception {
+    String[] test = null;
+    try {
+        new NameFileFilter(test);
+        fail("constructing a NameFileFilter with a null String[] argument should fail.");
+    } catch (IllegalArgumentException iae) {
+    }
+}

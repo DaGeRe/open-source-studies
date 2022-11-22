@@ -1,0 +1,7 @@
+public static IOFileFilter makeCVSAware(IOFileFilter filter) {
+    if (filter == null) {
+        return cvsFilter;
+    } else {
+        return and(filter, cvsFilter);
+    }
+}

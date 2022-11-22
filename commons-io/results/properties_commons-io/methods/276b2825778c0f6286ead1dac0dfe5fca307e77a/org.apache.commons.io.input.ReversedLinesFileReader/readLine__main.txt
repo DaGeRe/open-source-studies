@@ -1,0 +1,16 @@
+public String readLine() throws IOException {
+    String line = currentFilePart.readLine();
+    while (line == null) {
+        currentFilePart = currentFilePart.rollOver();
+        if (currentFilePart != null) {
+            line = currentFilePart.readLine();
+        } else {
+            break;
+        }
+    }
+    if (EMPTY_STRING.equals(line) && !trailingNewlineOfFileSkipped) {
+        trailingNewlineOfFileSkipped = true;
+        line = readLine();
+    }
+    return line;
+}

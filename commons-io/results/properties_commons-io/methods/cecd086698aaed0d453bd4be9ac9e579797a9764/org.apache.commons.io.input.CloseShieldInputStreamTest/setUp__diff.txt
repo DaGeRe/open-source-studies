@@ -1,0 +1,13 @@
+                                                                                                     | @Override                                                                                           
+protected void setUp() {                                                                               protected void setUp() {                                                                            
+data = new byte[] { 'x', 'y', 'z' };                                                                   data = new byte[] { 'x', 'y', 'z' };                                                                
+original = new ByteArrayInputStream(data) {                                                            original = new ByteArrayInputStream(data) {                                                         
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public void close() {                                                                                  public void close() {                                                                               
+closed = true;                                                                                         closed = true;                                                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+shielded = new CloseShieldInputStream(original);                                                       shielded = new CloseShieldInputStream(original);                                                    
+closed = false;                                                                                        closed = false;                                                                                     
+}                                                                                                      }                                                                                                   

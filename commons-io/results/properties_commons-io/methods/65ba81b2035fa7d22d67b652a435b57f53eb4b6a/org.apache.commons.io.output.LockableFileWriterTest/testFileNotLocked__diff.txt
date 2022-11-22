@@ -1,0 +1,22 @@
+public void testFileNotLocked() throws IOException {
+    LockableFileWriter lfw1 = null;
+    try {
+        lfw1 = new LockableFileWriter(file);
+        assertEquals(true, file.exists());
+        assertEquals(true, lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(lfw1);
+    }
+    assertEquals(true, file.exists());
+    assertEquals(false, lockFile.exists());
+    LockableFileWriter lfw2 = null;
+    try {
+        lfw2 = new LockableFileWriter(file);
+        assertEquals(true, file.exists());
+        assertEquals(true, lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(lfw2);
+    }
+    assertEquals(true, file.exists());
+    assertEquals(false, lockFile.exists());
+}

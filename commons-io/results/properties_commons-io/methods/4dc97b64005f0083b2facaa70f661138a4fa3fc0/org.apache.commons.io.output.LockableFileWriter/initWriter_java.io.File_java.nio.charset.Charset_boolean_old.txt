@@ -1,0 +1,26 @@
+private Writer initWriter(final File file, final Charset encoding, final boolean append) throws IOException {
+    final boolean fileExistedAlready = file.exists();
+    OutputStream stream = null;
+    Writer writer = null;
+    try {
+        stream = new FileOutputStream(file.getAbsolutePath(), append);
+        writer = new OutputStreamWriter(stream, Charsets.toCharset(encoding));
+    } catch (final IOException ex) {
+        IOUtils.closeQuietly(writer);
+        IOUtils.closeQuietly(stream);
+        FileUtils.deleteQuietly(lockFile);
+        if (fileExistedAlready == false) {
+            FileUtils.deleteQuietly(file);
+        }
+        throw ex;
+    } catch (final RuntimeException ex) {
+        IOUtils.closeQuietly(writer);
+        IOUtils.closeQuietly(stream);
+        FileUtils.deleteQuietly(lockFile);
+        if (fileExistedAlready == false) {
+            FileUtils.deleteQuietly(file);
+        }
+        throw ex;
+    }
+    return writer;
+}

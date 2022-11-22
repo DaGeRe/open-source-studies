@@ -1,0 +1,14 @@
+public static void assertEqualContent(final char[] c0, final File file) throws IOException {
+    int count = 0, numRead = 0;
+    final char[] c1 = new char[c0.length];
+    try (Reader ir = new FileReader(file)) {
+        while (count < c0.length && numRead >= 0) {
+            numRead = ir.read(c1, count, c0.length);
+            count += numRead;
+        }
+        assertEquals("Different number of chars: ", c0.length, count);
+        for (int i = 0; i < count; i++) {
+            assertEquals("char " + i + " differs", c0[i], c1[i]);
+        }
+    }
+}

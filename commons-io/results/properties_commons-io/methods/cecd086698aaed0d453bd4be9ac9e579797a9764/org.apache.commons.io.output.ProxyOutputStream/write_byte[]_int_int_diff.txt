@@ -1,0 +1,10 @@
+@Override
+public void write(byte[] bts, int st, int end) throws IOException {
+    try {
+        beforeWrite(end);
+        out.write(bts, st, end);
+        afterWrite(end);
+    } catch (IOException e) {
+        handleIOException(e);
+    }
+}

@@ -1,0 +1,16 @@
+private String doRawStream(InputStream is, boolean lenient) throws IOException {                     |                                                                                                     
+BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);      |                                                                                                     
+BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                 |                                                                                                     
+String bomEnc = bom.getBOMCharsetName();                                                             |                                                                                                     
+String xmlGuessEnc = pis.getBOMCharsetName();                                                        |                                                                                                     
+String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                      |                                                                                                     
+try {                                                                                                |                                                                                                     
+return calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);                                            |                                                                                                     
+} catch (XmlStreamReaderException ex) {                                                              |                                                                                                     
+if (lenient) {                                                                                       |                                                                                                     
+return doLenientDetection(null, is, ex);                                                             |                                                                                                     
+} else {                                                                                             |                                                                                                     
+throw ex;                                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

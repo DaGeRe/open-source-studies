@@ -1,0 +1,14 @@
+public void stop() throws Exception {                                                                | public synchronized void stop() throws Exception {                                                  
+                                                                                                     | if (running == false) {                                                                             
+                                                                                                     | throw new IllegalStateException("Monitor is not running");                                          
+                                                                                                     | }                                                                                                   
+running = false;                                                                                       running = false;                                                                                    
+try {                                                                                                  try {                                                                                               
+thread.join(interval);                                                                                 thread.join(interval);                                                                              
+} catch (InterruptedException e) {                                                                     } catch (InterruptedException e) {                                                                  
+Thread.currentThread().interrupt();                                                                    Thread.currentThread().interrupt();                                                                 
+}                                                                                                      }                                                                                                   
+for (FileAlterationObserver observer : observers) {                                                    for (FileAlterationObserver observer : observers) {                                                 
+observer.destroy();                                                                                    observer.destroy();                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

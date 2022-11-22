@@ -1,0 +1,14 @@
+public synchronized void reset() {                                                                     public synchronized void reset() {                                                                  
+count = 0;                                                                                             count = 0;                                                                                          
+filledBufferSum = 0;                                                                                   filledBufferSum = 0;                                                                                
+currentBufferIndex = 0;                                                                                currentBufferIndex = 0;                                                                             
+if (reuseBuffers) {                                                                                    if (reuseBuffers) {                                                                                 
+currentBuffer = buffers.get(currentBufferIndex);                                                       currentBuffer = buffers.get(currentBufferIndex);                                                    
+} else {                                                                                               } else {                                                                                            
+currentBuffer = null;                                                                                  currentBuffer = null;                                                                               
+int size = buffers.get(0).length;                                                                    | final int size = buffers.get(0).length;                                                             
+buffers.clear();                                                                                       buffers.clear();                                                                                    
+needNewBuffer(size);                                                                                   needNewBuffer(size);                                                                                
+reuseBuffers = true;                                                                                   reuseBuffers = true;                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

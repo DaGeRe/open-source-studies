@@ -1,0 +1,12 @@
+@Override
+protected void tearDown() throws Exception {
+    FileUtils.deleteDirectory(getTestDirectory());
+    {
+        theInstance.q = new ReferenceQueue<Object>();
+        theInstance.trackers.clear();
+        theInstance.deleteFailures.clear();
+        theInstance.exitWhenFinished = false;
+        theInstance.reaper = null;
+    }
+    theInstance = null;
+}

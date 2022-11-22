@@ -1,0 +1,17 @@
+@Override                                                                                              @Override                                                                                           
+protected void setUp() throws Exception {                                                              protected void setUp() throws Exception {                                                           
+testDir = new File(new File("."), "test-monitor");                                                     testDir = new File(new File("."), "test-monitor");                                                  
+if (testDir.exists()) {                                                                                if (testDir.exists()) {                                                                             
+FileUtils.cleanDirectory(testDir);                                                                     FileUtils.cleanDirectory(testDir);                                                                  
+} else {                                                                                               } else {                                                                                            
+testDir.mkdir();                                                                                       testDir.mkdir();                                                                                    
+}                                                                                                      }                                                                                                   
+IOFileFilter files = FileFilterUtils.fileFileFilter();                                                 IOFileFilter files = FileFilterUtils.fileFileFilter();                                              
+IOFileFilter javaSuffix = FileFilterUtils.suffixFileFilter(".java");                                   IOFileFilter javaSuffix = FileFilterUtils.suffixFileFilter(".java");                                
+IOFileFilter fileFilter = FileFilterUtils.andFileFilter(files, javaSuffix);                          | IOFileFilter fileFilter = FileFilterUtils.and(files, javaSuffix);                                   
+IOFileFilter directories = FileFilterUtils.directoryFileFilter();                                      IOFileFilter directories = FileFilterUtils.directoryFileFilter();                                   
+IOFileFilter visible = HiddenFileFilter.VISIBLE;                                                       IOFileFilter visible = HiddenFileFilter.VISIBLE;                                                    
+IOFileFilter dirFilter = FileFilterUtils.andFileFilter(directories, visible);                        | IOFileFilter dirFilter = FileFilterUtils.and(directories, visible);                                 
+IOFileFilter filter = FileFilterUtils.orFileFilter(dirFilter, fileFilter);                           | IOFileFilter filter = FileFilterUtils.or(dirFilter, fileFilter);                                    
+createObserver(testDir, filter);                                                                       createObserver(testDir, filter);                                                                    
+}                                                                                                      }                                                                                                   

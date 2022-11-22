@@ -1,0 +1,34 @@
+public void testSizeFilter() throws Exception {
+    File smallFile = new File(getTestDirectory(), "small.txt");
+    createFile(smallFile, 32);
+    File largeFile = new File(getTestDirectory(), "large.txt");
+    createFile(largeFile, 128);
+    IOFileFilter filter1 = FileFilterUtils.sizeFileFilter(64);
+    IOFileFilter filter2 = FileFilterUtils.sizeFileFilter(64, true);
+    IOFileFilter filter3 = FileFilterUtils.sizeFileFilter(64, false);
+    assertFiltering(filter1, smallFile, false);
+    assertFiltering(filter2, smallFile, false);
+    assertFiltering(filter3, smallFile, true);
+    assertFiltering(filter1, largeFile, true);
+    assertFiltering(filter2, largeFile, true);
+    assertFiltering(filter3, largeFile, false);
+    IOFileFilter filter4 = FileFilterUtils.sizeRangeFileFilter(33, 127);
+    IOFileFilter filter5 = FileFilterUtils.sizeRangeFileFilter(32, 127);
+    IOFileFilter filter6 = FileFilterUtils.sizeRangeFileFilter(33, 128);
+    IOFileFilter filter7 = FileFilterUtils.sizeRangeFileFilter(31, 129);
+    IOFileFilter filter8 = FileFilterUtils.sizeRangeFileFilter(128, 128);
+    assertFiltering(filter4, smallFile, false);
+    assertFiltering(filter4, largeFile, false);
+    assertFiltering(filter5, smallFile, true);
+    assertFiltering(filter5, largeFile, false);
+    assertFiltering(filter6, smallFile, false);
+    assertFiltering(filter6, largeFile, true);
+    assertFiltering(filter7, smallFile, true);
+    assertFiltering(filter7, largeFile, true);
+    assertFiltering(filter8, largeFile, true);
+    try {
+        FileFilterUtils.sizeFileFilter(-1);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

@@ -1,0 +1,10 @@
+public static Collection<File> listFiles(final File directory, final String[] extensions, final boolean recursive) {
+    IOFileFilter filter;
+    if (extensions == null) {
+        filter = TrueFileFilter.INSTANCE;
+    } else {
+        final String[] suffixes = toSuffixes(extensions);
+        filter = new SuffixFileFilter(suffixes);
+    }
+    return listFiles(directory, filter, recursive ? TrueFileFilter.INSTANCE : FalseFileFilter.INSTANCE);
+}

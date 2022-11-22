@@ -1,0 +1,6 @@
+private void testReadZero(final String csName) throws Exception {
+    try (InputStream r = new CharSequenceInputStream("test", csName)) {
+        final byte[] bytes = new byte[30];
+        assertEquals(0, r.read(bytes, 0, 0));
+    }
+}

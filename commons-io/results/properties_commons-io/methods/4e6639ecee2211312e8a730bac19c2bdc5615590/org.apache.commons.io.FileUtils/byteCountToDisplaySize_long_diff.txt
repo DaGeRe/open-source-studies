@@ -1,0 +1,13 @@
+public static String byteCountToDisplaySize(long size) {
+    String displaySize;
+    if (size / ONE_GB > 0) {
+        displaySize = String.valueOf(size / ONE_GB) + " GB";
+    } else if (size / ONE_MB > 0) {
+        displaySize = String.valueOf(size / ONE_MB) + " MB";
+    } else if (size / ONE_KB > 0) {
+        displaySize = String.valueOf(size / ONE_KB) + " KB";
+    } else {
+        displaySize = String.valueOf(size) + " bytes";
+    }
+    return displaySize;
+}

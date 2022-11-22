@@ -1,0 +1,18 @@
+public void testDelegateFileFilter() throws Exception {
+    OrFileFilter orFilter = new OrFileFilter();
+    File testFile = new File("test.txt");
+    IOFileFilter filter = new DelegateFileFilter((FileFilter) orFilter);
+    assertFiltering(filter, testFile, false);
+    filter = new DelegateFileFilter((FilenameFilter) orFilter);
+    assertFiltering(filter, testFile, false);
+    try {
+        new DelegateFileFilter((FileFilter) null);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        new DelegateFileFilter((FilenameFilter) null);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+}

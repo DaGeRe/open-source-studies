@@ -1,0 +1,18 @@
+@Override
+public int read() throws IOException {
+    final boolean previousWasSlashR = slashRSeen;
+    if (eofSeen) {
+        return eofGame(previousWasSlashR);
+    }
+    final int target = readWithUpdate();
+    if (eofSeen) {
+        return eofGame(previousWasSlashR);
+    }
+    if (slashRSeen) {
+        return '\n';
+    }
+    if (previousWasSlashR && slashNSeen) {
+        return read();
+    }
+    return target;
+}

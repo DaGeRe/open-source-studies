@@ -1,0 +1,6 @@
+public static void readFully(final Reader input, final char[] buffer, final int offset, final int length) throws IOException {
+    final int actual = read(input, buffer, offset, length);
+    if (actual != length) {
+        throw new EOFException("Length to read: " + length + " actual: " + actual);
+    }
+}

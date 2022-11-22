@@ -1,0 +1,20 @@
+public static boolean isSymlink(File file) throws IOException {                                        public static boolean isSymlink(File file) throws IOException {                                     
+if (file == null) {                                                                                    if (file == null) {                                                                                 
+throw new NullPointerException("File must not be null");                                               throw new NullPointerException("File must not be null");                                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (FilenameUtils.isSystemWindows()) {                                                              
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+File fileInCanonicalDir = null;                                                                        File fileInCanonicalDir = null;                                                                     
+if (file.getParent() == null) {                                                                        if (file.getParent() == null) {                                                                     
+fileInCanonicalDir = file;                                                                             fileInCanonicalDir = file;                                                                          
+} else {                                                                                               } else {                                                                                            
+File canonicalDir = file.getParentFile().getCanonicalFile();                                           File canonicalDir = file.getParentFile().getCanonicalFile();                                        
+fileInCanonicalDir = new File(canonicalDir, file.getName());                                           fileInCanonicalDir = new File(canonicalDir, file.getName());                                        
+}                                                                                                      }                                                                                                   
+if (fileInCanonicalDir.getCanonicalFile().equals(fileInCanonicalDir.getAbsoluteFile())) {              if (fileInCanonicalDir.getCanonicalFile().equals(fileInCanonicalDir.getAbsoluteFile())) {           
+return false;                                                                                          return false;                                                                                       
+} else {                                                                                               } else {                                                                                            
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

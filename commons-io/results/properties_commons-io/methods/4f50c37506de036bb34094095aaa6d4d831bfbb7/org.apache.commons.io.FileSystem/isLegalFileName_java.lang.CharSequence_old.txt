@@ -1,0 +1,11 @@
+public boolean isLegalFileName(final CharSequence candidate) {
+    if (candidate == null || candidate.length() == 0 || candidate.length() > maxFileNameLength) {
+        return false;
+    }
+    for (int i = 0; i < candidate.length(); i++) {
+        if (isIllegalFileNameChar(candidate.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+}

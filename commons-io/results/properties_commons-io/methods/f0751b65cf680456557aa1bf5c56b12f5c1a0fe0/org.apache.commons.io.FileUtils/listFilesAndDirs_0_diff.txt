@@ -1,0 +1,9 @@
+public static Collection&lt;File&gt; listFilesAndDirs(final File directory, final IOFileFilter fileF   public static Collection&lt;File&gt; listFilesAndDirs(final File directory, final IOFileFilter fileF
+validateListFilesParameters(directory, fileFilter);                                                  | return innerListFilesOrDirectories(directory, fileFilter, dirFilter, true);                         
+final IOFileFilter effFileFilter = setUpEffectiveFileFilter(fileFilter);                             |                                                                                                     
+final IOFileFilter effDirFilter = setUpEffectiveDirFilter(dirFilter);                                |                                                                                                     
+final Collection&lt;File&gt; files = new java.util.LinkedList&lt;&gt;();                             |                                                                                                     
+files.add(directory);                                                                                |                                                                                                     
+innerListFiles(files, directory, FileFilterUtils.or(effFileFilter, effDirFilter), true);             |                                                                                                     
+return files;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   

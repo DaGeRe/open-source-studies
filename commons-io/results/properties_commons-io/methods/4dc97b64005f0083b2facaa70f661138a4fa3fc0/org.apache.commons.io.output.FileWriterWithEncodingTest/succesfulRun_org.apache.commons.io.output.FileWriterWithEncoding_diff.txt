@@ -1,0 +1,15 @@
+private void succesfulRun(FileWriterWithEncoding fw21) throws Exception {
+    FileWriter fw1 = null;
+    FileWriterWithEncoding fw2 = null;
+    try {
+        fw1 = new FileWriter(file1);
+        fw2 = fw21;
+        writeTestPayload(fw1, fw2);
+        checkFile(file1, file2);
+    } finally {
+        IOUtils.closeQuietly(fw1);
+        IOUtils.closeQuietly(fw2);
+    }
+    assertTrue(file1.exists());
+    assertTrue(file2.exists());
+}

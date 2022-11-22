@@ -1,0 +1,22 @@
+@Override
+public int read(char[] array, int offset, int length) {
+    if (idx >= charSequence.length()) {
+        return -1;
+    }
+    if (array == null) {
+        throw new NullPointerException("Character array is missing");
+    }
+    if (length < 0 || (offset + length) > array.length) {
+        throw new IndexOutOfBoundsException("Array Size=" + array.length + ", offset=" + offset + ", length=" + length);
+    }
+    int count = 0;
+    for (int i = 0; i < length; i++) {
+        int c = read();
+        if (c == -1) {
+            return count;
+        }
+        array[offset + i] = (char) c;
+        count++;
+    }
+    return count;
+}

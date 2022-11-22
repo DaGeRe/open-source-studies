@@ -1,0 +1,18 @@
+@Override
+public int read(byte[] pBuffer, int pOffset, int pLength) throws IOException {
+    int result = 0;
+    IOException ioe = null;
+    try {
+        result = super.read(pBuffer, pOffset, pLength);
+    } catch (IOException pException) {
+        ioe = pException;
+    }
+    if (ioe != null) {
+        noteError(ioe);
+    } else if (result == -1) {
+        noteFinished();
+    } else if (result > 0) {
+        noteDataBytes(pBuffer, pOffset, result);
+    }
+    return result;
+}

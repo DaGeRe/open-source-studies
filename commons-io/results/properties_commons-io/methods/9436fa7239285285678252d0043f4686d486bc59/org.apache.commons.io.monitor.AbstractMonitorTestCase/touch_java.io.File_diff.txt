@@ -1,0 +1,16 @@
+protected File touch(File file) {
+    long lastModified = file.exists() ? file.lastModified() : 0;
+    try {
+        FileUtils.touch(file);
+        file = new File(file.getParent(), file.getName());
+        while (lastModified == file.lastModified()) {
+            sleepHandleInterruped(pauseTime);
+            FileUtils.touch(file);
+            file = new File(file.getParent(), file.getName());
+        }
+    } catch (Exception e) {
+        fail("Touching " + file + ": " + e);
+    }
+    sleepHandleInterruped(pauseTime);
+    return file;
+}

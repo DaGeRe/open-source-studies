@@ -1,0 +1,8 @@
+private static void checkXmlWriter(String text, String encoding, String defaultEncoding) throws IOException {
+    String xml = createXmlContent(text, encoding);
+    String effectiveEncoding = encoding;
+    if (effectiveEncoding == null) {
+        effectiveEncoding = (defaultEncoding == null ? "UTF-8" : defaultEncoding);
+    }
+    checkXmlContent(xml, effectiveEncoding, defaultEncoding);
+}

@@ -1,0 +1,5 @@
+public void testGetFreeSpaceUnix_String_NormalResponseLinux() throws Exception {                       public void testGetFreeSpaceUnix_String_NormalResponseLinux() throws Exception {                    
+String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "/dev/xxx      String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "/dev/xxx   
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+assertEquals(189416L, fsu.freeSpaceUnix("/", false, false));                                         | assertEquals(189416L, fsu.freeSpaceUnix("/", false, false, -1));                                    
+}                                                                                                      }                                                                                                   

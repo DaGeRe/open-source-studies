@@ -1,0 +1,15 @@
+public void testStopWithNoFile() throws Exception {                                                    public void testStopWithNoFile() throws Exception {                                                 
+File file = new File(getTestDirectory(), "nosuchfile");                                              | final File file = new File(getTestDirectory(), "nosuchfile");                                       
+assertFalse("nosuchfile should not exist", file.exists());                                             assertFalse("nosuchfile should not exist", file.exists());                                          
+TestTailerListener listener = new TestTailerListener();                                              | final TestTailerListener listener = new TestTailerListener();                                       
+int delay = 100;                                                                                       int delay = 100;                                                                                    
+int idle = 50;                                                                                         int idle = 50;                                                                                      
+Tailer tailer = Tailer.create(file, listener, delay, false);                                         | final Tailer tailer = Tailer.create(file, listener, delay, false);                                  
+Thread.sleep(idle);                                                                                    Thread.sleep(idle);                                                                                 
+tailer.stop();                                                                                         tailer.stop();                                                                                      
+Thread.sleep(delay + idle);                                                                            Thread.sleep(delay + idle);                                                                         
+assertNull("Should not generate Exception", listener.exception);                                       assertNull("Should not generate Exception", listener.exception);                                    
+assertEquals("Expected init to be called", 1, listener.initialised);                                   assertEquals("Expected init to be called", 1, listener.initialised);                                
+assertEquals("fileNotFound should be called", 1, listener.notFound);                                 | assertTrue("fileNotFound should be called", listener.notFound &gt; 0);                              
+assertEquals("fileRotated should be not be called", 0, listener.rotated);                              assertEquals("fileRotated should be not be called", 0, listener.rotated);                           
+}                                                                                                      }                                                                                                   

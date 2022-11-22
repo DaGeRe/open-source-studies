@@ -1,0 +1,12 @@
+@SuppressWarnings("unchecked")
+public CompositeFileComparator(Iterable<Comparator<File>> delegates) {
+    if (delegates == null) {
+        this.delegates = (Comparator<File>[]) NO_COMPARATORS;
+    } else {
+        List<Comparator<File>> list = new ArrayList<Comparator<File>>();
+        for (Comparator<File> comparator : delegates) {
+            list.add(comparator);
+        }
+        this.delegates = (Comparator<File>[]) list.toArray(new Comparator<?>[list.size()]);
+    }
+}

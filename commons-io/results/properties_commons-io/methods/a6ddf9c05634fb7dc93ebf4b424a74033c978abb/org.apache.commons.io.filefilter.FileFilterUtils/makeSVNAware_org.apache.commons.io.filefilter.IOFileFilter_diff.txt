@@ -1,0 +1,10 @@
+public static IOFileFilter makeSVNAware(IOFileFilter filter) {
+    if (svnFilter == null) {
+        svnFilter = notFileFilter(andFileFilter(directoryFileFilter(), nameFileFilter(".svn")));
+    }
+    if (filter == null) {
+        return svnFilter;
+    } else {
+        return andFileFilter(filter, svnFilter);
+    }
+}

@@ -1,0 +1,15 @@
+@Test                                                                                                  @Test                                                                                               
+public void testConstructor_File_encoding_badEncoding() throws IOException {                           public void testConstructor_File_encoding_badEncoding() throws IOException {                        
+Writer writer = null;                                                                                | try (Writer writer = new LockableFileWriter(file, "BAD-ENCODE")) {                                  
+try {                                                                                                |                                                                                                     
+writer = new LockableFileWriter(file, "BAD-ENCODE");                                                 |                                                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (final UnsupportedCharsetException ex) {                                                       } catch (final UnsupportedCharsetException ex) {                                                    
+assertFalse(file.exists());                                                                            assertFalse(file.exists());                                                                         
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(writer);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertFalse(file.exists());                                                                            assertFalse(file.exists());                                                                         
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+}                                                                                                      }                                                                                                   

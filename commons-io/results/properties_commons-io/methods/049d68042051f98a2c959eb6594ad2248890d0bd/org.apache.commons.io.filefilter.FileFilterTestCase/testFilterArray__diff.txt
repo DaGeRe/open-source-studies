@@ -1,0 +1,8 @@
+public void testFilterArray() throws Exception {
+    File fileA = newFile("A");
+    File fileB = newFile("B");
+    IOFileFilter filter = FileFilterUtils.nameFileFilter("A");
+    File[] filtered = FileFilterUtils.filter(filter, fileA, fileB);
+    assertEquals(1, filtered.length);
+    assertEquals(fileA, filtered[0]);
+}

@@ -1,0 +1,17 @@
+long freeSpaceOS(String path, int os, boolean kb) throws IOException {
+    if (path == null) {
+        throw new IllegalArgumentException("Path must not be empty");
+    }
+    switch(os) {
+        case WINDOWS:
+            return (kb ? freeSpaceWindows(path) / 1024 : freeSpaceWindows(path));
+        case UNIX:
+            return freeSpaceUnix(path, kb, false);
+        case POSIX_UNIX:
+            return freeSpaceUnix(path, kb, true);
+        case OTHER:
+            throw new IllegalStateException("Unsupported operating system");
+        default:
+            throw new IllegalStateException("Exception caught when determining operating system");
+    }
+}

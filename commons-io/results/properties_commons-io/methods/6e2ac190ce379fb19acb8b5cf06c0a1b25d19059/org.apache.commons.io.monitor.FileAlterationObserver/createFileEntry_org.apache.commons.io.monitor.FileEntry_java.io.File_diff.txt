@@ -1,0 +1,7 @@
+private FileEntry createFileEntry(final FileEntry parent, final File file) {
+    final FileEntry entry = parent.newChildInstance(file);
+    entry.refresh(file);
+    final FileEntry[] children = doListFiles(file, entry);
+    entry.setChildren(children);
+    return entry;
+}

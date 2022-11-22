@@ -1,0 +1,7 @@
+protected void checkWrite(Writer output) throws Exception {
+    try {
+        new java.io.PrintWriter(output).write('a');
+    } catch (Throwable t) {
+        throw new AssertionFailedError("The copy() method closed the stream " + "when it shouldn't have. " + t.getMessage());
+    }
+}

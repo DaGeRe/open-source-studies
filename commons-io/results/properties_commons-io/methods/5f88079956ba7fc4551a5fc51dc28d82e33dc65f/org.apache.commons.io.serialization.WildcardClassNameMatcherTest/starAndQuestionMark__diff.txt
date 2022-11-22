@@ -1,0 +1,6 @@
+@Test                                                                                                  @Test                                                                                               
+public void starAndQuestionMark() {                                                                    public void starAndQuestionMark() {                                                                 
+ClassNameMatcher ca = new WildcardClassNameMatcher("org?apache?something*");                         | final ClassNameMatcher ca = new WildcardClassNameMatcher("org?apache?something*");                  
+assertTrue(ca.matches("org.apache_something.more"));                                                   assertTrue(ca.matches("org.apache_something.more"));                                                
+assertFalse(ca.matches("org..apache_something.more"));                                                 assertFalse(ca.matches("org..apache_something.more"));                                              
+}                                                                                                      }                                                                                                   

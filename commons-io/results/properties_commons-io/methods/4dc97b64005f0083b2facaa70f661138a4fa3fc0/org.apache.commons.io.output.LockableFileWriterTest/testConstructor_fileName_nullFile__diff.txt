@@ -1,0 +1,15 @@
+@Test
+public void testConstructor_fileName_nullFile() throws IOException {
+    Writer writer = null;
+    try {
+        writer = new LockableFileWriter((String) null);
+        fail();
+    } catch (final NullPointerException ex) {
+        assertFalse(file.exists());
+        assertFalse(lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+    assertFalse(file.exists());
+    assertFalse(lockFile.exists());
+}

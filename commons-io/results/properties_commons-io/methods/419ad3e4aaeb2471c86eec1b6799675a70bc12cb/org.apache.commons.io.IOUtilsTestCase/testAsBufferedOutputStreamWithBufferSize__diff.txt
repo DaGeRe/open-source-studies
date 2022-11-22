@@ -1,0 +1,13 @@
+@Test
+public void testAsBufferedOutputStreamWithBufferSize() {
+    OutputStream os = new OutputStream() {
+
+        @Override
+        public void write(int b) throws IOException {
+        }
+    };
+    final BufferedOutputStream bos = IOUtils.buffer(os, 2048);
+    assertNotSame(os, bos);
+    assertSame(bos, IOUtils.buffer(bos));
+    assertSame(bos, IOUtils.buffer(bos, 1024));
+}

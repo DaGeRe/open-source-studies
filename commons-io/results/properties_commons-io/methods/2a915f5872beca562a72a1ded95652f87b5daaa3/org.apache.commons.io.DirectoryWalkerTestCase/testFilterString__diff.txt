@@ -1,0 +1,7 @@
+@Test
+public void testFilterString() {
+    final List<String> results = new TestFileFinderString(dirsAndFilesFilter, -1).find(javaDir);
+    assertEquals("Result Size", outputFiles.length + ioFiles.length, results.size());
+    checkContainsString("IO File", ioFiles, results);
+    checkContainsString("Output File", outputFiles, results);
+}

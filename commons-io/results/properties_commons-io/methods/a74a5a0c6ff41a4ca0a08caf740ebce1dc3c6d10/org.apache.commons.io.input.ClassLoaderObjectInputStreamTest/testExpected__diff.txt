@@ -1,0 +1,9 @@
+public void testExpected() throws Exception {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(baos);
+    oos.writeObject(Boolean.FALSE);
+    InputStream bais = new ByteArrayInputStream(baos.toByteArray());
+    ClassLoaderObjectInputStream clois = new ClassLoaderObjectInputStream(getClass().getClassLoader(), bais);
+    Boolean result = (Boolean) clois.readObject();
+    assertTrue(!result.booleanValue());
+}

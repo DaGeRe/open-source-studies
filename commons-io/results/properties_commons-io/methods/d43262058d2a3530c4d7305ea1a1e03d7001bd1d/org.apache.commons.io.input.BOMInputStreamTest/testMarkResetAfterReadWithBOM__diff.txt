@@ -1,0 +1,11 @@
+public void testMarkResetAfterReadWithBOM() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C', 'D' };
+    InputStream in = new BOMInputStream(createDataStream(data, true));
+    assertTrue(in.markSupported());
+    in.read();
+    in.mark(10);
+    in.read();
+    in.read();
+    in.reset();
+    assertEquals('B', in.read());
+}

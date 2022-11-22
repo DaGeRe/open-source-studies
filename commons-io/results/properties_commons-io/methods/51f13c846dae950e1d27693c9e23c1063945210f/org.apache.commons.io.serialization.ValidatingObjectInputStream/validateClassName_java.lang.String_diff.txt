@@ -1,0 +1,17 @@
+private void validateClassName(String name) throws InvalidClassException {
+    for (ClassNameMatcher m : rejectMatchers) {
+        if (m.matches(name)) {
+            invalidClassNameFound(name);
+        }
+    }
+    boolean ok = false;
+    for (ClassNameMatcher m : acceptMatchers) {
+        if (m.matches(name)) {
+            ok = true;
+            break;
+        }
+    }
+    if (!ok) {
+        invalidClassNameFound(name);
+    }
+}

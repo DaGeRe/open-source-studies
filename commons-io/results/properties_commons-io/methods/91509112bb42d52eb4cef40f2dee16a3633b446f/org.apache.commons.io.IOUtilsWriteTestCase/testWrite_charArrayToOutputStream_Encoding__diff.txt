@@ -1,0 +1,11 @@
+public void testWrite_charArrayToOutputStream_Encoding() throws Exception {
+    String str = new String(inData, "US-ASCII");
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    IOUtils.write(str.toCharArray(), out, "UTF16");
+    out.off();
+    out.flush();
+    byte[] bytes = baout.toByteArray();
+    bytes = new String(bytes, "UTF16").getBytes("US-ASCII");
+    assertTrue("Content differs", Arrays.equals(inData, bytes));
+}

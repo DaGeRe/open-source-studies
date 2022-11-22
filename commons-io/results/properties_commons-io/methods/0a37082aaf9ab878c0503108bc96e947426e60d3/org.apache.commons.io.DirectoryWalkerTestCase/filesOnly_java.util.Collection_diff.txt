@@ -1,0 +1,10 @@
+private List<File> filesOnly(Collection<File> results) {
+    List<File> list = new ArrayList<File>(results.size());
+    for (Iterator<File> it = results.iterator(); it.hasNext(); ) {
+        File file = it.next();
+        if (file.isFile()) {
+            list.add(file);
+        }
+    }
+    return list;
+}

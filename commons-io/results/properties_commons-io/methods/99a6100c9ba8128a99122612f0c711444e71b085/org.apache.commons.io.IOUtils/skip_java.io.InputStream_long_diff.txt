@@ -1,0 +1,17 @@
+                                                                                                     | public static long skip(InputStream input, long toSkip) throws IOException {                        
+                                                                                                     | if (toSkip &lt; 0) {                                                                                
+                                                                                                     | throw new IllegalArgumentException("Skip count must be non-negative, actual: " + toSkip);           
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (SKIP_BYTE_BUFFER == null) {                                                                     
+                                                                                                     | SKIP_BYTE_BUFFER = new byte[SKIP_BUFFER_SIZE];                                                      
+                                                                                                     | }                                                                                                   
+                                                                                                     | long remain = toSkip;                                                                               
+                                                                                                     | while (remain &gt; 0) {                                                                             
+                                                                                                     | long n = input.read(SKIP_BYTE_BUFFER, 0, (int) Math.min(remain, SKIP_BUFFER_SIZE));                 
+                                                                                                     | if (n &lt; 0) {                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | }                                                                                                   
+                                                                                                     | remain -= n;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | return toSkip - remain;                                                                             
+                                                                                                     | }                                                                                                   

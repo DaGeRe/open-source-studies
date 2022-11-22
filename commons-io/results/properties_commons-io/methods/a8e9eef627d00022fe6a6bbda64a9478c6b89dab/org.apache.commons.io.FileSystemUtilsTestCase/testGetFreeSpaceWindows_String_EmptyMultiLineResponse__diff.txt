@@ -1,0 +1,9 @@
+public void testGetFreeSpaceWindows_String_EmptyMultiLineResponse() throws Exception {                 public void testGetFreeSpaceWindows_String_EmptyMultiLineResponse() throws Exception {              
+String lines = "\n\n";                                                                                 String lines = "\n\n";                                                                              
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceWindows("C:");                                                                          | fsu.freeSpaceWindows("C:", -1);                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,20 @@
+public void testRead() {
+    try {
+        stream.read();
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertEquals(exception, e);
+    }
+    try {
+        stream.read(new byte[1]);
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertEquals(exception, e);
+    }
+    try {
+        stream.read(new byte[1], 0, 1);
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertEquals(exception, e);
+    }
+}

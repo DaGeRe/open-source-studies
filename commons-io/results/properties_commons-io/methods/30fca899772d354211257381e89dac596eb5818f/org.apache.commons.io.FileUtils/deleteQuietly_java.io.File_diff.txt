@@ -1,0 +1,16 @@
+public static boolean deleteQuietly(File file) {
+    if (file == null) {
+        return false;
+    }
+    try {
+        if (file.isDirectory()) {
+            cleanDirectory(file);
+        }
+    } catch (Exception e) {
+    }
+    try {
+        return file.delete();
+    } catch (Exception e) {
+        return false;
+    }
+}

@@ -1,0 +1,18 @@
+public synchronized byte[] toByteArray() {
+    int remaining = count;
+    if (remaining == 0) {
+        return EMPTY_BYTE_ARRAY;
+    }
+    byte[] newbuf = new byte[remaining];
+    int pos = 0;
+    for (byte[] buf : buffers) {
+        int c = Math.min(buf.length, remaining);
+        System.arraycopy(buf, 0, newbuf, pos, c);
+        pos += c;
+        remaining -= c;
+        if (remaining == 0) {
+            break;
+        }
+    }
+    return newbuf;
+}

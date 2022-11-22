@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void testCanRead() throws Exception {                                                           public void testCanRead() throws Exception {                                                        
+final File readOnlyFile = new File(getTestDirectory(), "read-only-file1.txt");                         final File readOnlyFile = new File(getTestDirectory(), "read-only-file1.txt");                      
+if (!readOnlyFile.getParentFile().exists()) {                                                          if (!readOnlyFile.getParentFile().exists()) {                                                       
+throw new IOException("Cannot create file " + readOnlyFile + " as the parent directory does not exis   throw new IOException("Cannot create file " + readOnlyFile + " as the parent directory does not exis
+}                                                                                                      }                                                                                                   
+final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(readOnlyFile));    | try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(readOnlyFile)
+try {                                                                                                |                                                                                                     
+TestUtils.generateTestData(output, (long) 32);                                                         TestUtils.generateTestData(output, (long) 32);                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(output);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+readOnlyFile.setReadOnly();                                                                            readOnlyFile.setReadOnly();                                                                         
+assertFiltering(CanReadFileFilter.CAN_READ, readOnlyFile, true);                                       assertFiltering(CanReadFileFilter.CAN_READ, readOnlyFile, true);                                    
+assertFiltering(CanReadFileFilter.CANNOT_READ, readOnlyFile, false);                                   assertFiltering(CanReadFileFilter.CANNOT_READ, readOnlyFile, false);                                
+assertFiltering(CanReadFileFilter.READ_ONLY, readOnlyFile, true);                                      assertFiltering(CanReadFileFilter.READ_ONLY, readOnlyFile, true);                                   
+readOnlyFile.delete();                                                                                 readOnlyFile.delete();                                                                              
+}                                                                                                      }                                                                                                   

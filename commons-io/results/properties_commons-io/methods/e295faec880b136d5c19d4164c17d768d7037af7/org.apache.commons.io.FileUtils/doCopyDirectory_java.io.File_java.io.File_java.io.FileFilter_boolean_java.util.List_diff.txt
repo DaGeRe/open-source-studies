@@ -1,0 +1,34 @@
+private static void doCopyDirectory(File srcDir, File destDir, FileFilter filter, boolean preserveFi   private static void doCopyDirectory(File srcDir, File destDir, FileFilter filter, boolean preserveFi
+File[] files = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);                         File[] files = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);                      
+if (files == null) {                                                                                   if (files == null) {                                                                                
+throw new IOException("Failed to list contents of " + srcDir);                                         throw new IOException("Failed to list contents of " + srcDir);                                      
+}                                                                                                      }                                                                                                   
+if (destDir.exists()) {                                                                                if (destDir.exists()) {                                                                             
+if (destDir.isDirectory() == false) {                                                                  if (destDir.isDirectory() == false) {                                                               
+throw new IOException("Destination '" + destDir + "' exists but is not a directory");                  throw new IOException("Destination '" + destDir + "' exists but is not a directory");               
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+if (destDir.mkdirs() == false) {                                                                       if (destDir.mkdirs() == false) {                                                                    
+throw new IOException("Destination '" + destDir + "' directory cannot be created");                    throw new IOException("Destination '" + destDir + "' directory cannot be created");                 
+}                                                                                                      }                                                                                                   
+if (preserveFileDate) {                                                                              |                                                                                                     
+destDir.setLastModified(srcDir.lastModified());                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+if (destDir.canWrite() == false) {                                                                     if (destDir.canWrite() == false) {                                                                  
+throw new IOException("Destination '" + destDir + "' cannot be written to");                           throw new IOException("Destination '" + destDir + "' cannot be written to");                        
+}                                                                                                      }                                                                                                   
+for (File file : files) {                                                                              for (File file : files) {                                                                           
+File copiedFile = new File(destDir, file.getName());                                                   File copiedFile = new File(destDir, file.getName());                                                
+if (exclusionList == null || !exclusionList.contains(file.getCanonicalPath())) {                       if (exclusionList == null || !exclusionList.contains(file.getCanonicalPath())) {                    
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+doCopyDirectory(file, copiedFile, filter, preserveFileDate, exclusionList);                            doCopyDirectory(file, copiedFile, filter, preserveFileDate, exclusionList);                         
+} else {                                                                                               } else {                                                                                            
+doCopyFile(file, copiedFile, preserveFileDate);                                                        doCopyFile(file, copiedFile, preserveFileDate);                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (preserveFileDate) {                                                                             
+                                                                                                     | destDir.setLastModified(srcDir.lastModified());                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

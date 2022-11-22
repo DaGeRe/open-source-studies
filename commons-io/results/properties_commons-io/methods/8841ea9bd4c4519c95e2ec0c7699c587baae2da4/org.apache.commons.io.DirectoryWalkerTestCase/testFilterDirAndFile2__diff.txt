@@ -1,0 +1,7 @@
+public void testFilterDirAndFile2() {                                                                  public void testFilterDirAndFile2() {                                                               
+List results = new TestFileFinder((IOFileFilter) null, (IOFileFilter) null, -1).find(javaDir);       | List&lt;File&gt; results = new TestFileFinder((IOFileFilter) null, (IOFileFilter) null, -1).find(jav
+assertTrue("[DirAndFile2] Result Size", results.size() &gt; (1 + dirs.length + ioFiles.length));       assertTrue("[DirAndFile2] Result Size", results.size() &gt; (1 + dirs.length + ioFiles.length));    
+assertTrue("[DirAndFile2] Start Dir", results.contains(javaDir));                                      assertTrue("[DirAndFile2] Start Dir", results.contains(javaDir));                                   
+checkContainsFiles("[DirAndFile2] Dir", dirs, results);                                                checkContainsFiles("[DirAndFile2] Dir", dirs, results);                                             
+checkContainsFiles("[DirAndFile2] File", ioFiles, results);                                            checkContainsFiles("[DirAndFile2] File", ioFiles, results);                                         
+}                                                                                                      }                                                                                                   

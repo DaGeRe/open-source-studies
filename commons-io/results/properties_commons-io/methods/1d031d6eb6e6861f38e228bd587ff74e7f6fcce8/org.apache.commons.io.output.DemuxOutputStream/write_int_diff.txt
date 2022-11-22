@@ -1,0 +1,7 @@
+@Override                                                                                              @Override                                                                                           
+public void write(final int ch) throws IOException {                                                   public void write(final int ch) throws IOException {                                                
+final OutputStream output = m_streams.get();                                                         | final OutputStream output = outputStreamThreadLocal.get();                                          
+if (null != output) {                                                                                  if (null != output) {                                                                               
+output.write(ch);                                                                                      output.write(ch);                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

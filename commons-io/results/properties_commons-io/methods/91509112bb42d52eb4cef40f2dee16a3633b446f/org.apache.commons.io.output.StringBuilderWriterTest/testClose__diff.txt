@@ -1,0 +1,11 @@
+public void testClose() {
+    Writer writer = new StringBuilderWriter();
+    try {
+        writer.append("Foo");
+        writer.close();
+        writer.append("Bar");
+    } catch (Throwable t) {
+        fail("Threw: " + t);
+    }
+    assertEquals("FooBar", writer.toString());
+}

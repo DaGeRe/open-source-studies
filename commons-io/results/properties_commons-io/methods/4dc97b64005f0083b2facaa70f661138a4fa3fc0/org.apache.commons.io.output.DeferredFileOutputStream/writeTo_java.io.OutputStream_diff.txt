@@ -1,0 +1,15 @@
+public void writeTo(final OutputStream out) throws IOException {                                       public void writeTo(final OutputStream out) throws IOException {                                    
+if (!closed) {                                                                                         if (!closed) {                                                                                      
+throw new IOException("Stream not closed");                                                            throw new IOException("Stream not closed");                                                         
+}                                                                                                      }                                                                                                   
+if (isInMemory()) {                                                                                    if (isInMemory()) {                                                                                 
+memoryOutputStream.writeTo(out);                                                                       memoryOutputStream.writeTo(out);                                                                    
+} else {                                                                                               } else {                                                                                            
+final FileInputStream fis = new FileInputStream(outputFile);                                         | try (FileInputStream fis = new FileInputStream(outputFile)) {                                       
+try {                                                                                                |                                                                                                     
+IOUtils.copy(fis, out);                                                                                IOUtils.copy(fis, out);                                                                             
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(fis);                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

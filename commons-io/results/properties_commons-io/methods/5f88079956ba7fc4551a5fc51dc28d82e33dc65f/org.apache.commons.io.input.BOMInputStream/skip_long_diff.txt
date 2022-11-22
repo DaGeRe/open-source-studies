@@ -1,0 +1,8 @@
+@Override                                                                                              @Override                                                                                           
+public long skip(long n) throws IOException {                                                        | public long skip(final long n) throws IOException {                                                 
+int skipped = 0;                                                                                       int skipped = 0;                                                                                    
+while ((n &gt; skipped) && (readFirstBytes() &gt;= 0)) {                                               while ((n &gt; skipped) && (readFirstBytes() &gt;= 0)) {                                            
+skipped++;                                                                                             skipped++;                                                                                          
+}                                                                                                      }                                                                                                   
+return in.skip(n - skipped) + skipped;                                                                 return in.skip(n - skipped) + skipped;                                                              
+}                                                                                                      }                                                                                                   

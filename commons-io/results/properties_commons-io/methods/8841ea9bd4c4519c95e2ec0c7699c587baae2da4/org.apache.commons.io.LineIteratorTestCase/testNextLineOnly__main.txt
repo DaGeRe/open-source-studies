@@ -1,0 +1,15 @@
+public void testNextLineOnly() throws Exception {
+    String encoding = null;
+    File testFile = new File(getTestDirectory(), "LineIterator-nextOnly.txt");
+    List<String> lines = createFile(testFile, encoding, 3);
+    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);
+    try {
+        for (int i = 0; i < lines.size(); i++) {
+            String line = iterator.nextLine();
+            assertEquals("nextLine() line " + i, lines.get(i), line);
+        }
+        assertFalse("No more expected", iterator.hasNext());
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

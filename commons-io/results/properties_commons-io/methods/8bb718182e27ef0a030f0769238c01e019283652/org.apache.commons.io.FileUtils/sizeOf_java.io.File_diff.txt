@@ -1,0 +1,11 @@
+public static long sizeOf(File file) {
+    if (!file.exists()) {
+        String message = file + " does not exist";
+        throw new IllegalArgumentException(message);
+    }
+    if (file.isDirectory()) {
+        return sizeOfDirectory(file);
+    } else {
+        return file.length();
+    }
+}

@@ -1,0 +1,13 @@
+private static String getContentTypeMime(String httpContentType) {                                   | static String getContentTypeMime(String httpContentType) {                                          
+String mime = null;                                                                                    String mime = null;                                                                                 
+if (httpContentType != null) {                                                                         if (httpContentType != null) {                                                                      
+int i = httpContentType.indexOf(";");                                                                  int i = httpContentType.indexOf(";");                                                               
+if (i &gt;= 0) {                                                                                       if (i &gt;= 0) {                                                                                    
+mime = httpContentType.substring(0, i);                                                                mime = httpContentType.substring(0, i);                                                             
+} else {                                                                                               } else {                                                                                            
+mime = httpContentType;                                                                                mime = httpContentType;                                                                             
+}                                                                                                      }                                                                                                   
+mime = mime.trim();                                                                                    mime = mime.trim();                                                                                 
+}                                                                                                      }                                                                                                   
+return mime;                                                                                           return mime;                                                                                        
+}                                                                                                      }                                                                                                   

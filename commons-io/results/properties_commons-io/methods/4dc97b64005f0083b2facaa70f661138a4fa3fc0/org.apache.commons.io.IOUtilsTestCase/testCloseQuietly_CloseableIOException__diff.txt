@@ -1,0 +1,9 @@
+@Test
+public void testCloseQuietly_CloseableIOException() {
+    IOUtils.closeQuietly(new Closeable() {
+
+        public void close() throws IOException {
+            throw new IOException();
+        }
+    });
+}

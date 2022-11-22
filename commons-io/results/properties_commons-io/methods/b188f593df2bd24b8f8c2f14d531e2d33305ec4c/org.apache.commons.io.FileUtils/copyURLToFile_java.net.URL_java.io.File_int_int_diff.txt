@@ -1,0 +1,7 @@
+public static void copyURLToFile(URL source, File destination, int connectionTimeout, int readTimeout) throws IOException {
+    URLConnection connection = source.openConnection();
+    connection.setConnectTimeout(connectionTimeout);
+    connection.setReadTimeout(readTimeout);
+    InputStream input = connection.getInputStream();
+    copyInputStreamToFile(input, destination);
+}

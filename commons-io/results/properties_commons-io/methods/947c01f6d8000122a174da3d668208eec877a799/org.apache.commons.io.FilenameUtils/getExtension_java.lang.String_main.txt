@@ -1,0 +1,11 @@
+public static String getExtension(final String filename) throws NtfsAdsNameException {
+    if (filename == null) {
+        return null;
+    }
+    final int index = indexOfExtension(filename);
+    if (index == NOT_FOUND) {
+        return "";
+    } else {
+        return filename.substring(index + 1);
+    }
+}

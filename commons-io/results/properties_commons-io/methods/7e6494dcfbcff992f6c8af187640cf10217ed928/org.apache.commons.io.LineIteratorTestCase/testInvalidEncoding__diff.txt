@@ -1,0 +1,13 @@
+public void testInvalidEncoding() throws Exception {                                                   public void testInvalidEncoding() throws Exception {                                                
+String encoding = "XXXXXXXX";                                                                          String encoding = "XXXXXXXX";                                                                       
+File testFile = new File(getTestDirectory(), "LineIterator-invalidEncoding.txt");                      File testFile = new File(getTestDirectory(), "LineIterator-invalidEncoding.txt");                   
+createFile(testFile, "UTF-8", 3);                                                                    | createLinesFile(testFile, "UTF-8", 3);                                                              
+LineIterator iterator = null;                                                                          LineIterator iterator = null;                                                                       
+try {                                                                                                  try {                                                                                               
+iterator = FileUtils.lineIterator(testFile, encoding);                                                 iterator = FileUtils.lineIterator(testFile, encoding);                                              
+fail("Expected UnsupportedEncodingException");                                                         fail("Expected UnsupportedEncodingException");                                                      
+} catch (UnsupportedEncodingException expected) {                                                      } catch (UnsupportedEncodingException expected) {                                                   
+} finally {                                                                                            } finally {                                                                                         
+LineIterator.closeQuietly(iterator);                                                                   LineIterator.closeQuietly(iterator);                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

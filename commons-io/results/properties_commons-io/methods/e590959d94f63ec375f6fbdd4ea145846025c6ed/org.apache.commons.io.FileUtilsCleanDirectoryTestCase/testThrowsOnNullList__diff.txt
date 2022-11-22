@@ -1,0 +1,11 @@
+public void testThrowsOnNullList() throws Exception {
+    if (!chmod(top, 0, false)) {
+        return;
+    }
+    try {
+        FileUtils.cleanDirectory(top);
+        fail("expected IOException");
+    } catch (IOException e) {
+        assertEquals("Failed to list contents of " + top.getAbsolutePath(), e.getMessage());
+    }
+}

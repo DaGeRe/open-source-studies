@@ -1,0 +1,14 @@
+@After                                                                                                 @After                                                                                              
+public void tearDown() throws Exception {                                                              public void tearDown() throws Exception {                                                           
+FileUtils.deleteDirectory(getTestDirectory());                                                       |                                                                                                     
+{                                                                                                      {                                                                                                   
+                                                                                                     | if (theInstance != null) {                                                                          
+theInstance.q = new ReferenceQueue&lt;&gt;();                                                          theInstance.q = new ReferenceQueue&lt;&gt;();                                                       
+theInstance.trackers.clear();                                                                          theInstance.trackers.clear();                                                                       
+theInstance.deleteFailures.clear();                                                                    theInstance.deleteFailures.clear();                                                                 
+theInstance.exitWhenFinished = false;                                                                  theInstance.exitWhenFinished = false;                                                               
+theInstance.reaper = null;                                                                             theInstance.reaper = null;                                                                          
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+theInstance = null;                                                                                    theInstance = null;                                                                                 
+}                                                                                                      }                                                                                                   

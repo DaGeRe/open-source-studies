@@ -1,0 +1,12 @@
+@Test
+public void writeCharArray() throws Exception {
+    final StringBuilderWriter writer = new StringBuilderWriter();
+    final ProxyWriter proxy = new ProxyWriter(writer);
+    try {
+        proxy.write(new char[] { 'A', 'B', 'C' });
+    } catch (final Exception e) {
+        fail("Writing char[] threw " + e);
+    }
+    assertEquals("ABC", writer.toString());
+    proxy.close();
+}

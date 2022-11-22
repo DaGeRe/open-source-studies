@@ -1,0 +1,10 @@
+public void testStringToByteArray() throws Exception {
+    FileReader fin = new FileReader(m_testFile);
+    try {
+        String str = IOUtils.toString(fin);
+        byte[] out = IOUtils.toByteArray(str);
+        assertEqualContent(str.getBytes(), out);
+    } finally {
+        fin.close();
+    }
+}

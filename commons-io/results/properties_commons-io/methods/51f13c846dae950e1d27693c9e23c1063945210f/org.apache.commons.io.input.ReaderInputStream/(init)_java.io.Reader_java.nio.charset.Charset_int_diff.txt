@@ -1,0 +1,3 @@
+public ReaderInputStream(final Reader reader, final Charset charset, final int bufferSize) {
+    this(reader, charset.newEncoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE), bufferSize);
+}

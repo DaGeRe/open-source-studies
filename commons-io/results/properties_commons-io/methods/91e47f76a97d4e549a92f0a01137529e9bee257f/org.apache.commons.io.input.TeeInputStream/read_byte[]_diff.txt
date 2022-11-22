@@ -1,0 +1,7 @@
+public int read(byte[] bts) throws IOException {
+    int n = super.read(bts);
+    if (n != -1) {
+        branch.write(bts, 0, n);
+    }
+    return n;
+}

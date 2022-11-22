@@ -1,0 +1,10 @@
+private void createLeftOver() {
+    final int lineLengthBytes = currentLastBytePos + 1;
+    if (lineLengthBytes > 0) {
+        leftOver = new byte[lineLengthBytes];
+        System.arraycopy(data, 0, leftOver, 0, lineLengthBytes);
+    } else {
+        leftOver = null;
+    }
+    currentLastBytePos = -1;
+}

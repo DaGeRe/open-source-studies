@@ -1,0 +1,6 @@
+public void testReadSwappedShort() throws IOException {
+    byte[] bytes = new byte[] { 0x02, 0x01 };
+    assertEquals(0x0102, EndianUtils.readSwappedShort(bytes, 0));
+    ByteArrayInputStream input = new ByteArrayInputStream(bytes);
+    assertEquals(0x0102, EndianUtils.readSwappedShort(input));
+}

@@ -1,0 +1,10 @@
+@Override
+public boolean accept(final File file) {
+    final String name = file.getName();
+    for (final String name2 : this.names) {
+        if (caseSensitivity.checkEquals(name, name2)) {
+            return true;
+        }
+    }
+    return false;
+}

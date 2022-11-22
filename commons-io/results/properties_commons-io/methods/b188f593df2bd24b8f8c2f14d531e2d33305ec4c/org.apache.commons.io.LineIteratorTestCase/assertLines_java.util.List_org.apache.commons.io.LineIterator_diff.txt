@@ -1,0 +1,11 @@
+private void assertLines(List<String> lines, LineIterator iterator) {
+    try {
+        for (int i = 0; i < lines.size(); i++) {
+            String line = iterator.nextLine();
+            assertEquals("nextLine() line " + i, lines.get(i), line);
+        }
+        assertFalse("No more expected", iterator.hasNext());
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

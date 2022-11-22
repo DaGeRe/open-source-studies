@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public boolean accept(File file) {                                                                     public boolean accept(File file) {                                                                  
+String name = file.getName();                                                                          String name = file.getName();                                                                       
+for (int i = 0; i &lt; this.suffixes.length; i++) {                                                  | for (String suffix : this.suffixes) {                                                               
+if (caseSensitivity.checkEndsWith(name, suffixes[i])) {                                              | if (caseSensitivity.checkEndsWith(name, suffix)) {                                                  
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

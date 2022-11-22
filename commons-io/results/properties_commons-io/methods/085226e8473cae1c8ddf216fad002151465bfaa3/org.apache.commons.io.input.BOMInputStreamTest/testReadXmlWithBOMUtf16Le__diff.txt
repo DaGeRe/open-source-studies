@@ -1,0 +1,8 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReadXmlWithBOMUtf16Le() throws Exception {                                             public void testReadXmlWithBOMUtf16Le() throws Exception {                                          
+final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-16LE\"?&gt;&lt;X/&gt;".getBytes(Standar   final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-16LE\"?&gt;&lt;X/&gt;".getBytes(Standar
+parseXml(new BOMInputStream(createUtf16LeDataStream(data, true), ByteOrderMark.UTF_16LE));           | try (BOMInputStream in = new BOMInputStream(createUtf16LeDataStream(data, true), ByteOrderMark.UTF_1
+                                                                                                     | parseXml(in);                                                                                       
+                                                                                                     | }                                                                                                   
+parseXml(createUtf16LeDataStream(data, true));                                                         parseXml(createUtf16LeDataStream(data, true));                                                      
+}                                                                                                      }                                                                                                   

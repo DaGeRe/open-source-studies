@@ -1,0 +1,9 @@
+public void testWriteLines_Writer_nullData() throws Exception {                                        public void testWriteLines_Writer_nullData() throws Exception {                                     
+ByteArrayOutputStream baout = new ByteArrayOutputStream();                                             ByteArrayOutputStream baout = new ByteArrayOutputStream();                                          
+YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);          YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);       
+Writer writer = new OutputStreamWriter(baout, "US-ASCII");                                             Writer writer = new OutputStreamWriter(baout, "US-ASCII");                                          
+IOUtils.writeLines((List) null, "*", writer);                                                        | IOUtils.writeLines((List&lt;?&gt;) null, "*", writer);                                              
+out.off();                                                                                             out.off();                                                                                          
+writer.flush();                                                                                        writer.flush();                                                                                     
+assertEquals("Sizes differ", 0, baout.size());                                                         assertEquals("Sizes differ", 0, baout.size());                                                      
+}                                                                                                      }                                                                                                   

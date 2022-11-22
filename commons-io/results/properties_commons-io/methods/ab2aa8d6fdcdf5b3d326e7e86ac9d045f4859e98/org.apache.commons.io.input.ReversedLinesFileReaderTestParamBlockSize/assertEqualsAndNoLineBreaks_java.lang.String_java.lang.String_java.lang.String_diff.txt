@@ -1,0 +1,7 @@
+static void assertEqualsAndNoLineBreaks(final String msg, final String expected, final String actual) {
+    if (actual != null) {
+        assertFalse("Line contains \\n: line=" + actual, actual.contains("\n"));
+        assertFalse("Line contains \\r: line=" + actual, actual.contains("\r"));
+    }
+    assertEquals(msg, expected, actual);
+}

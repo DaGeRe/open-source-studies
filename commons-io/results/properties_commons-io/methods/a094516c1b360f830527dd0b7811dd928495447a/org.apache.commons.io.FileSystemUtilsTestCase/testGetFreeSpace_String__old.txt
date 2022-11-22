@@ -1,0 +1,34 @@
+public void testGetFreeSpace_String() throws Exception {
+    if (File.separatorChar == '/') {
+        String[] cmd = null;
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("hp-ux") >= 0 || osName.indexOf("aix") >= 0) {
+            cmd = new String[] { "df", "-P", "/" };
+        } else {
+            cmd = new String[] { "df", "/" };
+        }
+        Process proc = Runtime.getRuntime().exec(cmd);
+        boolean kilobyteBlock = true;
+        BufferedReader r = null;
+        try {
+            r = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            String line = r.readLine();
+            if (line.toLowerCase().indexOf("512") >= 0) {
+                kilobyteBlock = false;
+            }
+        } finally {
+            IOUtils.closeQuietly(r);
+        }
+        long free = FileSystemUtils.freeSpace("/");
+        long kb = FileSystemUtils.freeSpaceKb("/");
+        if (kilobyteBlock) {
+            assertEquals((double) free, (double) kb, 256d);
+        } else {
+            assertEquals((double) free / 2d, (double) kb, 256d);
+        }
+    } else {
+        long bytes = FileSystemUtils.freeSpace("");
+        long kb = FileSystemUtils.freeSpaceKb("");
+        assertEquals((double) bytes / 1024, (double) kb, 256d);
+    }
+}

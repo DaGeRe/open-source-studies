@@ -1,0 +1,25 @@
+@Test
+public void testStopWhileWaitingForNextInterval() throws Exception {
+    final Collection<Thread> createdThreads = new ArrayList<>(1);
+    final ThreadFactory threadFactory = new ThreadFactory() {
+
+        private final ThreadFactory delegate = Executors.defaultThreadFactory();
+
+        @Override
+        public Thread newThread(final Runnable r) {
+            final Thread thread = delegate.newThread(r);
+            thread.setDaemon(true);
+            createdThreads.add(thread);
+            return thread;
+        }
+    };
+    final FileAlterationMonitor monitor = new FileAlterationMonitor(1_000);
+    monitor.setThreadFactory(threadFactory);
+    monitor.start();
+    assertFalse(createdThreads.isEmpty());
+    Thread.sleep(10);
+    monitor.stop(100);
+    for (final Thread thread : createdThreads) {
+        assertFalse("The FileAlterationMonitor did not stop the threads it created.", thread.isAlive());
+    }
+}

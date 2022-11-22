@@ -1,0 +1,10 @@
+private InputStream createUtf16BeDataStream(final byte[] baseData, final boolean addBOM) {
+    byte[] data = baseData;
+    if (addBOM) {
+        data = new byte[baseData.length + 2];
+        data[0] = (byte) 0xFE;
+        data[1] = (byte) 0xFF;
+        System.arraycopy(baseData, 0, data, 2, baseData.length);
+    }
+    return new ByteArrayInputStream(data);
+}

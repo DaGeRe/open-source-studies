@@ -1,0 +1,24 @@
+private static String getBOMEncoding(BufferedInputStream is) throws IOException {                    |                                                                                                     
+String encoding = null;                                                                              |                                                                                                     
+int[] bytes = new int[3];                                                                            |                                                                                                     
+is.mark(3);                                                                                          |                                                                                                     
+bytes[0] = is.read();                                                                                |                                                                                                     
+bytes[1] = is.read();                                                                                |                                                                                                     
+bytes[2] = is.read();                                                                                |                                                                                                     
+if (bytes[0] == 0xFE && bytes[1] == 0xFF) {                                                          |                                                                                                     
+encoding = UTF_16BE;                                                                                 |                                                                                                     
+is.reset();                                                                                          |                                                                                                     
+is.read();                                                                                           |                                                                                                     
+is.read();                                                                                           |                                                                                                     
+} else if (bytes[0] == 0xFF && bytes[1] == 0xFE) {                                                   |                                                                                                     
+encoding = UTF_16LE;                                                                                 |                                                                                                     
+is.reset();                                                                                          |                                                                                                     
+is.read();                                                                                           |                                                                                                     
+is.read();                                                                                           |                                                                                                     
+} else if (bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF) {                               |                                                                                                     
+encoding = UTF_8;                                                                                    |                                                                                                     
+} else {                                                                                             |                                                                                                     
+is.reset();                                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     
+return encoding;                                                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     

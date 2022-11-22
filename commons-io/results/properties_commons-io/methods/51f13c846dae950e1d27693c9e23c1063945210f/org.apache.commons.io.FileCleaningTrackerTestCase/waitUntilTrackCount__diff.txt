@@ -1,0 +1,21 @@
+private void waitUntilTrackCount() throws Exception {                                                  private void waitUntilTrackCount() throws Exception {                                               
+System.gc();                                                                                           System.gc();                                                                                        
+TestUtils.sleep(500);                                                                                  TestUtils.sleep(500);                                                                               
+int count = 0;                                                                                         int count = 0;                                                                                      
+while (theInstance.getTrackCount() != 0 && count++ &lt; 5) {                                           while (theInstance.getTrackCount() != 0 && count++ &lt; 5) {                                        
+List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                             | List&lt;String&gt; list = new ArrayList&lt;&gt;();                                                  
+try {                                                                                                  try {                                                                                               
+long i = 0;                                                                                            long i = 0;                                                                                         
+while (theInstance.getTrackCount() != 0) {                                                             while (theInstance.getTrackCount() != 0) {                                                          
+list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String   list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String
+}                                                                                                      }                                                                                                   
+} catch (final Throwable ignored) {                                                                    } catch (final Throwable ignored) {                                                                 
+}                                                                                                      }                                                                                                   
+list = null;                                                                                           list = null;                                                                                        
+System.gc();                                                                                           System.gc();                                                                                        
+TestUtils.sleep(1000);                                                                                 TestUtils.sleep(1000);                                                                              
+}                                                                                                      }                                                                                                   
+if (theInstance.getTrackCount() != 0) {                                                                if (theInstance.getTrackCount() != 0) {                                                             
+throw new IllegalStateException("Your JVM is not releasing References, try running the testcase with   throw new IllegalStateException("Your JVM is not releasing References, try running the testcase with
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

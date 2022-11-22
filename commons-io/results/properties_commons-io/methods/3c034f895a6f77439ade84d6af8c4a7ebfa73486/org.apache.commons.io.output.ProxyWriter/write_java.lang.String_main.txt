@@ -1,0 +1,14 @@
+@Override
+public void write(String str) throws IOException {
+    try {
+        int len = 0;
+        if (str != null) {
+            len = str.length();
+        }
+        beforeWrite(len);
+        out.write(str);
+        afterWrite(len);
+    } catch (IOException e) {
+        handleIOException(e);
+    }
+}

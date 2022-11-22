@@ -1,0 +1,17 @@
+                                                                                                     | @Override                                                                                           
+public int read(char[] chars, int offset, int length) throws IOException {                             public int read(char[] chars, int offset, int length) throws IOException {                          
+if (eof) {                                                                                             if (eof) {                                                                                          
+throw new IOException("Read after end of file");                                                       throw new IOException("Read after end of file");                                                    
+}                                                                                                      }                                                                                                   
+if (position == size) {                                                                                if (position == size) {                                                                             
+return doEndOfFile();                                                                                  return doEndOfFile();                                                                               
+}                                                                                                      }                                                                                                   
+position += length;                                                                                    position += length;                                                                                 
+int returnLength = length;                                                                             int returnLength = length;                                                                          
+if (position &gt; size) {                                                                              if (position &gt; size) {                                                                           
+returnLength = length - (int) (position - size);                                                       returnLength = length - (int) (position - size);                                                    
+position = size;                                                                                       position = size;                                                                                    
+}                                                                                                      }                                                                                                   
+processChars(chars, offset, returnLength);                                                             processChars(chars, offset, returnLength);                                                          
+return returnLength;                                                                                   return returnLength;                                                                                
+}                                                                                                      }                                                                                                   

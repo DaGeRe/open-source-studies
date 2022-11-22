@@ -1,0 +1,12 @@
+                                                                                                     | @Override                                                                                           
+public boolean accept(final File file) {                                                               public boolean accept(final File file) {                                                            
+if (this.fileFilters.size() == 0) {                                                                    if (this.fileFilters.size() == 0) {                                                                 
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+for (IOFileFilter fileFilter : fileFilters) {                                                          for (IOFileFilter fileFilter : fileFilters) {                                                       
+if (!fileFilter.accept(file)) {                                                                        if (!fileFilter.accept(file)) {                                                                     
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

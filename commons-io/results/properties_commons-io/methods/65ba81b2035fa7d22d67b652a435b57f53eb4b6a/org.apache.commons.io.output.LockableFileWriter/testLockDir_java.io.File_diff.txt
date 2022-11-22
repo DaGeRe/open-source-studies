@@ -1,0 +1,8 @@
+private void testLockDir(File lockDir) throws IOException {
+    if (!lockDir.exists()) {
+        throw new IOException("Could not find lockDir: " + lockDir.getAbsolutePath());
+    }
+    if (!lockDir.canWrite()) {
+        throw new IOException("Could not write to lockDir: " + lockDir.getAbsolutePath());
+    }
+}

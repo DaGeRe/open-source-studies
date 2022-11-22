@@ -1,0 +1,9 @@
+@Override
+public boolean accept(File dir, String name) {
+    for (String wildcard : wildcards) {
+        if (FilenameUtils.wildcardMatch(name, wildcard, caseSensitivity)) {
+            return true;
+        }
+    }
+    return false;
+}

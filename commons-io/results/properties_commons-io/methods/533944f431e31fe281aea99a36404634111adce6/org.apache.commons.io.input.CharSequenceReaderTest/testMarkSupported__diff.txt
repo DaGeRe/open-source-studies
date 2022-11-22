@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testMarkSupported() throws Exception {                                                     public void testMarkSupported() throws Exception {                                                  
+final Reader reader = new CharSequenceReader("FooBar");                                              | try (final Reader reader = new CharSequenceReader("FooBar")) {                                      
+assertTrue(reader.markSupported());                                                                    assertTrue(reader.markSupported());                                                                 
+reader.close();                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

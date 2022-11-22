@@ -1,0 +1,6 @@
+public static byte[] toByteArray(final InputStream input, final long size) throws IOException {
+    if (size > Integer.MAX_VALUE) {
+        throw new IllegalArgumentException("Size cannot be greater than Integer max value: " + size);
+    }
+    return toByteArray(input, (int) size);
+}

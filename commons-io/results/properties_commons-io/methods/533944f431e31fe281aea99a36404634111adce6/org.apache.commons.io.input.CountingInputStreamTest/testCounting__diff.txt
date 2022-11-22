@@ -1,0 +1,24 @@
+@Test                                                                                                  @Test                                                                                               
+public void testCounting() throws Exception {                                                          public void testCounting() throws Exception {                                                       
+final String text = "A piece of text";                                                                 final String text = "A piece of text";                                                              
+final byte[] bytes = text.getBytes();                                                                  final byte[] bytes = text.getBytes();                                                               
+final ByteArrayInputStream bais = new ByteArrayInputStream(bytes);                                     final ByteArrayInputStream bais = new ByteArrayInputStream(bytes);                                  
+final CountingInputStream cis = new CountingInputStream(bais);                                       | try (final CountingInputStream cis = new CountingInputStream(bais)) {                               
+final byte[] result = new byte[21];                                                                    final byte[] result = new byte[21];                                                                 
+final byte[] ba = new byte[5];                                                                         final byte[] ba = new byte[5];                                                                      
+int found = cis.read(ba);                                                                              int found = cis.read(ba);                                                                           
+System.arraycopy(ba, 0, result, 0, 5);                                                                 System.arraycopy(ba, 0, result, 0, 5);                                                              
+assertEquals(found, cis.getCount());                                                                   assertEquals(found, cis.getCount());                                                                
+final int value = cis.read();                                                                          final int value = cis.read();                                                                       
+found++;                                                                                               found++;                                                                                            
+result[5] = (byte) value;                                                                              result[5] = (byte) value;                                                                           
+assertEquals(found, cis.getCount());                                                                   assertEquals(found, cis.getCount());                                                                
+found += cis.read(result, 6, 5);                                                                       found += cis.read(result, 6, 5);                                                                    
+assertEquals(found, cis.getCount());                                                                   assertEquals(found, cis.getCount());                                                                
+found += cis.read(result, 11, 10);                                                                     found += cis.read(result, 11, 10);                                                                  
+assertEquals(found, cis.getCount());                                                                   assertEquals(found, cis.getCount());                                                                
+final String textResult = new String(result).trim();                                                   final String textResult = new String(result).trim();                                                
+assertEquals(textResult, text);                                                                        assertEquals(textResult, text);                                                                     
+cis.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

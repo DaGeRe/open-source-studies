@@ -1,0 +1,14 @@
+public void testDeleteForce() throws Exception {
+    File baseDir = getTestDirectory();
+    File subDir = new File(baseDir, "test");
+    assertEquals(true, subDir.mkdir());
+    File subFile = new File(subDir, "a.txt");
+    createFile(subFile, 16);
+    assertEquals(true, subDir.exists());
+    assertEquals(true, subFile.exists());
+    FileDeleteStrategy.FORCE.delete(subDir);
+    assertEquals(false, subDir.exists());
+    assertEquals(false, subFile.exists());
+    FileDeleteStrategy.FORCE.delete(subDir);
+    assertEquals(false, subDir.exists());
+}

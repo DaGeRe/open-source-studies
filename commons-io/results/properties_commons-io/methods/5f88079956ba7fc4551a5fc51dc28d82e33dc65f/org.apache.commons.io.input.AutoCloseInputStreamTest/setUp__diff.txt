@@ -1,0 +1,12 @@
+@Before
+public void setUp() {
+    data = new byte[] { 'x', 'y', 'z' };
+    stream = new AutoCloseInputStream(new ByteArrayInputStream(data) {
+
+        @Override
+        public void close() {
+            closed = true;
+        }
+    });
+    closed = false;
+}

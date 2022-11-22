@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+public void testReadXmlWithBOMUtf16Be() throws Exception {                                             public void testReadXmlWithBOMUtf16Be() throws Exception {                                          
+final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-16BE\"?&gt;&lt;X/&gt;".getBytes(Charset | final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-16BE\"?&gt;&lt;X/&gt;".getBytes(Standar
+parseXml(new BOMInputStream(createUtf16BeDataStream(data, true), ByteOrderMark.UTF_16BE));             parseXml(new BOMInputStream(createUtf16BeDataStream(data, true), ByteOrderMark.UTF_16BE));          
+parseXml(createUtf16BeDataStream(data, true));                                                         parseXml(createUtf16BeDataStream(data, true));                                                      
+}                                                                                                      }                                                                                                   

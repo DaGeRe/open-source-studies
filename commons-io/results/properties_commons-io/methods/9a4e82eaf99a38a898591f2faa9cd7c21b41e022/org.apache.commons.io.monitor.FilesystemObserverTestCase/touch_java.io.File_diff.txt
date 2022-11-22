@@ -1,0 +1,16 @@
+private File touch(File file) {
+    long lastModified = file.exists() ? file.lastModified() : 0;
+    try {
+        FileUtils.touch(file);
+        while (lastModified == file.lastModified()) {
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ie) {
+            }
+            FileUtils.touch(file);
+        }
+    } catch (Exception e) {
+        fail("Touching " + file + ": " + e);
+    }
+    return file;
+}

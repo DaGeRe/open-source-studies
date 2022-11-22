@@ -1,0 +1,15 @@
+public String toLegalFileName(final String candidate, final char replacement) {
+    if (isIllegalFileNameChar(replacement)) {
+        throw new IllegalArgumentException(String.format("The replacement character '%s' cannot be one of the %s illegal characters: %s", replacement, name(), Arrays.toString(illegalFileNameChars)));
+    }
+    final String truncated = candidate.length() > maxFileNameLength ? candidate.substring(0, maxFileNameLength) : candidate;
+    boolean changed = false;
+    final char[] charArray = truncated.toCharArray();
+    for (int i = 0; i < charArray.length; i++) {
+        if (isIllegalFileNameChar(charArray[i])) {
+            charArray[i] = replacement;
+            changed = true;
+        }
+    }
+    return changed ? String.valueOf(charArray) : truncated;
+}

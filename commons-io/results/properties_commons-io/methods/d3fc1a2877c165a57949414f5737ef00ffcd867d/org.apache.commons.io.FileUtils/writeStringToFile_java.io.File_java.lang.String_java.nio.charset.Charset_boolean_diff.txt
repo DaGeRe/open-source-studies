@@ -1,0 +1,5 @@
+public static void writeStringToFile(final File file, final String data, final Charset encoding, final boolean append) throws IOException {
+    try (OutputStream out = openOutputStream(file, append)) {
+        IOUtils.write(data, out, encoding);
+    }
+}

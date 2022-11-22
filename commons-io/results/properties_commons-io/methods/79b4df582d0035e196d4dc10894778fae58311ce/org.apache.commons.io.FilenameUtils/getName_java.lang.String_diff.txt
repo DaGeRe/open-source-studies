@@ -1,0 +1,8 @@
+public static String getName(final String filename) {
+    if (filename == null) {
+        return null;
+    }
+    failIfNullBytePresent(filename);
+    final int index = indexOfLastSeparator(filename);
+    return filename.substring(index + 1);
+}

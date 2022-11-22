@@ -1,0 +1,9 @@
+protected List find(File startDirectory) {
+    List results = new ArrayList();
+    try {
+        walk(startDirectory, results);
+    } catch (IOException ex) {
+        Assert.fail(ex.toString());
+    }
+    return results;
+}

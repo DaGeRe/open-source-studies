@@ -1,0 +1,11 @@
+@Override
+public int read() throws IOException {
+    if (eof) {
+        throw new IOException("Read after end of file");
+    }
+    if (position == size) {
+        return doEndOfFile();
+    }
+    position++;
+    return processChar();
+}

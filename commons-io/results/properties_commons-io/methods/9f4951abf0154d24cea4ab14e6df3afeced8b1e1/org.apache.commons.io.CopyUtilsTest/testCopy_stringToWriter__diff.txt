@@ -1,0 +1,10 @@
+public void testCopy_stringToWriter() throws Exception {                                               public void testCopy_stringToWriter() throws Exception {                                            
+String str = new String(inData, "US-ASCII");                                                           String str = new String(inData, "US-ASCII");                                                        
+ByteArrayOutputStream baout = new ByteArrayOutputStream();                                             ByteArrayOutputStream baout = new ByteArrayOutputStream();                                          
+OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);                            OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);                         
+Writer writer = new java.io.OutputStreamWriter(baout, "US-ASCII");                                   | Writer writer = new java.io.OutputStreamWriter(out, "US-ASCII");                                    
+CopyUtils.copy(str, writer);                                                                           CopyUtils.copy(str, writer);                                                                        
+writer.flush();                                                                                        writer.flush();                                                                                     
+assertEquals("Sizes differ", inData.length, baout.size());                                             assertEquals("Sizes differ", inData.length, baout.size());                                          
+assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));                             assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));                          
+}                                                                                                      }                                                                                                   

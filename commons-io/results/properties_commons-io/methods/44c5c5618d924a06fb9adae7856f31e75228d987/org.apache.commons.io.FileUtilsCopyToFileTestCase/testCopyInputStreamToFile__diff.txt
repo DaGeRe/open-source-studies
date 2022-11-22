@@ -1,0 +1,7 @@
+@Test
+public void testCopyInputStreamToFile() throws IOException {
+    try (CheckingInputStream inputStream = new CheckingInputStream(testData)) {
+        FileUtils.copyInputStreamToFile(inputStream, testFile);
+        Assert.assertTrue("inputStream should be closed", inputStream.isClosed());
+    }
+}

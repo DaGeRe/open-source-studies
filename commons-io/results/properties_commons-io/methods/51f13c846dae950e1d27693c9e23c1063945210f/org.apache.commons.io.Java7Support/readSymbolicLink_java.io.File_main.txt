@@ -1,0 +1,9 @@
+public static File readSymbolicLink(File symlink) throws IOException {
+    try {
+        Object path = toPath.invoke(symlink);
+        Object resultPath = readSymlink.invoke(null, path);
+        return (File) toFile.invoke(resultPath);
+    } catch (IllegalAccessException | InvocationTargetException e) {
+        throw new RuntimeException(e);
+    }
+}

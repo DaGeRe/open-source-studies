@@ -1,0 +1,29 @@
+public static void copyDirectory(File srcDir, File destDir, FileFilter filter, boolean preserveFileD   public static void copyDirectory(File srcDir, File destDir, FileFilter filter, boolean preserveFileD
+if (srcDir == null) {                                                                                  if (srcDir == null) {                                                                               
+throw new NullPointerException("Source must not be null");                                             throw new NullPointerException("Source must not be null");                                          
+}                                                                                                      }                                                                                                   
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new NullPointerException("Destination must not be null");                                        throw new NullPointerException("Destination must not be null");                                     
+}                                                                                                      }                                                                                                   
+if (srcDir.exists() == false) {                                                                        if (srcDir.exists() == false) {                                                                     
+throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                             throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                          
+}                                                                                                      }                                                                                                   
+if (srcDir.isDirectory() == false) {                                                                   if (srcDir.isDirectory() == false) {                                                                
+throw new IOException("Source '" + srcDir + "' exists but is not a directory");                        throw new IOException("Source '" + srcDir + "' exists but is not a directory");                     
+}                                                                                                      }                                                                                                   
+if (srcDir.getCanonicalPath().equals(destDir.getCanonicalPath())) {                                    if (srcDir.getCanonicalPath().equals(destDir.getCanonicalPath())) {                                 
+throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");       throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");    
+}                                                                                                      }                                                                                                   
+List exclusionList = null;                                                                           | List&lt;String&gt; exclusionList = null;                                                            
+if (destDir.getCanonicalPath().startsWith(srcDir.getCanonicalPath())) {                                if (destDir.getCanonicalPath().startsWith(srcDir.getCanonicalPath())) {                             
+File[] srcFiles = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);                      File[] srcFiles = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);                   
+if (srcFiles != null && srcFiles.length &gt; 0) {                                                      if (srcFiles != null && srcFiles.length &gt; 0) {                                                   
+exclusionList = new ArrayList(srcFiles.length);                                                      | exclusionList = new ArrayList&lt;String&gt;(srcFiles.length);                                       
+for (int i = 0; i &lt; srcFiles.length; i++) {                                                         for (int i = 0; i &lt; srcFiles.length; i++) {                                                      
+File copiedFile = new File(destDir, srcFiles[i].getName());                                            File copiedFile = new File(destDir, srcFiles[i].getName());                                         
+exclusionList.add(copiedFile.getCanonicalPath());                                                      exclusionList.add(copiedFile.getCanonicalPath());                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+doCopyDirectory(srcDir, destDir, filter, preserveFileDate, exclusionList);                             doCopyDirectory(srcDir, destDir, filter, preserveFileDate, exclusionList);                          
+}                                                                                                      }                                                                                                   

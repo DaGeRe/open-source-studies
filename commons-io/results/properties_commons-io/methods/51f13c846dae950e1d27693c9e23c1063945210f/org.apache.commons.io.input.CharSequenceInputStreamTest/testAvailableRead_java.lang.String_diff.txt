@@ -1,0 +1,14 @@
+private void testAvailableRead(final String csName) throws Exception {                                 private void testAvailableRead(final String csName) throws Exception {                              
+final String input = "test";                                                                           final String input = "test";                                                                        
+final InputStream r = new CharSequenceInputStream(input, csName);                                    | try (InputStream r = new CharSequenceInputStream(input, csName)) {                                  
+try {                                                                                                |                                                                                                     
+int available = checkAvail(r, input.length());                                                         int available = checkAvail(r, input.length());                                                      
+byte[] buff = new byte[available];                                                                     byte[] buff = new byte[available];                                                                  
+assertEquals(available - 1, r.skip(available - 1));                                                    assertEquals(available - 1, r.skip(available - 1));                                                 
+available = checkAvail(r, 1);                                                                          available = checkAvail(r, 1);                                                                       
+buff = new byte[available];                                                                            buff = new byte[available];                                                                         
+assertEquals(available, r.read(buff, 0, available));                                                   assertEquals(available, r.read(buff, 0, available));                                                
+} finally {                                                                                          |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

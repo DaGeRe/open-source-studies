@@ -1,0 +1,7 @@
+protected void handleFile(File file, int depth, Collection results) throws IOException {
+    results.add(file);
+    assertEquals(false, cancelled);
+    if (cancelFileName.equals(file.getName())) {
+        cancelled = true;
+    }
+}

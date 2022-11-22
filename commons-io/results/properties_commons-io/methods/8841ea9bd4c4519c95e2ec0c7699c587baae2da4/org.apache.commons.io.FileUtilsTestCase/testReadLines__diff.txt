@@ -1,0 +1,11 @@
+public void testReadLines() throws Exception {                                                         public void testReadLines() throws Exception {                                                      
+File file = newFile("lines.txt");                                                                      File file = newFile("lines.txt");                                                                   
+try {                                                                                                  try {                                                                                               
+String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };                        String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };                     
+createLineBasedFile(file, data);                                                                       createLineBasedFile(file, data);                                                                    
+List lines = FileUtils.readLines(file, "UTF-8");                                                     | List&lt;String&gt; lines = FileUtils.readLines(file, "UTF-8");                                      
+assertEquals(Arrays.asList(data), lines);                                                              assertEquals(Arrays.asList(data), lines);                                                           
+} finally {                                                                                            } finally {                                                                                         
+deleteFile(file);                                                                                      deleteFile(file);                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

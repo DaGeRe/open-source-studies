@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void testToByteArray_InputStream_NegativeSize() throws Exception {                              public void testToByteArray_InputStream_NegativeSize() throws Exception {                           
+try (FileInputStream fin = new FileInputStream(m_testFile)) {                                          try (FileInputStream fin = new FileInputStream(m_testFile)) {                                       
+IOUtils.toByteArray(fin, -1);                                                                          IOUtils.toByteArray(fin, -1);                                                                       
+fail("IllegalArgumentException excepted");                                                           | fail("IllegalArgumentException expected");                                                          
+} catch (final IllegalArgumentException exc) {                                                         } catch (final IllegalArgumentException exc) {                                                      
+assertTrue("Exception message does not start with \"Size must be equal or greater than zero\"", exc.   assertTrue("Exception message does not start with \"Size must be equal or greater than zero\"", exc.
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

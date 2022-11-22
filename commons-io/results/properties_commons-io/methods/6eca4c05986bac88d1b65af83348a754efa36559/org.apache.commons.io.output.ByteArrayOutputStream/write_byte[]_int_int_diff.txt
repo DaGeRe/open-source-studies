@@ -1,0 +1,22 @@
+public synchronized void write(byte[] b, int off, int len) {                                         | public void write(byte[] b, int off, int len) {                                                     
+if ((off &lt; 0) || (off &gt; b.length) || (len &lt; 0) || ((off + len) &gt; b.length) || ((off + le   if ((off &lt; 0) || (off &gt; b.length) || (len &lt; 0) || ((off + len) &gt; b.length) || ((off + le
+throw new IndexOutOfBoundsException();                                                                 throw new IndexOutOfBoundsException();                                                              
+} else if (len == 0) {                                                                                 } else if (len == 0) {                                                                              
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+                                                                                                     | synchronized (this) {                                                                               
+int newcount = count + len;                                                                            int newcount = count + len;                                                                         
+int remaining = len;                                                                                   int remaining = len;                                                                                
+int inBufferPos = count - filledBufferSum;                                                             int inBufferPos = count - filledBufferSum;                                                          
+while (remaining &gt; 0) {                                                                             while (remaining &gt; 0) {                                                                          
+int part = Math.min(remaining, currentBuffer.length - inBufferPos);                                    int part = Math.min(remaining, currentBuffer.length - inBufferPos);                                 
+System.arraycopy(b, off + len - remaining, currentBuffer, inBufferPos, part);                          System.arraycopy(b, off + len - remaining, currentBuffer, inBufferPos, part);                       
+remaining -= part;                                                                                     remaining -= part;                                                                                  
+if (remaining &gt; 0) {                                                                                if (remaining &gt; 0) {                                                                             
+needNewBuffer(newcount);                                                                               needNewBuffer(newcount);                                                                            
+inBufferPos = 0;                                                                                       inBufferPos = 0;                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+count = newcount;                                                                                      count = newcount;                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

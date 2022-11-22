@@ -1,0 +1,15 @@
+@Override                                                                                              @Override                                                                                           
+public void run() {                                                                                    public void run() {                                                                                 
+while (exitWhenFinished == false || trackers.size() &gt; 0) {                                          while (exitWhenFinished == false || trackers.size() &gt; 0) {                                       
+try {                                                                                                  try {                                                                                               
+Tracker tracker = (Tracker) q.remove();                                                                Tracker tracker = (Tracker) q.remove();                                                             
+trackers.remove(tracker);                                                                              trackers.remove(tracker);                                                                           
+tracker.delete();                                                                                    | if (!tracker.delete()) {                                                                            
+                                                                                                     | deleteFailures.add(tracker.getPath());                                                              
+                                                                                                     | }                                                                                                   
+tracker.clear();                                                                                       tracker.clear();                                                                                    
+} catch (InterruptedException e) {                                                                     } catch (InterruptedException e) {                                                                  
+continue;                                                                                              continue;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

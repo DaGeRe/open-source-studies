@@ -1,0 +1,11 @@
+public void stop() throws Exception {
+    running = false;
+    try {
+        thread.join(interval);
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+    }
+    for (FileAlterationObserver observer : observers) {
+        observer.destroy();
+    }
+}

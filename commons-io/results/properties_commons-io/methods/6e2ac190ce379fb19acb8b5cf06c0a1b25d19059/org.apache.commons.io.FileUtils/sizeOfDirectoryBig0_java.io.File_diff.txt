@@ -1,0 +1,16 @@
+private static BigInteger sizeOfDirectoryBig0(final File directory) {
+    final File[] files = directory.listFiles();
+    if (files == null) {
+        return BigInteger.ZERO;
+    }
+    BigInteger size = BigInteger.ZERO;
+    for (final File file : files) {
+        try {
+            if (!isSymlink(file)) {
+                size = size.add(sizeOfBig0(file));
+            }
+        } catch (final IOException ioe) {
+        }
+    }
+    return size;
+}

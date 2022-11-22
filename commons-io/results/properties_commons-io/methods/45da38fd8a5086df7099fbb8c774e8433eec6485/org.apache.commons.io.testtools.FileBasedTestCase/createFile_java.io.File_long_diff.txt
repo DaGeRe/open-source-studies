@@ -1,0 +1,11 @@
+protected void createFile(File file, long size) throws IOException {
+    if (!file.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + file + " as the parent directory does not exist");
+    }
+    BufferedOutputStream output = new BufferedOutputStream(new java.io.FileOutputStream(file));
+    try {
+        generateTestData(output, size);
+    } finally {
+        IOUtils.closeQuietly(output);
+    }
+}

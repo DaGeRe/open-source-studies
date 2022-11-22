@@ -1,0 +1,25 @@
+@Test                                                                                                  @Test                                                                                               
+public void testStopWhileWaitingForNextInterval() throws Exception {                                   public void testStopWhileWaitingForNextInterval() throws Exception {                                
+final Collection&lt;Thread&gt; createdThreads = new ArrayList&lt;&gt;(1);                              final Collection&lt;Thread&gt; createdThreads = new ArrayList&lt;&gt;(1);                           
+final ThreadFactory threadFactory = new ThreadFactory() {                                              final ThreadFactory threadFactory = new ThreadFactory() {                                           
+                                                                                                                                                                                                           
+private final ThreadFactory delegate = Executors.defaultThreadFactory();                               private final ThreadFactory delegate = Executors.defaultThreadFactory();                            
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public Thread newThread(Runnable r) {                                                                | public Thread newThread(final Runnable r) {                                                         
+final Thread thread = delegate.newThread(r);                                                           final Thread thread = delegate.newThread(r);                                                        
+thread.setDaemon(true);                                                                                thread.setDaemon(true);                                                                             
+createdThreads.add(thread);                                                                            createdThreads.add(thread);                                                                         
+return thread;                                                                                         return thread;                                                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final FileAlterationMonitor monitor = new FileAlterationMonitor(1_000);                                final FileAlterationMonitor monitor = new FileAlterationMonitor(1_000);                             
+monitor.setThreadFactory(threadFactory);                                                               monitor.setThreadFactory(threadFactory);                                                            
+monitor.start();                                                                                       monitor.start();                                                                                    
+assertFalse(createdThreads.isEmpty());                                                                 assertFalse(createdThreads.isEmpty());                                                              
+Thread.sleep(10);                                                                                      Thread.sleep(10);                                                                                   
+monitor.stop(100);                                                                                     monitor.stop(100);                                                                                  
+for (Thread thread : createdThreads) {                                                               | for (final Thread thread : createdThreads) {                                                        
+assertFalse("The FileAlterationMonitor did not stop the threads it created.", thread.isAlive());       assertFalse("The FileAlterationMonitor did not stop the threads it created.", thread.isAlive());    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,23 @@
+public void testMoveDirectory_CopyDelete() throws Exception {                                          public void testMoveDirectory_CopyDelete() throws Exception {                                       
+File dir = getTestDirectory();                                                                         File dir = getTestDirectory();                                                                      
+File src = new File(dir, "testMoveDirectory2Source") {                                                 File src = new File(dir, "testMoveDirectory2Source") {                                              
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public boolean renameTo(File dest) {                                                                   public boolean renameTo(File dest) {                                                                
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+File testDir = new File(src, "foo");                                                                   File testDir = new File(src, "foo");                                                                
+File testFile = new File(testDir, "bar");                                                              File testFile = new File(testDir, "bar");                                                           
+testDir.mkdirs();                                                                                      testDir.mkdirs();                                                                                   
+createFile(testFile, 0);                                                                               createFile(testFile, 0);                                                                            
+File destination = new File(dir, "testMoveDirectory1Dest");                                            File destination = new File(dir, "testMoveDirectory1Dest");                                         
+FileUtils.deleteDirectory(destination);                                                                FileUtils.deleteDirectory(destination);                                                             
+FileUtils.moveDirectory(src, destination);                                                             FileUtils.moveDirectory(src, destination);                                                          
+assertTrue("Check Exist", destination.exists());                                                       assertTrue("Check Exist", destination.exists());                                                    
+assertTrue("Original deleted", !src.exists());                                                         assertTrue("Original deleted", !src.exists());                                                      
+File movedDir = new File(destination, testDir.getName());                                              File movedDir = new File(destination, testDir.getName());                                           
+File movedFile = new File(movedDir, testFile.getName());                                               File movedFile = new File(movedDir, testFile.getName());                                            
+assertTrue("Check dir moved", movedDir.exists());                                                      assertTrue("Check dir moved", movedDir.exists());                                                   
+assertTrue("Check file moved", movedFile.exists());                                                    assertTrue("Check file moved", movedFile.exists());                                                 
+}                                                                                                      }                                                                                                   

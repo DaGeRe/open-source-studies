@@ -1,0 +1,13 @@
+@SuppressWarnings("deprecation")                                                                       @SuppressWarnings("deprecation")                                                                    
+@Test                                                                                                  @Test                                                                                               
+public void testToString_InputStream() throws Exception {                                              public void testToString_InputStream() throws Exception {                                           
+final FileInputStream fin = new FileInputStream(m_testFile);                                         | try (FileInputStream fin = new FileInputStream(m_testFile)) {                                       
+try {                                                                                                |                                                                                                     
+final String out = IOUtils.toString(fin);                                                              final String out = IOUtils.toString(fin);                                                           
+assertNotNull(out);                                                                                    assertNotNull(out);                                                                                 
+assertEquals("Not all bytes were read", 0, fin.available());                                           assertEquals("Not all bytes were read", 0, fin.available());                                        
+assertEquals("Wrong output size", FILE_SIZE, out.length());                                            assertEquals("Wrong output size", FILE_SIZE, out.length());                                         
+} finally {                                                                                          |                                                                                                     
+fin.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

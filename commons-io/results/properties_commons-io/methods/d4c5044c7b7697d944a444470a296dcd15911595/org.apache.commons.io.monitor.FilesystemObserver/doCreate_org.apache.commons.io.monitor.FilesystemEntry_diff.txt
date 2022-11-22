@@ -1,0 +1,13 @@
+private void doCreate(FilesystemEntry entry) {                                                         private void doCreate(FilesystemEntry entry) {                                                      
+for (FilesystemListener listener : listeners) {                                                        for (FilesystemListener listener : listeners) {                                                     
+if (entry.isDirectory()) {                                                                             if (entry.isDirectory()) {                                                                          
+listener.onDirectoryCreate(entry.getFile());                                                           listener.onDirectoryCreate(entry.getFile());                                                        
+} else {                                                                                               } else {                                                                                            
+listener.onFileCreate(entry.getFile());                                                                listener.onFileCreate(entry.getFile());                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+FilesystemEntry[] children = entry.getChildren();                                                      FilesystemEntry[] children = entry.getChildren();                                                   
+for (int i = 0; i &lt; children.length; i++) {                                                       | for (FilesystemEntry aChildren : children) {                                                        
+doCreate(children[i]);                                                                               | doCreate(aChildren);                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

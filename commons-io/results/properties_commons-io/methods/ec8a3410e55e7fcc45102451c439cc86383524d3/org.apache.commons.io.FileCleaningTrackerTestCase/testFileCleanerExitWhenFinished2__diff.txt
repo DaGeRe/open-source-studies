@@ -1,0 +1,27 @@
+public void testFileCleanerExitWhenFinished2() throws Exception {                                      public void testFileCleanerExitWhenFinished2() throws Exception {                                   
+String path = testFile.getPath();                                                                      String path = testFile.getPath();                                                                   
+assertEquals(false, testFile.exists());                                                                assertEquals(false, testFile.exists());                                                             
+RandomAccessFile r = new RandomAccessFile(testFile, "rw");                                             RandomAccessFile r = new RandomAccessFile(testFile, "rw");                                          
+assertEquals(true, testFile.exists());                                                                 assertEquals(true, testFile.exists());                                                              
+assertEquals(0, theInstance.getTrackCount());                                                          assertEquals(0, theInstance.getTrackCount());                                                       
+theInstance.track(path, r);                                                                            theInstance.track(path, r);                                                                         
+assertEquals(1, theInstance.getTrackCount());                                                          assertEquals(1, theInstance.getTrackCount());                                                       
+assertEquals(false, theInstance.exitWhenFinished);                                                     assertEquals(false, theInstance.exitWhenFinished);                                                  
+assertEquals(true, theInstance.reaper.isAlive());                                                      assertEquals(true, theInstance.reaper.isAlive());                                                   
+r.close();                                                                                             r.close();                                                                                          
+testFile = null;                                                                                       testFile = null;                                                                                    
+r = null;                                                                                              r = null;                                                                                           
+waitUntilTrackCount();                                                                                 waitUntilTrackCount();                                                                              
+                                                                                                     | pauseForDeleteToComplete(new File(path));                                                           
+assertEquals(0, theInstance.getTrackCount());                                                          assertEquals(0, theInstance.getTrackCount());                                                       
+assertEquals(false, new File(path).exists());                                                        | assertEquals(showFailures(), false, new File(path).exists());                                       
+assertEquals(false, theInstance.exitWhenFinished);                                                     assertEquals(false, theInstance.exitWhenFinished);                                                  
+assertEquals(true, theInstance.reaper.isAlive());                                                      assertEquals(true, theInstance.reaper.isAlive());                                                   
+assertEquals(false, theInstance.exitWhenFinished);                                                     assertEquals(false, theInstance.exitWhenFinished);                                                  
+theInstance.exitWhenFinished();                                                                        theInstance.exitWhenFinished();                                                                     
+for (int i = 0; i &lt; 20 && theInstance.reaper.isAlive(); i++) {                                      for (int i = 0; i &lt; 20 && theInstance.reaper.isAlive(); i++) {                                   
+Thread.sleep(500L);                                                                                    Thread.sleep(500L);                                                                                 
+}                                                                                                      }                                                                                                   
+assertEquals(true, theInstance.exitWhenFinished);                                                      assertEquals(true, theInstance.exitWhenFinished);                                                   
+assertEquals(false, theInstance.reaper.isAlive());                                                     assertEquals(false, theInstance.reaper.isAlive());                                                  
+}                                                                                                      }                                                                                                   

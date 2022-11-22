@@ -1,0 +1,23 @@
+public static boolean isSymlink(final File file) throws IOException {                                  public static boolean isSymlink(final File file) throws IOException {                               
+if (Java7Support.isAtLeastJava7()) {                                                                 |                                                                                                     
+return Java7Support.isSymLink(file);                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (file == null) {                                                                                    if (file == null) {                                                                                 
+throw new NullPointerException("File must not be null");                                               throw new NullPointerException("File must not be null");                                            
+}                                                                                                      }                                                                                                   
+if (FilenameUtils.isSystemWindows()) {                                                               | return Files.isSymbolicLink(file.toPath());                                                         
+return false;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+File fileInCanonicalDir = null;                                                                      |                                                                                                     
+if (file.getParent() == null) {                                                                      |                                                                                                     
+fileInCanonicalDir = file;                                                                           |                                                                                                     
+} else {                                                                                             |                                                                                                     
+final File canonicalDir = file.getParentFile().getCanonicalFile();                                   |                                                                                                     
+fileInCanonicalDir = new File(canonicalDir, file.getName());                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (fileInCanonicalDir.getCanonicalFile().equals(fileInCanonicalDir.getAbsoluteFile())) {            |                                                                                                     
+return isBrokenSymlink(file);                                                                        |                                                                                                     
+} else {                                                                                             |                                                                                                     
+return true;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

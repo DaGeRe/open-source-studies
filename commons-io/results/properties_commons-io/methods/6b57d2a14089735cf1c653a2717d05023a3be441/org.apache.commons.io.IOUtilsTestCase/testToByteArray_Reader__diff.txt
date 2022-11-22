@@ -1,0 +1,10 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testToByteArray_Reader() throws IOException {                                              public void testToByteArray_Reader() throws IOException {                                           
+final String charsetName = "UTF-8";                                                                    final String charsetName = "UTF-8";                                                                 
+final byte[] expecteds = charsetName.getBytes(charsetName);                                            final byte[] expecteds = charsetName.getBytes(charsetName);                                         
+byte[] actuals = IOUtils.toByteArray(new InputStreamReader(new ByteArrayInputStream(expecteds)));      byte[] actuals = IOUtils.toByteArray(new InputStreamReader(new ByteArrayInputStream(expecteds)));   
+Assert.assertArrayEquals(expecteds, actuals);                                                          Assert.assertArrayEquals(expecteds, actuals);                                                       
+actuals = IOUtils.toByteArray(new InputStreamReader(new ByteArrayInputStream(expecteds)), charsetNam   actuals = IOUtils.toByteArray(new InputStreamReader(new ByteArrayInputStream(expecteds)), charsetNam
+Assert.assertArrayEquals(expecteds, actuals);                                                          Assert.assertArrayEquals(expecteds, actuals);                                                       
+}                                                                                                      }                                                                                                   

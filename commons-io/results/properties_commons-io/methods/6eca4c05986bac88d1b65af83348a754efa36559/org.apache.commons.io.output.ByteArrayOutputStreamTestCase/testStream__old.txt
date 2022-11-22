@@ -1,0 +1,21 @@
+public void testStream() throws Exception {
+    int written;
+    ByteArrayOutputStream baout = new ByteArrayOutputStream(32);
+    java.io.ByteArrayOutputStream ref = new java.io.ByteArrayOutputStream();
+    written = writeData(baout, ref, new int[] { 4, 10, 22 });
+    checkStreams(baout, ref);
+    written = writeData(baout, ref, new int[] { 20, 12 });
+    checkStreams(baout, ref);
+    baout.reset();
+    ref.reset();
+    written = writeData(baout, ref, new int[] { 5, 47, 33, 60, 1, 0, 8 });
+    checkStreams(baout, ref);
+    ByteArrayOutputStream baout1 = new ByteArrayOutputStream(32);
+    ref.writeTo(baout1);
+    java.io.ByteArrayOutputStream ref1 = new java.io.ByteArrayOutputStream();
+    baout.writeTo(ref1);
+    checkStreams(baout1, ref1);
+    String baoutString = baout.toString("ASCII");
+    String refString = ref.toString("ASCII");
+    assertEquals("ASCII decoded String must be equal", refString, baoutString);
+}

@@ -1,0 +1,15 @@
+                                                                                                     | long freeSpaceWindows(String path, long timeout) throws IOException {                               
+                                                                                                     | path = FilenameUtils.normalize(path);                                                               
+                                                                                                     | if (path.length() &gt; 2 && path.charAt(1) == ':') {                                                
+                                                                                                     | path = path.substring(0, 2);                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | String[] cmdAttribs = new String[] { "cmd.exe", "/C", "dir /-c " + path };                          
+                                                                                                     | List&lt;String&gt; lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);                  
+                                                                                                     | for (int i = lines.size() - 1; i &gt;= 0; i--) {                                                    
+                                                                                                     | String line = lines.get(i);                                                                         
+                                                                                                     | if (line.length() &gt; 0) {                                                                         
+                                                                                                     | return parseDir(line, path);                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | throw new IOException("Command line 'dir /-c' did not return any info " + "for path '" + path + "'")
+                                                                                                     | }                                                                                                   

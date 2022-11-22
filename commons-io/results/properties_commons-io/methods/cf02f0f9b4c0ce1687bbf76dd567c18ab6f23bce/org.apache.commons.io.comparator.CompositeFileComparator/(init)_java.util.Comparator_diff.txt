@@ -1,0 +1,9 @@
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+public CompositeFileComparator(Comparator&lt;File&gt;... delegates) {                                  public CompositeFileComparator(Comparator&lt;File&gt;... delegates) {                               
+if (delegates == null) {                                                                               if (delegates == null) {                                                                            
+this.delegates = NO_COMPARATORS;                                                                     | this.delegates = (Comparator&lt;File&gt;[]) NO_COMPARATORS;                                         
+} else {                                                                                               } else {                                                                                            
+this.delegates = new Comparator[delegates.length];                                                   | this.delegates = (Comparator&lt;File&gt;[]) new Comparator&lt;?&gt;[delegates.length];              
+System.arraycopy(delegates, 0, this.delegates, 0, delegates.length);                                   System.arraycopy(delegates, 0, this.delegates, 0, delegates.length);                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

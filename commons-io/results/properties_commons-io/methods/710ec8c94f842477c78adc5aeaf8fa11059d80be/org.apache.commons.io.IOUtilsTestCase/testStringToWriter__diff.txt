@@ -1,0 +1,20 @@
+public void testStringToWriter() throws Exception {
+    File destination = newFile("copy6.txt");
+    FileReader fin = new FileReader(m_testFile);
+    String str;
+    try {
+        str = IOUtils.toString(fin);
+    } finally {
+        fin.close();
+    }
+    FileWriter fout = new FileWriter(destination);
+    try {
+        CopyUtils.copy(str, fout);
+        fout.flush();
+        checkFile(destination, m_testFile);
+        checkWrite(fout);
+    } finally {
+        fout.close();
+    }
+    deleteFile(destination);
+}

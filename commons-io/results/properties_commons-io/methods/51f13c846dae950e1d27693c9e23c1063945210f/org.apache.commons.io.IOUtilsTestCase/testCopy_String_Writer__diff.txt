@@ -1,0 +1,22 @@
+@SuppressWarnings("deprecation")                                                                       @SuppressWarnings("deprecation")                                                                    
+@Test                                                                                                  @Test                                                                                               
+public void testCopy_String_Writer() throws Exception {                                                public void testCopy_String_Writer() throws Exception {                                             
+final File destination = TestUtils.newFile(getTestDirectory(), "copy6.txt");                           final File destination = TestUtils.newFile(getTestDirectory(), "copy6.txt");                        
+final FileReader fin = new FileReader(m_testFile);                                                   |                                                                                                     
+String str;                                                                                            String str;                                                                                         
+try {                                                                                                | try (FileReader fin = new FileReader(m_testFile)) {                                                 
+str = IOUtils.toString(fin);                                                                           str = IOUtils.toString(fin);                                                                        
+} finally {                                                                                          |                                                                                                     
+fin.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+final FileWriter fout = new FileWriter(destination);                                                 | try (FileWriter fout = new FileWriter(destination)) {                                               
+try {                                                                                                |                                                                                                     
+CopyUtils.copy(str, fout);                                                                             CopyUtils.copy(str, fout);                                                                          
+fout.flush();                                                                                          fout.flush();                                                                                       
+TestUtils.checkFile(destination, m_testFile);                                                          TestUtils.checkFile(destination, m_testFile);                                                       
+TestUtils.checkWrite(fout);                                                                            TestUtils.checkWrite(fout);                                                                         
+} finally {                                                                                          |                                                                                                     
+fout.close();                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+TestUtils.deleteFile(destination);                                                                     TestUtils.deleteFile(destination);                                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,14 @@
+private int writeData(ByteArrayOutputStream baout, java.io.ByteArrayOutputStream ref, int count) thr | private int writeData(ByteArrayOutputStream baout, java.io.ByteArrayOutputStream ref, int count) {  
+if (count &gt; DATA.length) {                                                                          if (count &gt; DATA.length) {                                                                       
+throw new IllegalArgumentException("Requesting too many bytes");                                       throw new IllegalArgumentException("Requesting too many bytes");                                    
+}                                                                                                      }                                                                                                   
+if (count == 0) {                                                                                      if (count == 0) {                                                                                   
+baout.write(100);                                                                                      baout.write(100);                                                                                   
+ref.write(100);                                                                                        ref.write(100);                                                                                     
+return 1;                                                                                              return 1;                                                                                           
+} else {                                                                                               } else {                                                                                            
+baout.write(DATA, 0, count);                                                                           baout.write(DATA, 0, count);                                                                        
+ref.write(DATA, 0, count);                                                                             ref.write(DATA, 0, count);                                                                          
+return count;                                                                                          return count;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

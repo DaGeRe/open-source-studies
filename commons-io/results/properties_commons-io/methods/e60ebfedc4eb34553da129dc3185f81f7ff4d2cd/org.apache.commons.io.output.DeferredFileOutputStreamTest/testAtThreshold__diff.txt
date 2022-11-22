@@ -1,0 +1,13 @@
+public void testAtThreshold() {                                                                        public void testAtThreshold() {                                                                     
+DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length, null);                  DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length, null);               
+try {                                                                                                  try {                                                                                               
+dfos.write(testBytes, 0, testBytes.length);                                                            dfos.write(testBytes, 0, testBytes.length);                                                         
+dfos.close();                                                                                          dfos.close();                                                                                       
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+fail("Unexpected IOException");                                                                        fail("Unexpected IOException");                                                                     
+}                                                                                                      }                                                                                                   
+assertTrue(dfos.isInMemory());                                                                         assertTrue(dfos.isInMemory());                                                                      
+byte[] resultBytes = dfos.getData();                                                                   byte[] resultBytes = dfos.getData();                                                                
+assertTrue(resultBytes.length == testBytes.length);                                                  | assertEquals(testBytes.length, resultBytes.length);                                                 
+assertTrue(Arrays.equals(resultBytes, testBytes));                                                     assertTrue(Arrays.equals(resultBytes, testBytes));                                                  
+}                                                                                                      }                                                                                                   

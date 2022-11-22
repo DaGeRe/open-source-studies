@@ -1,0 +1,12 @@
+@Test
+public void writeCharArrayPartial() throws Exception {
+    final StringBuilderWriter writer = new StringBuilderWriter();
+    final ProxyWriter proxy = new ProxyWriter(writer);
+    try {
+        proxy.write(new char[] { 'A', 'B', 'C' }, 1, 2);
+    } catch (final Exception e) {
+        fail("Writing char[] threw " + e);
+    }
+    assertEquals("BC", writer.toString());
+    proxy.close();
+}

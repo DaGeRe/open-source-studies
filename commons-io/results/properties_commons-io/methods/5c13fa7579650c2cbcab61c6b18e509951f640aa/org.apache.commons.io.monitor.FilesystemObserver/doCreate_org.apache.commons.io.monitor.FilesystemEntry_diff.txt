@@ -1,0 +1,13 @@
+private void doCreate(FilesystemEntry entry) {
+    for (FilesystemListener listener : listeners) {
+        if (entry.isDirectory()) {
+            listener.onDirectoryCreate(entry.getFile());
+        } else {
+            listener.onFileCreate(entry.getFile());
+        }
+    }
+    FilesystemEntry[] children = entry.getChildren();
+    for (int i = 0; i < children.length; i++) {
+        doCreate(children[i]);
+    }
+}

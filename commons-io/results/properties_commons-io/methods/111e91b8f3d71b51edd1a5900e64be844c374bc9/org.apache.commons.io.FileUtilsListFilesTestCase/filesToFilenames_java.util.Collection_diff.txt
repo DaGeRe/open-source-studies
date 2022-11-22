@@ -1,0 +1,8 @@
+private Collection&lt;String&gt; filesToFilenames(Collection&lt;File&gt; files) {                      private Collection&lt;String&gt; filesToFilenames(Collection&lt;File&gt; files) {                   
+Collection&lt;String&gt; filenames = new java.util.ArrayList&lt;String&gt;(files.size());            | Collection&lt;String&gt; filenames = new ArrayList&lt;String&gt;(files.size());                     
+Iterator&lt;File&gt; i = files.iterator();                                                           | for (File file : files) {                                                                           
+while (i.hasNext()) {                                                                                | filenames.add(file.getName());                                                                      
+filenames.add(i.next().getName());                                                                   |                                                                                                     
+}                                                                                                      }                                                                                                   
+return filenames;                                                                                      return filenames;                                                                                   
+}                                                                                                      }                                                                                                   

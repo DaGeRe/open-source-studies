@@ -1,0 +1,11 @@
+public void test_openInputStream_exists() throws Exception {
+    File file = new File(getTestDirectory(), "test.txt");
+    createLineBasedFile(file, new String[] { "Hello" });
+    FileInputStream in = null;
+    try {
+        in = FileUtils.openInputStream(file);
+        assertEquals('H', in.read());
+    } finally {
+        IOUtils.closeQuietly(in);
+    }
+}

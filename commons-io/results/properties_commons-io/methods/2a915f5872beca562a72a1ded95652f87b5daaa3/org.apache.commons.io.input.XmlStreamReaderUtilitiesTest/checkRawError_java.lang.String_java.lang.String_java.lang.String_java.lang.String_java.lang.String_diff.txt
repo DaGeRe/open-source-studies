@@ -1,0 +1,16 @@
+private void checkRawError(final String msgSuffix, final String bomEnc, final String xmlGuessEnc, final String xmlEnc, final String defaultEncoding) {
+    try {
+        checkRawEncoding("XmlStreamReaderException", bomEnc, xmlGuessEnc, xmlEnc, defaultEncoding);
+        fail("Expected XmlStreamReaderException");
+    } catch (final XmlStreamReaderException e) {
+        assertTrue("Msg Start: " + e.getMessage(), e.getMessage().startsWith("Invalid encoding"));
+        assertTrue("Msg End: " + e.getMessage(), e.getMessage().endsWith(msgSuffix));
+        assertEquals("bomEnc", bomEnc, e.getBomEncoding());
+        assertEquals("xmlGuessEnc", xmlGuessEnc, e.getXmlGuessEncoding());
+        assertEquals("xmlEnc", xmlEnc, e.getXmlEncoding());
+        assertNull("ContentTypeEncoding", e.getContentTypeEncoding());
+        assertNull("ContentTypeMime", e.getContentTypeMime());
+    } catch (final Exception e) {
+        fail("Expected XmlStreamReaderException, but threw " + e);
+    }
+}

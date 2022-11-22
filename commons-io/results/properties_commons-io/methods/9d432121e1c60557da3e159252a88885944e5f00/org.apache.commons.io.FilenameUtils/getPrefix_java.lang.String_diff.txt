@@ -1,0 +1,16 @@
+public static String getPrefix(final String filename) {
+    if (filename == null) {
+        return null;
+    }
+    final int len = getPrefixLength(filename);
+    if (len < 0) {
+        return null;
+    }
+    if (len > filename.length()) {
+        failIfNullBytePresent(filename + UNIX_SEPARATOR);
+        return filename + UNIX_SEPARATOR;
+    }
+    String path = filename.substring(0, len);
+    failIfNullBytePresent(path);
+    return path;
+}

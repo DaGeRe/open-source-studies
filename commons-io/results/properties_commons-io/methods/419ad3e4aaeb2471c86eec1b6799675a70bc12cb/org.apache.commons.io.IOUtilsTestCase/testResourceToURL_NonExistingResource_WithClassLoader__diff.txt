@@ -1,0 +1,4 @@
+@Test(expected = IOException.class)
+public void testResourceToURL_NonExistingResource_WithClassLoader() throws Exception {
+    IOUtils.resourceToURL("non-existing-file.bin", ClassLoader.getSystemClassLoader());
+}

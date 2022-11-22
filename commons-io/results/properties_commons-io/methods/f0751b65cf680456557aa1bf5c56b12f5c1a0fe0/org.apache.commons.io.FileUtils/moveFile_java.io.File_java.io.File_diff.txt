@@ -1,0 +1,28 @@
+public static void moveFile(final File srcFile, final File destFile) throws IOException {              public static void moveFile(final File srcFile, final File destFile) throws IOException {           
+if (srcFile == null) {                                                                               | validateMoveParameters(srcFile, destFile);                                                          
+throw new NullPointerException("Source must not be null");                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (destFile == null) {                                                                              |                                                                                                     
+throw new NullPointerException("Destination must not be null");                                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (!srcFile.exists()) {                                                                             |                                                                                                     
+throw new FileNotFoundException("Source '" + srcFile + "' does not exist");                          |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (srcFile.isDirectory()) {                                                                           if (srcFile.isDirectory()) {                                                                        
+throw new IOException("Source '" + srcFile + "' is a directory");                                      throw new IOException("Source '" + srcFile + "' is a directory");                                   
+}                                                                                                      }                                                                                                   
+if (destFile.exists()) {                                                                               if (destFile.exists()) {                                                                            
+throw new FileExistsException("Destination '" + destFile + "' already exists");                        throw new FileExistsException("Destination '" + destFile + "' already exists");                     
+}                                                                                                      }                                                                                                   
+if (destFile.isDirectory()) {                                                                          if (destFile.isDirectory()) {                                                                       
+throw new IOException("Destination '" + destFile + "' is a directory");                                throw new IOException("Destination '" + destFile + "' is a directory");                             
+}                                                                                                      }                                                                                                   
+final boolean rename = srcFile.renameTo(destFile);                                                     final boolean rename = srcFile.renameTo(destFile);                                                  
+if (!rename) {                                                                                         if (!rename) {                                                                                      
+copyFile(srcFile, destFile);                                                                           copyFile(srcFile, destFile);                                                                        
+if (!srcFile.delete()) {                                                                               if (!srcFile.delete()) {                                                                            
+FileUtils.deleteQuietly(destFile);                                                                     FileUtils.deleteQuietly(destFile);                                                                  
+throw new IOException("Failed to delete original file '" + srcFile + "' after copy to '" + destFile    throw new IOException("Failed to delete original file '" + srcFile + "' after copy to '" + destFile 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

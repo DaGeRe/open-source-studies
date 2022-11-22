@@ -1,0 +1,26 @@
+public void test_checkEquals_functionality() throws Exception {
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", ""));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "A"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "AB"));
+    assertEquals(true, IOCase.SENSITIVE.checkEquals("ABC", "ABC"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "BC"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "C"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "ABCD"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("", "ABC"));
+    assertEquals(true, IOCase.SENSITIVE.checkEquals("", ""));
+    try {
+        IOCase.SENSITIVE.checkEquals("ABC", null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkEquals(null, "ABC");
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkEquals(null, null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

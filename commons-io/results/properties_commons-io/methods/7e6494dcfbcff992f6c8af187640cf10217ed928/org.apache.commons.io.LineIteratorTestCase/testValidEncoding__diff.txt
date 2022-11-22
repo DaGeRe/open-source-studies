@@ -1,0 +1,16 @@
+public void testValidEncoding() throws Exception {                                                     public void testValidEncoding() throws Exception {                                                  
+String encoding = "UTF-8";                                                                             String encoding = "UTF-8";                                                                          
+File testFile = new File(getTestDirectory(), "LineIterator-validEncoding.txt");                        File testFile = new File(getTestDirectory(), "LineIterator-validEncoding.txt");                     
+createFile(testFile, encoding, 3);                                                                   | createLinesFile(testFile, encoding, 3);                                                             
+LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);                                 
+try {                                                                                                  try {                                                                                               
+int count = 0;                                                                                         int count = 0;                                                                                      
+while (iterator.hasNext()) {                                                                           while (iterator.hasNext()) {                                                                        
+assertTrue(iterator.next() instanceof String);                                                         assertTrue(iterator.next() instanceof String);                                                      
+count++;                                                                                               count++;                                                                                            
+}                                                                                                      }                                                                                                   
+assertEquals(3, count);                                                                                assertEquals(3, count);                                                                             
+} finally {                                                                                            } finally {                                                                                         
+LineIterator.closeQuietly(iterator);                                                                   LineIterator.closeQuietly(iterator);                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

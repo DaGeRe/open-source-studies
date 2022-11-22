@@ -1,0 +1,8 @@
+public static Collection&lt;File&gt; listFiles(final File directory, final IOFileFilter fileFilter,    public static Collection&lt;File&gt; listFiles(final File directory, final IOFileFilter fileFilter, 
+validateListFilesParameters(directory, fileFilter);                                                    validateListFilesParameters(directory, fileFilter);                                                 
+final IOFileFilter effFileFilter = setUpEffectiveFileFilter(fileFilter);                               final IOFileFilter effFileFilter = setUpEffectiveFileFilter(fileFilter);                            
+final IOFileFilter effDirFilter = setUpEffectiveDirFilter(dirFilter);                                  final IOFileFilter effDirFilter = setUpEffectiveDirFilter(dirFilter);                               
+final Collection&lt;File&gt; files = new java.util.LinkedList&lt;File&gt;();                         | final Collection&lt;File&gt; files = new java.util.LinkedList&lt;&gt;();                            
+innerListFiles(files, directory, FileFilterUtils.or(effFileFilter, effDirFilter), false);              innerListFiles(files, directory, FileFilterUtils.or(effFileFilter, effDirFilter), false);           
+return files;                                                                                          return files;                                                                                       
+}                                                                                                      }                                                                                                   

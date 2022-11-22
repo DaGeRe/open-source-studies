@@ -1,0 +1,18 @@
+public static void moveDirectoryToDirectory(File src, File destDir, boolean createDestDir) throws IOException {
+    if (src == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (destDir == null) {
+        throw new NullPointerException("Destination directory must not be null");
+    }
+    if (!destDir.exists() && createDestDir) {
+        destDir.mkdirs();
+    }
+    if (!destDir.exists()) {
+        throw new IOException("Destination directory does not exist");
+    }
+    if (!destDir.isDirectory()) {
+        throw new IOException("Destination '" + destDir + "' is not a directory");
+    }
+    moveDirectory(src, new File(destDir, src.getName()));
+}

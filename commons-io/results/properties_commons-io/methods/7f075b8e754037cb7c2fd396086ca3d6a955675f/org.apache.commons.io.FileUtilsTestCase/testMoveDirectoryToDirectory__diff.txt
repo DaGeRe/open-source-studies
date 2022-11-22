@@ -1,0 +1,20 @@
+public void testMoveDirectoryToDirectory() throws Exception {
+    File dir = getTestDirectory();
+    File src = new File(dir, "testMoveDirectory1Source");
+    File testChildDir = new File(src, "foo");
+    File testFile = new File(testChildDir, "bar");
+    testChildDir.mkdirs();
+    createFile(testFile, 0);
+    File destDir = new File(dir, "testMoveDirectory1Dest");
+    FileUtils.deleteDirectory(destDir);
+    assertFalse("Check Exist before", destDir.exists());
+    FileUtils.moveDirectoryToDirectory(src, destDir, true);
+    assertTrue("Check Exist after", destDir.exists());
+    assertTrue("Original deleted", !src.exists());
+    File movedDir = new File(destDir, src.getName());
+    File movedChildDir = new File(movedDir, testChildDir.getName());
+    File movedFile = new File(movedChildDir, testFile.getName());
+    assertTrue("Check dir moved", movedDir.exists());
+    assertTrue("Check child dir moved", movedChildDir.exists());
+    assertTrue("Check file moved", movedFile.exists());
+}

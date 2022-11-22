@@ -1,0 +1,21 @@
+@SuppressWarnings("deprecation")                                                                       @SuppressWarnings("deprecation")                                                                    
+@Test                                                                                                  @Test                                                                                               
+public void testStringToOutputStream() throws Exception {                                              public void testStringToOutputStream() throws Exception {                                           
+final File destination = TestUtils.newFile(getTestDirectory(), "copy5.txt");                           final File destination = TestUtils.newFile(getTestDirectory(), "copy5.txt");                        
+final FileReader fin = new FileReader(m_testFile);                                                   |                                                                                                     
+String str;                                                                                            String str;                                                                                         
+try {                                                                                                | try (FileReader fin = new FileReader(m_testFile)) {                                                 
+str = IOUtils.toString(fin);                                                                           str = IOUtils.toString(fin);                                                                        
+} finally {                                                                                          |                                                                                                     
+fin.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+final FileOutputStream fout = new FileOutputStream(destination);                                     | try (FileOutputStream fout = new FileOutputStream(destination)) {                                   
+try {                                                                                                |                                                                                                     
+CopyUtils.copy(str, fout);                                                                             CopyUtils.copy(str, fout);                                                                          
+TestUtils.checkFile(destination, m_testFile);                                                          TestUtils.checkFile(destination, m_testFile);                                                       
+TestUtils.checkWrite(fout);                                                                            TestUtils.checkWrite(fout);                                                                         
+} finally {                                                                                          |                                                                                                     
+fout.close();                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+TestUtils.deleteFile(destination);                                                                     TestUtils.deleteFile(destination);                                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public void testNullCharArray() {                                                                      public void testNullCharArray() {                                                                   
+ProxyWriter proxy = new ProxyWriter(new NullWriter());                                                 ProxyWriter proxy = new ProxyWriter(new NullWriter());                                              
+try {                                                                                                  try {                                                                                               
+proxy.write((char[]) null);                                                                            proxy.write((char[]) null);                                                                         
+} catch (NullPointerException e) {                                                                   |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Writing null char[] threw " + e);                                                                fail("Writing null char[] threw " + e);                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+proxy.write((char[]) null, 0, 0);                                                                      proxy.write((char[]) null, 0, 0);                                                                   
+} catch (NullPointerException e) {                                                                   |                                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Writing null char[] threw " + e);                                                                fail("Writing null char[] threw " + e);                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

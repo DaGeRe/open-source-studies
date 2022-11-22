@@ -1,0 +1,9 @@
+@Override
+public long skip(final long ln) throws IOException {
+    try {
+        return in.skip(ln);
+    } catch (final IOException e) {
+        handleIOException(e);
+        return 0;
+    }
+}

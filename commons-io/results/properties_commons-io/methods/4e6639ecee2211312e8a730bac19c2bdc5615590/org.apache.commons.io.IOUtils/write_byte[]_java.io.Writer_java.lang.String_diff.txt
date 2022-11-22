@@ -1,0 +1,9 @@
+public static void write(byte[] data, Writer output, String encoding) throws IOException {
+    if (data != null) {
+        if (encoding == null) {
+            write(data, output);
+        } else {
+            output.write(new String(data, encoding));
+        }
+    }
+}

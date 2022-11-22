@@ -1,0 +1,8 @@
+public void testWrite_stringToOutputStream_Encoding_nullData() throws Exception {
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    IOUtils.write((String) null, out);
+    out.off();
+    out.flush();
+    assertEquals("Sizes differ", 0, baout.size());
+}

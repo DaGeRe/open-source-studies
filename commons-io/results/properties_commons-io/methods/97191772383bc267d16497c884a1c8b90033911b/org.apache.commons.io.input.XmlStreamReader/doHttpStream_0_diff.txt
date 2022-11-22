@@ -1,0 +1,14 @@
+                                                                                                     | private String doHttpStream(BOMInputStream bom, BOMInputStream pis, String httpContentType, boolean 
+                                                                                                     | String bomEnc = bom.getBOMCharsetName();                                                            
+                                                                                                     | String xmlGuessEnc = pis.getBOMCharsetName();                                                       
+                                                                                                     | String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                     
+                                                                                                     | try {                                                                                               
+                                                                                                     | return calculateHttpEncoding(httpContentType, bomEnc, xmlGuessEnc, xmlEnc, lenient);                
+                                                                                                     | } catch (XmlStreamReaderException ex) {                                                             
+                                                                                                     | if (lenient) {                                                                                      
+                                                                                                     | return doLenientDetection(httpContentType, ex);                                                     
+                                                                                                     | } else {                                                                                            
+                                                                                                     | throw ex;                                                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

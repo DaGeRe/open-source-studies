@@ -1,0 +1,8 @@
+public static synchronized void exitWhenFinished() {                                                   public static synchronized void exitWhenFinished() {                                                
+exitWhenFinished = true;                                                                             | theInstance.exitWhenFinished();                                                                     
+if (reaper != null) {                                                                                |                                                                                                     
+synchronized (reaper) {                                                                              |                                                                                                     
+reaper.interrupt();                                                                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

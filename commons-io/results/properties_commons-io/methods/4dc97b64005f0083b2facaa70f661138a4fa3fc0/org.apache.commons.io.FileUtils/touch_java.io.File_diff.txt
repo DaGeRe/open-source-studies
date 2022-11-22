@@ -1,0 +1,10 @@
+public static void touch(final File file) throws IOException {                                         public static void touch(final File file) throws IOException {                                      
+if (!file.exists()) {                                                                                  if (!file.exists()) {                                                                               
+final OutputStream out = openOutputStream(file);                                                     | openOutputStream(file).close();                                                                     
+IOUtils.closeQuietly(out);                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+final boolean success = file.setLastModified(System.currentTimeMillis());                              final boolean success = file.setLastModified(System.currentTimeMillis());                           
+if (!success) {                                                                                        if (!success) {                                                                                     
+throw new IOException("Unable to set the last modification time for " + file);                         throw new IOException("Unable to set the last modification time for " + file);                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

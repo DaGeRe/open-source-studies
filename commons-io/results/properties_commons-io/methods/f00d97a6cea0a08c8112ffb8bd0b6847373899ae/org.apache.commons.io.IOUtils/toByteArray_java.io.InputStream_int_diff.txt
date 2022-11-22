@@ -1,0 +1,18 @@
+public static byte[] toByteArray(final InputStream input, final int size) throws IOException {         public static byte[] toByteArray(final InputStream input, final int size) throws IOException {      
+if (size &lt; 0) {                                                                                     if (size &lt; 0) {                                                                                  
+throw new IllegalArgumentException("Size must be equal or greater than zero: " + size);                throw new IllegalArgumentException("Size must be equal or greater than zero: " + size);             
+}                                                                                                      }                                                                                                   
+if (size == 0) {                                                                                       if (size == 0) {                                                                                    
+return new byte[0];                                                                                    return new byte[0];                                                                                 
+}                                                                                                      }                                                                                                   
+final byte[] data = new byte[size];                                                                    final byte[] data = new byte[size];                                                                 
+int offset = 0;                                                                                        int offset = 0;                                                                                     
+int readed;                                                                                          | int read;                                                                                           
+while (offset &lt; size && (readed = input.read(data, offset, size - offset)) != EOF) {              | while (offset &lt; size && (read = input.read(data, offset, size - offset)) != EOF) {               
+offset += readed;                                                                                    | offset += read;                                                                                     
+}                                                                                                      }                                                                                                   
+if (offset != size) {                                                                                  if (offset != size) {                                                                               
+throw new IOException("Unexpected readed size. current: " + offset + ", excepted: " + size);         | throw new IOException("Unexpected read size. current: " + offset + ", expected: " + size);          
+}                                                                                                      }                                                                                                   
+return data;                                                                                           return data;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+public static boolean equals(String filename1, String filename2, boolean normalized, IOCase caseSens   public static boolean equals(String filename1, String filename2, boolean normalized, IOCase caseSens
+if (filename1 == null || filename2 == null) {                                                          if (filename1 == null || filename2 == null) {                                                       
+return filename1 == filename2;                                                                         return filename1 == filename2;                                                                      
+}                                                                                                      }                                                                                                   
+if (normalized) {                                                                                      if (normalized) {                                                                                   
+filename1 = normalize(filename1);                                                                      filename1 = normalize(filename1);                                                                   
+filename2 = normalize(filename2);                                                                      filename2 = normalize(filename2);                                                                   
+                                                                                                     | if (filename1 == null || filename2 == null) {                                                       
+                                                                                                     | throw new IllegalArgumentException("Error normalizing one or both of the file names");              
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+if (caseSensitivity == null) {                                                                         if (caseSensitivity == null) {                                                                      
+caseSensitivity = IOCase.SENSITIVE;                                                                    caseSensitivity = IOCase.SENSITIVE;                                                                 
+}                                                                                                      }                                                                                                   
+return caseSensitivity.checkEquals(filename1, filename2);                                              return caseSensitivity.checkEquals(filename1, filename2);                                           
+}                                                                                                      }                                                                                                   

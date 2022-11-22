@@ -1,0 +1,44 @@
+private void testFiltering(final List<String> lines, final Reader reader) {
+    final LineIterator iterator = new LineIterator(reader) {
+
+        @Override
+        protected boolean isValidLine(final String line) {
+            final char c = line.charAt(line.length() - 1);
+            return (c - 48) % 3 != 1;
+        }
+    };
+    try {
+        try {
+            iterator.remove();
+            fail("Remove is unsupported");
+        } catch (final UnsupportedOperationException ex) {
+        }
+        int idx = 0;
+        int actualLines = 0;
+        while (iterator.hasNext()) {
+            final String line = iterator.next();
+            actualLines++;
+            assertEquals("Comparing line " + idx, lines.get(idx), line);
+            assertTrue("Exceeded expected idx=" + idx + " size=" + lines.size(), idx < lines.size());
+            idx++;
+            if (idx % 3 == 1) {
+                idx++;
+            }
+        }
+        assertEquals("Line Count doesn't match", 9, lines.size());
+        assertEquals("Line Count doesn't match", 9, idx);
+        assertEquals("Line Count doesn't match", 6, actualLines);
+        try {
+            iterator.next();
+            fail("Expected NoSuchElementException");
+        } catch (final NoSuchElementException expected) {
+        }
+        try {
+            iterator.nextLine();
+            fail("Expected NoSuchElementException");
+        } catch (final NoSuchElementException expected) {
+        }
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

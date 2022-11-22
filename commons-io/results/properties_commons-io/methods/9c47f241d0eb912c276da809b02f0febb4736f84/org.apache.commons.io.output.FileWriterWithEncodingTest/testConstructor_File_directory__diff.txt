@@ -1,0 +1,12 @@
+public void testConstructor_File_directory() throws IOException {                                    | public void testConstructor_File_directory() {                                                      
+Writer writer = null;                                                                                  Writer writer = null;                                                                               
+try {                                                                                                  try {                                                                                               
+writer = new FileWriterWithEncoding(getTestDirectory(), defaultEncoding);                              writer = new FileWriterWithEncoding(getTestDirectory(), defaultEncoding);                           
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+assertEquals(false, file1.exists());                                                                   assertEquals(false, file1.exists());                                                                
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(writer);                                                                          IOUtils.closeQuietly(writer);                                                                       
+}                                                                                                      }                                                                                                   
+assertEquals(false, file1.exists());                                                                   assertEquals(false, file1.exists());                                                                
+}                                                                                                      }                                                                                                   

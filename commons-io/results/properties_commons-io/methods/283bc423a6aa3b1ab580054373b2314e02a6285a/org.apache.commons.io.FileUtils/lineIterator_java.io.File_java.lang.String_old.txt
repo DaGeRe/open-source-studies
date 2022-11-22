@@ -1,0 +1,13 @@
+public static LineIterator lineIterator(File file, String encoding) throws IOException {
+    InputStream in = null;
+    try {
+        in = new FileInputStream(file);
+        return IOUtils.lineIterator(in, encoding);
+    } catch (IOException ex) {
+        IOUtils.closeQuietly(in);
+        throw ex;
+    } catch (RuntimeException ex) {
+        IOUtils.closeQuietly(in);
+        throw ex;
+    }
+}

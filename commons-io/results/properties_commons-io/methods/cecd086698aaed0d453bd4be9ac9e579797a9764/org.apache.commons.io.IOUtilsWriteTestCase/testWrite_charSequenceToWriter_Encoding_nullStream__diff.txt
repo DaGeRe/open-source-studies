@@ -1,0 +1,8 @@
+public void testWrite_charSequenceToWriter_Encoding_nullStream() throws Exception {
+    CharSequence csq = new StringBuilder(new String(inData, "US-ASCII"));
+    try {
+        IOUtils.write(csq, (Writer) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

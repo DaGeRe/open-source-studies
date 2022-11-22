@@ -1,0 +1,9 @@
+public DeferredFileOutputStream(int threshold, String prefix, String suffix, File directory) {         public DeferredFileOutputStream(int threshold, String prefix, String suffix, File directory) {      
+this(threshold, (File) null);                                                                        | this(threshold, null, prefix, suffix, directory);                                                   
+if (prefix == null) {                                                                                  if (prefix == null) {                                                                               
+throw new IllegalArgumentException("Temporary file prefix is missing");                                throw new IllegalArgumentException("Temporary file prefix is missing");                             
+}                                                                                                      }                                                                                                   
+this.prefix = prefix;                                                                                |                                                                                                     
+this.suffix = suffix;                                                                                |                                                                                                     
+this.directory = directory;                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   

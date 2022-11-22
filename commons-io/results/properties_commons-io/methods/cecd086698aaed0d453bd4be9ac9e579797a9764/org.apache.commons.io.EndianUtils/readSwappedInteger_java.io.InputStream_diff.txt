@@ -1,0 +1,7 @@
+public static int readSwappedInteger(InputStream input) throws IOException {
+    int value1 = read(input);
+    int value2 = read(input);
+    int value3 = read(input);
+    int value4 = read(input);
+    return ((value1 & 0xff) << 0) + ((value2 & 0xff) << 8) + ((value3 & 0xff) << 16) + ((value4 & 0xff) << 24);
+}

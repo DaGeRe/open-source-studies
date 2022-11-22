@@ -1,0 +1,21 @@
+@SuppressWarnings("deprecation")
+public void testByteArrayToWriter() throws Exception {
+    File destination = newFile("copy7.txt");
+    FileInputStream fin = new FileInputStream(m_testFile);
+    byte[] in;
+    try {
+        in = IOUtils.toByteArray(fin);
+    } finally {
+        fin.close();
+    }
+    FileWriter fout = new FileWriter(destination);
+    try {
+        CopyUtils.copy(in, fout);
+        fout.flush();
+        checkFile(destination, m_testFile);
+        checkWrite(fout);
+    } finally {
+        fout.close();
+    }
+    deleteFile(destination);
+}

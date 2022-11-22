@@ -1,0 +1,16 @@
+protected void setUp() throws Exception {
+    testDir = new File(new File("."), "test-monitor");
+    if (testDir.exists()) {
+        FileUtils.cleanDirectory(testDir);
+    } else {
+        testDir.mkdir();
+    }
+    IOFileFilter files = FileFilterUtils.fileFileFilter();
+    IOFileFilter javaSuffix = FileFilterUtils.suffixFileFilter(".java");
+    IOFileFilter fileFilter = FileFilterUtils.andFileFilter(files, javaSuffix);
+    IOFileFilter directories = FileFilterUtils.directoryFileFilter();
+    IOFileFilter visible = HiddenFileFilter.VISIBLE;
+    IOFileFilter dirFilter = FileFilterUtils.andFileFilter(directories, visible);
+    IOFileFilter filter = FileFilterUtils.orFileFilter(dirFilter, fileFilter);
+    createObserver(testDir, filter);
+}

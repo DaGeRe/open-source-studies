@@ -1,0 +1,8 @@
+@Override
+public void close() throws IOException {
+    try {
+        out.close();
+    } finally {
+        lockFile.delete();
+    }
+}

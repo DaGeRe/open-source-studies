@@ -1,0 +1,8 @@
+public static void writeByteArrayToFile(File file, byte[] data) throws IOException {
+    OutputStream out = new FileOutputStream(file);
+    try {
+        out.write(data);
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+}

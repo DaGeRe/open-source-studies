@@ -1,0 +1,15 @@
+private static void innerListFiles(final Collection<File> files, final File directory, final IOFileFilter filter, final boolean includeSubDirectories) {
+    final File[] found = directory.listFiles((FileFilter) filter);
+    if (found != null) {
+        for (final File file : found) {
+            if (file.isDirectory()) {
+                if (includeSubDirectories) {
+                    files.add(file);
+                }
+                innerListFiles(files, file, filter, includeSubDirectories);
+            } else {
+                files.add(file);
+            }
+        }
+    }
+}

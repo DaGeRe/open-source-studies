@@ -1,0 +1,8 @@
+private FileEntry[] doListFiles(File file, FileEntry entry) {                                        | private FileEntry[] doListFiles(final File file, final FileEntry entry) {                           
+final File[] files = listFiles(file);                                                                  final File[] files = listFiles(file);                                                               
+final FileEntry[] children = files.length &gt; 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENT   final FileEntry[] children = files.length &gt; 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENT
+for (int i = 0; i &lt; files.length; i++) {                                                            for (int i = 0; i &lt; files.length; i++) {                                                         
+children[i] = createFileEntry(entry, files[i]);                                                        children[i] = createFileEntry(entry, files[i]);                                                     
+}                                                                                                      }                                                                                                   
+return children;                                                                                       return children;                                                                                    
+}                                                                                                      }                                                                                                   

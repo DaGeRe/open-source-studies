@@ -1,0 +1,8 @@
+public void testEOF3() throws Exception {
+    ByteArrayInputStream bais = new ByteArrayInputStream(new byte[2]);
+    CountingInputStream cis = new CountingInputStream(bais);
+    byte[] result = new byte[10];
+    int found = cis.read(result, 0, 5);
+    assertEquals(2, found);
+    assertEquals(2, cis.getCount());
+}

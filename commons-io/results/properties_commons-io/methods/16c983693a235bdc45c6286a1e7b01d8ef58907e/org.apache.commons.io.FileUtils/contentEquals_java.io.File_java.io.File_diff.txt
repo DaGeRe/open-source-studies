@@ -1,0 +1,22 @@
+public static boolean contentEquals(final File file1, final File file2) throws IOException {
+    final boolean file1Exists = file1.exists();
+    if (file1Exists != file2.exists()) {
+        return false;
+    }
+    if (!file1Exists) {
+        return true;
+    }
+    if (file1.isDirectory() || file2.isDirectory()) {
+        throw new IOException("Can't compare directories, only files");
+    }
+    if (file1.length() != file2.length()) {
+        return false;
+    }
+    if (file1.getCanonicalFile().equals(file2.getCanonicalFile())) {
+        return true;
+    }
+    try (InputStream input1 = new FileInputStream(file1);
+        InputStream input2 = new FileInputStream(file2)) {
+        return IOUtils.contentEquals(input1, input2);
+    }
+}

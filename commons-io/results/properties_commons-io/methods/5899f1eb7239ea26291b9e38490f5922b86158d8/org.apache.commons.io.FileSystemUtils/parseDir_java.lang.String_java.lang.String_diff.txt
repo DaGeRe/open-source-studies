@@ -1,0 +1,31 @@
+long parseDir(final String line, final String path) throws IOException {
+    int bytesStart = 0;
+    int bytesEnd = 0;
+    int j = line.length() - 1;
+    innerLoop1: while (j >= 0) {
+        final char c = line.charAt(j);
+        if (Character.isDigit(c)) {
+            bytesEnd = j + 1;
+            break innerLoop1;
+        }
+        j--;
+    }
+    innerLoop2: while (j >= 0) {
+        final char c = line.charAt(j);
+        if (!Character.isDigit(c) && c != ',' && c != '.') {
+            bytesStart = j + 1;
+            break innerLoop2;
+        }
+        j--;
+    }
+    if (j < 0) {
+        throw new IOException("Command line 'dir /-c' did not return valid info " + "for path '" + path + "'");
+    }
+    final StringBuilder buf = new StringBuilder(line.substring(bytesStart, bytesEnd));
+    for (int k = 0; k < buf.length(); k++) {
+        if (buf.charAt(k) == ',' || buf.charAt(k) == '.') {
+            buf.deleteCharAt(k--);
+        }
+    }
+    return parseBytes(buf.toString(), path);
+}

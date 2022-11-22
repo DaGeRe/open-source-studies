@@ -1,0 +1,9 @@
+public void testWriteLines_4arg() throws Exception {
+    Object[] data = new Object[] { "hello", new StringBuffer("world"), "", "this is", null, "some text" };
+    List<Object> list = Arrays.asList(data);
+    File file = newFile("lines.txt");
+    FileUtils.writeLines(file, "US-ASCII", list, "*");
+    String expected = "hello*world**this is**some text*";
+    String actual = FileUtils.readFileToString(file, "US-ASCII");
+    assertEquals(expected, actual);
+}

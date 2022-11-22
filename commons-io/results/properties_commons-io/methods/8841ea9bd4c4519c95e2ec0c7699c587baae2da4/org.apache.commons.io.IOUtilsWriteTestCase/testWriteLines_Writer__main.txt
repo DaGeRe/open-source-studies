@@ -1,0 +1,13 @@
+public void testWriteLines_Writer() throws Exception {
+    Object[] data = new Object[] { "hello", new StringBuffer("world"), "", "this is", null, "some text" };
+    List<Object> list = Arrays.asList(data);
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    Writer writer = new OutputStreamWriter(baout, "US-ASCII");
+    IOUtils.writeLines(list, "*", writer);
+    out.off();
+    writer.flush();
+    String expected = "hello*world**this is**some text*";
+    String actual = baout.toString();
+    assertEquals(expected, actual);
+}

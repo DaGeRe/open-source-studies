@@ -1,0 +1,18 @@
+public void testThresholdReached() {
+    File testFile = new File("testThresholdReached.dat");
+    testFile.delete();
+    DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length / 2, testFile);
+    int chunkSize = testBytes.length / 3;
+    try {
+        dfos.write(testBytes, 0, chunkSize);
+        dfos.write(testBytes, chunkSize, chunkSize);
+        dfos.write(testBytes, chunkSize * 2, testBytes.length - chunkSize * 2);
+        dfos.close();
+    } catch (IOException e) {
+        fail("Unexpected IOException");
+    }
+    assertFalse(dfos.isInMemory());
+    assertNull(dfos.getData());
+    verifyResultFile(testFile);
+    testFile.delete();
+}

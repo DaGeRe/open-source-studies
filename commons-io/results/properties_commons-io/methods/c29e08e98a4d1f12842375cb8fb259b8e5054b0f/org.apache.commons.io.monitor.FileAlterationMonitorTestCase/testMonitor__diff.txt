@@ -1,0 +1,36 @@
+@Test                                                                                                  @Test                                                                                               
+public void testMonitor() {                                                                          | public void testMonitor() throws Exception {                                                        
+try {                                                                                                |                                                                                                     
+final long interval = 100;                                                                             final long interval = 100;                                                                          
+listener.clear();                                                                                      listener.clear();                                                                                   
+final FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);                   final FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);                
+assertEquals("Interval", interval, monitor.getInterval());                                             assertEquals("Interval", interval, monitor.getInterval());                                          
+monitor.start();                                                                                       monitor.start();                                                                                    
+try {                                                                                                  try {                                                                                               
+monitor.start();                                                                                       monitor.start();                                                                                    
+fail("Expected IllegalStateException");                                                                fail("Expected IllegalStateException");                                                             
+} catch (final IllegalStateException e) {                                                              } catch (final IllegalStateException e) {                                                           
+}                                                                                                      }                                                                                                   
+checkCollectionsEmpty("A");                                                                            checkCollectionsEmpty("A");                                                                         
+File file1 = touch(new File(testDir, "file1.java"));                                                   File file1 = touch(new File(testDir, "file1.java"));                                                
+checkFile("Create", file1, listener.getCreatedFiles());                                                checkFile("Create", file1, listener.getCreatedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+checkCollectionsEmpty("B");                                                                            checkCollectionsEmpty("B");                                                                         
+file1 = touch(file1);                                                                                  file1 = touch(file1);                                                                               
+checkFile("Update", file1, listener.getChangedFiles());                                                checkFile("Update", file1, listener.getChangedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+checkCollectionsEmpty("C");                                                                            checkCollectionsEmpty("C");                                                                         
+file1.delete();                                                                                        file1.delete();                                                                                     
+checkFile("Delete", file1, listener.getDeletedFiles());                                                checkFile("Delete", file1, listener.getDeletedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+monitor.stop();                                                                                        monitor.stop();                                                                                     
+try {                                                                                                  try {                                                                                               
+monitor.stop();                                                                                        monitor.stop();                                                                                     
+fail("Expected IllegalStateException");                                                                fail("Expected IllegalStateException");                                                             
+} catch (final IllegalStateException e) {                                                              } catch (final IllegalStateException e) {                                                           
+}                                                                                                      }                                                                                                   
+} catch (final Exception e) {                                                                        |                                                                                                     
+e.printStackTrace();                                                                                 |                                                                                                     
+fail("Threw " + e);                                                                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

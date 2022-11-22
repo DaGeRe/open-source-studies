@@ -1,0 +1,9 @@
+public static List readLines(File file, String encoding) throws IOException {
+    InputStream in = null;
+    try {
+        in = new FileInputStream(file);
+        return IOUtils.readLines(in, encoding);
+    } finally {
+        IOUtils.closeQuietly(in);
+    }
+}

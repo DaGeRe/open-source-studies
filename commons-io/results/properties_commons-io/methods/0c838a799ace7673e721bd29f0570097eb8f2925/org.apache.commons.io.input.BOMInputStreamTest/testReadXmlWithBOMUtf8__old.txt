@@ -1,0 +1,7 @@
+@Test
+public void testReadXmlWithBOMUtf8() throws Exception {
+    @SuppressWarnings("deprecation")
+    final byte[] data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><X/>".getBytes(Charsets.UTF_8);
+    parseXml(new BOMInputStream(createUtf8DataStream(data, true)));
+    parseXml(createUtf8DataStream(data, true));
+}

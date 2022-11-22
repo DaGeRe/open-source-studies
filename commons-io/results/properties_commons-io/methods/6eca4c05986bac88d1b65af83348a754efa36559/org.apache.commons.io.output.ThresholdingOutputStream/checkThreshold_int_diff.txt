@@ -1,0 +1,6 @@
+protected void checkThreshold(int count) throws IOException {
+    if (!thresholdExceeded && (written + count > threshold)) {
+        thresholdReached();
+        thresholdExceeded = true;
+    }
+}

@@ -1,0 +1,13 @@
+public void testNameFilterNullArgument() throws Exception {                                            public void testNameFilterNullArgument() throws Exception {                                         
+String test = null;                                                                                    String test = null;                                                                                 
+try {                                                                                                  try {                                                                                               
+new NameFileFilter(test);                                                                              new NameFileFilter(test);                                                                           
+fail("constructing a NameFileFilter with a null String argument should fail.");                        fail("constructing a NameFileFilter with a null String argument should fail.");                     
+} catch (IllegalArgumentException iae) {                                                               } catch (IllegalArgumentException iae) {                                                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | try {                                                                                               
+                                                                                                     | FileFilterUtils.nameFileFilter(test, IOCase.INSENSITIVE);                                           
+                                                                                                     | fail("constructing a NameFileFilter with a null String argument should fail.");                     
+                                                                                                     | } catch (IllegalArgumentException iae) {                                                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

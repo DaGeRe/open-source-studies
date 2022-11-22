@@ -1,0 +1,15 @@
+public static void copyDirectoryToDirectory(final File srcDir, final File destDir) throws IOException {
+    if (srcDir == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (srcDir.exists() && srcDir.isDirectory() == false) {
+        throw new IllegalArgumentException("Source '" + destDir + "' is not a directory");
+    }
+    if (destDir == null) {
+        throw new NullPointerException("Destination must not be null");
+    }
+    if (destDir.exists() && destDir.isDirectory() == false) {
+        throw new IllegalArgumentException("Destination '" + destDir + "' is not a directory");
+    }
+    copyDirectory(srcDir, new File(destDir, srcDir.getName()), true);
+}

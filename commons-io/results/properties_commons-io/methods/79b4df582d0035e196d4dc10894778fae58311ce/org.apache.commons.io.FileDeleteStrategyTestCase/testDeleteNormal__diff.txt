@@ -1,0 +1,32 @@
+@Test                                                                                                  @Test                                                                                               
+public void testDeleteNormal() throws Exception {                                                      public void testDeleteNormal() throws Exception {                                                   
+final File baseDir = getTestDirectory();                                                               final File baseDir = getTestDirectory();                                                            
+final File subDir = new File(baseDir, "test");                                                         final File subDir = new File(baseDir, "test");                                                      
+assertTrue(subDir.mkdir());                                                                            assertTrue(subDir.mkdir());                                                                         
+final File subFile = new File(subDir, "a.txt");                                                        final File subFile = new File(subDir, "a.txt");                                                     
+if (!subFile.getParentFile().exists()) {                                                               if (!subFile.getParentFile().exists()) {                                                            
+throw new IOException("Cannot create file " + subFile + " as the parent directory does not exist");    throw new IOException("Cannot create file " + subFile + " as the parent directory does not exist"); 
+}                                                                                                      }                                                                                                   
+final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(subFile));         | try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(subFile))) { 
+try {                                                                                                |                                                                                                     
+TestUtils.generateTestData(output, (long) 16);                                                         TestUtils.generateTestData(output, (long) 16);                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(output);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertTrue(subFile.exists());                                                                          assertTrue(subFile.exists());                                                                       
+try {                                                                                                  try {                                                                                               
+FileDeleteStrategy.NORMAL.delete(subDir);                                                              FileDeleteStrategy.NORMAL.delete(subDir);                                                           
+fail();                                                                                                fail();                                                                                             
+} catch (final IOException ex) {                                                                       } catch (final IOException ex) {                                                                    
+}                                                                                                      }                                                                                                   
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertTrue(subFile.exists());                                                                          assertTrue(subFile.exists());                                                                       
+FileDeleteStrategy.NORMAL.delete(subFile);                                                             FileDeleteStrategy.NORMAL.delete(subFile);                                                          
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertFalse(subFile.exists());                                                                         assertFalse(subFile.exists());                                                                      
+FileDeleteStrategy.NORMAL.delete(subDir);                                                              FileDeleteStrategy.NORMAL.delete(subDir);                                                           
+assertFalse(subDir.exists());                                                                          assertFalse(subDir.exists());                                                                       
+FileDeleteStrategy.NORMAL.delete(subDir);                                                              FileDeleteStrategy.NORMAL.delete(subDir);                                                           
+assertFalse(subDir.exists());                                                                          assertFalse(subDir.exists());                                                                       
+}                                                                                                      }                                                                                                   

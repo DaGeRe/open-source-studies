@@ -1,0 +1,9 @@
+public void testHidden() throws Exception {
+    File hiddenDir = new File(".svn");
+    if (hiddenDir.exists()) {
+        assertFiltering(HiddenFileFilter.HIDDEN, hiddenDir, true);
+        assertFiltering(HiddenFileFilter.VISIBLE, hiddenDir, false);
+    }
+    assertFiltering(HiddenFileFilter.HIDDEN, getTestDirectory(), false);
+    assertFiltering(HiddenFileFilter.VISIBLE, getTestDirectory(), true);
+}

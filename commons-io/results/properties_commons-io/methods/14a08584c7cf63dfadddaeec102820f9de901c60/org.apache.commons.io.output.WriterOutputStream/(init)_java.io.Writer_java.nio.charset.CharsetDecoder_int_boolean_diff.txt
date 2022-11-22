@@ -1,0 +1,7 @@
+public WriterOutputStream(final Writer writer, final CharsetDecoder decoder, final int bufferSize, final boolean writeImmediately) {
+    checkIbmJdkWithBrokenUTF16(decoder.charset());
+    this.writer = writer;
+    this.decoder = decoder;
+    this.writeImmediately = writeImmediately;
+    decoderOut = CharBuffer.allocate(bufferSize);
+}

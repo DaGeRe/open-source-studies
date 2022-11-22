@@ -1,0 +1,15 @@
+@Test                                                                                                  @Test                                                                                               
+public void testDataIntegrityWithBufferedReader() throws URISyntaxException, IOException {             public void testDataIntegrityWithBufferedReader() throws URISyntaxException, IOException {          
+final File testFileIso = new File(this.getClass().getResource("/" + fileName).toURI());                final File testFileIso = new File(this.getClass().getResource("/" + fileName).toURI());             
+reversedLinesFileReader = new ReversedLinesFileReader(testFileIso, buffSize, encoding);                reversedLinesFileReader = new ReversedLinesFileReader(testFileIso, buffSize, encoding);             
+final Stack&lt;String&gt; lineStack = new Stack&lt;String&gt;();                                     | final Stack&lt;String&gt; lineStack = new Stack&lt;&gt;();                                          
+bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(testFileIso), encoding   bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(testFileIso), encoding
+String line = null;                                                                                    String line = null;                                                                                 
+while ((line = bufferedReader.readLine()) != null) {                                                   while ((line = bufferedReader.readLine()) != null) {                                                
+lineStack.push(line);                                                                                  lineStack.push(line);                                                                               
+}                                                                                                      }                                                                                                   
+while ((line = reversedLinesFileReader.readLine()) != null) {                                          while ((line = reversedLinesFileReader.readLine()) != null) {                                       
+final String lineFromBufferedReader = lineStack.pop();                                                 final String lineFromBufferedReader = lineStack.pop();                                              
+assertEquals(lineFromBufferedReader, line);                                                            assertEquals(lineFromBufferedReader, line);                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

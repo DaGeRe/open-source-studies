@@ -1,0 +1,15 @@
+@Test
+public void testConstructor_File_directory() {
+    Writer writer = null;
+    try {
+        writer = new LockableFileWriter(getTestDirectory());
+        fail();
+    } catch (final IOException ex) {
+        assertFalse(file.exists());
+        assertFalse(lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+    assertFalse(file.exists());
+    assertFalse(lockFile.exists());
+}

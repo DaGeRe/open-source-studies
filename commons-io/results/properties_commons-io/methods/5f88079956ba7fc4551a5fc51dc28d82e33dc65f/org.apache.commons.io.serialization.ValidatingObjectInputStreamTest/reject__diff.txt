@@ -1,0 +1,4 @@
+@Test(expected = InvalidClassException.class)
+public void reject() throws Exception {
+    assertSerialization(willClose(new ValidatingObjectInputStream(testStream)).accept(Long.class).reject(MockSerializedClass.class, Integer.class));
+}

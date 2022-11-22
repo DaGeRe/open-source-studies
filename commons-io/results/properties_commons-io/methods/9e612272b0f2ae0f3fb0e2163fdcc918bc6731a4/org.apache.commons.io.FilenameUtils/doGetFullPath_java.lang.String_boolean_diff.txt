@@ -1,0 +1,25 @@
+private static String doGetFullPath(String filename, boolean includeSeparator) {                       private static String doGetFullPath(String filename, boolean includeSeparator) {                    
+if (filename == null) {                                                                                if (filename == null) {                                                                             
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+int prefix = getPrefixLength(filename);                                                                int prefix = getPrefixLength(filename);                                                             
+if (prefix &lt; 0) {                                                                                   if (prefix &lt; 0) {                                                                                
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+if (prefix &gt;= filename.length()) {                                                                  if (prefix &gt;= filename.length()) {                                                               
+if (includeSeparator) {                                                                                if (includeSeparator) {                                                                             
+return getPrefix(filename);                                                                            return getPrefix(filename);                                                                         
+} else {                                                                                               } else {                                                                                            
+return filename;                                                                                       return filename;                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+int index = indexOfLastSeparator(filename);                                                            int index = indexOfLastSeparator(filename);                                                         
+if (index &lt; 0) {                                                                                    if (index &lt; 0) {                                                                                 
+return filename.substring(0, prefix);                                                                  return filename.substring(0, prefix);                                                               
+}                                                                                                      }                                                                                                   
+int end = index + (includeSeparator ? 1 : 0);                                                          int end = index + (includeSeparator ? 1 : 0);                                                       
+                                                                                                     | if (end == 0) {                                                                                     
+                                                                                                     | end++;                                                                                              
+                                                                                                     | }                                                                                                   
+return filename.substring(0, end);                                                                     return filename.substring(0, end);                                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+public void testMoveFile_CopyDelete() throws Exception {                                               public void testMoveFile_CopyDelete() throws Exception {                                            
+File destination = new File(getTestDirectory(), "move2.txt");                                          File destination = new File(getTestDirectory(), "move2.txt");                                       
+File src = new File(testFile1.getAbsolutePath()) {                                                     File src = new File(testFile1.getAbsolutePath()) {                                                  
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public boolean renameTo(File f) {                                                                      public boolean renameTo(File f) {                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+FileUtils.moveFile(src, destination);                                                                  FileUtils.moveFile(src, destination);                                                               
+assertTrue("Check Exist", destination.exists());                                                       assertTrue("Check Exist", destination.exists());                                                    
+assertTrue("Original deleted", !src.exists());                                                         assertTrue("Original deleted", !src.exists());                                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+private String doHttpStream(InputStream is, String httpContentType, boolean lenient) throws IOExcept |                                                                                                     
+BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);      |                                                                                                     
+BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                 |                                                                                                     
+String bomEnc = bom.getBOMCharsetName();                                                             |                                                                                                     
+String xmlGuessEnc = pis.getBOMCharsetName();                                                        |                                                                                                     
+String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                      |                                                                                                     
+try {                                                                                                |                                                                                                     
+return calculateHttpEncoding(httpContentType, bomEnc, xmlGuessEnc, xmlEnc, lenient);                 |                                                                                                     
+} catch (XmlStreamReaderException ex) {                                                              |                                                                                                     
+if (lenient) {                                                                                       |                                                                                                     
+return doLenientDetection(httpContentType, is, ex);                                                  |                                                                                                     
+} else {                                                                                             |                                                                                                     
+throw ex;                                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void testClose() throws Exception {                                                             public void testClose() throws Exception {                                                          
+final ExpectCloseInputStream del = new ExpectCloseInputStream();                                     | try (final ExpectCloseInputStream del = new ExpectCloseInputStream()) {                             
+final InputStream in = new BOMInputStream(del);                                                      | try (final InputStream in = new BOMInputStream(del)) {                                              
+in.close();                                                                                          | }                                                                                                   
+del.assertCloseCalled();                                                                               del.assertCloseCalled();                                                                            
+del.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

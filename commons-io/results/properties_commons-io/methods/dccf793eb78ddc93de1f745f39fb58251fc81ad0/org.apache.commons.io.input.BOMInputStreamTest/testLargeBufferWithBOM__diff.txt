@@ -1,0 +1,6 @@
+public void testLargeBufferWithBOM() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C' };
+    InputStream in = new BOMInputStream(createDataStream(data, true));
+    byte[] buf = new byte[1024];
+    assertData(data, buf, 0, in.read(buf));
+}

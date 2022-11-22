@@ -1,0 +1,10 @@
+public void testEOFException() throws Exception {
+    Reader reader = new TestNullReader(2, false, true);
+    assertEquals("Read 1", 0, reader.read());
+    assertEquals("Read 2", 1, reader.read());
+    try {
+        int result = reader.read();
+        fail("Should have thrown an EOFException, value=[" + result + "]");
+    } catch (EOFException e) {
+    }
+}

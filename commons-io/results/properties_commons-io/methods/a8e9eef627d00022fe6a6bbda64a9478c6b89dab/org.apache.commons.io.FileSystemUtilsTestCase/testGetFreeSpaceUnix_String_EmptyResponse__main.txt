@@ -1,0 +1,24 @@
+public void testGetFreeSpaceUnix_String_EmptyResponse() throws Exception {
+    String lines = "";
+    FileSystemUtils fsu = new MockFileSystemUtils(0, lines);
+    try {
+        fsu.freeSpaceUnix("/home/users/s", false, false, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", true, false, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", false, true, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", true, true, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+}

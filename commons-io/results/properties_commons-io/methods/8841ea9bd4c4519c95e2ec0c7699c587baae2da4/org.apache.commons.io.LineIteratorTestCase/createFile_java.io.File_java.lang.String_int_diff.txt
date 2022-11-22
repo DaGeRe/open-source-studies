@@ -1,0 +1,8 @@
+private List createFile(File file, String encoding, int lineCount) throws Exception {                | private List&lt;String&gt; createFile(File file, String encoding, int lineCount) throws Exception { 
+List lines = new ArrayList();                                                                        | List&lt;String&gt; lines = new ArrayList&lt;String&gt;();                                           
+for (int i = 0; i &lt; lineCount; i++) {                                                               for (int i = 0; i &lt; lineCount; i++) {                                                            
+lines.add("LINE " + i);                                                                                lines.add("LINE " + i);                                                                             
+}                                                                                                      }                                                                                                   
+FileUtils.writeLines(file, encoding, lines);                                                           FileUtils.writeLines(file, encoding, lines);                                                        
+return lines;                                                                                          return lines;                                                                                       
+}                                                                                                      }                                                                                                   

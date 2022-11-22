@@ -1,0 +1,10 @@
+public static void copyFileToDirectory(File srcFile, File destDir, boolean preserveFileDate) throws IOException {
+    if (destDir == null) {
+        throw new NullPointerException("Destination must not be null");
+    }
+    if (destDir.exists() && destDir.isDirectory() == false) {
+        throw new IllegalArgumentException("Destination '" + destDir + "' is not a directory");
+    }
+    File destFile = new File(destDir, srcFile.getName());
+    copyFile(srcFile, destFile, preserveFileDate);
+}

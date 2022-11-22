@@ -1,0 +1,28 @@
+private void walk(File directory, int depth, Collection&lt;?&gt; results) throws IOException {         private void walk(File directory, int depth, Collection&lt;?&gt; results) throws IOException {      
+checkIfCancelled(directory, depth, results);                                                           checkIfCancelled(directory, depth, results);                                                        
+if (handleDirectory(directory, depth, results)) {                                                      if (handleDirectory(directory, depth, results)) {                                                   
+handleDirectoryStart(directory, depth, results);                                                       handleDirectoryStart(directory, depth, results);                                                    
+int childDepth = depth + 1;                                                                            int childDepth = depth + 1;                                                                         
+if (depthLimit &lt; 0 || childDepth &lt;= depthLimit) {                                                if (depthLimit &lt; 0 || childDepth &lt;= depthLimit) {                                             
+checkIfCancelled(directory, depth, results);                                                           checkIfCancelled(directory, depth, results);                                                        
+File[] childFiles = (filter == null ? directory.listFiles() : directory.listFiles(filter));            File[] childFiles = (filter == null ? directory.listFiles() : directory.listFiles(filter));         
+                                                                                                     | childFiles = filterDirectoryContents(directory, depth, childFiles);                                 
+if (childFiles == null) {                                                                              if (childFiles == null) {                                                                           
+handleRestricted(directory, childDepth, results);                                                      handleRestricted(directory, childDepth, results);                                                   
+} else {                                                                                               } else {                                                                                            
+for (int i = 0; i &lt; childFiles.length; i++) {                                                       for (int i = 0; i &lt; childFiles.length; i++) {                                                    
+File childFile = childFiles[i];                                                                        File childFile = childFiles[i];                                                                     
+if (childFile.isDirectory()) {                                                                         if (childFile.isDirectory()) {                                                                      
+walk(childFile, childDepth, results);                                                                  walk(childFile, childDepth, results);                                                               
+} else {                                                                                               } else {                                                                                            
+checkIfCancelled(childFile, childDepth, results);                                                      checkIfCancelled(childFile, childDepth, results);                                                   
+handleFile(childFile, childDepth, results);                                                            handleFile(childFile, childDepth, results);                                                         
+checkIfCancelled(childFile, childDepth, results);                                                      checkIfCancelled(childFile, childDepth, results);                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+handleDirectoryEnd(directory, depth, results);                                                         handleDirectoryEnd(directory, depth, results);                                                      
+}                                                                                                      }                                                                                                   
+checkIfCancelled(directory, depth, results);                                                           checkIfCancelled(directory, depth, results);                                                        
+}                                                                                                      }                                                                                                   

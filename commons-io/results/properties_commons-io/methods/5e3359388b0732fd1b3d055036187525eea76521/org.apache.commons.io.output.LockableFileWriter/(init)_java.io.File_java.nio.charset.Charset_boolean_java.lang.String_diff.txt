@@ -1,0 +1,19 @@
+public LockableFileWriter(File file, final Charset encoding, final boolean append, String lockDir) throws IOException {
+    super();
+    file = file.getAbsoluteFile();
+    if (file.getParentFile() != null) {
+        FileUtils.forceMkdir(file.getParentFile());
+    }
+    if (file.isDirectory()) {
+        throw new IOException("File specified is a directory");
+    }
+    if (lockDir == null) {
+        lockDir = System.getProperty("java.io.tmpdir");
+    }
+    final File lockDirFile = new File(lockDir);
+    FileUtils.forceMkdir(lockDirFile);
+    testLockDir(lockDirFile);
+    lockFile = new File(lockDirFile, file.getName() + LCK);
+    createLock();
+    out = initWriter(file, encoding, append);
+}

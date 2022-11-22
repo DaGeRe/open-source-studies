@@ -1,0 +1,10 @@
+public void testCopy_readerToOutputStream_nullOut() throws Exception {
+    InputStream in = new ByteArrayInputStream(inData);
+    in = new YellOnCloseInputStream(in);
+    Reader reader = new InputStreamReader(in, "US-ASCII");
+    try {
+        IOUtils.copy(reader, (OutputStream) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

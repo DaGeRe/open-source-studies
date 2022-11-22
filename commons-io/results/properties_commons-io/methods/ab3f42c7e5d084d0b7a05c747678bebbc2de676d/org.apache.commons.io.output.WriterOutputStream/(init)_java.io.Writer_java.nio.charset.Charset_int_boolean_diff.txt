@@ -1,0 +1,9 @@
+public WriterOutputStream(Writer writer, Charset charset, int bufferSize, boolean writeImmediately) {
+    this.writer = writer;
+    decoder = charset.newDecoder();
+    decoder.onMalformedInput(CodingErrorAction.REPLACE);
+    decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
+    decoder.replaceWith("?");
+    this.writeImmediately = writeImmediately;
+    decoderOut = CharBuffer.allocate(bufferSize);
+}

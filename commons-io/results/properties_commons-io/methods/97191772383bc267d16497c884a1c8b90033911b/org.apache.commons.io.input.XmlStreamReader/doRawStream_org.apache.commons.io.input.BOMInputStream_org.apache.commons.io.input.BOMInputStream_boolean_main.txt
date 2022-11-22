@@ -1,0 +1,14 @@
+private String doRawStream(BOMInputStream bom, BOMInputStream pis, boolean lenient) throws IOException {
+    String bomEnc = bom.getBOMCharsetName();
+    String xmlGuessEnc = pis.getBOMCharsetName();
+    String xmlEnc = getXmlProlog(pis, xmlGuessEnc);
+    try {
+        return calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);
+    } catch (XmlStreamReaderException ex) {
+        if (lenient) {
+            return doLenientDetection(null, ex);
+        } else {
+            throw ex;
+        }
+    }
+}

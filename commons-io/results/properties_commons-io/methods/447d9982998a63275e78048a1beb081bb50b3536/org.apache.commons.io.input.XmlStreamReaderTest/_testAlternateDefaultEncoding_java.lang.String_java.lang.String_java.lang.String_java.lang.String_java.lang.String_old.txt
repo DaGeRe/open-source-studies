@@ -1,0 +1,13 @@
+public void _testAlternateDefaultEncoding(String cT, String bomEnc, String streamEnc, String prologEnc, String alternateEnc) throws Exception {
+    try {
+        InputStream is = getXmlStream(bomEnc, (prologEnc == null) ? XML1 : XML3, streamEnc, prologEnc);
+        XmlStreamReader.setDefaultEncoding(alternateEnc);
+        XmlStreamReader xmlReader = new XmlStreamReader(is, cT, false);
+        if (!streamEnc.equals("UTF-16")) {
+        } else {
+            assertEquals(xmlReader.getEncoding().substring(0, streamEnc.length()), streamEnc);
+        }
+    } finally {
+        XmlStreamReader.setDefaultEncoding(null);
+    }
+}

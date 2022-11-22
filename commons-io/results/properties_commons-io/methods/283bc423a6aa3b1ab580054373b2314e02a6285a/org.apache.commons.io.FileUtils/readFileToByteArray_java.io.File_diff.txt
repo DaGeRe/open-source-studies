@@ -1,0 +1,9 @@
+public static byte[] readFileToByteArray(File file) throws IOException {                               public static byte[] readFileToByteArray(File file) throws IOException {                            
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+in = new FileInputStream(file);                                                                      | in = openInputStream(file);                                                                         
+return IOUtils.toByteArray(in);                                                                        return IOUtils.toByteArray(in);                                                                     
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

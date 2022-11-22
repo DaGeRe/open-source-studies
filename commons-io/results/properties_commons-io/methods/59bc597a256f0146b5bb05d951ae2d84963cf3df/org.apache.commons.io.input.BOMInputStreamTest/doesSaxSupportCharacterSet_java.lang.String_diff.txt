@@ -1,0 +1,14 @@
+private boolean doesSaxSupportCharacterSet(String charSetName) throws ParserConfigurationException,    private boolean doesSaxSupportCharacterSet(String charSetName) throws ParserConfigurationException, 
+final byte[] data = ("&lt;?xml version=\"1.0\" encoding=\"" + charSetName + "\"?&gt;&lt;Z/&gt;").get   final byte[] data = ("&lt;?xml version=\"1.0\" encoding=\"" + charSetName + "\"?&gt;&lt;Z/&gt;").get
+final DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();     final DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();  
+try {                                                                                                  try {                                                                                               
+final InputSource is = new InputSource(new ByteArrayInputStream(data));                                final InputSource is = new InputSource(new ByteArrayInputStream(data));                             
+is.setEncoding(charSetName);                                                                           is.setEncoding(charSetName);                                                                        
+documentBuilder.parse(is);                                                                             documentBuilder.parse(is);                                                                          
+} catch (SAXParseException e) {                                                                        } catch (SAXParseException e) {                                                                     
+if (e.getMessage().contains(charSetName))                                                            | if (e.getMessage().contains(charSetName)) {                                                         
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

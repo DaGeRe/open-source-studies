@@ -1,0 +1,16 @@
+@Test(expected = RuntimeException.class)                                                               @Test(expected = RuntimeException.class)                                                            
+public void customInvalidMethod() throws Exception {                                                   public void customInvalidMethod() throws Exception {                                                
+class CustomVOIS extends ValidatingObjectInputStream {                                                 class CustomVOIS extends ValidatingObjectInputStream {                                              
+                                                                                                                                                                                                           
+CustomVOIS(InputStream is) throws IOException {                                                      | CustomVOIS(final InputStream is) throws IOException {                                               
+super(is);                                                                                             super(is);                                                                                          
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected void invalidClassNameFound(String className) throws InvalidClassException {                | protected void invalidClassNameFound(final String className) throws InvalidClassException {         
+throw new RuntimeException("Custom exception");                                                        throw new RuntimeException("Custom exception");                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+;                                                                                                      ;                                                                                                   
+assertSerialization(willClose(new CustomVOIS(testStream)).reject(Integer.class));                      assertSerialization(willClose(new CustomVOIS(testStream)).reject(Integer.class));                   
+}                                                                                                      }                                                                                                   

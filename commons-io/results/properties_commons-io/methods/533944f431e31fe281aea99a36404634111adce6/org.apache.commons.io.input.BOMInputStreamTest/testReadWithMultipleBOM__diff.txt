@@ -1,0 +1,15 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReadWithMultipleBOM() throws Exception {                                               public void testReadWithMultipleBOM() throws Exception {                                            
+final byte[] data = new byte[] { 'A', 'B', 'C' };                                                      final byte[] data = new byte[] { 'A', 'B', 'C' };                                                   
+final BOMInputStream in = new BOMInputStream(createUtf8DataStream(data, true), ByteOrderMark.UTF_16B | try (final BOMInputStream in = new BOMInputStream(createUtf8DataStream(data, true), ByteOrderMark.UT
+assertEquals('A', in.read());                                                                          assertEquals('A', in.read());                                                                       
+assertEquals('B', in.read());                                                                          assertEquals('B', in.read());                                                                       
+assertEquals('C', in.read());                                                                          assertEquals('C', in.read());                                                                       
+assertEquals(-1, in.read());                                                                           assertEquals(-1, in.read());                                                                        
+assertTrue("hasBOM()", in.hasBOM());                                                                   assertTrue("hasBOM()", in.hasBOM());                                                                
+assertTrue("hasBOM(UTF-8)", in.hasBOM(ByteOrderMark.UTF_8));                                           assertTrue("hasBOM(UTF-8)", in.hasBOM(ByteOrderMark.UTF_8));                                        
+assertFalse("hasBOM(UTF-16BE)", in.hasBOM(ByteOrderMark.UTF_16BE));                                    assertFalse("hasBOM(UTF-16BE)", in.hasBOM(ByteOrderMark.UTF_16BE));                                 
+assertEquals("getBOM", ByteOrderMark.UTF_8, in.getBOM());                                              assertEquals("getBOM", ByteOrderMark.UTF_8, in.getBOM());                                           
+in.close();                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

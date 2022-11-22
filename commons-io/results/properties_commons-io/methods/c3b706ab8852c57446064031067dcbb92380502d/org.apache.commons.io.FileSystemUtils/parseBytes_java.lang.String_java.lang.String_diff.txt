@@ -1,0 +1,11 @@
+long parseBytes(String freeSpace, String path) throws IOException {                                    long parseBytes(String freeSpace, String path) throws IOException {                                 
+try {                                                                                                  try {                                                                                               
+long bytes = Long.parseLong(freeSpace);                                                                long bytes = Long.parseLong(freeSpace);                                                             
+if (bytes &lt; 0) {                                                                                    if (bytes &lt; 0) {                                                                                 
+throw new IOException("Command line '" + dfPath + "' did not find free space in response " + "for pa | throw new IOException("Command line '" + DF + "' did not find free space in response " + "for path '
+}                                                                                                      }                                                                                                   
+return bytes;                                                                                          return bytes;                                                                                       
+} catch (NumberFormatException ex) {                                                                   } catch (NumberFormatException ex) {                                                                
+throw new IOException("Command line '" + dfPath + "' did not return numeric data as expected " + "fo | throw new IOException("Command line '" + DF + "' did not return numeric data as expected " + "for pa
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

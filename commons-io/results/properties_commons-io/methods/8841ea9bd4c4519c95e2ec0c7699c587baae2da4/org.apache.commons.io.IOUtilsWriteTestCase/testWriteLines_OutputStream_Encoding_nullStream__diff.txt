@@ -1,0 +1,9 @@
+public void testWriteLines_OutputStream_Encoding_nullStream() throws Exception {                       public void testWriteLines_OutputStream_Encoding_nullStream() throws Exception {                    
+Object[] data = new Object[] { "hello", "world" };                                                     Object[] data = new Object[] { "hello", "world" };                                                  
+List list = Arrays.asList(data);                                                                     | List&lt;Object&gt; list = Arrays.asList(data);                                                      
+try {                                                                                                  try {                                                                                               
+IOUtils.writeLines(list, "*", (OutputStream) null, "US-ASCII");                                        IOUtils.writeLines(list, "*", (OutputStream) null, "US-ASCII");                                     
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,33 @@
+@Before
+public void setUp() throws Exception {
+    testFile1 = new File(getTestDirectory(), "file1-test.txt");
+    testFile2 = new File(getTestDirectory(), "file1a-test.txt");
+    testFile1Size = (int) testFile1.length();
+    testFile2Size = (int) testFile2.length();
+    if (!testFile1.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + testFile1 + " as the parent directory does not exist");
+    }
+    try (final BufferedOutputStream output3 = new BufferedOutputStream(new FileOutputStream(testFile1))) {
+        TestUtils.generateTestData(output3, testFile1Size);
+    }
+    if (!testFile2.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + testFile2 + " as the parent directory does not exist");
+    }
+    try (final BufferedOutputStream output2 = new BufferedOutputStream(new FileOutputStream(testFile2))) {
+        TestUtils.generateTestData(output2, testFile2Size);
+    }
+    FileUtils.deleteDirectory(getTestDirectory());
+    getTestDirectory().mkdirs();
+    if (!testFile1.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + testFile1 + " as the parent directory does not exist");
+    }
+    try (final BufferedOutputStream output1 = new BufferedOutputStream(new FileOutputStream(testFile1))) {
+        TestUtils.generateTestData(output1, testFile1Size);
+    }
+    if (!testFile2.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + testFile2 + " as the parent directory does not exist");
+    }
+    try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(testFile2))) {
+        TestUtils.generateTestData(output, testFile2Size);
+    }
+}

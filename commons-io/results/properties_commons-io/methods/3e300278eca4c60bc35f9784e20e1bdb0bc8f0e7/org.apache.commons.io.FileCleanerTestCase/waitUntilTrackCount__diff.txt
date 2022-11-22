@@ -1,0 +1,11 @@
+private void waitUntilTrackCount() {
+    while (FileCleaner.getTrackCount() != 0) {
+        int total = 0;
+        while (FileCleaner.getTrackCount() != 0) {
+            byte[] b = new byte[1024 * 1024];
+            b[0] = (byte) System.currentTimeMillis();
+            total = total + b[0];
+            System.gc();
+        }
+    }
+}

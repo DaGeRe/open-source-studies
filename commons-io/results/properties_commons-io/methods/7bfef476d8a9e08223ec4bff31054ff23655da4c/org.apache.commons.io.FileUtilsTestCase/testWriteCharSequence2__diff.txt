@@ -1,0 +1,6 @@
+public void testWriteCharSequence2() throws Exception {
+    File file = new File(getTestDirectory(), "write.txt");
+    FileUtils.write(file, "Hello /u1234", null);
+    byte[] text = "Hello /u1234".getBytes();
+    assertEqualContent(text, file);
+}

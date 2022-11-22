@@ -1,0 +1,12 @@
+private static void innerListFiles(Collection<File> files, File directory, IOFileFilter filter) {
+    File[] found = directory.listFiles((FileFilter) filter);
+    if (found != null) {
+        for (int i = 0; i < found.length; i++) {
+            if (found[i].isDirectory()) {
+                innerListFiles(files, found[i], filter);
+            } else {
+                files.add(found[i]);
+            }
+        }
+    }
+}

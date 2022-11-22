@@ -1,0 +1,11 @@
+public void testInputStreamToString() throws Exception {                                               public void testInputStreamToString() throws Exception {                                            
+FileInputStream fin = new FileInputStream(m_testFile);                                                 FileInputStream fin = new FileInputStream(m_testFile);                                              
+try {                                                                                                  try {                                                                                               
+String out = IOUtils.toString(fin);                                                                    String out = IOUtils.toString(fin);                                                                 
+assertNotNull(out);                                                                                    assertNotNull(out);                                                                                 
+assertTrue("Not all bytes were read", fin.available() == 0);                                         | assertEquals("Not all bytes were read", 0, fin.available());                                        
+assertTrue("Wrong output size: out.length()=" + out.length() + "!=" + FILE_SIZE, out.length() == FIL | assertEquals("Wrong output size", FILE_SIZE, out.length());                                         
+} finally {                                                                                            } finally {                                                                                         
+fin.close();                                                                                           fin.close();                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

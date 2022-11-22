@@ -1,0 +1,11 @@
+private OutputStreamWriter getOutputStreamWriter(final AtomicInteger numWrites) {                      private OutputStreamWriter getOutputStreamWriter(final AtomicInteger numWrites) {                   
+ByteArrayOutputStream baos = new ByteArrayOutputStream();                                            | final ByteArrayOutputStream baos = new ByteArrayOutputStream();                                     
+return new OutputStreamWriter(baos) {                                                                  return new OutputStreamWriter(baos) {                                                               
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(char[] cbuf, int off, int len) throws IOException {                                | public void write(final char[] cbuf, final int off, final int len) throws IOException {             
+numWrites.incrementAndGet();                                                                           numWrites.incrementAndGet();                                                                        
+super.write(cbuf, off, len);                                                                           super.write(cbuf, off, len);                                                                        
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+}                                                                                                      }                                                                                                   

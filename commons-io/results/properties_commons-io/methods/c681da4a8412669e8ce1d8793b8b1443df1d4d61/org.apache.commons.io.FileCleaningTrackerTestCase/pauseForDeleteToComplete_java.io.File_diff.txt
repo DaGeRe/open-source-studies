@@ -1,0 +1,10 @@
+private void pauseForDeleteToComplete(File file) throws Exception {                                  | private void pauseForDeleteToComplete(File file) {                                                  
+int count = 0;                                                                                         int count = 0;                                                                                      
+while (file.exists() && count++ &lt; 20) {                                                           | while (file.exists() && count++ &lt; 40) {                                                          
+                                                                                                     | try {                                                                                               
+Thread.sleep(500L);                                                                                    Thread.sleep(500L);                                                                                 
+                                                                                                     | } catch (InterruptedException e) {                                                                  
+}                                                                                                      }                                                                                                   
+                                                                                                     | file = new File(file.getPath());                                                                    
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

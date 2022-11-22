@@ -1,0 +1,34 @@
+@Before                                                                                                @Before                                                                                             
+public void setUp() throws Exception {                                                                 public void setUp() throws Exception {                                                              
+comparator = new CompositeFileComparator(new AbstractFileComparator[] { (AbstractFileComparator) Siz   comparator = new CompositeFileComparator(new AbstractFileComparator[] { (AbstractFileComparator) Siz
+reverse = new ReverseComparator(comparator);                                                           reverse = new ReverseComparator(comparator);                                                        
+final File dir = getTestDirectory();                                                                   final File dir = getTestDirectory();                                                                
+lessFile = new File(dir, "xyz.txt");                                                                   lessFile = new File(dir, "xyz.txt");                                                                
+equalFile1 = new File(dir, "foo.txt");                                                                 equalFile1 = new File(dir, "foo.txt");                                                              
+equalFile2 = new File(dir, "bar.txt");                                                                 equalFile2 = new File(dir, "bar.txt");                                                              
+moreFile = new File(dir, "foo.xyz");                                                                   moreFile = new File(dir, "foo.xyz");                                                                
+if (!lessFile.getParentFile().exists()) {                                                              if (!lessFile.getParentFile().exists()) {                                                           
+throw new IOException("Cannot create file " + lessFile + " as the parent directory does not exist");   throw new IOException("Cannot create file " + lessFile + " as the parent directory does not exist");
+}                                                                                                      }                                                                                                   
+try (final BufferedOutputStream output3 = new BufferedOutputStream(new FileOutputStream(lessFile)))    try (final BufferedOutputStream output3 = new BufferedOutputStream(new FileOutputStream(lessFile))) 
+TestUtils.generateTestData(output3, (long) 32);                                                      | TestUtils.generateTestData(output3, 32);                                                            
+}                                                                                                      }                                                                                                   
+if (!equalFile1.getParentFile().exists()) {                                                            if (!equalFile1.getParentFile().exists()) {                                                         
+throw new IOException("Cannot create file " + equalFile1 + " as the parent directory does not exist"   throw new IOException("Cannot create file " + equalFile1 + " as the parent directory does not exist"
+}                                                                                                      }                                                                                                   
+try (final BufferedOutputStream output2 = new BufferedOutputStream(new FileOutputStream(equalFile1))   try (final BufferedOutputStream output2 = new BufferedOutputStream(new FileOutputStream(equalFile1))
+TestUtils.generateTestData(output2, (long) 48);                                                      | TestUtils.generateTestData(output2, 48);                                                            
+}                                                                                                      }                                                                                                   
+if (!equalFile2.getParentFile().exists()) {                                                            if (!equalFile2.getParentFile().exists()) {                                                         
+throw new IOException("Cannot create file " + equalFile2 + " as the parent directory does not exist"   throw new IOException("Cannot create file " + equalFile2 + " as the parent directory does not exist"
+}                                                                                                      }                                                                                                   
+try (final BufferedOutputStream output1 = new BufferedOutputStream(new FileOutputStream(equalFile2))   try (final BufferedOutputStream output1 = new BufferedOutputStream(new FileOutputStream(equalFile2))
+TestUtils.generateTestData(output1, (long) 48);                                                      | TestUtils.generateTestData(output1, 48);                                                            
+}                                                                                                      }                                                                                                   
+if (!moreFile.getParentFile().exists()) {                                                              if (!moreFile.getParentFile().exists()) {                                                           
+throw new IOException("Cannot create file " + moreFile + " as the parent directory does not exist");   throw new IOException("Cannot create file " + moreFile + " as the parent directory does not exist");
+}                                                                                                      }                                                                                                   
+try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(moreFile))) {   try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(moreFile))) {
+TestUtils.generateTestData(output, (long) 48);                                                       | TestUtils.generateTestData(output, 48);                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public static void forceMkdir(File directory) throws IOException {
+    if (directory.exists()) {
+        if (directory.isFile()) {
+            String message = "File " + directory + " exists and is " + "not a directory. Unable to create directory.";
+            throw new IOException(message);
+        }
+    } else {
+        if (!directory.mkdirs()) {
+            if (!directory.isDirectory()) {
+                String message = "Unable to create directory " + directory;
+                throw new IOException(message);
+            }
+        }
+    }
+}

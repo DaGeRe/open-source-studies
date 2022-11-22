@@ -1,0 +1,8 @@
+public void throwIfCauseOf(Exception exception) throws IOException {                                 |                                                                                                     
+if (exception instanceof TaggedIOException) {                                                        |                                                                                                     
+TaggedIOException tagged = (TaggedIOException) exception;                                            |                                                                                                     
+if (this == tagged.getTag()) {                                                                       |                                                                                                     
+throw tagged.getCause();                                                                             |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

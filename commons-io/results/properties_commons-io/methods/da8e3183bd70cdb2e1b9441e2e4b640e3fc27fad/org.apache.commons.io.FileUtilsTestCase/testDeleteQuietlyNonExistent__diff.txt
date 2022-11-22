@@ -1,0 +1,9 @@
+public void testDeleteQuietlyNonExistent() {
+    File testFile = new File("testDeleteQuietlyNonExistent");
+    assertFalse(testFile.exists());
+    try {
+        FileUtils.deleteQuietly(testFile);
+    } catch (Exception ex) {
+        fail(ex.getMessage());
+    }
+}

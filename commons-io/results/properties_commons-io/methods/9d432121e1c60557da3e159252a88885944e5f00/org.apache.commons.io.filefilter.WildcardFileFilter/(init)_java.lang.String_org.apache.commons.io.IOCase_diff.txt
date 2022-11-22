@@ -1,0 +1,7 @@
+public WildcardFileFilter(final String wildcard, final IOCase caseSensitivity) {
+    if (wildcard == null) {
+        throw new IllegalArgumentException("The wildcard must not be null");
+    }
+    this.wildcards = new String[] { wildcard };
+    this.caseSensitivity = caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity;
+}

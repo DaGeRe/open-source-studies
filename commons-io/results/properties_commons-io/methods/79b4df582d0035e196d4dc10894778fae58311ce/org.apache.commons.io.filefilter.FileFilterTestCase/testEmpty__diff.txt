@@ -1,0 +1,34 @@
+@Test                                                                                                  @Test                                                                                               
+public void testEmpty() throws Exception {                                                             public void testEmpty() throws Exception {                                                          
+final File emptyDir = new File(getTestDirectory(), "empty-dir");                                       final File emptyDir = new File(getTestDirectory(), "empty-dir");                                    
+emptyDir.mkdirs();                                                                                     emptyDir.mkdirs();                                                                                  
+assertFiltering(EmptyFileFilter.EMPTY, emptyDir, true);                                                assertFiltering(EmptyFileFilter.EMPTY, emptyDir, true);                                             
+assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, false);                                           assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, false);                                        
+final File emptyFile = new File(emptyDir, "empty-file.txt");                                           final File emptyFile = new File(emptyDir, "empty-file.txt");                                        
+if (!emptyFile.getParentFile().exists()) {                                                             if (!emptyFile.getParentFile().exists()) {                                                          
+throw new IOException("Cannot create file " + emptyFile + " as the parent directory does not exist")   throw new IOException("Cannot create file " + emptyFile + " as the parent directory does not exist")
+}                                                                                                      }                                                                                                   
+final BufferedOutputStream output1 = new BufferedOutputStream(new FileOutputStream(emptyFile));      | try (final BufferedOutputStream output1 = new BufferedOutputStream(new FileOutputStream(emptyFile)))
+try {                                                                                                |                                                                                                     
+TestUtils.generateTestData(output1, (long) 0);                                                         TestUtils.generateTestData(output1, (long) 0);                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(output1);                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertFiltering(EmptyFileFilter.EMPTY, emptyFile, true);                                               assertFiltering(EmptyFileFilter.EMPTY, emptyFile, true);                                            
+assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyFile, false);                                          assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyFile, false);                                       
+assertFiltering(EmptyFileFilter.EMPTY, emptyDir, false);                                               assertFiltering(EmptyFileFilter.EMPTY, emptyDir, false);                                            
+assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, true);                                            assertFiltering(EmptyFileFilter.NOT_EMPTY, emptyDir, true);                                         
+final File notEmptyFile = new File(emptyDir, "not-empty-file.txt");                                    final File notEmptyFile = new File(emptyDir, "not-empty-file.txt");                                 
+if (!notEmptyFile.getParentFile().exists()) {                                                          if (!notEmptyFile.getParentFile().exists()) {                                                       
+throw new IOException("Cannot create file " + notEmptyFile + " as the parent directory does not exis   throw new IOException("Cannot create file " + notEmptyFile + " as the parent directory does not exis
+}                                                                                                      }                                                                                                   
+final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(notEmptyFile));    | try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(notEmptyFile)
+try {                                                                                                |                                                                                                     
+TestUtils.generateTestData(output, (long) 32);                                                         TestUtils.generateTestData(output, (long) 32);                                                      
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(output);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertFiltering(EmptyFileFilter.EMPTY, notEmptyFile, false);                                           assertFiltering(EmptyFileFilter.EMPTY, notEmptyFile, false);                                        
+assertFiltering(EmptyFileFilter.NOT_EMPTY, notEmptyFile, true);                                        assertFiltering(EmptyFileFilter.NOT_EMPTY, notEmptyFile, true);                                     
+FileUtils.forceDelete(emptyDir);                                                                       FileUtils.forceDelete(emptyDir);                                                                    
+}                                                                                                      }                                                                                                   

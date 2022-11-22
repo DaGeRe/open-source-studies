@@ -1,0 +1,16 @@
+private int eofGame() {
+    if (!ensureLineFeedAtEndOfFile) {
+        return -1;
+    }
+    if (!slashNSeen && !slashRSeen) {
+        slashRSeen = true;
+        return '\r';
+    }
+    if (!slashNSeen) {
+        slashRSeen = false;
+        slashNSeen = true;
+        return '\n';
+    } else {
+        return -1;
+    }
+}

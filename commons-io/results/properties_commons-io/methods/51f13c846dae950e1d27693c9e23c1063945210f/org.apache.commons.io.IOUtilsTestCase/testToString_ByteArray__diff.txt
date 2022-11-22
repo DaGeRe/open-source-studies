@@ -1,0 +1,12 @@
+@SuppressWarnings("deprecation")                                                                       @SuppressWarnings("deprecation")                                                                    
+@Test                                                                                                  @Test                                                                                               
+public void testToString_ByteArray() throws Exception {                                                public void testToString_ByteArray() throws Exception {                                             
+final FileInputStream fin = new FileInputStream(m_testFile);                                         | try (FileInputStream fin = new FileInputStream(m_testFile)) {                                       
+try {                                                                                                |                                                                                                     
+final byte[] in = IOUtils.toByteArray(fin);                                                            final byte[] in = IOUtils.toByteArray(fin);                                                         
+final String str = IOUtils.toString(in);                                                               final String str = IOUtils.toString(in);                                                            
+assertEqualContent(in, str.getBytes());                                                                assertEqualContent(in, str.getBytes());                                                             
+} finally {                                                                                          |                                                                                                     
+fin.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

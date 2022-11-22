@@ -1,0 +1,11 @@
+@Override
+public Writer append(final char c) throws IOException {
+    try {
+        beforeWrite(1);
+        out.append(c);
+        afterWrite(1);
+    } catch (final IOException e) {
+        handleIOException(e);
+    }
+    return this;
+}

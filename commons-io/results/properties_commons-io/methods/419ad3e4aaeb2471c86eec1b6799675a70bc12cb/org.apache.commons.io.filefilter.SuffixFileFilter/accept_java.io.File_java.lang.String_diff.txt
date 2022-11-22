@@ -1,0 +1,9 @@
+@Override
+public boolean accept(final File file, final String name) {
+    for (final String suffix : this.suffixes) {
+        if (caseSensitivity.checkEndsWith(name, suffix)) {
+            return true;
+        }
+    }
+    return false;
+}

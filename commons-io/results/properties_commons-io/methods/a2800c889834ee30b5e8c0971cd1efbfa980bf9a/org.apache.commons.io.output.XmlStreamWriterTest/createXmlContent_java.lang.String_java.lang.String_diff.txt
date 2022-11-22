@@ -1,0 +1,8 @@
+private static String createXmlContent(String text, String encoding) {
+    String xmlDecl = "<?xml version=\"1.0\"?>";
+    if (encoding != null) {
+        xmlDecl = "<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>";
+    }
+    String xml = xmlDecl + "\n<text>" + text + "</text>";
+    return xml;
+}

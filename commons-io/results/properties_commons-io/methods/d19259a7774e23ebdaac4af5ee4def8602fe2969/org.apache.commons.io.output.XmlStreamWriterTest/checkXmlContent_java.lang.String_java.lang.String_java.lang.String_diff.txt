@@ -1,0 +1,9 @@
+private static void checkXmlContent(final String xml, final String encoding, final String defaultEnc   private static void checkXmlContent(final String xml, final String encoding, final String defaultEnc
+final ByteArrayOutputStream out = new ByteArrayOutputStream();                                         final ByteArrayOutputStream out = new ByteArrayOutputStream();                                      
+final XmlStreamWriter writer = new XmlStreamWriter(out, defaultEncoding);                              final XmlStreamWriter writer = new XmlStreamWriter(out, defaultEncoding);                           
+writer.write(xml);                                                                                     writer.write(xml);                                                                                  
+writer.close();                                                                                        writer.close();                                                                                     
+final byte[] xmlContent = out.toByteArray();                                                           final byte[] xmlContent = out.toByteArray();                                                        
+assertEquals(encoding, writer.getEncoding());                                                        | assertTrue(encoding.equalsIgnoreCase(writer.getEncoding()));                                        
+assertTrue(Arrays.equals(xml.getBytes(encoding), xmlContent));                                         assertTrue(Arrays.equals(xml.getBytes(encoding), xmlContent));                                      
+}                                                                                                      }                                                                                                   

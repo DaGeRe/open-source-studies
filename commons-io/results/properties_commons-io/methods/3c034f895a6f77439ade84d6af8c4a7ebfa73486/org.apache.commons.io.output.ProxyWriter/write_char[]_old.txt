@@ -1,0 +1,10 @@
+@Override
+public void write(char[] chr) throws IOException {
+    try {
+        beforeWrite(chr.length);
+        out.write(chr);
+        afterWrite(chr.length);
+    } catch (IOException e) {
+        handleIOException(e);
+    }
+}

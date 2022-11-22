@@ -1,0 +1,12 @@
+@Override
+public int read(final byte[] bts) throws IOException {
+    try {
+        beforeRead(bts != null ? bts.length : 0);
+        final int n = in.read(bts);
+        afterRead(n);
+        return n;
+    } catch (final IOException e) {
+        handleIOException(e);
+        return EOF;
+    }
+}

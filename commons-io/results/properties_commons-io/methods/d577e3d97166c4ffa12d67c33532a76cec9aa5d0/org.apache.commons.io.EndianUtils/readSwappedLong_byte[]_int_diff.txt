@@ -1,0 +1,5 @@
+public static long readSwappedLong(byte[] data, int offset) {                                          public static long readSwappedLong(byte[] data, int offset) {                                       
+long low = ((data[offset + 0] & 0xff) &lt;&lt; 0) + ((data[offset + 1] & 0xff) &lt;&lt; 8) + ((data[ | long low = ((data[offset + 0] & 0xff) &lt;&lt; 0) + ((data[offset + 1] & 0xff) &lt;&lt; 8) + ((data[
+long high = ((data[offset + 4] & 0xff) &lt;&lt; 0) + ((data[offset + 5] & 0xff) &lt;&lt; 8) + ((data | long high = ((data[offset + 4] & 0xff) &lt;&lt; 0) + ((data[offset + 5] & 0xff) &lt;&lt; 8) + ((data
+return low + (high &lt;&lt; 32);                                                                     | return ((long) high &lt;&lt; 32) + (0xffffffffL & low);                                             
+}                                                                                                      }                                                                                                   

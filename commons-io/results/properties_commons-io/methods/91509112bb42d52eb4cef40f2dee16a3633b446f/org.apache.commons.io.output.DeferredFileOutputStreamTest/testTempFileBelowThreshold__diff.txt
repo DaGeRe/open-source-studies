@@ -1,0 +1,15 @@
+public void testTempFileBelowThreshold() {
+    String prefix = "commons-io-test";
+    String suffix = ".out";
+    File tempDir = new File(".");
+    DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length + 42, prefix, suffix, tempDir);
+    assertNull("Check file is null-A", dfos.getFile());
+    try {
+        dfos.write(testBytes, 0, testBytes.length);
+        dfos.close();
+    } catch (IOException e) {
+        fail("Unexpected IOException");
+    }
+    assertTrue(dfos.isInMemory());
+    assertNull("Check file is null-B", dfos.getFile());
+}

@@ -1,0 +1,20 @@
+private void waitUntilTrackCount() {                                                                 | private void waitUntilTrackCount() throws Exception {                                               
+while (theInstance.getTrackCount() != 0) {                                                           | int count = 0;                                                                                      
+int total = 0;                                                                                       | while (theInstance.getTrackCount() != 0 && count++ &lt; 5) {                                        
+while (theInstance.getTrackCount() != 0) {                                                           | List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                            
+byte[] b = new byte[1024 * 1024];                                                                    | try {                                                                                               
+b[0] = (byte) System.currentTimeMillis();                                                            | long i = 0;                                                                                         
+total = total + b[0];                                                                                | while (true && theInstance.getTrackCount() != 0) {                                                  
+                                                                                                     | list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String
+                                                                                                     | }                                                                                                   
+                                                                                                     | } catch (Throwable ignored) {                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | list.clear();                                                                                       
+                                                                                                     | list = null;                                                                                        
+System.gc();                                                                                           System.gc();                                                                                        
+                                                                                                     | Thread.sleep(1000);                                                                                 
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (theInstance.getTrackCount() != 0) {                                                             
+                                                                                                     | throw new IllegalStateException("Your JVM is not releasing SoftReference, try running the testcase w
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

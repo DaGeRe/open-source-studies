@@ -1,0 +1,9 @@
+public boolean accept(final File file) {                                                               public boolean accept(final File file) {                                                            
+for (Iterator iter = this.fileFilters.iterator(); iter.hasNext(); ) {                                | for (IOFileFilter fileFilter : fileFilters) {                                                       
+IOFileFilter fileFilter = (IOFileFilter) iter.next();                                                |                                                                                                     
+if (fileFilter.accept(file)) {                                                                         if (fileFilter.accept(file)) {                                                                      
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public void testReadLines_InputStream_String() throws Exception {
+    File file = newFile("lines.txt");
+    InputStream in = null;
+    try {
+        String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };
+        createLineBasedFile(file, data);
+        in = new FileInputStream(file);
+        List<String> lines = IOUtils.readLines(in, "UTF-8");
+        assertEquals(Arrays.asList(data), lines);
+        assertEquals(-1, in.read());
+    } finally {
+        IOUtils.closeQuietly(in);
+        deleteFile(file);
+    }
+}

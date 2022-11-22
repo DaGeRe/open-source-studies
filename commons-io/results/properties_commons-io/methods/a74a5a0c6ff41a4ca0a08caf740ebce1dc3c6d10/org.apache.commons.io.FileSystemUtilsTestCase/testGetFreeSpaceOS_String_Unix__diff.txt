@@ -1,0 +1,10 @@
+public void testGetFreeSpaceOS_String_Unix() throws Exception {
+    FileSystemUtils fsu = new FileSystemUtils() {
+
+        protected long freeSpaceUnix(String path, boolean kb, boolean posix) throws IOException {
+            return (kb ? 12345L : 54321);
+        }
+    };
+    assertEquals(54321L, fsu.freeSpaceOS("", 2, false));
+    assertEquals(12345L, fsu.freeSpaceOS("", 2, true));
+}

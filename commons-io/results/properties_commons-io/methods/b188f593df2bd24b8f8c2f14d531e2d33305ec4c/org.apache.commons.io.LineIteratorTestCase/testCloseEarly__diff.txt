@@ -1,0 +1,35 @@
+public void testCloseEarly() throws Exception {
+    String encoding = "UTF-8";
+    File testFile = new File(getTestDirectory(), "LineIterator-closeEarly.txt");
+    createLinesFile(testFile, encoding, 3);
+    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);
+    try {
+        assertTrue("Line expected", iterator.next() instanceof String);
+        assertTrue("More expected", iterator.hasNext());
+        iterator.close();
+        assertFalse("No more expected", iterator.hasNext());
+        try {
+            iterator.next();
+            fail();
+        } catch (NoSuchElementException ex) {
+        }
+        try {
+            iterator.nextLine();
+            fail();
+        } catch (NoSuchElementException ex) {
+        }
+        iterator.close();
+        try {
+            iterator.next();
+            fail();
+        } catch (NoSuchElementException ex) {
+        }
+        try {
+            iterator.nextLine();
+            fail();
+        } catch (NoSuchElementException ex) {
+        }
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

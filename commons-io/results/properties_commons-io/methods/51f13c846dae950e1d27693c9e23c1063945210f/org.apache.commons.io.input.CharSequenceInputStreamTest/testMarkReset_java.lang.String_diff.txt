@@ -1,0 +1,18 @@
+private void testMarkReset(final String csName) throws Exception {                                     private void testMarkReset(final String csName) throws Exception {                                  
+final InputStream r = new CharSequenceInputStream("test", csName);                                   | try (InputStream r = new CharSequenceInputStream("test", csName)) {                                 
+try {                                                                                                |                                                                                                     
+assertEquals(2, r.skip(2));                                                                            assertEquals(2, r.skip(2));                                                                         
+r.mark(0);                                                                                             r.mark(0);                                                                                          
+assertEquals(csName, 's', r.read());                                                                   assertEquals(csName, 's', r.read());                                                                
+assertEquals(csName, 't', r.read());                                                                   assertEquals(csName, 't', r.read());                                                                
+assertEquals(csName, -1, r.read());                                                                    assertEquals(csName, -1, r.read());                                                                 
+r.reset();                                                                                             r.reset();                                                                                          
+assertEquals(csName, 's', r.read());                                                                   assertEquals(csName, 's', r.read());                                                                
+assertEquals(csName, 't', r.read());                                                                   assertEquals(csName, 't', r.read());                                                                
+assertEquals(csName, -1, r.read());                                                                    assertEquals(csName, -1, r.read());                                                                 
+r.reset();                                                                                             r.reset();                                                                                          
+r.reset();                                                                                             r.reset();                                                                                          
+} finally {                                                                                          |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

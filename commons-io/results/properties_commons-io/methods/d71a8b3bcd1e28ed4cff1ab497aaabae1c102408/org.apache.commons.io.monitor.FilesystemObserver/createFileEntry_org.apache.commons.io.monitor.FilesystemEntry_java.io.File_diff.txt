@@ -1,0 +1,11 @@
+private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {
+    FilesystemEntry entry = parent.newChildInstance(file);
+    entry.refresh();
+    File[] files = listFiles(file);
+    FilesystemEntry[] children = files.length > 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;
+    for (int i = 0; i < files.length; i++) {
+        children[i] = createFileEntry(entry, files[i]);
+    }
+    entry.setChildren(children);
+    return entry;
+}

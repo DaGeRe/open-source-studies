@@ -1,0 +1,12 @@
+@Test
+public void testToByteArray_InputStream_SizeLong() throws Exception {
+    final FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        IOUtils.toByteArray(fin, (long) Integer.MAX_VALUE + 1);
+        fail("IOException excepted");
+    } catch (final IllegalArgumentException exc) {
+        assertTrue("Exception message does not start with \"Size cannot be greater than Integer max value\"", exc.getMessage().startsWith("Size cannot be greater than Integer max value"));
+    } finally {
+        fin.close();
+    }
+}

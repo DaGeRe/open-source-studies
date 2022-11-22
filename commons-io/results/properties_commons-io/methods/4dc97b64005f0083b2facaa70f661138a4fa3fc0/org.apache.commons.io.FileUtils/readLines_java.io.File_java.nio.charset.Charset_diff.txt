@@ -1,0 +1,9 @@
+public static List&lt;String&gt; readLines(final File file, final Charset encoding) throws IOExcepti   public static List&lt;String&gt; readLines(final File file, final Charset encoding) throws IOExcepti
+InputStream in = null;                                                                               | try (InputStream in = openInputStream(file)) {                                                      
+try {                                                                                                |                                                                                                     
+in = openInputStream(file);                                                                          |                                                                                                     
+return IOUtils.readLines(in, Charsets.toCharset(encoding));                                            return IOUtils.readLines(in, Charsets.toCharset(encoding));                                         
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(in);                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

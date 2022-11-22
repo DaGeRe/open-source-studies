@@ -1,0 +1,23 @@
+@Test                                                                                                  @Test                                                                                               
+public void testThreadFactory() {                                                                    | public void testThreadFactory() throws Exception {                                                  
+try {                                                                                                |                                                                                                     
+final long interval = 100;                                                                             final long interval = 100;                                                                          
+listener.clear();                                                                                      listener.clear();                                                                                   
+final FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);                   final FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);                
+monitor.setThreadFactory(Executors.defaultThreadFactory());                                            monitor.setThreadFactory(Executors.defaultThreadFactory());                                         
+assertEquals("Interval", interval, monitor.getInterval());                                             assertEquals("Interval", interval, monitor.getInterval());                                          
+monitor.start();                                                                                       monitor.start();                                                                                    
+checkCollectionsEmpty("A");                                                                            checkCollectionsEmpty("A");                                                                         
+final File file2 = touch(new File(testDir, "file2.java"));                                             final File file2 = touch(new File(testDir, "file2.java"));                                          
+checkFile("Create", file2, listener.getCreatedFiles());                                                checkFile("Create", file2, listener.getCreatedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+checkCollectionsEmpty("B");                                                                            checkCollectionsEmpty("B");                                                                         
+file2.delete();                                                                                        file2.delete();                                                                                     
+checkFile("Delete", file2, listener.getDeletedFiles());                                                checkFile("Delete", file2, listener.getDeletedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+monitor.stop();                                                                                        monitor.stop();                                                                                     
+} catch (final Exception e) {                                                                        |                                                                                                     
+e.printStackTrace();                                                                                 |                                                                                                     
+fail("Threw " + e);                                                                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

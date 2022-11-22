@@ -1,0 +1,10 @@
+public BOMInputStream(final InputStream delegate, final boolean include, final ByteOrderMark... boms   public BOMInputStream(final InputStream delegate, final boolean include, final ByteOrderMark... boms
+super(delegate);                                                                                       super(delegate);                                                                                    
+if (boms == null || boms.length == 0) {                                                                if (boms == null || boms.length == 0) {                                                             
+throw new IllegalArgumentException("No BOMs specified");                                               throw new IllegalArgumentException("No BOMs specified");                                            
+}                                                                                                      }                                                                                                   
+this.include = include;                                                                                this.include = include;                                                                             
+Arrays.sort(boms, ByteOrderMarkLengthComparator);                                                    | List&lt;ByteOrderMark&gt; list = Arrays.asList(boms);                                               
+this.boms = Arrays.asList(boms);                                                                     | Collections.sort(list, ByteOrderMarkLengthComparator);                                              
+                                                                                                     | this.boms = list;                                                                                   
+}                                                                                                      }                                                                                                   

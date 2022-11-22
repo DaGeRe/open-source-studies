@@ -1,0 +1,9 @@
+public void testWriteLines_OutputStream_nullStream() throws Exception {
+    Object[] data = new Object[] { "hello", "world" };
+    List<Object> list = Arrays.asList(data);
+    try {
+        IOUtils.writeLines(list, "*", (OutputStream) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

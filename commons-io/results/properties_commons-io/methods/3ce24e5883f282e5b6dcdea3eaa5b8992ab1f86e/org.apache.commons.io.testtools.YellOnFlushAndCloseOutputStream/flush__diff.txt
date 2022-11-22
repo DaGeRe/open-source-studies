@@ -1,0 +1,6 @@
+public void flush() throws IOException {
+    if (yellForFlush) {
+        throw new AssertionFailedError("flush() was called on OutputStream");
+    }
+    super.flush();
+}

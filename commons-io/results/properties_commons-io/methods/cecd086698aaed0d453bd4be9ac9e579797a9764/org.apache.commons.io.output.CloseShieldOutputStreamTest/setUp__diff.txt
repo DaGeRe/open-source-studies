@@ -1,0 +1,12 @@
+                                                                                                     | @Override                                                                                           
+protected void setUp() {                                                                               protected void setUp() {                                                                            
+original = new ByteArrayOutputStream() {                                                               original = new ByteArrayOutputStream() {                                                            
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public void close() {                                                                                  public void close() {                                                                               
+closed = true;                                                                                         closed = true;                                                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+shielded = new CloseShieldOutputStream(original);                                                      shielded = new CloseShieldOutputStream(original);                                                   
+closed = false;                                                                                        closed = false;                                                                                     
+}                                                                                                      }                                                                                                   

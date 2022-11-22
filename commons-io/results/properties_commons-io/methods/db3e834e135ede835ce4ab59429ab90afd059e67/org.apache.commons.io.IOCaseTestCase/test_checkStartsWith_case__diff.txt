@@ -1,0 +1,8 @@
+public void test_checkStartsWith_case() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("ABC", "AB"));
+    assertEquals(false, IOCase.SENSITIVE.checkStartsWith("ABC", "Ab"));
+    assertEquals(true, IOCase.INSENSITIVE.checkStartsWith("ABC", "AB"));
+    assertEquals(true, IOCase.INSENSITIVE.checkStartsWith("ABC", "Ab"));
+    assertEquals(true, IOCase.SYSTEM.checkStartsWith("ABC", "AB"));
+    assertEquals(WINDOWS, IOCase.SYSTEM.checkStartsWith("ABC", "Ab"));
+}

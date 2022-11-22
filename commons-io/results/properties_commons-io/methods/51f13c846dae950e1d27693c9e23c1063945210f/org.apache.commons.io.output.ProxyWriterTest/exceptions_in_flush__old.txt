@@ -1,0 +1,16 @@
+@Test(expected = UnsupportedEncodingException.class)
+public void exceptions_in_flush() throws IOException {
+    OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {
+
+        @Override
+        public void flush() throws IOException {
+            throw new UnsupportedEncodingException("Bah");
+        }
+    };
+    final ProxyWriter proxy = new ProxyWriter(osw);
+    try {
+        proxy.flush();
+    } finally {
+        proxy.close();
+    }
+}

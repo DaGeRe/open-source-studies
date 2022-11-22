@@ -1,0 +1,14 @@
+                                                                                                     | @Override                                                                                           
+public synchronized void reset() throws IOException {                                                  public synchronized void reset() throws IOException {                                               
+if (!markSupported) {                                                                                  if (!markSupported) {                                                                               
+throw new UnsupportedOperationException("Mark not supported");                                         throw new UnsupportedOperationException("Mark not supported");                                      
+}                                                                                                      }                                                                                                   
+if (mark &lt; 0) {                                                                                     if (mark &lt; 0) {                                                                                  
+throw new IOException("No position has been marked");                                                  throw new IOException("No position has been marked");                                               
+}                                                                                                      }                                                                                                   
+if (position &gt; (mark + readlimit)) {                                                                if (position &gt; (mark + readlimit)) {                                                             
+throw new IOException("Marked position [" + mark + "] is no longer valid - passed the read limit ["    throw new IOException("Marked position [" + mark + "] is no longer valid - passed the read limit [" 
+}                                                                                                      }                                                                                                   
+position = mark;                                                                                       position = mark;                                                                                    
+eof = false;                                                                                           eof = false;                                                                                        
+}                                                                                                      }                                                                                                   

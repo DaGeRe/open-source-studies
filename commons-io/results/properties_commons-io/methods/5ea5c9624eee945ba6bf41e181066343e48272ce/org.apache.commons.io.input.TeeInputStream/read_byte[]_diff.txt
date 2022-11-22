@@ -1,0 +1,8 @@
+@Override
+public int read(final byte[] bts) throws IOException {
+    final int n = super.read(bts);
+    if (n != EOF) {
+        branch.write(bts, 0, n);
+    }
+    return n;
+}

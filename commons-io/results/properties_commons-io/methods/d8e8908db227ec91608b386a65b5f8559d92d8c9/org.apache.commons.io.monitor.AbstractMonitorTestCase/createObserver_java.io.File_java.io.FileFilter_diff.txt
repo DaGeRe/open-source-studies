@@ -1,0 +1,10 @@
+protected void createObserver(final File file, final FileFilter fileFilter) {
+    observer = new FileAlterationObserver(file, fileFilter);
+    observer.addListener(listener);
+    observer.addListener(new FileAlterationListenerAdaptor());
+    try {
+        observer.initialize();
+    } catch (final Exception e) {
+        fail("Observer init() threw " + e);
+    }
+}

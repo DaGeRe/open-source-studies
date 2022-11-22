@@ -1,0 +1,6 @@
+public static InputStream toBufferedInputStream(final InputStream input, int size) throws IOException {
+    @SuppressWarnings("resource")
+    final ByteArrayOutputStream output = new ByteArrayOutputStream(size);
+    output.write(input);
+    return output.toInputStream();
+}

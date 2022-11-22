@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testWriteChar() throws IOException {                                                       public void testWriteChar() throws IOException {                                                    
+final Writer writer = new StringBuilderWriter();                                                     | try (final Writer writer = new StringBuilderWriter()) {                                             
+writer.write('F');                                                                                     writer.write('F');                                                                                  
+assertEquals("F", writer.toString());                                                                  assertEquals("F", writer.toString());                                                               
+writer.write('o');                                                                                     writer.write('o');                                                                                  
+assertEquals("Fo", writer.toString());                                                                 assertEquals("Fo", writer.toString());                                                              
+writer.write('o');                                                                                     writer.write('o');                                                                                  
+assertEquals("Foo", writer.toString());                                                                assertEquals("Foo", writer.toString());                                                             
+writer.close();                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,9 @@
+public void testForceDeleteAFile3() throws Exception {
+    File destination = new File(getTestDirectory(), "no_such_file");
+    assertTrue("Check No Exist", !destination.exists());
+    try {
+        FileUtils.forceDelete(destination);
+        fail("Should generate FileNotFoundException");
+    } catch (FileNotFoundException ignored) {
+    }
+}

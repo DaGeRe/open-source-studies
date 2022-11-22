@@ -1,0 +1,9 @@
+@Override                                                                                              @Override                                                                                           
+public int available() throws IOException {                                                            public int available() throws IOException {                                                         
+return in.available();                                                                               | try {                                                                                               
+                                                                                                     | return super.available();                                                                           
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | handleIOException(e);                                                                               
+                                                                                                     | return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

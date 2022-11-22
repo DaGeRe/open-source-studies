@@ -1,0 +1,9 @@
+public static long readSwappedUnsignedInteger(InputStream input) throws IOException {                  public static long readSwappedUnsignedInteger(InputStream input) throws IOException {               
+int value1 = read(input);                                                                              int value1 = read(input);                                                                           
+int value2 = read(input);                                                                              int value2 = read(input);                                                                           
+int value3 = read(input);                                                                              int value3 = read(input);                                                                           
+int value4 = read(input);                                                                              int value4 = read(input);                                                                           
+return ((value1 & 0xff) &lt;&lt; 0) + ((value2 & 0xff) &lt;&lt; 8) + ((value3 & 0xff) &lt;&lt; 16) + | long low = (((value1 & 0xff) &lt;&lt; 0) + ((value2 & 0xff) &lt;&lt; 8) + ((value3 & 0xff) &lt;&lt; 
+                                                                                                     | long high = value4 & 0xff;                                                                          
+                                                                                                     | return (high &lt;&lt; 24) + (0xffffffffL & low);                                                    
+}                                                                                                      }                                                                                                   

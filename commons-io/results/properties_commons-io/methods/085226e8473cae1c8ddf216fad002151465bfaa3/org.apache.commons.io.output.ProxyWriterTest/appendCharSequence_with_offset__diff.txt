@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void appendCharSequence_with_offset() throws Exception {                                        public void appendCharSequence_with_offset() throws Exception {                                     
+final StringBuilderWriter writer = new StringBuilderWriter();                                        | try (final StringBuilderWriter writer = new StringBuilderWriter();                                  
+final ProxyWriter proxy = new ProxyWriter(writer);                                                   | final ProxyWriter proxy = new ProxyWriter(writer)) {                                                
+proxy.append("ABC", 1, 3);                                                                             proxy.append("ABC", 1, 3);                                                                          
+proxy.flush();                                                                                         proxy.flush();                                                                                      
+assertEquals("BC", writer.toString());                                                                 assertEquals("BC", writer.toString());                                                              
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

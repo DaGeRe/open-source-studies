@@ -1,0 +1,23 @@
+public boolean hasNext() {
+    if (cachedLine != null) {
+        return true;
+    } else if (finished) {
+        return false;
+    } else {
+        try {
+            while (true) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
+                    finished = true;
+                    return false;
+                } else if (isValidLine(line)) {
+                    cachedLine = line;
+                    return true;
+                }
+            }
+        } catch (IOException ioe) {
+            close();
+            throw new IllegalStateException(ioe);
+        }
+    }
+}

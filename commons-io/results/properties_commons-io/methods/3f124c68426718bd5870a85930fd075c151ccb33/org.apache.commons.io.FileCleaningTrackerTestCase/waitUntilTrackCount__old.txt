@@ -1,0 +1,22 @@
+private void waitUntilTrackCount() throws Exception {
+    int count = 0;
+    SoftReference<?> ref = new SoftReference<Object>(new Object());
+    while (theInstance.getTrackCount() != 0 && count++ < 5) {
+        List<String> list = new ArrayList<String>();
+        try {
+            long i = 0;
+            while (ref.get() != null) {
+                list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String " + (i++));
+            }
+        } catch (Throwable ignored) {
+        }
+        list.clear();
+        list = null;
+        System.gc();
+        Thread.sleep(1000);
+        ref = new SoftReference<Object>(new Object());
+    }
+    if (theInstance.getTrackCount() != 0) {
+        throw new IllegalStateException("Your JVM is not releasing SoftReference, try running the testcase with less memory (-Xmx)");
+    }
+}

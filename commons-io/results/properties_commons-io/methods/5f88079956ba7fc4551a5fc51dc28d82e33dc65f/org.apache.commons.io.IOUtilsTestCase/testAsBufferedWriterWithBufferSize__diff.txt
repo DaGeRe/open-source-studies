@@ -1,0 +1,25 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAsBufferedWriterWithBufferSize() {                                                     public void testAsBufferedWriterWithBufferSize() {                                                  
+Writer w = new Writer() {                                                                            | final Writer w = new Writer() {                                                                     
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(int b) throws IOException {                                                        | public void write(final int b) throws IOException {                                                 
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(char[] cbuf, int off, int len) throws IOException {                                | public void write(final char[] cbuf, final int off, final int len) throws IOException {             
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void flush() throws IOException {                                                               public void flush() throws IOException {                                                            
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void close() throws IOException {                                                               public void close() throws IOException {                                                            
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final BufferedWriter bw = IOUtils.buffer(w, 2024);                                                     final BufferedWriter bw = IOUtils.buffer(w, 2024);                                                  
+assertNotSame(w, bw);                                                                                  assertNotSame(w, bw);                                                                               
+assertSame(bw, IOUtils.buffer(bw));                                                                    assertSame(bw, IOUtils.buffer(bw));                                                                 
+assertSame(bw, IOUtils.buffer(bw, 1024));                                                              assertSame(bw, IOUtils.buffer(bw, 1024));                                                           
+}                                                                                                      }                                                                                                   

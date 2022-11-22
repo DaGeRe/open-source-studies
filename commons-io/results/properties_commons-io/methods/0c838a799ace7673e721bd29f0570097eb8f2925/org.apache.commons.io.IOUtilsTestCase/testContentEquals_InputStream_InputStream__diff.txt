@@ -1,0 +1,17 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testContentEquals_InputStream_InputStream() throws Exception {                             public void testContentEquals_InputStream_InputStream() throws Exception {                          
+{                                                                                                      {                                                                                                   
+final ByteArrayInputStream input1 = new ByteArrayInputStream("".getBytes(Charsets.UTF_8));           | final ByteArrayInputStream input1 = new ByteArrayInputStream("".getBytes(StandardCharsets.UTF_8));  
+assertTrue(IOUtils.contentEquals(input1, input1));                                                     assertTrue(IOUtils.contentEquals(input1, input1));                                                  
+}                                                                                                      }                                                                                                   
+{                                                                                                      {                                                                                                   
+final ByteArrayInputStream input1 = new ByteArrayInputStream("ABC".getBytes(Charsets.UTF_8));        | final ByteArrayInputStream input1 = new ByteArrayInputStream("ABC".getBytes(StandardCharsets.UTF_8))
+assertTrue(IOUtils.contentEquals(input1, input1));                                                     assertTrue(IOUtils.contentEquals(input1, input1));                                                  
+}                                                                                                      }                                                                                                   
+assertTrue(IOUtils.contentEquals(new ByteArrayInputStream("".getBytes(Charsets.UTF_8)), new ByteArra | assertTrue(IOUtils.contentEquals(new ByteArrayInputStream("".getBytes(StandardCharsets.UTF_8)), new 
+assertTrue(IOUtils.contentEquals(new BufferedInputStream(new ByteArrayInputStream("".getBytes(Charse | assertTrue(IOUtils.contentEquals(new BufferedInputStream(new ByteArrayInputStream("".getBytes(Standa
+assertTrue(IOUtils.contentEquals(new ByteArrayInputStream("ABC".getBytes(Charsets.UTF_8)), new ByteA | assertTrue(IOUtils.contentEquals(new ByteArrayInputStream("ABC".getBytes(StandardCharsets.UTF_8)), n
+assertFalse(IOUtils.contentEquals(new ByteArrayInputStream("ABCD".getBytes(Charsets.UTF_8)), new Byt | assertFalse(IOUtils.contentEquals(new ByteArrayInputStream("ABCD".getBytes(StandardCharsets.UTF_8)),
+assertFalse(IOUtils.contentEquals(new ByteArrayInputStream("ABC".getBytes(Charsets.UTF_8)), new Byte | assertFalse(IOUtils.contentEquals(new ByteArrayInputStream("ABC".getBytes(StandardCharsets.UTF_8)), 
+}                                                                                                      }                                                                                                   

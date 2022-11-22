@@ -1,0 +1,35 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFileLocked() throws IOException {                                                      public void testFileLocked() throws IOException {                                                   
+LockableFileWriter lfw1 = null;                                                                      | try (LockableFileWriter lfw1 = new LockableFileWriter(file)) {                                      
+LockableFileWriter lfw2 = null;                                                                      |                                                                                                     
+LockableFileWriter lfw3 = null;                                                                      |                                                                                                     
+try {                                                                                                |                                                                                                     
+lfw1 = new LockableFileWriter(file);                                                                 |                                                                                                     
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertTrue(lockFile.exists());                                                                         assertTrue(lockFile.exists());                                                                      
+try {                                                                                                | try (LockableFileWriter lfw2 = new LockableFileWriter(file)) {                                      
+lfw2 = new LockableFileWriter(file);                                                                 |                                                                                                     
+fail("Somehow able to open a locked file. ");                                                          fail("Somehow able to open a locked file. ");                                                       
+} catch (final IOException ioe) {                                                                      } catch (final IOException ioe) {                                                                   
+final String msg = ioe.getMessage();                                                                   final String msg = ioe.getMessage();                                                                
+assertTrue("Exception message does not start correctly. ", msg.startsWith("Can't write file, lock ")   assertTrue("Exception message does not start correctly. ", msg.startsWith("Can't write file, lock ")
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertTrue(lockFile.exists());                                                                         assertTrue(lockFile.exists());                                                                      
+}                                                                                                      }                                                                                                   
+try {                                                                                                | try (LockableFileWriter lfw3 = new LockableFileWriter(file)) {                                      
+lfw3 = new LockableFileWriter(file);                                                                 |                                                                                                     
+fail("Somehow able to open a locked file. ");                                                          fail("Somehow able to open a locked file. ");                                                       
+} catch (final IOException ioe) {                                                                      } catch (final IOException ioe) {                                                                   
+final String msg = ioe.getMessage();                                                                   final String msg = ioe.getMessage();                                                                
+assertTrue("Exception message does not start correctly. ", msg.startsWith("Can't write file, lock ")   assertTrue("Exception message does not start correctly. ", msg.startsWith("Can't write file, lock ")
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertTrue(lockFile.exists());                                                                         assertTrue(lockFile.exists());                                                                      
+}                                                                                                      }                                                                                                   
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(lfw1);                                                                          |                                                                                                     
+IOUtils.closeQuietly(lfw2);                                                                          |                                                                                                     
+IOUtils.closeQuietly(lfw3);                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertTrue(file.exists());                                                                             assertTrue(file.exists());                                                                          
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+}                                                                                                      }                                                                                                   

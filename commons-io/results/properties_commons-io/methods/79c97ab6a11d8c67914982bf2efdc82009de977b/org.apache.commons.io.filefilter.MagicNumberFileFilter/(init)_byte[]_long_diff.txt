@@ -1,0 +1,14 @@
+public MagicNumberFileFilter(byte[] magicNumber, long offset) {                                        public MagicNumberFileFilter(byte[] magicNumber, long offset) {                                     
+if (magicNumber == null) {                                                                             if (magicNumber == null) {                                                                          
+throw new IllegalArgumentException("The magic number cannot be null");                                 throw new IllegalArgumentException("The magic number cannot be null");                              
+}                                                                                                      }                                                                                                   
+if (magicNumber.length == 0) {                                                                         if (magicNumber.length == 0) {                                                                      
+throw new IllegalArgumentException("The magic number must contain at least one byte");                 throw new IllegalArgumentException("The magic number must contain at least one byte");              
+}                                                                                                      }                                                                                                   
+if (offset &lt; 0) {                                                                                   if (offset &lt; 0) {                                                                                
+throw new IllegalArgumentException("The offset cannot be negative");                                   throw new IllegalArgumentException("The offset cannot be negative");                                
+}                                                                                                      }                                                                                                   
+this.magicNumbers = magicNumber;                                                                     | this.magicNumbers = new byte[magicNumber.length];                                                   
+                                                                                                     | System.arraycopy(magicNumber, 0, this.magicNumbers, 0, magicNumber.length);                         
+this.byteOffset = offset;                                                                              this.byteOffset = offset;                                                                           
+}                                                                                                      }                                                                                                   

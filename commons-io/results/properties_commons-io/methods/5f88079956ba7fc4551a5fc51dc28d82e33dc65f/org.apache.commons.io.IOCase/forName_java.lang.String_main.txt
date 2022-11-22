@@ -1,0 +1,8 @@
+public static IOCase forName(final String name) {
+    for (final IOCase ioCase : IOCase.values()) {
+        if (ioCase.getName().equals(name)) {
+            return ioCase;
+        }
+    }
+    throw new IllegalArgumentException("Invalid IOCase name: " + name);
+}

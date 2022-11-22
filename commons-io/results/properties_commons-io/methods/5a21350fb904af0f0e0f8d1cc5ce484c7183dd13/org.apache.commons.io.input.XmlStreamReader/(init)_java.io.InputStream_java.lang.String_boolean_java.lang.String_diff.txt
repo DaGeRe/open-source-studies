@@ -1,0 +1,12 @@
+public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncoding) throws IOException, XmlStreamReaderException {
+    this.defaultEncoding = (defaultEncoding == null) ? staticDefaultEncoding : defaultEncoding;
+    try {
+        doHttpStream(is, httpContentType, lenient);
+    } catch (XmlStreamReaderException ex) {
+        if (!lenient) {
+            throw ex;
+        } else {
+            doLenientDetection(httpContentType, is, ex);
+        }
+    }
+}

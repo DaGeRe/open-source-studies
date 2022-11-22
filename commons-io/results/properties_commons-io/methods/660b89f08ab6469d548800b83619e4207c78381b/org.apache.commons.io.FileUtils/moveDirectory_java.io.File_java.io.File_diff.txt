@@ -1,0 +1,25 @@
+public static void moveDirectory(File srcDir, File destDir) throws IOException {                       public static void moveDirectory(File srcDir, File destDir) throws IOException {                    
+if (srcDir == null) {                                                                                  if (srcDir == null) {                                                                               
+throw new IllegalArgumentException("Source must not be null");                                       | throw new NullPointerException("Source must not be null");                                          
+}                                                                                                      }                                                                                                   
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new IllegalArgumentException("Destination must not be null");                                  | throw new NullPointerException("Destination must not be null");                                     
+}                                                                                                      }                                                                                                   
+if (!srcDir.exists()) {                                                                                if (!srcDir.exists()) {                                                                             
+throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                             throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                          
+}                                                                                                      }                                                                                                   
+if (!srcDir.isDirectory()) {                                                                           if (!srcDir.isDirectory()) {                                                                        
+throw new IOException("Source '" + srcDir + "' is not a directory");                                   throw new IOException("Source '" + srcDir + "' is not a directory");                                
+}                                                                                                      }                                                                                                   
+if (destDir.exists()) {                                                                                if (destDir.exists()) {                                                                             
+throw new IOException("Destination '" + destDir + "' already exists");                                 throw new IOException("Destination '" + destDir + "' already exists");                              
+}                                                                                                      }                                                                                                   
+boolean rename = srcDir.renameTo(destDir);                                                             boolean rename = srcDir.renameTo(destDir);                                                          
+if (!rename) {                                                                                         if (!rename) {                                                                                      
+copyDirectory(srcDir, destDir);                                                                        copyDirectory(srcDir, destDir);                                                                     
+deleteDirectory(srcDir);                                                                               deleteDirectory(srcDir);                                                                            
+if (srcDir.exists()) {                                                                                 if (srcDir.exists()) {                                                                              
+throw new IOException("Failed to delete original directory '" + srcDir + "' after copy to '" + destD   throw new IOException("Failed to delete original directory '" + srcDir + "' after copy to '" + destD
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

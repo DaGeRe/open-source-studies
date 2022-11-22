@@ -1,0 +1,20 @@
+public synchronized byte[] toByteArray() {                                                             public synchronized byte[] toByteArray() {                                                          
+int remaining = count;                                                                                 int remaining = count;                                                                              
+                                                                                                     | if (remaining == 0) {                                                                               
+                                                                                                     | return EMPTY_BYTE_ARRAY;                                                                            
+                                                                                                     | }                                                                                                   
+                                                                                                     | byte[] newbuf = new byte[remaining];                                                                
+int pos = 0;                                                                                           int pos = 0;                                                                                        
+byte[] newbuf = new byte[count];                                                                     |                                                                                                     
+for (int i = 0; i &lt; buffers.size(); i++) {                                                          for (int i = 0; i &lt; buffers.size(); i++) {                                                       
+byte[] buf = getBuffer(i);                                                                             byte[] buf = getBuffer(i);                                                                          
+int c = Math.min(buf.length, remaining);                                                               int c = Math.min(buf.length, remaining);                                                            
+System.arraycopy(buf, 0, newbuf, pos, c);                                                              System.arraycopy(buf, 0, newbuf, pos, c);                                                           
+pos += c;                                                                                              pos += c;                                                                                           
+remaining -= c;                                                                                        remaining -= c;                                                                                     
+if (remaining == 0) {                                                                                  if (remaining == 0) {                                                                               
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return newbuf;                                                                                         return newbuf;                                                                                      
+}                                                                                                      }                                                                                                   

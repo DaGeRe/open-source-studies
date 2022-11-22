@@ -1,0 +1,5 @@
+protected final void checkIfCancelled(File file, int depth, Collection<T> results) throws IOException {
+    if (handleIsCancelled(file, depth, results)) {
+        throw new CancelException(file, depth);
+    }
+}

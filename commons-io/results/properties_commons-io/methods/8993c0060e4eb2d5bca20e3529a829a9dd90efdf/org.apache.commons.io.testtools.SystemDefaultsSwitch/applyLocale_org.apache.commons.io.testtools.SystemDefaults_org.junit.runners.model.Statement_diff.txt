@@ -1,0 +1,19 @@
+private Statement applyLocale(final SystemDefaults defaults, final Statement stmt) {
+    if (defaults.locale().isEmpty()) {
+        return stmt;
+    }
+    final Locale newLocale = Locale.forLanguageTag(defaults.locale());
+    return new Statement() {
+
+        @Override
+        public void evaluate() throws Throwable {
+            final Locale save = Locale.getDefault();
+            try {
+                Locale.setDefault(newLocale);
+                stmt.evaluate();
+            } finally {
+                Locale.setDefault(save);
+            }
+        }
+    };
+}

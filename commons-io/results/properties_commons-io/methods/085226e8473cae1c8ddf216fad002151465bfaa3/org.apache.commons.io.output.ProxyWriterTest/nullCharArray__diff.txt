@@ -1,0 +1,8 @@
+@Test                                                                                                  @Test                                                                                               
+public void nullCharArray() throws Exception {                                                         public void nullCharArray() throws Exception {                                                      
+final ProxyWriter proxy = new ProxyWriter(new NullWriter());                                         | try (final ProxyWriter proxy = new ProxyWriter(new NullWriter())) {                                 
+proxy.write((char[]) null);                                                                            proxy.write((char[]) null);                                                                         
+proxy.write((char[]) null, 0, 0);                                                                      proxy.write((char[]) null, 0, 0);                                                                   
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,26 @@
+public void test_checkStartsWith_functionality() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("ABC", ""));
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("ABC", "A"));
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("ABC", "AB"));
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("ABC", "ABC"));
+    assertEquals(false, IOCase.SENSITIVE.checkStartsWith("ABC", "BC"));
+    assertEquals(false, IOCase.SENSITIVE.checkStartsWith("ABC", "C"));
+    assertEquals(false, IOCase.SENSITIVE.checkStartsWith("ABC", "ABCD"));
+    assertEquals(false, IOCase.SENSITIVE.checkStartsWith("", "ABC"));
+    assertEquals(true, IOCase.SENSITIVE.checkStartsWith("", ""));
+    try {
+        IOCase.SENSITIVE.checkStartsWith("ABC", null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkStartsWith(null, "ABC");
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkStartsWith(null, null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

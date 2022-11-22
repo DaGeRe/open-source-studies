@@ -1,0 +1,19 @@
+@SuppressWarnings("ResultOfMethodCallIgnored")
+@Before
+public void setUp() throws Exception {
+    top = temporaryFolder.getRoot();
+    directory1 = new File(top, "directory1");
+    directory2 = new File(top, "directory2");
+    directory3 = new File(directory2, "directory3");
+    directory1.mkdir();
+    directory2.mkdir();
+    directory3.mkdir();
+    file1 = new File(directory1, "file1");
+    file2 = new File(directory2, "file2");
+    file3 = new File(top, "file3");
+    file1ByRelativeDirectory2 = new File(top, "directory2/../directory1/file1");
+    file2ByRelativeDirectory1 = new File(top, "directory1/../directory2/file2");
+    FileUtils.touch(file1);
+    FileUtils.touch(file2);
+    FileUtils.touch(file3);
+}

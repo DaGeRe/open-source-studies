@@ -1,0 +1,7 @@
+@Override
+protected void handleDirectoryEnd(File directory, int depth, Collection<File> results) throws IOException {
+    results.add(directory);
+    if (cancelFileName.equals(directory.getName())) {
+        throw new CancelException(directory, depth);
+    }
+}

@@ -1,0 +1,12 @@
+public void test_openOutputStream_existsButIsDirectory() throws Exception {                            public void test_openOutputStream_existsButIsDirectory() throws Exception {                         
+File directory = new File(getTestDirectory(), "subdir");                                               File directory = new File(getTestDirectory(), "subdir");                                            
+directory.mkdirs();                                                                                    directory.mkdirs();                                                                                 
+                                                                                                     | FileOutputStream out = null;                                                                        
+try {                                                                                                  try {                                                                                               
+FileUtils.openOutputStream(directory);                                                               | out = FileUtils.openOutputStream(directory);                                                        
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ioe) {                                                                            } catch (IOException ioe) {                                                                         
+                                                                                                     | } finally {                                                                                         
+                                                                                                     | IOUtils.closeQuietly(out);                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

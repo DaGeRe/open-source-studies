@@ -1,0 +1,17 @@
+public void testMoveToDirectory() throws Exception {
+    File destDir = new File(getTestDirectory(), "testMoveToDirectoryDestDir");
+    File testDir = new File(getTestDirectory(), "testMoveToDirectoryTestDir");
+    File testFile = new File(getTestDirectory(), "testMoveToDirectoryTestFile");
+    testDir.mkdirs();
+    createFile(testFile, 0);
+    File movedFile = new File(destDir, testFile.getName());
+    File movedDir = new File(destDir, testFile.getName());
+    assertFalse("Check File Doesnt exist", movedFile.exists());
+    assertFalse("Check Dir Doesnt exist", movedDir.exists());
+    FileUtils.moveToDirectory(testFile, destDir, true);
+    assertTrue("Check File exists", movedFile.exists());
+    assertFalse("Check Original File doesn't exist", testFile.exists());
+    FileUtils.moveToDirectory(testDir, destDir, true);
+    assertTrue("Check Dir exists", movedDir.exists());
+    assertFalse("Check Original Dir doesn't exist", testDir.exists());
+}

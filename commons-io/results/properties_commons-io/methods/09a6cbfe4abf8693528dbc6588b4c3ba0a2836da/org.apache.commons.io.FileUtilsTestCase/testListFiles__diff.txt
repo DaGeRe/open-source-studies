@@ -1,0 +1,27 @@
+public void testListFiles() throws Exception {
+    File srcDir = getTestDirectory();
+    File subDir = new File(srcDir, "list_test");
+    subDir.mkdir();
+    String[] fileNames = { "a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt" };
+    int[] fileSizes = { 123, 234, 345, 456, 678, 789 };
+    for (int i = 0; i < fileNames.length; ++i) {
+        File theFile = new File(subDir, fileNames[i]);
+        createFile(theFile, fileSizes[i]);
+    }
+    Collection files = FileUtils.listFiles(subDir, new WildcardFilter("*.*"), new WildcardFilter("*"));
+    int count = files.size();
+    Object[] fileObjs = files.toArray();
+    assertEquals(files.size(), fileNames.length);
+    Map foundFileNames = new HashMap();
+    for (int i = 0; i < count; ++i) {
+        boolean found = false;
+        for (int j = 0; ((!found) && (j < fileNames.length)); ++j) {
+            if (fileNames[j].equals(((File) fileObjs[i]).getName())) {
+                foundFileNames.put(fileNames[j], fileNames[j]);
+                found = true;
+            }
+        }
+    }
+    assertEquals(foundFileNames.size(), fileNames.length);
+    subDir.delete();
+}

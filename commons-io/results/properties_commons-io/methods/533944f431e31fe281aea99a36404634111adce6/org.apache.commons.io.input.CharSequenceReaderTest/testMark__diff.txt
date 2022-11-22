@@ -1,0 +1,14 @@
+@Test                                                                                                  @Test                                                                                               
+public void testMark() throws IOException {                                                            public void testMark() throws IOException {                                                         
+final Reader reader = new CharSequenceReader("FooBar");                                              | try (final Reader reader = new CharSequenceReader("FooBar")) {                                      
+checkRead(reader, "Foo");                                                                              checkRead(reader, "Foo");                                                                           
+reader.mark(0);                                                                                        reader.mark(0);                                                                                     
+checkRead(reader, "Bar");                                                                              checkRead(reader, "Bar");                                                                           
+reader.reset();                                                                                        reader.reset();                                                                                     
+checkRead(reader, "Bar");                                                                              checkRead(reader, "Bar");                                                                           
+reader.close();                                                                                        reader.close();                                                                                     
+checkRead(reader, "Foo");                                                                              checkRead(reader, "Foo");                                                                           
+reader.reset();                                                                                        reader.reset();                                                                                     
+checkRead(reader, "Foo");                                                                              checkRead(reader, "Foo");                                                                           
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

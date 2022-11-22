@@ -1,0 +1,9 @@
+public void testFilterSet() throws Exception {
+    File fileA = newFile("A");
+    File fileB = newFile("B");
+    Set<File> fileList = new HashSet<File>(Arrays.asList(fileA, fileB));
+    IOFileFilter filter = FileFilterUtils.nameFileFilter("A");
+    Set<File> filteredSet = FileFilterUtils.filterSet(filter, fileList);
+    assertTrue(filteredSet.contains(fileA));
+    assertFalse(filteredSet.contains(fileB));
+}

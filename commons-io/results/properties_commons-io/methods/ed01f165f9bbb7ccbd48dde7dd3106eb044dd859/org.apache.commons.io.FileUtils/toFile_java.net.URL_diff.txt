@@ -1,0 +1,16 @@
+public static File toFile(URL url) {                                                                   public static File toFile(URL url) {                                                                
+if (url == null || !url.getProtocol().equals("file")) {                                              | if (url == null || !"file".equalsIgnoreCase(url.getProtocol())) {                                   
+return null;                                                                                           return null;                                                                                        
+} else {                                                                                               } else {                                                                                            
+String filename = url.getFile().replace('/', File.separatorChar);                                      String filename = url.getFile().replace('/', File.separatorChar);                                   
+int pos = 0;                                                                                         | filename = decodeUrl(filename);                                                                     
+while ((pos = filename.indexOf('%', pos)) &gt;= 0) {                                                 |                                                                                                     
+if (pos + 2 &lt; filename.length()) {                                                                |                                                                                                     
+String hexStr = filename.substring(pos + 1, pos + 3);                                                |                                                                                                     
+char ch = (char) Integer.parseInt(hexStr, 16);                                                       |                                                                                                     
+filename = filename.substring(0, pos) + ch + filename.substring(pos + 3);                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return new File(filename);                                                                             return new File(filename);                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

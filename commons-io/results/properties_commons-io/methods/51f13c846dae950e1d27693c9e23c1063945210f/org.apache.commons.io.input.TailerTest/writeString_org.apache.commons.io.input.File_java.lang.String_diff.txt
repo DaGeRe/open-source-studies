@@ -1,0 +1,11 @@
+private void writeString(final File file, final String... strings) throws Exception {
+    FileWriter writer = null;
+    try {
+        writer = new FileWriter(file, true);
+        for (final String string : strings) {
+            writer.write(string);
+        }
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+}

@@ -1,0 +1,7 @@
+public CompositeFileComparator(Comparator<File>... delegates) {
+    int size = (delegates == null ? 0 : delegates.length);
+    this.delegates = new Comparator[size];
+    for (int i = 0; i < size; i++) {
+        this.delegates[i] = delegates[i];
+    }
+}

@@ -1,0 +1,14 @@
+private String doHttpStream(final BOMInputStream bom, final BOMInputStream pis, final String httpCon   private String doHttpStream(final BOMInputStream bom, final BOMInputStream pis, final String httpCon
+final String bomEnc = bom.getBOMCharsetName();                                                         final String bomEnc = bom.getBOMCharsetName();                                                      
+final String xmlGuessEnc = pis.getBOMCharsetName();                                                    final String xmlGuessEnc = pis.getBOMCharsetName();                                                 
+final String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                  final String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                               
+try {                                                                                                  try {                                                                                               
+return calculateHttpEncoding(httpContentType, bomEnc, xmlGuessEnc, xmlEnc, lenient);                   return calculateHttpEncoding(httpContentType, bomEnc, xmlGuessEnc, xmlEnc, lenient);                
+} catch (final XmlStreamReaderException ex) {                                                          } catch (final XmlStreamReaderException ex) {                                                       
+if (lenient) {                                                                                         if (lenient) {                                                                                      
+return doLenientDetection(httpContentType, ex);                                                        return doLenientDetection(httpContentType, ex);                                                     
+} else {                                                                                             | }                                                                                                   
+throw ex;                                                                                              throw ex;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

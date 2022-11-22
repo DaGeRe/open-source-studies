@@ -1,0 +1,5 @@
+public void testToFile2() throws Exception {                                                           public void testToFile2() throws Exception {                                                        
+URL url = new URL("file", null, "a/b/c/file%20n%61me.tx%74");                                        | URL url = new URL("file", null, "a/b/c/file%20n%61me%2520.tx%74");                                  
+File file = FileUtils.toFile(url);                                                                     File file = FileUtils.toFile(url);                                                                  
+assertEquals(true, file.toString().indexOf("file name.txt") &gt;= 0);                                | assertEquals(true, file.toString().indexOf("file name%20.txt") &gt;= 0);                            
+}                                                                                                      }                                                                                                   

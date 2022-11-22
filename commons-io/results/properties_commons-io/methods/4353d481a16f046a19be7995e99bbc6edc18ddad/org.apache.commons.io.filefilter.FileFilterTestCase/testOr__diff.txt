@@ -1,0 +1,30 @@
+public void testOr() throws Exception {
+    IOFileFilter trueFilter = TrueFileFilter.INSTANCE;
+    IOFileFilter falseFilter = FalseFileFilter.INSTANCE;
+    File testFile = new File("foo.test");
+    assertFiltering(new OrFileFilter(trueFilter, trueFilter), testFile, true);
+    assertFiltering(new OrFileFilter(trueFilter, falseFilter), testFile, true);
+    assertFiltering(new OrFileFilter(falseFilter, trueFilter), testFile, true);
+    assertFiltering(new OrFileFilter(falseFilter, falseFilter), testFile, false);
+    assertFiltering(new OrFileFilter(), testFile, false);
+    List<IOFileFilter> filters = new ArrayList<IOFileFilter>();
+    filters.add(trueFilter);
+    filters.add(falseFilter);
+    OrFileFilter orFilter = new OrFileFilter(filters);
+    assertFiltering(orFilter, testFile, true);
+    assertEquals(orFilter.getFileFilters(), filters);
+    orFilter.removeFileFilter(trueFilter);
+    assertFiltering(orFilter, testFile, false);
+    orFilter.setFileFilters(filters);
+    assertFiltering(orFilter, testFile, true);
+    assertTrue(orFilter.accept(testFile.getParentFile(), testFile.getName()));
+    orFilter.removeFileFilter(trueFilter);
+    assertTrue(!orFilter.accept(testFile.getParentFile(), testFile.getName()));
+    try {
+        new OrFileFilter(falseFilter, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    OrFileFilter f = new OrFileFilter((List<IOFileFilter>) null);
+    assertEquals(true, f.getFileFilters().isEmpty());
+}

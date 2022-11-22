@@ -1,0 +1,4 @@
+public boolean accept(File file) {
+    boolean newer = FileUtils.isFileNewer(file, cutoff);
+    return acceptOlder ? !newer : newer;
+}

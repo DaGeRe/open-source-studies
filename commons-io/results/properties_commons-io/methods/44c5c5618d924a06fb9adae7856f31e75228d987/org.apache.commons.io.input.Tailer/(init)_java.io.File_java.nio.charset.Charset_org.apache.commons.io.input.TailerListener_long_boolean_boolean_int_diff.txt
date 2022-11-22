@@ -1,0 +1,10 @@
+public Tailer(final File file, final Charset charset, final TailerListener listener, final long delayMillis, final boolean end, final boolean reOpen, final int bufSize) {
+    this.file = file;
+    this.delayMillis = delayMillis;
+    this.end = end;
+    this.inbuf = new byte[bufSize];
+    this.listener = listener;
+    listener.init(this);
+    this.reOpen = reOpen;
+    this.charset = charset;
+}

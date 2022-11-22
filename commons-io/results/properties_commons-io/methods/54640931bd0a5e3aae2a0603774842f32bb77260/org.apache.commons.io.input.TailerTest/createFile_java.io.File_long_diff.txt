@@ -1,0 +1,18 @@
+protected void createFile(File file, long size) throws IOException {
+    super.createFile(file, size);
+    RandomAccessFile reader = null;
+    try {
+        while (reader == null) {
+            try {
+                reader = new RandomAccessFile(file.getPath(), "r");
+            } catch (FileNotFoundException e) {
+            }
+            try {
+                Thread.sleep(200L);
+            } catch (InterruptedException e) {
+            }
+        }
+    } finally {
+        IOUtils.closeQuietly(reader);
+    }
+}

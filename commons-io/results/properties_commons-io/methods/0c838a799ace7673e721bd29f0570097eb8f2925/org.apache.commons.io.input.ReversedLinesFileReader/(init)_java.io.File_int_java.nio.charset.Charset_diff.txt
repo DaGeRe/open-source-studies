@@ -1,0 +1,35 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+public ReversedLinesFileReader(final File file, final int blockSize, final Charset encoding) throws    public ReversedLinesFileReader(final File file, final int blockSize, final Charset encoding) throws 
+this.blockSize = blockSize;                                                                            this.blockSize = blockSize;                                                                         
+this.encoding = encoding;                                                                              this.encoding = encoding;                                                                           
+final Charset charset = Charsets.toCharset(encoding);                                                  final Charset charset = Charsets.toCharset(encoding);                                               
+final CharsetEncoder charsetEncoder = charset.newEncoder();                                            final CharsetEncoder charsetEncoder = charset.newEncoder();                                         
+final float maxBytesPerChar = charsetEncoder.maxBytesPerChar();                                        final float maxBytesPerChar = charsetEncoder.maxBytesPerChar();                                     
+if (maxBytesPerChar == 1f) {                                                                           if (maxBytesPerChar == 1f) {                                                                        
+byteDecrement = 1;                                                                                     byteDecrement = 1;                                                                                  
+} else if (charset == Charsets.UTF_8) {                                                              | } else if (charset == StandardCharsets.UTF_8) {                                                     
+byteDecrement = 1;                                                                                     byteDecrement = 1;                                                                                  
+} else if (charset == Charset.forName("Shift_JIS") || charset == Charset.forName("windows-31j") || c   } else if (charset == Charset.forName("Shift_JIS") || charset == Charset.forName("windows-31j") || c
+byteDecrement = 1;                                                                                     byteDecrement = 1;                                                                                  
+} else if (charset == Charsets.UTF_16BE || charset == Charsets.UTF_16LE) {                           | } else if (charset == StandardCharsets.UTF_16BE || charset == StandardCharsets.UTF_16LE) {          
+byteDecrement = 2;                                                                                     byteDecrement = 2;                                                                                  
+} else if (charset == Charsets.UTF_16) {                                                             | } else if (charset == StandardCharsets.UTF_16) {                                                    
+throw new UnsupportedEncodingException("For UTF-16, you need to specify the byte order (use UTF-16BE   throw new UnsupportedEncodingException("For UTF-16, you need to specify the byte order (use UTF-16BE
+} else {                                                                                               } else {                                                                                            
+throw new UnsupportedEncodingException("Encoding " + encoding + " is not supported yet (feel free to   throw new UnsupportedEncodingException("Encoding " + encoding + " is not supported yet (feel free to
+}                                                                                                      }                                                                                                   
+newLineSequences = new byte[][] { "\r\n".getBytes(encoding), "\n".getBytes(encoding), "\r".getBytes(   newLineSequences = new byte[][] { "\r\n".getBytes(encoding), "\n".getBytes(encoding), "\r".getBytes(
+avoidNewlineSplitBufferSize = newLineSequences[0].length;                                              avoidNewlineSplitBufferSize = newLineSequences[0].length;                                           
+randomAccessFile = new RandomAccessFile(file, "r");                                                    randomAccessFile = new RandomAccessFile(file, "r");                                                 
+totalByteLength = randomAccessFile.length();                                                           totalByteLength = randomAccessFile.length();                                                        
+int lastBlockLength = (int) (totalByteLength % blockSize);                                             int lastBlockLength = (int) (totalByteLength % blockSize);                                          
+if (lastBlockLength &gt; 0) {                                                                          if (lastBlockLength &gt; 0) {                                                                       
+totalBlockCount = totalByteLength / blockSize + 1;                                                     totalBlockCount = totalByteLength / blockSize + 1;                                                  
+} else {                                                                                               } else {                                                                                            
+totalBlockCount = totalByteLength / blockSize;                                                         totalBlockCount = totalByteLength / blockSize;                                                      
+if (totalByteLength &gt; 0) {                                                                          if (totalByteLength &gt; 0) {                                                                       
+lastBlockLength = blockSize;                                                                           lastBlockLength = blockSize;                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+currentFilePart = new FilePart(totalBlockCount, lastBlockLength, null);                                currentFilePart = new FilePart(totalBlockCount, lastBlockLength, null);                             
+}                                                                                                      }                                                                                                   

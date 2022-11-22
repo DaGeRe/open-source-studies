@@ -1,0 +1,12 @@
+private void doMatch(FilesystemEntry entry, File file) {                                               private void doMatch(FilesystemEntry entry, File file) {                                            
+if (entry.hasChanged(file)) {                                                                        | if (entry.refresh(file)) {                                                                          
+for (FilesystemListener listener : listeners) {                                                        for (FilesystemListener listener : listeners) {                                                     
+if (entry.isDirectory()) {                                                                             if (entry.isDirectory()) {                                                                          
+listener.onDirectoryChange(file);                                                                      listener.onDirectoryChange(file);                                                                   
+} else {                                                                                               } else {                                                                                            
+listener.onFileChange(file);                                                                           listener.onFileChange(file);                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+entry.refresh(file);                                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

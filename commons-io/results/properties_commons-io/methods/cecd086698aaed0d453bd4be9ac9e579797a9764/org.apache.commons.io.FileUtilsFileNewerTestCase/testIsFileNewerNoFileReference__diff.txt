@@ -1,0 +1,7 @@
+public void testIsFileNewerNoFileReference() {
+    try {
+        FileUtils.isFileNewer(m_testFile1, (File) null);
+        fail("Reference file not specified");
+    } catch (IllegalArgumentException e) {
+    }
+}

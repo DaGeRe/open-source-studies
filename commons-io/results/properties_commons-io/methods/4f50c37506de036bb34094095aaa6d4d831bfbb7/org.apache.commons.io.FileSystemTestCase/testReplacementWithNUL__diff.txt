@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReplacementWithNUL() {                                                                 public void testReplacementWithNUL() {                                                              
+for (FileSystem fs : FileSystem.values()) {                                                          | for (final FileSystem fs : FileSystem.values()) {                                                   
+try {                                                                                                  try {                                                                                               
+fs.toLegalFileName("Test", '\0');                                                                      fs.toLegalFileName("Test", '\0');                                                                   
+} catch (IllegalArgumentException iae) {                                                             | } catch (final IllegalArgumentException iae) {                                                      
+Assert.assertTrue(iae.getMessage(), iae.getMessage().startsWith("The replacement character '\\0'"));   Assert.assertTrue(iae.getMessage(), iae.getMessage().startsWith("The replacement character '\\0'"));
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

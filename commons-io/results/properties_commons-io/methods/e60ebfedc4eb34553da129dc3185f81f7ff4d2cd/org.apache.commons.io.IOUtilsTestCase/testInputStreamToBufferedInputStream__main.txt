@@ -1,0 +1,13 @@
+public void testInputStreamToBufferedInputStream() throws Exception {
+    FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        InputStream in = IOUtils.toBufferedInputStream(fin);
+        byte[] out = IOUtils.toByteArray(in);
+        assertNotNull(out);
+        assertEquals("Not all bytes were read", 0, fin.available());
+        assertEquals("Wrong output size", FILE_SIZE, out.length);
+        assertEqualContent(out, m_testFile);
+    } finally {
+        fin.close();
+    }
+}

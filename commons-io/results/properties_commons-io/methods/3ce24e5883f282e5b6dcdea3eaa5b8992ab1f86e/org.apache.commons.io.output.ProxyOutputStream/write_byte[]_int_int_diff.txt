@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public void write(byte[] bts, int st, int end) throws IOException {                                    public void write(byte[] bts, int st, int end) throws IOException {                                 
+try {                                                                                                  try {                                                                                               
+                                                                                                     | beforeWrite(end);                                                                                   
+out.write(bts, st, end);                                                                               out.write(bts, st, end);                                                                            
+                                                                                                     | afterWrite(end);                                                                                    
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+handleIOException(e);                                                                                  handleIOException(e);                                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

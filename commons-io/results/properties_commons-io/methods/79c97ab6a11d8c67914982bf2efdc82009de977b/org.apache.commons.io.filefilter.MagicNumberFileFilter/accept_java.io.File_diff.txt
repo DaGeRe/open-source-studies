@@ -1,0 +1,20 @@
+@Override                                                                                              @Override                                                                                           
+public boolean accept(File file) {                                                                     public boolean accept(File file) {                                                                  
+if (file != null && file.isFile() && file.canRead()) {                                                 if (file != null && file.isFile() && file.canRead()) {                                              
+RandomAccessFile randomAccessFile = null;                                                              RandomAccessFile randomAccessFile = null;                                                           
+try {                                                                                                  try {                                                                                               
+byte[] fileBytes = new byte[this.magicNumbers.length];                                                 byte[] fileBytes = new byte[this.magicNumbers.length];                                              
+randomAccessFile = new RandomAccessFile(file, "r");                                                    randomAccessFile = new RandomAccessFile(file, "r");                                                 
+randomAccessFile.seek(byteOffset);                                                                     randomAccessFile.seek(byteOffset);                                                                  
+randomAccessFile.read(fileBytes);                                                                    | int read = randomAccessFile.read(fileBytes);                                                        
+                                                                                                     | if (read != magicNumbers.length) {                                                                  
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+return Arrays.equals(this.magicNumbers, fileBytes);                                                    return Arrays.equals(this.magicNumbers, fileBytes);                                                 
+} catch (IOException ioe) {                                                                            } catch (IOException ioe) {                                                                         
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(randomAccessFile);                                                                IOUtils.closeQuietly(randomAccessFile);                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+private void doMatch(FilesystemEntry entry, File file) {
+    if (entry.refresh(file)) {
+        for (FilesystemListener listener : listeners) {
+            if (entry.isDirectory()) {
+                listener.onDirectoryChange(file);
+            } else {
+                listener.onFileChange(file);
+            }
+        }
+    }
+}

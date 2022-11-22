@@ -1,0 +1,15 @@
+public static boolean isExtension(String filename, Collection extensions) {                          | public static boolean isExtension(String filename, Collection&lt;String&gt; extensions) {           
+if (filename == null) {                                                                                if (filename == null) {                                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (extensions == null || extensions.isEmpty()) {                                                      if (extensions == null || extensions.isEmpty()) {                                                   
+return (indexOfExtension(filename) == -1);                                                             return (indexOfExtension(filename) == -1);                                                          
+}                                                                                                      }                                                                                                   
+String fileExt = getExtension(filename);                                                               String fileExt = getExtension(filename);                                                            
+for (Iterator it = extensions.iterator(); it.hasNext(); ) {                                          | for (Iterator&lt;String&gt; it = extensions.iterator(); it.hasNext(); ) {                           
+if (fileExt.equals(it.next())) {                                                                       if (fileExt.equals(it.next())) {                                                                    
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

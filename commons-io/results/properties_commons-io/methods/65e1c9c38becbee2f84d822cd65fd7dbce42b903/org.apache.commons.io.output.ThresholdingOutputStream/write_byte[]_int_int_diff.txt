@@ -1,0 +1,6 @@
+@Override
+public void write(final byte[] b, final int off, final int len) throws IOException {
+    checkThreshold(len);
+    getStream().write(b, off, len);
+    written += len;
+}

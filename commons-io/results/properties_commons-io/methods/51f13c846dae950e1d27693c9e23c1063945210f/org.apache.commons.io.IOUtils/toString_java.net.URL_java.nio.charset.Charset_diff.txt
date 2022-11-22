@@ -1,0 +1,8 @@
+public static String toString(final URL url, final Charset encoding) throws IOException {              public static String toString(final URL url, final Charset encoding) throws IOException {           
+final InputStream inputStream = url.openStream();                                                    | try (InputStream inputStream = url.openStream()) {                                                  
+try {                                                                                                |                                                                                                     
+return toString(inputStream, encoding);                                                                return toString(inputStream, encoding);                                                             
+} finally {                                                                                          |                                                                                                     
+inputStream.close();                                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

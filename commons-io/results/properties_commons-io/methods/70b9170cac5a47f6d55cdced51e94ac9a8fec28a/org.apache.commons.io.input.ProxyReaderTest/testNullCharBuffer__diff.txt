@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testNullCharBuffer() throws Exception {                                                    public void testNullCharBuffer() throws Exception {                                                 
+final ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));                                final ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));                             
+try {                                                                                                |                                                                                                     
+proxy.read((CharBuffer) null);                                                                         proxy.read((CharBuffer) null);                                                                      
+} catch (final Exception e) {                                                                        |                                                                                                     
+fail("Writing null String threw " + e);                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+proxy.close();                                                                                         proxy.close();                                                                                      
+}                                                                                                      }                                                                                                   

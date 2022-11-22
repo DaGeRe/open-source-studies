@@ -1,0 +1,12 @@
+public void testInputStreamToCharArrayWithEncoding() throws Exception {                                public void testInputStreamToCharArrayWithEncoding() throws Exception {                             
+FileInputStream fin = new FileInputStream(m_testFile);                                                 FileInputStream fin = new FileInputStream(m_testFile);                                              
+try {                                                                                                  try {                                                                                               
+char[] out = IOUtils.toCharArray(fin, "UTF-8");                                                        char[] out = IOUtils.toCharArray(fin, "UTF-8");                                                     
+assertNotNull(out);                                                                                    assertNotNull(out);                                                                                 
+assertTrue("Not all chars were read", fin.available() == 0);                                         | assertEquals("Not all chars were read", 0, fin.available());                                        
+assertTrue("Wrong output size: out.length=" + out.length + "!=" + FILE_SIZE, out.length == FILE_SIZE | assertEquals("Wrong output size", FILE_SIZE, out.length);                                           
+assertEqualContent(out, m_testFile);                                                                   assertEqualContent(out, m_testFile);                                                                
+} finally {                                                                                            } finally {                                                                                         
+fin.close();                                                                                           fin.close();                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

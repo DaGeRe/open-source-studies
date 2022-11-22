@@ -1,0 +1,17 @@
+public void testFilterArrayNullParameters() throws Exception {
+    File fileA = newFile("A");
+    File fileB = newFile("B");
+    try {
+        FileFilterUtils.filter(null, fileA, fileB);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    IOFileFilter filter = FileFilterUtils.trueFileFilter();
+    try {
+        FileFilterUtils.filter(filter, fileA, null);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    File[] filtered = FileFilterUtils.filter(filter, (File[]) null);
+    assertEquals(0, filtered.length);
+}

@@ -1,0 +1,36 @@
+@Test                                                                                                  @Test                                                                                               
+public void testDataBytesCalled() throws Exception {                                                   public void testDataBytesCalled() throws Exception {                                                
+final byte[] buffer = MessageDigestCalculatingInputStreamTest.generateRandomByteStream(4096);          final byte[] buffer = MessageDigestCalculatingInputStreamTest.generateRandomByteStream(4096);       
+ByteArrayInputStream bais = new ByteArrayInputStream(buffer);                                        | final ByteArrayInputStream bais = new ByteArrayInputStream(buffer);                                 
+final ObservableInputStream ois = new ObservableInputStream(bais);                                     final ObservableInputStream ois = new ObservableInputStream(bais);                                  
+final LastBytesKeepingObserver lko = new LastBytesKeepingObserver();                                   final LastBytesKeepingObserver lko = new LastBytesKeepingObserver();                                
+final byte[] readBuffer = new byte[23];                                                                final byte[] readBuffer = new byte[23];                                                             
+assertEquals(null, lko.buffer);                                                                        assertEquals(null, lko.buffer);                                                                     
+ois.read(readBuffer);                                                                                  ois.read(readBuffer);                                                                               
+assertEquals(null, lko.buffer);                                                                        assertEquals(null, lko.buffer);                                                                     
+ois.add(lko);                                                                                          ois.add(lko);                                                                                       
+for (; ; ) {                                                                                           for (; ; ) {                                                                                        
+if (bais.available() &gt;= 2048) {                                                                     if (bais.available() &gt;= 2048) {                                                                  
+final int result = ois.read(readBuffer);                                                               final int result = ois.read(readBuffer);                                                            
+if (result == -1) {                                                                                    if (result == -1) {                                                                                 
+ois.close();                                                                                           ois.close();                                                                                        
+break;                                                                                                 break;                                                                                              
+} else {                                                                                               } else {                                                                                            
+assertEquals(readBuffer, lko.buffer);                                                                  assertEquals(readBuffer, lko.buffer);                                                               
+assertEquals(0, lko.offset);                                                                           assertEquals(0, lko.offset);                                                                        
+assertEquals(readBuffer.length, lko.length);                                                           assertEquals(readBuffer.length, lko.length);                                                        
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+final int res = Math.min(11, bais.available());                                                        final int res = Math.min(11, bais.available());                                                     
+final int result = ois.read(readBuffer, 1, 11);                                                        final int result = ois.read(readBuffer, 1, 11);                                                     
+if (result == -1) {                                                                                    if (result == -1) {                                                                                 
+ois.close();                                                                                           ois.close();                                                                                        
+break;                                                                                                 break;                                                                                              
+} else {                                                                                               } else {                                                                                            
+assertEquals(readBuffer, lko.buffer);                                                                  assertEquals(readBuffer, lko.buffer);                                                               
+assertEquals(1, lko.offset);                                                                           assertEquals(1, lko.offset);                                                                        
+assertEquals(res, lko.length);                                                                         assertEquals(res, lko.length);                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

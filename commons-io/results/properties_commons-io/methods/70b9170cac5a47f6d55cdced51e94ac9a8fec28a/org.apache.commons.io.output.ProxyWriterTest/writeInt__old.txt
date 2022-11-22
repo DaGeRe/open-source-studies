@@ -1,0 +1,12 @@
+@Test
+public void writeInt() throws Exception {
+    final StringBuilderWriter writer = new StringBuilderWriter();
+    final ProxyWriter proxy = new ProxyWriter(writer);
+    try {
+        proxy.write(65);
+    } catch (final Exception e) {
+        fail("Writing char[] threw " + e);
+    }
+    assertEquals("A", writer.toString());
+    proxy.close();
+}

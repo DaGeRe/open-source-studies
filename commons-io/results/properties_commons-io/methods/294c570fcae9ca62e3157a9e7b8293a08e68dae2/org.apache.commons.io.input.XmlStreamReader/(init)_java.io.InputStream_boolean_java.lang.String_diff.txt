@@ -1,0 +1,5 @@
+public XmlStreamReader(InputStream is, boolean lenient, String defaultEncoding) throws IOException {   public XmlStreamReader(InputStream is, boolean lenient, String defaultEncoding) throws IOException {
+this.defaultEncoding = defaultEncoding;                                                                this.defaultEncoding = defaultEncoding;                                                             
+doRawStream(is, lenient);                                                                            | this.encoding = doRawStream(is, lenient);                                                           
+                                                                                                     | this.reader = new InputStreamReader(is, encoding);                                                  
+}                                                                                                      }                                                                                                   

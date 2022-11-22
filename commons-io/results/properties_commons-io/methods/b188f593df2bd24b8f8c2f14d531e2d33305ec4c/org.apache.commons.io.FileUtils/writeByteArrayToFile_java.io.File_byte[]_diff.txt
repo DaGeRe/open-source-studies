@@ -1,0 +1,9 @@
+public static void writeByteArrayToFile(File file, byte[] data) throws IOException {                   public static void writeByteArrayToFile(File file, byte[] data) throws IOException {                
+OutputStream out = null;                                                                             | writeByteArrayToFile(file, data, false);                                                            
+try {                                                                                                |                                                                                                     
+out = openOutputStream(file);                                                                        |                                                                                                     
+out.write(data);                                                                                     |                                                                                                     
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(out);                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

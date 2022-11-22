@@ -1,0 +1,12 @@
+public XmlStreamReader(InputStream is, boolean lenient) throws IOException, XmlStreamReaderException   public XmlStreamReader(InputStream is, boolean lenient) throws IOException, XmlStreamReaderException
+defaultEncoding = staticDefaultEncoding;                                                               defaultEncoding = staticDefaultEncoding;                                                            
+try {                                                                                                  try {                                                                                               
+doRawStream(is, lenient);                                                                              doRawStream(is, lenient);                                                                           
+} catch (XmlStreamReaderException ex) {                                                                } catch (XmlStreamReaderException ex) {                                                             
+if (!lenient) {                                                                                        if (!lenient) {                                                                                     
+throw ex;                                                                                              throw ex;                                                                                           
+} else {                                                                                               } else {                                                                                            
+doLenientDetection(null, ex);                                                                        | doLenientDetection(null, is, ex);                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

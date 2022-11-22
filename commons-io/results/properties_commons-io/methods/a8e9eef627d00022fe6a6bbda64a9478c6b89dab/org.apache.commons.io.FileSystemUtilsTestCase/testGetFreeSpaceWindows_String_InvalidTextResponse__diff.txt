@@ -1,0 +1,9 @@
+public void testGetFreeSpaceWindows_String_InvalidTextResponse() throws Exception {                    public void testGetFreeSpaceWindows_String_InvalidTextResponse() throws Exception {                 
+String lines = "BlueScreenOfDeath";                                                                    String lines = "BlueScreenOfDeath";                                                                 
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceWindows("C:");                                                                          | fsu.freeSpaceWindows("C:", -1);                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

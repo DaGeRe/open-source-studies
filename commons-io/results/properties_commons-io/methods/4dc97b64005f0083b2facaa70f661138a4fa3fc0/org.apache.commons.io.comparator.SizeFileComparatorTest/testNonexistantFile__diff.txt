@@ -1,0 +1,6 @@
+@Test
+public void testNonexistantFile() {
+    final File nonexistantFile = new File(new File("."), "nonexistant.txt");
+    assertFalse(nonexistantFile.exists());
+    assertTrue("less", comparator.compare(nonexistantFile, moreFile) < 0);
+}

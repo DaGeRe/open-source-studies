@@ -1,0 +1,6 @@
+public static byte[] toByteArray(final InputStream input) throws IOException {                         public static byte[] toByteArray(final InputStream input) throws IOException {                      
+final ByteArrayOutputStream output = new ByteArrayOutputStream();                                    | try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {                            
+copy(input, output);                                                                                   copy(input, output);                                                                                
+return output.toByteArray();                                                                           return output.toByteArray();                                                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

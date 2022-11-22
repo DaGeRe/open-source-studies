@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testResourceToURL_Null() throws Exception {                                                public void testResourceToURL_Null() throws Exception {                                             
+boolean exceptionOccurred = false;                                                                     boolean exceptionOccurred = false;                                                                  
+try {                                                                                                  try {                                                                                               
+IOUtils.resourceToURL(null);                                                                           IOUtils.resourceToURL(null);                                                                        
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException npe) {                                                                 | } catch (final NullPointerException npe) {                                                          
+exceptionOccurred = true;                                                                              exceptionOccurred = true;                                                                           
+assertNotNull(npe);                                                                                    assertNotNull(npe);                                                                                 
+}                                                                                                      }                                                                                                   
+assertTrue(exceptionOccurred);                                                                         assertTrue(exceptionOccurred);                                                                      
+}                                                                                                      }                                                                                                   

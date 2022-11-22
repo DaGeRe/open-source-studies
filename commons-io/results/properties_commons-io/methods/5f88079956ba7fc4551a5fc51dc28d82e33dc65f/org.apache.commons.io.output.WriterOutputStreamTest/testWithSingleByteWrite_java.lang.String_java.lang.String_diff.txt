@@ -1,0 +1,10 @@
+private void testWithSingleByteWrite(final String testString, final String charsetName) throws IOException {
+    final byte[] bytes = testString.getBytes(charsetName);
+    final StringWriter writer = new StringWriter();
+    final WriterOutputStream out = new WriterOutputStream(writer, charsetName);
+    for (final byte b : bytes) {
+        out.write(b);
+    }
+    out.close();
+    assertEquals(testString, writer.toString());
+}

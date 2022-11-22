@@ -1,0 +1,13 @@
+private void doMatch(FilesystemEntry entry, File file) {                                               private void doMatch(FilesystemEntry entry, File file) {                                            
+if (entry.hasChanged()) {                                                                            | if (entry.hasChanged(file)) {                                                                       
+for (FilesystemListener listener : listeners) {                                                        for (FilesystemListener listener : listeners) {                                                     
+if (entry.isDirectory()) {                                                                             if (entry.isDirectory()) {                                                                          
+listener.onDirectoryChange(entry.getFile());                                                         | listener.onDirectoryChange(file);                                                                   
+} else {                                                                                               } else {                                                                                            
+listener.onFileChange(entry.getFile());                                                              | listener.onFileChange(file);                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+entry.refresh();                                                                                     | entry.refresh(file);                                                                                
+}                                                                                                      }                                                                                                   
+entry.setFile(file);                                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   

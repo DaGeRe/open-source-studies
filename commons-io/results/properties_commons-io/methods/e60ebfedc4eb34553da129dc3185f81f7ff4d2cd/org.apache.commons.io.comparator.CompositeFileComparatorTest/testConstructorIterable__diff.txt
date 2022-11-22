@@ -1,0 +1,9 @@
+public void testConstructorIterable() {                                                                public void testConstructorIterable() {                                                             
+List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;Comparator&lt;File&gt;&gt;();               List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;Comparator&lt;File&gt;&gt;();            
+list.add(SizeFileComparator.SIZE_COMPARATOR);                                                          list.add(SizeFileComparator.SIZE_COMPARATOR);                                                       
+list.add(ExtensionFileComparator.EXTENSION_COMPARATOR);                                                list.add(ExtensionFileComparator.EXTENSION_COMPARATOR);                                             
+Comparator&lt;File&gt; c = new CompositeFileComparator(list);                                          Comparator&lt;File&gt; c = new CompositeFileComparator(list);                                       
+assertTrue("equal", c.compare(equalFile1, equalFile2) == 0);                                         | assertEquals("equal", 0, c.compare(equalFile1, equalFile2));                                        
+assertTrue("less", c.compare(lessFile, moreFile) &lt; 0);                                              assertTrue("less", c.compare(lessFile, moreFile) &lt; 0);                                           
+assertTrue("more", c.compare(moreFile, lessFile) &gt; 0);                                              assertTrue("more", c.compare(moreFile, lessFile) &gt; 0);                                           
+}                                                                                                      }                                                                                                   

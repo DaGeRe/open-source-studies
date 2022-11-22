@@ -1,0 +1,13 @@
+public void testGetFreeSpaceOS_String_InitError() throws Exception {                                   public void testGetFreeSpaceOS_String_InitError() throws Exception {                                
+FileSystemUtils fsu = new FileSystemUtils();                                                           FileSystemUtils fsu = new FileSystemUtils();                                                        
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceOS("", -1, false);                                                                      | fsu.freeSpaceOS("", -1, false, -1);                                                                 
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalStateException ex) {                                                                   } catch (IllegalStateException ex) {                                                                
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceOS("", -1, true);                                                                       | fsu.freeSpaceOS("", -1, true, -1);                                                                  
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalStateException ex) {                                                                   } catch (IllegalStateException ex) {                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public void testFilterSetNullParameters() {
+    try {
+        FileFilterUtils.filterSet(null, Collections.<File>emptySet());
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    IOFileFilter filter = FileFilterUtils.trueFileFilter();
+    try {
+        FileFilterUtils.filterSet(filter, new HashSet<File>(Arrays.<File>asList((File) null)));
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    Set<File> filteredSet = FileFilterUtils.filterSet(filter, (Set<File>) null);
+    assertEquals(0, filteredSet.size());
+}

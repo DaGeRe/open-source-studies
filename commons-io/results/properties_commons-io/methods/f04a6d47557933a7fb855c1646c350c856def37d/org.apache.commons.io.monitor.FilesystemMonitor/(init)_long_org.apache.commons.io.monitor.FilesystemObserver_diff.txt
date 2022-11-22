@@ -1,0 +1,8 @@
+public FilesystemMonitor(long interval, FilesystemObserver... observers) {
+    this(interval);
+    if (observers != null) {
+        for (FilesystemObserver observer : observers) {
+            addObserver(observer);
+        }
+    }
+}

@@ -1,0 +1,8 @@
+public void testZeroLength3() throws Exception {
+    ByteArrayInputStream bais = new ByteArrayInputStream(new byte[0]);
+    CountingInputStream cis = new CountingInputStream(bais);
+    byte[] result = new byte[10];
+    int found = cis.read(result, 0, 5);
+    assertEquals(-1, found);
+    assertEquals(0, cis.getCount());
+}

@@ -1,0 +1,17 @@
+public synchronized InputStream toInputStream() {                                                      public synchronized InputStream toInputStream() {                                                   
+int remaining = count;                                                                                 int remaining = count;                                                                              
+if (remaining == 0) {                                                                                  if (remaining == 0) {                                                                               
+return new ClosedInputStream();                                                                        return new ClosedInputStream();                                                                     
+}                                                                                                      }                                                                                                   
+final List&lt;ByteArrayInputStream&gt; list = new ArrayList&lt;ByteArrayInputStream&gt;(buffers.size | final List&lt;ByteArrayInputStream&gt; list = new ArrayList&lt;&gt;(buffers.size());                
+for (final byte[] buf : buffers) {                                                                     for (final byte[] buf : buffers) {                                                                  
+final int c = Math.min(buf.length, remaining);                                                         final int c = Math.min(buf.length, remaining);                                                      
+list.add(new ByteArrayInputStream(buf, 0, c));                                                         list.add(new ByteArrayInputStream(buf, 0, c));                                                      
+remaining -= c;                                                                                        remaining -= c;                                                                                     
+if (remaining == 0) {                                                                                  if (remaining == 0) {                                                                               
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+reuseBuffers = false;                                                                                  reuseBuffers = false;                                                                               
+return new SequenceInputStream(Collections.enumeration(list));                                         return new SequenceInputStream(Collections.enumeration(list));                                      
+}                                                                                                      }                                                                                                   

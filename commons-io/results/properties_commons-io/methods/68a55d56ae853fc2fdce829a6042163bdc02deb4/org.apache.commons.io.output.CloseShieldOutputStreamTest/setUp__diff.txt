@@ -1,0 +1,10 @@
+protected void setUp() {
+    original = new ByteArrayOutputStream() {
+
+        public void close() {
+            closed = true;
+        }
+    };
+    shielded = new CloseShieldOutputStream(original);
+    closed = false;
+}

@@ -1,0 +1,10 @@
+public static int read(final ReadableByteChannel input, final ByteBuffer buffer) throws IOException {
+    final int length = buffer.remaining();
+    while (buffer.remaining() > 0) {
+        final int count = input.read(buffer);
+        if (EOF == count) {
+            break;
+        }
+    }
+    return length - buffer.remaining();
+}

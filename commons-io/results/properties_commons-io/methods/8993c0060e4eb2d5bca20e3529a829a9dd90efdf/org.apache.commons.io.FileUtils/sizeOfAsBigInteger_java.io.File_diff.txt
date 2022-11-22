@@ -1,0 +1,11 @@
+public static BigInteger sizeOfAsBigInteger(final File file) {                                         public static BigInteger sizeOfAsBigInteger(final File file) {                                      
+if (!file.exists()) {                                                                                  if (!file.exists()) {                                                                               
+final String message = file + " does not exist";                                                       final String message = file + " does not exist";                                                    
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+return sizeOfDirectoryBig0(file);                                                                      return sizeOfDirectoryBig0(file);                                                                   
+} else {                                                                                             | }                                                                                                   
+return BigInteger.valueOf(file.length());                                                              return BigInteger.valueOf(file.length());                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

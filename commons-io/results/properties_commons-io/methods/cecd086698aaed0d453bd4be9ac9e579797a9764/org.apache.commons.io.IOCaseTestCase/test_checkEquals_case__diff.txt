@@ -1,0 +1,8 @@
+public void test_checkEquals_case() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkEquals("ABC", "ABC"));
+    assertEquals(false, IOCase.SENSITIVE.checkEquals("ABC", "Abc"));
+    assertEquals(true, IOCase.INSENSITIVE.checkEquals("ABC", "ABC"));
+    assertEquals(true, IOCase.INSENSITIVE.checkEquals("ABC", "Abc"));
+    assertEquals(true, IOCase.SYSTEM.checkEquals("ABC", "ABC"));
+    assertEquals(WINDOWS, IOCase.SYSTEM.checkEquals("ABC", "Abc"));
+}

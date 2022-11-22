@@ -1,0 +1,6 @@
+public void testConstructorIterableNull() {                                                            public void testConstructorIterableNull() {                                                         
+Comparator&lt;File&gt; c = new CompositeFileComparator((Iterable) null);                             | Comparator&lt;File&gt; c = new CompositeFileComparator((Iterable&lt;Comparator&lt;File&gt;&gt;) null
+assertEquals("less,more", 0, c.compare(lessFile, moreFile));                                           assertEquals("less,more", 0, c.compare(lessFile, moreFile));                                        
+assertEquals("more,less", 0, c.compare(moreFile, lessFile));                                           assertEquals("more,less", 0, c.compare(moreFile, lessFile));                                        
+assertEquals("toString", "CompositeFileComparator{}", c.toString());                                   assertEquals("toString", "CompositeFileComparator{}", c.toString());                                
+}                                                                                                      }                                                                                                   

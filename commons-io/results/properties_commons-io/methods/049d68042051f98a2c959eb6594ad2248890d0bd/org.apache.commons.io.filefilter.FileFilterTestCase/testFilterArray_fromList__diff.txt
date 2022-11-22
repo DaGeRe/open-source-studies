@@ -1,0 +1,9 @@
+public void testFilterArray_fromList() throws Exception {
+    File fileA = newFile("A");
+    File fileB = newFile("B");
+    List<File> fileList = Arrays.asList(fileA, fileB);
+    IOFileFilter filter = FileFilterUtils.nameFileFilter("A");
+    File[] filtered = FileFilterUtils.filter(filter, fileList);
+    assertEquals(1, filtered.length);
+    assertEquals(fileA, filtered[0]);
+}

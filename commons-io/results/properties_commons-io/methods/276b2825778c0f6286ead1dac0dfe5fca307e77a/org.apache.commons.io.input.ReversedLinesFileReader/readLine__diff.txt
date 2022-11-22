@@ -1,0 +1,16 @@
+public String readLine() throws IOException {                                                          public String readLine() throws IOException {                                                       
+String line = currentFilePart.readLine();                                                              String line = currentFilePart.readLine();                                                           
+while (line == null) {                                                                                 while (line == null) {                                                                              
+currentFilePart = currentFilePart.rollOver();                                                          currentFilePart = currentFilePart.rollOver();                                                       
+if (currentFilePart != null) {                                                                         if (currentFilePart != null) {                                                                      
+line = currentFilePart.readLine();                                                                     line = currentFilePart.readLine();                                                                  
+} else {                                                                                               } else {                                                                                            
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if ("".equals(line) && !trailingNewlineOfFileSkipped) {                                              | if (EMPTY_STRING.equals(line) && !trailingNewlineOfFileSkipped) {                                   
+trailingNewlineOfFileSkipped = true;                                                                   trailingNewlineOfFileSkipped = true;                                                                
+line = readLine();                                                                                     line = readLine();                                                                                  
+}                                                                                                      }                                                                                                   
+return line;                                                                                           return line;                                                                                        
+}                                                                                                      }                                                                                                   

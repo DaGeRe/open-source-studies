@@ -1,0 +1,12 @@
+@Override
+protected void setUp() {
+    original = new ByteArrayOutputStream() {
+
+        @Override
+        public void close() {
+            closed = true;
+        }
+    };
+    shielded = new CloseShieldOutputStream(original);
+    closed = false;
+}

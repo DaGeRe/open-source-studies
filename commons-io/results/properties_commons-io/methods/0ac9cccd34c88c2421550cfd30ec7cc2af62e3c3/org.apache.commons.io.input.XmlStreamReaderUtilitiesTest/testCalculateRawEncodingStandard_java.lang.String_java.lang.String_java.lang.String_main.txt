@@ -1,0 +1,10 @@
+private void testCalculateRawEncodingStandard(String bomEnc, String otherEnc, String defaultEnc) throws IOException {
+    checkRawEncoding(bomEnc, bomEnc, null, null, defaultEnc);
+    checkRawEncoding(bomEnc, bomEnc, bomEnc, null, defaultEnc);
+    checkRawError(RAWMGS1, bomEnc, otherEnc, null, defaultEnc);
+    checkRawEncoding(bomEnc, bomEnc, null, bomEnc, defaultEnc);
+    checkRawError(RAWMGS1, bomEnc, null, otherEnc, defaultEnc);
+    checkRawEncoding(bomEnc, bomEnc, bomEnc, bomEnc, defaultEnc);
+    checkRawError(RAWMGS1, bomEnc, bomEnc, otherEnc, defaultEnc);
+    checkRawError(RAWMGS1, bomEnc, otherEnc, bomEnc, defaultEnc);
+}

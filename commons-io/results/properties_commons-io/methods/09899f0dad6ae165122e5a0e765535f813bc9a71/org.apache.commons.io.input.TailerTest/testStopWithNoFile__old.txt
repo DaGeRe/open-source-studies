@@ -1,0 +1,15 @@
+public void testStopWithNoFile() throws Exception {
+    File file = new File(getTestDirectory(), "nosuchfile");
+    assertFalse("nosuchfile should not exist", file.exists());
+    TestTailerListener listener = new TestTailerListener();
+    int delay = 100;
+    int idle = 50;
+    Tailer tailer = start(file, listener, delay, false);
+    Thread.sleep(idle);
+    tailer.stop();
+    Thread.sleep(delay + idle);
+    assertNull("Should not generate Exception", listener.exception);
+    assertEquals("Expected init to be called", 1, listener.initialised);
+    assertEquals("fileNotFound should be called", 1, listener.notFound);
+    assertEquals("fileRotated should be not be called", 0, listener.rotated);
+}

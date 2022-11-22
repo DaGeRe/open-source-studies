@@ -1,0 +1,8 @@
+public void test_openOutputStream_notExistsCannotCreate() throws Exception {
+    File file = new File(getTestDirectory(), "a/:#$!/test.txt");
+    try {
+        FileUtils.openOutputStream(file);
+        fail();
+    } catch (IOException ioe) {
+    }
+}

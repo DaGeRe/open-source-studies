@@ -1,0 +1,23 @@
+@Override
+protected void setUp() throws Exception {
+    testDir = new File(new File("."), "test-observer");
+    if (testDir.exists()) {
+        FileUtils.cleanDirectory(testDir);
+    } else {
+        testDir.mkdir();
+    }
+    IOFileFilter files = FileFilterUtils.fileFileFilter();
+    IOFileFilter javaSuffix = FileFilterUtils.suffixFileFilter(".java");
+    IOFileFilter fileFilter = FileFilterUtils.and(files, javaSuffix);
+    IOFileFilter directories = FileFilterUtils.directoryFileFilter();
+    IOFileFilter visible = HiddenFileFilter.VISIBLE;
+    IOFileFilter dirFilter = FileFilterUtils.and(directories, visible);
+    IOFileFilter filter = FileFilterUtils.or(dirFilter, fileFilter);
+    observer = new FilesystemObserver(testDir, filter);
+    observer.addListener(listener);
+    try {
+        observer.initialize();
+    } catch (Exception e) {
+        fail("Observer init() threw " + e);
+    }
+}

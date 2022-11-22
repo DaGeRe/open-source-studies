@@ -1,0 +1,12 @@
+private InputStream createUtf32LeDataStream(final byte[] baseData, final boolean addBOM) {
+    byte[] data = baseData;
+    if (addBOM) {
+        data = new byte[baseData.length + 4];
+        data[0] = (byte) 0xFF;
+        data[1] = (byte) 0xFE;
+        data[2] = 0;
+        data[3] = 0;
+        System.arraycopy(baseData, 0, data, 4, baseData.length);
+    }
+    return new ByteArrayInputStream(data);
+}

@@ -1,0 +1,9 @@
+public void testNullCharBuffer() {
+    ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));
+    try {
+        proxy.read((CharBuffer) null);
+    } catch (NullPointerException e) {
+    } catch (Exception e) {
+        fail("Writing null String threw " + e);
+    }
+}

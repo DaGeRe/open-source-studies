@@ -1,0 +1,8 @@
+@Before
+public void setUp() throws Exception {
+    testFile = new File(getTestDirectory(), "file1-test.txt");
+    if (!testFile.getParentFile().exists()) {
+        throw new IOException("Cannot create file " + testFile + " as the parent directory does not exist");
+    }
+    testData = TestUtils.generateTestData(1024);
+}

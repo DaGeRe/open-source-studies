@@ -1,0 +1,10 @@
+@Override
+public long skip(long n) throws IOException {
+    long skipped = 0;
+    while (n > 0 && available() > 0) {
+        this.read();
+        n--;
+        skipped++;
+    }
+    return skipped;
+}

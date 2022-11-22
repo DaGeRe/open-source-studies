@@ -1,0 +1,6 @@
+public ValidatingObjectInputStream reject(Class&lt;?&gt;... classes) {                               | public ValidatingObjectInputStream reject(final Class&lt;?&gt;... classes) {                        
+for (Class&lt;?&gt; c : classes) {                                                                   | for (final Class&lt;?&gt; c : classes) {                                                            
+rejectMatchers.add(new FullClassNameMatcher(c.getName()));                                             rejectMatchers.add(new FullClassNameMatcher(c.getName()));                                          
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

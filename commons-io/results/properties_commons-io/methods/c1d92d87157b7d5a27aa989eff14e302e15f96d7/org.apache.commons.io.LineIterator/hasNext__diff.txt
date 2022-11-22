@@ -1,0 +1,27 @@
+public boolean hasNext() {                                                                             public boolean hasNext() {                                                                          
+if (cachedLine != null) {                                                                              if (cachedLine != null) {                                                                           
+return true;                                                                                           return true;                                                                                        
+} else if (finished) {                                                                                 } else if (finished) {                                                                              
+return false;                                                                                          return false;                                                                                       
+} else {                                                                                               } else {                                                                                            
+try {                                                                                                  try {                                                                                               
+while (true) {                                                                                         while (true) {                                                                                      
+final String line = bufferedReader.readLine();                                                         final String line = bufferedReader.readLine();                                                      
+if (line == null) {                                                                                    if (line == null) {                                                                                 
+finished = true;                                                                                       finished = true;                                                                                    
+return false;                                                                                          return false;                                                                                       
+} else if (isValidLine(line)) {                                                                        } else if (isValidLine(line)) {                                                                     
+cachedLine = line;                                                                                     cachedLine = line;                                                                                  
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} catch (final IOException ioe) {                                                                      } catch (final IOException ioe) {                                                                   
+                                                                                                     | try {                                                                                               
+close();                                                                                               close();                                                                                            
+                                                                                                     | } catch (final IOException e) {                                                                     
+                                                                                                     | ioe.addSuppressed(e);                                                                               
+                                                                                                     | }                                                                                                   
+throw new IllegalStateException(ioe);                                                                  throw new IllegalStateException(ioe);                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

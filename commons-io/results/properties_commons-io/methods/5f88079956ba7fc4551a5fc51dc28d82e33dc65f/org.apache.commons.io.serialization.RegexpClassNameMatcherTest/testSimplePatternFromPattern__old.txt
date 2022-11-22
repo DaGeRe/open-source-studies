@@ -1,0 +1,6 @@
+@Test
+public void testSimplePatternFromPattern() {
+    ClassNameMatcher ca = new RegexpClassNameMatcher(Pattern.compile("foo.*"));
+    assertTrue(ca.matches("foo.should.match"));
+    assertFalse(ca.matches("bar.should.not.match"));
+}

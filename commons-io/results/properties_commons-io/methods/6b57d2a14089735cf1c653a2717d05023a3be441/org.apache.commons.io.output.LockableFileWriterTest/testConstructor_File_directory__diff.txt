@@ -1,0 +1,15 @@
+@Test                                                                                                  @Test                                                                                               
+public void testConstructor_File_directory() {                                                         public void testConstructor_File_directory() {                                                      
+Writer writer = null;                                                                                | try (Writer writer = new LockableFileWriter(getTestDirectory())) {                                  
+try {                                                                                                |                                                                                                     
+writer = new LockableFileWriter(getTestDirectory());                                                 |                                                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (final IOException ex) {                                                                       } catch (final IOException ex) {                                                                    
+assertFalse(file.exists());                                                                            assertFalse(file.exists());                                                                         
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(writer);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+assertFalse(file.exists());                                                                            assertFalse(file.exists());                                                                         
+assertFalse(lockFile.exists());                                                                        assertFalse(lockFile.exists());                                                                     
+}                                                                                                      }                                                                                                   

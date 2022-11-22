@@ -1,0 +1,16 @@
+private void checkHttpError(String msgSuffix, boolean lenienet, String httpContentType, String bomEnc, String xmlGuessEnc, String xmlEnc, String defaultEncoding) {
+    try {
+        checkHttpEncoding("XmlStreamReaderException", lenienet, httpContentType, bomEnc, xmlGuessEnc, xmlEnc, defaultEncoding);
+        fail("Expected XmlStreamReaderException");
+    } catch (XmlStreamReaderException e) {
+        assertTrue("Msg Start: " + e.getMessage(), e.getMessage().startsWith("Invalid encoding"));
+        assertTrue("Msg End: " + e.getMessage(), e.getMessage().endsWith(msgSuffix));
+        assertEquals("bomEnc", bomEnc, e.getBomEncoding());
+        assertEquals("xmlGuessEnc", xmlGuessEnc, e.getXmlGuessEncoding());
+        assertEquals("xmlEnc", xmlEnc, e.getXmlEncoding());
+        assertEquals("ContentTypeEncoding", XmlStreamReader.getContentTypeEncoding(httpContentType), e.getContentTypeEncoding());
+        assertEquals("ContentTypeMime", XmlStreamReader.getContentTypeMime(httpContentType), e.getContentTypeMime());
+    } catch (Exception e) {
+        fail("Expected XmlStreamReaderException, but threw " + e);
+    }
+}

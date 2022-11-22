@@ -1,0 +1,13 @@
+public static List&lt;IOFileFilter&gt; toList(final IOFileFilter... filters) {                         public static List&lt;IOFileFilter&gt; toList(final IOFileFilter... filters) {                      
+if (filters == null) {                                                                                 if (filters == null) {                                                                              
+throw new IllegalArgumentException("The filters must not be null");                                    throw new IllegalArgumentException("The filters must not be null");                                 
+}                                                                                                      }                                                                                                   
+final List&lt;IOFileFilter&gt; list = new ArrayList&lt;IOFileFilter&gt;(filters.length);             | final List&lt;IOFileFilter&gt; list = new ArrayList&lt;&gt;(filters.length);                        
+for (int i = 0; i &lt; filters.length; i++) {                                                          for (int i = 0; i &lt; filters.length; i++) {                                                       
+if (filters[i] == null) {                                                                              if (filters[i] == null) {                                                                           
+throw new IllegalArgumentException("The filter[" + i + "] is null");                                   throw new IllegalArgumentException("The filter[" + i + "] is null");                                
+}                                                                                                      }                                                                                                   
+list.add(filters[i]);                                                                                  list.add(filters[i]);                                                                               
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

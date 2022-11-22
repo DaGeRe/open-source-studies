@@ -1,0 +1,12 @@
+                                                                                                     | public static void copyInputStreamToFile(InputStream source, File destination) throws IOException { 
+                                                                                                     | try {                                                                                               
+                                                                                                     | FileOutputStream output = openOutputStream(destination);                                            
+                                                                                                     | try {                                                                                               
+                                                                                                     | IOUtils.copy(source, output);                                                                       
+                                                                                                     | } finally {                                                                                         
+                                                                                                     | IOUtils.closeQuietly(output);                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | } finally {                                                                                         
+                                                                                                     | IOUtils.closeQuietly(source);                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

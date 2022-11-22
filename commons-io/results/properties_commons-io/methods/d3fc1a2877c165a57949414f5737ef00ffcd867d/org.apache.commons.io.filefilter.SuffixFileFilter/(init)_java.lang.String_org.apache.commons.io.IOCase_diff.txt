@@ -1,0 +1,7 @@
+public SuffixFileFilter(final String suffix, final IOCase caseSensitivity) {
+    if (suffix == null) {
+        throw new IllegalArgumentException("The suffix must not be null");
+    }
+    this.suffixes = new String[] { suffix };
+    this.caseSensitivity = caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity;
+}

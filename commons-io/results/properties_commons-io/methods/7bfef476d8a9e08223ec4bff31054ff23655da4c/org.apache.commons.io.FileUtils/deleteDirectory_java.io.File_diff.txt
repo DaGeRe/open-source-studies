@@ -1,0 +1,12 @@
+public static void deleteDirectory(File directory) throws IOException {                                public static void deleteDirectory(File directory) throws IOException {                             
+if (!directory.exists()) {                                                                             if (!directory.exists()) {                                                                          
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (!isSymlink(directory)) {                                                                        
+cleanDirectory(directory);                                                                             cleanDirectory(directory);                                                                          
+                                                                                                     | }                                                                                                   
+if (!directory.delete()) {                                                                             if (!directory.delete()) {                                                                          
+String message = "Unable to delete directory " + directory + ".";                                      String message = "Unable to delete directory " + directory + ".";                                   
+throw new IOException(message);                                                                        throw new IOException(message);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

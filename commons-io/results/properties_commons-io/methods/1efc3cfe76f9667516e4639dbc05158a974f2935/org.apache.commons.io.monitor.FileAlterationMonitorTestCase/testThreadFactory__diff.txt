@@ -1,0 +1,22 @@
+public void testThreadFactory() {
+    try {
+        long interval = 100;
+        listener.clear();
+        FileAlterationMonitor monitor = new FileAlterationMonitor(interval, observer);
+        monitor.setThreadFactory(Executors.defaultThreadFactory());
+        assertEquals("Interval", interval, monitor.getInterval());
+        monitor.start();
+        checkCollectionsEmpty("A");
+        File file2 = touch(new File(testDir, "file2.java"));
+        checkFile("Create", file2, listener.getCreatedFiles());
+        listener.clear();
+        checkCollectionsEmpty("B");
+        file2.delete();
+        checkFile("Delete", file2, listener.getDeletedFiles());
+        listener.clear();
+        monitor.stop();
+    } catch (Exception e) {
+        e.printStackTrace();
+        fail("Threw " + e);
+    }
+}

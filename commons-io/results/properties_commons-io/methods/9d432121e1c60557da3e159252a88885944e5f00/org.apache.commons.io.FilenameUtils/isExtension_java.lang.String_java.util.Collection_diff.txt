@@ -1,0 +1,16 @@
+public static boolean isExtension(final String filename, final Collection<String> extensions) {
+    if (filename == null) {
+        return false;
+    }
+    failIfNullBytePresent(filename);
+    if (extensions == null || extensions.isEmpty()) {
+        return indexOfExtension(filename) == NOT_FOUND;
+    }
+    final String fileExt = getExtension(filename);
+    for (final String extension : extensions) {
+        if (fileExt.equals(extension)) {
+            return true;
+        }
+    }
+    return false;
+}

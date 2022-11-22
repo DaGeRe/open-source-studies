@@ -1,0 +1,12 @@
+public boolean accept(final File file) {
+    if (this.fileFilters.size() == 0) {
+        return false;
+    }
+    for (Iterator iter = this.fileFilters.iterator(); iter.hasNext(); ) {
+        IOFileFilter fileFilter = (IOFileFilter) iter.next();
+        if (!fileFilter.accept(file)) {
+            return false;
+        }
+    }
+    return true;
+}

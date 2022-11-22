@@ -1,0 +1,20 @@
+public static void copyURLToFile(URL source, File destination) throws IOException {                    public static void copyURLToFile(URL source, File destination) throws IOException {                 
+if (destination.getParentFile() != null && !destination.getParentFile().exists()) {                  |                                                                                                     
+destination.getParentFile().mkdirs();                                                                |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (destination.exists() && !destination.canWrite()) {                                               |                                                                                                     
+String message = "Unable to open file " + destination + " for writing.";                             |                                                                                                     
+throw new IOException(message);                                                                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+InputStream input = source.openStream();                                                               InputStream input = source.openStream();                                                            
+try {                                                                                                  try {                                                                                               
+FileOutputStream output = new FileOutputStream(destination);                                         | FileOutputStream output = openOutputStream(destination);                                            
+try {                                                                                                  try {                                                                                               
+IOUtils.copy(input, output);                                                                           IOUtils.copy(input, output);                                                                        
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(output);                                                                          IOUtils.closeQuietly(output);                                                                       
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(input);                                                                           IOUtils.closeQuietly(input);                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

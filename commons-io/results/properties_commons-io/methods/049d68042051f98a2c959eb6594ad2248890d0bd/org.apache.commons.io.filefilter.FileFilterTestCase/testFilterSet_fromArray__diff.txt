@@ -1,0 +1,8 @@
+public void testFilterSet_fromArray() throws Exception {
+    File fileA = newFile("A");
+    File fileB = newFile("B");
+    IOFileFilter filter = FileFilterUtils.nameFileFilter("A");
+    Set<File> filteredSet = FileFilterUtils.filterSet(filter, fileA, fileB);
+    assertTrue(filteredSet.contains(fileA));
+    assertFalse(filteredSet.contains(fileB));
+}

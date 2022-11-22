@@ -1,0 +1,20 @@
+public static boolean isSymlink(File file) throws IOException {
+    if (file == null) {
+        throw new NullPointerException("File must not be null");
+    }
+    if (FilenameUtils.isSystemWindows()) {
+        return false;
+    }
+    File fileInCanonicalDir = null;
+    if (file.getParent() == null) {
+        fileInCanonicalDir = file;
+    } else {
+        File canonicalDir = file.getParentFile().getCanonicalFile();
+        fileInCanonicalDir = new File(canonicalDir, file.getName());
+    }
+    if (fileInCanonicalDir.getCanonicalFile().equals(fileInCanonicalDir.getAbsoluteFile())) {
+        return false;
+    } else {
+        return true;
+    }
+}

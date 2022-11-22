@@ -1,0 +1,24 @@
+private void testBufferedRead(final String testString, final String charsetName) throws IOException {
+    final byte[] expected = testString.getBytes(charsetName);
+    try (InputStream in = new CharSequenceInputStream(testString, charsetName, 512)) {
+        final byte[] buffer = new byte[128];
+        int offset = 0;
+        while (true) {
+            int bufferOffset = random.nextInt(64);
+            final int bufferLength = random.nextInt(64);
+            int read = in.read(buffer, bufferOffset, bufferLength);
+            if (read == -1) {
+                assertEquals("EOF: offset should equal length for charset " + charsetName, expected.length, offset);
+                break;
+            }
+            assertTrue("Read " + read + " <= " + bufferLength, read <= bufferLength);
+            while (read > 0) {
+                assertTrue("offset for " + charsetName + " " + offset + " < " + expected.length, offset < expected.length);
+                assertEquals("bytes should agree for " + charsetName, expected[offset], buffer[bufferOffset]);
+                offset++;
+                bufferOffset++;
+                read--;
+            }
+        }
+    }
+}

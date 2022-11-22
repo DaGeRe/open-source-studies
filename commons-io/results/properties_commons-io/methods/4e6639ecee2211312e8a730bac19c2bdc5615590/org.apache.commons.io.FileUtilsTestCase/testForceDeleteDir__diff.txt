@@ -1,0 +1,5 @@
+public void testForceDeleteDir() throws Exception {
+    File testDirectory = getTestDirectory();
+    FileUtils.forceDelete(testDirectory.getParentFile());
+    assertTrue("Check No Exist", !testDirectory.getParentFile().exists());
+}

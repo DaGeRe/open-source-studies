@@ -1,0 +1,8 @@
+public void testFilteringBufferedReader() throws Exception {                                           public void testFilteringBufferedReader() throws Exception {                                        
+String encoding = "UTF-8";                                                                             String encoding = "UTF-8";                                                                          
+String fileName = "LineIterator-Filter-test.txt";                                                      String fileName = "LineIterator-Filter-test.txt";                                                   
+File testFile = new File(getTestDirectory(), fileName);                                                File testFile = new File(getTestDirectory(), fileName);                                             
+List&lt;String&gt; lines = createFile(testFile, encoding, 9);                                        | List&lt;String&gt; lines = createLinesFile(testFile, encoding, 9);                                  
+Reader reader = new BufferedReader(new FileReader(testFile));                                          Reader reader = new BufferedReader(new FileReader(testFile));                                       
+this.testFiltering(lines, reader);                                                                     this.testFiltering(lines, reader);                                                                  
+}                                                                                                      }                                                                                                   

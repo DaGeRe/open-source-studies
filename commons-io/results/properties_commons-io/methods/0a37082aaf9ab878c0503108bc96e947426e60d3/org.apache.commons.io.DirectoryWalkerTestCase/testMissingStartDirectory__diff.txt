@@ -1,0 +1,11 @@
+public void testMissingStartDirectory() {
+    File invalidDir = new File("invalid-dir");
+    List<File> results = new TestFileFinder(null, -1).find(invalidDir);
+    assertEquals("Result Size", 1, results.size());
+    assertTrue("Current Dir", results.contains(invalidDir));
+    try {
+        new TestFileFinder(null, -1).find(null);
+        fail("Null start directory didn't throw Exception");
+    } catch (NullPointerException ignore) {
+    }
+}

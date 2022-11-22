@@ -1,0 +1,15 @@
+public void testAboveThreshold() {
+    File testFile = new File("testAboveThreshold.dat");
+    testFile.delete();
+    DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length - 5, testFile);
+    try {
+        dfos.write(testBytes, 0, testBytes.length);
+        dfos.close();
+    } catch (IOException e) {
+        fail("Unexpected IOException");
+    }
+    assertFalse(dfos.isInMemory());
+    assertNull(dfos.getData());
+    verifyResultFile(testFile);
+    testFile.delete();
+}

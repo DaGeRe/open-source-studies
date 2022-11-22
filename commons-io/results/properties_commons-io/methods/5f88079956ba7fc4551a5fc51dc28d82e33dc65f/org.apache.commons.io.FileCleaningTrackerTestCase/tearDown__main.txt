@@ -1,0 +1,13 @@
+@After
+public void tearDown() throws Exception {
+    {
+        if (theInstance != null) {
+            theInstance.q = new ReferenceQueue<>();
+            theInstance.trackers.clear();
+            theInstance.deleteFailures.clear();
+            theInstance.exitWhenFinished = false;
+            theInstance.reaper = null;
+        }
+    }
+    theInstance = null;
+}

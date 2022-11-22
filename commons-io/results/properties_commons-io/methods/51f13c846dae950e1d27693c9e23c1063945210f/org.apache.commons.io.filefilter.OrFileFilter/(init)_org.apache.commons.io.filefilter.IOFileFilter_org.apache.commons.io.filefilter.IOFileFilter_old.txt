@@ -1,0 +1,8 @@
+public OrFileFilter(final IOFileFilter filter1, final IOFileFilter filter2) {
+    if (filter1 == null || filter2 == null) {
+        throw new IllegalArgumentException("The filters must not be null");
+    }
+    this.fileFilters = new ArrayList<IOFileFilter>(2);
+    addFileFilter(filter1);
+    addFileFilter(filter2);
+}

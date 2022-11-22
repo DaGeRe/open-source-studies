@@ -1,0 +1,21 @@
+private void waitUntilTrackCount() throws Exception {
+    System.gc();
+    TestUtils.sleep(500);
+    int count = 0;
+    while (theInstance.getTrackCount() != 0 && count++ < 5) {
+        List<String> list = new ArrayList<>();
+        try {
+            long i = 0;
+            while (theInstance.getTrackCount() != 0) {
+                list.add("A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String A Big String " + (i++));
+            }
+        } catch (final Throwable ignored) {
+        }
+        list = null;
+        System.gc();
+        TestUtils.sleep(1000);
+    }
+    if (theInstance.getTrackCount() != 0) {
+        throw new IllegalStateException("Your JVM is not releasing References, try running the testcase with less memory (-Xmx)");
+    }
+}

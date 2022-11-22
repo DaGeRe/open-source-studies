@@ -1,0 +1,11 @@
+private static boolean exists(File file) throws IOException {
+    try {
+        Object path = toPath.invoke(file);
+        final Boolean result = (Boolean) exists.invoke(null, path, emptyLinkOpts);
+        return result.booleanValue();
+    } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+    } catch (InvocationTargetException e) {
+        throw (RuntimeException) e.getTargetException();
+    }
+}

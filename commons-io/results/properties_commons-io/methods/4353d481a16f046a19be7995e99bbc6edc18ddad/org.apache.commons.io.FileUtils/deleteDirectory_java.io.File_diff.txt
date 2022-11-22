@@ -1,0 +1,12 @@
+public static void deleteDirectory(File directory) throws IOException {
+    if (!directory.exists()) {
+        return;
+    }
+    if (!isSymlink(directory)) {
+        cleanDirectory(directory);
+    }
+    if (!directory.delete()) {
+        String message = "Unable to delete directory " + directory + ".";
+        throw new IOException(message);
+    }
+}

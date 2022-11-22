@@ -1,0 +1,7 @@
+public static URL resourceToURL(final String name, final ClassLoader classLoader) throws IOException {
+    final URL resource = classLoader == null ? IOUtils.class.getResource(name) : classLoader.getResource(name);
+    if (resource == null) {
+        throw new IOException("Resource not found: " + name);
+    }
+    return resource;
+}

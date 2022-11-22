@@ -1,0 +1,10 @@
+private void createCircularSymLink(final File file) throws IOException {
+    if (!FilenameUtils.isSystemWindows()) {
+        Runtime.getRuntime().exec("ln -s " + file + "/.. " + file + "/cycle");
+    } else {
+        try {
+            Runtime.getRuntime().exec("mklink /D " + file + "/cycle" + file + "/.. ");
+        } catch (final IOException ioe) {
+        }
+    }
+}

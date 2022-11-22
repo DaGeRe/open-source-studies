@@ -1,0 +1,9 @@
+public void close() {                                                                                | @Override                                                                                           
+                                                                                                     | public void close() throws IOException {                                                            
+finished = true;                                                                                       finished = true;                                                                                    
+IOUtils.closeQuietly(bufferedReader);                                                                |                                                                                                     
+cachedLine = null;                                                                                     cachedLine = null;                                                                                  
+                                                                                                     | if (this.bufferedReader != null) {                                                                  
+                                                                                                     | this.bufferedReader.close();                                                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,5 @@
+public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncodi   public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncodi
+this.defaultEncoding = defaultEncoding;                                                                this.defaultEncoding = defaultEncoding;                                                             
+doHttpStream(is, httpContentType, lenient);                                                          | this.encoding = doHttpStream(is, httpContentType, lenient);                                         
+                                                                                                     | this.reader = new InputStreamReader(is, encoding);                                                  
+}                                                                                                      }                                                                                                   

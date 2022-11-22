@@ -1,0 +1,11 @@
+public boolean accept(File file) {
+    if (file.isDirectory()) {
+        return false;
+    }
+    for (int i = 0; i < patterns.length; i++) {
+        if (patterns[i].matcher(file.getName()).matches()) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,12 @@
+@Override
+public int read(final char[] chr) throws IOException {
+    try {
+        beforeRead(chr != null ? chr.length : 0);
+        final int n = in.read(chr);
+        afterRead(n);
+        return n;
+    } catch (final IOException e) {
+        handleIOException(e);
+        return EOF;
+    }
+}

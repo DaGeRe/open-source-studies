@@ -1,0 +1,22 @@
+                                                                                                     | @Override                                                                                           
+public int read(char[] array, int offset, int length) {                                                public int read(char[] array, int offset, int length) {                                             
+if (idx &gt;= charSequence.length()) {                                                                 if (idx &gt;= charSequence.length()) {                                                              
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+if (array == null) {                                                                                   if (array == null) {                                                                                
+throw new NullPointerException("Character array is missing");                                          throw new NullPointerException("Character array is missing");                                       
+}                                                                                                      }                                                                                                   
+if (length &lt; 0 || (offset + length) &gt; array.length) {                                            if (length &lt; 0 || (offset + length) &gt; array.length) {                                         
+throw new IndexOutOfBoundsException("Array Size=" + array.length + ", offset=" + offset + ", length=   throw new IndexOutOfBoundsException("Array Size=" + array.length + ", offset=" + offset + ", length=
+}                                                                                                      }                                                                                                   
+int count = 0;                                                                                         int count = 0;                                                                                      
+for (int i = 0; i &lt; length; i++) {                                                                  for (int i = 0; i &lt; length; i++) {                                                               
+int c = read();                                                                                        int c = read();                                                                                     
+if (c == -1) {                                                                                         if (c == -1) {                                                                                      
+return count;                                                                                          return count;                                                                                       
+}                                                                                                      }                                                                                                   
+array[offset + i] = (char) c;                                                                          array[offset + i] = (char) c;                                                                       
+count++;                                                                                               count++;                                                                                            
+}                                                                                                      }                                                                                                   
+return count;                                                                                          return count;                                                                                       
+}                                                                                                      }                                                                                                   

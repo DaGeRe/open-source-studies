@@ -1,0 +1,19 @@
+public void testStringToOutputStream() throws Exception {
+    File destination = newFile("copy5.txt");
+    FileReader fin = new FileReader(m_testFile);
+    String str;
+    try {
+        str = IOUtils.toString(fin);
+    } finally {
+        fin.close();
+    }
+    FileOutputStream fout = new FileOutputStream(destination);
+    try {
+        CopyUtils.copy(str, fout);
+        checkFile(destination, m_testFile);
+        checkWrite(fout);
+    } finally {
+        fout.close();
+    }
+    deleteFile(destination);
+}

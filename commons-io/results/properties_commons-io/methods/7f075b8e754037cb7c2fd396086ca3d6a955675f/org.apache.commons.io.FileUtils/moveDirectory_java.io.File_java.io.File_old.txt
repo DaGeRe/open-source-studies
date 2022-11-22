@@ -1,0 +1,25 @@
+public static void moveDirectory(File srcDir, File destDir) throws IOException {
+    if (srcDir == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (destDir == null) {
+        throw new NullPointerException("Destination must not be null");
+    }
+    if (!srcDir.exists()) {
+        throw new FileNotFoundException("Source '" + srcDir + "' does not exist");
+    }
+    if (!srcDir.isDirectory()) {
+        throw new IOException("Source '" + srcDir + "' is not a directory");
+    }
+    if (destDir.exists()) {
+        throw new IOException("Destination '" + destDir + "' allready exists");
+    }
+    boolean rename = srcDir.renameTo(destDir);
+    if (!rename) {
+        copyDirectory(srcDir, destDir);
+        deleteDirectory(srcDir);
+        if (srcDir.exists()) {
+            throw new IOException("Failed to delete original directory '" + srcDir + "' after copy to '" + destDir + "'");
+        }
+    }
+}

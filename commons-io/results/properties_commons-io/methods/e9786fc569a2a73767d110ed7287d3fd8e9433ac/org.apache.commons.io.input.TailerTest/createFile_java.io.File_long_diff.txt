@@ -1,0 +1,19 @@
+                                                                                                     | @Override                                                                                           
+protected void createFile(File file, long size) throws IOException {                                   protected void createFile(File file, long size) throws IOException {                                
+super.createFile(file, size);                                                                          super.createFile(file, size);                                                                       
+RandomAccessFile reader = null;                                                                        RandomAccessFile reader = null;                                                                     
+try {                                                                                                  try {                                                                                               
+while (reader == null) {                                                                               while (reader == null) {                                                                            
+try {                                                                                                  try {                                                                                               
+reader = new RandomAccessFile(file.getPath(), "r");                                                    reader = new RandomAccessFile(file.getPath(), "r");                                                 
+} catch (FileNotFoundException e) {                                                                    } catch (FileNotFoundException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Thread.sleep(200L);                                                                                    Thread.sleep(200L);                                                                                 
+} catch (InterruptedException e) {                                                                     } catch (InterruptedException e) {                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(reader);                                                                          IOUtils.closeQuietly(reader);                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

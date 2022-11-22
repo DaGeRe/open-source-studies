@@ -1,0 +1,6 @@
+public static String toString(final InputStream input, final Charset encoding) throws IOException {
+    try (final StringBuilderWriter sw = new StringBuilderWriter()) {
+        copy(input, sw, encoding);
+        return sw.toString();
+    }
+}

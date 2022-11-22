@@ -1,0 +1,15 @@
+@Override
+public void run() {
+    while (exitWhenFinished == false || trackers.size() > 0) {
+        try {
+            Tracker tracker = (Tracker) q.remove();
+            trackers.remove(tracker);
+            if (!tracker.delete()) {
+                deleteFailures.add(tracker.getPath());
+            }
+            tracker.clear();
+        } catch (InterruptedException e) {
+            continue;
+        }
+    }
+}

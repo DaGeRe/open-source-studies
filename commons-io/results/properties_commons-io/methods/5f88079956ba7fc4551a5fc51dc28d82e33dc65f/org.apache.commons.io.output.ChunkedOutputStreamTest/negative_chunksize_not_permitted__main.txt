@@ -1,0 +1,5 @@
+@Test(expected = IllegalArgumentException.class)
+public void negative_chunksize_not_permitted() throws Exception {
+    final ChunkedOutputStream chunked = new ChunkedOutputStream(new ByteArrayOutputStream(), 0);
+    chunked.close();
+}

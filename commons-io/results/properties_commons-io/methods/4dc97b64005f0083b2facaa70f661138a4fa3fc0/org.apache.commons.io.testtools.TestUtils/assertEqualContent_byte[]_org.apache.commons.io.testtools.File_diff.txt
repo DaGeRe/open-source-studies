@@ -1,0 +1,17 @@
+public static void assertEqualContent(final byte[] b0, final File file) throws IOException {
+    final InputStream is = new java.io.FileInputStream(file);
+    int count = 0, numRead = 0;
+    final byte[] b1 = new byte[b0.length];
+    try {
+        while (count < b0.length && numRead >= 0) {
+            numRead = is.read(b1, count, b0.length);
+            count += numRead;
+        }
+        assertEquals("Different number of bytes: ", b0.length, count);
+        for (int i = 0; i < count; i++) {
+            assertEquals("byte " + i + " differs", b0[i], b1[i]);
+        }
+    } finally {
+        is.close();
+    }
+}

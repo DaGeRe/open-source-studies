@@ -1,0 +1,31 @@
+private String calculateHttpEncoding(String cTMime, String cTEnc, String bomEnc, String xmlGuessEnc,   private String calculateHttpEncoding(String cTMime, String cTEnc, String bomEnc, String xmlGuessEnc,
+String encoding;                                                                                       String encoding;                                                                                    
+if (lenient & xmlEnc != null) {                                                                        if (lenient & xmlEnc != null) {                                                                     
+encoding = xmlEnc;                                                                                     encoding = xmlEnc;                                                                                  
+} else {                                                                                               } else {                                                                                            
+boolean appXml = isAppXml(cTMime);                                                                     boolean appXml = isAppXml(cTMime);                                                                  
+boolean textXml = isTextXml(cTMime);                                                                   boolean textXml = isTextXml(cTMime);                                                                
+if (appXml || textXml) {                                                                               if (appXml || textXml) {                                                                            
+if (cTEnc == null) {                                                                                   if (cTEnc == null) {                                                                                
+if (appXml) {                                                                                          if (appXml) {                                                                                       
+encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc, is);                                      encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc, is);                                   
+} else {                                                                                               } else {                                                                                            
+encoding = (defaultEncoding == null) ? US_ASCII : defaultEncoding;                                     encoding = (defaultEncoding == null) ? US_ASCII : defaultEncoding;                                  
+}                                                                                                      }                                                                                                   
+} else if (bomEnc != null && (cTEnc.equals(UTF_16BE) || cTEnc.equals(UTF_16LE))) {                     } else if (bomEnc != null && (cTEnc.equals(UTF_16BE) || cTEnc.equals(UTF_16LE))) {                  
+throw new XmlStreamReaderException(HTTP_EX_1.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn | throw new XmlStreamReaderException(HTTP_EX_1.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn
+} else if (cTEnc.equals(UTF_16)) {                                                                     } else if (cTEnc.equals(UTF_16)) {                                                                  
+if (bomEnc != null && bomEnc.startsWith(UTF_16)) {                                                     if (bomEnc != null && bomEnc.startsWith(UTF_16)) {                                                  
+encoding = bomEnc;                                                                                     encoding = bomEnc;                                                                                  
+} else {                                                                                               } else {                                                                                            
+throw new XmlStreamReaderException(HTTP_EX_2.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn | throw new XmlStreamReaderException(HTTP_EX_2.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+encoding = cTEnc;                                                                                      encoding = cTEnc;                                                                                   
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+throw new XmlStreamReaderException(HTTP_EX_3.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn | throw new XmlStreamReaderException(HTTP_EX_3.format(new Object[] { cTMime, cTEnc, bomEnc, xmlGuessEn
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return encoding;                                                                                       return encoding;                                                                                    
+}                                                                                                      }                                                                                                   

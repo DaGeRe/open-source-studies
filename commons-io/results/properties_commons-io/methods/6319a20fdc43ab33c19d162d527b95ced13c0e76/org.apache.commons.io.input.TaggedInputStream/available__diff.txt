@@ -1,0 +1,8 @@
+@Override
+public int available() throws IOException {
+    try {
+        return super.available();
+    } catch (IOException e) {
+        throw new TaggedIOException(e, this);
+    }
+}

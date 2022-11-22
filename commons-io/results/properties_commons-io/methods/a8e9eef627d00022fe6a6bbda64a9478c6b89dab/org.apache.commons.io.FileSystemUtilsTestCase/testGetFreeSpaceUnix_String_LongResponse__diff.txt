@@ -1,0 +1,5 @@
+public void testGetFreeSpaceUnix_String_LongResponse() throws Exception {                              public void testGetFreeSpaceUnix_String_LongResponse() throws Exception {                           
+String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "xxx-yyyyyyy   String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "xxx-yyyyyyy
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+assertEquals(1472504L, fsu.freeSpaceUnix("/home/users/s", false, false));                            | assertEquals(1472504L, fsu.freeSpaceUnix("/home/users/s", false, false, -1));                       
+}                                                                                                      }                                                                                                   

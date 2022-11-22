@@ -1,0 +1,8 @@
+public void testWrite_stringToOutputStream_nullStream() throws Exception {
+    String str = new String(inData, "US-ASCII");
+    try {
+        IOUtils.write(str, (OutputStream) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

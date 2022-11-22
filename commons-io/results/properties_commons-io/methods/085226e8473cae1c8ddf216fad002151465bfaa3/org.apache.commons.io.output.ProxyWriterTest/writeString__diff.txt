@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void writeString() throws Exception {                                                           public void writeString() throws Exception {                                                        
+final StringBuilderWriter writer = new StringBuilderWriter();                                        | try (final StringBuilderWriter writer = new StringBuilderWriter();                                  
+final ProxyWriter proxy = new ProxyWriter(writer);                                                   | final ProxyWriter proxy = new ProxyWriter(writer)) {                                                
+proxy.write("ABC");                                                                                    proxy.write("ABC");                                                                                 
+assertEquals("ABC", writer.toString());                                                                assertEquals("ABC", writer.toString());                                                             
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

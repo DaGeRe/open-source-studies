@@ -1,0 +1,8 @@
+@Override
+public boolean accept(File dir, String name) {
+    if (filenameFilter != null) {
+        return filenameFilter.accept(dir, name);
+    } else {
+        return super.accept(dir, name);
+    }
+}

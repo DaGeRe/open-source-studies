@@ -1,0 +1,12 @@
+@Override
+public boolean accept(final File file, final String name) {
+    if (this.fileFilters.isEmpty()) {
+        return false;
+    }
+    for (final IOFileFilter fileFilter : fileFilters) {
+        if (!fileFilter.accept(file, name)) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,0 +1,8 @@
+private static String getSystemProperty(final String property) {
+    try {
+        return System.getProperty(property);
+    } catch (final SecurityException ex) {
+        System.err.println("Caught a SecurityException reading the system property '" + property + "'; the SystemUtils property value will default to null.");
+        return null;
+    }
+}

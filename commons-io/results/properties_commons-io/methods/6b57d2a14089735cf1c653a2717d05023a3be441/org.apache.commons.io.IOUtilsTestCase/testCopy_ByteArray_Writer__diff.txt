@@ -1,0 +1,16 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testCopy_ByteArray_Writer() throws Exception {                                             public void testCopy_ByteArray_Writer() throws Exception {                                          
+final File destination = TestUtils.newFile(getTestDirectory(), "copy7.txt");                           final File destination = TestUtils.newFile(getTestDirectory(), "copy7.txt");                        
+byte[] in;                                                                                             byte[] in;                                                                                          
+try (FileInputStream fin = new FileInputStream(m_testFile)) {                                          try (FileInputStream fin = new FileInputStream(m_testFile)) {                                       
+in = IOUtils.toByteArray(fin);                                                                         in = IOUtils.toByteArray(fin);                                                                      
+}                                                                                                      }                                                                                                   
+try (FileWriter fout = new FileWriter(destination)) {                                                  try (FileWriter fout = new FileWriter(destination)) {                                               
+CopyUtils.copy(in, fout);                                                                              CopyUtils.copy(in, fout);                                                                           
+fout.flush();                                                                                          fout.flush();                                                                                       
+TestUtils.checkFile(destination, m_testFile);                                                          TestUtils.checkFile(destination, m_testFile);                                                       
+TestUtils.checkWrite(fout);                                                                            TestUtils.checkWrite(fout);                                                                         
+}                                                                                                      }                                                                                                   
+TestUtils.deleteFile(destination);                                                                     TestUtils.deleteFile(destination);                                                                  
+}                                                                                                      }                                                                                                   

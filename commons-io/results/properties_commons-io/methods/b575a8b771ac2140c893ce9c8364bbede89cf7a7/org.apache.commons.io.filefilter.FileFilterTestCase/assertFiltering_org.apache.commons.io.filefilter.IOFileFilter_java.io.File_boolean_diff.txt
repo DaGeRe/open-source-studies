@@ -1,0 +1,8 @@
+public void assertFiltering(IOFileFilter filter, File file, boolean expected) throws Exception {
+    assertEquals("Filter(File) " + filter.getClass().getName() + " not " + expected + " for " + file, expected, filter.accept(file));
+    if (file != null && file.getParentFile() != null) {
+        assertEquals("Filter(File, String) " + filter.getClass().getName() + " not " + expected + " for " + file, expected, filter.accept(file.getParentFile(), file.getName()));
+    } else if (file == null) {
+        assertEquals("Filter(File, String) " + filter.getClass().getName() + " not " + expected + " for null", expected, filter.accept(file));
+    }
+}

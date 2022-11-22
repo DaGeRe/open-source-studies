@@ -1,0 +1,10 @@
+@Test
+public void testReplacementWithNUL() {
+    for (FileSystem fs : FileSystem.values()) {
+        try {
+            fs.toLegalFileName("Test", '\0');
+        } catch (IllegalArgumentException iae) {
+            Assert.assertTrue(iae.getMessage(), iae.getMessage().startsWith("The replacement character '\\0'"));
+        }
+    }
+}

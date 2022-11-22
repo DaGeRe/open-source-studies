@@ -1,0 +1,20 @@
+@Override
+public boolean accept(final File file) {
+    if (file != null && file.isFile() && file.canRead()) {
+        RandomAccessFile randomAccessFile = null;
+        try {
+            final byte[] fileBytes = new byte[this.magicNumbers.length];
+            randomAccessFile = new RandomAccessFile(file, "r");
+            randomAccessFile.seek(byteOffset);
+            final int read = randomAccessFile.read(fileBytes);
+            if (read != magicNumbers.length) {
+                return false;
+            }
+            return Arrays.equals(this.magicNumbers, fileBytes);
+        } catch (final IOException ioe) {
+        } finally {
+            IOUtils.closeQuietly(randomAccessFile);
+        }
+    }
+    return false;
+}

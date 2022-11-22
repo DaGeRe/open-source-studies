@@ -1,0 +1,17 @@
+private void doRawStream(InputStream is, boolean lenient) throws IOException {                         private void doRawStream(InputStream is, boolean lenient) throws IOException {                      
+BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);        BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);     
+BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                   BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                
+String bomEnc = bom.getBOMCharsetName();                                                               String bomEnc = bom.getBOMCharsetName();                                                            
+String xmlGuessEnc = pis.getBOMCharsetName();                                                          String xmlGuessEnc = pis.getBOMCharsetName();                                                       
+String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                        String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                     
+                                                                                                     | try {                                                                                               
+this.encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);                                     this.encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);                                  
+                                                                                                     | } catch (XmlStreamReaderException ex) {                                                             
+                                                                                                     | if (lenient) {                                                                                      
+                                                                                                     | this.encoding = doLenientDetection(null, is, ex);                                                   
+                                                                                                     | } else {                                                                                            
+                                                                                                     | throw ex;                                                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+this.reader = new InputStreamReader(is, encoding);                                                     this.reader = new InputStreamReader(is, encoding);                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,17 @@
+public void testEqualsNormalizedError_IO_128() {
+    try {
+        FilenameUtils.equalsNormalizedOnSystem("//file.txt", "file.txt");
+        fail("Invalid normalized first file");
+    } catch (NullPointerException e) {
+    }
+    try {
+        FilenameUtils.equalsNormalizedOnSystem("file.txt", "//file.txt");
+        fail("Invalid normalized second file");
+    } catch (NullPointerException e) {
+    }
+    try {
+        FilenameUtils.equalsNormalizedOnSystem("//file.txt", "//file.txt");
+        fail("Invalid normalized both filse");
+    } catch (NullPointerException e) {
+    }
+}

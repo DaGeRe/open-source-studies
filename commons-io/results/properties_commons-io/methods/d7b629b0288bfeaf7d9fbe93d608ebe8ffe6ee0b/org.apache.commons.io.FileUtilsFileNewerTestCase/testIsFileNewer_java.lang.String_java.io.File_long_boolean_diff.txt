@@ -1,0 +1,8 @@
+protected void testIsFileNewer(String description, File file, long time, boolean wantedResult) {
+    assertEquals(description + " - time", wantedResult, FileUtils.isFileNewer(file, time));
+    assertEquals(description + " - date", wantedResult, FileUtils.isFileNewer(file, new Date(time)));
+    File temporaryFile = m_testFile2;
+    temporaryFile.setLastModified(time);
+    assertEquals("The temporary file hasn't the right last modification date", time, temporaryFile.lastModified());
+    assertEquals(description + " - file", wantedResult, FileUtils.isFileNewer(file, temporaryFile));
+}

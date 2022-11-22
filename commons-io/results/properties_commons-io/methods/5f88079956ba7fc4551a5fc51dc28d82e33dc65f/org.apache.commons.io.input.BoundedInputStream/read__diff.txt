@@ -1,0 +1,9 @@
+@Override
+public int read() throws IOException {
+    if (max >= 0 && pos >= max) {
+        return EOF;
+    }
+    final int result = in.read();
+    pos++;
+    return result;
+}

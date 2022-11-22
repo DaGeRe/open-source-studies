@@ -1,0 +1,7 @@
+protected void handleDirectoryEnd(File directory, int depth, Collection results) throws IOException {
+    results.add(directory);
+    assertEquals(false, cancelled);
+    if (cancelFileName.equals(directory.getName())) {
+        cancelled = true;
+    }
+}

@@ -1,0 +1,15 @@
+@Override
+public Writer append(final CharSequence csq) throws IOException {
+    try {
+        int len = 0;
+        if (csq != null) {
+            len = csq.length();
+        }
+        beforeWrite(len);
+        out.append(csq);
+        afterWrite(len);
+    } catch (final IOException e) {
+        handleIOException(e);
+    }
+    return this;
+}

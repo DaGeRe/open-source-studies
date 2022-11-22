@@ -1,0 +1,19 @@
+private String doLenientDetection(String httpContentType, XmlStreamReaderException ex) throws IOException {
+    if (httpContentType != null && httpContentType.startsWith("text/html")) {
+        httpContentType = httpContentType.substring("text/html".length());
+        httpContentType = "text/xml" + httpContentType;
+        try {
+            return calculateHttpEncoding(httpContentType, ex.getBomEncoding(), ex.getXmlGuessEncoding(), ex.getXmlEncoding(), true);
+        } catch (XmlStreamReaderException ex2) {
+            ex = ex2;
+        }
+    }
+    String encoding = ex.getXmlEncoding();
+    if (encoding == null) {
+        encoding = ex.getContentTypeEncoding();
+    }
+    if (encoding == null) {
+        encoding = (defaultEncoding == null) ? UTF_8 : defaultEncoding;
+    }
+    return encoding;
+}

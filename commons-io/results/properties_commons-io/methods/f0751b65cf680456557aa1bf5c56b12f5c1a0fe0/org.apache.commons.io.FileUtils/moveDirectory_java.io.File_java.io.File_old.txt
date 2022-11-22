@@ -1,0 +1,28 @@
+public static void moveDirectory(final File srcDir, final File destDir) throws IOException {
+    if (srcDir == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (destDir == null) {
+        throw new NullPointerException("Destination must not be null");
+    }
+    if (!srcDir.exists()) {
+        throw new FileNotFoundException("Source '" + srcDir + "' does not exist");
+    }
+    if (!srcDir.isDirectory()) {
+        throw new IOException("Source '" + srcDir + "' is not a directory");
+    }
+    if (destDir.exists()) {
+        throw new FileExistsException("Destination '" + destDir + "' already exists");
+    }
+    final boolean rename = srcDir.renameTo(destDir);
+    if (!rename) {
+        if (destDir.getCanonicalPath().startsWith(srcDir.getCanonicalPath() + File.separator)) {
+            throw new IOException("Cannot move directory: " + srcDir + " to a subdirectory of itself: " + destDir);
+        }
+        copyDirectory(srcDir, destDir);
+        deleteDirectory(srcDir);
+        if (srcDir.exists()) {
+            throw new IOException("Failed to delete original directory '" + srcDir + "' after copy to '" + destDir + "'");
+        }
+    }
+}

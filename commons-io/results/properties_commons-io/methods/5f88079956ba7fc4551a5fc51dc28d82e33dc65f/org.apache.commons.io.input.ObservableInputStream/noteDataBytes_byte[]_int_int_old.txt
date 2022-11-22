@@ -1,0 +1,5 @@
+protected void noteDataBytes(byte[] pBuffer, int pOffset, int pLength) throws IOException {
+    for (Observer observer : getObservers()) {
+        observer.data(pBuffer, pOffset, pLength);
+    }
+}

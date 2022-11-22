@@ -1,0 +1,8 @@
+public void test_checkRegionMatches_case() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkRegionMatches("ABC", 0, "AB"));
+    assertEquals(false, IOCase.SENSITIVE.checkRegionMatches("ABC", 0, "Ab"));
+    assertEquals(true, IOCase.INSENSITIVE.checkRegionMatches("ABC", 0, "AB"));
+    assertEquals(true, IOCase.INSENSITIVE.checkRegionMatches("ABC", 0, "Ab"));
+    assertEquals(true, IOCase.SYSTEM.checkRegionMatches("ABC", 0, "AB"));
+    assertEquals(WINDOWS, IOCase.SYSTEM.checkRegionMatches("ABC", 0, "Ab"));
+}

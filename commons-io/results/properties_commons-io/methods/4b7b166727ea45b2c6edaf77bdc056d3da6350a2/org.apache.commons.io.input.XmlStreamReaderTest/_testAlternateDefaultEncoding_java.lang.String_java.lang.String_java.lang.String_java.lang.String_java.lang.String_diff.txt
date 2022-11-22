@@ -1,0 +1,10 @@
+public void _testAlternateDefaultEncoding(String cT, String bomEnc, String streamEnc, String prologE   public void _testAlternateDefaultEncoding(String cT, String bomEnc, String streamEnc, String prologE
+InputStream is = getXmlStream(bomEnc, (prologEnc == null) ? XML1 : XML3, streamEnc, prologEnc);        InputStream is = getXmlStream(bomEnc, (prologEnc == null) ? XML1 : XML3, streamEnc, prologEnc);     
+XmlStreamReader xmlReader = new XmlStreamReader(is, cT, false, alternateEnc);                          XmlStreamReader xmlReader = new XmlStreamReader(is, cT, false, alternateEnc);                       
+if (!streamEnc.equals("UTF-16")) {                                                                     if (!streamEnc.equals("UTF-16")) {                                                                  
+                                                                                                     | String enc = (alternateEnc != null) ? alternateEnc : streamEnc;                                     
+                                                                                                     | assertEquals(xmlReader.getEncoding(), enc);                                                         
+} else {                                                                                               } else {                                                                                            
+assertEquals(xmlReader.getEncoding().substring(0, streamEnc.length()), streamEnc);                     assertEquals(xmlReader.getEncoding().substring(0, streamEnc.length()), streamEnc);                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

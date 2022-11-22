@@ -1,0 +1,19 @@
+public static boolean waitFor(File file, int seconds) {
+    int timeout = 0;
+    int tick = 0;
+    while (!file.exists()) {
+        if (tick++ >= 10) {
+            tick = 0;
+            if (timeout++ > seconds) {
+                return false;
+            }
+        }
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ignore) {
+        } catch (Exception ex) {
+            break;
+        }
+    }
+    return true;
+}

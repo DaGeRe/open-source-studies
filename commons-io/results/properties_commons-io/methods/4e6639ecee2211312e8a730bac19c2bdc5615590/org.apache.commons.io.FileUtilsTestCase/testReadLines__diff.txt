@@ -1,0 +1,11 @@
+public void testReadLines() throws Exception {
+    File file = newFile("lines.txt");
+    try {
+        String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };
+        createLineBasedFile(file, data);
+        List<String> lines = FileUtils.readLines(file, "UTF-8");
+        assertEquals(Arrays.asList(data), lines);
+    } finally {
+        deleteFile(file);
+    }
+}

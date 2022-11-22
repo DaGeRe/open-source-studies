@@ -1,0 +1,14 @@
+public void test_IO_246() {                                                                            public void test_IO_246() {                                                                         
+assertMatch("aaa", "*?", false);                                                                     | assertMatch("aaa", "aa*?", true);                                                                   
+assertMatch("", "?*", false);                                                                          assertMatch("", "?*", false);                                                                       
+assertMatch("a", "a?*", false);                                                                        assertMatch("a", "a?*", false);                                                                     
+assertMatch("aa", "aa?*", false);                                                                      assertMatch("aa", "aa?*", false);                                                                   
+assertMatch("a", "?*", true);                                                                          assertMatch("a", "?*", true);                                                                       
+assertMatch("aa", "?*", true);                                                                         assertMatch("aa", "?*", true);                                                                      
+assertMatch("aaa", "?*", true);                                                                        assertMatch("aaa", "?*", true);                                                                     
+assertMatch("", "?", false);                                                                           assertMatch("", "?", false);                                                                        
+assertMatch("a", "a?", false);                                                                         assertMatch("a", "a?", false);                                                                      
+assertMatch("aa", "aa?", false);                                                                       assertMatch("aa", "aa?", false);                                                                    
+assertMatch("aab", "aa?", true);                                                                       assertMatch("aab", "aa?", true);                                                                    
+assertMatch("aaa", "*a", true);                                                                        assertMatch("aaa", "*a", true);                                                                     
+}                                                                                                      }                                                                                                   

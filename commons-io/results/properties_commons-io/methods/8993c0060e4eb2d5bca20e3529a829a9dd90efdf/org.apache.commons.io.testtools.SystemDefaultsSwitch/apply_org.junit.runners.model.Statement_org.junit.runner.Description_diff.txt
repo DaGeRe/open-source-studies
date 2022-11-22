@@ -1,0 +1,8 @@
+@Override
+public Statement apply(final Statement stmt, final Description description) {
+    final SystemDefaults defaults = description.getAnnotation(SystemDefaults.class);
+    if (defaults == null) {
+        return stmt;
+    }
+    return applyLocale(defaults, stmt);
+}

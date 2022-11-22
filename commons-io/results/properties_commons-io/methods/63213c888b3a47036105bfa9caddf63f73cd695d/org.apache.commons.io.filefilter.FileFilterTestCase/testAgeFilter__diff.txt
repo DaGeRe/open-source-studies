@@ -1,0 +1,49 @@
+public void testAgeFilter() throws Exception {
+    File oldFile = new File(getTestDirectory(), "old.txt");
+    File reference = new File(getTestDirectory(), "reference.txt");
+    File newFile = new File(getTestDirectory(), "new.txt");
+    createFile(oldFile, 0);
+    do {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ie) {
+        }
+        createFile(reference, 0);
+    } while (oldFile.lastModified() == reference.lastModified());
+    Date date = new Date();
+    long now = date.getTime();
+    do {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ie) {
+        }
+        createFile(newFile, 0);
+    } while (reference.lastModified() == newFile.lastModified());
+    IOFileFilter filter1 = FileFilterUtils.ageFileFilter(now);
+    IOFileFilter filter2 = FileFilterUtils.ageFileFilter(now, true);
+    IOFileFilter filter3 = FileFilterUtils.ageFileFilter(now, false);
+    IOFileFilter filter4 = FileFilterUtils.ageFileFilter(date);
+    IOFileFilter filter5 = FileFilterUtils.ageFileFilter(date, true);
+    IOFileFilter filter6 = FileFilterUtils.ageFileFilter(date, false);
+    IOFileFilter filter7 = FileFilterUtils.ageFileFilter(reference);
+    IOFileFilter filter8 = FileFilterUtils.ageFileFilter(reference, true);
+    IOFileFilter filter9 = FileFilterUtils.ageFileFilter(reference, false);
+    assertFiltering(filter1, oldFile, true);
+    assertFiltering(filter2, oldFile, true);
+    assertFiltering(filter3, oldFile, false);
+    assertFiltering(filter4, oldFile, true);
+    assertFiltering(filter5, oldFile, true);
+    assertFiltering(filter6, oldFile, false);
+    assertFiltering(filter7, oldFile, true);
+    assertFiltering(filter8, oldFile, true);
+    assertFiltering(filter9, oldFile, false);
+    assertFiltering(filter1, newFile, false);
+    assertFiltering(filter2, newFile, false);
+    assertFiltering(filter3, newFile, true);
+    assertFiltering(filter4, newFile, false);
+    assertFiltering(filter5, newFile, false);
+    assertFiltering(filter6, newFile, true);
+    assertFiltering(filter7, newFile, false);
+    assertFiltering(filter8, newFile, false);
+    assertFiltering(filter9, newFile, true);
+}

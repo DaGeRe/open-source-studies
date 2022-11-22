@@ -1,0 +1,43 @@
+private static String getXmlProlog(final InputStream is, final String guessedEnc) throws IOException {
+    String encoding = null;
+    if (guessedEnc != null) {
+        final byte[] bytes = new byte[BUFFER_SIZE];
+        is.mark(BUFFER_SIZE);
+        int offset = 0;
+        int max = BUFFER_SIZE;
+        int c = is.read(bytes, offset, max);
+        int firstGT = -1;
+        String xmlProlog = "";
+        while (c != -1 && firstGT == -1 && offset < BUFFER_SIZE) {
+            offset += c;
+            max -= c;
+            c = is.read(bytes, offset, max);
+            xmlProlog = new String(bytes, 0, offset, guessedEnc);
+            firstGT = xmlProlog.indexOf('>');
+        }
+        if (firstGT == -1) {
+            if (c == -1) {
+                throw new IOException("Unexpected end of XML stream");
+            } else {
+                throw new IOException("XML prolog or ROOT element not found on first " + offset + " bytes");
+            }
+        }
+        final int bytesRead = offset;
+        if (bytesRead > 0) {
+            is.reset();
+            final BufferedReader bReader = new BufferedReader(new StringReader(xmlProlog.substring(0, firstGT + 1)));
+            final StringBuffer prolog = new StringBuffer();
+            String line = bReader.readLine();
+            while (line != null) {
+                prolog.append(line);
+                line = bReader.readLine();
+            }
+            final Matcher m = ENCODING_PATTERN.matcher(prolog);
+            if (m.find()) {
+                encoding = m.group(1).toUpperCase(Locale.ROOT);
+                encoding = encoding.substring(1, encoding.length() - 1);
+            }
+        }
+    }
+    return encoding;
+}

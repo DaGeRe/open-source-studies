@@ -1,0 +1,6 @@
+@Override
+public int read(byte[] b) throws IOException {
+    int found = super.read(b);
+    this.count += (found >= 0) ? found : 0;
+    return found;
+}

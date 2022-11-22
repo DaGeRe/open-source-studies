@@ -1,0 +1,15 @@
+private static File[] verifiedListFiles(File directory) throws IOException {                         | private static File[] verifiedListFiles(final File directory) throws IOException {                  
+if (!directory.exists()) {                                                                             if (!directory.exists()) {                                                                          
+final String message = directory + " does not exist";                                                  final String message = directory + " does not exist";                                               
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+if (!directory.isDirectory()) {                                                                        if (!directory.isDirectory()) {                                                                     
+final String message = directory + " is not a directory";                                              final String message = directory + " is not a directory";                                           
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+final File[] files = directory.listFiles();                                                            final File[] files = directory.listFiles();                                                         
+if (files == null) {                                                                                   if (files == null) {                                                                                
+throw new IOException("Failed to list contents of " + directory);                                      throw new IOException("Failed to list contents of " + directory);                                   
+}                                                                                                      }                                                                                                   
+return files;                                                                                          return files;                                                                                       
+}                                                                                                      }                                                                                                   

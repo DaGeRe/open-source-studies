@@ -1,0 +1,10 @@
+public static String getExtension(final String filename) throws IllegalArgumentException {           | public static String getExtension(final String fileName) throws IllegalArgumentException {          
+if (filename == null) {                                                                              | if (fileName == null) {                                                                             
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+final int index = indexOfExtension(filename);                                                        | final int index = indexOfExtension(fileName);                                                       
+if (index == NOT_FOUND) {                                                                              if (index == NOT_FOUND) {                                                                           
+return EMPTY_STRING;                                                                                   return EMPTY_STRING;                                                                                
+}                                                                                                      }                                                                                                   
+return filename.substring(index + 1);                                                                | return fileName.substring(index + 1);                                                               
+}                                                                                                      }                                                                                                   

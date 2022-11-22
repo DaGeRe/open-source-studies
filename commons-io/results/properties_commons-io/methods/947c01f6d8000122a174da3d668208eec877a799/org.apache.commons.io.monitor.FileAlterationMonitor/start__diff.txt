@@ -1,0 +1,15 @@
+public synchronized void start() throws Exception {
+    if (running) {
+        throw new IllegalStateException("Monitor is already running");
+    }
+    for (final FileAlterationObserver observer : observers) {
+        observer.initialize();
+    }
+    running = true;
+    if (threadFactory != null) {
+        thread = threadFactory.newThread(this);
+    } else {
+        thread = new Thread(this);
+    }
+    thread.start();
+}

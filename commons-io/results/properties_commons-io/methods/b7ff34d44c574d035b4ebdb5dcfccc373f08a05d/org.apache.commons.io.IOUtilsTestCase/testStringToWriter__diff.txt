@@ -1,0 +1,21 @@
+                                                                                                     | @SuppressWarnings("deprecation")                                                                    
+public void testStringToWriter() throws Exception {                                                    public void testStringToWriter() throws Exception {                                                 
+File destination = newFile("copy6.txt");                                                               File destination = newFile("copy6.txt");                                                            
+FileReader fin = new FileReader(m_testFile);                                                           FileReader fin = new FileReader(m_testFile);                                                        
+String str;                                                                                            String str;                                                                                         
+try {                                                                                                  try {                                                                                               
+str = IOUtils.toString(fin);                                                                           str = IOUtils.toString(fin);                                                                        
+} finally {                                                                                            } finally {                                                                                         
+fin.close();                                                                                           fin.close();                                                                                        
+}                                                                                                      }                                                                                                   
+FileWriter fout = new FileWriter(destination);                                                         FileWriter fout = new FileWriter(destination);                                                      
+try {                                                                                                  try {                                                                                               
+CopyUtils.copy(str, fout);                                                                             CopyUtils.copy(str, fout);                                                                          
+fout.flush();                                                                                          fout.flush();                                                                                       
+checkFile(destination, m_testFile);                                                                    checkFile(destination, m_testFile);                                                                 
+checkWrite(fout);                                                                                      checkWrite(fout);                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+fout.close();                                                                                          fout.close();                                                                                       
+}                                                                                                      }                                                                                                   
+deleteFile(destination);                                                                               deleteFile(destination);                                                                            
+}                                                                                                      }                                                                                                   

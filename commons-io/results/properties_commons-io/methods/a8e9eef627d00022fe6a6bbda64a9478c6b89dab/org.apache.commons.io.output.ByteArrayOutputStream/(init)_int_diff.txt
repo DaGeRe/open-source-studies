@@ -1,0 +1,8 @@
+public ByteArrayOutputStream(int size) {                                                               public ByteArrayOutputStream(int size) {                                                            
+if (size &lt; 0) {                                                                                     if (size &lt; 0) {                                                                                  
+throw new IllegalArgumentException("Negative initial size: " + size);                                  throw new IllegalArgumentException("Negative initial size: " + size);                               
+}                                                                                                      }                                                                                                   
+                                                                                                     | synchronized (this) {                                                                               
+needNewBuffer(size);                                                                                   needNewBuffer(size);                                                                                
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

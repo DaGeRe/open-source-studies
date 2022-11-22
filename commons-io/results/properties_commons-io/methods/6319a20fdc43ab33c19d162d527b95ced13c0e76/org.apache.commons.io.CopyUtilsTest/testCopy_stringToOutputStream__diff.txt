@@ -1,0 +1,8 @@
+public void testCopy_stringToOutputStream() throws Exception {
+    String str = new String(inData, "US-ASCII");
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);
+    CopyUtils.copy(str, out);
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

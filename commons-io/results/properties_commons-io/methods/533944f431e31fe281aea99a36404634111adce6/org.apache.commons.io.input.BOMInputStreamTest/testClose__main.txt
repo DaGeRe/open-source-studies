@@ -1,0 +1,8 @@
+@Test
+public void testClose() throws Exception {
+    try (final ExpectCloseInputStream del = new ExpectCloseInputStream()) {
+        try (final InputStream in = new BOMInputStream(del)) {
+        }
+        del.assertCloseCalled();
+    }
+}

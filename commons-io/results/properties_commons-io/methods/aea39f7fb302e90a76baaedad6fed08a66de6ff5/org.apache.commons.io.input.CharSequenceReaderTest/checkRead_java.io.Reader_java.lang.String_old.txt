@@ -1,0 +1,5 @@
+private void checkRead(Reader reader, String expected) throws IOException {
+    for (int i = 0; i < expected.length(); i++) {
+        assertEquals("Read[" + i + "] of '" + expected + "'", (char) expected.charAt(i), (char) reader.read());
+    }
+}

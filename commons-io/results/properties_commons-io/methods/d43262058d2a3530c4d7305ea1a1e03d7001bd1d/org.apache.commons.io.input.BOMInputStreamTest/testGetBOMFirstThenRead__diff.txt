@@ -1,0 +1,11 @@
+public void testGetBOMFirstThenRead() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C' };
+    BOMInputStream in = new BOMInputStream(createDataStream(data, true));
+    assertEquals("getBOM", ByteOrderMark.UTF_8, in.getBOM());
+    assertTrue("hasBOM()", in.hasBOM());
+    assertTrue("hasBOM(UTF-8)", in.hasBOM(ByteOrderMark.UTF_8));
+    assertEquals('A', in.read());
+    assertEquals('B', in.read());
+    assertEquals('C', in.read());
+    assertEquals(-1, in.read());
+}

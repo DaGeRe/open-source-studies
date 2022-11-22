@@ -1,0 +1,5 @@
+public OutputStream bindStream(final OutputStream output) {                                            public OutputStream bindStream(final OutputStream output) {                                         
+final OutputStream stream = m_streams.get();                                                         | final OutputStream stream = outputStreamThreadLocal.get();                                          
+m_streams.set(output);                                                                               | outputStreamThreadLocal.set(output);                                                                
+return stream;                                                                                         return stream;                                                                                      
+}                                                                                                      }                                                                                                   

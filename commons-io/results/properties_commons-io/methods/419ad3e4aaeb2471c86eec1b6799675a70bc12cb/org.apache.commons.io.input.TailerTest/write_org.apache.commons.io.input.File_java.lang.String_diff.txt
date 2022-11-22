@@ -1,0 +1,7 @@
+private void write(final File file, final String... lines) throws Exception {
+    try (FileWriter writer = new FileWriter(file, true)) {
+        for (final String line : lines) {
+            writer.write(line + "\n");
+        }
+    }
+}

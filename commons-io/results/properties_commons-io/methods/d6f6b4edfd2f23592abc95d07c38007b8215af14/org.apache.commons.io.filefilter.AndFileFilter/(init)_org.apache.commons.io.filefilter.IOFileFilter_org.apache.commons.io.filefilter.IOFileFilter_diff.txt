@@ -1,0 +1,8 @@
+public AndFileFilter(IOFileFilter filter1, IOFileFilter filter2) {
+    if (filter1 == null || filter2 == null) {
+        throw new IllegalArgumentException("The filters must not be null");
+    }
+    this.fileFilters = new ArrayList();
+    addFileFilter(filter1);
+    addFileFilter(filter2);
+}

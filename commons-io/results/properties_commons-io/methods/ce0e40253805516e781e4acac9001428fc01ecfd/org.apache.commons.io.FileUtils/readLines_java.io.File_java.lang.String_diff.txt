@@ -1,0 +1,9 @@
+public static List readLines(File file, String encoding) throws IOException {                        | public static List&lt;String&gt; readLines(File file, String encoding) throws IOException {         
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+in = openInputStream(file);                                                                            in = openInputStream(file);                                                                         
+return IOUtils.readLines(in, encoding);                                                                return IOUtils.readLines(in, encoding);                                                             
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

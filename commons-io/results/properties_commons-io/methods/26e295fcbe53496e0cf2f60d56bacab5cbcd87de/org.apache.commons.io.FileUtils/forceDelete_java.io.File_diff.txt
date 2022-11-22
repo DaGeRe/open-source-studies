@@ -1,0 +1,14 @@
+public static void forceDelete(File file) throws IOException {
+    if (file.isDirectory()) {
+        deleteDirectory(file);
+    } else {
+        boolean filePresent = file.exists();
+        if (!file.delete()) {
+            if (!filePresent) {
+                throw new FileNotFoundException("File does not exist: " + file);
+            }
+            String message = "Unable to delete file: " + file;
+            throw new IOException(message);
+        }
+    }
+}

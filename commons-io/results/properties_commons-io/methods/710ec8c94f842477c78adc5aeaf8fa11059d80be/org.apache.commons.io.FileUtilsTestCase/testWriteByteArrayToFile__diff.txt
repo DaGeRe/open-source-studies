@@ -1,0 +1,6 @@
+public void testWriteByteArrayToFile() throws Exception {
+    File file = new File(getTestDirectory(), "write.obj");
+    byte[] data = new byte[] { 11, 21, 31 };
+    FileUtils.writeByteArrayToFile(file, data);
+    assertEqualContent(data, file);
+}

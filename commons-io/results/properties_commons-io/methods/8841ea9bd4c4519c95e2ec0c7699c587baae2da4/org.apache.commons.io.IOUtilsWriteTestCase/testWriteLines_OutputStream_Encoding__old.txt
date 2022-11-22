@@ -1,0 +1,12 @@
+public void testWriteLines_OutputStream_Encoding() throws Exception {
+    Object[] data = new Object[] { "hello\u8364", new StringBuffer("world"), "", "this is", null, "some text" };
+    List list = Arrays.asList(data);
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);
+    IOUtils.writeLines(list, "*", out, "UTF-8");
+    out.off();
+    out.flush();
+    String expected = "hello\u8364*world**this is**some text*";
+    String actual = baout.toString("UTF-8");
+    assertEquals(expected, actual);
+}

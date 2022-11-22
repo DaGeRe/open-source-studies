@@ -1,0 +1,21 @@
+@SuppressWarnings("deprecation")
+@Test
+public void testStringToOutputStream() throws Exception {
+    final File destination = TestUtils.newFile(getTestDirectory(), "copy5.txt");
+    final FileReader fin = new FileReader(m_testFile);
+    String str;
+    try {
+        str = IOUtils.toString(fin);
+    } finally {
+        fin.close();
+    }
+    final FileOutputStream fout = new FileOutputStream(destination);
+    try {
+        CopyUtils.copy(str, fout);
+        TestUtils.checkFile(destination, m_testFile);
+        TestUtils.checkWrite(fout);
+    } finally {
+        fout.close();
+    }
+    TestUtils.deleteFile(destination);
+}

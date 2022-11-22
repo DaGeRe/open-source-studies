@@ -1,0 +1,16 @@
+private void fillBuffer() throws IOException {
+    if (!endOfInput && (lastCoderResult == null || lastCoderResult.isUnderflow())) {
+        encoderIn.compact();
+        final int position = encoderIn.position();
+        final int c = reader.read(encoderIn.array(), position, encoderIn.remaining());
+        if (c == EOF) {
+            endOfInput = true;
+        } else {
+            encoderIn.position(position + c);
+        }
+        encoderIn.flip();
+    }
+    encoderOut.compact();
+    lastCoderResult = encoder.encode(encoderIn, encoderOut, endOfInput);
+    encoderOut.flip();
+}

@@ -1,0 +1,7 @@
+public NameFileFilter(List names, IOCase caseSensitivity) {
+    if (names == null) {
+        throw new IllegalArgumentException("The list of names must not be null");
+    }
+    this.names = (String[]) names.toArray(new String[names.size()]);
+    this.caseSensitivity = (caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity);
+}

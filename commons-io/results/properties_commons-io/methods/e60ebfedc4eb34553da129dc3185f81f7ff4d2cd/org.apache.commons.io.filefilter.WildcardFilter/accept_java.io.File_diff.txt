@@ -1,0 +1,12 @@
+@Override
+public boolean accept(File file) {
+    if (file.isDirectory()) {
+        return false;
+    }
+    for (String wildcard : wildcards) {
+        if (FilenameUtils.wildcardMatch(file.getName(), wildcard)) {
+            return true;
+        }
+    }
+    return false;
+}

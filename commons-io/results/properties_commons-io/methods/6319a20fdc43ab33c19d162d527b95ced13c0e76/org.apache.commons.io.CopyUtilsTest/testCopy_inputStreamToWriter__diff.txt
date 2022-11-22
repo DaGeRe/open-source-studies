@@ -1,0 +1,12 @@
+public void testCopy_inputStreamToWriter() throws Exception {
+    InputStream in = new ByteArrayInputStream(inData);
+    in = new YellOnCloseInputStream(in);
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);
+    Writer writer = new java.io.OutputStreamWriter(baout, "US-ASCII");
+    CopyUtils.copy(in, writer);
+    writer.flush();
+    assertTrue("Not all bytes were read", in.available() == 0);
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

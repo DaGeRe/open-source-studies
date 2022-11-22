@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testToByteArray_InputStream_SizeLong() throws Exception {                                  public void testToByteArray_InputStream_SizeLong() throws Exception {                               
+final FileInputStream fin = new FileInputStream(m_testFile);                                         | try (FileInputStream fin = new FileInputStream(m_testFile)) {                                       
+try {                                                                                                |                                                                                                     
+IOUtils.toByteArray(fin, (long) Integer.MAX_VALUE + 1);                                                IOUtils.toByteArray(fin, (long) Integer.MAX_VALUE + 1);                                             
+fail("IOException excepted");                                                                          fail("IOException excepted");                                                                       
+} catch (final IllegalArgumentException exc) {                                                         } catch (final IllegalArgumentException exc) {                                                      
+assertTrue("Exception message does not start with \"Size cannot be greater than Integer max value\""   assertTrue("Exception message does not start with \"Size cannot be greater than Integer max value\""
+} finally {                                                                                          |                                                                                                     
+fin.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

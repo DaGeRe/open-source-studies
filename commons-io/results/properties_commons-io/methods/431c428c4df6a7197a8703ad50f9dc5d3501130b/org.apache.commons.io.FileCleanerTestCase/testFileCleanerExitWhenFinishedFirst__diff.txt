@@ -1,0 +1,10 @@
+public void testFileCleanerExitWhenFinishedFirst() throws Exception {                                |                                                                                                     
+assertEquals(false, FileCleaner.exitWhenFinished);                                                   |                                                                                                     
+FileCleaner.exitWhenFinished();                                                                      |                                                                                                     
+assertEquals(true, FileCleaner.exitWhenFinished);                                                    |                                                                                                     
+assertEquals(null, FileCleaner.reaper);                                                              |                                                                                                     
+waitUntilTrackCount();                                                                               |                                                                                                     
+assertEquals(0, FileCleaner.getTrackCount());                                                        |                                                                                                     
+assertEquals(true, FileCleaner.exitWhenFinished);                                                    |                                                                                                     
+assertEquals(null, FileCleaner.reaper);                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     

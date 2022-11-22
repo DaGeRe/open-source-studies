@@ -1,0 +1,14 @@
+private boolean doesSaxSupportCharacterSet(final String charSetName) throws ParserConfigurationException, SAXException, IOException {
+    final byte[] data = ("<?xml version=\"1.0\" encoding=\"" + charSetName + "\"?><Z/>").getBytes(charSetName);
+    final DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    try {
+        final InputSource is = new InputSource(new ByteArrayInputStream(data));
+        is.setEncoding(charSetName);
+        documentBuilder.parse(is);
+    } catch (final SAXParseException e) {
+        if (e.getMessage().contains(charSetName)) {
+            return false;
+        }
+    }
+    return true;
+}

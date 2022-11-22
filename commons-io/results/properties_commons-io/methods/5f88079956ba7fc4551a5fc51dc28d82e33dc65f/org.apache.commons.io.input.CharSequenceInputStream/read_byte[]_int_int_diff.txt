@@ -1,0 +1,31 @@
+@Override
+public int read(final byte[] b, int off, int len) throws IOException {
+    if (b == null) {
+        throw new NullPointerException("Byte array is null");
+    }
+    if (len < 0 || (off + len) > b.length) {
+        throw new IndexOutOfBoundsException("Array Size=" + b.length + ", offset=" + off + ", length=" + len);
+    }
+    if (len == 0) {
+        return 0;
+    }
+    if (!this.bbuf.hasRemaining() && !this.cbuf.hasRemaining()) {
+        return EOF;
+    }
+    int bytesRead = 0;
+    while (len > 0) {
+        if (this.bbuf.hasRemaining()) {
+            final int chunk = Math.min(this.bbuf.remaining(), len);
+            this.bbuf.get(b, off, chunk);
+            off += chunk;
+            len -= chunk;
+            bytesRead += chunk;
+        } else {
+            fillBuffer();
+            if (!this.bbuf.hasRemaining() && !this.cbuf.hasRemaining()) {
+                break;
+            }
+        }
+    }
+    return bytesRead == 0 && !this.cbuf.hasRemaining() ? EOF : bytesRead;
+}

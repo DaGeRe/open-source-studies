@@ -1,0 +1,6 @@
+public static void skipFully(Reader input, long toSkip) throws IOException {
+    long skipped = skip(input, toSkip);
+    if (skipped != toSkip) {
+        throw new EOFException("Bytes to skip: " + toSkip + " actual: " + skipped);
+    }
+}

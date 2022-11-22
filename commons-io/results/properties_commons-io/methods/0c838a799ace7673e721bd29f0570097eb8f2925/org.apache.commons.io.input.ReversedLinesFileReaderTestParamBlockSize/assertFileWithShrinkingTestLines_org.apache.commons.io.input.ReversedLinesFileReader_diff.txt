@@ -1,0 +1,8 @@
+private void assertFileWithShrinkingTestLines(final ReversedLinesFileReader reversedLinesFileReader) throws IOException {
+    String line = null;
+    int lineCount = 0;
+    while ((line = reversedLinesFileReader.readLine()) != null) {
+        lineCount++;
+        assertEqualsAndNoLineBreaks("Line " + lineCount + " is not matching", TEST_LINE.substring(0, lineCount), line);
+    }
+}

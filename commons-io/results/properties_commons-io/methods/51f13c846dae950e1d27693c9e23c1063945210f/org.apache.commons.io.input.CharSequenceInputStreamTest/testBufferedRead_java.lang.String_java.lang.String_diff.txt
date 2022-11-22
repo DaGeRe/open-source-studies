@@ -1,0 +1,28 @@
+private void testBufferedRead(final String testString, final String charsetName) throws IOException    private void testBufferedRead(final String testString, final String charsetName) throws IOException 
+final byte[] expected = testString.getBytes(charsetName);                                              final byte[] expected = testString.getBytes(charsetName);                                           
+final InputStream in = new CharSequenceInputStream(testString, charsetName, 512);                    | try (InputStream in = new CharSequenceInputStream(testString, charsetName, 512)) {                  
+try {                                                                                                |                                                                                                     
+final byte[] buffer = new byte[128];                                                                   final byte[] buffer = new byte[128];                                                                
+int offset = 0;                                                                                        int offset = 0;                                                                                     
+while (true) {                                                                                         while (true) {                                                                                      
+int bufferOffset = random.nextInt(64);                                                                 int bufferOffset = random.nextInt(64);                                                              
+final int bufferLength = random.nextInt(64);                                                           final int bufferLength = random.nextInt(64);                                                        
+int read = in.read(buffer, bufferOffset, bufferLength);                                                int read = in.read(buffer, bufferOffset, bufferLength);                                             
+if (read == -1) {                                                                                      if (read == -1) {                                                                                   
+assertEquals("EOF: offset should equal length for charset " + charsetName, expected.length, offset);   assertEquals("EOF: offset should equal length for charset " + charsetName, expected.length, offset);
+break;                                                                                                 break;                                                                                              
+} else {                                                                                               } else {                                                                                            
+assertTrue("Read " + read + " &lt;= " + bufferLength, read &lt;= bufferLength);                        assertTrue("Read " + read + " &lt;= " + bufferLength, read &lt;= bufferLength);                     
+while (read &gt; 0) {                                                                                  while (read &gt; 0) {                                                                               
+assertTrue("offset for " + charsetName + " " + offset + " &lt; " + expected.length, offset &lt; expe   assertTrue("offset for " + charsetName + " " + offset + " &lt; " + expected.length, offset &lt; expe
+assertEquals("bytes should agree for " + charsetName, expected[offset], buffer[bufferOffset]);         assertEquals("bytes should agree for " + charsetName, expected[offset], buffer[bufferOffset]);      
+offset++;                                                                                              offset++;                                                                                           
+bufferOffset++;                                                                                        bufferOffset++;                                                                                     
+read--;                                                                                                read--;                                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} finally {                                                                                          |                                                                                                     
+in.close();                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

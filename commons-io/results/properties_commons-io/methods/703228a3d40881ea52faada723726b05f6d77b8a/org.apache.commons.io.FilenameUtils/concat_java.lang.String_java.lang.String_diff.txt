@@ -1,0 +1,22 @@
+public static String concat(final String basePath, final String fullFilenameToAdd) {
+    final int prefix = getPrefixLength(fullFilenameToAdd);
+    if (prefix < 0) {
+        return null;
+    }
+    if (prefix > 0) {
+        return normalize(fullFilenameToAdd);
+    }
+    if (basePath == null) {
+        return null;
+    }
+    final int len = basePath.length();
+    if (len == 0) {
+        return normalize(fullFilenameToAdd);
+    }
+    final char ch = basePath.charAt(len - 1);
+    if (isSeparator(ch)) {
+        return normalize(basePath + fullFilenameToAdd);
+    } else {
+        return normalize(basePath + '/' + fullFilenameToAdd);
+    }
+}

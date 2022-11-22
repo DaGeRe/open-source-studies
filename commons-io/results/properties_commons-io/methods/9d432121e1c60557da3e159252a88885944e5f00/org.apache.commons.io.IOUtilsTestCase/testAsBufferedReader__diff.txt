@@ -1,0 +1,17 @@
+@Test
+public void testAsBufferedReader() {
+    Reader is = new Reader() {
+
+        @Override
+        public int read(char[] cbuf, int off, int len) throws IOException {
+            return 0;
+        }
+
+        @Override
+        public void close() throws IOException {
+        }
+    };
+    final BufferedReader bis = IOUtils.buffer(is);
+    assertNotSame(is, bis);
+    assertSame(bis, IOUtils.buffer(bis));
+}

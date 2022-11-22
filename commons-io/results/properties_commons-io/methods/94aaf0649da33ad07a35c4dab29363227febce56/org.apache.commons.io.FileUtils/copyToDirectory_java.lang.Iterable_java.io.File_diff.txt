@@ -1,0 +1,8 @@
+public static void copyToDirectory(final Iterable<File> srcs, final File destDir) throws IOException {
+    if (srcs == null) {
+        throw new NullPointerException("Sources must not be null");
+    }
+    for (final File src : srcs) {
+        copyFileToDirectory(src, destDir);
+    }
+}

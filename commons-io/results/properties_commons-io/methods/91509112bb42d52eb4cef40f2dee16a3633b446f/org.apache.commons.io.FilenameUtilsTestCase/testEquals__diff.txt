@@ -1,0 +1,9 @@
+public void testEquals() {
+    assertEquals(true, FilenameUtils.equals(null, null));
+    assertEquals(false, FilenameUtils.equals(null, ""));
+    assertEquals(false, FilenameUtils.equals("", null));
+    assertEquals(true, FilenameUtils.equals("", ""));
+    assertEquals(true, FilenameUtils.equals("file.txt", "file.txt"));
+    assertEquals(false, FilenameUtils.equals("file.txt", "FILE.TXT"));
+    assertEquals(false, FilenameUtils.equals("a\\b\\file.txt", "a/b/file.txt"));
+}

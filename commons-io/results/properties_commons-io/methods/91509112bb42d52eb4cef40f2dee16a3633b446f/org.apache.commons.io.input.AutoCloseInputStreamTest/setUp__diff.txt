@@ -1,0 +1,10 @@
+protected void setUp() {
+    data = new byte[] { 'x', 'y', 'z' };
+    stream = new AutoCloseInputStream(new ByteArrayInputStream(data) {
+
+        public void close() {
+            closed = true;
+        }
+    });
+    closed = false;
+}

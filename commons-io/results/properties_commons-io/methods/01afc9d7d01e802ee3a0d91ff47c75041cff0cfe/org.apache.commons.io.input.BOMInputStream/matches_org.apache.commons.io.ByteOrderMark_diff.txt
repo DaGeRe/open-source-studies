@@ -1,0 +1,11 @@
+private boolean matches(ByteOrderMark bom) {
+    if (bom.length() != fbLength) {
+        return false;
+    }
+    for (int i = 0; i < bom.length(); i++) {
+        if (bom.get(i) != firstBytes[i]) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,0 +1,14 @@
+public static int indexOfExtension(final String filename) throws IllegalArgumentException {          | public static int indexOfExtension(final String fileName) throws IllegalArgumentException {         
+if (filename == null) {                                                                              | if (fileName == null) {                                                                             
+return NOT_FOUND;                                                                                      return NOT_FOUND;                                                                                   
+}                                                                                                      }                                                                                                   
+if (isSystemWindows()) {                                                                               if (isSystemWindows()) {                                                                            
+final int offset = filename.indexOf(':', getAdsCriticalOffset(filename));                            | final int offset = fileName.indexOf(':', getAdsCriticalOffset(fileName));                           
+if (offset != -1) {                                                                                    if (offset != -1) {                                                                                 
+throw new IllegalArgumentException("NTFS ADS separator (':') in filename is forbidden.");            | throw new IllegalArgumentException("NTFS ADS separator (':') in file name is forbidden.");          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+final int extensionPos = filename.lastIndexOf(EXTENSION_SEPARATOR);                                  | final int extensionPos = fileName.lastIndexOf(EXTENSION_SEPARATOR);                                 
+final int lastSeparator = indexOfLastSeparator(filename);                                            | final int lastSeparator = indexOfLastSeparator(fileName);                                           
+return lastSeparator &gt; extensionPos ? NOT_FOUND : extensionPos;                                     return lastSeparator &gt; extensionPos ? NOT_FOUND : extensionPos;                                  
+}                                                                                                      }                                                                                                   

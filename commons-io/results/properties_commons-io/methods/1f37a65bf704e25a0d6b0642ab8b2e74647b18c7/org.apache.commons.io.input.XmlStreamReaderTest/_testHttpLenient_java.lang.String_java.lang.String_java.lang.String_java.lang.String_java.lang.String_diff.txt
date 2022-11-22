@@ -1,0 +1,5 @@
+protected void _testHttpLenient(String cT, String bomEnc, String streamEnc, String prologEnc, String shouldbe) throws Exception {
+    InputStream is = getXmlStream(bomEnc, (prologEnc == null) ? XML2 : XML3, streamEnc, prologEnc);
+    XmlStreamReader xmlReader = new XmlStreamReader(is, cT, true);
+    assertEquals(xmlReader.getEncoding(), shouldbe);
+}

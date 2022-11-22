@@ -1,0 +1,9 @@
+private List<File> filesOnly(final Collection<File> results) {
+    final List<File> list = new ArrayList<>(results.size());
+    for (final File file : results) {
+        if (file.isFile()) {
+            list.add(file);
+        }
+    }
+    return list;
+}

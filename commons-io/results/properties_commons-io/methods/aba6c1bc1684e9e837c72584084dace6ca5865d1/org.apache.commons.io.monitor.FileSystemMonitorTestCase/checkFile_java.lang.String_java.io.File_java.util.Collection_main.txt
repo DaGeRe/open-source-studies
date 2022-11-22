@@ -1,0 +1,9 @@
+private void checkFile(String label, File file, Collection<File> files) {
+    for (int i = 0; i < 5; i++) {
+        if (files.contains(file)) {
+            return;
+        }
+        sleepHandleInterruped(pauseTime);
+    }
+    fail(label + " " + file + " not found");
+}

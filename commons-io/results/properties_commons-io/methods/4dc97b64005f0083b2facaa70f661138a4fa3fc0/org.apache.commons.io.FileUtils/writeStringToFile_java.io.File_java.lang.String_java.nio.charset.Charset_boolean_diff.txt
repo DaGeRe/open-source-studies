@@ -1,0 +1,10 @@
+public static void writeStringToFile(final File file, final String data, final Charset encoding, fin   public static void writeStringToFile(final File file, final String data, final Charset encoding, fin
+OutputStream out = null;                                                                             | try (OutputStream out = openOutputStream(file, append)) {                                           
+try {                                                                                                |                                                                                                     
+out = openOutputStream(file, append);                                                                |                                                                                                     
+IOUtils.write(data, out, encoding);                                                                    IOUtils.write(data, out, encoding);                                                                 
+out.close();                                                                                         |                                                                                                     
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(out);                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

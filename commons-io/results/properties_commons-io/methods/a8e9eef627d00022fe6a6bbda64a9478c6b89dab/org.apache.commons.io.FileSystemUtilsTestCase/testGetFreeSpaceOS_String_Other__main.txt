@@ -1,0 +1,13 @@
+public void testGetFreeSpaceOS_String_Other() throws Exception {
+    FileSystemUtils fsu = new FileSystemUtils();
+    try {
+        fsu.freeSpaceOS("", 0, false, -1);
+        fail();
+    } catch (IllegalStateException ex) {
+    }
+    try {
+        fsu.freeSpaceOS("", 0, true, -1);
+        fail();
+    } catch (IllegalStateException ex) {
+    }
+}

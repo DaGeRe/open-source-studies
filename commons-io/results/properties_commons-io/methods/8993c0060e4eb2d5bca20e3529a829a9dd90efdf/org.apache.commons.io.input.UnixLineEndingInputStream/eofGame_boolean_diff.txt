@@ -1,0 +1,11 @@
+private int eofGame(final boolean previousWasSlashR) {                                                 private int eofGame(final boolean previousWasSlashR) {                                              
+if (previousWasSlashR || !ensureLineFeedAtEndOfFile) {                                                 if (previousWasSlashR || !ensureLineFeedAtEndOfFile) {                                              
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+if (!slashNSeen) {                                                                                     if (!slashNSeen) {                                                                                  
+slashNSeen = true;                                                                                     slashNSeen = true;                                                                                  
+return '\n';                                                                                           return '\n';                                                                                        
+} else {                                                                                             | }                                                                                                   
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

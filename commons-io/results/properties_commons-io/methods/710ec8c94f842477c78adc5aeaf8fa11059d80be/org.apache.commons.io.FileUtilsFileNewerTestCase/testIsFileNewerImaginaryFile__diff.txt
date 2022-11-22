@@ -1,0 +1,6 @@
+public void testIsFileNewerImaginaryFile() {
+    File imaginaryFile = new File(getTestDirectory(), "imaginaryFile");
+    if (imaginaryFile.exists())
+        throw new IllegalStateException("The imaginary File exists");
+    testIsFileNewer("imaginary file can be newer", imaginaryFile, m_testFile2.lastModified(), false);
+}

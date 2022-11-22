@@ -1,0 +1,15 @@
+public void testReadLines_InputStream_String() throws Exception {                                      public void testReadLines_InputStream_String() throws Exception {                                   
+File file = newFile("lines.txt");                                                                      File file = newFile("lines.txt");                                                                   
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };                        String[] data = new String[] { "hello", "/u1234", "", "this is", "some text" };                     
+createLineBasedFile(file, data);                                                                       createLineBasedFile(file, data);                                                                    
+in = new FileInputStream(file);                                                                        in = new FileInputStream(file);                                                                     
+List lines = IOUtils.readLines(in, "UTF-8");                                                         | List&lt;String&gt; lines = IOUtils.readLines(in, "UTF-8");                                          
+assertEquals(Arrays.asList(data), lines);                                                              assertEquals(Arrays.asList(data), lines);                                                           
+assertEquals(-1, in.read());                                                                           assertEquals(-1, in.read());                                                                        
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(in);                                                                              IOUtils.closeQuietly(in);                                                                           
+deleteFile(file);                                                                                      deleteFile(file);                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

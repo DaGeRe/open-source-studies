@@ -1,0 +1,9 @@
+public static void touch(final File file) throws IOException {
+    if (!file.exists()) {
+        openOutputStream(file).close();
+    }
+    final boolean success = file.setLastModified(System.currentTimeMillis());
+    if (!success) {
+        throw new IOException("Unable to set the last modification time for " + file);
+    }
+}

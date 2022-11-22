@@ -1,0 +1,11 @@
+                                                                                                     | @Override                                                                                           
+public int compare(final File file1, final File file2) {                                               public int compare(final File file1, final File file2) {                                            
+int result = 0;                                                                                        int result = 0;                                                                                     
+for (final Comparator&lt;File&gt; delegate : delegates) {                                              for (final Comparator&lt;File&gt; delegate : delegates) {                                           
+result = delegate.compare(file1, file2);                                                               result = delegate.compare(file1, file2);                                                            
+if (result != 0) {                                                                                     if (result != 0) {                                                                                  
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,36 @@
+private void detectEncoding(final char[] cbuf, final int off, final int len) throws IOException {      private void detectEncoding(final char[] cbuf, final int off, final int len) throws IOException {   
+int size = len;                                                                                        int size = len;                                                                                     
+final StringBuffer xmlProlog = xmlPrologWriter.getBuffer();                                            final StringBuffer xmlProlog = xmlPrologWriter.getBuffer();                                         
+if (xmlProlog.length() + len &gt; BUFFER_SIZE) {                                                       if (xmlProlog.length() + len &gt; BUFFER_SIZE) {                                                    
+size = BUFFER_SIZE - xmlProlog.length();                                                               size = BUFFER_SIZE - xmlProlog.length();                                                            
+}                                                                                                      }                                                                                                   
+xmlPrologWriter.write(cbuf, off, size);                                                                xmlPrologWriter.write(cbuf, off, size);                                                             
+if (xmlProlog.length() &gt;= 5) {                                                                      if (xmlProlog.length() &gt;= 5) {                                                                   
+if (xmlProlog.substring(0, 5).equals("&lt;?xml")) {                                                    if (xmlProlog.substring(0, 5).equals("&lt;?xml")) {                                                 
+final int xmlPrologEnd = xmlProlog.indexOf("?&gt;");                                                   final int xmlPrologEnd = xmlProlog.indexOf("?&gt;");                                                
+if (xmlPrologEnd &gt; 0) {                                                                             if (xmlPrologEnd &gt; 0) {                                                                          
+final Matcher m = ENCODING_PATTERN.matcher(xmlProlog.substring(0, xmlPrologEnd));                      final Matcher m = ENCODING_PATTERN.matcher(xmlProlog.substring(0, xmlPrologEnd));                   
+if (m.find()) {                                                                                        if (m.find()) {                                                                                     
+encoding = m.group(1).toUpperCase();                                                                 | encoding = m.group(1).toUpperCase(Locale.ROOT);                                                     
+encoding = encoding.substring(1, encoding.length() - 1);                                               encoding = encoding.substring(1, encoding.length() - 1);                                            
+} else {                                                                                               } else {                                                                                            
+encoding = defaultEncoding;                                                                            encoding = defaultEncoding;                                                                         
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+if (xmlProlog.length() &gt;= BUFFER_SIZE) {                                                            if (xmlProlog.length() &gt;= BUFFER_SIZE) {                                                         
+encoding = defaultEncoding;                                                                            encoding = defaultEncoding;                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+encoding = defaultEncoding;                                                                            encoding = defaultEncoding;                                                                         
+}                                                                                                      }                                                                                                   
+if (encoding != null) {                                                                                if (encoding != null) {                                                                             
+xmlPrologWriter = null;                                                                                xmlPrologWriter = null;                                                                             
+writer = new OutputStreamWriter(out, encoding);                                                        writer = new OutputStreamWriter(out, encoding);                                                     
+writer.write(xmlProlog.toString());                                                                    writer.write(xmlProlog.toString());                                                                 
+if (len &gt; size) {                                                                                   if (len &gt; size) {                                                                                
+writer.write(cbuf, off + size, len - size);                                                            writer.write(cbuf, off + size, len - size);                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

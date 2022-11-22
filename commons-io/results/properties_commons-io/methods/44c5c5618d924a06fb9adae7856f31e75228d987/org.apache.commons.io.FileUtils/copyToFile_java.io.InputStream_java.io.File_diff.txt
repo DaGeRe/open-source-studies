@@ -1,0 +1,5 @@
+public static void copyToFile(final InputStream source, final File destination) throws IOException {
+    try (OutputStream out = openOutputStream(destination)) {
+        IOUtils.copy(source, out);
+    }
+}

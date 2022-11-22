@@ -1,0 +1,12 @@
+public static String removeExtension(final String filename) {
+    if (filename == null) {
+        return null;
+    }
+    failIfNullBytePresent(filename);
+    final int index = indexOfExtension(filename);
+    if (index == NOT_FOUND) {
+        return filename;
+    } else {
+        return filename.substring(0, index);
+    }
+}

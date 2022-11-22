@@ -1,0 +1,9 @@
+@Override                                                                                              @Override                                                                                           
+public int read(byte[] bts) throws IOException {                                                       public int read(byte[] bts) throws IOException {                                                    
+                                                                                                     | try {                                                                                               
+return in.read(bts);                                                                                   return in.read(bts);                                                                                
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | handleIOException(e);                                                                               
+                                                                                                     | return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

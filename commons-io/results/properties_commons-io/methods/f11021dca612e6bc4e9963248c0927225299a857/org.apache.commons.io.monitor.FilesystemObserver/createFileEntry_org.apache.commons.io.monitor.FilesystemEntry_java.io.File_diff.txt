@@ -1,0 +1,11 @@
+private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {                           private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {                        
+FilesystemEntry entry = parent.newChildInstance(file);                                                 FilesystemEntry entry = parent.newChildInstance(file);                                              
+entry.refresh();                                                                                     | entry.refresh(file);                                                                                
+File[] files = listFiles(file);                                                                        File[] files = listFiles(file);                                                                     
+FilesystemEntry[] children = files.length &gt; 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES   FilesystemEntry[] children = files.length &gt; 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES
+for (int i = 0; i &lt; files.length; i++) {                                                            for (int i = 0; i &lt; files.length; i++) {                                                         
+children[i] = createFileEntry(entry, files[i]);                                                        children[i] = createFileEntry(entry, files[i]);                                                     
+}                                                                                                      }                                                                                                   
+entry.setChildren(children);                                                                           entry.setChildren(children);                                                                        
+return entry;                                                                                          return entry;                                                                                       
+}                                                                                                      }                                                                                                   

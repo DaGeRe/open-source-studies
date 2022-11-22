@@ -1,0 +1,18 @@
+public synchronized void stop(long stopInterval) throws Exception {                                    public synchronized void stop(long stopInterval) throws Exception {                                 
+if (running == false) {                                                                                if (running == false) {                                                                             
+throw new IllegalStateException("Monitor is not running");                                             throw new IllegalStateException("Monitor is not running");                                          
+}                                                                                                      }                                                                                                   
+running = false;                                                                                       running = false;                                                                                    
+try {                                                                                                  try {                                                                                               
+if (stopInterval &lt; 0) {                                                                           |                                                                                                     
+thread.interrupt();                                                                                  |                                                                                                     
+} else {                                                                                             |                                                                                                     
+thread.join(stopInterval);                                                                             thread.join(stopInterval);                                                                          
+}                                                                                                    |                                                                                                     
+} catch (InterruptedException e) {                                                                     } catch (InterruptedException e) {                                                                  
+Thread.currentThread().interrupt();                                                                    Thread.currentThread().interrupt();                                                                 
+}                                                                                                      }                                                                                                   
+for (FileAlterationObserver observer : observers) {                                                    for (FileAlterationObserver observer : observers) {                                                 
+observer.destroy();                                                                                    observer.destroy();                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

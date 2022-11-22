@@ -1,0 +1,10 @@
+private ByteArrayOutputStream getByteArrayOutputStream(final AtomicInteger numWrites) {                private ByteArrayOutputStream getByteArrayOutputStream(final AtomicInteger numWrites) {             
+return new ByteArrayOutputStream() {                                                                   return new ByteArrayOutputStream() {                                                                
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(byte[] b, int off, int len) {                                                      | public void write(final byte[] b, final int off, final int len) {                                   
+numWrites.incrementAndGet();                                                                           numWrites.incrementAndGet();                                                                        
+super.write(b, off, len);                                                                              super.write(b, off, len);                                                                           
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+}                                                                                                      }                                                                                                   

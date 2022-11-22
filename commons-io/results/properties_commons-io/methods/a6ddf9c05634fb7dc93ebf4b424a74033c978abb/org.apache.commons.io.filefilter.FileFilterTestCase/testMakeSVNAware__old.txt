@@ -1,0 +1,21 @@
+public void testMakeSVNAware() throws Exception {
+    IOFileFilter filter1 = FileFilterUtils.makeSVNAware(null);
+    IOFileFilter filter2 = FileFilterUtils.makeSVNAware(FileFilterUtils.nameFileFilter("test-file1.txt"));
+    File file = new File(getTestDirectory(), ".svn");
+    file.mkdirs();
+    assertFiltering(filter1, file, false);
+    assertFiltering(filter2, file, false);
+    FileUtils.deleteDirectory(file);
+    file = new File(getTestDirectory(), "test-file1.txt");
+    createFile(file, 0);
+    assertFiltering(filter1, file, true);
+    assertFiltering(filter2, file, true);
+    file = new File(getTestDirectory(), "test-file2.log");
+    createFile(file, 0);
+    assertFiltering(filter1, file, true);
+    assertFiltering(filter2, file, false);
+    file = new File(getTestDirectory(), ".svn");
+    createFile(file, 0);
+    assertFiltering(filter1, file, true);
+    assertFiltering(filter2, file, false);
+}

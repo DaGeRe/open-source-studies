@@ -1,0 +1,12 @@
+public static IOCase forName(String name) {
+    if (IOCase.SENSITIVE.name.equals(name)) {
+        return IOCase.SENSITIVE;
+    }
+    if (IOCase.INSENSITIVE.name.equals(name)) {
+        return IOCase.INSENSITIVE;
+    }
+    if (IOCase.SYSTEM.name.equals(name)) {
+        return IOCase.SYSTEM;
+    }
+    throw new IllegalArgumentException("Invalid IOCase name: " + name);
+}

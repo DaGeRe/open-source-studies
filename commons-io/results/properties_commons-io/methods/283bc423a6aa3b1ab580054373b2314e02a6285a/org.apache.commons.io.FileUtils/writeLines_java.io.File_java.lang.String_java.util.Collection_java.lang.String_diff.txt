@@ -1,0 +1,9 @@
+public static void writeLines(File file, String encoding, Collection lines, String lineEnding) throw   public static void writeLines(File file, String encoding, Collection lines, String lineEnding) throw
+OutputStream out = openOutputStream(file);                                                           | OutputStream out = null;                                                                            
+try {                                                                                                  try {                                                                                               
+                                                                                                     | out = openOutputStream(file);                                                                       
+IOUtils.writeLines(lines, lineEnding, out, encoding);                                                  IOUtils.writeLines(lines, lineEnding, out, encoding);                                               
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(out);                                                                             IOUtils.closeQuietly(out);                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

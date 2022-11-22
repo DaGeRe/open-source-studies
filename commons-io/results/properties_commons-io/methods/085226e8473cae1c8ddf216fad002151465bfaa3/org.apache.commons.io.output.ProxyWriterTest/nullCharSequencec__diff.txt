@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void nullCharSequencec() throws Exception {                                                     public void nullCharSequencec() throws Exception {                                                  
+final ProxyWriter proxy = new ProxyWriter(new NullWriter());                                         | try (final ProxyWriter proxy = new ProxyWriter(new NullWriter())) {                                 
+proxy.append(null);                                                                                    proxy.append(null);                                                                                 
+proxy.close();                                                                                         proxy.close();                                                                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

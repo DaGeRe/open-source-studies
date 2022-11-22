@@ -1,0 +1,12 @@
+@Override
+public int read() throws IOException {
+    try {
+        beforeRead(1);
+        final int b = in.read();
+        afterRead(b != EOF ? 1 : EOF);
+        return b;
+    } catch (final IOException e) {
+        handleIOException(e);
+        return EOF;
+    }
+}

@@ -1,0 +1,5 @@
+private void startReader(String name, String data, DemuxInputStream demux) throws Exception {
+    ByteArrayInputStream input = new ByteArrayInputStream(data.getBytes());
+    ReaderThread thread = new ReaderThread(name, input, demux);
+    m_threadMap.put(name, thread);
+}

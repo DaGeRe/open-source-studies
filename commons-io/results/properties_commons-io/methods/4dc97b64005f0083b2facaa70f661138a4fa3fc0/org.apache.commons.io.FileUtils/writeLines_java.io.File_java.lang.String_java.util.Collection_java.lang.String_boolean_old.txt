@@ -1,0 +1,12 @@
+public static void writeLines(final File file, final String encoding, final Collection<?> lines, final String lineEnding, final boolean append) throws IOException {
+    FileOutputStream out = null;
+    try {
+        out = openOutputStream(file, append);
+        final BufferedOutputStream buffer = new BufferedOutputStream(out);
+        IOUtils.writeLines(lines, lineEnding, buffer, encoding);
+        buffer.flush();
+        out.close();
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+}

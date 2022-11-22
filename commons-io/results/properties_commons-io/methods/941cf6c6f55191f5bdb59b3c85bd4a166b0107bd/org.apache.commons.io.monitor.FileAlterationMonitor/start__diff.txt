@@ -1,0 +1,11 @@
+public void start() throws Exception {                                                               | public synchronized void start() throws Exception {                                                 
+                                                                                                     | if (running) {                                                                                      
+                                                                                                     | throw new IllegalStateException("Monitor is already running");                                      
+                                                                                                     | }                                                                                                   
+for (FileAlterationObserver observer : observers) {                                                    for (FileAlterationObserver observer : observers) {                                                 
+observer.initialize();                                                                                 observer.initialize();                                                                              
+}                                                                                                      }                                                                                                   
+running = true;                                                                                        running = true;                                                                                     
+thread = new Thread(this);                                                                             thread = new Thread(this);                                                                          
+thread.start();                                                                                        thread.start();                                                                                     
+}                                                                                                      }                                                                                                   

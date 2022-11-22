@@ -1,0 +1,22 @@
+private static void doCopyFile(File srcFile, File destFile, boolean preserveFileDate) throws IOExcep   private static void doCopyFile(File srcFile, File destFile, boolean preserveFileDate) throws IOExcep
+if (destFile.exists() && destFile.isDirectory()) {                                                     if (destFile.exists() && destFile.isDirectory()) {                                                  
+throw new IOException("Destination '" + destFile + "' exists but is a directory");                     throw new IOException("Destination '" + destFile + "' exists but is a directory");                  
+}                                                                                                      }                                                                                                   
+FileInputStream input = new FileInputStream(srcFile);                                                | FileChannel input = new FileInputStream(srcFile).getChannel();                                      
+try {                                                                                                  try {                                                                                               
+FileOutputStream output = new FileOutputStream(destFile);                                            | FileChannel output = new FileOutputStream(destFile).getChannel();                                   
+try {                                                                                                  try {                                                                                               
+IOUtils.copy(input, output);                                                                         | output.transferFrom(input, 0, input.size());                                                        
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(output);                                                                          IOUtils.closeQuietly(output);                                                                       
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(input);                                                                           IOUtils.closeQuietly(input);                                                                        
+}                                                                                                      }                                                                                                   
+if (srcFile.length() != destFile.length()) {                                                           if (srcFile.length() != destFile.length()) {                                                        
+throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");    throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'"); 
+}                                                                                                      }                                                                                                   
+if (preserveFileDate) {                                                                                if (preserveFileDate) {                                                                             
+destFile.setLastModified(srcFile.lastModified());                                                      destFile.setLastModified(srcFile.lastModified());                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

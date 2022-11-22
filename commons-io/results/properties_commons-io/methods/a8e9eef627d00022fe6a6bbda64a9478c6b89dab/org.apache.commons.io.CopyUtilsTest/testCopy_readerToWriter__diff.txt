@@ -1,0 +1,13 @@
+public void testCopy_readerToWriter() throws Exception {
+    InputStream in = new ByteArrayInputStream(inData);
+    in = new YellOnCloseInputStream(in);
+    Reader reader = new java.io.InputStreamReader(in, "US-ASCII");
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    OutputStream out = new YellOnFlushAndCloseOutputStream(baout, false, true);
+    Writer writer = new java.io.OutputStreamWriter(out, "US-ASCII");
+    int count = CopyUtils.copy(reader, writer);
+    writer.flush();
+    assertEquals("The number of characters returned by copy is wrong", inData.length, count);
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

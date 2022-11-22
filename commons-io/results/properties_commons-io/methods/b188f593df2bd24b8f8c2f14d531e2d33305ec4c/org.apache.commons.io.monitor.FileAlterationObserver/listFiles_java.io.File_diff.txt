@@ -1,0 +1,13 @@
+private File[] listFiles(File file) {
+    File[] children = null;
+    if (file.isDirectory()) {
+        children = (fileFilter == null) ? file.listFiles() : file.listFiles(fileFilter);
+    }
+    if (children == null) {
+        children = FileUtils.EMPTY_FILE_ARRAY;
+    }
+    if (comparator != null && children.length > 1) {
+        Arrays.sort(children, comparator);
+    }
+    return children;
+}

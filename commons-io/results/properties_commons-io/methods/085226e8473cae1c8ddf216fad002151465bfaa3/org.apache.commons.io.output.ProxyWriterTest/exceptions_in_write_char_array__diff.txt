@@ -1,0 +1,14 @@
+@Test(expected = UnsupportedEncodingException.class)                                                   @Test(expected = UnsupportedEncodingException.class)                                                
+public void exceptions_in_write_char_array() throws IOException {                                      public void exceptions_in_write_char_array() throws IOException {                                   
+final OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {                 | try (final OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {           
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(final char[] cbuf) throws IOException {                                              public void write(final char[] cbuf) throws IOException {                                           
+throw new UnsupportedEncodingException("Bah");                                                         throw new UnsupportedEncodingException("Bah");                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                   | }) {                                                                                                
+try (ProxyWriter proxy = new ProxyWriter(osw)) {                                                       try (ProxyWriter proxy = new ProxyWriter(osw)) {                                                    
+proxy.write("ABCE".toCharArray());                                                                     proxy.write("ABCE".toCharArray());                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

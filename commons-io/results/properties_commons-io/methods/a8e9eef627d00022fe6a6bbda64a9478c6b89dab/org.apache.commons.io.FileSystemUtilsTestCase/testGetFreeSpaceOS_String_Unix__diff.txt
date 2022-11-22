@@ -1,0 +1,11 @@
+public void testGetFreeSpaceOS_String_Unix() throws Exception {                                        public void testGetFreeSpaceOS_String_Unix() throws Exception {                                     
+FileSystemUtils fsu = new FileSystemUtils() {                                                          FileSystemUtils fsu = new FileSystemUtils() {                                                       
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected long freeSpaceUnix(String path, boolean kb, boolean posix) throws IOException {            | protected long freeSpaceUnix(String path, boolean kb, boolean posix, long timeout) throws IOExceptio
+return (kb ? 12345L : 54321);                                                                          return (kb ? 12345L : 54321);                                                                       
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+assertEquals(54321L, fsu.freeSpaceOS("", 2, false));                                                 | assertEquals(54321L, fsu.freeSpaceOS("", 2, false, -1));                                            
+assertEquals(12345L, fsu.freeSpaceOS("", 2, true));                                                  | assertEquals(12345L, fsu.freeSpaceOS("", 2, true, -1));                                             
+}                                                                                                      }                                                                                                   

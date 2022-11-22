@@ -1,0 +1,20 @@
+@Test                                                                                                  @Test                                                                                               
+public void testWaitForInterrupted() throws InterruptedException {                                     public void testWaitForInterrupted() throws InterruptedException {                                  
+final AtomicBoolean wasInterrupted = new AtomicBoolean(false);                                         final AtomicBoolean wasInterrupted = new AtomicBoolean(false);                                      
+final CountDownLatch started = new CountDownLatch(1);                                                  final CountDownLatch started = new CountDownLatch(1);                                               
+Runnable thread = new Runnable() {                                                                   | final Runnable thread = new Runnable() {                                                            
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void run() {                                                                                    public void run() {                                                                                 
+started.countDown();                                                                                   started.countDown();                                                                                
+FileUtils.waitFor(new File(""), 2);                                                                    FileUtils.waitFor(new File(""), 2);                                                                 
+wasInterrupted.set(Thread.currentThread().isInterrupted());                                            wasInterrupted.set(Thread.currentThread().isInterrupted());                                         
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+Thread thread1 = new Thread(thread);                                                                 | final Thread thread1 = new Thread(thread);                                                          
+thread1.start();                                                                                       thread1.start();                                                                                    
+started.await();                                                                                       started.await();                                                                                    
+thread1.interrupt();                                                                                   thread1.interrupt();                                                                                
+thread1.join();                                                                                        thread1.join();                                                                                     
+assertTrue(wasInterrupted.get());                                                                      assertTrue(wasInterrupted.get());                                                                   
+}                                                                                                      }                                                                                                   

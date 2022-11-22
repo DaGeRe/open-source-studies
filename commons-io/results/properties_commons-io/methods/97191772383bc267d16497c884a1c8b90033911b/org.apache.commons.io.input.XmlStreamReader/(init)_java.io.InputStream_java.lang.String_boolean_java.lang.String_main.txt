@@ -1,0 +1,7 @@
+public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncoding) throws IOException {
+    this.defaultEncoding = defaultEncoding;
+    BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);
+    BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);
+    this.encoding = doHttpStream(bom, pis, httpContentType, lenient);
+    this.reader = new InputStreamReader(pis, encoding);
+}

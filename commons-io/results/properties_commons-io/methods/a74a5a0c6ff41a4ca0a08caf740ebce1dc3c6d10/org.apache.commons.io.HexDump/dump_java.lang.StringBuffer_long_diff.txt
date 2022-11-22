@@ -1,0 +1,6 @@
+private static StringBuffer dump(StringBuffer _lbuffer, long value) {
+    for (int j = 0; j < 8; j++) {
+        _lbuffer.append(_hexcodes[((int) (value >> _shifts[j])) & 15]);
+    }
+    return _lbuffer;
+}

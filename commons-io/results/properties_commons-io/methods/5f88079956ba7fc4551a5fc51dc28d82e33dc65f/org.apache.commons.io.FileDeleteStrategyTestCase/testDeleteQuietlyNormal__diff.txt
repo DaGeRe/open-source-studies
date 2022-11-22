@@ -1,0 +1,25 @@
+@Test                                                                                                  @Test                                                                                               
+public void testDeleteQuietlyNormal() throws Exception {                                               public void testDeleteQuietlyNormal() throws Exception {                                            
+final File baseDir = getTestDirectory();                                                               final File baseDir = getTestDirectory();                                                            
+final File subDir = new File(baseDir, "test");                                                         final File subDir = new File(baseDir, "test");                                                      
+assertTrue(subDir.mkdir());                                                                            assertTrue(subDir.mkdir());                                                                         
+final File subFile = new File(subDir, "a.txt");                                                        final File subFile = new File(subDir, "a.txt");                                                     
+if (!subFile.getParentFile().exists()) {                                                               if (!subFile.getParentFile().exists()) {                                                            
+throw new IOException("Cannot create file " + subFile + " as the parent directory does not exist");    throw new IOException("Cannot create file " + subFile + " as the parent directory does not exist"); 
+}                                                                                                      }                                                                                                   
+try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(subFile))) {    try (final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(subFile))) { 
+TestUtils.generateTestData(output, (long) 16);                                                       | TestUtils.generateTestData(output, 16);                                                             
+}                                                                                                      }                                                                                                   
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertTrue(subFile.exists());                                                                          assertTrue(subFile.exists());                                                                       
+assertFalse(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                          assertFalse(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                       
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertTrue(subFile.exists());                                                                          assertTrue(subFile.exists());                                                                       
+assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subFile));                                          assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subFile));                                       
+assertTrue(subDir.exists());                                                                           assertTrue(subDir.exists());                                                                        
+assertFalse(subFile.exists());                                                                         assertFalse(subFile.exists());                                                                      
+assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                           assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                        
+assertFalse(subDir.exists());                                                                          assertFalse(subDir.exists());                                                                       
+assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                           assertTrue(FileDeleteStrategy.NORMAL.deleteQuietly(subDir));                                        
+assertFalse(subDir.exists());                                                                          assertFalse(subDir.exists());                                                                       
+}                                                                                                      }                                                                                                   

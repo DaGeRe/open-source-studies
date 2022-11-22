@@ -1,0 +1,11 @@
+public static boolean isSymLink(File file) {                                                           public static boolean isSymLink(File file) {                                                        
+try {                                                                                                  try {                                                                                               
+Object path = toPath.invoke(file);                                                                     Object path = toPath.invoke(file);                                                                  
+Boolean result = (Boolean) isSymbolicLink.invoke(null, path);                                          Boolean result = (Boolean) isSymbolicLink.invoke(null, path);                                       
+return result.booleanValue();                                                                          return result.booleanValue();                                                                       
+} catch (IllegalAccessException e) {                                                                 | } catch (IllegalAccessException | InvocationTargetException e) {                                    
+throw new RuntimeException(e);                                                                         throw new RuntimeException(e);                                                                      
+} catch (InvocationTargetException e) {                                                              |                                                                                                     
+throw new RuntimeException(e);                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

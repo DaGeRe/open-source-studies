@@ -1,0 +1,13 @@
+public CompositeFileComparator(Iterable&lt;Comparator&lt;File&gt;&gt; delegates) {                     public CompositeFileComparator(Iterable&lt;Comparator&lt;File&gt;&gt; delegates) {                  
+                                                                                                     | if (delegates == null) {                                                                            
+                                                                                                     | this.delegates = NO_COMPARATORS;                                                                    
+                                                                                                     | } else {                                                                                            
+List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;Comparator&lt;File&gt;&gt;();               List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;Comparator&lt;File&gt;&gt;();            
+if (delegates != null) {                                                                             |                                                                                                     
+for (Comparator&lt;File&gt; comparator : delegates) {                                                  for (Comparator&lt;File&gt; comparator : delegates) {                                               
+list.add(comparator);                                                                                  list.add(comparator);                                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+this.delegates = list.toArray(new Comparator[list.size()]);                                            this.delegates = list.toArray(new Comparator[list.size()]);                                         
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

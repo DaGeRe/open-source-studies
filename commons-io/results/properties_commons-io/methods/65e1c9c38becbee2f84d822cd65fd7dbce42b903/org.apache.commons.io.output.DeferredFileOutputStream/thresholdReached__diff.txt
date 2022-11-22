@@ -1,0 +1,16 @@
+@Override                                                                                              @Override                                                                                           
+protected void thresholdReached() throws IOException {                                                 protected void thresholdReached() throws IOException {                                              
+if (prefix != null) {                                                                                  if (prefix != null) {                                                                               
+outputFile = File.createTempFile(prefix, suffix, directory);                                           outputFile = File.createTempFile(prefix, suffix, directory);                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | FileUtils.forceMkdirParent(outputFile);                                                             
+final FileOutputStream fos = new FileOutputStream(outputFile);                                         final FileOutputStream fos = new FileOutputStream(outputFile);                                      
+try {                                                                                                  try {                                                                                               
+memoryOutputStream.writeTo(fos);                                                                       memoryOutputStream.writeTo(fos);                                                                    
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+fos.close();                                                                                           fos.close();                                                                                        
+throw e;                                                                                               throw e;                                                                                            
+}                                                                                                      }                                                                                                   
+currentOutputStream = fos;                                                                             currentOutputStream = fos;                                                                          
+memoryOutputStream = null;                                                                             memoryOutputStream = null;                                                                          
+}                                                                                                      }                                                                                                   

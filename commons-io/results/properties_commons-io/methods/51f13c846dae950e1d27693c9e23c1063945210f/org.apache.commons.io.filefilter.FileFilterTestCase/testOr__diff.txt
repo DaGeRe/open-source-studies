@@ -1,0 +1,31 @@
+@Test                                                                                                  @Test                                                                                               
+public void testOr() throws Exception {                                                                public void testOr() throws Exception {                                                             
+final IOFileFilter trueFilter = TrueFileFilter.INSTANCE;                                               final IOFileFilter trueFilter = TrueFileFilter.INSTANCE;                                            
+final IOFileFilter falseFilter = FalseFileFilter.INSTANCE;                                             final IOFileFilter falseFilter = FalseFileFilter.INSTANCE;                                          
+final File testFile = new File("foo.test");                                                            final File testFile = new File("foo.test");                                                         
+assertFiltering(new OrFileFilter(trueFilter, trueFilter), testFile, true);                             assertFiltering(new OrFileFilter(trueFilter, trueFilter), testFile, true);                          
+assertFiltering(new OrFileFilter(trueFilter, falseFilter), testFile, true);                            assertFiltering(new OrFileFilter(trueFilter, falseFilter), testFile, true);                         
+assertFiltering(new OrFileFilter(falseFilter, trueFilter), testFile, true);                            assertFiltering(new OrFileFilter(falseFilter, trueFilter), testFile, true);                         
+assertFiltering(new OrFileFilter(falseFilter, falseFilter), testFile, false);                          assertFiltering(new OrFileFilter(falseFilter, falseFilter), testFile, false);                       
+assertFiltering(new OrFileFilter(), testFile, false);                                                  assertFiltering(new OrFileFilter(), testFile, false);                                               
+final List&lt;IOFileFilter&gt; filters = new ArrayList&lt;IOFileFilter&gt;();                        | final List&lt;IOFileFilter&gt; filters = new ArrayList&lt;&gt;();                                   
+filters.add(trueFilter);                                                                               filters.add(trueFilter);                                                                            
+filters.add(falseFilter);                                                                              filters.add(falseFilter);                                                                           
+final OrFileFilter orFilter = new OrFileFilter(filters);                                               final OrFileFilter orFilter = new OrFileFilter(filters);                                            
+assertFiltering(orFilter, testFile, true);                                                             assertFiltering(orFilter, testFile, true);                                                          
+assertEquals(orFilter.getFileFilters(), filters);                                                      assertEquals(orFilter.getFileFilters(), filters);                                                   
+orFilter.removeFileFilter(trueFilter);                                                                 orFilter.removeFileFilter(trueFilter);                                                              
+assertFiltering(orFilter, testFile, false);                                                            assertFiltering(orFilter, testFile, false);                                                         
+orFilter.setFileFilters(filters);                                                                      orFilter.setFileFilters(filters);                                                                   
+assertFiltering(orFilter, testFile, true);                                                             assertFiltering(orFilter, testFile, true);                                                          
+assertTrue(orFilter.accept(testFile.getParentFile(), testFile.getName()));                             assertTrue(orFilter.accept(testFile.getParentFile(), testFile.getName()));                          
+orFilter.removeFileFilter(trueFilter);                                                                 orFilter.removeFileFilter(trueFilter);                                                              
+assertTrue(!orFilter.accept(testFile.getParentFile(), testFile.getName()));                            assertTrue(!orFilter.accept(testFile.getParentFile(), testFile.getName()));                         
+try {                                                                                                  try {                                                                                               
+new OrFileFilter(falseFilter, null);                                                                   new OrFileFilter(falseFilter, null);                                                                
+fail();                                                                                                fail();                                                                                             
+} catch (final IllegalArgumentException ex) {                                                          } catch (final IllegalArgumentException ex) {                                                       
+}                                                                                                      }                                                                                                   
+final OrFileFilter f = new OrFileFilter(null);                                                         final OrFileFilter f = new OrFileFilter(null);                                                      
+assertTrue(f.getFileFilters().isEmpty());                                                              assertTrue(f.getFileFilters().isEmpty());                                                           
+}                                                                                                      }                                                                                                   

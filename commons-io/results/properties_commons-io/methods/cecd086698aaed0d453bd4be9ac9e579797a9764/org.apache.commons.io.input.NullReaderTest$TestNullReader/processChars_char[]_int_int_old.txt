@@ -1,0 +1,6 @@
+protected void processChars(char[] chars, int offset, int length) {
+    int startPos = (int) getPosition() - length;
+    for (int i = offset; i < length; i++) {
+        chars[i] = (char) (startPos + i);
+    }
+}

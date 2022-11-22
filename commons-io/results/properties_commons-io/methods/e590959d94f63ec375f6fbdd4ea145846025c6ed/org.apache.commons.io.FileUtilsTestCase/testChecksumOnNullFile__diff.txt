@@ -1,0 +1,7 @@
+public void testChecksumOnNullFile() throws Exception {
+    try {
+        FileUtils.checksum((File) null, new CRC32());
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

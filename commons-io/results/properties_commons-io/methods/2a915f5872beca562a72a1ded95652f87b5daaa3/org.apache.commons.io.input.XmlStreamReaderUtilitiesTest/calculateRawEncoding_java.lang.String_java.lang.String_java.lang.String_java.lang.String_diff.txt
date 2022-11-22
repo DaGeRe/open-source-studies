@@ -1,0 +1,6 @@
+protected String calculateRawEncoding(final String bomEnc, final String xmlGuessEnc, final String xmlEnc, final String defaultEncoding) throws IOException {
+    final MockXmlStreamReader mock = new MockXmlStreamReader(defaultEncoding);
+    final String enc = mock.calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);
+    mock.close();
+    return enc;
+}

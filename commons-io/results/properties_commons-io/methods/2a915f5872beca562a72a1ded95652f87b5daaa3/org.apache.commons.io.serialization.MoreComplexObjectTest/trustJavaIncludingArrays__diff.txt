@@ -1,0 +1,4 @@
+@Test
+public void trustJavaIncludingArrays() throws IOException, ClassNotFoundException {
+    assertSerialization(willClose(new ValidatingObjectInputStream(inputStream).accept(MoreComplexObject.class).accept("java.*", "[Ljava.*")));
+}

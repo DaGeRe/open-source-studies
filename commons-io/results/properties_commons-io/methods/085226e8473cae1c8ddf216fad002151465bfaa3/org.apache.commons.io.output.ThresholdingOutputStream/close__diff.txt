@@ -1,0 +1,8 @@
+@Override
+public void close() throws IOException {
+    try {
+        flush();
+    } catch (final IOException ignored) {
+    }
+    getStream().close();
+}

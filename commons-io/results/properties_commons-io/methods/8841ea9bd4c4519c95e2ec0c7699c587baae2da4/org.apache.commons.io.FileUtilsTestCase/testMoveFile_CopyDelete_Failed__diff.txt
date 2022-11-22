@@ -1,0 +1,22 @@
+public void testMoveFile_CopyDelete_Failed() throws Exception {
+    File destination = new File(getTestDirectory(), "move3.txt");
+    File src = new File(testFile1.getAbsolutePath()) {
+
+        @Override
+        public boolean renameTo(File f) {
+            return false;
+        }
+
+        @Override
+        public boolean delete() {
+            return false;
+        }
+    };
+    try {
+        FileUtils.moveFile(src, destination);
+        fail("move should have failed as src has not been deleted");
+    } catch (IOException e) {
+        assertTrue("Check Rollback", !destination.exists());
+        assertTrue("Original exists", src.exists());
+    }
+}

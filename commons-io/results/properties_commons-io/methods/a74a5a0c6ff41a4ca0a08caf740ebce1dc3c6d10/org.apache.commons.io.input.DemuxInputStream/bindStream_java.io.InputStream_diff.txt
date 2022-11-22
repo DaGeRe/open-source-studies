@@ -1,0 +1,5 @@
+public InputStream bindStream(InputStream input) {                                                     public InputStream bindStream(InputStream input) {                                                  
+InputStream oldValue = getStream();                                                                  | InputStream oldValue = m_streams.get();                                                             
+m_streams.set(input);                                                                                  m_streams.set(input);                                                                               
+return oldValue;                                                                                       return oldValue;                                                                                    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+@Override                                                                                              @Override                                                                                           
+public int read() throws IOException {                                                                 public int read() throws IOException {                                                              
+for (; ; ) {                                                                                           for (; ; ) {                                                                                        
+if (this.bbuf.hasRemaining()) {                                                                        if (this.bbuf.hasRemaining()) {                                                                     
+return this.bbuf.get() & 0xFF;                                                                         return this.bbuf.get() & 0xFF;                                                                      
+} else {                                                                                             | }                                                                                                   
+fillBuffer();                                                                                          fillBuffer();                                                                                       
+if (!this.bbuf.hasRemaining() && !this.cbuf.hasRemaining()) {                                          if (!this.bbuf.hasRemaining() && !this.cbuf.hasRemaining()) {                                       
+return EOF;                                                                                            return EOF;                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

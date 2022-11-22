@@ -1,0 +1,9 @@
+public void testWriteChar() throws IOException {
+    Writer writer = new StringBuilderWriter();
+    writer.write('F');
+    assertEquals("F", writer.toString());
+    writer.write('o');
+    assertEquals("Fo", writer.toString());
+    writer.write('o');
+    assertEquals("Foo", writer.toString());
+}

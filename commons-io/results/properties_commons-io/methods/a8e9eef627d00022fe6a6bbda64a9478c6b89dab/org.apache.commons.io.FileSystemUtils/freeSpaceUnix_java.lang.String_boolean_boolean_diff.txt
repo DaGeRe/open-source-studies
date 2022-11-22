@@ -1,0 +1,33 @@
+long freeSpaceUnix(String path, boolean kb, boolean posix) throws IOException {                      |                                                                                                     
+if (path.length() == 0) {                                                                            |                                                                                                     
+throw new IllegalArgumentException("Path must not be empty");                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+String flags = "-";                                                                                  |                                                                                                     
+if (kb) {                                                                                            |                                                                                                     
+flags += "k";                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (posix) {                                                                                         |                                                                                                     
+flags += "P";                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+String[] cmdAttribs = (flags.length() &gt; 1 ? new String[] { DF, flags, path } : new String[] { DF, |                                                                                                     
+List&lt;String&gt; lines = performCommand(cmdAttribs, 3);                                            |                                                                                                     
+if (lines.size() &lt; 2) {                                                                           |                                                                                                     
+throw new IOException("Command line '" + DF + "' did not return info as expected " + "for path '" +  |                                                                                                     
+}                                                                                                    |                                                                                                     
+String line2 = lines.get(1);                                                                         |                                                                                                     
+StringTokenizer tok = new StringTokenizer(line2, " ");                                               |                                                                                                     
+if (tok.countTokens() &lt; 4) {                                                                      |                                                                                                     
+if (tok.countTokens() == 1 && lines.size() &gt;= 3) {                                                |                                                                                                     
+String line3 = lines.get(2);                                                                         |                                                                                                     
+tok = new StringTokenizer(line3, " ");                                                               |                                                                                                     
+} else {                                                                                             |                                                                                                     
+throw new IOException("Command line '" + DF + "' did not return data as expected " + "for path '" +  |                                                                                                     
+}                                                                                                    |                                                                                                     
+} else {                                                                                             |                                                                                                     
+tok.nextToken();                                                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     
+tok.nextToken();                                                                                     |                                                                                                     
+tok.nextToken();                                                                                     |                                                                                                     
+String freeSpace = tok.nextToken();                                                                  |                                                                                                     
+return parseBytes(freeSpace, path);                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

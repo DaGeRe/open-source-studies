@@ -1,0 +1,6 @@
+public static String toString(final Reader input) throws IOException {
+    try (final StringBuilderWriter sw = new StringBuilderWriter()) {
+        copy(input, sw);
+        return sw.toString();
+    }
+}

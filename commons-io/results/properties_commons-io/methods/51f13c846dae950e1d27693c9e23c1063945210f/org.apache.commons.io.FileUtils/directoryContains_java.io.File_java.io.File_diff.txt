@@ -1,0 +1,17 @@
+public static boolean directoryContains(final File directory, final File child) throws IOException {
+    if (directory == null) {
+        throw new IllegalArgumentException("Directory must not be null");
+    }
+    if (!directory.isDirectory()) {
+        throw new IllegalArgumentException("Not a directory: " + directory);
+    }
+    if (child == null) {
+        return false;
+    }
+    if (!directory.exists() || !child.exists()) {
+        return false;
+    }
+    final String canonicalParent = directory.getCanonicalPath();
+    final String canonicalChild = child.getCanonicalPath();
+    return FilenameUtils.directoryContains(canonicalParent, canonicalChild);
+}

@@ -1,0 +1,19 @@
+private static long sizeOfDirectory0(final File directory) {
+    final File[] files = directory.listFiles();
+    if (files == null) {
+        return 0L;
+    }
+    long size = 0;
+    for (final File file : files) {
+        try {
+            if (!isSymlink(file)) {
+                size += sizeOf0(file);
+                if (size < 0) {
+                    break;
+                }
+            }
+        } catch (final IOException ioe) {
+        }
+    }
+    return size;
+}

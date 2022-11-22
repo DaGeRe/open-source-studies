@@ -1,0 +1,5 @@
+private static void checkEqualSizes(final File srcFile, final File destFile, final long srcLen, final long dstLen) throws IOException {
+    if (srcLen != dstLen) {
+        throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "' Expected length: " + srcLen + " Actual: " + dstLen);
+    }
+}

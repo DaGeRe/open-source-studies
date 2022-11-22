@@ -1,0 +1,9 @@
+@Override
+public boolean accept(final File dir, final String name) {
+    for (final String name2 : names) {
+        if (caseSensitivity.checkEquals(name, name2)) {
+            return true;
+        }
+    }
+    return false;
+}

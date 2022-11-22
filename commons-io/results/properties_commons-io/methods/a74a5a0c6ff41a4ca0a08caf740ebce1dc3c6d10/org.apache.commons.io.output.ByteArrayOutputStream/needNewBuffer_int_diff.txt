@@ -1,0 +1,19 @@
+private void needNewBuffer(int newcount) {                                                             private void needNewBuffer(int newcount) {                                                          
+if (currentBufferIndex &lt; buffers.size() - 1) {                                                      if (currentBufferIndex &lt; buffers.size() - 1) {                                                   
+filledBufferSum += currentBuffer.length;                                                               filledBufferSum += currentBuffer.length;                                                            
+currentBufferIndex++;                                                                                  currentBufferIndex++;                                                                               
+currentBuffer = getBuffer(currentBufferIndex);                                                       | currentBuffer = buffers.get(currentBufferIndex);                                                    
+} else {                                                                                               } else {                                                                                            
+int newBufferSize;                                                                                     int newBufferSize;                                                                                  
+if (currentBuffer == null) {                                                                           if (currentBuffer == null) {                                                                        
+newBufferSize = newcount;                                                                              newBufferSize = newcount;                                                                           
+filledBufferSum = 0;                                                                                   filledBufferSum = 0;                                                                                
+} else {                                                                                               } else {                                                                                            
+newBufferSize = Math.max(currentBuffer.length &lt;&lt; 1, newcount - filledBufferSum);                 newBufferSize = Math.max(currentBuffer.length &lt;&lt; 1, newcount - filledBufferSum);              
+filledBufferSum += currentBuffer.length;                                                               filledBufferSum += currentBuffer.length;                                                            
+}                                                                                                      }                                                                                                   
+currentBufferIndex++;                                                                                  currentBufferIndex++;                                                                               
+currentBuffer = new byte[newBufferSize];                                                               currentBuffer = new byte[newBufferSize];                                                            
+buffers.add(currentBuffer);                                                                            buffers.add(currentBuffer);                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

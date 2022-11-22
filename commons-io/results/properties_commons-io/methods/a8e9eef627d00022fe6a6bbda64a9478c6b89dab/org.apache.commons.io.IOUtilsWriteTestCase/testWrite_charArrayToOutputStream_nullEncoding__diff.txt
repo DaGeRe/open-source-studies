@@ -1,0 +1,10 @@
+public void testWrite_charArrayToOutputStream_nullEncoding() throws Exception {
+    String str = new String(inData, "US-ASCII");
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    YellOnFlushAndCloseOutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    IOUtils.write(str.toCharArray(), out, null);
+    out.off();
+    out.flush();
+    assertEquals("Sizes differ", inData.length, baout.size());
+    assertTrue("Content differs", Arrays.equals(inData, baout.toByteArray()));
+}

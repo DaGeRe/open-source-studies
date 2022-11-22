@@ -1,0 +1,5 @@
+public void testEncodingAttributeXML() throws Exception {
+    InputStream is = new ByteArrayInputStream(ENCODING_ATTRIBUTE_XML.getBytes("UTF-8"));
+    XmlStreamReader xmlReader = new XmlStreamReader(is, "", true);
+    assertEquals(xmlReader.getEncoding(), "UTF-8");
+}

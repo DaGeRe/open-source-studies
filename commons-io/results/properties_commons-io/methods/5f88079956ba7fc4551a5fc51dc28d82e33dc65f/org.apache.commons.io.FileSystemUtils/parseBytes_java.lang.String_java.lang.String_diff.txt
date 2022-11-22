@@ -1,0 +1,11 @@
+long parseBytes(final String freeSpace, final String path) throws IOException {
+    try {
+        final long bytes = Long.parseLong(freeSpace);
+        if (bytes < 0) {
+            throw new IOException("Command line '" + DF + "' did not find free space in response " + "for path '" + path + "'- check path is valid");
+        }
+        return bytes;
+    } catch (final NumberFormatException ex) {
+        throw new IOException("Command line '" + DF + "' did not return numeric data as expected " + "for path '" + path + "'- check path is valid", ex);
+    }
+}

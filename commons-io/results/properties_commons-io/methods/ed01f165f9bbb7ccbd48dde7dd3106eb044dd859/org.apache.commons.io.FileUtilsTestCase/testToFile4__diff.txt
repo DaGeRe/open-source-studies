@@ -1,0 +1,8 @@
+public void testToFile4() throws Exception {                                                           public void testToFile4() throws Exception {                                                        
+URL url = new URL("file", null, "a/b/c/file%2Xn%61me.txt");                                          | URL url = new URL("file", null, "a/b/c/file%%20%me.txt%");                                          
+try {                                                                                                | File file = FileUtils.toFile(url);                                                                  
+FileUtils.toFile(url);                                                                               | assertEquals(true, file.toString().indexOf("file% %me.txt%") &gt;= 0);                              
+fail();                                                                                              |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

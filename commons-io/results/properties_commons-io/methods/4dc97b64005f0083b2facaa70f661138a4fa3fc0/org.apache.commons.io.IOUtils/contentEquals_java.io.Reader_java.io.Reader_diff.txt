@@ -1,0 +1,17 @@
+public static boolean contentEquals(Reader input1, Reader input2) throws IOException {
+    if (input1 == input2) {
+        return true;
+    }
+    input1 = toBufferedReader(input1);
+    input2 = toBufferedReader(input2);
+    int ch = input1.read();
+    while (EOF != ch) {
+        final int ch2 = input2.read();
+        if (ch != ch2) {
+            return false;
+        }
+        ch = input1.read();
+    }
+    final int ch2 = input2.read();
+    return ch2 == EOF;
+}

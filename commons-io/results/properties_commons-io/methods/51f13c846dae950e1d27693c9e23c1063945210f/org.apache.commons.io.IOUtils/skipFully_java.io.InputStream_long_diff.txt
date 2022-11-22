@@ -1,0 +1,9 @@
+public static void skipFully(final InputStream input, final long toSkip) throws IOException {
+    if (toSkip < 0) {
+        throw new IllegalArgumentException("Bytes to skip must not be negative: " + toSkip);
+    }
+    final long skipped = skip(input, toSkip);
+    if (skipped != toSkip) {
+        throw new EOFException("Bytes to skip: " + toSkip + " actual: " + skipped);
+    }
+}

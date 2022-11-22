@@ -1,0 +1,14 @@
+public void testCopyDirectoryFiltered() throws Exception {                                             public void testCopyDirectoryFiltered() throws Exception {                                          
+File grandParentDir = new File(getTestDirectory(), "grandparent");                                     File grandParentDir = new File(getTestDirectory(), "grandparent");                                  
+File parentDir = new File(grandParentDir, "parent");                                                   File parentDir = new File(grandParentDir, "parent");                                                
+File childDir = new File(parentDir, "child");                                                          File childDir = new File(parentDir, "child");                                                       
+createFilesForTestCopyDirectory(grandParentDir, parentDir, childDir);                                  createFilesForTestCopyDirectory(grandParentDir, parentDir, childDir);                               
+NameFileFilter filter = new NameFileFilter(new String[] { "parent", "child", "file3.txt" });           NameFileFilter filter = new NameFileFilter(new String[] { "parent", "child", "file3.txt" });        
+File destDir = new File(getTestDirectory(), "copydest");                                               File destDir = new File(getTestDirectory(), "copydest");                                            
+FileUtils.copyDirectory(grandParentDir, destDir, filter);                                              FileUtils.copyDirectory(grandParentDir, destDir, filter);                                           
+List files = LIST_WALKER.list(destDir);                                                              | List&lt;File&gt; files = LIST_WALKER.list(destDir);                                                 
+assertEquals(3, files.size());                                                                         assertEquals(3, files.size());                                                                      
+assertEquals("parent", ((File) files.get(0)).getName());                                             | assertEquals("parent", files.get(0).getName());                                                     
+assertEquals("child", ((File) files.get(1)).getName());                                              | assertEquals("child", files.get(1).getName());                                                      
+assertEquals("file3.txt", ((File) files.get(2)).getName());                                          | assertEquals("file3.txt", files.get(2).getName());                                                  
+}                                                                                                      }                                                                                                   

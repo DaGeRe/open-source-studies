@@ -1,0 +1,16 @@
+public void testValidEncoding() throws Exception {
+    String encoding = "UTF-8";
+    File testFile = new File(getTestDirectory(), "LineIterator-validEncoding.txt");
+    createLinesFile(testFile, encoding, 3);
+    LineIterator iterator = FileUtils.lineIterator(testFile, encoding);
+    try {
+        int count = 0;
+        while (iterator.hasNext()) {
+            assertTrue(iterator.next() instanceof String);
+            count++;
+        }
+        assertEquals(3, count);
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

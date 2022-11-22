@@ -1,0 +1,5 @@
+public void delete(final File fileToDelete) throws IOException {
+    if (fileToDelete.exists() && doDelete(fileToDelete) == false) {
+        throw new IOException("Deletion failed: " + fileToDelete);
+    }
+}

@@ -1,0 +1,15 @@
+public static void forceMkdir(File directory) throws IOException {                                     public static void forceMkdir(File directory) throws IOException {                                  
+if (directory.exists()) {                                                                              if (directory.exists()) {                                                                           
+if (directory.isFile()) {                                                                            | if (!directory.isDirectory()) {                                                                     
+String message = "File " + directory + " exists and is " + "not a directory. Unable to create direct   String message = "File " + directory + " exists and is " + "not a directory. Unable to create direct
+throw new IOException(message);                                                                        throw new IOException(message);                                                                     
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+if (!directory.mkdirs()) {                                                                             if (!directory.mkdirs()) {                                                                          
+if (!directory.isDirectory()) {                                                                        if (!directory.isDirectory()) {                                                                     
+String message = "Unable to create directory " + directory;                                            String message = "Unable to create directory " + directory;                                         
+throw new IOException(message);                                                                        throw new IOException(message);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+public void testTaggedIOException() {
+    Object tag = new Object();
+    IOException exception = new IOException("Test exception");
+    TaggedIOException tagged = new TaggedIOException(exception, tag);
+    assertEquals(tag, tagged.getTag());
+    assertEquals(exception, tagged.getCause());
+    assertEquals(exception.getMessage(), tagged.getMessage());
+}

@@ -1,0 +1,26 @@
+public void testFileCleanerExitWhenFinished2() throws Exception {                                    |                                                                                                     
+String path = testFile.getPath();                                                                    |                                                                                                     
+assertEquals(false, testFile.exists());                                                              |                                                                                                     
+RandomAccessFile r = new RandomAccessFile(testFile, "rw");                                           |                                                                                                     
+assertEquals(true, testFile.exists());                                                               |                                                                                                     
+assertEquals(0, FileCleaner.getTrackCount());                                                        |                                                                                                     
+FileCleaner.track(path, r);                                                                          |                                                                                                     
+assertEquals(1, FileCleaner.getTrackCount());                                                        |                                                                                                     
+assertEquals(false, FileCleaner.exitWhenFinished);                                                   |                                                                                                     
+assertEquals(true, FileCleaner.reaper.isAlive());                                                    |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+testFile = null;                                                                                     |                                                                                                     
+r = null;                                                                                            |                                                                                                     
+waitUntilTrackCount();                                                                               |                                                                                                     
+assertEquals(0, FileCleaner.getTrackCount());                                                        |                                                                                                     
+assertEquals(false, new File(path).exists());                                                        |                                                                                                     
+assertEquals(false, FileCleaner.exitWhenFinished);                                                   |                                                                                                     
+assertEquals(true, FileCleaner.reaper.isAlive());                                                    |                                                                                                     
+assertEquals(false, FileCleaner.exitWhenFinished);                                                   |                                                                                                     
+FileCleaner.exitWhenFinished();                                                                      |                                                                                                     
+for (int i = 0; i &lt; 20 && FileCleaner.reaper.isAlive(); i++) {                                    |                                                                                                     
+Thread.sleep(500L);                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+assertEquals(true, FileCleaner.exitWhenFinished);                                                    |                                                                                                     
+assertEquals(false, FileCleaner.reaper.isAlive());                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     

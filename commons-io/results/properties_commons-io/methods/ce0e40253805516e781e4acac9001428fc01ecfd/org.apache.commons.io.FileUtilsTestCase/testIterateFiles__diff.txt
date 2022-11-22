@@ -1,0 +1,25 @@
+public void testIterateFiles() throws Exception {
+    File srcDir = getTestDirectory();
+    File subDir = new File(srcDir, "list_test");
+    subDir.mkdir();
+    String[] fileNames = { "a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt" };
+    int[] fileSizes = { 123, 234, 345, 456, 678, 789 };
+    for (int i = 0; i < fileNames.length; ++i) {
+        File theFile = new File(subDir, fileNames[i]);
+        createFile(theFile, fileSizes[i]);
+    }
+    Iterator files = FileUtils.iterateFiles(subDir, new WildcardFileFilter("*.*"), new WildcardFileFilter("*"));
+    Map foundFileNames = new HashMap();
+    while (files.hasNext()) {
+        boolean found = false;
+        String fileName = ((File) files.next()).getName();
+        for (int j = 0; ((!found) && (j < fileNames.length)); ++j) {
+            if (fileNames[j].equals(fileName)) {
+                foundFileNames.put(fileNames[j], fileNames[j]);
+                found = true;
+            }
+        }
+    }
+    assertEquals(foundFileNames.size(), fileNames.length);
+    subDir.delete();
+}

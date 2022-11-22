@@ -1,0 +1,11 @@
+public boolean accept(final File file, final String name) {
+    if (this.fileFilters.size() == 0) {
+        return false;
+    }
+    for (IOFileFilter fileFilter : fileFilters) {
+        if (!fileFilter.accept(file, name)) {
+            return false;
+        }
+    }
+    return true;
+}

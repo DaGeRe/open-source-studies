@@ -1,0 +1,9 @@
+private void doRawStream(InputStream is, boolean lenient) throws IOException {                         private void doRawStream(InputStream is, boolean lenient) throws IOException {                      
+BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);        BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);     
+BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                   BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                
+String bomEnc = (bom.hasBOM() ? bom.getBOM().getCharsetName() : null);                               | String bomEnc = bom.getBOMCharsetName();                                                            
+String xmlGuessEnc = (pis.hasBOM() ? pis.getBOM().getCharsetName() : null);                          | String xmlGuessEnc = pis.getBOMCharsetName();                                                       
+String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                        String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                     
+this.encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc, pis);                                this.encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc, pis);                             
+this.reader = new InputStreamReader(is, encoding);                                                     this.reader = new InputStreamReader(is, encoding);                                                  
+}                                                                                                      }                                                                                                   

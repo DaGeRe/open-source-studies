@@ -1,0 +1,29 @@
+public void testMarkAndReset() throws Exception {                                                      public void testMarkAndReset() throws Exception {                                                   
+int position = 0;                                                                                      int position = 0;                                                                                   
+int readlimit = 10;                                                                                    int readlimit = 10;                                                                                 
+Reader reader = new TestNullReader(100, true, false);                                                  Reader reader = new TestNullReader(100, true, false);                                               
+assertTrue("Mark Should be Supported", reader.markSupported());                                        assertTrue("Mark Should be Supported", reader.markSupported());                                     
+try {                                                                                                  try {                                                                                               
+reader.reset();                                                                                        reader.reset();                                                                                     
+fail("Read limit exceeded, expected IOException ");                                                    fail("Read limit exceeded, expected IOException ");                                                 
+} catch (Exception e) {                                                                              | } catch (IOException e) {                                                                           
+assertEquals("No Mark IOException message", "No position has been marked", e.getMessage());            assertEquals("No Mark IOException message", "No position has been marked", e.getMessage());         
+}                                                                                                      }                                                                                                   
+for (; position &lt; 3; position++) {                                                                  for (; position &lt; 3; position++) {                                                               
+assertEquals("Read Before Mark [" + position + "]", position, reader.read());                          assertEquals("Read Before Mark [" + position + "]", position, reader.read());                       
+}                                                                                                      }                                                                                                   
+reader.mark(readlimit);                                                                                reader.mark(readlimit);                                                                             
+for (int i = 0; i &lt; 3; i++) {                                                                       for (int i = 0; i &lt; 3; i++) {                                                                    
+assertEquals("Read After Mark [" + i + "]", (position + i), reader.read());                            assertEquals("Read After Mark [" + i + "]", (position + i), reader.read());                         
+}                                                                                                      }                                                                                                   
+reader.reset();                                                                                        reader.reset();                                                                                     
+for (int i = 0; i &lt; readlimit + 1; i++) {                                                           for (int i = 0; i &lt; readlimit + 1; i++) {                                                        
+assertEquals("Read After Reset [" + i + "]", (position + i), reader.read());                           assertEquals("Read After Reset [" + i + "]", (position + i), reader.read());                        
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+reader.reset();                                                                                        reader.reset();                                                                                     
+fail("Read limit exceeded, expected IOException ");                                                    fail("Read limit exceeded, expected IOException ");                                                 
+} catch (Exception e) {                                                                              | } catch (IOException e) {                                                                           
+assertEquals("Read limit IOException message", "Marked position [" + position + "] is no longer vali   assertEquals("Read limit IOException message", "Marked position [" + position + "] is no longer vali
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

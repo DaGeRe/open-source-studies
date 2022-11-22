@@ -1,0 +1,10 @@
+@After
+public void tearDown() {
+    carr = null;
+    iarr = null;
+    try {
+        FileUtils.deleteDirectory(getTestDirectory());
+    } catch (final IOException e) {
+        throw new RuntimeException("Could not clear up " + getTestDirectory() + ": " + e);
+    }
+}

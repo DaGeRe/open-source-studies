@@ -1,0 +1,8 @@
+public void start() throws Exception {
+    for (FileAlterationObserver observer : observers) {
+        observer.initialize();
+    }
+    running = true;
+    thread = new Thread(this);
+    thread.start();
+}

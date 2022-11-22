@@ -1,0 +1,9 @@
+public static byte[] generateTestData(final long size) {
+    try {
+        final ByteArrayOutputStream baout = new ByteArrayOutputStream();
+        generateTestData(baout, size);
+        return baout.toByteArray();
+    } catch (final IOException ioe) {
+        throw new RuntimeException("This should never happen: " + ioe.getMessage());
+    }
+}

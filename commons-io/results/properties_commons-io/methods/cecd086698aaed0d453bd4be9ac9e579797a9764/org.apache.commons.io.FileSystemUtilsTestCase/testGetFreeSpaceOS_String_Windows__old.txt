@@ -1,0 +1,10 @@
+public void testGetFreeSpaceOS_String_Windows() throws Exception {
+    FileSystemUtils fsu = new FileSystemUtils() {
+
+        protected long freeSpaceWindows(String path) throws IOException {
+            return 12345L;
+        }
+    };
+    assertEquals(12345L, fsu.freeSpaceOS("", 1, false));
+    assertEquals(12345L / 1024, fsu.freeSpaceOS("", 1, true));
+}

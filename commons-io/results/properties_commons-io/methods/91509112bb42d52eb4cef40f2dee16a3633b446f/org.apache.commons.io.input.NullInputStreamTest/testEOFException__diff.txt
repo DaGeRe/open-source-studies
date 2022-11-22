@@ -1,0 +1,10 @@
+public void testEOFException() throws Exception {
+    InputStream input = new TestNullInputStream(2, false, true);
+    assertEquals("Read 1", 0, input.read());
+    assertEquals("Read 2", 1, input.read());
+    try {
+        int result = input.read();
+        fail("Should have thrown an EOFException, byte=[" + result + "]");
+    } catch (EOFException e) {
+    }
+}

@@ -1,0 +1,6 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+private String getOutput(final String threadName) {                                                    private String getOutput(final String threadName) {                                                 
+final ByteArrayOutputStream output = m_outputMap.get(threadName);                                      final ByteArrayOutputStream output = m_outputMap.get(threadName);                                   
+assertNotNull("getOutput()", output);                                                                  assertNotNull("getOutput()", output);                                                               
+return output.toString(Charsets.UTF_8);                                                              | return output.toString(StandardCharsets.UTF_8);                                                     
+}                                                                                                      }                                                                                                   

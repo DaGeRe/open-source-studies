@@ -1,0 +1,11 @@
+public ByteOrderMark(String charsetName, int... bytes) {
+    if (charsetName == null || charsetName.length() == 0) {
+        throw new IllegalArgumentException("No charsetName specified");
+    }
+    if (bytes == null || bytes.length == 0) {
+        throw new IllegalArgumentException("No bytes specified");
+    }
+    this.charsetName = charsetName;
+    this.bytes = new int[bytes.length];
+    System.arraycopy(bytes, 0, this.bytes, 0, bytes.length);
+}

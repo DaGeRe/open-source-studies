@@ -1,0 +1,7 @@
+protected File newFile(String filename) throws IOException {
+    File destination = new File(getTestDirectory(), filename);
+    if (destination.exists()) {
+        FileUtils.forceDelete(destination);
+    }
+    return destination;
+}

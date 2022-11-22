@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testWriteCharArray() throws IOException {                                                  public void testWriteCharArray() throws IOException {                                               
+final Writer writer = new StringBuilderWriter();                                                     | try (final Writer writer = new StringBuilderWriter()) {                                             
+writer.write(new char[] { 'F', 'o', 'o' });                                                            writer.write(new char[] { 'F', 'o', 'o' });                                                         
+assertEquals("Foo", writer.toString());                                                                assertEquals("Foo", writer.toString());                                                             
+writer.write(new char[] { 'B', 'a', 'r' });                                                            writer.write(new char[] { 'B', 'a', 'r' });                                                         
+assertEquals("FooBar", writer.toString());                                                             assertEquals("FooBar", writer.toString());                                                          
+writer.close();                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

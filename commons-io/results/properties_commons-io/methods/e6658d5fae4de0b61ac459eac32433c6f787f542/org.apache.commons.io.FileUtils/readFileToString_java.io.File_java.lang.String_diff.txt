@@ -1,0 +1,9 @@
+public static String readFileToString(File file, String encoding) throws IOException {
+    InputStream in = null;
+    try {
+        in = openInputStream(file);
+        return IOUtils.toString(in, encoding);
+    } finally {
+        IOUtils.closeQuietly(in);
+    }
+}

@@ -1,0 +1,8 @@
+public static void moveToDirectory(final File src, final File destDir, final boolean createDestDir) throws IOException {
+    validateMoveParameters(src, destDir);
+    if (src.isDirectory()) {
+        moveDirectoryToDirectory(src, destDir, createDestDir);
+    } else {
+        moveFileToDirectory(src, destDir, createDestDir);
+    }
+}

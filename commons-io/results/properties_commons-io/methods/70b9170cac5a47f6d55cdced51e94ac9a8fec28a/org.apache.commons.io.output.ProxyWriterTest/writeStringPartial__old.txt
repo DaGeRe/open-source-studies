@@ -1,0 +1,12 @@
+@Test
+public void writeStringPartial() throws Exception {
+    final StringBuilderWriter writer = new StringBuilderWriter();
+    final ProxyWriter proxy = new ProxyWriter(writer);
+    try {
+        proxy.write("ABC", 1, 2);
+    } catch (final Exception e) {
+        fail("Writing String threw " + e);
+    }
+    assertEquals("BC", writer.toString());
+    proxy.close();
+}

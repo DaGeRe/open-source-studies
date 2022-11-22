@@ -1,0 +1,7 @@
+public void testIOExceptionStringThrowable() {                                                         public void testIOExceptionStringThrowable() {                                                      
+Throwable cause = new IllegalArgumentException("cause");                                               Throwable cause = new IllegalArgumentException("cause");                                            
+CausedIOException exception = new CausedIOException("message", cause);                                 CausedIOException exception = new CausedIOException("message", cause);                              
+assertEquals("message", exception.getMessage());                                                     | this.validate(exception, cause, "message");                                                         
+assertEquals(cause, exception.getCause());                                                           |                                                                                                     
+assertSame(cause, exception.getCause());                                                             |                                                                                                     
+}                                                                                                      }                                                                                                   

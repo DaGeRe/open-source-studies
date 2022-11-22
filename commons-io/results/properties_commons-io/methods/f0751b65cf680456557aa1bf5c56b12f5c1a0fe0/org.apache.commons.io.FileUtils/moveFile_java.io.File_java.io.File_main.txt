@@ -1,0 +1,20 @@
+public static void moveFile(final File srcFile, final File destFile) throws IOException {
+    validateMoveParameters(srcFile, destFile);
+    if (srcFile.isDirectory()) {
+        throw new IOException("Source '" + srcFile + "' is a directory");
+    }
+    if (destFile.exists()) {
+        throw new FileExistsException("Destination '" + destFile + "' already exists");
+    }
+    if (destFile.isDirectory()) {
+        throw new IOException("Destination '" + destFile + "' is a directory");
+    }
+    final boolean rename = srcFile.renameTo(destFile);
+    if (!rename) {
+        copyFile(srcFile, destFile);
+        if (!srcFile.delete()) {
+            FileUtils.deleteQuietly(destFile);
+            throw new IOException("Failed to delete original file '" + srcFile + "' after copy to '" + destFile + "'");
+        }
+    }
+}

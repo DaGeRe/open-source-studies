@@ -1,0 +1,25 @@
+private void checkAndNotify(final FileEntry parent, final FileEntry[] previous, final File[] files) {
+    int c = 0;
+    final FileEntry[] current = files.length > 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENTRIES;
+    for (final FileEntry entry : previous) {
+        while (c < files.length && comparator.compare(entry.getFile(), files[c]) > 0) {
+            current[c] = createFileEntry(parent, files[c]);
+            doCreate(current[c]);
+            c++;
+        }
+        if (c < files.length && comparator.compare(entry.getFile(), files[c]) == 0) {
+            doMatch(entry, files[c]);
+            checkAndNotify(entry, entry.getChildren(), listFiles(files[c]));
+            current[c] = entry;
+            c++;
+        } else {
+            checkAndNotify(entry, entry.getChildren(), FileUtils.EMPTY_FILE_ARRAY);
+            doDelete(entry);
+        }
+    }
+    for (; c < files.length; c++) {
+        current[c] = createFileEntry(parent, files[c]);
+        doCreate(current[c]);
+    }
+    parent.setChildren(current);
+}

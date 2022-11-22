@@ -1,0 +1,5 @@
+public MessageDigestCalculatingInputStream(final InputStream pStream, final MessageDigest pDigest) {
+    super(pStream);
+    messageDigest = pDigest;
+    add(new MessageDigestMaintainingObserver(pDigest));
+}

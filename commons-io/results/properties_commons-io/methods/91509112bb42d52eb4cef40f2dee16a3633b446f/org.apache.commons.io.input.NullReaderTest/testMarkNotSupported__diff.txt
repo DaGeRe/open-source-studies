@@ -1,0 +1,16 @@
+public void testMarkNotSupported() throws Exception {
+    Reader reader = new TestNullReader(100, false, true);
+    assertFalse("Mark Should NOT be Supported", reader.markSupported());
+    try {
+        reader.mark(5);
+        fail("mark() should throw UnsupportedOperationException");
+    } catch (UnsupportedOperationException e) {
+        assertEquals("mark() error message", "Mark not supported", e.getMessage());
+    }
+    try {
+        reader.reset();
+        fail("reset() should throw UnsupportedOperationException");
+    } catch (UnsupportedOperationException e) {
+        assertEquals("reset() error message", "Mark not supported", e.getMessage());
+    }
+}

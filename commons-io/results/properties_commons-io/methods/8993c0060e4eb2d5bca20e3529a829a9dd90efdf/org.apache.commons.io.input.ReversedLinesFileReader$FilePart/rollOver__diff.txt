@@ -1,0 +1,13 @@
+private FilePart rollOver() throws IOException {                                                       private FilePart rollOver() throws IOException {                                                    
+if (currentLastBytePos &gt; -1) {                                                                      if (currentLastBytePos &gt; -1) {                                                                   
+throw new IllegalStateException("Current currentLastCharPos unexpectedly positive... " + "last readL   throw new IllegalStateException("Current currentLastCharPos unexpectedly positive... " + "last readL
+}                                                                                                      }                                                                                                   
+if (no &gt; 1) {                                                                                       if (no &gt; 1) {                                                                                    
+return new FilePart(no - 1, blockSize, leftOver);                                                      return new FilePart(no - 1, blockSize, leftOver);                                                   
+} else {                                                                                             | }                                                                                                   
+if (leftOver != null) {                                                                                if (leftOver != null) {                                                                             
+throw new IllegalStateException("Unexpected leftover of the last block: leftOverOfThisFilePart=" + n   throw new IllegalStateException("Unexpected leftover of the last block: leftOverOfThisFilePart=" + n
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

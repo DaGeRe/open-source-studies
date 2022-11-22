@@ -1,0 +1,9 @@
+public static List readLines(InputStream input, String encoding) throws IOException {                | public static List&lt;String&gt; readLines(InputStream input, String encoding) throws IOException { 
+if (encoding == null) {                                                                                if (encoding == null) {                                                                             
+return readLines(input);                                                                               return readLines(input);                                                                            
+} else {                                                                                             |                                                                                                     
+InputStreamReader reader = new InputStreamReader(input, encoding);                                   |                                                                                                     
+return readLines(reader);                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | return readLines(new InputStreamReader(input, encoding));                                           
+}                                                                                                      }                                                                                                   

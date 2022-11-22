@@ -1,0 +1,10 @@
+@Test
+public void nullCharSequencec() throws Exception {
+    final ProxyWriter proxy = new ProxyWriter(new NullWriter());
+    try {
+        proxy.append(null);
+    } catch (final Exception e) {
+        fail("Appending null CharSequence threw " + e);
+    }
+    proxy.close();
+}

@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReadZero_EmptyString() throws Exception {                                              public void testReadZero_EmptyString() throws Exception {                                           
+final InputStream r = new CharSequenceInputStream("", "UTF-8");                                      | try (InputStream r = new CharSequenceInputStream("", "UTF-8")) {                                    
+try {                                                                                                |                                                                                                     
+final byte[] bytes = new byte[30];                                                                     final byte[] bytes = new byte[30];                                                                  
+assertEquals(0, r.read(bytes, 0, 0));                                                                  assertEquals(0, r.read(bytes, 0, 0));                                                               
+} finally {                                                                                          |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

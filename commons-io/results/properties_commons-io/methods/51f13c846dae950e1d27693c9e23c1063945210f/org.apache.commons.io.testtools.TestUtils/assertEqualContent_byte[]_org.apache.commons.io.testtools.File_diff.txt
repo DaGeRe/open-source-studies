@@ -1,0 +1,17 @@
+public static void assertEqualContent(final byte[] b0, final File file) throws IOException {           public static void assertEqualContent(final byte[] b0, final File file) throws IOException {        
+final InputStream is = new java.io.FileInputStream(file);                                            |                                                                                                     
+int count = 0, numRead = 0;                                                                            int count = 0, numRead = 0;                                                                         
+final byte[] b1 = new byte[b0.length];                                                                 final byte[] b1 = new byte[b0.length];                                                              
+try {                                                                                                | try (InputStream is = new FileInputStream(file)) {                                                  
+while (count &lt; b0.length && numRead &gt;= 0) {                                                      while (count &lt; b0.length && numRead &gt;= 0) {                                                   
+numRead = is.read(b1, count, b0.length);                                                               numRead = is.read(b1, count, b0.length);                                                            
+count += numRead;                                                                                      count += numRead;                                                                                   
+}                                                                                                      }                                                                                                   
+assertEquals("Different number of bytes: ", b0.length, count);                                         assertEquals("Different number of bytes: ", b0.length, count);                                      
+for (int i = 0; i &lt; count; i++) {                                                                   for (int i = 0; i &lt; count; i++) {                                                                
+assertEquals("byte " + i + " differs", b0[i], b1[i]);                                                  assertEquals("byte " + i + " differs", b0[i], b1[i]);                                               
+}                                                                                                      }                                                                                                   
+} finally {                                                                                          |                                                                                                     
+is.close();                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,9 @@
+                                                                                                     | @Override                                                                                           
+@Before                                                                                                @Before                                                                                             
+public void setup() throws IOException {                                                               public void setup() throws IOException {                                                            
+original = new MoreComplexObject();                                                                    original = new MoreComplexObject();                                                                 
+final ByteArrayOutputStream bos = willClose(new ByteArrayOutputStream());                              final ByteArrayOutputStream bos = willClose(new ByteArrayOutputStream());                           
+final ObjectOutputStream oos = willClose(new ObjectOutputStream(bos));                                 final ObjectOutputStream oos = willClose(new ObjectOutputStream(bos));                              
+oos.writeObject(original);                                                                             oos.writeObject(original);                                                                          
+inputStream = willClose(new ByteArrayInputStream(bos.toByteArray()));                                  inputStream = willClose(new ByteArrayInputStream(bos.toByteArray()));                               
+}                                                                                                      }                                                                                                   

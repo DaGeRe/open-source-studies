@@ -1,0 +1,7 @@
+@Deprecated
+public static void copy(final String input, final OutputStream output) throws IOException {
+    final StringReader in = new StringReader(input);
+    final OutputStreamWriter out = new OutputStreamWriter(output, Charset.defaultCharset());
+    copy(in, out);
+    out.flush();
+}

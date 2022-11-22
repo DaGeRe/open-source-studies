@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void testSorted() {                                                                             public void testSorted() {                                                                          
+for (FileSystem fs : FileSystem.values()) {                                                          | for (final FileSystem fs : FileSystem.values()) {                                                   
+char[] chars = fs.getIllegalFileNameChars();                                                         | final char[] chars = fs.getIllegalFileNameChars();                                                  
+for (int i = 0; i &lt; chars.length - 1; i++) {                                                        for (int i = 0; i &lt; chars.length - 1; i++) {                                                     
+Assert.assertTrue(fs.name(), chars[i] &lt; chars[i + 1]);                                              Assert.assertTrue(fs.name(), chars[i] &lt; chars[i + 1]);                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

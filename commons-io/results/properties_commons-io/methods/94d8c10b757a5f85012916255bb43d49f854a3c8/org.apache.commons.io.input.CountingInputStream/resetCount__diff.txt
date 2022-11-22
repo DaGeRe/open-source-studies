@@ -1,0 +1,7 @@
+public synchronized int resetCount() {                                                               | public int resetCount() {                                                                           
+long result = resetByteCount();                                                                        long result = resetByteCount();                                                                     
+if (result &gt; Integer.MAX_VALUE) {                                                                   if (result &gt; Integer.MAX_VALUE) {                                                                
+throw new ArithmeticException("The byte count " + result + " is too large to be converted to an int"   throw new ArithmeticException("The byte count " + result + " is too large to be converted to an int"
+}                                                                                                      }                                                                                                   
+return (int) result;                                                                                   return (int) result;                                                                                
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+@Test
+public void nullString() throws Exception {
+    final ProxyWriter proxy = new ProxyWriter(new NullWriter());
+    try {
+        proxy.write((String) null);
+    } catch (final Exception e) {
+        fail("Writing null String threw " + e);
+    }
+    try {
+        proxy.write((String) null, 0, 0);
+    } catch (final Exception e) {
+        fail("Writing null String threw " + e);
+    }
+    proxy.close();
+}

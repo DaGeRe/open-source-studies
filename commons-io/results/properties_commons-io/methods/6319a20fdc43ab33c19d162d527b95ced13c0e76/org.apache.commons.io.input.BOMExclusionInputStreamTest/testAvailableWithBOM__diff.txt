@@ -1,0 +1,5 @@
+public void testAvailableWithBOM() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C', 'D' };
+    InputStream in = new BOMExclusionInputStream(createDataStream(data, true));
+    assertEquals(7, in.available());
+}

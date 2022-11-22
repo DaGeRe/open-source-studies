@@ -1,0 +1,13 @@
+private int getNewLineMatchByteCount(final byte[] data, final int i) {
+    for (final byte[] newLineSequence : newLineSequences) {
+        boolean match = true;
+        for (int j = newLineSequence.length - 1; j >= 0; j--) {
+            final int k = i + j - (newLineSequence.length - 1);
+            match &= k >= 0 && data[k] == newLineSequence[j];
+        }
+        if (match) {
+            return newLineSequence.length;
+        }
+    }
+    return 0;
+}

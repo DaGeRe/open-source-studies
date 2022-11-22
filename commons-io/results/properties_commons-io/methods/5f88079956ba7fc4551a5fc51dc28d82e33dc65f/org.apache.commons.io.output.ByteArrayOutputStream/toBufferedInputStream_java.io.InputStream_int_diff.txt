@@ -1,0 +1,6 @@
+public static InputStream toBufferedInputStream(final InputStream input, int size) throws IOExceptio | public static InputStream toBufferedInputStream(final InputStream input, final int size) throws IOEx
+@SuppressWarnings("resource")                                                                          @SuppressWarnings("resource")                                                                       
+final ByteArrayOutputStream output = new ByteArrayOutputStream(size);                                  final ByteArrayOutputStream output = new ByteArrayOutputStream(size);                               
+output.write(input);                                                                                   output.write(input);                                                                                
+return output.toInputStream();                                                                         return output.toInputStream();                                                                      
+}                                                                                                      }                                                                                                   

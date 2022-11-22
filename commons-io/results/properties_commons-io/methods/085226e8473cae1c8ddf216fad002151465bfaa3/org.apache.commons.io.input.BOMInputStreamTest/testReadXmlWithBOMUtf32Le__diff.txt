@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReadXmlWithBOMUtf32Le() throws Exception {                                             public void testReadXmlWithBOMUtf32Le() throws Exception {                                          
+Assume.assumeTrue("JVM and SAX need to support UTF_32LE for this", jvmAndSaxBothSupportCharset("UTF_   Assume.assumeTrue("JVM and SAX need to support UTF_32LE for this", jvmAndSaxBothSupportCharset("UTF_
+final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-32LE\"?&gt;&lt;X/&gt;".getBytes("UTF_32   final byte[] data = "&lt;?xml version=\"1.0\" encoding=\"UTF-32LE\"?&gt;&lt;X/&gt;".getBytes("UTF_32
+parseXml(new BOMInputStream(createUtf32LeDataStream(data, true), ByteOrderMark.UTF_32LE));           | try (BOMInputStream in = new BOMInputStream(createUtf32LeDataStream(data, true), ByteOrderMark.UTF_3
+parseXml(new XmlStreamReader(createUtf32LeDataStream(data, true)));                                  | parseXml(in);                                                                                       
+}                                                                                                      }                                                                                                   
+                                                                                                     | try (XmlStreamReader in = new XmlStreamReader(createUtf32LeDataStream(data, true))) {               
+                                                                                                     | parseXml(in);                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

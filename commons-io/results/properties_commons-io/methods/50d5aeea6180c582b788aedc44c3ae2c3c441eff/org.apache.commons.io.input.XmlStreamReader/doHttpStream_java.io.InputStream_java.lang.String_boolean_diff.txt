@@ -1,0 +1,11 @@
+private void doHttpStream(InputStream is, String httpContentType, boolean lenient) throws IOExceptio   private void doHttpStream(InputStream is, String httpContentType, boolean lenient) throws IOExceptio
+BOMInputStream bom = createBomStream(new BufferedInputStream(is, BUFFER_SIZE));                      | BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);     
+BOMInputStream pis = createXmlStream(bom);                                                           | BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                
+String cTMime = getContentTypeMime(httpContentType);                                                   String cTMime = getContentTypeMime(httpContentType);                                                
+String cTEnc = getContentTypeEncoding(httpContentType);                                                String cTEnc = getContentTypeEncoding(httpContentType);                                             
+String bomEnc = (bom.hasBOM() ? bom.getBOM().getCharsetName() : null);                                 String bomEnc = (bom.hasBOM() ? bom.getBOM().getCharsetName() : null);                              
+String xmlGuessEnc = (pis.hasBOM() ? pis.getBOM().getCharsetName() : null);                            String xmlGuessEnc = (pis.hasBOM() ? pis.getBOM().getCharsetName() : null);                         
+String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                        String xmlEnc = getXmlProlog(pis, xmlGuessEnc);                                                     
+String encoding = calculateHttpEncoding(cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc, pis, lenient);   | this.encoding = calculateHttpEncoding(cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc, pis, lenient);    
+prepareReader(pis, encoding);                                                                        | this.reader = new InputStreamReader(is, encoding);                                                  
+}                                                                                                      }                                                                                                   

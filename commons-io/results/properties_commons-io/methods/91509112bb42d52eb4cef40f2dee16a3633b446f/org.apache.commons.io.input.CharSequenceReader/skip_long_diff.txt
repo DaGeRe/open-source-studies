@@ -1,0 +1,13 @@
+                                                                                                     | @Override                                                                                           
+public long skip(long n) {                                                                             public long skip(long n) {                                                                          
+if (n &lt; 0) {                                                                                        if (n &lt; 0) {                                                                                     
+throw new IllegalArgumentException("Number of characters to skip is less than zero: " + n);            throw new IllegalArgumentException("Number of characters to skip is less than zero: " + n);         
+}                                                                                                      }                                                                                                   
+if (idx &gt;= charSequence.length()) {                                                                 if (idx &gt;= charSequence.length()) {                                                              
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+int dest = (int) Math.min(charSequence.length(), (idx + n));                                           int dest = (int) Math.min(charSequence.length(), (idx + n));                                        
+int count = dest - idx;                                                                                int count = dest - idx;                                                                             
+idx = dest;                                                                                            idx = dest;                                                                                         
+return count;                                                                                          return count;                                                                                       
+}                                                                                                      }                                                                                                   

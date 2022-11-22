@@ -1,0 +1,17 @@
+protected void _testRawNoBomValid(String encoding) throws Exception {
+    InputStream is = getXmlStream("no-bom", XML1, encoding, encoding);
+    XmlStreamReader xmlReader = new XmlStreamReader(is, false);
+    assertEquals(xmlReader.getEncoding(), "UTF-8");
+    is = getXmlStream("no-bom", XML2, encoding, encoding);
+    xmlReader = new XmlStreamReader(is);
+    assertEquals(xmlReader.getEncoding(), "UTF-8");
+    is = getXmlStream("no-bom", XML3, encoding, encoding);
+    xmlReader = new XmlStreamReader(is);
+    assertEquals(xmlReader.getEncoding(), encoding);
+    is = getXmlStream("no-bom", XML4, encoding, encoding);
+    xmlReader = new XmlStreamReader(is);
+    assertEquals(xmlReader.getEncoding(), encoding);
+    is = getXmlStream("no-bom", XML5, encoding, encoding);
+    xmlReader = new XmlStreamReader(is);
+    assertEquals(xmlReader.getEncoding(), encoding);
+}

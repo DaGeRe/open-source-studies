@@ -1,0 +1,7 @@
+public static void forceMkdirParent(final File file) throws IOException {
+    final File parent = file.getParentFile();
+    if (parent == null) {
+        return;
+    }
+    forceMkdir(parent);
+}

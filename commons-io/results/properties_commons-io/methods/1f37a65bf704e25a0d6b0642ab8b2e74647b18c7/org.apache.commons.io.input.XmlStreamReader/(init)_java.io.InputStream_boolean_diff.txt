@@ -1,0 +1,12 @@
+public XmlStreamReader(InputStream is, boolean lenient) throws IOException {
+    defaultEncoding = staticDefaultEncoding;
+    try {
+        doRawStream(is, lenient);
+    } catch (XmlStreamReaderException ex) {
+        if (!lenient) {
+            throw ex;
+        } else {
+            doLenientDetection(null, is, ex);
+        }
+    }
+}

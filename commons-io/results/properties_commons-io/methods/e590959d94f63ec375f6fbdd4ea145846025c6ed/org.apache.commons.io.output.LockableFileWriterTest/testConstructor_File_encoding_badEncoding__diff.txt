@@ -1,0 +1,14 @@
+public void testConstructor_File_encoding_badEncoding() throws IOException {
+    Writer writer = null;
+    try {
+        writer = new LockableFileWriter(file, "BAD-ENCODE");
+        fail();
+    } catch (IOException ex) {
+        assertEquals(false, file.exists());
+        assertEquals(false, lockFile.exists());
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+    assertEquals(false, file.exists());
+    assertEquals(false, lockFile.exists());
+}

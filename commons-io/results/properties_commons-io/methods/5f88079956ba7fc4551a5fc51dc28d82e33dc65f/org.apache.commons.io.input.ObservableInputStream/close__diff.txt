@@ -1,0 +1,14 @@
+@Override                                                                                              @Override                                                                                           
+public void close() throws IOException {                                                               public void close() throws IOException {                                                            
+IOException ioe = null;                                                                                IOException ioe = null;                                                                             
+try {                                                                                                  try {                                                                                               
+super.close();                                                                                         super.close();                                                                                      
+} catch (IOException e) {                                                                            | } catch (final IOException e) {                                                                     
+ioe = e;                                                                                               ioe = e;                                                                                            
+}                                                                                                      }                                                                                                   
+if (ioe == null) {                                                                                     if (ioe == null) {                                                                                  
+noteClosed();                                                                                          noteClosed();                                                                                       
+} else {                                                                                               } else {                                                                                            
+noteError(ioe);                                                                                        noteError(ioe);                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

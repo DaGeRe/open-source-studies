@@ -1,0 +1,15 @@
+public static void writeLines(Collection&lt;?&gt; lines, String lineEnding, OutputStream output) thr   public static void writeLines(Collection&lt;?&gt; lines, String lineEnding, OutputStream output) thr
+if (lines == null) {                                                                                   if (lines == null) {                                                                                
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+if (lineEnding == null) {                                                                              if (lineEnding == null) {                                                                           
+lineEnding = LINE_SEPARATOR;                                                                           lineEnding = LINE_SEPARATOR;                                                                        
+}                                                                                                      }                                                                                                   
+for (Iterator&lt;?&gt; it = lines.iterator(); it.hasNext(); ) {                                      | for (Object line : lines) {                                                                         
+Object line = it.next();                                                                             |                                                                                                     
+if (line != null) {                                                                                    if (line != null) {                                                                                 
+output.write(line.toString().getBytes());                                                              output.write(line.toString().getBytes());                                                           
+}                                                                                                      }                                                                                                   
+output.write(lineEnding.getBytes());                                                                   output.write(lineEnding.getBytes());                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

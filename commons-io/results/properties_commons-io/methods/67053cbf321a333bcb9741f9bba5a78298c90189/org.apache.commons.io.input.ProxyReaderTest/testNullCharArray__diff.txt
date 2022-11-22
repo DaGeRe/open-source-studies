@@ -1,0 +1,13 @@
+public void testNullCharArray() {
+    ProxyReader proxy = new ProxyReaderImpl(new CustomNullReader(0));
+    try {
+        proxy.read((char[]) null);
+    } catch (Exception e) {
+        fail("Writing null String threw " + e);
+    }
+    try {
+        proxy.read((char[]) null, 0, 0);
+    } catch (Exception e) {
+        fail("Writing null String threw " + e);
+    }
+}

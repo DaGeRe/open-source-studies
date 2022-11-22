@@ -1,0 +1,6 @@
+protected void thresholdReached() throws IOException {
+    FileOutputStream fos = new FileOutputStream(outputFile);
+    memoryOutputStream.writeTo(fos);
+    currentOutputStream = fos;
+    memoryOutputStream = null;
+}

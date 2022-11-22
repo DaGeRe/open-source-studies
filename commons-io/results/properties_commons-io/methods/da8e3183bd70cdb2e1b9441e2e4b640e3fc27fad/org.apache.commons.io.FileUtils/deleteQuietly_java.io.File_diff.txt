@@ -1,0 +1,16 @@
+public static boolean deleteQuietly(File file) {                                                       public static boolean deleteQuietly(File file) {                                                    
+if (file == null) {                                                                                    if (file == null) {                                                                                 
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+cleanDirectory(file);                                                                                  cleanDirectory(file);                                                                               
+}                                                                                                      }                                                                                                   
+} catch (Throwable t) {                                                                              | } catch (Exception e) {                                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+return file.delete();                                                                                  return file.delete();                                                                               
+} catch (Throwable t) {                                                                              | } catch (Exception e) {                                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

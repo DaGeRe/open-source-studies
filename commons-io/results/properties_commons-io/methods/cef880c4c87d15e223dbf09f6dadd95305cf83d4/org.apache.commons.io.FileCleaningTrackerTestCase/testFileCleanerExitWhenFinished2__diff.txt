@@ -1,0 +1,27 @@
+public void testFileCleanerExitWhenFinished2() throws Exception {
+    String path = testFile.getPath();
+    assertEquals(false, testFile.exists());
+    RandomAccessFile r = new RandomAccessFile(testFile, "rw");
+    assertEquals(true, testFile.exists());
+    assertEquals(0, theInstance.getTrackCount());
+    theInstance.track(path, r);
+    assertEquals(1, theInstance.getTrackCount());
+    assertEquals(false, theInstance.exitWhenFinished);
+    assertEquals(true, theInstance.reaper.isAlive());
+    r.close();
+    testFile = null;
+    r = null;
+    waitUntilTrackCount();
+    pauseForDeleteToComplete(new File(path));
+    assertEquals(0, theInstance.getTrackCount());
+    assertEquals(showFailures(), false, new File(path).exists());
+    assertEquals(false, theInstance.exitWhenFinished);
+    assertEquals(true, theInstance.reaper.isAlive());
+    assertEquals(false, theInstance.exitWhenFinished);
+    theInstance.exitWhenFinished();
+    for (int i = 0; i < 20 && theInstance.reaper.isAlive(); i++) {
+        Thread.sleep(500L);
+    }
+    assertEquals(true, theInstance.exitWhenFinished);
+    assertEquals(false, theInstance.reaper.isAlive());
+}

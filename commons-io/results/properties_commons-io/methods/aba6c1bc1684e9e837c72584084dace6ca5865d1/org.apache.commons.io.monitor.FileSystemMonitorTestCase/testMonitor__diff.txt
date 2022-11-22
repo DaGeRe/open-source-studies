@@ -1,0 +1,23 @@
+public void testMonitor() {                                                                            public void testMonitor() {                                                                         
+try {                                                                                                  try {                                                                                               
+long interval = 100;                                                                                   long interval = 100;                                                                                
+FilesystemMonitor monitor = new FilesystemMonitor(interval, observer);                                 FilesystemMonitor monitor = new FilesystemMonitor(interval, observer);                              
+monitor.start();                                                                                       monitor.start();                                                                                    
+checkCollectionsEmpty("A");                                                                            checkCollectionsEmpty("A");                                                                         
+File file1 = touch(new File(testDir, "file1.java"));                                                   File file1 = touch(new File(testDir, "file1.java"));                                                
+checkFile("Create", file1, interval, listener.getCreatedFiles());                                    | checkFile("Create", file1, listener.getCreatedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+checkCollectionsEmpty("B");                                                                            checkCollectionsEmpty("B");                                                                         
+file1 = touch(file1);                                                                                  file1 = touch(file1);                                                                               
+checkFile("Update", file1, interval, listener.getChangedFiles());                                    | checkFile("Update", file1, listener.getChangedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+checkCollectionsEmpty("C");                                                                            checkCollectionsEmpty("C");                                                                         
+file1.delete();                                                                                        file1.delete();                                                                                     
+checkFile("Delete", file1, interval, listener.getDeletedFiles());                                    | checkFile("Delete", file1, listener.getDeletedFiles());                                             
+listener.clear();                                                                                      listener.clear();                                                                                   
+monitor.stop();                                                                                        monitor.stop();                                                                                     
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+fail("Threw " + e);                                                                                    fail("Threw " + e);                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

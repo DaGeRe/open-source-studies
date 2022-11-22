@@ -1,0 +1,3 @@
+private static IOFileFilter setUpEffectiveDirFilter(final IOFileFilter dirFilter) {
+    return dirFilter == null ? FalseFileFilter.INSTANCE : FileFilterUtils.and(dirFilter, DirectoryFileFilter.INSTANCE);
+}

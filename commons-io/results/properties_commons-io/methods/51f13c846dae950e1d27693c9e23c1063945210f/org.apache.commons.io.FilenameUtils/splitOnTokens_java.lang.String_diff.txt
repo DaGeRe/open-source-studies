@@ -1,0 +1,29 @@
+static String[] splitOnTokens(final String text) {                                                     static String[] splitOnTokens(final String text) {                                                  
+if (text.indexOf('?') == NOT_FOUND && text.indexOf('*') == NOT_FOUND) {                                if (text.indexOf('?') == NOT_FOUND && text.indexOf('*') == NOT_FOUND) {                             
+return new String[] { text };                                                                          return new String[] { text };                                                                       
+}                                                                                                      }                                                                                                   
+final char[] array = text.toCharArray();                                                               final char[] array = text.toCharArray();                                                            
+final ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();                                  | final ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();                                       
+final StringBuilder buffer = new StringBuilder();                                                      final StringBuilder buffer = new StringBuilder();                                                   
+char prevChar = 0;                                                                                     char prevChar = 0;                                                                                  
+for (final char ch : array) {                                                                          for (final char ch : array) {                                                                       
+if (ch == '?' || ch == '*') {                                                                          if (ch == '?' || ch == '*') {                                                                       
+if (buffer.length() != 0) {                                                                            if (buffer.length() != 0) {                                                                         
+list.add(buffer.toString());                                                                           list.add(buffer.toString());                                                                        
+buffer.setLength(0);                                                                                   buffer.setLength(0);                                                                                
+}                                                                                                      }                                                                                                   
+if (ch == '?') {                                                                                       if (ch == '?') {                                                                                    
+list.add("?");                                                                                         list.add("?");                                                                                      
+} else if (prevChar != '*') {                                                                          } else if (prevChar != '*') {                                                                       
+list.add("*");                                                                                         list.add("*");                                                                                      
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+buffer.append(ch);                                                                                     buffer.append(ch);                                                                                  
+}                                                                                                      }                                                                                                   
+prevChar = ch;                                                                                         prevChar = ch;                                                                                      
+}                                                                                                      }                                                                                                   
+if (buffer.length() != 0) {                                                                            if (buffer.length() != 0) {                                                                         
+list.add(buffer.toString());                                                                           list.add(buffer.toString());                                                                        
+}                                                                                                      }                                                                                                   
+return list.toArray(new String[list.size()]);                                                          return list.toArray(new String[list.size()]);                                                       
+}                                                                                                      }                                                                                                   

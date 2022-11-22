@@ -1,0 +1,13 @@
+@Test(expected = UnsupportedEncodingException.class)
+public void exceptions_in_append_charSequence_offset() throws IOException {
+    OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {
+
+        @Override
+        public Writer append(CharSequence csq, int start, int end) throws IOException {
+            throw new UnsupportedEncodingException("Bah");
+        }
+    };
+    try (ProxyWriter proxy = new ProxyWriter(osw)) {
+        proxy.append("ABCE", 1, 2);
+    }
+}

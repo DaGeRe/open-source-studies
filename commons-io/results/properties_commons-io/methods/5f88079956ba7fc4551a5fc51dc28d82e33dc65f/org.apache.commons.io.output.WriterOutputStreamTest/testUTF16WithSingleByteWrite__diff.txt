@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testUTF16WithSingleByteWrite() throws IOException {                                        public void testUTF16WithSingleByteWrite() throws IOException {                                     
+try {                                                                                                  try {                                                                                               
+testWithSingleByteWrite(TEST_STRING, "UTF-16");                                                        testWithSingleByteWrite(TEST_STRING, "UTF-16");                                                     
+} catch (UnsupportedOperationException e) {                                                          | } catch (final UnsupportedOperationException e) {                                                   
+if (!System.getProperty("java.vendor").contains("IBM")) {                                              if (!System.getProperty("java.vendor").contains("IBM")) {                                           
+fail("This test should only throw UOE on IBM JDKs with broken UTF-16");                                fail("This test should only throw UOE on IBM JDKs with broken UTF-16");                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

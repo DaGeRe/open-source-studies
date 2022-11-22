@@ -1,0 +1,31 @@
+public void testMoveFile_Errors() throws Exception {
+    try {
+        FileUtils.moveFile(null, new File("foo"));
+        fail("Expected IllegalArgumentException when source is null");
+    } catch (IllegalArgumentException e) {
+    }
+    try {
+        FileUtils.moveFile(new File("foo"), null);
+        fail("Expected IllegalArgumentException when destination is null");
+    } catch (IllegalArgumentException e) {
+    }
+    try {
+        FileUtils.moveFile(new File("nonexistant"), new File("foo"));
+        fail("Expected FileNotFoundException for source");
+    } catch (FileNotFoundException e) {
+    }
+    try {
+        FileUtils.moveFile(getTestDirectory(), new File("foo"));
+        fail("Expected IOException when source is a directory");
+    } catch (IOException e) {
+    }
+    File testSourceFile = new File(getTestDirectory(), "testMoveFileSource");
+    File testDestFile = new File(getTestDirectory(), "testMoveFileSource");
+    createFile(testSourceFile, 0);
+    createFile(testDestFile, 0);
+    try {
+        FileUtils.moveFile(testSourceFile, testDestFile);
+        fail("Expected IOException when dest already exists");
+    } catch (IOException e) {
+    }
+}

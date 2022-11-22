@@ -1,0 +1,8 @@
+private static void failIfNullBytePresent(String path) {                                             | private static void failIfNullBytePresent(final String path) {                                      
+int len = path.length();                                                                             | final int len = path.length();                                                                      
+for (int i = 0; i &lt; len; i++) {                                                                     for (int i = 0; i &lt; len; i++) {                                                                  
+if (path.charAt(i) == 0) {                                                                             if (path.charAt(i) == 0) {                                                                          
+throw new IllegalArgumentException("Null byte present in file/path name. There are no " + "known leg   throw new IllegalArgumentException("Null byte present in file/path name. There are no " + "known leg
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

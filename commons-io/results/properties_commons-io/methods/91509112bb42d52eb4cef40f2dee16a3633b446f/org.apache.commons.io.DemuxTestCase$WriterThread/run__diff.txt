@@ -1,0 +1,12 @@
+public void run() {
+    m_demux.bindStream(m_output);
+    for (int i = 0; i < m_data.length; i++) {
+        try {
+            m_demux.write(m_data[i]);
+            int sleepTime = Math.abs(c_random.nextInt() % 10);
+            Thread.sleep(sleepTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,22 @@
+public void testMagicNumberFileFilterString() throws Exception {
+    byte[] classFileMagicNumber = new byte[] { (byte) 0xCA, (byte) 0xFE, (byte) 0xBA, (byte) 0xBE };
+    String xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\">\n" + "<element>text</element>";
+    String xmlMagicNumber = "<?xml version=\"1.0\"";
+    File classFileA = new File(getTestDirectory(), "A.class");
+    File xmlFileB = new File(getTestDirectory(), "B.xml");
+    File dir = new File(getTestDirectory(), "D");
+    dir.mkdirs();
+    OutputStream classFileAStream = FileUtils.openOutputStream(classFileA);
+    IOUtils.write(classFileMagicNumber, classFileAStream);
+    generateTestData(classFileAStream, 32);
+    classFileAStream.close();
+    FileUtils.write(xmlFileB, xmlFileContent);
+    IOFileFilter filter = new MagicNumberFileFilter(xmlMagicNumber);
+    assertFiltering(filter, classFileA, false);
+    assertFiltering(filter, xmlFileB, true);
+    assertFiltering(filter, dir, false);
+    filter = FileFilterUtils.magicNumberFileFilter(xmlMagicNumber);
+    assertFiltering(filter, classFileA, false);
+    assertFiltering(filter, xmlFileB, true);
+    assertFiltering(filter, dir, false);
+}

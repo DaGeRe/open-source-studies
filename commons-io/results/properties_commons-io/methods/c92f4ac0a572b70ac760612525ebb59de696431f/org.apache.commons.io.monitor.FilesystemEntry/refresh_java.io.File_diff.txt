@@ -1,0 +1,13 @@
+public void refresh(File file) {                                                                     | public boolean refresh(File file) {                                                                 
+                                                                                                     | boolean origExists = exists;                                                                        
+                                                                                                     | long origLastModified = lastModified;                                                               
+                                                                                                     | boolean origDirectory = directory;                                                                  
+                                                                                                     | long origLength = length;                                                                           
+name = file.getName();                                                                                 name = file.getName();                                                                              
+exists = file.exists();                                                                                exists = file.exists();                                                                             
+if (exists) {                                                                                        | directory = (exists ? file.isDirectory() : false);                                                  
+directory = file.isDirectory();                                                                      | lastModified = (exists ? file.lastModified() : 0);                                                  
+lastModified = file.lastModified();                                                                  | length = (exists && !directory ? file.length() : 0);                                                
+                                                                                                     | return (exists != origExists || lastModified != origLastModified || directory != origDirectory || le
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

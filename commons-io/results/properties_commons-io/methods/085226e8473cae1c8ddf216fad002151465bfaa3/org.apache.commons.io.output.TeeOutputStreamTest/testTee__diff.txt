@@ -1,0 +1,33 @@
+@Test                                                                                                  @Test                                                                                               
+public void testTee() throws IOException {                                                             public void testTee() throws IOException {                                                          
+final ByteArrayOutputStream baos1 = new ByteArrayOutputStream();                                       final ByteArrayOutputStream baos1 = new ByteArrayOutputStream();                                    
+final ByteArrayOutputStream baos2 = new ByteArrayOutputStream();                                       final ByteArrayOutputStream baos2 = new ByteArrayOutputStream();                                    
+final ByteArrayOutputStream expected = new ByteArrayOutputStream();                                    final ByteArrayOutputStream expected = new ByteArrayOutputStream();                                 
+final TeeOutputStream tos = new TeeOutputStream(baos1, baos2);                                       | try (final TeeOutputStream tos = new TeeOutputStream(baos1, baos2)) {                               
+for (int i = 0; i &lt; 20; i++) {                                                                      for (int i = 0; i &lt; 20; i++) {                                                                   
+tos.write(i);                                                                                          tos.write(i);                                                                                       
+expected.write(i);                                                                                     expected.write(i);                                                                                  
+}                                                                                                      }                                                                                                   
+assertByteArrayEquals("TeeOutputStream.write(int)", expected.toByteArray(), baos1.toByteArray());      assertByteArrayEquals("TeeOutputStream.write(int)", expected.toByteArray(), baos1.toByteArray());   
+assertByteArrayEquals("TeeOutputStream.write(int)", expected.toByteArray(), baos2.toByteArray());      assertByteArrayEquals("TeeOutputStream.write(int)", expected.toByteArray(), baos2.toByteArray());   
+final byte[] array = new byte[10];                                                                     final byte[] array = new byte[10];                                                                  
+for (int i = 20; i &lt; 30; i++) {                                                                     for (int i = 20; i &lt; 30; i++) {                                                                  
+array[i - 20] = (byte) i;                                                                              array[i - 20] = (byte) i;                                                                           
+}                                                                                                      }                                                                                                   
+tos.write(array);                                                                                      tos.write(array);                                                                                   
+expected.write(array);                                                                                 expected.write(array);                                                                              
+assertByteArrayEquals("TeeOutputStream.write(byte[])", expected.toByteArray(), baos1.toByteArray());   assertByteArrayEquals("TeeOutputStream.write(byte[])", expected.toByteArray(), baos1.toByteArray());
+assertByteArrayEquals("TeeOutputStream.write(byte[])", expected.toByteArray(), baos2.toByteArray());   assertByteArrayEquals("TeeOutputStream.write(byte[])", expected.toByteArray(), baos2.toByteArray());
+for (int i = 25; i &lt; 35; i++) {                                                                     for (int i = 25; i &lt; 35; i++) {                                                                  
+array[i - 25] = (byte) i;                                                                              array[i - 25] = (byte) i;                                                                           
+}                                                                                                      }                                                                                                   
+tos.write(array, 5, 5);                                                                                tos.write(array, 5, 5);                                                                             
+expected.write(array, 5, 5);                                                                           expected.write(array, 5, 5);                                                                        
+assertByteArrayEquals("TeeOutputStream.write(byte[], int, int)", expected.toByteArray(), baos1.toByt   assertByteArrayEquals("TeeOutputStream.write(byte[], int, int)", expected.toByteArray(), baos1.toByt
+assertByteArrayEquals("TeeOutputStream.write(byte[], int, int)", expected.toByteArray(), baos2.toByt   assertByteArrayEquals("TeeOutputStream.write(byte[], int, int)", expected.toByteArray(), baos2.toByt
+expected.flush();                                                                                      expected.flush();                                                                                   
+expected.close();                                                                                      expected.close();                                                                                   
+tos.flush();                                                                                           tos.flush();                                                                                        
+tos.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

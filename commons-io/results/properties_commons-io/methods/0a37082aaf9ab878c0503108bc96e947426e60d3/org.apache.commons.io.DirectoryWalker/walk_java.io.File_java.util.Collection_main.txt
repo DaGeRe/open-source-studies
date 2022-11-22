@@ -1,0 +1,12 @@
+protected final void walk(File startDirectory, Collection<T> results) throws IOException {
+    if (startDirectory == null) {
+        throw new NullPointerException("Start Directory is null");
+    }
+    try {
+        handleStart(startDirectory, results);
+        walk(startDirectory, 0, results);
+        handleEnd(results);
+    } catch (CancelException cancel) {
+        handleCancelled(startDirectory, results, cancel);
+    }
+}

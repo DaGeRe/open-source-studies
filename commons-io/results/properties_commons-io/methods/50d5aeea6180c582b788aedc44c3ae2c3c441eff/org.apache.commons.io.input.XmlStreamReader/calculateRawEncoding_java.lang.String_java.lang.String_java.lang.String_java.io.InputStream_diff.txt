@@ -1,0 +1,31 @@
+private String calculateRawEncoding(String bomEnc, String xmlGuessEnc, String xmlEnc, InputStream is) throws IOException {
+    String encoding;
+    if (bomEnc == null) {
+        if (xmlGuessEnc == null || xmlEnc == null) {
+            encoding = (defaultEncoding == null) ? UTF_8 : defaultEncoding;
+        } else if (xmlEnc.equals(UTF_16) && (xmlGuessEnc.equals(UTF_16BE) || xmlGuessEnc.equals(UTF_16LE))) {
+            encoding = xmlGuessEnc;
+        } else {
+            encoding = xmlEnc;
+        }
+    } else if (bomEnc.equals(UTF_8)) {
+        if (xmlGuessEnc != null && !xmlGuessEnc.equals(UTF_8)) {
+            throw new XmlStreamReaderException(RAW_EX_1.format(new Object[] { bomEnc, xmlGuessEnc, xmlEnc }), bomEnc, xmlGuessEnc, xmlEnc);
+        }
+        if (xmlEnc != null && !xmlEnc.equals(UTF_8)) {
+            throw new XmlStreamReaderException(RAW_EX_1.format(new Object[] { bomEnc, xmlGuessEnc, xmlEnc }), bomEnc, xmlGuessEnc, xmlEnc);
+        }
+        encoding = UTF_8;
+    } else if (bomEnc.equals(UTF_16BE) || bomEnc.equals(UTF_16LE)) {
+        if (xmlGuessEnc != null && !xmlGuessEnc.equals(bomEnc)) {
+            throw new IOException(RAW_EX_1.format(new Object[] { bomEnc, xmlGuessEnc, xmlEnc }));
+        }
+        if (xmlEnc != null && !xmlEnc.equals(UTF_16) && !xmlEnc.equals(bomEnc)) {
+            throw new XmlStreamReaderException(RAW_EX_1.format(new Object[] { bomEnc, xmlGuessEnc, xmlEnc }), bomEnc, xmlGuessEnc, xmlEnc);
+        }
+        encoding = bomEnc;
+    } else {
+        throw new XmlStreamReaderException(RAW_EX_2.format(new Object[] { bomEnc, xmlGuessEnc, xmlEnc }), bomEnc, xmlGuessEnc, xmlEnc);
+    }
+    return encoding;
+}

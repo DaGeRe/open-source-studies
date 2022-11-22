@@ -1,0 +1,17 @@
+private boolean chmod(final File file, final int mode, final boolean recurse) throws InterruptedException {
+    final List<String> args = new ArrayList<>();
+    args.add("chmod");
+    if (recurse) {
+        args.add("-R");
+    }
+    args.add(Integer.toString(mode));
+    args.add(file.getAbsolutePath());
+    Process proc;
+    try {
+        proc = Runtime.getRuntime().exec(args.toArray(new String[args.size()]));
+    } catch (final IOException e) {
+        return false;
+    }
+    final int result = proc.waitFor();
+    return result == 0;
+}

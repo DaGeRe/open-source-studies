@@ -1,0 +1,4 @@
+@Test
+public void acceptCustomMatcher() throws Exception {
+    assertSerialization(willClose(new ValidatingObjectInputStream(testStream)).accept(ALWAYS_TRUE));
+}

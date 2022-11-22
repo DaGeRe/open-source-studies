@@ -1,0 +1,18 @@
+public static void copyDirectory(File srcDir, File destDir, boolean preserveFileDate) throws IOException {
+    if (srcDir == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (destDir == null) {
+        throw new NullPointerException("Destination must not be null");
+    }
+    if (srcDir.exists() == false) {
+        throw new FileNotFoundException("Source '" + srcDir + "' does not exist");
+    }
+    if (srcDir.isDirectory() == false) {
+        throw new IOException("Source '" + srcDir + "' exists but is not a directory");
+    }
+    if (srcDir.getCanonicalPath().equals(destDir.getCanonicalPath())) {
+        throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");
+    }
+    doCopyDirectory(srcDir, destDir, preserveFileDate);
+}

@@ -1,0 +1,6 @@
+public void testEquals_fullControl() {
+    assertEquals(false, FilenameUtils.equals("file.txt", "FILE.TXT", true, IOCase.SENSITIVE));
+    assertEquals(true, FilenameUtils.equals("file.txt", "FILE.TXT", true, IOCase.INSENSITIVE));
+    assertEquals(WINDOWS, FilenameUtils.equals("file.txt", "FILE.TXT", true, IOCase.SYSTEM));
+    assertEquals(false, FilenameUtils.equals("file.txt", "FILE.TXT", true, null));
+}

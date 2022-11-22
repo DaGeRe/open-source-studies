@@ -1,0 +1,22 @@
+@Override                                                                                              @Override                                                                                           
+public int read() throws IOException {                                                                 public int read() throws IOException {                                                              
+if (eofSeen) {                                                                                         if (eofSeen) {                                                                                      
+return eofGame();                                                                                      return eofGame();                                                                                   
+} else if (injectSlashN) {                                                                             } else if (injectSlashN) {                                                                          
+injectSlashN = false;                                                                                  injectSlashN = false;                                                                               
+return '\n';                                                                                           return '\n';                                                                                        
+} else {                                                                                               } else {                                                                                            
+boolean prevWasSlashR = slashRSeen;                                                                  | final boolean prevWasSlashR = slashRSeen;                                                           
+int target = readWithUpdate();                                                                       | final int target = readWithUpdate();                                                                
+if (eofSeen) {                                                                                         if (eofSeen) {                                                                                      
+return eofGame();                                                                                      return eofGame();                                                                                   
+}                                                                                                      }                                                                                                   
+if (target == '\n') {                                                                                  if (target == '\n') {                                                                               
+if (!prevWasSlashR) {                                                                                  if (!prevWasSlashR) {                                                                               
+injectSlashN = true;                                                                                   injectSlashN = true;                                                                                
+return '\r';                                                                                           return '\r';                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return target;                                                                                         return target;                                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

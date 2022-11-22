@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAsBufferedOutputStream() {                                                             public void testAsBufferedOutputStream() {                                                          
+OutputStream is = new OutputStream() {                                                               | final OutputStream is = new OutputStream() {                                                        
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(int b) throws IOException {                                                        | public void write(final int b) throws IOException {                                                 
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final BufferedOutputStream bis = IOUtils.buffer(is);                                                   final BufferedOutputStream bis = IOUtils.buffer(is);                                                
+assertNotSame(is, bis);                                                                                assertNotSame(is, bis);                                                                             
+assertSame(bis, IOUtils.buffer(bis));                                                                  assertSame(bis, IOUtils.buffer(bis));                                                               
+}                                                                                                      }                                                                                                   

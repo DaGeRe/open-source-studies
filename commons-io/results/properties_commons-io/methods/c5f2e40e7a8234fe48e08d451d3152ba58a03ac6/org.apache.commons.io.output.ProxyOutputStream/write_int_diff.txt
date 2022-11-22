@@ -1,0 +1,10 @@
+@Override
+public void write(final int idx) throws IOException {
+    try {
+        beforeWrite(1);
+        out.write(idx);
+        afterWrite(1);
+    } catch (final IOException e) {
+        handleIOException(e);
+    }
+}

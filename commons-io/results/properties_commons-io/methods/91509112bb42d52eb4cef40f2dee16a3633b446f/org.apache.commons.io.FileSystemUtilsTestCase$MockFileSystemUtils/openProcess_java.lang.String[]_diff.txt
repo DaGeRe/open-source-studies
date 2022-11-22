@@ -1,0 +1,30 @@
+Process openProcess(String[] params) {
+    if (cmd != null) {
+        assertEquals(cmd, params[params.length - 1]);
+    }
+    return new Process() {
+
+        public InputStream getErrorStream() {
+            return null;
+        }
+
+        public InputStream getInputStream() {
+            return new ByteArrayInputStream(bytes);
+        }
+
+        public OutputStream getOutputStream() {
+            return null;
+        }
+
+        public int waitFor() throws InterruptedException {
+            return exitCode;
+        }
+
+        public int exitValue() {
+            return exitCode;
+        }
+
+        public void destroy() {
+        }
+    };
+}

@@ -1,0 +1,14 @@
+public void run() {
+    m_demux.bindStream(m_input);
+    try {
+        int ch = m_demux.read();
+        while (-1 != ch) {
+            m_buffer.append((char) ch);
+            int sleepTime = Math.abs(c_random.nextInt() % 10);
+            Thread.sleep(sleepTime);
+            ch = m_demux.read();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

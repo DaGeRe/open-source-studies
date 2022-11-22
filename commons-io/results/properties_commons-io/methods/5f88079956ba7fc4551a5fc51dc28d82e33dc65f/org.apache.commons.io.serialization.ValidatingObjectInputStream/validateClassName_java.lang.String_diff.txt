@@ -1,0 +1,17 @@
+private void validateClassName(String name) throws InvalidClassException {                           | private void validateClassName(final String name) throws InvalidClassException {                    
+for (ClassNameMatcher m : rejectMatchers) {                                                          | for (final ClassNameMatcher m : rejectMatchers) {                                                   
+if (m.matches(name)) {                                                                                 if (m.matches(name)) {                                                                              
+invalidClassNameFound(name);                                                                           invalidClassNameFound(name);                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+boolean ok = false;                                                                                    boolean ok = false;                                                                                 
+for (ClassNameMatcher m : acceptMatchers) {                                                          | for (final ClassNameMatcher m : acceptMatchers) {                                                   
+if (m.matches(name)) {                                                                                 if (m.matches(name)) {                                                                              
+ok = true;                                                                                             ok = true;                                                                                          
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if (!ok) {                                                                                             if (!ok) {                                                                                          
+invalidClassNameFound(name);                                                                           invalidClassNameFound(name);                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

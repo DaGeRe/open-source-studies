@@ -1,0 +1,18 @@
+public static FileOutputStream openOutputStream(File file) throws IOException {                        public static FileOutputStream openOutputStream(File file) throws IOException {                     
+if (file.exists()) {                                                                                   if (file.exists()) {                                                                                
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+throw new IOException("File '" + file + "' exists but is a directory");                                throw new IOException("File '" + file + "' exists but is a directory");                             
+}                                                                                                      }                                                                                                   
+if (file.canWrite() == false) {                                                                        if (file.canWrite() == false) {                                                                     
+throw new IOException("File '" + file + "' cannot be written to");                                     throw new IOException("File '" + file + "' cannot be written to");                                  
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+File parent = file.getParentFile();                                                                    File parent = file.getParentFile();                                                                 
+if (parent.exists() == false) {                                                                      | if (parent != null && parent.exists() == false) {                                                   
+if (parent.mkdirs() == false) {                                                                        if (parent.mkdirs() == false) {                                                                     
+throw new IOException("File '" + file + "' could not be created");                                     throw new IOException("File '" + file + "' could not be created");                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return new FileOutputStream(file);                                                                     return new FileOutputStream(file);                                                                  
+}                                                                                                      }                                                                                                   

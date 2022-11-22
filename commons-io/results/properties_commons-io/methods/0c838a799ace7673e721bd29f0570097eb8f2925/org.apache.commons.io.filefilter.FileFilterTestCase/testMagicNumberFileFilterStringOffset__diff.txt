@@ -1,0 +1,31 @@
+@SuppressWarnings("deprecation")                                                                     |                                                                                                     
+@Test                                                                                                  @Test                                                                                               
+public void testMagicNumberFileFilterStringOffset() throws Exception {                                 public void testMagicNumberFileFilterStringOffset() throws Exception {                              
+final String tarMagicNumber = "ustar";                                                                 final String tarMagicNumber = "ustar";                                                              
+final long tarMagicNumberOffset = 257;                                                                 final long tarMagicNumberOffset = 257;                                                              
+final File tarFileA = new File(getTestDirectory(), "A.tar");                                           final File tarFileA = new File(getTestDirectory(), "A.tar");                                        
+final File randomFileB = new File(getTestDirectory(), "B.txt");                                        final File randomFileB = new File(getTestDirectory(), "B.txt");                                     
+final File dir = new File(getTestDirectory(), "D");                                                    final File dir = new File(getTestDirectory(), "D");                                                 
+dir.mkdirs();                                                                                          dir.mkdirs();                                                                                       
+final OutputStream tarFileAStream = FileUtils.openOutputStream(tarFileA);                              final OutputStream tarFileAStream = FileUtils.openOutputStream(tarFileA);                           
+TestUtils.generateTestData(tarFileAStream, tarMagicNumberOffset);                                      TestUtils.generateTestData(tarFileAStream, tarMagicNumberOffset);                                   
+IOUtils.write(tarMagicNumber, tarFileAStream, Charsets.UTF_8);                                       | IOUtils.write(tarMagicNumber, tarFileAStream, StandardCharsets.UTF_8);                              
+tarFileAStream.close();                                                                                tarFileAStream.close();                                                                             
+if (!randomFileB.getParentFile().exists()) {                                                           if (!randomFileB.getParentFile().exists()) {                                                        
+throw new IOException("Cannot create file " + randomFileB + " as the parent directory does not exist   throw new IOException("Cannot create file " + randomFileB + " as the parent directory does not exist
+}                                                                                                      }                                                                                                   
+final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(randomFileB));       final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(randomFileB));    
+try {                                                                                                  try {                                                                                               
+TestUtils.generateTestData(output, 2 * tarMagicNumberOffset);                                          TestUtils.generateTestData(output, 2 * tarMagicNumberOffset);                                       
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(output);                                                                          IOUtils.closeQuietly(output);                                                                       
+}                                                                                                      }                                                                                                   
+IOFileFilter filter = new MagicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);                 IOFileFilter filter = new MagicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);              
+assertFiltering(filter, tarFileA, true);                                                               assertFiltering(filter, tarFileA, true);                                                            
+assertFiltering(filter, randomFileB, false);                                                           assertFiltering(filter, randomFileB, false);                                                        
+assertFiltering(filter, dir, false);                                                                   assertFiltering(filter, dir, false);                                                                
+filter = FileFilterUtils.magicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);                  filter = FileFilterUtils.magicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);               
+assertFiltering(filter, tarFileA, true);                                                               assertFiltering(filter, tarFileA, true);                                                            
+assertFiltering(filter, randomFileB, false);                                                           assertFiltering(filter, randomFileB, false);                                                        
+assertFiltering(filter, dir, false);                                                                   assertFiltering(filter, dir, false);                                                                
+}                                                                                                      }                                                                                                   

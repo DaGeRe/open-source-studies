@@ -1,0 +1,22 @@
+protected InputStream getXmlStream(String bomType, String xmlType, String streamEnc, String prologEn   protected InputStream getXmlStream(String bomType, String xmlType, String streamEnc, String prologEn
+ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);                                          ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);                                       
+int[] bom = (int[]) BOMs.get(bomType);                                                               | int[] bom = BOMs.get(bomType);                                                                      
+if (bom == null) {                                                                                     if (bom == null) {                                                                                  
+bom = new int[0];                                                                                      bom = new int[0];                                                                                   
+}                                                                                                      }                                                                                                   
+MessageFormat xml = (MessageFormat) XMLs.get(xmlType);                                               | MessageFormat xml = XMLs.get(xmlType);                                                              
+for (int i = 0; i &lt; bom.length; i++) {                                                              for (int i = 0; i &lt; bom.length; i++) {                                                           
+baos.write(bom[i]);                                                                                    baos.write(bom[i]);                                                                                 
+}                                                                                                      }                                                                                                   
+Writer writer = new OutputStreamWriter(baos, streamEnc);                                               Writer writer = new OutputStreamWriter(baos, streamEnc);                                            
+String info = INFO.format(new Object[] { bomType, xmlType, prologEnc });                               String info = INFO.format(new Object[] { bomType, xmlType, prologEnc });                            
+String xmlDoc = xml.format(new Object[] { streamEnc, prologEnc, info });                               String xmlDoc = xml.format(new Object[] { streamEnc, prologEnc, info });                            
+writer.write(xmlDoc);                                                                                  writer.write(xmlDoc);                                                                               
+writer.write("&lt;da&gt;\n");                                                                          writer.write("&lt;da&gt;\n");                                                                       
+for (int i = 0; i &lt; 10000; i++) {                                                                   for (int i = 0; i &lt; 10000; i++) {                                                                
+writer.write("&lt;do/&gt;\n");                                                                         writer.write("&lt;do/&gt;\n");                                                                      
+}                                                                                                      }                                                                                                   
+writer.write("&lt;/da&gt;\n");                                                                         writer.write("&lt;/da&gt;\n");                                                                      
+writer.close();                                                                                        writer.close();                                                                                     
+return new ByteArrayInputStream(baos.toByteArray());                                                   return new ByteArrayInputStream(baos.toByteArray());                                                
+}                                                                                                      }                                                                                                   

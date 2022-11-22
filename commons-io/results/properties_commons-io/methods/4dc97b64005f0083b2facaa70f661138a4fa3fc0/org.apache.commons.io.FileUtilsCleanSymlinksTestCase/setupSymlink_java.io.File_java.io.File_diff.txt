@@ -1,0 +1,10 @@
+private void setupSymlink(final File res, final File link) throws Exception {
+    final List<String> args = new ArrayList<String>();
+    args.add("ln");
+    args.add("-s");
+    args.add(res.getAbsolutePath());
+    args.add(link.getAbsolutePath());
+    Process proc;
+    proc = Runtime.getRuntime().exec(args.toArray(new String[args.size()]));
+    proc.waitFor();
+}

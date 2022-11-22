@@ -1,0 +1,5 @@
+public static void copy(final Reader input, final OutputStream output, final Charset outputEncoding) throws IOException {
+    final OutputStreamWriter out = new OutputStreamWriter(output, Charsets.toCharset(outputEncoding));
+    copy(input, out);
+    out.flush();
+}

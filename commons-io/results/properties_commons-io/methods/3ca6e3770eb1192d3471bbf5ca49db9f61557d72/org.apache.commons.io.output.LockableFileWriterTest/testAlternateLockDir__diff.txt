@@ -1,0 +1,23 @@
+public void testAlternateLockDir() throws IOException {
+    LockableFileWriter lfw1 = null;
+    LockableFileWriter lfw2 = null;
+    try {
+        lfw1 = new LockableFileWriter(file, true, altLockDir.getAbsolutePath());
+        assertEquals(true, file.exists());
+        assertEquals(true, altLockFile.exists());
+        try {
+            lfw2 = new LockableFileWriter(file, true, altLockDir.getAbsolutePath());
+            fail("Somehow able to open a locked file. ");
+        } catch (IOException ioe) {
+            String msg = ioe.getMessage();
+            assertTrue("Exception message does not start correctly. ", msg.startsWith("Can't write file, lock "));
+            assertEquals(true, file.exists());
+            assertEquals(true, altLockFile.exists());
+        }
+    } finally {
+        IOUtils.closeQuietly(lfw1);
+        IOUtils.closeQuietly(lfw2);
+    }
+    assertEquals(true, file.exists());
+    assertEquals(false, altLockFile.exists());
+}

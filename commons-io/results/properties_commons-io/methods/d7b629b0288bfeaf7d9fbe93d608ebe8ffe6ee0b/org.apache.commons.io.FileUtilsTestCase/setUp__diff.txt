@@ -1,0 +1,10 @@
+@Override
+protected void setUp() throws Exception {
+    getTestDirectory().mkdirs();
+    createFile(testFile1, testFile1Size);
+    createFile(testFile2, testFile2Size);
+    FileUtils.deleteDirectory(getTestDirectory());
+    getTestDirectory().mkdirs();
+    createFile(testFile1, testFile1Size);
+    createFile(testFile2, testFile2Size);
+}

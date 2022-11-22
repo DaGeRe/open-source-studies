@@ -1,0 +1,9 @@
+public void initialize() throws Exception {                                                            public void initialize() throws Exception {                                                         
+rootEntry.refresh(rootEntry.getFile());                                                                rootEntry.refresh(rootEntry.getFile());                                                             
+File[] files = listFiles(rootEntry.getFile());                                                         File[] files = listFiles(rootEntry.getFile());                                                      
+FileEntry[] children = files.length &gt; 0 ? new FileEntry[files.length] : EMPTY_ENTRIES;            | FileEntry[] children = files.length &gt; 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENTRIES; 
+for (int i = 0; i &lt; files.length; i++) {                                                            for (int i = 0; i &lt; files.length; i++) {                                                         
+children[i] = createFileEntry(rootEntry, files[i]);                                                    children[i] = createFileEntry(rootEntry, files[i]);                                                 
+}                                                                                                      }                                                                                                   
+rootEntry.setChildren(children);                                                                       rootEntry.setChildren(children);                                                                    
+}                                                                                                      }                                                                                                   

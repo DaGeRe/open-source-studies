@@ -1,0 +1,8 @@
+public CompositeFileComparator(Comparator<File>... delegates) {
+    if (delegates == null) {
+        this.delegates = NO_COMPARATORS;
+    } else {
+        this.delegates = new Comparator[delegates.length];
+        System.arraycopy(delegates, 0, this.delegates, 0, delegates.length);
+    }
+}

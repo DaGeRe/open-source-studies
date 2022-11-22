@@ -1,0 +1,22 @@
+@Override                                                                                              @Override                                                                                           
+public boolean accept(final File file) {                                                               public boolean accept(final File file) {                                                            
+if (file != null && file.isFile() && file.canRead()) {                                                 if (file != null && file.isFile() && file.canRead()) {                                              
+RandomAccessFile randomAccessFile = null;                                                            |                                                                                                     
+try {                                                                                                  try {                                                                                               
+                                                                                                     | try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {                         
+final byte[] fileBytes = new byte[this.magicNumbers.length];                                           final byte[] fileBytes = new byte[this.magicNumbers.length];                                        
+randomAccessFile = new RandomAccessFile(file, "r");                                                  |                                                                                                     
+randomAccessFile.seek(byteOffset);                                                                     randomAccessFile.seek(byteOffset);                                                                  
+final int read = randomAccessFile.read(fileBytes);                                                     final int read = randomAccessFile.read(fileBytes);                                                  
+if (read != magicNumbers.length) {                                                                     if (read != magicNumbers.length) {                                                                  
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return Arrays.equals(this.magicNumbers, fileBytes);                                                    return Arrays.equals(this.magicNumbers, fileBytes);                                                 
+                                                                                                     | }                                                                                                   
+} catch (final IOException ioe) {                                                                      } catch (final IOException ioe) {                                                                   
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(randomAccessFile);                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

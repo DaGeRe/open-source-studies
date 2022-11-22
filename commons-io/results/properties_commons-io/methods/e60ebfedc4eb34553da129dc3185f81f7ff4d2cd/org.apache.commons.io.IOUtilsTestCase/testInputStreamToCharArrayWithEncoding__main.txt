@@ -1,0 +1,12 @@
+public void testInputStreamToCharArrayWithEncoding() throws Exception {
+    FileInputStream fin = new FileInputStream(m_testFile);
+    try {
+        char[] out = IOUtils.toCharArray(fin, "UTF-8");
+        assertNotNull(out);
+        assertEquals("Not all chars were read", 0, fin.available());
+        assertEquals("Wrong output size", FILE_SIZE, out.length);
+        assertEqualContent(out, m_testFile);
+    } finally {
+        fin.close();
+    }
+}

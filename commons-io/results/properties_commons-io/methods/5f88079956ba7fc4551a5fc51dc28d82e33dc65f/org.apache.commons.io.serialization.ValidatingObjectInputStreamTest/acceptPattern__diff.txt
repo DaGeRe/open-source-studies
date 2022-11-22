@@ -1,0 +1,4 @@
+@Test
+public void acceptPattern() throws Exception {
+    assertSerialization(willClose(new ValidatingObjectInputStream(testStream)).accept(Pattern.compile(".*MockSerializedClass.*")));
+}

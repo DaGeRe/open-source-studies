@@ -1,0 +1,19 @@
+public static void writeLines(Collection lines, String lineEnding, OutputStream output, String encoding) throws IOException {
+    if (encoding == null) {
+        writeLines(lines, lineEnding, output);
+    } else {
+        if (lines == null) {
+            return;
+        }
+        if (lineEnding == null) {
+            lineEnding = LINE_SEPARATOR;
+        }
+        for (Iterator it = lines.iterator(); it.hasNext(); ) {
+            Object line = it.next();
+            if (line != null) {
+                output.write(line.toString().getBytes(encoding));
+            }
+            output.write(lineEnding.getBytes(encoding));
+        }
+    }
+}

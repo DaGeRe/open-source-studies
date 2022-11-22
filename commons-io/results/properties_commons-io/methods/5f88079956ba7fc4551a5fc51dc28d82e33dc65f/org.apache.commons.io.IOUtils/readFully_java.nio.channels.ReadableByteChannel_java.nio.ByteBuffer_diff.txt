@@ -1,0 +1,7 @@
+public static void readFully(final ReadableByteChannel input, final ByteBuffer buffer) throws IOException {
+    final int expected = buffer.remaining();
+    final int actual = read(input, buffer);
+    if (actual != expected) {
+        throw new EOFException("Length to read: " + expected + " actual: " + actual);
+    }
+}

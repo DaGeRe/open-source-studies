@@ -1,0 +1,19 @@
+public static LineIterator lineIterator(final File file, final String encoding) throws IOException {   public static LineIterator lineIterator(final File file, final String encoding) throws IOException {
+InputStream in = null;                                                                                 InputStream in = null;                                                                              
+try {                                                                                                  try {                                                                                               
+in = openInputStream(file);                                                                            in = openInputStream(file);                                                                         
+return IOUtils.lineIterator(in, encoding);                                                             return IOUtils.lineIterator(in, encoding);                                                          
+} catch (final IOException ex) {                                                                     | } catch (final IOException | RuntimeException ex) {                                                 
+IOUtils.closeQuietly(in);                                                                            | try {                                                                                               
+                                                                                                     | if (in != null) {                                                                                   
+                                                                                                     | in.close();                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | } catch (final IOException e) {                                                                     
+                                                                                                     | ex.addSuppressed(e);                                                                                
+                                                                                                     | }                                                                                                   
+throw ex;                                                                                              throw ex;                                                                                           
+} catch (final RuntimeException ex) {                                                                |                                                                                                     
+IOUtils.closeQuietly(in);                                                                            |                                                                                                     
+throw ex;                                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testEmptyStream() {                                                                      | public void testEmptyStream() throws IOException {                                                  
+try {                                                                                                |                                                                                                     
+final InputStream stream = new TaggedInputStream(new ClosedInputStream());                             final InputStream stream = new TaggedInputStream(new ClosedInputStream());                          
+assertEquals(0, stream.available());                                                                   assertEquals(0, stream.available());                                                                
+assertEquals(-1, stream.read());                                                                       assertEquals(-1, stream.read());                                                                    
+assertEquals(-1, stream.read(new byte[1]));                                                            assertEquals(-1, stream.read(new byte[1]));                                                         
+assertEquals(-1, stream.read(new byte[1], 0, 1));                                                      assertEquals(-1, stream.read(new byte[1], 0, 1));                                                   
+stream.close();                                                                                        stream.close();                                                                                     
+} catch (final IOException e) {                                                                      |                                                                                                     
+fail("Unexpected exception thrown");                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

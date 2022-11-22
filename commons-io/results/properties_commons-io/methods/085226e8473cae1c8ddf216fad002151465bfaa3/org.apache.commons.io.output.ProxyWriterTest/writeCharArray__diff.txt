@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void writeCharArray() throws Exception {                                                        public void writeCharArray() throws Exception {                                                     
+final StringBuilderWriter writer = new StringBuilderWriter();                                        | try (final StringBuilderWriter writer = new StringBuilderWriter();                                  
+final ProxyWriter proxy = new ProxyWriter(writer);                                                   | final ProxyWriter proxy = new ProxyWriter(writer)) {                                                
+proxy.write(new char[] { 'A', 'B', 'C' });                                                             proxy.write(new char[] { 'A', 'B', 'C' });                                                          
+assertEquals("ABC", writer.toString());                                                                assertEquals("ABC", writer.toString());                                                             
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

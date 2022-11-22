@@ -1,0 +1,12 @@
+@Override
+public int read() throws IOException {
+    for (; ; ) {
+        if (encoderOut.hasRemaining()) {
+            return encoderOut.get() & 0xFF;
+        }
+        fillBuffer();
+        if (endOfInput && !encoderOut.hasRemaining()) {
+            return EOF;
+        }
+    }
+}

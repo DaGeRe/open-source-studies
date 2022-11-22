@@ -1,0 +1,12 @@
+@Override
+public int read(CharBuffer target) throws IOException {
+    try {
+        beforeRead(target != null ? target.length() : 0);
+        int n = in.read(target);
+        afterRead(n);
+        return n;
+    } catch (IOException e) {
+        handleIOException(e);
+        return -1;
+    }
+}

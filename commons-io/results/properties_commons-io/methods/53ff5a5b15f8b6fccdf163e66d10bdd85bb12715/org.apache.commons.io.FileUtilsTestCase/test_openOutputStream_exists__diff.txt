@@ -1,0 +1,12 @@
+public void test_openOutputStream_exists() throws Exception {
+    File file = new File(getTestDirectory(), "test.txt");
+    createLineBasedFile(file, new String[] { "Hello" });
+    FileOutputStream out = null;
+    try {
+        out = FileUtils.openOutputStream(file);
+        out.write(0);
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+    assertEquals(true, file.exists());
+}

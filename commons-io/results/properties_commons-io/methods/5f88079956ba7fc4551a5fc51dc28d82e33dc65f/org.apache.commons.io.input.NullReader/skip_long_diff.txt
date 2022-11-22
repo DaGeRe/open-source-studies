@@ -1,0 +1,16 @@
+@Override
+public long skip(final long numberOfChars) throws IOException {
+    if (eof) {
+        throw new IOException("Skip after end of file");
+    }
+    if (position == size) {
+        return doEndOfFile();
+    }
+    position += numberOfChars;
+    long returnLength = numberOfChars;
+    if (position > size) {
+        returnLength = numberOfChars - (position - size);
+        position = size;
+    }
+    return returnLength;
+}

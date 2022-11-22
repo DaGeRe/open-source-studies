@@ -1,0 +1,9 @@
+public void testFileFilterUtils_or() throws Exception {
+    IOFileFilter trueFilter = TrueFileFilter.INSTANCE;
+    IOFileFilter falseFilter = FalseFileFilter.INSTANCE;
+    File testFile = new File("foo.test");
+    assertFiltering(FileFilterUtils.or(trueFilter, trueFilter), testFile, true);
+    assertFiltering(FileFilterUtils.or(trueFilter, trueFilter, falseFilter), testFile, true);
+    assertFiltering(FileFilterUtils.or(falseFilter, trueFilter), testFile, true);
+    assertFiltering(FileFilterUtils.or(falseFilter, falseFilter, falseFilter), testFile, false);
+}

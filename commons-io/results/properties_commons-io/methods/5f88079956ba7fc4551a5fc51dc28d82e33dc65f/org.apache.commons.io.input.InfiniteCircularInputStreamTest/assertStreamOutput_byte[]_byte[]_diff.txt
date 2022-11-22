@@ -1,0 +1,8 @@
+private void assertStreamOutput(byte[] toCycle, byte[] expected) throws IOException {                | private void assertStreamOutput(final byte[] toCycle, final byte[] expected) throws IOException {   
+byte[] actual = new byte[expected.length];                                                           | final byte[] actual = new byte[expected.length];                                                    
+try (InputStream infStream = new InfiniteCircularInputStream(toCycle)) {                               try (InputStream infStream = new InfiniteCircularInputStream(toCycle)) {                            
+int actualReadBytes = infStream.read(actual);                                                        | final int actualReadBytes = infStream.read(actual);                                                 
+Assert.assertArrayEquals(expected, actual);                                                            Assert.assertArrayEquals(expected, actual);                                                         
+Assert.assertEquals(expected.length, actualReadBytes);                                                 Assert.assertEquals(expected.length, actualReadBytes);                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

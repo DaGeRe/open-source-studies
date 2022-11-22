@@ -1,0 +1,5 @@
+@Override
+protected Class<?> resolveClass(final ObjectStreamClass osc) throws IOException, ClassNotFoundException {
+    validateClassName(osc.getName());
+    return super.resolveClass(osc);
+}

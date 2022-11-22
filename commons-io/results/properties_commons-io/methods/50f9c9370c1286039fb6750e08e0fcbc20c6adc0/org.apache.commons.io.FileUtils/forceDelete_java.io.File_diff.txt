@@ -1,0 +1,15 @@
+public static void forceDelete(File file) throws IOException {                                         public static void forceDelete(File file) throws IOException {                                      
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+deleteDirectory(file);                                                                                 deleteDirectory(file);                                                                              
+} else {                                                                                               } else {                                                                                            
+if (!file.exists()) {                                                                                | boolean filePresent = file.exists();                                                                
+                                                                                                     | if (!file.delete()) {                                                                               
+                                                                                                     | if (!filePresent) {                                                                                 
+throw new FileNotFoundException("File does not exist: " + file);                                       throw new FileNotFoundException("File does not exist: " + file);                                    
+}                                                                                                      }                                                                                                   
+if (!file.delete()) {                                                                                |                                                                                                     
+String message = "Unable to delete file: " + file;                                                     String message = "Unable to delete file: " + file;                                                  
+throw new IOException(message);                                                                        throw new IOException(message);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

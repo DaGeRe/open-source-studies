@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAsBufferedReaderWithBufferSize() {                                                     public void testAsBufferedReaderWithBufferSize() {                                                  
+Reader r = new Reader() {                                                                            | final Reader r = new Reader() {                                                                     
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public int read(char[] cbuf, int off, int len) throws IOException {                                  | public int read(final char[] cbuf, final int off, final int len) throws IOException {               
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void close() throws IOException {                                                               public void close() throws IOException {                                                            
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final BufferedReader br = IOUtils.buffer(r, 2048);                                                     final BufferedReader br = IOUtils.buffer(r, 2048);                                                  
+assertNotSame(r, br);                                                                                  assertNotSame(r, br);                                                                               
+assertSame(br, IOUtils.buffer(br));                                                                    assertSame(br, IOUtils.buffer(br));                                                                 
+assertSame(br, IOUtils.buffer(br, 1024));                                                              assertSame(br, IOUtils.buffer(br, 1024));                                                           
+}                                                                                                      }                                                                                                   

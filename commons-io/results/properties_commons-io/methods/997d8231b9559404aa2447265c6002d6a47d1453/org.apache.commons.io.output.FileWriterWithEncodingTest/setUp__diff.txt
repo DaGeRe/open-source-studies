@@ -1,0 +1,20 @@
+@Override
+public void setUp() {
+    File encodingFinder = new File(getTestDirectory(), "finder.txt");
+    OutputStreamWriter out = null;
+    try {
+        out = new OutputStreamWriter(new FileOutputStream(encodingFinder));
+        defaultEncoding = out.getEncoding();
+    } catch (IOException ex) {
+        throw new RuntimeException(ex.getMessage());
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+    file1 = new File(getTestDirectory(), "testfile1.txt");
+    file2 = new File(getTestDirectory(), "testfile2.txt");
+    char[] arr = new char[1024];
+    for (int i = 0; i < arr.length; i++) {
+        arr[i] = (char) i;
+    }
+    textContent = new String(arr);
+}

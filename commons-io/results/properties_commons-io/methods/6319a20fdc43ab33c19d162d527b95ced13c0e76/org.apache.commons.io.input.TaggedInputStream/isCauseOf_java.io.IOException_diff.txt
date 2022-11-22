@@ -1,0 +1,8 @@
+public boolean isCauseOf(IOException exception) {
+    if (exception instanceof TaggedIOException) {
+        TaggedIOException tagged = (TaggedIOException) exception;
+        return this == tagged.getTag();
+    } else {
+        return false;
+    }
+}

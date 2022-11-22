@@ -1,0 +1,7 @@
+public XmlStreamReader(InputStream is, boolean lenient, String defaultEncoding) throws IOException {   public XmlStreamReader(InputStream is, boolean lenient, String defaultEncoding) throws IOException {
+this.defaultEncoding = defaultEncoding;                                                                this.defaultEncoding = defaultEncoding;                                                             
+this.encoding = doRawStream(is, lenient);                                                            | BOMInputStream bom = new BOMInputStream(new BufferedInputStream(is, BUFFER_SIZE), false, BOMS);     
+this.reader = new InputStreamReader(is, encoding);                                                   | BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);                                
+                                                                                                     | this.encoding = doRawStream(bom, pis, lenient);                                                     
+                                                                                                     | this.reader = new InputStreamReader(pis, encoding);                                                 
+}                                                                                                      }                                                                                                   

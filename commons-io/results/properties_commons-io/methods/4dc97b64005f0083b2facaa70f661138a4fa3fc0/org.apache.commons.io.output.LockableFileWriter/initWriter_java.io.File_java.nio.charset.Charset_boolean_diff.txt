@@ -1,0 +1,26 @@
+private Writer initWriter(final File file, final Charset encoding, final boolean append) throws IOEx   private Writer initWriter(final File file, final Charset encoding, final boolean append) throws IOEx
+final boolean fileExistedAlready = file.exists();                                                      final boolean fileExistedAlready = file.exists();                                                   
+OutputStream stream = null;                                                                          |                                                                                                     
+Writer writer = null;                                                                                |                                                                                                     
+try {                                                                                                  try {                                                                                               
+stream = new FileOutputStream(file.getAbsolutePath(), append);                                       | return new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath(), append), Charsets.toChars
+writer = new OutputStreamWriter(stream, Charsets.toCharset(encoding));                               | } catch (final IOException | RuntimeException ex) {                                                 
+} catch (final IOException ex) {                                                                     |                                                                                                     
+IOUtils.closeQuietly(writer);                                                                        |                                                                                                     
+IOUtils.closeQuietly(stream);                                                                        |                                                                                                     
+FileUtils.deleteQuietly(lockFile);                                                                     FileUtils.deleteQuietly(lockFile);                                                                  
+if (fileExistedAlready == false) {                                                                     if (fileExistedAlready == false) {                                                                  
+FileUtils.deleteQuietly(file);                                                                         FileUtils.deleteQuietly(file);                                                                      
+}                                                                                                      }                                                                                                   
+throw ex;                                                                                              throw ex;                                                                                           
+} catch (final RuntimeException ex) {                                                                |                                                                                                     
+IOUtils.closeQuietly(writer);                                                                        |                                                                                                     
+IOUtils.closeQuietly(stream);                                                                        |                                                                                                     
+FileUtils.deleteQuietly(lockFile);                                                                   |                                                                                                     
+if (fileExistedAlready == false) {                                                                   |                                                                                                     
+FileUtils.deleteQuietly(file);                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+throw ex;                                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   
+return writer;                                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     

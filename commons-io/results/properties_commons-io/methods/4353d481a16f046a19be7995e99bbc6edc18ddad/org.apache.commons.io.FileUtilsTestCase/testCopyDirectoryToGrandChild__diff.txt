@@ -1,0 +1,11 @@
+public void testCopyDirectoryToGrandChild() throws Exception {
+    File grandParentDir = new File(getTestDirectory(), "grandparent");
+    File parentDir = new File(grandParentDir, "parent");
+    File childDir = new File(parentDir, "child");
+    createFilesForTestCopyDirectory(grandParentDir, parentDir, childDir);
+    long expectedCount = (LIST_WALKER.list(grandParentDir).size() * 2);
+    long expectedSize = (FileUtils.sizeOfDirectory(grandParentDir) * 2);
+    FileUtils.copyDirectory(grandParentDir, childDir);
+    assertEquals(expectedCount, LIST_WALKER.list(grandParentDir).size());
+    assertEquals(expectedSize, FileUtils.sizeOfDirectory(grandParentDir));
+}

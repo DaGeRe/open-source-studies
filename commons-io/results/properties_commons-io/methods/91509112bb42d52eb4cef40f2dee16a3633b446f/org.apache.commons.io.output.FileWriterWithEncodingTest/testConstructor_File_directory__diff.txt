@@ -1,0 +1,12 @@
+public void testConstructor_File_directory() throws IOException {
+    Writer writer = null;
+    try {
+        writer = new FileWriterWithEncoding(getTestDirectory(), defaultEncoding);
+        fail();
+    } catch (IOException ex) {
+        assertEquals(false, file1.exists());
+    } finally {
+        IOUtils.closeQuietly(writer);
+    }
+    assertEquals(false, file1.exists());
+}

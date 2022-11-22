@@ -1,0 +1,12 @@
+public void testCopyURLToFile() throws Exception {
+    File file = new File(getTestDirectory(), getName());
+    file.deleteOnExit();
+    String resourceName = "/java/lang/Object.class";
+    FileUtils.copyURLToFile(getClass().getResource(resourceName), file);
+    FileInputStream fis = new FileInputStream(file);
+    try {
+        assertTrue("Content is not equal.", IOUtils.contentEquals(getClass().getResourceAsStream(resourceName), fis));
+    } finally {
+        fis.close();
+    }
+}

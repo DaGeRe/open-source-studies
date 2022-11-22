@@ -1,0 +1,8 @@
+@Test
+public void testIsReservedFileName() {
+    for (final FileSystem fs : FileSystem.values()) {
+        for (final String candidate : fs.getReservedFileNames()) {
+            Assert.assertTrue(fs.isReservedFileName(candidate));
+        }
+    }
+}

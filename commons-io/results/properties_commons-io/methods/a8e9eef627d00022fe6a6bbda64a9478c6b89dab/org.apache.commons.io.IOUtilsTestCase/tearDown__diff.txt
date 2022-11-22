@@ -1,0 +1,8 @@
+@Override
+public void tearDown() {
+    try {
+        FileUtils.deleteDirectory(getTestDirectory());
+    } catch (IOException ioe) {
+        throw new RuntimeException("Could not clear up " + getTestDirectory());
+    }
+}

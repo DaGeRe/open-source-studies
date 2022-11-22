@@ -1,0 +1,9 @@
+public void testEqualsOnSystem() {
+    assertEquals(true, FilenameUtils.equalsOnSystem(null, null));
+    assertEquals(false, FilenameUtils.equalsOnSystem(null, ""));
+    assertEquals(false, FilenameUtils.equalsOnSystem("", null));
+    assertEquals(true, FilenameUtils.equalsOnSystem("", ""));
+    assertEquals(true, FilenameUtils.equalsOnSystem("file.txt", "file.txt"));
+    assertEquals(WINDOWS, FilenameUtils.equalsOnSystem("file.txt", "FILE.TXT"));
+    assertEquals(false, FilenameUtils.equalsOnSystem("a\\b\\file.txt", "a/b/file.txt"));
+}

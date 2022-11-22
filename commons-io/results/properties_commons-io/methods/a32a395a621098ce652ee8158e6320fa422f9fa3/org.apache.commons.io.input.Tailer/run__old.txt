@@ -1,0 +1,41 @@
+public void run() {
+    try {
+        while (run && reader == null) {
+            try {
+                reader = new RandomAccessFile(file, "r");
+            } catch (FileNotFoundException e) {
+                listener.fileNotFound();
+            }
+            if (reader == null) {
+                Thread.sleep(delay);
+            }
+        }
+        position = end ? file.length() : 0;
+        last = System.currentTimeMillis();
+        reader.seek(position);
+        while (run) {
+            long length = file.length();
+            if (length < position) {
+                listener.fileRotated();
+                try {
+                    reader = new RandomAccessFile(file, "r");
+                    position = 0;
+                } catch (FileNotFoundException e) {
+                    listener.fileNotFound();
+                }
+                continue;
+            } else {
+                if (length > position) {
+                    readLines();
+                } else if (FileUtils.isFileNewer(file, last)) {
+                    position = 0;
+                    reader.seek(position);
+                    readLines();
+                }
+            }
+            Thread.sleep(delay);
+        }
+    } catch (Exception e) {
+        listener.handle(e);
+    }
+}

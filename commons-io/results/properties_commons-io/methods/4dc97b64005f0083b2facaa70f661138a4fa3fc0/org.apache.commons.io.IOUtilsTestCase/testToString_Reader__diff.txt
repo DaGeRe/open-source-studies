@@ -1,0 +1,11 @@
+@Test
+public void testToString_Reader() throws Exception {
+    final FileReader fin = new FileReader(m_testFile);
+    try {
+        final String out = IOUtils.toString(fin);
+        assertNotNull(out);
+        assertEquals("Wrong output size", FILE_SIZE, out.length());
+    } finally {
+        fin.close();
+    }
+}

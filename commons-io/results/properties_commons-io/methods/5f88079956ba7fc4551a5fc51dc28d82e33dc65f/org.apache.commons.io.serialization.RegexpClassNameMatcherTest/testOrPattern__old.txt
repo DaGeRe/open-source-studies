@@ -1,0 +1,7 @@
+@Test
+public void testOrPattern() {
+    ClassNameMatcher ca = new RegexpClassNameMatcher("foo.*|bar.*");
+    assertTrue(ca.matches("foo.should.match"));
+    assertTrue(ca.matches("bar.should.match"));
+    assertFalse(ca.matches("zoo.should.not.match"));
+}

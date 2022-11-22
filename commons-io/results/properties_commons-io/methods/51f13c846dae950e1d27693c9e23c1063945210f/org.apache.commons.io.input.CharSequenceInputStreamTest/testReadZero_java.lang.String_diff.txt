@@ -1,0 +1,9 @@
+private void testReadZero(final String csName) throws Exception {                                      private void testReadZero(final String csName) throws Exception {                                   
+final InputStream r = new CharSequenceInputStream("test", csName);                                   | try (InputStream r = new CharSequenceInputStream("test", csName)) {                                 
+try {                                                                                                |                                                                                                     
+final byte[] bytes = new byte[30];                                                                     final byte[] bytes = new byte[30];                                                                  
+assertEquals(0, r.read(bytes, 0, 0));                                                                  assertEquals(0, r.read(bytes, 0, 0));                                                               
+} finally {                                                                                          |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

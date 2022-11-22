@@ -1,0 +1,10 @@
+private IOCase serialize(IOCase value) throws Exception {
+    ByteArrayOutputStream buf = new ByteArrayOutputStream();
+    ObjectOutputStream out = new ObjectOutputStream(buf);
+    out.writeObject(value);
+    out.flush();
+    out.close();
+    ByteArrayInputStream bufin = new ByteArrayInputStream(buf.toByteArray());
+    ObjectInputStream in = new ObjectInputStream(bufin);
+    return (IOCase) in.readObject();
+}

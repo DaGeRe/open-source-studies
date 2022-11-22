@@ -1,0 +1,9 @@
+public void testCanRead() throws Exception {
+    File readOnlyFile = new File(getTestDirectory(), "read-only-file1.txt");
+    createFile(readOnlyFile, 32);
+    readOnlyFile.setReadOnly();
+    assertFiltering(CanReadFileFilter.CAN_READ, readOnlyFile, true);
+    assertFiltering(CanReadFileFilter.CANNOT_READ, readOnlyFile, false);
+    assertFiltering(CanReadFileFilter.READ_ONLY, readOnlyFile, true);
+    readOnlyFile.delete();
+}

@@ -1,0 +1,9 @@
+private static void checkXmlContent(final String xml, final String encoding, final String defaultEncoding) throws IOException {
+    final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    final XmlStreamWriter writer = new XmlStreamWriter(out, defaultEncoding);
+    writer.write(xml);
+    writer.close();
+    final byte[] xmlContent = out.toByteArray();
+    assertTrue(encoding.equalsIgnoreCase(writer.getEncoding()));
+    assertTrue(Arrays.equals(xml.getBytes(encoding), xmlContent));
+}

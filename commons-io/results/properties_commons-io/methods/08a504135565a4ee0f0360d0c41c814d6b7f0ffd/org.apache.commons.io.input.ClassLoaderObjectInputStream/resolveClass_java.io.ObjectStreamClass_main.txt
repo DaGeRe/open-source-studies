@@ -1,0 +1,8 @@
+protected Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws IOException, ClassNotFoundException {
+    Class<?> clazz = Class.forName(objectStreamClass.getName(), false, classLoader);
+    if (clazz != null) {
+        return clazz;
+    } else {
+        return super.resolveClass(objectStreamClass);
+    }
+}

@@ -1,0 +1,18 @@
+private FilePart(final long no, final int length, final byte[] leftOverOfLastFilePart) throws IOException {
+    this.no = no;
+    final int dataLength = length + (leftOverOfLastFilePart != null ? leftOverOfLastFilePart.length : 0);
+    this.data = new byte[dataLength];
+    final long off = (no - 1) * blockSize;
+    if (no > 0) {
+        randomAccessFile.seek(off);
+        final int countRead = randomAccessFile.read(data, 0, length);
+        if (countRead != length) {
+            throw new IllegalStateException("Count of requested bytes and actually read bytes don't match");
+        }
+    }
+    if (leftOverOfLastFilePart != null) {
+        System.arraycopy(leftOverOfLastFilePart, 0, data, length, leftOverOfLastFilePart.length);
+    }
+    this.currentLastBytePos = data.length - 1;
+    this.leftOver = null;
+}

@@ -1,0 +1,12 @@
+@SuppressWarnings("unchecked")                                                                         @SuppressWarnings("unchecked")                                                                      
+public CompositeFileComparator(final Iterable&lt;Comparator&lt;File&gt;&gt; delegates) {               public CompositeFileComparator(final Iterable&lt;Comparator&lt;File&gt;&gt; delegates) {            
+if (delegates == null) {                                                                               if (delegates == null) {                                                                            
+this.delegates = (Comparator&lt;File&gt;[]) NO_COMPARATORS;                                            this.delegates = (Comparator&lt;File&gt;[]) NO_COMPARATORS;                                         
+} else {                                                                                               } else {                                                                                            
+final List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;Comparator&lt;File&gt;&gt;();       | final List&lt;Comparator&lt;File&gt;&gt; list = new ArrayList&lt;&gt;();                            
+for (final Comparator&lt;File&gt; comparator : delegates) {                                            for (final Comparator&lt;File&gt; comparator : delegates) {                                         
+list.add(comparator);                                                                                  list.add(comparator);                                                                               
+}                                                                                                      }                                                                                                   
+this.delegates = (Comparator&lt;File&gt;[]) list.toArray(new Comparator&lt;?&gt;[list.size()]);        this.delegates = (Comparator&lt;File&gt;[]) list.toArray(new Comparator&lt;?&gt;[list.size()]);     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

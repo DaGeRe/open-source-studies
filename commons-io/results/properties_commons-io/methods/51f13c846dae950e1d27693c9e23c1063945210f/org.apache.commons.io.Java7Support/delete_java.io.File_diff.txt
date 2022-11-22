@@ -1,0 +1,10 @@
+public static void delete(File file) throws IOException {
+    try {
+        Object path = toPath.invoke(file);
+        delete.invoke(null, path);
+    } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+    } catch (InvocationTargetException e) {
+        throw (IOException) e.getTargetException();
+    }
+}

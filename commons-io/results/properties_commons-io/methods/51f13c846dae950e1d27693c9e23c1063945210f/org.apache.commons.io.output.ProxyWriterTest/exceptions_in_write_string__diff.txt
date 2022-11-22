@@ -1,0 +1,16 @@
+@Test(expected = UnsupportedEncodingException.class)                                                   @Test(expected = UnsupportedEncodingException.class)                                                
+public void exceptions_in_write_string() throws IOException {                                          public void exceptions_in_write_string() throws IOException {                                       
+OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {                         OutputStreamWriter osw = new OutputStreamWriter(new ByteArrayOutputStream()) {                      
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public void write(String str) throws IOException {                                                     public void write(String str) throws IOException {                                                  
+throw new UnsupportedEncodingException("Bah");                                                         throw new UnsupportedEncodingException("Bah");                                                      
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final ProxyWriter proxy = new ProxyWriter(osw);                                                      | try (ProxyWriter proxy = new ProxyWriter(osw)) {                                                    
+try {                                                                                                |                                                                                                     
+proxy.write("ABCE");                                                                                   proxy.write("ABCE");                                                                                
+} finally {                                                                                          |                                                                                                     
+proxy.close();                                                                                       |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

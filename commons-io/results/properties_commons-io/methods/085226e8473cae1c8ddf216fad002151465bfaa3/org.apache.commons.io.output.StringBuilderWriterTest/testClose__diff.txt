@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testClose() {                                                                            | public void testClose() throws IOException {                                                        
+final Writer writer = new StringBuilderWriter();                                                     | try (final Writer writer = new StringBuilderWriter()) {                                             
+try {                                                                                                  try {                                                                                               
+writer.append("Foo");                                                                                  writer.append("Foo");                                                                               
+writer.close();                                                                                        writer.close();                                                                                     
+writer.append("Bar");                                                                                  writer.append("Bar");                                                                               
+} catch (final Throwable t) {                                                                          } catch (final Throwable t) {                                                                       
+fail("Threw: " + t);                                                                                   fail("Threw: " + t);                                                                                
+}                                                                                                      }                                                                                                   
+assertEquals("FooBar", writer.toString());                                                             assertEquals("FooBar", writer.toString());                                                          
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

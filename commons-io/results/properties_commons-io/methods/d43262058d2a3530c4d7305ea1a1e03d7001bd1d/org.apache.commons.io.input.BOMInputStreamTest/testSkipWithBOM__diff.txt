@@ -1,0 +1,6 @@
+public void testSkipWithBOM() throws Exception {
+    byte[] data = new byte[] { 'A', 'B', 'C', 'D' };
+    InputStream in = new BOMInputStream(createDataStream(data, true));
+    in.skip(2L);
+    assertEquals('C', in.read());
+}

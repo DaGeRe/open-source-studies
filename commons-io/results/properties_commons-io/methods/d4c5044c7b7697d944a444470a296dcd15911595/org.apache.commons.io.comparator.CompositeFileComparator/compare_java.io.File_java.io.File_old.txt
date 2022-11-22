@@ -1,0 +1,10 @@
+public int compare(File file1, File file2) {
+    int result = 0;
+    for (int i = 0; i < delegates.length; i++) {
+        result = delegates[i].compare(file1, file2);
+        if (result != 0) {
+            break;
+        }
+    }
+    return result;
+}

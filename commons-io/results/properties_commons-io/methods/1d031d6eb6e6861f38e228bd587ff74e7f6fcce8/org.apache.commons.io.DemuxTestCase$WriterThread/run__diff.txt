@@ -1,0 +1,13 @@
+@Override
+public void run() {
+    m_demux.bindStream(m_output);
+    for (final byte element : m_data) {
+        try {
+            m_demux.write(element);
+            final int sleepTime = Math.abs(c_random.nextInt() % 10);
+            TestUtils.sleep(sleepTime);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

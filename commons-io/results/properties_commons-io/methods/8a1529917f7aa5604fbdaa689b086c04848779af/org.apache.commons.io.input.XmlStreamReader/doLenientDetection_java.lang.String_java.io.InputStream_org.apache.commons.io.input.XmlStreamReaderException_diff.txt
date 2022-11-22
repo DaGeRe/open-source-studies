@@ -1,0 +1,25 @@
+private void doLenientDetection(String httpContentType, InputStream is, XmlStreamReaderException ex) | private String doLenientDetection(String httpContentType, InputStream is, XmlStreamReaderException e
+if (httpContentType != null) {                                                                         if (httpContentType != null) {                                                                      
+if (httpContentType.startsWith("text/html")) {                                                         if (httpContentType.startsWith("text/html")) {                                                      
+httpContentType = httpContentType.substring("text/html".length());                                     httpContentType = httpContentType.substring("text/html".length());                                  
+httpContentType = "text/xml" + httpContentType;                                                        httpContentType = "text/xml" + httpContentType;                                                     
+try {                                                                                                  try {                                                                                               
+doHttpStream(is, httpContentType, true);                                                             | return calculateHttpEncoding(httpContentType, ex.getBomEncoding(), ex.getXmlGuessEncoding(), ex.getX
+ex = null;                                                                                           |                                                                                                     
+} catch (XmlStreamReaderException ex2) {                                                               } catch (XmlStreamReaderException ex2) {                                                            
+ex = ex2;                                                                                              ex = ex2;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if (ex != null) {                                                                                    |                                                                                                     
+String encoding = ex.getXmlEncoding();                                                                 String encoding = ex.getXmlEncoding();                                                              
+if (encoding == null) {                                                                                if (encoding == null) {                                                                             
+encoding = ex.getContentTypeEncoding();                                                                encoding = ex.getContentTypeEncoding();                                                             
+}                                                                                                      }                                                                                                   
+if (encoding == null) {                                                                                if (encoding == null) {                                                                             
+encoding = (defaultEncoding == null) ? UTF_8 : defaultEncoding;                                        encoding = (defaultEncoding == null) ? UTF_8 : defaultEncoding;                                     
+}                                                                                                      }                                                                                                   
+this.encoding = encoding;                                                                            | return encoding;                                                                                    
+this.reader = new InputStreamReader(is, encoding);                                                   |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

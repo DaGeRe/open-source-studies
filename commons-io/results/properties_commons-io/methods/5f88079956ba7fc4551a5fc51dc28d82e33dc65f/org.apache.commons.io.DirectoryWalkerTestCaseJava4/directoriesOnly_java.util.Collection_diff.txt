@@ -1,0 +1,9 @@
+private List directoriesOnly(final Collection&lt;File&gt; results) {                                   private List directoriesOnly(final Collection&lt;File&gt; results) {                                
+final List list = new ArrayList(results.size());                                                       final List list = new ArrayList(results.size());                                                    
+for (File file : results) {                                                                          | for (final File file : results) {                                                                   
+if (file.isDirectory()) {                                                                              if (file.isDirectory()) {                                                                           
+list.add(file);                                                                                        list.add(file);                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

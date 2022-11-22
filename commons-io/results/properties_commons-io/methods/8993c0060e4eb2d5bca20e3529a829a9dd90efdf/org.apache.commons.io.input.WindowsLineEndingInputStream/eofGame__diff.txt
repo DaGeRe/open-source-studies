@@ -1,0 +1,16 @@
+private int eofGame() {                                                                                private int eofGame() {                                                                             
+if (!ensureLineFeedAtEndOfFile) {                                                                      if (!ensureLineFeedAtEndOfFile) {                                                                   
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+if (!slashNSeen && !slashRSeen) {                                                                      if (!slashNSeen && !slashRSeen) {                                                                   
+slashRSeen = true;                                                                                     slashRSeen = true;                                                                                  
+return '\r';                                                                                           return '\r';                                                                                        
+}                                                                                                      }                                                                                                   
+if (!slashNSeen) {                                                                                     if (!slashNSeen) {                                                                                  
+slashRSeen = false;                                                                                    slashRSeen = false;                                                                                 
+slashNSeen = true;                                                                                     slashNSeen = true;                                                                                  
+return '\n';                                                                                           return '\n';                                                                                        
+} else {                                                                                             | }                                                                                                   
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

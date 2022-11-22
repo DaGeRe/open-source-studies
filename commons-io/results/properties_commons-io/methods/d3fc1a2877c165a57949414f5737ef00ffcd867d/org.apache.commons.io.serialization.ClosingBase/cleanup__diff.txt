@@ -1,0 +1,9 @@
+@After
+public void cleanup() {
+    for (final Closeable c : toClose) {
+        try {
+            c.close();
+        } catch (final IOException ignored) {
+        }
+    }
+}

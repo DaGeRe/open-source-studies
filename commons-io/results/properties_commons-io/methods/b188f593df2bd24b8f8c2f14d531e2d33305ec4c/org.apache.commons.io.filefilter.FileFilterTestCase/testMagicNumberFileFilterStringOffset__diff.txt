@@ -1,0 +1,21 @@
+public void testMagicNumberFileFilterStringOffset() throws Exception {
+    String tarMagicNumber = "ustar";
+    long tarMagicNumberOffset = 257;
+    File tarFileA = new File(getTestDirectory(), "A.tar");
+    File randomFileB = new File(getTestDirectory(), "B.txt");
+    File dir = new File(getTestDirectory(), "D");
+    dir.mkdirs();
+    OutputStream tarFileAStream = FileUtils.openOutputStream(tarFileA);
+    generateTestData(tarFileAStream, tarMagicNumberOffset);
+    IOUtils.write(tarMagicNumber, tarFileAStream);
+    tarFileAStream.close();
+    createFile(randomFileB, 2 * tarMagicNumberOffset);
+    IOFileFilter filter = new MagicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);
+    assertFiltering(filter, tarFileA, true);
+    assertFiltering(filter, randomFileB, false);
+    assertFiltering(filter, dir, false);
+    filter = FileFilterUtils.magicNumberFileFilter(tarMagicNumber, tarMagicNumberOffset);
+    assertFiltering(filter, tarFileA, true);
+    assertFiltering(filter, randomFileB, false);
+    assertFiltering(filter, dir, false);
+}

@@ -1,0 +1,25 @@
+@Test                                                                                                  @Test                                                                                               
+public void testTailerEof() throws Exception {                                                         public void testTailerEof() throws Exception {                                                      
+final long delay = 50;                                                                                 final long delay = 50;                                                                              
+final File file = new File(getTestDirectory(), "tailer2-test.txt");                                    final File file = new File(getTestDirectory(), "tailer2-test.txt");                                 
+createFile(file, 0);                                                                                   createFile(file, 0);                                                                                
+final TestTailerListener listener = new TestTailerListener();                                          final TestTailerListener listener = new TestTailerListener();                                       
+final Tailer tailer = new Tailer(file, listener, delay, false);                                      | tailer = new Tailer(file, listener, delay, false);                                                  
+final Thread thread = new Thread(tailer);                                                              final Thread thread = new Thread(tailer);                                                           
+thread.start();                                                                                        thread.start();                                                                                     
+try {                                                                                                |                                                                                                     
+writeString(file, "Line");                                                                             writeString(file, "Line");                                                                          
+TestUtils.sleep(delay * 2);                                                                            TestUtils.sleep(delay * 2);                                                                         
+List&lt;String&gt; lines = listener.getLines();                                                        List&lt;String&gt; lines = listener.getLines();                                                     
+assertEquals("1 line count", 0, lines.size());                                                         assertEquals("1 line count", 0, lines.size());                                                      
+writeString(file, " one\n");                                                                           writeString(file, " one\n");                                                                        
+TestUtils.sleep(delay * 2);                                                                            TestUtils.sleep(delay * 2);                                                                         
+lines = listener.getLines();                                                                           lines = listener.getLines();                                                                        
+assertEquals("1 line count", 1, lines.size());                                                         assertEquals("1 line count", 1, lines.size());                                                      
+assertEquals("1 line 1", "Line one", lines.get(0));                                                    assertEquals("1 line 1", "Line one", lines.get(0));                                                 
+listener.clear();                                                                                      listener.clear();                                                                                   
+} finally {                                                                                          |                                                                                                     
+tailer.stop();                                                                                       |                                                                                                     
+TestUtils.sleep(delay * 2);                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

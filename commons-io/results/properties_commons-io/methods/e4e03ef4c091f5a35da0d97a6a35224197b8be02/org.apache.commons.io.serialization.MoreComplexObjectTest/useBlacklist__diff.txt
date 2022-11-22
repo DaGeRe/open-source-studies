@@ -1,0 +1,5 @@
+@Test
+public void useBlacklist() throws IOException, ClassNotFoundException {
+    final String[] blacklist = { "org.apache.commons.collections.functors.InvokerTransformer", "org.codehaus.groovy.runtime.ConvertedClosure", "org.codehaus.groovy.runtime.MethodClosure", "org.springframework.beans.factory.ObjectFactory" };
+    assertSerialization(willClose(new ValidatingObjectInputStream(inputStream).accept("*").reject(blacklist)));
+}

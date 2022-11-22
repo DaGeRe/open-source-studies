@@ -1,0 +1,17 @@
+private boolean chmod(File file, int mode, boolean recurse) throws IOException, InterruptedException | private boolean chmod(File file, int mode, boolean recurse) throws InterruptedException {           
+List args = new ArrayList();                                                                         | List&lt;String&gt; args = new ArrayList&lt;String&gt;();                                            
+args.add("chmod");                                                                                     args.add("chmod");                                                                                  
+if (recurse) {                                                                                         if (recurse) {                                                                                      
+args.add("-R");                                                                                        args.add("-R");                                                                                     
+}                                                                                                      }                                                                                                   
+args.add(Integer.toString(mode));                                                                      args.add(Integer.toString(mode));                                                                   
+args.add(file.getAbsolutePath());                                                                      args.add(file.getAbsolutePath());                                                                   
+Process proc;                                                                                          Process proc;                                                                                       
+try {                                                                                                  try {                                                                                               
+proc = Runtime.getRuntime().exec((String[]) args.toArray(new String[args.size()]));                  | proc = Runtime.getRuntime().exec(args.toArray(new String[args.size()]));                            
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int result = proc.waitFor();                                                                           int result = proc.waitFor();                                                                        
+return (result == 0);                                                                                  return (result == 0);                                                                               
+}                                                                                                      }                                                                                                   

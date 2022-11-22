@@ -1,0 +1,9 @@
+public static boolean isSymLink(File file) {                                                         |                                                                                                     
+try {                                                                                                |                                                                                                     
+Object path = toPath.invoke(file);                                                                   |                                                                                                     
+Boolean result = (Boolean) isSymbolicLink.invoke(null, path);                                        |                                                                                                     
+return result.booleanValue();                                                                        |                                                                                                     
+} catch (IllegalAccessException | InvocationTargetException e) {                                     |                                                                                                     
+throw new RuntimeException(e);                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

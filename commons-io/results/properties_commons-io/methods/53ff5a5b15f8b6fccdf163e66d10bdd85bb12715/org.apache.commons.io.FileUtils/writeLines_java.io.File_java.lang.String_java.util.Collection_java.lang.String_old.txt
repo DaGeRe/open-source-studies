@@ -1,0 +1,8 @@
+public static void writeLines(File file, String encoding, Collection lines, String lineEnding) throws IOException {
+    OutputStream out = new FileOutputStream(file);
+    try {
+        IOUtils.writeLines(lines, lineEnding, out, encoding);
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+}

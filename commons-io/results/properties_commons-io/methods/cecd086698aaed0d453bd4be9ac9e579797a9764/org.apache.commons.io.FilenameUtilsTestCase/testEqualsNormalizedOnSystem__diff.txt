@@ -1,0 +1,10 @@
+public void testEqualsNormalizedOnSystem() {
+    assertEquals(true, FilenameUtils.equalsNormalizedOnSystem(null, null));
+    assertEquals(false, FilenameUtils.equalsNormalizedOnSystem(null, ""));
+    assertEquals(false, FilenameUtils.equalsNormalizedOnSystem("", null));
+    assertEquals(true, FilenameUtils.equalsNormalizedOnSystem("", ""));
+    assertEquals(true, FilenameUtils.equalsNormalizedOnSystem("file.txt", "file.txt"));
+    assertEquals(WINDOWS, FilenameUtils.equalsNormalizedOnSystem("file.txt", "FILE.TXT"));
+    assertEquals(true, FilenameUtils.equalsNormalizedOnSystem("a\\b\\file.txt", "a/b/file.txt"));
+    assertEquals(false, FilenameUtils.equalsNormalizedOnSystem("a/b/", "a/b"));
+}

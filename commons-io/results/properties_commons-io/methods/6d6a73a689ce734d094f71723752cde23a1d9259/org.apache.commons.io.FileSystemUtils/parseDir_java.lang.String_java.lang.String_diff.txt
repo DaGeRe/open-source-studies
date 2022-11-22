@@ -1,0 +1,31 @@
+long parseDir(String line, String path) throws IOException {                                           long parseDir(String line, String path) throws IOException {                                        
+int bytesStart = 0;                                                                                    int bytesStart = 0;                                                                                 
+int bytesEnd = 0;                                                                                      int bytesEnd = 0;                                                                                   
+int j = line.length() - 1;                                                                             int j = line.length() - 1;                                                                          
+innerLoop1: while (j &gt;= 0) {                                                                        innerLoop1: while (j &gt;= 0) {                                                                     
+char c = line.charAt(j);                                                                               char c = line.charAt(j);                                                                            
+if (Character.isDigit(c)) {                                                                            if (Character.isDigit(c)) {                                                                         
+bytesEnd = j + 1;                                                                                      bytesEnd = j + 1;                                                                                   
+break innerLoop1;                                                                                      break innerLoop1;                                                                                   
+}                                                                                                      }                                                                                                   
+j--;                                                                                                   j--;                                                                                                
+}                                                                                                      }                                                                                                   
+innerLoop2: while (j &gt;= 0) {                                                                        innerLoop2: while (j &gt;= 0) {                                                                     
+char c = line.charAt(j);                                                                               char c = line.charAt(j);                                                                            
+if (!Character.isDigit(c) && c != ',' && c != '.') {                                                   if (!Character.isDigit(c) && c != ',' && c != '.') {                                                
+bytesStart = j + 1;                                                                                    bytesStart = j + 1;                                                                                 
+break innerLoop2;                                                                                      break innerLoop2;                                                                                   
+}                                                                                                      }                                                                                                   
+j--;                                                                                                   j--;                                                                                                
+}                                                                                                      }                                                                                                   
+if (j &lt; 0) {                                                                                        if (j &lt; 0) {                                                                                     
+throw new IOException("Command line 'dir /-c' did not return valid info " + "for path '" + path + "'   throw new IOException("Command line 'dir /-c' did not return valid info " + "for path '" + path + "'
+}                                                                                                      }                                                                                                   
+StringBuffer buf = new StringBuffer(line.substring(bytesStart, bytesEnd));                           | StringBuilder buf = new StringBuilder(line.substring(bytesStart, bytesEnd));                        
+for (int k = 0; k &lt; buf.length(); k++) {                                                            for (int k = 0; k &lt; buf.length(); k++) {                                                         
+if (buf.charAt(k) == ',' || buf.charAt(k) == '.') {                                                    if (buf.charAt(k) == ',' || buf.charAt(k) == '.') {                                                 
+buf.deleteCharAt(k--);                                                                                 buf.deleteCharAt(k--);                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return parseBytes(buf.toString(), path);                                                               return parseBytes(buf.toString(), path);                                                            
+}                                                                                                      }                                                                                                   

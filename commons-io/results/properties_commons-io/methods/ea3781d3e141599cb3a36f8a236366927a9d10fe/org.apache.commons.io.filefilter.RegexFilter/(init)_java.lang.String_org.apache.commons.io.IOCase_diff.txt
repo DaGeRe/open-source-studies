@@ -1,0 +1,10 @@
+public RegexFilter(String pattern, IOCase caseSensitivity) {                                           public RegexFilter(String pattern, IOCase caseSensitivity) {                                        
+if (pattern == null) {                                                                                 if (pattern == null) {                                                                              
+throw new java.lang.IllegalArgumentException();                                                      | throw new IllegalArgumentException("Pattern is missing");                                           
+}                                                                                                      }                                                                                                   
+int flags = 0;                                                                                         int flags = 0;                                                                                      
+if (caseSensitivity != null && !caseSensitivity.isCaseSensitive()) {                                   if (caseSensitivity != null && !caseSensitivity.isCaseSensitive()) {                                
+flags = Pattern.CASE_INSENSITIVE;                                                                      flags = Pattern.CASE_INSENSITIVE;                                                                   
+}                                                                                                      }                                                                                                   
+this.pattern = Pattern.compile(pattern, flags);                                                        this.pattern = Pattern.compile(pattern, flags);                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,22 @@
+public void testFileCleanerNull() throws Exception {
+    try {
+        theInstance.track((File) null, new Object());
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        theInstance.track((File) null, new Object(), FileDeleteStrategy.NORMAL);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        theInstance.track((String) null, new Object());
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        theInstance.track((String) null, new Object(), FileDeleteStrategy.NORMAL);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

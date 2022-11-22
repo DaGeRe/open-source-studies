@@ -1,0 +1,11 @@
+private OutputStreamWriter getOutputStreamWriter(final AtomicInteger numWrites) {
+    final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    return new OutputStreamWriter(baos) {
+
+        @Override
+        public void write(final char[] cbuf, final int off, final int len) throws IOException {
+            numWrites.incrementAndGet();
+            super.write(cbuf, off, len);
+        }
+    };
+}

@@ -1,0 +1,9 @@
+public void testGetFreeSpaceWindows_String_EmptyResponse() throws Exception {
+    String lines = "";
+    FileSystemUtils fsu = new MockFileSystemUtils(0, lines);
+    try {
+        fsu.freeSpaceWindows("C:");
+        fail();
+    } catch (IOException ex) {
+    }
+}

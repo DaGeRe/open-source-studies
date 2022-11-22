@@ -1,0 +1,7 @@
+public void testDeleteQuietlyFile() throws IOException {
+    File testFile = new File(getTestDirectory(), "testDeleteQuietlyFile");
+    createFile(testFile, 0);
+    assertTrue(testFile.exists());
+    FileUtils.deleteQuietly(testFile);
+    assertFalse("Check No Exist", testFile.exists());
+}

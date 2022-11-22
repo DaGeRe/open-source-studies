@@ -1,0 +1,9 @@
+public void test_openOutputStream_existsButIsDirectory() throws Exception {
+    File directory = new File(getTestDirectory(), "subdir");
+    directory.mkdirs();
+    try {
+        FileUtils.openOutputStream(directory);
+        fail();
+    } catch (IOException ioe) {
+    }
+}

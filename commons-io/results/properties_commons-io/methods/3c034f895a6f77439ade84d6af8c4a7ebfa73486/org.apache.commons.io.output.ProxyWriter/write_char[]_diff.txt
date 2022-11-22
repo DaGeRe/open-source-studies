@@ -1,0 +1,14 @@
+@Override                                                                                              @Override                                                                                           
+public void write(char[] chr) throws IOException {                                                     public void write(char[] chr) throws IOException {                                                  
+try {                                                                                                  try {                                                                                               
+beforeWrite(chr.length);                                                                             | int len = 0;                                                                                        
+                                                                                                     | if (chr != null) {                                                                                  
+                                                                                                     | len = chr.length;                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | beforeWrite(len);                                                                                   
+out.write(chr);                                                                                        out.write(chr);                                                                                     
+afterWrite(chr.length);                                                                              | afterWrite(len);                                                                                    
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+handleIOException(e);                                                                                  handleIOException(e);                                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

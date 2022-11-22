@@ -1,0 +1,9 @@
+private void doRawStream(InputStream is, boolean lenient) throws IOException {
+    BOMInputStream bom = createBomStream(new BufferedInputStream(is, BUFFER_SIZE));
+    BOMInputStream pis = createXmlStream(bom);
+    String bomEnc = (bom.hasBOM() ? bom.getBOM().getCharsetName() : null);
+    String xmlGuessEnc = (pis.hasBOM() ? pis.getBOM().getCharsetName() : null);
+    String xmlEnc = getXmlProlog(pis, xmlGuessEnc);
+    String encoding = calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc, pis);
+    prepareReader(pis, encoding);
+}

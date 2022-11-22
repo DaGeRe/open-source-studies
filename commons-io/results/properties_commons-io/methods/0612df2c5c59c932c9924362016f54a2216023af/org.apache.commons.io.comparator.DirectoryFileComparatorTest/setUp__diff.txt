@@ -1,0 +1,11 @@
+@Override                                                                                              @Override                                                                                           
+protected void setUp() throws Exception {                                                              protected void setUp() throws Exception {                                                           
+super.setUp();                                                                                         super.setUp();                                                                                      
+comparator = (AbstractFileComparator) DirectoryFileComparator.DIRECTORY_COMPARATOR;                    comparator = (AbstractFileComparator) DirectoryFileComparator.DIRECTORY_COMPARATOR;                 
+reverse = DirectoryFileComparator.DIRECTORY_REVERSE;                                                   reverse = DirectoryFileComparator.DIRECTORY_REVERSE;                                                
+File currentDir = new File(".");                                                                       File currentDir = new File(".");                                                                    
+equalFile1 = new File(currentDir, "src");                                                              equalFile1 = new File(currentDir, "src");                                                           
+equalFile2 = new File(currentDir, "xdocs");                                                          | equalFile2 = new File(currentDir, "src/site/xdoc");                                                 
+lessFile = new File(currentDir, "src");                                                                lessFile = new File(currentDir, "src");                                                             
+moreFile = new File(currentDir, "pom.xml");                                                            moreFile = new File(currentDir, "pom.xml");                                                         
+}                                                                                                      }                                                                                                   

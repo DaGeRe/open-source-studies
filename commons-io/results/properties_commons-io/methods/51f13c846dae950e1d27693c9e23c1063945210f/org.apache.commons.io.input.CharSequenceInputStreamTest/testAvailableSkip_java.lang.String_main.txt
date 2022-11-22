@@ -1,0 +1,10 @@
+private void testAvailableSkip(final String csName) throws Exception {
+    final String input = "test";
+    try (InputStream r = new CharSequenceInputStream(input, csName)) {
+        int available = checkAvail(r, input.length());
+        assertEquals(available - 1, r.skip(available - 1));
+        available = checkAvail(r, 1);
+        assertEquals(1, r.skip(1));
+        available = checkAvail(r, 0);
+    }
+}

@@ -1,0 +1,7 @@
+public static int copy(Reader input, Writer output) throws IOException {
+    long count = copyLarge(input, output);
+    if (count > Integer.MAX_VALUE) {
+        throw new ArithmeticException("The character count " + count + " is too large to be converted to an int");
+    }
+    return (int) count;
+}

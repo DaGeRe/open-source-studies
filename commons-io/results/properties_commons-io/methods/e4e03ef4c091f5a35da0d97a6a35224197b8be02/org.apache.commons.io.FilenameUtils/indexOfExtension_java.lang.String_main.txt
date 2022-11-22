@@ -1,0 +1,14 @@
+public static int indexOfExtension(final String fileName) throws IllegalArgumentException {
+    if (fileName == null) {
+        return NOT_FOUND;
+    }
+    if (isSystemWindows()) {
+        final int offset = fileName.indexOf(':', getAdsCriticalOffset(fileName));
+        if (offset != -1) {
+            throw new IllegalArgumentException("NTFS ADS separator (':') in file name is forbidden.");
+        }
+    }
+    final int extensionPos = fileName.lastIndexOf(EXTENSION_SEPARATOR);
+    final int lastSeparator = indexOfLastSeparator(fileName);
+    return lastSeparator > extensionPos ? NOT_FOUND : extensionPos;
+}

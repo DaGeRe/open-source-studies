@@ -1,0 +1,7 @@
+public static IOFileFilter makeCVSAware(IOFileFilter filter) {                                         public static IOFileFilter makeCVSAware(IOFileFilter filter) {                                      
+if (filter == null) {                                                                                  if (filter == null) {                                                                               
+return cvsFilter;                                                                                      return cvsFilter;                                                                                   
+} else {                                                                                               } else {                                                                                            
+return andFileFilter(filter, cvsFilter);                                                             | return and(filter, cvsFilter);                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

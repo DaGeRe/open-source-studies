@@ -1,0 +1,14 @@
+@Override
+public void close() throws IOException {
+    IOException ioe = null;
+    try {
+        super.close();
+    } catch (final IOException e) {
+        ioe = e;
+    }
+    if (ioe == null) {
+        noteClosed();
+    } else {
+        noteError(ioe);
+    }
+}

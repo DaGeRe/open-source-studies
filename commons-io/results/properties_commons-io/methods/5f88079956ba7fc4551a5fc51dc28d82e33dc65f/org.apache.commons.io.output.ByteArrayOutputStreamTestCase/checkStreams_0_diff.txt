@@ -1,0 +1,6 @@
+private void checkStreams(final ByteArrayOutputStream actual, final java.io.ByteArrayOutputStream expected) {
+    assertEquals("Sizes are not equal", expected.size(), actual.size());
+    final byte[] buf = actual.toByteArray();
+    final byte[] refbuf = expected.toByteArray();
+    checkByteArrays(buf, refbuf);
+}

@@ -1,0 +1,6 @@
+public void testNextLineOnlyDefaultEncoding() throws Exception {
+    File testFile = new File(getTestDirectory(), "LineIterator-nextOnly.txt");
+    List<String> lines = createLinesFile(testFile, 3);
+    LineIterator iterator = FileUtils.lineIterator(testFile);
+    assertLines(lines, iterator);
+}

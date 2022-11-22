@@ -1,0 +1,22 @@
+@SuppressWarnings("deprecation")
+@Test
+public void testCopy_String_Writer() throws Exception {
+    final File destination = TestUtils.newFile(getTestDirectory(), "copy6.txt");
+    final FileReader fin = new FileReader(m_testFile);
+    String str;
+    try {
+        str = IOUtils.toString(fin);
+    } finally {
+        fin.close();
+    }
+    final FileWriter fout = new FileWriter(destination);
+    try {
+        CopyUtils.copy(str, fout);
+        fout.flush();
+        TestUtils.checkFile(destination, m_testFile);
+        TestUtils.checkWrite(fout);
+    } finally {
+        fout.close();
+    }
+    TestUtils.deleteFile(destination);
+}

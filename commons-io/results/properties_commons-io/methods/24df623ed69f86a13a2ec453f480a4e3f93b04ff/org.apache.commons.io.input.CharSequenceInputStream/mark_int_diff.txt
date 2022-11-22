@@ -1,0 +1,7 @@
+@Override
+public synchronized void mark(final int readlimit) {
+    this.mark_cbuf = this.cbuf.position();
+    this.mark_bbuf = this.bbuf.position();
+    this.cbuf.mark();
+    this.bbuf.mark();
+}

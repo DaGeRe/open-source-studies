@@ -1,0 +1,11 @@
+public void testReaderToCharArray() throws Exception {
+    FileReader fr = new FileReader(m_testFile);
+    try {
+        char[] out = IOUtils.toCharArray(fr);
+        assertNotNull(out);
+        assertEquals("Wrong output size", FILE_SIZE, out.length);
+        assertEqualContent(out, m_testFile);
+    } finally {
+        fr.close();
+    }
+}

@@ -1,0 +1,8 @@
+public ReaderInputStream(final Reader reader, final CharsetEncoder encoder, final int bufferSize) {
+    this.reader = reader;
+    this.encoder = encoder;
+    this.encoderIn = CharBuffer.allocate(bufferSize);
+    this.encoderIn.flip();
+    this.encoderOut = ByteBuffer.allocate(128);
+    this.encoderOut.flip();
+}

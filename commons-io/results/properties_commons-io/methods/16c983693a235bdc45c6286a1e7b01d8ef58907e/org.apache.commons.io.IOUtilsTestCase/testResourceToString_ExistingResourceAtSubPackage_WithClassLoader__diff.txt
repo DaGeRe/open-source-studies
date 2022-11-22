@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testResourceToString_ExistingResourceAtSubPackage_WithClassLoader() throws Exception {     public void testResourceToString_ExistingResourceAtSubPackage_WithClassLoader() throws Exception {  
+final long fileSize = new File(getClass().getResource("/org/apache/commons/io/FileUtilsTestDataCR.da | final long fileSize = new File(getClass().getResource("/org/apache/commons/io/FileUtilsTestDataCR.da
+final String content = IOUtils.resourceToString("org/apache/commons/io/FileUtilsTestDataCR.dat", Sta   final String content = IOUtils.resourceToString("org/apache/commons/io/FileUtilsTestDataCR.dat", Sta
+assertNotNull(content);                                                                                assertNotNull(content);                                                                             
+assertEquals(fileSize, content.getBytes().length);                                                     assertEquals(fileSize, content.getBytes().length);                                                  
+}                                                                                                      }                                                                                                   

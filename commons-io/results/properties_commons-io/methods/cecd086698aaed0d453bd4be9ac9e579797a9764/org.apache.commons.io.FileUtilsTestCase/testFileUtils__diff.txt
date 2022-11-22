@@ -1,0 +1,19 @@
+public void testFileUtils() throws Exception {
+    File file1 = new File(getTestDirectory(), "test.txt");
+    String filename = file1.getAbsolutePath();
+    OutputStream out = new java.io.FileOutputStream(file1);
+    try {
+        out.write("This is a test".getBytes("UTF-8"));
+    } finally {
+        out.close();
+    }
+    File file2 = new File(getTestDirectory(), "test2.txt");
+    FileUtils.writeStringToFile(file2, filename, "UTF-8");
+    assertTrue(file2.exists());
+    assertTrue(file2.length() > 0);
+    String file2contents = FileUtils.readFileToString(file2, "UTF-8");
+    assertTrue("Second file's contents correct", filename.equals(file2contents));
+    assertTrue(file2.delete());
+    String contents = FileUtils.readFileToString(new File(filename), "UTF-8");
+    assertTrue("FileUtils.fileRead()", contents.equals("This is a test"));
+}

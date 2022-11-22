@@ -1,0 +1,10 @@
+public void testCopy_readerToWriter_nullIn() throws Exception {
+    ByteArrayOutputStream baout = new ByteArrayOutputStream();
+    OutputStream out = new YellOnFlushAndCloseOutputStream(baout, true, true);
+    Writer writer = new OutputStreamWriter(out, "US-ASCII");
+    try {
+        IOUtils.copy((Reader) null, writer);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

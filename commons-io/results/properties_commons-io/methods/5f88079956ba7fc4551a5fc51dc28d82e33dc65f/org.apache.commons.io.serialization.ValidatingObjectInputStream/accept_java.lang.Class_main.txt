@@ -1,0 +1,6 @@
+public ValidatingObjectInputStream accept(final Class<?>... classes) {
+    for (final Class<?> c : classes) {
+        acceptMatchers.add(new FullClassNameMatcher(c.getName()));
+    }
+    return this;
+}

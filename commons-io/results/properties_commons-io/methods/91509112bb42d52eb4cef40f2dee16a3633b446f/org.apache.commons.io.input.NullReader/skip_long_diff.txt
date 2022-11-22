@@ -1,0 +1,16 @@
+                                                                                                     | @Override                                                                                           
+public long skip(long numberOfChars) throws IOException {                                              public long skip(long numberOfChars) throws IOException {                                           
+if (eof) {                                                                                             if (eof) {                                                                                          
+throw new IOException("Skip after end of file");                                                       throw new IOException("Skip after end of file");                                                    
+}                                                                                                      }                                                                                                   
+if (position == size) {                                                                                if (position == size) {                                                                             
+return doEndOfFile();                                                                                  return doEndOfFile();                                                                               
+}                                                                                                      }                                                                                                   
+position += numberOfChars;                                                                             position += numberOfChars;                                                                          
+long returnLength = numberOfChars;                                                                     long returnLength = numberOfChars;                                                                  
+if (position &gt; size) {                                                                              if (position &gt; size) {                                                                           
+returnLength = numberOfChars - (position - size);                                                      returnLength = numberOfChars - (position - size);                                                   
+position = size;                                                                                       position = size;                                                                                    
+}                                                                                                      }                                                                                                   
+return returnLength;                                                                                   return returnLength;                                                                                
+}                                                                                                      }                                                                                                   

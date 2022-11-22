@@ -1,0 +1,30 @@
+private Writer initWriter(File file, String encoding, boolean append) throws IOException {             private Writer initWriter(File file, String encoding, boolean append) throws IOException {          
+boolean fileExistedAlready = file.exists();                                                            boolean fileExistedAlready = file.exists();                                                         
+OutputStream stream = null;                                                                            OutputStream stream = null;                                                                         
+Writer writer = null;                                                                                  Writer writer = null;                                                                               
+try {                                                                                                  try {                                                                                               
+if (encoding == null) {                                                                                if (encoding == null) {                                                                             
+writer = new FileWriter(file.getAbsolutePath(), append);                                               writer = new FileWriter(file.getAbsolutePath(), append);                                            
+} else {                                                                                               } else {                                                                                            
+stream = new FileOutputStream(file.getAbsolutePath(), append);                                         stream = new FileOutputStream(file.getAbsolutePath(), append);                                      
+writer = new OutputStreamWriter(stream, encoding);                                                     writer = new OutputStreamWriter(stream, encoding);                                                  
+}                                                                                                      }                                                                                                   
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+IOUtils.closeQuietly(writer);                                                                          IOUtils.closeQuietly(writer);                                                                       
+IOUtils.closeQuietly(stream);                                                                          IOUtils.closeQuietly(stream);                                                                       
+lockFile.delete();                                                                                   | FileUtils.deleteQuietly(lockFile);                                                                  
+if (fileExistedAlready == false) {                                                                     if (fileExistedAlready == false) {                                                                  
+file.delete();                                                                                       | FileUtils.deleteQuietly(file);                                                                      
+}                                                                                                      }                                                                                                   
+throw ex;                                                                                              throw ex;                                                                                           
+} catch (RuntimeException ex) {                                                                        } catch (RuntimeException ex) {                                                                     
+IOUtils.closeQuietly(writer);                                                                          IOUtils.closeQuietly(writer);                                                                       
+IOUtils.closeQuietly(stream);                                                                          IOUtils.closeQuietly(stream);                                                                       
+lockFile.delete();                                                                                   | FileUtils.deleteQuietly(lockFile);                                                                  
+if (fileExistedAlready == false) {                                                                     if (fileExistedAlready == false) {                                                                  
+file.delete();                                                                                       | FileUtils.deleteQuietly(file);                                                                      
+}                                                                                                      }                                                                                                   
+throw ex;                                                                                              throw ex;                                                                                           
+}                                                                                                      }                                                                                                   
+return writer;                                                                                         return writer;                                                                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+public static void moveToDirectory(File src, File destDir, boolean createDestDir) throws IOException   public static void moveToDirectory(File src, File destDir, boolean createDestDir) throws IOException
+if (src == null) {                                                                                     if (src == null) {                                                                                  
+throw new IllegalArgumentException("Source must not be null");                                       | throw new NullPointerException("Source must not be null");                                          
+}                                                                                                      }                                                                                                   
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new IllegalArgumentException("Destination must not be null");                                  | throw new NullPointerException("Destination must not be null");                                     
+}                                                                                                      }                                                                                                   
+if (!src.exists()) {                                                                                   if (!src.exists()) {                                                                                
+throw new FileNotFoundException("Source '" + src + "' does not exist");                                throw new FileNotFoundException("Source '" + src + "' does not exist");                             
+}                                                                                                      }                                                                                                   
+if (src.isDirectory()) {                                                                               if (src.isDirectory()) {                                                                            
+moveDirectoryToDirectory(src, destDir, createDestDir);                                                 moveDirectoryToDirectory(src, destDir, createDestDir);                                              
+} else {                                                                                               } else {                                                                                            
+moveFileToDirectory(src, destDir, createDestDir);                                                      moveFileToDirectory(src, destDir, createDestDir);                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

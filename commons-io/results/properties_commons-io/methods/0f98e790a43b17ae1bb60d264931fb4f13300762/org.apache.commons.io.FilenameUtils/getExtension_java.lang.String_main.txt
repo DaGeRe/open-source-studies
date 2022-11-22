@@ -1,0 +1,10 @@
+public static String getExtension(final String filename) throws IllegalArgumentException {
+    if (filename == null) {
+        return null;
+    }
+    final int index = indexOfExtension(filename);
+    if (index == NOT_FOUND) {
+        return "";
+    }
+    return filename.substring(index + 1);
+}

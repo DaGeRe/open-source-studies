@@ -1,0 +1,33 @@
+long freeSpaceUnix(final String path, final boolean kb, final boolean posix, final long timeout) throws IOException {
+    if (path.isEmpty()) {
+        throw new IllegalArgumentException("Path must not be empty");
+    }
+    String flags = "-";
+    if (kb) {
+        flags += "k";
+    }
+    if (posix) {
+        flags += "P";
+    }
+    final String[] cmdAttribs = flags.length() > 1 ? new String[] { DF, flags, path } : new String[] { DF, path };
+    final List<String> lines = performCommand(cmdAttribs, 3, timeout);
+    if (lines.size() < 2) {
+        throw new IOException("Command line '" + DF + "' did not return info as expected " + "for path '" + path + "'- response was " + lines);
+    }
+    final String line2 = lines.get(1);
+    StringTokenizer tok = new StringTokenizer(line2, " ");
+    if (tok.countTokens() < 4) {
+        if (tok.countTokens() == 1 && lines.size() >= 3) {
+            final String line3 = lines.get(2);
+            tok = new StringTokenizer(line3, " ");
+        } else {
+            throw new IOException("Command line '" + DF + "' did not return data as expected " + "for path '" + path + "'- check path is valid");
+        }
+    } else {
+        tok.nextToken();
+    }
+    tok.nextToken();
+    tok.nextToken();
+    final String freeSpace = tok.nextToken();
+    return parseBytes(freeSpace, path);
+}

@@ -1,0 +1,15 @@
+protected FilesystemObserver(FilesystemEntry rootEntry, FileFilter fileFilter, Comparator<File> comparator) {
+    if (rootEntry == null) {
+        throw new IllegalArgumentException("Root entry is missing");
+    }
+    if (rootEntry.getFile() == null) {
+        throw new IllegalArgumentException("Root directory is missing");
+    }
+    this.rootEntry = rootEntry;
+    this.fileFilter = fileFilter;
+    if (comparator == null) {
+        this.comparator = NameFileComparator.NAME_COMPARATOR;
+    } else {
+        this.comparator = comparator;
+    }
+}

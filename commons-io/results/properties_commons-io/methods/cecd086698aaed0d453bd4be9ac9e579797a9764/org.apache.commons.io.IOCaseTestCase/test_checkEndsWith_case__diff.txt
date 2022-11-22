@@ -1,0 +1,8 @@
+public void test_checkEndsWith_case() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("ABC", "BC"));
+    assertEquals(false, IOCase.SENSITIVE.checkEndsWith("ABC", "Bc"));
+    assertEquals(true, IOCase.INSENSITIVE.checkEndsWith("ABC", "BC"));
+    assertEquals(true, IOCase.INSENSITIVE.checkEndsWith("ABC", "Bc"));
+    assertEquals(true, IOCase.SYSTEM.checkEndsWith("ABC", "BC"));
+    assertEquals(WINDOWS, IOCase.SYSTEM.checkEndsWith("ABC", "Bc"));
+}

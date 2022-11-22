@@ -1,0 +1,12 @@
+@Override
+public int read(byte[] bts) throws IOException {
+    try {
+        beforeRead(bts.length);
+        int n = in.read(bts);
+        afterRead(n);
+        return n;
+    } catch (IOException e) {
+        handleIOException(e);
+        return -1;
+    }
+}

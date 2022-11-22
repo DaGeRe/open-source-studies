@@ -1,0 +1,8 @@
+public FileAlterationMonitor(long interval, FileAlterationObserver... observers) {
+    this(interval);
+    if (observers != null) {
+        for (FileAlterationObserver observer : observers) {
+            addObserver(observer);
+        }
+    }
+}

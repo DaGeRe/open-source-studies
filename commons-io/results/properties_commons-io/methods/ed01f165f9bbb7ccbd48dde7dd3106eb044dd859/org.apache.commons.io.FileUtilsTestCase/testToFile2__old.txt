@@ -1,0 +1,5 @@
+public void testToFile2() throws Exception {
+    URL url = new URL("file", null, "a/b/c/file%20n%61me.tx%74");
+    File file = FileUtils.toFile(url);
+    assertEquals(true, file.toString().indexOf("file name.txt") >= 0);
+}

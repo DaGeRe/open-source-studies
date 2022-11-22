@@ -1,0 +1,6 @@
+public void testClose() throws Exception {
+    ExpectCloseInputStream del = new ExpectCloseInputStream();
+    InputStream in = new BOMExclusionInputStream(del);
+    in.close();
+    del.assertCloseCalled();
+}

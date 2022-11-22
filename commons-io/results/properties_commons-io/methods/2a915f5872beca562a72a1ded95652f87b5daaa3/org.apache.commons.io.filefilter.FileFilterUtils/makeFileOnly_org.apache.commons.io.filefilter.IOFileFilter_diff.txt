@@ -1,0 +1,6 @@
+public static IOFileFilter makeFileOnly(final IOFileFilter filter) {
+    if (filter == null) {
+        return FileFileFilter.FILE;
+    }
+    return new AndFileFilter(FileFileFilter.FILE, filter);
+}

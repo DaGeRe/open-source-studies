@@ -1,0 +1,26 @@
+public void test_checkEndsWith_functionality() throws Exception {
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("ABC", ""));
+    assertEquals(false, IOCase.SENSITIVE.checkEndsWith("ABC", "A"));
+    assertEquals(false, IOCase.SENSITIVE.checkEndsWith("ABC", "AB"));
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("ABC", "ABC"));
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("ABC", "BC"));
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("ABC", "C"));
+    assertEquals(false, IOCase.SENSITIVE.checkEndsWith("ABC", "ABCD"));
+    assertEquals(false, IOCase.SENSITIVE.checkEndsWith("", "ABC"));
+    assertEquals(true, IOCase.SENSITIVE.checkEndsWith("", ""));
+    try {
+        IOCase.SENSITIVE.checkEndsWith("ABC", null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkEndsWith(null, "ABC");
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        IOCase.SENSITIVE.checkEndsWith(null, null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

@@ -1,0 +1,12 @@
+public void test_openOutputStream_notExistsCannotCreate() throws Exception {
+    String longStr = "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz" + "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz" + "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz" + "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz" + "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz" + "abcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyzabcdevwxyz";
+    File file = new File(getTestDirectory(), "a/" + longStr + "/test.txt");
+    FileOutputStream out = null;
+    try {
+        out = FileUtils.openOutputStream(file);
+        fail();
+    } catch (IOException ioe) {
+    } finally {
+        IOUtils.closeQuietly(out);
+    }
+}

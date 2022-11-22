@@ -1,0 +1,15 @@
+public void testFilterListNullParameters() {
+    try {
+        FileFilterUtils.filterList(null, Collections.<File>emptyList());
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    IOFileFilter filter = FileFilterUtils.trueFileFilter();
+    try {
+        FileFilterUtils.filterList(filter, Arrays.<File>asList((File) null));
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    List<File> filteredList = FileFilterUtils.filterList(filter, (List<File>) null);
+    assertEquals(0, filteredList.size());
+}

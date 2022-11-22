@@ -1,0 +1,20 @@
+public void testListFilesByExtension() throws Exception {                                              public void testListFilesByExtension() throws Exception {                                           
+String[] extensions = { "xml", "txt" };                                                                String[] extensions = { "xml", "txt" };                                                             
+Collection files = FileUtils.listFiles(getLocalTestDirectory(), extensions, false);                  | Collection&lt;File&gt; files = FileUtils.listFiles(getLocalTestDirectory(), extensions, false);     
+assertEquals(1, files.size());                                                                         assertEquals(1, files.size());                                                                      
+Collection filenames = filesToFilenames(files);                                                      | Collection&lt;String&gt; filenames = filesToFilenames(files);                                       
+assertTrue(filenames.contains("dummy-build.xml"));                                                     assertTrue(filenames.contains("dummy-build.xml"));                                                  
+assertFalse(filenames.contains("README"));                                                             assertFalse(filenames.contains("README"));                                                          
+assertFalse(filenames.contains("dummy-file.txt"));                                                     assertFalse(filenames.contains("dummy-file.txt"));                                                  
+files = FileUtils.listFiles(getLocalTestDirectory(), extensions, true);                                files = FileUtils.listFiles(getLocalTestDirectory(), extensions, true);                             
+filenames = filesToFilenames(files);                                                                   filenames = filesToFilenames(files);                                                                
+assertEquals(4, filenames.size());                                                                     assertEquals(4, filenames.size());                                                                  
+assertTrue(filenames.contains("dummy-file.txt"));                                                      assertTrue(filenames.contains("dummy-file.txt"));                                                   
+assertFalse(filenames.contains("dummy-index.html"));                                                   assertFalse(filenames.contains("dummy-index.html"));                                                
+files = FileUtils.listFiles(getLocalTestDirectory(), null, false);                                     files = FileUtils.listFiles(getLocalTestDirectory(), null, false);                                  
+assertEquals(2, files.size());                                                                         assertEquals(2, files.size());                                                                      
+filenames = filesToFilenames(files);                                                                   filenames = filesToFilenames(files);                                                                
+assertTrue(filenames.contains("dummy-build.xml"));                                                     assertTrue(filenames.contains("dummy-build.xml"));                                                  
+assertTrue(filenames.contains("README"));                                                              assertTrue(filenames.contains("README"));                                                           
+assertFalse(filenames.contains("dummy-file.txt"));                                                     assertFalse(filenames.contains("dummy-file.txt"));                                                  
+}                                                                                                      }                                                                                                   

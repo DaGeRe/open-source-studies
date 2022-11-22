@@ -1,0 +1,12 @@
+protected final void walk(File startDirectory, Collection results) throws IOException {              | protected final void walk(File startDirectory, Collection&lt;?&gt; results) throws IOException {    
+if (startDirectory == null) {                                                                          if (startDirectory == null) {                                                                       
+throw new NullPointerException("Start Directory is null");                                             throw new NullPointerException("Start Directory is null");                                          
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+handleStart(startDirectory, results);                                                                  handleStart(startDirectory, results);                                                               
+walk(startDirectory, 0, results);                                                                      walk(startDirectory, 0, results);                                                                   
+handleEnd(results);                                                                                    handleEnd(results);                                                                                 
+} catch (CancelException cancel) {                                                                     } catch (CancelException cancel) {                                                                  
+handleCancelled(startDirectory, results, cancel);                                                      handleCancelled(startDirectory, results, cancel);                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

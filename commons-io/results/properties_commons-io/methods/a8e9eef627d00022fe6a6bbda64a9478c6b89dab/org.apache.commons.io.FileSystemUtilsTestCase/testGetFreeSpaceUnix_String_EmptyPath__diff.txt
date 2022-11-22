@@ -1,0 +1,24 @@
+public void testGetFreeSpaceUnix_String_EmptyPath() throws Exception {                                 public void testGetFreeSpaceUnix_String_EmptyPath() throws Exception {                              
+String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "xxx:/home/u   String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "xxx:/home/u
+FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                               FileSystemUtils fsu = new MockFileSystemUtils(0, lines);                                            
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("", false, false);                                                                 | fsu.freeSpaceUnix("", false, false, -1);                                                            
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("", true, false);                                                                  | fsu.freeSpaceUnix("", true, false, -1);                                                             
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("", true, true);                                                                   | fsu.freeSpaceUnix("", true, true, -1);                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+fsu.freeSpaceUnix("", false, true);                                                                  | fsu.freeSpaceUnix("", false, true, -1);                                                             
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

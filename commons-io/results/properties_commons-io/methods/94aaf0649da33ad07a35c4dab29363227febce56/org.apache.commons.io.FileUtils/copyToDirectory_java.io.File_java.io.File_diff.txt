@@ -1,0 +1,12 @@
+public static void copyToDirectory(final File src, final File destDir) throws IOException {
+    if (src == null) {
+        throw new NullPointerException("Source must not be null");
+    }
+    if (src.isFile()) {
+        copyFileToDirectory(src, destDir);
+    } else if (src.isDirectory()) {
+        copyDirectoryToDirectory(src, destDir);
+    } else {
+        throw new IOException("The source " + src + " does not exist");
+    }
+}

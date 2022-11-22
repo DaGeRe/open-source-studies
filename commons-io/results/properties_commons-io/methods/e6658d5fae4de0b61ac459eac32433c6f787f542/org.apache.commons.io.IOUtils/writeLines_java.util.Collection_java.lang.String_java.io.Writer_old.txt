@@ -1,0 +1,15 @@
+public static void writeLines(Collection<?> values, String lineEnding, Writer writer) throws IOException {
+    if (values == null) {
+        return;
+    }
+    if (lineEnding == null) {
+        lineEnding = LINE_SEPARATOR;
+    }
+    for (Iterator<?> it = values.iterator(); it.hasNext(); ) {
+        Object line = it.next();
+        if (line != null) {
+            writer.write(line.toString());
+        }
+        writer.write(lineEnding);
+    }
+}

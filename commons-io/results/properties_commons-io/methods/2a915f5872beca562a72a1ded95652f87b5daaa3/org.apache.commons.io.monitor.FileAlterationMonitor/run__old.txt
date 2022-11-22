@@ -1,0 +1,14 @@
+public void run() {
+    while (running) {
+        for (final FileAlterationObserver observer : observers) {
+            observer.checkAndNotify();
+        }
+        if (!running) {
+            break;
+        }
+        try {
+            Thread.sleep(interval);
+        } catch (final InterruptedException ignored) {
+        }
+    }
+}

@@ -1,0 +1,10 @@
+private int readWithUpdate() throws IOException {
+    final int target = this.target.read();
+    eofSeen = target == -1;
+    if (eofSeen) {
+        return target;
+    }
+    slashRSeen = target == '\r';
+    slashNSeen = target == '\n';
+    return target;
+}

@@ -1,0 +1,15 @@
+public void checkAndNotify() {                                                                         public void checkAndNotify() {                                                                      
+for (FileAlterationListener listener : listeners) {                                                    for (FileAlterationListener listener : listeners) {                                                 
+listener.onStart(this);                                                                                listener.onStart(this);                                                                             
+}                                                                                                      }                                                                                                   
+File rootFile = rootEntry.getFile();                                                                   File rootFile = rootEntry.getFile();                                                                
+if (rootFile.exists()) {                                                                               if (rootFile.exists()) {                                                                            
+checkAndNotify(rootEntry, rootEntry.getChildren(), listFiles(rootFile));                               checkAndNotify(rootEntry, rootEntry.getChildren(), listFiles(rootFile));                            
+} else if (rootEntry.isExists()) {                                                                     } else if (rootEntry.isExists()) {                                                                  
+checkAndNotify(rootEntry, rootEntry.getChildren(), EMPTY_FILES);                                     | checkAndNotify(rootEntry, rootEntry.getChildren(), FileUtils.EMPTY_FILE_ARRAY);                     
+} else {                                                                                               } else {                                                                                            
+}                                                                                                      }                                                                                                   
+for (FileAlterationListener listener : listeners) {                                                    for (FileAlterationListener listener : listeners) {                                                 
+listener.onStop(this);                                                                                 listener.onStop(this);                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

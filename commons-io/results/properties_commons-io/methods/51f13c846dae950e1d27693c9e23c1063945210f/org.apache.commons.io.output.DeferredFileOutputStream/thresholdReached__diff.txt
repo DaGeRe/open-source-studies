@@ -1,0 +1,15 @@
+@Override
+protected void thresholdReached() throws IOException {
+    if (prefix != null) {
+        outputFile = File.createTempFile(prefix, suffix, directory);
+    }
+    final FileOutputStream fos = new FileOutputStream(outputFile);
+    try {
+        memoryOutputStream.writeTo(fos);
+    } catch (IOException e) {
+        fos.close();
+        throw e;
+    }
+    currentOutputStream = fos;
+    memoryOutputStream = null;
+}

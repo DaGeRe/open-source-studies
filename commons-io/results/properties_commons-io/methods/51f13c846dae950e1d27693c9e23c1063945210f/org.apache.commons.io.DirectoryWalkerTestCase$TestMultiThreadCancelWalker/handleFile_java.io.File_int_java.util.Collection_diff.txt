@@ -1,0 +1,8 @@
+@Override
+protected void handleFile(final File file, final int depth, final Collection<File> results) throws IOException {
+    results.add(file);
+    assertFalse(cancelled);
+    if (cancelFileName.equals(file.getName())) {
+        cancelled = true;
+    }
+}

@@ -1,0 +1,10 @@
+public void testTempFileError() {
+    String prefix = null;
+    String suffix = ".out";
+    File tempDir = new File(".");
+    try {
+        DeferredFileOutputStream dfos = new DeferredFileOutputStream(testBytes.length - 5, prefix, suffix, tempDir);
+        fail("Expected IllegalArgumentException ");
+    } catch (IllegalArgumentException e) {
+    }
+}

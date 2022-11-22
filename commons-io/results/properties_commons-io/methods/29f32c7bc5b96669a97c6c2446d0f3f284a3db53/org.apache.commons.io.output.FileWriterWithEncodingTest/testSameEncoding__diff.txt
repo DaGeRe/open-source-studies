@@ -1,0 +1,20 @@
+public void testSameEncoding() throws Exception {
+    FileWriter fw1 = null;
+    FileWriterWithEncoding fw2 = null;
+    try {
+        fw1 = new FileWriter(file1);
+        fw2 = new FileWriterWithEncoding(file2, defaultEncoding);
+        assertEquals(true, file1.exists());
+        assertEquals(true, file2.exists());
+        fw1.write(textContent);
+        fw2.write(textContent);
+        fw1.flush();
+        fw2.flush();
+        checkFile(file1, file2);
+    } finally {
+        IOUtils.closeQuietly(fw1);
+        IOUtils.closeQuietly(fw2);
+    }
+    assertEquals(true, file1.exists());
+    assertEquals(true, file2.exists());
+}

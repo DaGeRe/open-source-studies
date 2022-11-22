@@ -1,0 +1,7 @@
+@Test
+public void testAppendChar() throws IOException {
+    try (final Writer writer = new StringBuilderWriter()) {
+        writer.append('F').append('o').append('o');
+        assertEquals("Foo", writer.toString());
+    }
+}

@@ -1,0 +1,7 @@
+public ChunkedOutputStream(final OutputStream stream, int chunkSize) {
+    super(stream);
+    if (chunkSize <= 0) {
+        throw new IllegalArgumentException();
+    }
+    this.chunkSize = chunkSize;
+}

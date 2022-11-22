@@ -1,0 +1,13 @@
+public void testThrowsOnCannotDeleteFile() throws Exception {                                          public void testThrowsOnCannotDeleteFile() throws Exception {                                       
+final File file = new File(top, "restricted");                                                         final File file = new File(top, "restricted");                                                      
+FileUtils.touch(file);                                                                                 FileUtils.touch(file);                                                                              
+if (!chmod(top, 500, false)) {                                                                       | if (System.getProperty("os.name").startsWith("Win") || !chmod(top, 500, false)) {                   
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+FileUtils.cleanDirectory(top);                                                                         FileUtils.cleanDirectory(top);                                                                      
+fail("expected IOException");                                                                          fail("expected IOException");                                                                       
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+assertEquals("Unable to delete file: " + file.getAbsolutePath(), e.getMessage());                      assertEquals("Unable to delete file: " + file.getAbsolutePath(), e.getMessage());                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

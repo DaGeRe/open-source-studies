@@ -1,0 +1,15 @@
+public void testCopyDirectoryToExistingDest() throws Exception {
+    createFile(testFile1, 1234);
+    createFile(testFile2, 4321);
+    File srcDir = getTestDirectory();
+    File subDir = new File(srcDir, "sub");
+    subDir.mkdir();
+    File subFile = new File(subDir, "A.txt");
+    FileUtils.writeStringToFile(subFile, "HELLO WORLD", "UTF8");
+    File destDir = new File(System.getProperty("java.io.tmpdir"), "tmp-FileUtilsTestCase");
+    FileUtils.deleteDirectory(destDir);
+    destDir.mkdirs();
+    FileUtils.copyDirectory(srcDir, destDir);
+    assertEquals(FileUtils.sizeOfDirectory(srcDir), FileUtils.sizeOfDirectory(destDir));
+    assertEquals(true, new File(destDir, "sub/A.txt").exists());
+}

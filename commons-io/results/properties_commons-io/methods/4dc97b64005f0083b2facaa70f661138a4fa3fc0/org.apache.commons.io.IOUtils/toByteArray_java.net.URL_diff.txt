@@ -1,0 +1,8 @@
+public static byte[] toByteArray(final URL url) throws IOException {
+    final URLConnection conn = url.openConnection();
+    try {
+        return IOUtils.toByteArray(conn);
+    } finally {
+        close(conn);
+    }
+}

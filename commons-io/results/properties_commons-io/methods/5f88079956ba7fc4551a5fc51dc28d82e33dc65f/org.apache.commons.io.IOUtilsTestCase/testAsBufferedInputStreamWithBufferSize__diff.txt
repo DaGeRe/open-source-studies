@@ -1,0 +1,14 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAsBufferedInputStreamWithBufferSize() {                                                public void testAsBufferedInputStreamWithBufferSize() {                                             
+InputStream is = new InputStream() {                                                                 | final InputStream is = new InputStream() {                                                          
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public int read() throws IOException {                                                                 public int read() throws IOException {                                                              
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+final BufferedInputStream bis = IOUtils.buffer(is, 2048);                                              final BufferedInputStream bis = IOUtils.buffer(is, 2048);                                           
+assertNotSame(is, bis);                                                                                assertNotSame(is, bis);                                                                             
+assertSame(bis, IOUtils.buffer(bis));                                                                  assertSame(bis, IOUtils.buffer(bis));                                                               
+assertSame(bis, IOUtils.buffer(bis, 1024));                                                            assertSame(bis, IOUtils.buffer(bis, 1024));                                                         
+}                                                                                                      }                                                                                                   

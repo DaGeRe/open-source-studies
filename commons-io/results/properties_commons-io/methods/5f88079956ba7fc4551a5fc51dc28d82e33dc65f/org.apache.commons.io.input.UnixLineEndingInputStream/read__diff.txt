@@ -1,0 +1,19 @@
+@Override                                                                                              @Override                                                                                           
+public int read() throws IOException {                                                                 public int read() throws IOException {                                                              
+boolean previousWasSlashR = slashRSeen;                                                              | final boolean previousWasSlashR = slashRSeen;                                                       
+if (eofSeen) {                                                                                         if (eofSeen) {                                                                                      
+return eofGame(previousWasSlashR);                                                                     return eofGame(previousWasSlashR);                                                                  
+} else {                                                                                               } else {                                                                                            
+int target = readWithUpdate();                                                                       | final int target = readWithUpdate();                                                                
+if (eofSeen) {                                                                                         if (eofSeen) {                                                                                      
+return eofGame(previousWasSlashR);                                                                     return eofGame(previousWasSlashR);                                                                  
+}                                                                                                      }                                                                                                   
+if (slashRSeen) {                                                                                      if (slashRSeen) {                                                                                   
+return '\n';                                                                                           return '\n';                                                                                        
+}                                                                                                      }                                                                                                   
+if (previousWasSlashR && slashNSeen) {                                                                 if (previousWasSlashR && slashNSeen) {                                                              
+return read();                                                                                         return read();                                                                                      
+}                                                                                                      }                                                                                                   
+return target;                                                                                         return target;                                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,40 @@
+public void testBrokenStream() {
+    IOException exception = new IOException("test exception");
+    TaggedOutputStream stream = new TaggedOutputStream(new BrokenOutputStream(exception));
+    try {
+        stream.write('x');
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertTrue(stream.isCauseOf(e));
+        try {
+            stream.throwIfCauseOf(e);
+            fail("Expected exception not thrown.");
+        } catch (IOException e2) {
+            assertEquals(exception, e2);
+        }
+    }
+    try {
+        stream.flush();
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertTrue(stream.isCauseOf(e));
+        try {
+            stream.throwIfCauseOf(e);
+            fail("Expected exception not thrown.");
+        } catch (IOException e2) {
+            assertEquals(exception, e2);
+        }
+    }
+    try {
+        stream.close();
+        fail("Expected exception not thrown.");
+    } catch (IOException e) {
+        assertTrue(stream.isCauseOf(e));
+        try {
+            stream.throwIfCauseOf(e);
+            fail("Expected exception not thrown.");
+        } catch (IOException e2) {
+            assertEquals(exception, e2);
+        }
+    }
+}

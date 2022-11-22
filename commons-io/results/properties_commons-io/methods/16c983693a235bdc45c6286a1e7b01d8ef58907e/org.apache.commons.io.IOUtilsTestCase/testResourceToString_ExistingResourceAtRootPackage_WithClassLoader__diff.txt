@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testResourceToString_ExistingResourceAtRootPackage_WithClassLoader() throws Exception {    public void testResourceToString_ExistingResourceAtRootPackage_WithClassLoader() throws Exception { 
+final long fileSize = new File(getClass().getResource("/test-file-simple-utf8.bin").getFile()).lengt | final long fileSize = new File(getClass().getResource("/test-file-simple-utf8.bin").toURI()).length(
+final String content = IOUtils.resourceToString("test-file-simple-utf8.bin", StandardCharsets.UTF_8,   final String content = IOUtils.resourceToString("test-file-simple-utf8.bin", StandardCharsets.UTF_8,
+assertNotNull(content);                                                                                assertNotNull(content);                                                                             
+assertEquals(fileSize, content.getBytes().length);                                                     assertEquals(fileSize, content.getBytes().length);                                                  
+}                                                                                                      }                                                                                                   

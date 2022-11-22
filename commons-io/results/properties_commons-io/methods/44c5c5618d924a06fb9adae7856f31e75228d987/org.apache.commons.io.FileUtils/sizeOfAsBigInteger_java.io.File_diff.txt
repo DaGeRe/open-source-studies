@@ -1,0 +1,10 @@
+public static BigInteger sizeOfAsBigInteger(final File file) {
+    if (!file.exists()) {
+        final String message = file + " does not exist";
+        throw new IllegalArgumentException(message);
+    }
+    if (file.isDirectory()) {
+        return sizeOfDirectoryBig0(file);
+    }
+    return BigInteger.valueOf(file.length());
+}

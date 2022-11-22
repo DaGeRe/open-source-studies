@@ -1,0 +1,9 @@
+@Override
+public int read() throws IOException {
+    final InputStream input = m_streams.get();
+    if (null != input) {
+        return input.read();
+    } else {
+        return EOF;
+    }
+}

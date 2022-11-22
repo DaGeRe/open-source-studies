@@ -1,0 +1,53 @@
+List<String> performCommand(final String[] cmdAttribs, final int max, final long timeout) throws IOException {
+    final List<String> lines = new ArrayList<String>(20);
+    Process proc = null;
+    InputStream in = null;
+    OutputStream out = null;
+    InputStream err = null;
+    BufferedReader inr = null;
+    try {
+        final Thread monitor = ThreadMonitor.start(timeout);
+        proc = openProcess(cmdAttribs);
+        in = proc.getInputStream();
+        out = proc.getOutputStream();
+        err = proc.getErrorStream();
+        inr = new BufferedReader(new InputStreamReader(in, Charset.defaultCharset()));
+        String line = inr.readLine();
+        while (line != null && lines.size() < max) {
+            line = line.toLowerCase(Locale.ENGLISH).trim();
+            lines.add(line);
+            line = inr.readLine();
+        }
+        proc.waitFor();
+        ThreadMonitor.stop(monitor);
+        if (proc.exitValue() != 0) {
+            throw new IOException("Command line returned OS error code '" + proc.exitValue() + "' for command " + Arrays.asList(cmdAttribs));
+        }
+        if (lines.isEmpty()) {
+            throw new IOException("Command line did not return any info " + "for command " + Arrays.asList(cmdAttribs));
+        }
+        inr.close();
+        inr = null;
+        in.close();
+        in = null;
+        if (out != null) {
+            out.close();
+            out = null;
+        }
+        if (err != null) {
+            err.close();
+            err = null;
+        }
+        return lines;
+    } catch (final InterruptedException ex) {
+        throw new IOException("Command line threw an InterruptedException " + "for command " + Arrays.asList(cmdAttribs) + " timeout=" + timeout, ex);
+    } finally {
+        IOUtils.closeQuietly(in);
+        IOUtils.closeQuietly(out);
+        IOUtils.closeQuietly(err);
+        IOUtils.closeQuietly(inr);
+        if (proc != null) {
+            proc.destroy();
+        }
+    }
+}

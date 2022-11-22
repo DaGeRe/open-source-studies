@@ -1,0 +1,12 @@
+@Override
+public void readFully(final byte[] data, final int offset, final int length) throws IOException, EOFException {
+    int remaining = length;
+    while (remaining > 0) {
+        final int location = offset + length - remaining;
+        final int count = read(data, location, remaining);
+        if (EOF == count) {
+            throw new EOFException();
+        }
+        remaining -= count;
+    }
+}

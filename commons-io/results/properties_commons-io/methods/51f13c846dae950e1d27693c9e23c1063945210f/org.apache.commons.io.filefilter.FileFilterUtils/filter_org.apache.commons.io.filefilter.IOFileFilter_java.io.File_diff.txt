@@ -1,0 +1,18 @@
+public static File[] filter(final IOFileFilter filter, final File... files) {                          public static File[] filter(final IOFileFilter filter, final File... files) {                       
+if (filter == null) {                                                                                  if (filter == null) {                                                                               
+throw new IllegalArgumentException("file filter is null");                                             throw new IllegalArgumentException("file filter is null");                                          
+}                                                                                                      }                                                                                                   
+if (files == null) {                                                                                   if (files == null) {                                                                                
+return new File[0];                                                                                    return new File[0];                                                                                 
+}                                                                                                      }                                                                                                   
+final List&lt;File&gt; acceptedFiles = new ArrayList&lt;File&gt;();                                  | final List&lt;File&gt; acceptedFiles = new ArrayList&lt;&gt;();                                     
+for (final File file : files) {                                                                        for (final File file : files) {                                                                     
+if (file == null) {                                                                                    if (file == null) {                                                                                 
+throw new IllegalArgumentException("file array contains null");                                        throw new IllegalArgumentException("file array contains null");                                     
+}                                                                                                      }                                                                                                   
+if (filter.accept(file)) {                                                                             if (filter.accept(file)) {                                                                          
+acceptedFiles.add(file);                                                                               acceptedFiles.add(file);                                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return acceptedFiles.toArray(new File[acceptedFiles.size()]);                                          return acceptedFiles.toArray(new File[acceptedFiles.size()]);                                       
+}                                                                                                      }                                                                                                   

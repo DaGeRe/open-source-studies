@@ -1,0 +1,22 @@
+public static long copyLarge(final Reader input, final Writer output, final long inputOffset, final long length, final char[] buffer) throws IOException {
+    if (inputOffset > 0) {
+        skipFully(input, inputOffset);
+    }
+    if (length == 0) {
+        return 0;
+    }
+    int bytesToRead = buffer.length;
+    if (length > 0 && length < buffer.length) {
+        bytesToRead = (int) length;
+    }
+    int read;
+    long totalRead = 0;
+    while (bytesToRead > 0 && EOF != (read = input.read(buffer, 0, bytesToRead))) {
+        output.write(buffer, 0, read);
+        totalRead += read;
+        if (length > 0) {
+            bytesToRead = (int) Math.min(length - totalRead, buffer.length);
+        }
+    }
+    return totalRead;
+}

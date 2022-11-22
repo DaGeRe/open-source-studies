@@ -1,0 +1,14 @@
+public synchronized void reset() {
+    count = 0;
+    filledBufferSum = 0;
+    currentBufferIndex = 0;
+    if (reuseBuffers) {
+        currentBuffer = buffers.get(currentBufferIndex);
+    } else {
+        currentBuffer = null;
+        final int size = buffers.get(0).length;
+        buffers.clear();
+        needNewBuffer(size);
+        reuseBuffers = true;
+    }
+}

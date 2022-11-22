@@ -1,0 +1,23 @@
+public void testMonitor() {
+    try {
+        long interval = 100;
+        FilesystemMonitor monitor = new FilesystemMonitor(interval, observer);
+        monitor.start();
+        checkCollectionsEmpty("A");
+        File file1 = touch(new File(testDir, "file1.java"));
+        checkFile("Create", file1, interval, listener.getCreatedFiles());
+        listener.clear();
+        checkCollectionsEmpty("B");
+        file1 = touch(file1);
+        checkFile("Update", file1, interval, listener.getChangedFiles());
+        listener.clear();
+        checkCollectionsEmpty("C");
+        file1.delete();
+        checkFile("Delete", file1, interval, listener.getDeletedFiles());
+        listener.clear();
+        monitor.stop();
+    } catch (Exception e) {
+        e.printStackTrace();
+        fail("Threw " + e);
+    }
+}

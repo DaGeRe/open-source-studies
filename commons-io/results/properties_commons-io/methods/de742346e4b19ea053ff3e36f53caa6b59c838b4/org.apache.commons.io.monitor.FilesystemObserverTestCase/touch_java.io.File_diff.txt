@@ -1,0 +1,18 @@
+private File touch(File file) {                                                                        private File touch(File file) {                                                                     
+long lastModified = file.exists() ? file.lastModified() : 0;                                           long lastModified = file.exists() ? file.lastModified() : 0;                                        
+try {                                                                                                  try {                                                                                               
+FileUtils.touch(file);                                                                                 FileUtils.touch(file);                                                                              
+                                                                                                     | file = new File(file.getParent(), file.getName());                                                  
+while (lastModified == file.lastModified()) {                                                          while (lastModified == file.lastModified()) {                                                       
+try {                                                                                                  try {                                                                                               
+Thread.sleep(50);                                                                                      Thread.sleep(50);                                                                                   
+} catch (InterruptedException ie) {                                                                    } catch (InterruptedException ie) {                                                                 
+}                                                                                                      }                                                                                                   
+FileUtils.touch(file);                                                                                 FileUtils.touch(file);                                                                              
+                                                                                                     | file = new File(file.getParent(), file.getName());                                                  
+}                                                                                                      }                                                                                                   
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+fail("Touching " + file + ": " + e);                                                                   fail("Touching " + file + ": " + e);                                                                
+}                                                                                                      }                                                                                                   
+return file;                                                                                           return file;                                                                                        
+}                                                                                                      }                                                                                                   

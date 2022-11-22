@@ -1,0 +1,29 @@
+static String[] splitOnTokens(final String text) {
+    if (text.indexOf('?') == NOT_FOUND && text.indexOf('*') == NOT_FOUND) {
+        return new String[] { text };
+    }
+    final char[] array = text.toCharArray();
+    final ArrayList<String> list = new ArrayList<String>();
+    final StringBuilder buffer = new StringBuilder();
+    char prevChar = 0;
+    for (final char ch : array) {
+        if (ch == '?' || ch == '*') {
+            if (buffer.length() != 0) {
+                list.add(buffer.toString());
+                buffer.setLength(0);
+            }
+            if (ch == '?') {
+                list.add("?");
+            } else if (prevChar != '*') {
+                list.add("*");
+            }
+        } else {
+            buffer.append(ch);
+        }
+        prevChar = ch;
+    }
+    if (buffer.length() != 0) {
+        list.add(buffer.toString());
+    }
+    return list.toArray(new String[list.size()]);
+}

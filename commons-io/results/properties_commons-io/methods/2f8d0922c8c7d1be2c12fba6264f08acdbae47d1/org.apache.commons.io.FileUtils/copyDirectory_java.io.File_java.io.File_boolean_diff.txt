@@ -1,0 +1,29 @@
+public static void copyDirectory(File srcDir, File destDir, boolean preserveFileDate) throws IOExcep   public static void copyDirectory(File srcDir, File destDir, boolean preserveFileDate) throws IOExcep
+if (srcDir == null) {                                                                                  if (srcDir == null) {                                                                               
+throw new NullPointerException("Source must not be null");                                             throw new NullPointerException("Source must not be null");                                          
+}                                                                                                      }                                                                                                   
+if (destDir == null) {                                                                                 if (destDir == null) {                                                                              
+throw new NullPointerException("Destination must not be null");                                        throw new NullPointerException("Destination must not be null");                                     
+}                                                                                                      }                                                                                                   
+if (srcDir.exists() == false) {                                                                        if (srcDir.exists() == false) {                                                                     
+throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                             throw new FileNotFoundException("Source '" + srcDir + "' does not exist");                          
+}                                                                                                      }                                                                                                   
+if (srcDir.isDirectory() == false) {                                                                   if (srcDir.isDirectory() == false) {                                                                
+throw new IOException("Source '" + srcDir + "' exists but is not a directory");                        throw new IOException("Source '" + srcDir + "' exists but is not a directory");                     
+}                                                                                                      }                                                                                                   
+if (srcDir.getCanonicalPath().equals(destDir.getCanonicalPath())) {                                    if (srcDir.getCanonicalPath().equals(destDir.getCanonicalPath())) {                                 
+throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");       throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");    
+}                                                                                                      }                                                                                                   
+doCopyDirectory(srcDir, destDir, preserveFileDate);                                                  | List exclusionList = null;                                                                          
+                                                                                                     | if (destDir.getCanonicalPath().startsWith(srcDir.getCanonicalPath())) {                             
+                                                                                                     | File[] srcFiles = srcDir.listFiles();                                                               
+                                                                                                     | if (srcFiles != null && srcFiles.length &gt; 0) {                                                   
+                                                                                                     | exclusionList = new ArrayList(srcFiles.length);                                                     
+                                                                                                     | for (int i = 0; i &lt; srcFiles.length; i++) {                                                      
+                                                                                                     | File copiedFile = new File(destDir, srcFiles[i].getName());                                         
+                                                                                                     | exclusionList.add(copiedFile.getCanonicalPath());                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | doCopyDirectory(srcDir, destDir, preserveFileDate, exclusionList);                                  
+                                                                                                     | }                                                                                                   

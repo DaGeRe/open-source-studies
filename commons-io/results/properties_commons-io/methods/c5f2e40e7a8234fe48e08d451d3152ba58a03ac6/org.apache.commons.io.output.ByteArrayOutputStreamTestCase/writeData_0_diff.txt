@@ -1,0 +1,7 @@
+private int writeData(final ByteArrayOutputStream baout, final java.io.ByteArrayOutputStream ref, final int[] instructions) {
+    int written = 0;
+    for (final int instruction : instructions) {
+        written += writeData(baout, ref, instruction);
+    }
+    return written;
+}

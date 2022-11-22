@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testEOF3() throws Exception {                                                              public void testEOF3() throws Exception {                                                           
+final ByteArrayInputStream bais = new ByteArrayInputStream(new byte[2]);                               final ByteArrayInputStream bais = new ByteArrayInputStream(new byte[2]);                            
+final CountingInputStream cis = new CountingInputStream(bais);                                       | try (final CountingInputStream cis = new CountingInputStream(bais)) {                               
+final byte[] result = new byte[10];                                                                    final byte[] result = new byte[10];                                                                 
+final int found = cis.read(result, 0, 5);                                                              final int found = cis.read(result, 0, 5);                                                           
+assertEquals(2, found);                                                                                assertEquals(2, found);                                                                             
+assertEquals(2, cis.getCount());                                                                       assertEquals(2, cis.getCount());                                                                    
+cis.close();                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

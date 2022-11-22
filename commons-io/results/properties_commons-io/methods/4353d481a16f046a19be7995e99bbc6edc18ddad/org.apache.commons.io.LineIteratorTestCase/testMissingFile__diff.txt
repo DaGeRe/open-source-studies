@@ -1,0 +1,11 @@
+public void testMissingFile() throws Exception {
+    File testFile = new File(getTestDirectory(), "dummy-missing-file.txt");
+    LineIterator iterator = null;
+    try {
+        iterator = FileUtils.lineIterator(testFile, "UTF-8");
+        fail("Expected FileNotFoundException");
+    } catch (FileNotFoundException expected) {
+    } finally {
+        LineIterator.closeQuietly(iterator);
+    }
+}

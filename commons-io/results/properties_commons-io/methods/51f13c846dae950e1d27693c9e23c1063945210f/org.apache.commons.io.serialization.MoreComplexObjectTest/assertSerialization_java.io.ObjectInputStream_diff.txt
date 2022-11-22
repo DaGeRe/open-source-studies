@@ -1,0 +1,4 @@
+private void assertSerialization(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+    final MoreComplexObject copy = (MoreComplexObject) (ois.readObject());
+    assertEquals("Expecting same data after deserializing", original.toString(), copy.toString());
+}

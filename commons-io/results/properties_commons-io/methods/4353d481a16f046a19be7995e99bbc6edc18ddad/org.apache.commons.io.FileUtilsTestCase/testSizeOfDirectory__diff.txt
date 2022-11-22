@@ -1,0 +1,18 @@
+public void testSizeOfDirectory() throws Exception {
+    File file = new File(getTestDirectory(), getName());
+    try {
+        FileUtils.sizeOfDirectory(file);
+        fail("Exception expected.");
+    } catch (IllegalArgumentException ex) {
+    }
+    file.createNewFile();
+    file.deleteOnExit();
+    try {
+        FileUtils.sizeOfDirectory(file);
+        fail("Exception expected.");
+    } catch (IllegalArgumentException ex) {
+    }
+    file.delete();
+    file.mkdir();
+    assertEquals("Unexpected directory size", TEST_DIRECTORY_SIZE, FileUtils.sizeOfDirectory(file));
+}

@@ -1,0 +1,11 @@
+private void testCharsetMismatchInfiniteLoop(final String csName) throws IOException {
+    final char[] inputChars = new char[] { (char) 0xE0, (char) 0xB2, (char) 0xA0 };
+    final Charset charset = Charset.forName(csName);
+    final InputStream stream = new CharSequenceInputStream(new String(inputChars), charset, 512);
+    try {
+        while (stream.read() != -1) {
+        }
+    } finally {
+        stream.close();
+    }
+}

@@ -1,0 +1,14 @@
+public void testConstructor_File_encoding_badEncoding() throws IOException {                         | public void testConstructor_File_encoding_badEncoding() {                                           
+Writer writer = null;                                                                                  Writer writer = null;                                                                               
+try {                                                                                                  try {                                                                                               
+writer = new LockableFileWriter(file, "BAD-ENCODE");                                                   writer = new LockableFileWriter(file, "BAD-ENCODE");                                                
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+assertEquals(false, file.exists());                                                                    assertEquals(false, file.exists());                                                                 
+assertEquals(false, lockFile.exists());                                                                assertEquals(false, lockFile.exists());                                                             
+} finally {                                                                                            } finally {                                                                                         
+IOUtils.closeQuietly(writer);                                                                          IOUtils.closeQuietly(writer);                                                                       
+}                                                                                                      }                                                                                                   
+assertEquals(false, file.exists());                                                                    assertEquals(false, file.exists());                                                                 
+assertEquals(false, lockFile.exists());                                                                assertEquals(false, lockFile.exists());                                                             
+}                                                                                                      }                                                                                                   

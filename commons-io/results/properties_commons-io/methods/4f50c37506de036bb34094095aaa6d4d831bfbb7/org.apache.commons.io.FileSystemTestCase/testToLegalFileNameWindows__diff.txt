@@ -1,0 +1,21 @@
+@Test                                                                                                  @Test                                                                                               
+public void testToLegalFileNameWindows() {                                                             public void testToLegalFileNameWindows() {                                                          
+FileSystem fs = FileSystem.WINDOWS;                                                                  | final FileSystem fs = FileSystem.WINDOWS;                                                           
+char replacement = '-';                                                                              | final char replacement = '-';                                                                       
+for (char i = 0; i &lt; 32; i++) {                                                                     for (char i = 0; i &lt; 32; i++) {                                                                  
+Assert.assertEquals(replacement, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));        Assert.assertEquals(replacement, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));     
+}                                                                                                      }                                                                                                   
+char[] illegal = new char[] { '&lt;', '&gt;', ':', '"', '/', '\\', '|', '?', '*' };                  | final char[] illegal = new char[] { '&lt;', '&gt;', ':', '"', '/', '\\', '|', '?', '*' };           
+for (char i = 0; i &lt; illegal.length; i++) {                                                         for (char i = 0; i &lt; illegal.length; i++) {                                                      
+Assert.assertEquals(replacement, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));        Assert.assertEquals(replacement, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));     
+}                                                                                                      }                                                                                                   
+for (char i = 'a'; i &lt; 'z'; i++) {                                                                  for (char i = 'a'; i &lt; 'z'; i++) {                                                               
+Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));                  Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));               
+}                                                                                                      }                                                                                                   
+for (char i = 'A'; i &lt; 'Z'; i++) {                                                                  for (char i = 'A'; i &lt; 'Z'; i++) {                                                               
+Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));                  Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));               
+}                                                                                                      }                                                                                                   
+for (char i = '0'; i &lt; '9'; i++) {                                                                  for (char i = '0'; i &lt; '9'; i++) {                                                               
+Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));                  Assert.assertEquals(i, fs.toLegalFileName(String.valueOf(i), replacement).charAt(0));               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

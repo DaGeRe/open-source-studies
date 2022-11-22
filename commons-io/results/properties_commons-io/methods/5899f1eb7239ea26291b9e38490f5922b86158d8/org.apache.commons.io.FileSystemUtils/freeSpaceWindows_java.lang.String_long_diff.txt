@@ -1,0 +1,18 @@
+long freeSpaceWindows(String path, final long timeout) throws IOException {                            long freeSpaceWindows(String path, final long timeout) throws IOException {                         
+path = FilenameUtils.normalize(path, false);                                                         | String normPath = FilenameUtils.normalize(path, false);                                             
+if (path.length() &gt; 0 && path.charAt(0) != '"') {                                                 | if (normPath == null) {                                                                             
+path = "\"" + path + "\"";                                                                           | throw new IllegalArgumentException(path);                                                           
+}                                                                                                      }                                                                                                   
+final String[] cmdAttribs = new String[] { "cmd.exe", "/C", "dir /a /-c " + path };                  | if (normPath.length() &gt; 0 && normPath.charAt(0) != '"') {                                        
+                                                                                                     | normPath = "\"" + normPath + "\"";                                                                  
+                                                                                                     | }                                                                                                   
+                                                                                                     | final String[] cmdAttribs = new String[] { "cmd.exe", "/C", "dir /a /-c " + normPath };             
+final List&lt;String&gt; lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);               final List&lt;String&gt; lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);            
+for (int i = lines.size() - 1; i &gt;= 0; i--) {                                                       for (int i = lines.size() - 1; i &gt;= 0; i--) {                                                    
+final String line = lines.get(i);                                                                      final String line = lines.get(i);                                                                   
+if (line.length() &gt; 0) {                                                                            if (line.length() &gt; 0) {                                                                         
+return parseDir(line, path);                                                                         | return parseDir(line, normPath);                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+throw new IOException("Command line 'dir /-c' did not return any info " + "for path '" + path + "'") | throw new IOException("Command line 'dir /-c' did not return any info " + "for path '" + normPath + 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,24 @@
+public void testGetFreeSpaceUnix_String_InvalidResponse1() throws Exception {
+    String lines = "Filesystem           1K-blocks      Used Available Use% Mounted on\n" + "                      14428928  12956424       100";
+    FileSystemUtils fsu = new MockFileSystemUtils(0, lines);
+    try {
+        fsu.freeSpaceUnix("/home/users/s", false, false, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", true, false, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", false, true, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+    try {
+        fsu.freeSpaceUnix("/home/users/s", true, true, -1);
+        fail();
+    } catch (IOException ex) {
+    }
+}

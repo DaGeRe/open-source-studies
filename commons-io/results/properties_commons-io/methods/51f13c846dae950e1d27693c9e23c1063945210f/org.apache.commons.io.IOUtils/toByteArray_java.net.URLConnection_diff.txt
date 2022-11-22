@@ -1,0 +1,8 @@
+public static byte[] toByteArray(final URLConnection urlConn) throws IOException {                     public static byte[] toByteArray(final URLConnection urlConn) throws IOException {                  
+final InputStream inputStream = urlConn.getInputStream();                                            | try (InputStream inputStream = urlConn.getInputStream()) {                                          
+try {                                                                                                |                                                                                                     
+return IOUtils.toByteArray(inputStream);                                                               return IOUtils.toByteArray(inputStream);                                                            
+} finally {                                                                                          |                                                                                                     
+inputStream.close();                                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

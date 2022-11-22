@@ -1,0 +1,8 @@
+@Override
+public void close() throws IOException {
+    try {
+        super.close();
+    } catch (IOException e) {
+        throw new TaggedIOException(e, this);
+    }
+}

@@ -1,0 +1,7 @@
+@After                                                                                                 @After                                                                                              
+public void tearDown() {                                                                             | public void tearDown() throws IOException {                                                         
+file.delete();                                                                                         file.delete();                                                                                      
+lockFile.delete();                                                                                     lockFile.delete();                                                                                  
+altLockFile.delete();                                                                                  altLockFile.delete();                                                                               
+                                                                                                     | FileUtils.deleteDirectory(altLockDir);                                                              
+}                                                                                                      }                                                                                                   

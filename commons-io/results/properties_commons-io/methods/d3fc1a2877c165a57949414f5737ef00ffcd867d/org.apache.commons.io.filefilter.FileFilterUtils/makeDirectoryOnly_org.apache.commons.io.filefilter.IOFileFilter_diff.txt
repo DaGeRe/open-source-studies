@@ -1,0 +1,6 @@
+public static IOFileFilter makeDirectoryOnly(final IOFileFilter filter) {
+    if (filter == null) {
+        return DirectoryFileFilter.DIRECTORY;
+    }
+    return new AndFileFilter(DirectoryFileFilter.DIRECTORY, filter);
+}

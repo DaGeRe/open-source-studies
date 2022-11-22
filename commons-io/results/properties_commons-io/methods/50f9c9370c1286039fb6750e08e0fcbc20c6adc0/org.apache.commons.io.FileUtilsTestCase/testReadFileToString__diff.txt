@@ -1,0 +1,9 @@
+public void testReadFileToString() throws Exception {
+    File file = new File(getTestDirectory(), "read.obj");
+    FileOutputStream out = new FileOutputStream(file);
+    byte[] text = "Hello /u1234".getBytes("UTF8");
+    out.write(text);
+    out.close();
+    String data = FileUtils.readFileToString(file, "UTF8");
+    assertEquals("Hello /u1234", data);
+}

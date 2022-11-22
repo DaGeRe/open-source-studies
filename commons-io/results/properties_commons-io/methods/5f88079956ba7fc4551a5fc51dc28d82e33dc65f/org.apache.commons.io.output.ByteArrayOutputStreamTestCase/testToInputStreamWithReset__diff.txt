@@ -1,0 +1,23 @@
+@Test                                                                                                  @Test                                                                                               
+public void testToInputStreamWithReset() throws IOException {                                          public void testToInputStreamWithReset() throws IOException {                                       
+ByteArrayOutputStream baout = new ByteArrayOutputStream();                                           | final ByteArrayOutputStream baout = new ByteArrayOutputStream();                                    
+java.io.ByteArrayOutputStream ref = new java.io.ByteArrayOutputStream();                             | final java.io.ByteArrayOutputStream ref = new java.io.ByteArrayOutputStream();                      
+writeData(baout, ref, 32);                                                                             writeData(baout, ref, 32);                                                                          
+for (int i = 0; i &lt; 128; i++) {                                                                     for (int i = 0; i &lt; 128; i++) {                                                                  
+writeData(baout, ref, 64);                                                                             writeData(baout, ref, 64);                                                                          
+}                                                                                                      }                                                                                                   
+InputStream in = baout.toInputStream();                                                              | final InputStream in = baout.toInputStream();                                                       
+byte[] refData = ref.toByteArray();                                                                    byte[] refData = ref.toByteArray();                                                                 
+baout.reset();                                                                                         baout.reset();                                                                                      
+ref.reset();                                                                                           ref.reset();                                                                                        
+writeData(baout, ref, new int[] { 2, 4, 8, 16 });                                                      writeData(baout, ref, new int[] { 2, 4, 8, 16 });                                                   
+byte[] baoutData = IOUtils.toByteArray(in);                                                            byte[] baoutData = IOUtils.toByteArray(in);                                                         
+assertEquals(8224, baoutData.length);                                                                  assertEquals(8224, baoutData.length);                                                               
+checkByteArrays(refData, baoutData);                                                                   checkByteArrays(refData, baoutData);                                                                
+baoutData = IOUtils.toByteArray(baout.toInputStream());                                                baoutData = IOUtils.toByteArray(baout.toInputStream());                                             
+refData = ref.toByteArray();                                                                           refData = ref.toByteArray();                                                                        
+assertEquals(30, baoutData.length);                                                                    assertEquals(30, baoutData.length);                                                                 
+checkByteArrays(refData, baoutData);                                                                   checkByteArrays(refData, baoutData);                                                                
+baout.close();                                                                                         baout.close();                                                                                      
+in.close();                                                                                            in.close();                                                                                         
+}                                                                                                      }                                                                                                   

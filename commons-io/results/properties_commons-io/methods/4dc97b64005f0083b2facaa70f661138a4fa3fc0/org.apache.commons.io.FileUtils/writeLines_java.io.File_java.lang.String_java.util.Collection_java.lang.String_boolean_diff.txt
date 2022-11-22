@@ -1,0 +1,12 @@
+public static void writeLines(final File file, final String encoding, final Collection&lt;?&gt; line   public static void writeLines(final File file, final String encoding, final Collection&lt;?&gt; line
+FileOutputStream out = null;                                                                         | try (OutputStream out = new BufferedOutputStream(openOutputStream(file, append))) {                 
+try {                                                                                                | IOUtils.writeLines(lines, lineEnding, out, encoding);                                               
+out = openOutputStream(file, append);                                                                |                                                                                                     
+final BufferedOutputStream buffer = new BufferedOutputStream(out);                                   |                                                                                                     
+IOUtils.writeLines(lines, lineEnding, buffer, encoding);                                             |                                                                                                     
+buffer.flush();                                                                                      |                                                                                                     
+out.close();                                                                                         |                                                                                                     
+} finally {                                                                                          |                                                                                                     
+IOUtils.closeQuietly(out);                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

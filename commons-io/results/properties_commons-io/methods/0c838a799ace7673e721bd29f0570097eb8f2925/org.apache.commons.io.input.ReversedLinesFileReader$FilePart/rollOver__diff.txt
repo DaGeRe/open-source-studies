@@ -1,0 +1,13 @@
+private FilePart rollOver() throws IOException {
+    if (currentLastBytePos > -1) {
+        throw new IllegalStateException("Current currentLastCharPos unexpectedly positive... " + "last readLine() should have returned something! currentLastCharPos=" + currentLastBytePos);
+    }
+    if (no > 1) {
+        return new FilePart(no - 1, blockSize, leftOver);
+    } else {
+        if (leftOver != null) {
+            throw new IllegalStateException("Unexpected leftover of the last block: leftOverOfThisFilePart=" + new String(leftOver, encoding));
+        }
+        return null;
+    }
+}

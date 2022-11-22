@@ -1,0 +1,12 @@
+@Override                                                                                              @Override                                                                                           
+public int read(byte[] bts) throws IOException {                                                       public int read(byte[] bts) throws IOException {                                                    
+try {                                                                                                  try {                                                                                               
+return in.read(bts);                                                                                 | beforeRead(bts.length);                                                                             
+                                                                                                     | int n = in.read(bts);                                                                               
+                                                                                                     | afterRead(n);                                                                                       
+                                                                                                     | return n;                                                                                           
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+handleIOException(e);                                                                                  handleIOException(e);                                                                               
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,12 @@
+protected DirectoryWalker(IOFileFilter directoryFilter, IOFileFilter fileFilter, int depthLimit) {     protected DirectoryWalker(IOFileFilter directoryFilter, IOFileFilter fileFilter, int depthLimit) {  
+if (directoryFilter == null && fileFilter == null) {                                                   if (directoryFilter == null && fileFilter == null) {                                                
+this.filter = null;                                                                                    this.filter = null;                                                                                 
+} else {                                                                                               } else {                                                                                            
+directoryFilter = (directoryFilter != null ? directoryFilter : TrueFileFilter.TRUE);                   directoryFilter = (directoryFilter != null ? directoryFilter : TrueFileFilter.TRUE);                
+fileFilter = (fileFilter != null ? fileFilter : TrueFileFilter.TRUE);                                  fileFilter = (fileFilter != null ? fileFilter : TrueFileFilter.TRUE);                               
+directoryFilter = FileFilterUtils.makeDirectoryOnly(directoryFilter);                                  directoryFilter = FileFilterUtils.makeDirectoryOnly(directoryFilter);                               
+fileFilter = FileFilterUtils.makeFileOnly(fileFilter);                                                 fileFilter = FileFilterUtils.makeFileOnly(fileFilter);                                              
+this.filter = FileFilterUtils.orFileFilter(directoryFilter, fileFilter);                             | this.filter = FileFilterUtils.or(directoryFilter, fileFilter);                                      
+}                                                                                                      }                                                                                                   
+this.depthLimit = depthLimit;                                                                          this.depthLimit = depthLimit;                                                                       
+}                                                                                                      }                                                                                                   

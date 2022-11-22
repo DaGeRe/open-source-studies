@@ -1,0 +1,7 @@
+public static File newFile(final File testDirectory, final String filename) throws IOException {
+    final File destination = new File(testDirectory, filename);
+    if (destination.exists()) {
+        FileUtils.forceDelete(destination);
+    }
+    return destination;
+}

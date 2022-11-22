@@ -1,0 +1,12 @@
+public boolean refresh(File file) {
+    boolean origExists = exists;
+    long origLastModified = lastModified;
+    boolean origDirectory = directory;
+    long origLength = length;
+    name = file.getName();
+    exists = file.exists();
+    directory = (exists ? file.isDirectory() : false);
+    lastModified = (exists ? file.lastModified() : 0);
+    length = (exists && !directory ? file.length() : 0);
+    return (exists != origExists || lastModified != origLastModified || directory != origDirectory || length != origLength);
+}

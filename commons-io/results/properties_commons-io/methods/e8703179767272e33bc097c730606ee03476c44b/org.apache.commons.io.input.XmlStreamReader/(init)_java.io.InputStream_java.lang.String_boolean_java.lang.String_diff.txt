@@ -1,0 +1,12 @@
+public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncodi   public XmlStreamReader(InputStream is, String httpContentType, boolean lenient, String defaultEncodi
+this.defaultEncoding = (defaultEncoding == null) ? staticDefaultEncoding : defaultEncoding;            this.defaultEncoding = (defaultEncoding == null) ? staticDefaultEncoding : defaultEncoding;         
+try {                                                                                                  try {                                                                                               
+doHttpStream(is, httpContentType, lenient);                                                            doHttpStream(is, httpContentType, lenient);                                                         
+} catch (XmlStreamReaderException ex) {                                                                } catch (XmlStreamReaderException ex) {                                                             
+if (!lenient) {                                                                                        if (!lenient) {                                                                                     
+throw ex;                                                                                              throw ex;                                                                                           
+} else {                                                                                               } else {                                                                                            
+doLenientDetection(httpContentType, ex);                                                             | doLenientDetection(httpContentType, is, ex);                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

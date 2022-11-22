@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void should_handle_whole_range_of_bytes() throws IOException {                                  public void should_handle_whole_range_of_bytes() throws IOException {                               
+int size = Byte.MAX_VALUE - Byte.MIN_VALUE + 1;                                                      | final int size = Byte.MAX_VALUE - Byte.MIN_VALUE + 1;                                               
+byte[] contentToCycle = new byte[size];                                                              | final byte[] contentToCycle = new byte[size];                                                       
+byte value = Byte.MIN_VALUE;                                                                           byte value = Byte.MIN_VALUE;                                                                        
+for (int i = 0; i &lt; contentToCycle.length; i++) {                                                   for (int i = 0; i &lt; contentToCycle.length; i++) {                                                
+contentToCycle[i] = value++;                                                                           contentToCycle[i] = value++;                                                                        
+}                                                                                                      }                                                                                                   
+byte[] expectedOutput = Arrays.copyOf(contentToCycle, size);                                         | final byte[] expectedOutput = Arrays.copyOf(contentToCycle, size);                                  
+assertStreamOutput(contentToCycle, expectedOutput);                                                    assertStreamOutput(contentToCycle, expectedOutput);                                                 
+}                                                                                                      }                                                                                                   

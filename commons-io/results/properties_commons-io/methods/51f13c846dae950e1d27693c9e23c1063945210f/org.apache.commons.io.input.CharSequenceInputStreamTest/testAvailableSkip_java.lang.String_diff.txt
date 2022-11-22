@@ -1,0 +1,13 @@
+private void testAvailableSkip(final String csName) throws Exception {                                 private void testAvailableSkip(final String csName) throws Exception {                              
+final String input = "test";                                                                           final String input = "test";                                                                        
+final InputStream r = new CharSequenceInputStream(input, csName);                                    | try (InputStream r = new CharSequenceInputStream(input, csName)) {                                  
+try {                                                                                                |                                                                                                     
+int available = checkAvail(r, input.length());                                                         int available = checkAvail(r, input.length());                                                      
+assertEquals(available - 1, r.skip(available - 1));                                                    assertEquals(available - 1, r.skip(available - 1));                                                 
+available = checkAvail(r, 1);                                                                          available = checkAvail(r, 1);                                                                       
+assertEquals(1, r.skip(1));                                                                            assertEquals(1, r.skip(1));                                                                         
+available = checkAvail(r, 0);                                                                          available = checkAvail(r, 0);                                                                       
+} finally {                                                                                          |                                                                                                     
+r.close();                                                                                           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
