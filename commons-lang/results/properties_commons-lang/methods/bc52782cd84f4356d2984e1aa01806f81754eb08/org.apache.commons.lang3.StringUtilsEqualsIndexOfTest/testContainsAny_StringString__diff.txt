@@ -1,0 +1,13 @@
+public void testContainsAny_StringString() {
+    assertFalse(StringUtils.containsAny(null, (String) null));
+    assertFalse(StringUtils.containsAny(null, ""));
+    assertFalse(StringUtils.containsAny(null, "ab"));
+    assertFalse(StringUtils.containsAny("", (String) null));
+    assertFalse(StringUtils.containsAny("", ""));
+    assertFalse(StringUtils.containsAny("", "ab"));
+    assertFalse(StringUtils.containsAny("zzabyycdxx", (String) null));
+    assertFalse(StringUtils.containsAny("zzabyycdxx", ""));
+    assertTrue(StringUtils.containsAny("zzabyycdxx", "za"));
+    assertTrue(StringUtils.containsAny("zzabyycdxx", "by"));
+    assertFalse(StringUtils.containsAny("ab", "z"));
+}

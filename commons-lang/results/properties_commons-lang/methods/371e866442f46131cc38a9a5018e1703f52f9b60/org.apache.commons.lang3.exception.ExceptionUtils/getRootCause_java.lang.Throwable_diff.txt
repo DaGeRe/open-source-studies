@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the root cause.&lt;/p&gt;      * &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the root cause.&lt;/p&gt;   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method walks through the exception chain to the last element,                          * &lt;p&gt;This method walks through the exception chain to the last element,                       
+* "root" of the tree, using {@link #getCause(Throwable)}, and                                          * "root" of the tree, using {@link #getCause(Throwable)}, and                                       
+* returns that exception.&lt;/p&gt;                                                                    * returns that exception.&lt;/p&gt;                                                                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;From version 2.2, this method handles recursive cause structures                            * &lt;p&gt;From version 2.2, this method handles recursive cause structures                         
+* that might otherwise cause infinite loops. If the throwable parameter                                * that might otherwise cause infinite loops. If the throwable parameter                             
+* has a cause of itself, then null will be returned. If the throwable                                  * has a cause of itself, then null will be returned. If the throwable                               
+* parameter cause chain loops, the last element in the chain before the                                * parameter cause chain loops, the last element in the chain before the                             
+* loop is returned.&lt;/p&gt;                                                                          * loop is returned.&lt;/p&gt;                                                                       
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to get the root cause for, may be null                               * @param throwable  the throwable to get the root cause for, may be null                            
+* @return the root cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                    * @return the root cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                 
+*  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                                 *  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                              
+*/                                                                                                     */                                                                                                  
+public static Throwable getRootCause(Throwable throwable) {                                            public static Throwable getRootCause(Throwable throwable) {                                         
+List&lt;Throwable&gt; list = getThrowableList(throwable);                                              List&lt;Throwable&gt; list = getThrowableList(throwable);                                           
+return (list.size() &lt; 2 ? null : (Throwable) list.get(list.size() - 1));                          | return list.size() &lt; 2 ? null : (Throwable) list.get(list.size() - 1);                           
+}                                                                                                      }                                                                                                   

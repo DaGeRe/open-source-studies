@@ -1,0 +1,11 @@
+                                                                                                     | @Test                                                                                               
+public void testUnescapeCsvWriter() throws Exception {                                                 public void testUnescapeCsvWriter() throws Exception {                                              
+checkCsvUnescapeWriter("foo.bar", "foo.bar");                                                          checkCsvUnescapeWriter("foo.bar", "foo.bar");                                                       
+checkCsvUnescapeWriter("foo,bar", "\"foo,bar\"");                                                      checkCsvUnescapeWriter("foo,bar", "\"foo,bar\"");                                                   
+checkCsvUnescapeWriter("foo\nbar", "\"foo\nbar\"");                                                    checkCsvUnescapeWriter("foo\nbar", "\"foo\nbar\"");                                                 
+checkCsvUnescapeWriter("foo\rbar", "\"foo\rbar\"");                                                    checkCsvUnescapeWriter("foo\rbar", "\"foo\rbar\"");                                                 
+checkCsvUnescapeWriter("foo\"bar", "\"foo\"\"bar\"");                                                  checkCsvUnescapeWriter("foo\"bar", "\"foo\"\"bar\"");                                               
+checkCsvUnescapeWriter("", null);                                                                      checkCsvUnescapeWriter("", null);                                                                   
+checkCsvUnescapeWriter("", "");                                                                        checkCsvUnescapeWriter("", "");                                                                     
+checkCsvUnescapeWriter("\"foo.bar\"", "\"foo.bar\"");                                                  checkCsvUnescapeWriter("\"foo.bar\"", "\"foo.bar\"");                                               
+}                                                                                                      }                                                                                                   

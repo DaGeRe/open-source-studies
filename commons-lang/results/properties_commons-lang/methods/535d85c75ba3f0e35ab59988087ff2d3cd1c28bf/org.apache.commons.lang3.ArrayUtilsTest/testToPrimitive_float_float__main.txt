@@ -1,0 +1,7 @@
+public void testToPrimitive_float_float() {
+    final Float[] l = null;
+    assertEquals(null, ArrayUtils.toPrimitive(l, Float.MIN_VALUE));
+    assertSame(ArrayUtils.EMPTY_FLOAT_ARRAY, ArrayUtils.toPrimitive(new Float[0], 1));
+    assertTrue(Arrays.equals(new float[] { Float.MIN_VALUE, Float.MAX_VALUE, 9999999 }, ArrayUtils.toPrimitive(new Float[] { Float.MIN_VALUE, Float.MAX_VALUE, (float) 9999999 }, 1)));
+    assertTrue(Arrays.equals(new float[] { Float.MIN_VALUE, Float.MAX_VALUE, 9999999 }, ArrayUtils.toPrimitive(new Float[] { Float.MIN_VALUE, null, (float) 9999999 }, Float.MAX_VALUE)));
+}

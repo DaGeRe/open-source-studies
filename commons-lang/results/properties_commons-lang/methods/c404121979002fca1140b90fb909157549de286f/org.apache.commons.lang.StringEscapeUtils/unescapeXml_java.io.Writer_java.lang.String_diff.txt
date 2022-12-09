@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Unescapes a string containing XML entity escapes to a string                                * &lt;p&gt;Unescapes a string containing XML entity escapes to a string                             
+* containing the actual Unicode characters corresponding to the                                        * containing the actual Unicode characters corresponding to the                                     
+* escapes.&lt;/p&gt;                                                                                   * escapes.&lt;/p&gt;                                                                                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                        * &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                     
+* Does not support DTDs or external entities.&lt;/p&gt;                                                * Does not support DTDs or external entities.&lt;/p&gt;                                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Note that numerical \\u unicode codes are unescaped to their respective                     * &lt;p&gt;Note that numerical \\u unicode codes are unescaped to their respective                  
+*    unicode characters. This may change in future releases. &lt;/p&gt;                                *    unicode characters. This may change in future releases. &lt;/p&gt;                             
+*                                                                                                      *                                                                                                   
+* @param writer  the writer receiving the unescaped string, not null                                   * @param writer  the writer receiving the unescaped string, not null                                
+* @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                             * @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                          
+* @throws IllegalArgumentException if the writer is null                                               * @throws IllegalArgumentException if the writer is null                                            
+* @throws IOException if there is a problem writing                                                    * @throws IOException if there is a problem writing                                                 
+* @see #escapeXml(String)                                                                              * @see #escapeXml(String)                                                                           
+*/                                                                                                     */                                                                                                  
+public static void unescapeXml(Writer writer, String str) throws IOException {                         public static void unescapeXml(Writer writer, String str) throws IOException {                      
+if (writer == null) {                                                                                | UnescapeUtils.UNESCAPE_XML.translate(str, writer);                                                  
+throw new IllegalArgumentException("The Writer must not be null.");                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+if (str == null) {                                                                                   |                                                                                                     
+return;                                                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+Entities.XML.unescape(writer, str);                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

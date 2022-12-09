@@ -1,0 +1,10 @@
+public void testDeserializeStreamOfNull() throws Exception {
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(null);
+    oos.flush();
+    oos.close();
+    ByteArrayInputStream inTest = new ByteArrayInputStream(streamReal.toByteArray());
+    Object test = SerializationUtils.deserialize(inTest);
+    assertNull(test);
+}

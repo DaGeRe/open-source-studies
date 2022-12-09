@@ -1,0 +1,16 @@
+/**
+ * Trims the text of the java version to start with numbers.
+ *
+ * @return the trimmed java version
+ */
+private String getJavaVersionTrimmed() {
+    if (JAVA_VERSION != null) {
+        for (int i = 0; i < JAVA_VERSION.length(); i++) {
+            char ch = JAVA_VERSION.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                return JAVA_VERSION.substring(i);
+            }
+        }
+    }
+    return null;
+}

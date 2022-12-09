@@ -1,0 +1,22 @@
+/**
+ * <p>Returns the (zero based) index of the first <code>Throwable</code>
+ * that matches the specified type in the exception chain from
+ * a specified index.
+ * Subclasses of the specified class do not match - see
+ * {@link #indexOfType(Throwable, Class, int)} for the opposite.</p>
+ *
+ * <p>A <code>null</code> throwable returns <code>-1</code>.
+ * A <code>null</code> type returns <code>-1</code>.
+ * No match in the chain returns <code>-1</code>.
+ * A negative start index is treated as zero.
+ * A start index greater than the number of throwables returns <code>-1</code>.</p>
+ *
+ * @param throwable  the throwable to inspect, may be null
+ * @param clazz  the class to search for, subclasses do not match, null returns -1
+ * @param fromIndex  the (zero based) index of the starting position,
+ *  negative treated as zero, larger than chain size returns -1
+ * @return the index into the throwable chain, -1 if no match or null input
+ */
+public static int indexOfThrowable(Throwable throwable, Class clazz, int fromIndex) {
+    return indexOf(throwable, clazz, fromIndex, false);
+}

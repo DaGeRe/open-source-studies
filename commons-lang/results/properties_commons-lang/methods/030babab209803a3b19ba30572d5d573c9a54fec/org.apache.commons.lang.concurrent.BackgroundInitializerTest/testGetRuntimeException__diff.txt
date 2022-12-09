@@ -1,0 +1,16 @@
+/**
+ * Tests the get() method if background processing causes a runtime
+ * exception.
+ */
+public void testGetRuntimeException() throws Exception {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    RuntimeException rex = new RuntimeException();
+    init.ex = rex;
+    init.start();
+    try {
+        init.get();
+        fail("Exception not thrown!");
+    } catch (Exception ex) {
+        assertEquals("Runtime exception not thrown", rex, ex);
+    }
+}

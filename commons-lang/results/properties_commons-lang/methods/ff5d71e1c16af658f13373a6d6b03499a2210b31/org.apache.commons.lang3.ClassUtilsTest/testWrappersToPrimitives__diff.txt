@@ -1,0 +1,11 @@
+public void testWrappersToPrimitives() {
+    // an array with classes to test
+    final Class<?>[] classes = { Boolean.class, Byte.class, Character.class, Short.class, Integer.class, Long.class, Float.class, Double.class, String.class, ClassUtils.class, null };
+    Class<?>[] primitives = ClassUtils.wrappersToPrimitives(classes);
+    // now test the result
+    assertEquals("Wrong length of result array", classes.length, primitives.length);
+    for (int i = 0; i < classes.length; i++) {
+        Class<?> expectedPrimitive = ClassUtils.wrapperToPrimitive(classes[i]);
+        assertEquals(classes[i] + " -> " + expectedPrimitive, expectedPrimitive, primitives[i]);
+    }
+}

@@ -1,0 +1,20 @@
+public void testKeep_StringStringarray() {
+    assertEquals(null, CharSetUtils.keep(null, (String[]) null));
+    assertEquals(null, CharSetUtils.keep(null, new String[0]));
+    assertEquals(null, CharSetUtils.keep(null, new String[] { null }));
+    assertEquals(null, CharSetUtils.keep(null, new String[] { "a-e" }));
+    assertEquals("", CharSetUtils.keep("", (String[]) null));
+    assertEquals("", CharSetUtils.keep("", new String[0]));
+    assertEquals("", CharSetUtils.keep("", new String[] { null }));
+    assertEquals("", CharSetUtils.keep("", new String[] { "a-e" }));
+    assertEquals("", CharSetUtils.keep("hello", (String[]) null));
+    assertEquals("", CharSetUtils.keep("hello", new String[0]));
+    assertEquals("", CharSetUtils.keep("hello", new String[] { null }));
+    assertEquals("e", CharSetUtils.keep("hello", new String[] { "a-e" }));
+    assertEquals("e", CharSetUtils.keep("hello", new String[] { "a-e" }));
+    assertEquals("ell", CharSetUtils.keep("hello", new String[] { "el" }));
+    assertEquals("hello", CharSetUtils.keep("hello", new String[] { "elho" }));
+    assertEquals("hello", CharSetUtils.keep("hello", new String[] { "a-z" }));
+    assertEquals("----", CharSetUtils.keep("----", new String[] { "-" }));
+    assertEquals("ll", CharSetUtils.keep("hello", new String[] { "l" }));
+}

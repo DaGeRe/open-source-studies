@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if a String is not empty ("") and not null.&lt;/p&gt;                              | * &lt;p&gt;Checks if a CharSequence is not empty ("") and not null.&lt;/p&gt;                       
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.isNotEmpty(null)      = false                                                            * StringUtils.isNotEmpty(null)      = false                                                         
+* StringUtils.isNotEmpty("")        = false                                                            * StringUtils.isNotEmpty("")        = false                                                         
+* StringUtils.isNotEmpty(" ")       = true                                                             * StringUtils.isNotEmpty(" ")       = true                                                          
+* StringUtils.isNotEmpty("bob")     = true                                                             * StringUtils.isNotEmpty("bob")     = true                                                          
+* StringUtils.isNotEmpty("  bob  ") = true                                                             * StringUtils.isNotEmpty("  bob  ") = true                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check, may be null                                                       | * @param cs  the CharSequence to check, may be null                                                 
+* @return &lt;code&gt;true&lt;/code&gt; if the String is not empty and not null                      | * @return &lt;code&gt;true&lt;/code&gt; if the CharSequence is not empty and not null               
+*/                                                                                                     */                                                                                                  
+public static boolean isNotEmpty(CharSequence str) {                                                 | public static boolean isNotEmpty(CharSequence cs) {                                                 
+return !StringUtils.isEmpty(str);                                                                    | return !StringUtils.isEmpty(cs);                                                                    
+}                                                                                                      }                                                                                                   

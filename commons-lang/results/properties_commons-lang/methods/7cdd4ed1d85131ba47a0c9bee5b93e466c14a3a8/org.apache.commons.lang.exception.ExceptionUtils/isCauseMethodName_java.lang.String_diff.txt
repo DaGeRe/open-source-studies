@@ -1,0 +1,14 @@
+/**
+ * <p>Tests if the list of method names used in the search for <code>Throwable</code>
+ * objects include the given name.</p>
+ *
+ * @param methodName  the methodName to search in the list.
+ * @return if the list of method names used in the search for <code>Throwable</code>
+ *  objects include the given name.
+ * @since 2.1
+ */
+public static boolean isCauseMethodName(String methodName) {
+    synchronized (CAUSE_METHOD_NAMES_LOCK) {
+        return ArrayUtils.indexOf(CAUSE_METHOD_NAMES, methodName) >= 0;
+    }
+}

@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Gets the combined the error message of this and any nested errors.                                   * Gets the combined the error message of this and any nested errors.                                
+*                                                                                                      *                                                                                                   
+* @return the error message                                                                            * @return the error message                                                                         
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public String getMessage() {                                                                           public String getMessage() {                                                                        
+if (super.getMessage() != null) {                                                                      if (super.getMessage() != null) {                                                                   
+return super.getMessage();                                                                             return super.getMessage();                                                                          
+} else if (cause != null) {                                                                            } else if (cause != null) {                                                                         
+return cause.toString();                                                                               return cause.toString();                                                                            
+} else {                                                                                               } else {                                                                                            
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

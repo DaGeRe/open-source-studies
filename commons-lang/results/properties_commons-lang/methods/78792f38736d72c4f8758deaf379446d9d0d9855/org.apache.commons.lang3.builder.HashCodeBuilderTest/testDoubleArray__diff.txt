@@ -1,0 +1,13 @@
+public void testDoubleArray() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((double[]) null).toHashCode());
+    double[] obj = new double[2];
+    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[0] = 5.4d;
+    long l1 = Double.doubleToLongBits(5.4d);
+    int h1 = (int) (l1 ^ (l1 >> 32));
+    assertEquals((17 * 37 + h1) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[1] = 6.3d;
+    long l2 = Double.doubleToLongBits(6.3d);
+    int h2 = (int) (l2 ^ (l2 >> 32));
+    assertEquals((17 * 37 + h1) * 37 + h2, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+}

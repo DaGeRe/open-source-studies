@@ -1,0 +1,15 @@
+/**
+ * <p>Return an accessible method (that is, one that can be invoked via
+ * reflection) with given name and a single parameter.  If no such method
+ * can be found, return <code>null</code>.
+ * Basically, a convenience wrapper that constructs a <code>Class</code>
+ * array for you.</p>
+ *
+ * @param cls get method from this class
+ * @param methodName get method with this name
+ * @param parameterType taking this type of parameter
+ * @return The accessible method
+ */
+public static Method getAccessibleMethod(Class<?> cls, String methodName, Class<?> parameterType) {
+    return getAccessibleMethod(cls, methodName, new Class<?>[] { parameterType });
+}

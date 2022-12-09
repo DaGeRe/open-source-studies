@@ -1,0 +1,7 @@
+/**
+ * Either returns the mock future or calls the super method.
+ */
+@Override
+protected ScheduledFuture<?> startTimer() {
+    return (schedFuture != null) ? schedFuture : super.startTimer();
+}

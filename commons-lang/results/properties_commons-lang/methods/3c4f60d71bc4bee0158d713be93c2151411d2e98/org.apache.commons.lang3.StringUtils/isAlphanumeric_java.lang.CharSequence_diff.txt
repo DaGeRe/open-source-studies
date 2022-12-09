@@ -1,0 +1,34 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if the CharSequence contains only unicode letters or digits.&lt;/p&gt;               * &lt;p&gt;Checks if the CharSequence contains only unicode letters or digits.&lt;/p&gt;            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;&lt;code&gt;null&lt;/code&gt; will return &lt;code&gt;false&lt;/code&gt;.                   * &lt;p&gt;&lt;code&gt;null&lt;/code&gt; will return &lt;code&gt;false&lt;/code&gt;.                
+* An empty CharSequence (length()=0) will return &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;            | * An empty CharSequence (length()=0) will return &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.isAlphanumeric(null)   = false                                                           * StringUtils.isAlphanumeric(null)   = false                                                        
+* StringUtils.isAlphanumeric("")     = true                                                          | * StringUtils.isAlphanumeric("")     = false                                                        
+* StringUtils.isAlphanumeric("  ")   = false                                                           * StringUtils.isAlphanumeric("  ")   = false                                                        
+* StringUtils.isAlphanumeric("abc")  = true                                                            * StringUtils.isAlphanumeric("abc")  = true                                                         
+* StringUtils.isAlphanumeric("ab c") = false                                                           * StringUtils.isAlphanumeric("ab c") = false                                                        
+* StringUtils.isAlphanumeric("ab2c") = true                                                            * StringUtils.isAlphanumeric("ab2c") = true                                                         
+* StringUtils.isAlphanumeric("ab-c") = false                                                           * StringUtils.isAlphanumeric("ab-c") = false                                                        
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param cs  the CharSequence to check, may be null                                                    * @param cs  the CharSequence to check, may be null                                                 
+* @return &lt;code&gt;true&lt;/code&gt; if only contains letters or digits,                            * @return &lt;code&gt;true&lt;/code&gt; if only contains letters or digits,                         
+*  and is non-null                                                                                     *  and is non-null                                                                                  
+* @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)             * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)          
+                                                                                                     | * @since 3.0 Changed "" to return false and not true                                                
+*/                                                                                                     */                                                                                                  
+public static boolean isAlphanumeric(CharSequence cs) {                                                public static boolean isAlphanumeric(CharSequence cs) {                                             
+if (cs == null) {                                                                                    | if (cs == null || cs.length() == 0) {                                                               
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int sz = cs.length();                                                                                  int sz = cs.length();                                                                               
+for (int i = 0; i &lt; sz; i++) {                                                                      for (int i = 0; i &lt; sz; i++) {                                                                   
+if (Character.isLetterOrDigit(cs.charAt(i)) == false) {                                                if (Character.isLetterOrDigit(cs.charAt(i)) == false) {                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

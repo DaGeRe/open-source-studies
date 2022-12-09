@@ -1,0 +1,36 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Adds all the elements of the given arrays into a new array.&lt;/p&gt;                     |                                                                                                     
+* &lt;p&gt;The new array contains all of the element of &lt;code&gt;array1&lt;/code&gt; followed     |                                                                                                     
+* by all of the elements &lt;code&gt;array2&lt;/code&gt;. When an array is returned, it is always    |                                                                                                     
+* a new array.&lt;/p&gt;                                                                             |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* ArrayUtils.addAll(null, null)     = null                                                           |                                                                                                     
+* ArrayUtils.addAll(array1, null)   = cloned copy of array1                                          |                                                                                                     
+* ArrayUtils.addAll(null, array2)   = cloned copy of array2                                          |                                                                                                     
+* ArrayUtils.addAll([], [])         = []                                                             |                                                                                                     
+* ArrayUtils.addAll([null], [null]) = [null, null]                                                   |                                                                                                     
+* ArrayUtils.addAll(["a", "b", "c"], ["1", "2", "3"]) = ["a", "b", "c", "1", "2", "3"]               |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param array1  the first array whose elements are added to the new array, may be &lt;code&gt;null& |                                                                                                     
+* @param array2  the second array whose elements are added to the new array, may be &lt;code&gt;null |                                                                                                     
+* @return The new array, &lt;code&gt;null&lt;/code&gt; if &lt;code&gt;null&lt;/code&gt; array inputs |                                                                                                     
+*      The type of the new array is the type of the first array.                                     |                                                                                                     
+* @since 2.1                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static Object[] addAll(Object[] array1, Object[] array2) {                                    |                                                                                                     
+/* this method could be generic as &lt;T, U extends T&gt; T[] addAll(T[], U[]), but if array1 == nul |                                                                                                     
+* clone array2, then caller tries to add T objects to the U clone, could be a problem.               |                                                                                                     
+* Could add another version of the method where the first array cannot be null... :/                 |                                                                                                     
+*/                                                                                                   |                                                                                                     
+if (array1 == null) {                                                                                |                                                                                                     
+return clone(array2);                                                                                |                                                                                                     
+} else if (array2 == null) {                                                                         |                                                                                                     
+return clone(array1);                                                                                |                                                                                                     
+}                                                                                                    |                                                                                                     
+Object[] joinedArray = (Object[]) Array.newInstance(array1.getClass().getComponentType(), array1.len |                                                                                                     
+System.arraycopy(array1, 0, joinedArray, 0, array1.length);                                          |                                                                                                     
+System.arraycopy(array2, 0, joinedArray, array1.length, array2.length);                              |                                                                                                     
+return joinedArray;                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

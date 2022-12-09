@@ -1,0 +1,20 @@
+                                                                                                     | @Test                                                                                               
+public void testGetCommonPrefix_StringArray() {                                                        public void testGetCommonPrefix_StringArray() {                                                     
+assertEquals("", StringUtils.getCommonPrefix((String[]) null));                                        assertEquals("", StringUtils.getCommonPrefix((String[]) null));                                     
+assertEquals("", StringUtils.getCommonPrefix());                                                       assertEquals("", StringUtils.getCommonPrefix());                                                    
+assertEquals("abc", StringUtils.getCommonPrefix("abc"));                                               assertEquals("abc", StringUtils.getCommonPrefix("abc"));                                            
+assertEquals("", StringUtils.getCommonPrefix(null, null));                                             assertEquals("", StringUtils.getCommonPrefix(null, null));                                          
+assertEquals("", StringUtils.getCommonPrefix("", ""));                                                 assertEquals("", StringUtils.getCommonPrefix("", ""));                                              
+assertEquals("", StringUtils.getCommonPrefix("", null));                                               assertEquals("", StringUtils.getCommonPrefix("", null));                                            
+assertEquals("", StringUtils.getCommonPrefix("abc", null, null));                                      assertEquals("", StringUtils.getCommonPrefix("abc", null, null));                                   
+assertEquals("", StringUtils.getCommonPrefix(null, null, "abc"));                                      assertEquals("", StringUtils.getCommonPrefix(null, null, "abc"));                                   
+assertEquals("", StringUtils.getCommonPrefix("", "abc"));                                              assertEquals("", StringUtils.getCommonPrefix("", "abc"));                                           
+assertEquals("", StringUtils.getCommonPrefix("abc", ""));                                              assertEquals("", StringUtils.getCommonPrefix("abc", ""));                                           
+assertEquals("abc", StringUtils.getCommonPrefix("abc", "abc"));                                        assertEquals("abc", StringUtils.getCommonPrefix("abc", "abc"));                                     
+assertEquals("a", StringUtils.getCommonPrefix("abc", "a"));                                            assertEquals("a", StringUtils.getCommonPrefix("abc", "a"));                                         
+assertEquals("ab", StringUtils.getCommonPrefix("ab", "abxyz"));                                        assertEquals("ab", StringUtils.getCommonPrefix("ab", "abxyz"));                                     
+assertEquals("ab", StringUtils.getCommonPrefix("abcde", "abxyz"));                                     assertEquals("ab", StringUtils.getCommonPrefix("abcde", "abxyz"));                                  
+assertEquals("", StringUtils.getCommonPrefix("abcde", "xyz"));                                         assertEquals("", StringUtils.getCommonPrefix("abcde", "xyz"));                                      
+assertEquals("", StringUtils.getCommonPrefix("xyz", "abcde"));                                         assertEquals("", StringUtils.getCommonPrefix("xyz", "abcde"));                                      
+assertEquals("i am a ", StringUtils.getCommonPrefix("i am a machine", "i am a robot"));                assertEquals("i am a ", StringUtils.getCommonPrefix("i am a machine", "i am a robot"));             
+}                                                                                                      }                                                                                                   

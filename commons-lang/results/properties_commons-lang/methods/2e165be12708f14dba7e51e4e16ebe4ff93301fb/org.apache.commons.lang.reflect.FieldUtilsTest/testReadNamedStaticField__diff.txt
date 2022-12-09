@@ -1,0 +1,6 @@
+public void testReadNamedStaticField() throws Exception {
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(Foo.class, "VALUE"));
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(PubliclyShadowedChild.class, "VALUE"));
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(PrivatelyShadowedChild.class, "VALUE"));
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(PublicChild.class, "VALUE"));
+}

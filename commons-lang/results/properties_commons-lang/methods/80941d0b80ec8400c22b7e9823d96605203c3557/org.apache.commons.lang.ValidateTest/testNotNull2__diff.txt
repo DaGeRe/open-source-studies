@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testNotNull2() {
+    Validate.notNull(new Object(), "MSG");
+    try {
+        Validate.notNull(null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+}

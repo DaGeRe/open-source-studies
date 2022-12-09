@@ -1,0 +1,28 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Appends the fields and values defined by the given object of the                            * &lt;p&gt;Appends the fields and values defined by the given object of the                         
+* given Class.&lt;/p&gt;                                                                               * given Class.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* @param lhs  the left hand object                                                                     * @param lhs  the left hand object                                                                  
+* @param rhs  the right hand object                                                                    * @param rhs  the right hand object                                                                 
+* @param clazz  the class to append details of                                                         * @param clazz  the class to append details of                                                      
+* @param builder  the builder to append to                                                             * @param builder  the builder to append to                                                          
+* @param useTransients  whether to test transient fields                                               * @param useTransients  whether to test transient fields                                            
+* @param excludeFields  array of field names to exclude from testing                                   * @param excludeFields  array of field names to exclude from testing                                
+*/                                                                                                     */                                                                                                  
+private static void reflectionAppend(Object lhs, Object rhs, Class&lt;?&gt; clazz, EqualsBuilder bui   private static void reflectionAppend(Object lhs, Object rhs, Class&lt;?&gt; clazz, EqualsBuilder bui
+Field[] fields = clazz.getDeclaredFields();                                                            Field[] fields = clazz.getDeclaredFields();                                                         
+List&lt;String&gt; excludedFieldList = excludeFields != null ? Arrays.asList(excludeFields) : Collec |                                                                                                     
+AccessibleObject.setAccessible(fields, true);                                                          AccessibleObject.setAccessible(fields, true);                                                       
+for (int i = 0; i &lt; fields.length && builder.isEquals; i++) {                                       for (int i = 0; i &lt; fields.length && builder.isEquals; i++) {                                    
+Field f = fields[i];                                                                                   Field f = fields[i];                                                                                
+if (!excludedFieldList.contains(f.getName()) && (f.getName().indexOf('$') == -1) && (useTransients | | if (!ArrayUtils.contains(excludeFields, f.getName()) && (f.getName().indexOf('$') == -1) && (useTran
+try {                                                                                                  try {                                                                                               
+builder.append(f.get(lhs), f.get(rhs));                                                                builder.append(f.get(lhs), f.get(rhs));                                                             
+} catch (IllegalAccessException e) {                                                                   } catch (IllegalAccessException e) {                                                                
+// this can't happen. Would get a Security exception instead                                           // this can't happen. Would get a Security exception instead                                        
+// throw a runtime exception in case the impossible happens.                                           // throw a runtime exception in case the impossible happens.                                        
+throw new InternalError("Unexpected IllegalAccessException");                                          throw new InternalError("Unexpected IllegalAccessException");                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

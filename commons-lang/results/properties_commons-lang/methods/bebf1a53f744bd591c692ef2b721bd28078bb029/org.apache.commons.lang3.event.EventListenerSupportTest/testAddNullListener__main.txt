@@ -1,0 +1,8 @@
+public void testAddNullListener() {
+    EventListenerSupport<VetoableChangeListener> listenerSupport = EventListenerSupport.create(VetoableChangeListener.class);
+    try {
+        listenerSupport.addListener(null);
+        fail("Should not be able to add a null listener.");
+    } catch (NullPointerException e) {
+    }
+}

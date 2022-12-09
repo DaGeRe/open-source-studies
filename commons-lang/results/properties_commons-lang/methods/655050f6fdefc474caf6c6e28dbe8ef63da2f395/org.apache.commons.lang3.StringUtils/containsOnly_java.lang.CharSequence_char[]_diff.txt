@@ -1,0 +1,36 @@
+// ContainsOnly                                                                                        // ContainsOnly                                                                                     
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if the CharSequence contains only certain characters.&lt;/p&gt;                      * &lt;p&gt;Checks if the CharSequence contains only certain characters.&lt;/p&gt;                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; CharSequence will return &lt;code&gt;false&lt;/code&gt;.    * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; CharSequence will return &lt;code&gt;false&lt;/code&gt;. 
+* A &lt;code&gt;null&lt;/code&gt; valid character array will return &lt;code&gt;false&lt;/code&gt;.    * A &lt;code&gt;null&lt;/code&gt; valid character array will return &lt;code&gt;false&lt;/code&gt;. 
+* An empty CharSequence (length()=0) always returns &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;           * An empty CharSequence (length()=0) always returns &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.containsOnly(null, *)       = false                                                      * StringUtils.containsOnly(null, *)       = false                                                   
+* StringUtils.containsOnly(*, null)       = false                                                      * StringUtils.containsOnly(*, null)       = false                                                   
+* StringUtils.containsOnly("", *)         = true                                                       * StringUtils.containsOnly("", *)         = true                                                    
+* StringUtils.containsOnly("ab", '')      = false                                                      * StringUtils.containsOnly("ab", '')      = false                                                   
+* StringUtils.containsOnly("abab", 'abc') = true                                                       * StringUtils.containsOnly("abab", 'abc') = true                                                    
+* StringUtils.containsOnly("ab1", 'abc')  = false                                                      * StringUtils.containsOnly("ab1", 'abc')  = false                                                   
+* StringUtils.containsOnly("abz", 'abc')  = false                                                      * StringUtils.containsOnly("abz", 'abc')  = false                                                   
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param cs  the String to check, may be null                                                          * @param cs  the String to check, may be null                                                       
+* @param valid  an array of valid chars, may be null                                                   * @param valid  an array of valid chars, may be null                                                
+* @return true if it only contains valid chars and is non-null                                         * @return true if it only contains valid chars and is non-null                                      
+*/                                                                                                     */                                                                                                  
+public static boolean containsOnly(CharSequence cs, char[] valid) {                                    public static boolean containsOnly(CharSequence cs, char[] valid) {                                 
+// All these pre-checks are to maintain API with an older version                                      // All these pre-checks are to maintain API with an older version                                   
+if (valid == null || cs == null) {                                                                     if (valid == null || cs == null) {                                                                  
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (cs.length() == 0) {                                                                                if (cs.length() == 0) {                                                                             
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+if (valid.length == 0) {                                                                               if (valid.length == 0) {                                                                            
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return indexOfAnyBut(cs, valid) == -1;                                                               | return indexOfAnyBut(cs, valid) == INDEX_NOT_FOUND;                                                 
+}                                                                                                      }                                                                                                   

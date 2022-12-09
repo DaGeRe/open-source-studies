@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* @param coll  the collection to check                                                                 * @param coll  the collection to check                                                              
+*/                                                                                                     */                                                                                                  
+private static void assertUnmodifiableCollection(Collection coll) {                                  | private static void assertUnmodifiableCollection(Collection&lt;?&gt; coll) {                        
+try {                                                                                                  try {                                                                                               
+coll.add("Unmodifiable");                                                                            | coll.add(null);                                                                                     
+fail();                                                                                                fail();                                                                                             
+} catch (UnsupportedOperationException ex) {                                                           } catch (UnsupportedOperationException ex) {                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

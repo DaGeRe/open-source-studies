@@ -1,0 +1,14 @@
+public void testLastIndexOf_char_int() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(-1, sb.lastIndexOf('a', -1));
+    assertEquals(0, sb.lastIndexOf('a', 0));
+    assertEquals(0, sb.lastIndexOf('a', 1));
+    // should work like String#lastIndexOf
+    assertEquals("abab".lastIndexOf('a', 1), sb.lastIndexOf('a', 1));
+    assertEquals(1, sb.lastIndexOf('b', 2));
+    assertEquals("abab".lastIndexOf('b', 2), sb.lastIndexOf('b', 2));
+    assertEquals(-1, sb.lastIndexOf('z', 2));
+    sb = new StrBuilder("xyzabc");
+    assertEquals(2, sb.lastIndexOf('z', sb.length()));
+    assertEquals(-1, sb.lastIndexOf('z', 1));
+}

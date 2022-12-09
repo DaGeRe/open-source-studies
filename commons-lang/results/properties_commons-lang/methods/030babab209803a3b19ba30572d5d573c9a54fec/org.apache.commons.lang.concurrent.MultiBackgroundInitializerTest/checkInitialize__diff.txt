@@ -1,0 +1,24 @@
+/**
+ * Helper method for testing the initialize() method. This method can
+ * operate with both an external and a temporary executor service.
+ *
+ * @return the result object produced by the initializer
+ */
+private MultiBackgroundInitializer.MultiBackgroundInitializerResults checkInitialize() throws ConcurrentException {
+    final int count = 5;
+    for (int i = 0; i < count; i++) {
+        initializer.addInitializer(CHILD_INIT + i, new ChildBackgroundInitializer());
+    }
+    initializer.start();
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res = initializer.get();
+    assertEquals("Wrong number of child initializers", count, res.initializerNames().size());
+    for (int i = 0; i < count; i++) {
+        String key = CHILD_INIT + i;
+        assertTrue("Name not found: " + key, res.initializerNames().contains(key));
+        assertEquals("Wrong result object", Integer.valueOf(1), res.getResultObject(key));
+        assertFalse("Exception flag", res.isException(key));
+        assertNull("Got an exception", res.getException(key));
+        checkChild(res.getInitializer(key), initializer.getActiveExecutor());
+    }
+    return res;
+}

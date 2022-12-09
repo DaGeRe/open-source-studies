@@ -1,0 +1,27 @@
+/**
+ * Starts the background initialization. With this method the initializer
+ * becomes active and invokes the {@link #initialize()} method in a
+ * background task. A {@code BackgroundInitializer} can be started exactly
+ * once. The return value of this method determines whether the start was
+ * successful: only the first invocation of this method returns <b>true</b>,
+ * following invocations will return <b>false</b>.
+ *
+ * @return a flag whether the initializer could be started successfully
+ */
+public synchronized boolean start() {
+    // Not yet started?
+    if (!isStarted()) {
+        // Determine the executor to use and whether a temporary one has to
+        // be created
+        ExecutorService tempExec;
+        executor = getExternalExecutor();
+        if (executor == null) {
+            executor = tempExec = createExecutor();
+        } else {
+            tempExec = null;
+        }
+        future = executor.submit(createTask(tempExec));
+        return true;
+    }
+    return false;
+}

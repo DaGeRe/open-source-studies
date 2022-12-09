@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an EventListenerSupport object which supports the specified listener type.                 | * Creates an EventListenerSupport object which supports the specified                               
+                                                                                                     | * listener type.                                                                                    
+*                                                                                                      *                                                                                                   
+* @param listenerType the listener type                                                              | * @param listenerInterface the type of listener interface that will receive                         
+* @return an EventListenerSupport object which supports the specified listener type                  | *        events posted using this class.                                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @return an EventListenerSupport object which supports the specified                               
+                                                                                                     | *         listener type.                                                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @throws NullPointerException if &lt;code&gt;listenerInterface&lt;/code&gt; is                     
+                                                                                                     | *         &lt;code&gt;null&lt;/code&gt;.                                                            
+                                                                                                     | * @throws IllegalArgumentException if &lt;code&gt;listenerInterface&lt;/code&gt; is                 
+                                                                                                     | *         not an interface.                                                                         
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; EventListenerSupport&lt;T&gt; create(Class&lt;T&gt; listenerType) {          | public static &lt;T&gt; EventListenerSupport&lt;T&gt; create(Class&lt;T&gt; listenerInterface) {    
+return new EventListenerSupport&lt;T&gt;(listenerType);                                              | return new EventListenerSupport&lt;T&gt;(listenerInterface);                                        
+}                                                                                                      }                                                                                                   

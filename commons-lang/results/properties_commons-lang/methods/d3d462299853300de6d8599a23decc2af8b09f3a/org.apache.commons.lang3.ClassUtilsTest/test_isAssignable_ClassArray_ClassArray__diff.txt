@@ -1,0 +1,28 @@
+// -------------------------------------------------------------------------                           // -------------------------------------------------------------------------                        
+public void test_isAssignable_ClassArray_ClassArray() throws Exception {                               public void test_isAssignable_ClassArray_ClassArray() throws Exception {                            
+Class&lt;?&gt;[] array2 = new Class[] { Object.class, Object.class };                                  Class&lt;?&gt;[] array2 = new Class[] { Object.class, Object.class };                               
+Class&lt;?&gt;[] array1 = new Class[] { Object.class };                                                Class&lt;?&gt;[] array1 = new Class[] { Object.class };                                             
+Class&lt;?&gt;[] array1s = new Class[] { String.class };                                               Class&lt;?&gt;[] array1s = new Class[] { String.class };                                            
+Class&lt;?&gt;[] array0 = new Class[] {};                                                              Class&lt;?&gt;[] array0 = new Class[] {};                                                           
+Class&lt;?&gt;[] arrayPrimitives = { Integer.TYPE, Boolean.TYPE };                                     Class&lt;?&gt;[] arrayPrimitives = { Integer.TYPE, Boolean.TYPE };                                  
+Class&lt;?&gt;[] arrayWrappers = { Integer.class, Boolean.class };                                     Class&lt;?&gt;[] arrayWrappers = { Integer.class, Boolean.class };                                  
+assertFalse(ClassUtils.isAssignable(array1, array2));                                                  assertFalse(ClassUtils.isAssignable(array1, array2));                                               
+assertFalse(ClassUtils.isAssignable(null, array2));                                                    assertFalse(ClassUtils.isAssignable(null, array2));                                                 
+assertTrue(ClassUtils.isAssignable(null, array0));                                                     assertTrue(ClassUtils.isAssignable(null, array0));                                                  
+assertTrue(ClassUtils.isAssignable(array0, array0));                                                   assertTrue(ClassUtils.isAssignable(array0, array0));                                                
+assertTrue(ClassUtils.isAssignable(array0, null));                                                   | // test both types of ...                                                                           
+                                                                                                     | assertTrue(ClassUtils.isAssignable(array0, (Class&lt;?&gt;[]) null));                               
+                                                                                                     | // ... varargs invocation                                                                           
+                                                                                                     | assertTrue(ClassUtils.isAssignable(array0, (Class&lt;?&gt;) null));                                 
+assertTrue(ClassUtils.isAssignable((Class[]) null, (Class[]) null));                                   assertTrue(ClassUtils.isAssignable((Class[]) null, (Class[]) null));                                
+assertFalse(ClassUtils.isAssignable(array1, array1s));                                                 assertFalse(ClassUtils.isAssignable(array1, array1s));                                              
+assertTrue(ClassUtils.isAssignable(array1s, array1s));                                                 assertTrue(ClassUtils.isAssignable(array1s, array1s));                                              
+assertTrue(ClassUtils.isAssignable(array1s, array1));                                                  assertTrue(ClassUtils.isAssignable(array1s, array1));                                               
+boolean autoboxing = SystemUtils.isJavaVersionAtLeast(JAVA_1_5);                                       boolean autoboxing = SystemUtils.isJavaVersionAtLeast(JAVA_1_5);                                    
+assertEquals(autoboxing, ClassUtils.isAssignable(arrayPrimitives, arrayWrappers));                     assertEquals(autoboxing, ClassUtils.isAssignable(arrayPrimitives, arrayWrappers));                  
+assertEquals(autoboxing, ClassUtils.isAssignable(arrayWrappers, arrayPrimitives));                     assertEquals(autoboxing, ClassUtils.isAssignable(arrayWrappers, arrayPrimitives));                  
+assertFalse(ClassUtils.isAssignable(arrayPrimitives, array1));                                         assertFalse(ClassUtils.isAssignable(arrayPrimitives, array1));                                      
+assertFalse(ClassUtils.isAssignable(arrayWrappers, array1));                                           assertFalse(ClassUtils.isAssignable(arrayWrappers, array1));                                        
+assertEquals(autoboxing, ClassUtils.isAssignable(arrayPrimitives, array2));                            assertEquals(autoboxing, ClassUtils.isAssignable(arrayPrimitives, array2));                         
+assertTrue(ClassUtils.isAssignable(arrayWrappers, array2));                                            assertTrue(ClassUtils.isAssignable(arrayWrappers, array2));                                         
+}                                                                                                      }                                                                                                   

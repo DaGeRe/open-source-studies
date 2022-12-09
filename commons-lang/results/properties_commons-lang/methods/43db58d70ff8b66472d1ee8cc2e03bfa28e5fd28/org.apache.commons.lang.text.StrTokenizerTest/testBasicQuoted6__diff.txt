@@ -1,0 +1,8 @@
+public void testBasicQuoted6() {
+    String input = "a:'b'\"c':d";
+    StrTokenizer tok = new StrTokenizer(input, ':');
+    tok.setQuoteMatcher(StrMatcher.quoteMatcher());
+    assertEquals("a", tok.next());
+    assertEquals("b\"c:d", tok.next());
+    assertEquals(false, tok.hasNext());
+}

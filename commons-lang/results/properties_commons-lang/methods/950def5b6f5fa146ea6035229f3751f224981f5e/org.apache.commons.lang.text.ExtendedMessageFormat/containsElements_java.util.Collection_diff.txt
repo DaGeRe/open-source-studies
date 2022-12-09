@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Learn whether the specified Collection contains non-null elements.                                   * Learn whether the specified Collection contains non-null elements.                                
+* @param coll to check                                                                                 * @param coll to check                                                                              
+* @return &lt;code&gt;true&lt;/code&gt; if some Object was found, &lt;code&gt;false&lt;/code&gt; oth   * @return &lt;code&gt;true&lt;/code&gt; if some Object was found, &lt;code&gt;false&lt;/code&gt; oth
+*/                                                                                                     */                                                                                                  
+private boolean containsElements(Collection coll) {                                                  | private boolean containsElements(Collection&lt;?&gt; coll) {                                        
+if (coll == null || coll.size() == 0) {                                                                if (coll == null || coll.size() == 0) {                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+for (Iterator iter = coll.iterator(); iter.hasNext(); ) {                                            | for (Iterator&lt;?&gt; iter = coll.iterator(); iter.hasNext(); ) {                                  
+if (iter.next() != null) {                                                                             if (iter.next() != null) {                                                                          
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

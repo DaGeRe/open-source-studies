@@ -1,0 +1,9 @@
+/**
+ * Returns accessible version of the given constructor.
+ * @param ctor prototype constructor object.
+ * @return <code>null</code> if accessible constructor can not be found.
+ * @see java.lang.SecurityManager
+ */
+public static Constructor<?> getAccessibleConstructor(Constructor<?> ctor) {
+    return MemberUtils.isAccessible(ctor) && Modifier.isPublic(ctor.getDeclaringClass().getModifiers()) ? ctor : null;
+}

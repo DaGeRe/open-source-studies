@@ -1,0 +1,12 @@
+/**
+ * Appends a char value to the string builder.
+ *
+ * @param ch  the value to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(char ch) {
+    int len = length();
+    ensureCapacity(len + 1);
+    buffer[size++] = ch;
+    return this;
+}

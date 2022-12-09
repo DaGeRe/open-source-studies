@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Removes from the list of method names used in the search for &lt;code&gt;Throwable&lt;/co   * &lt;p&gt;Removes from the list of method names used in the search for &lt;code&gt;Throwable&lt;/co
+* objects.&lt;/p&gt;                                                                                   * objects.&lt;/p&gt;                                                                                
+*                                                                                                      *                                                                                                   
+* @param methodName  the methodName to remove from the list, &lt;code&gt;null&lt;/code&gt;             * @param methodName  the methodName to remove from the list, &lt;code&gt;null&lt;/code&gt;          
+*  and empty strings are ignored                                                                       *  and empty strings are ignored                                                                    
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void removeCauseMethodName(String methodName) {                                          public static void removeCauseMethodName(String methodName) {                                       
+if (StringUtils.isNotEmpty(methodName)) {                                                              if (StringUtils.isNotEmpty(methodName)) {                                                           
+List list = getCauseMethodNameList();                                                                | List&lt;String&gt; list = getCauseMethodNameList();                                                 
+if (list.remove(methodName)) {                                                                         if (list.remove(methodName)) {                                                                      
+synchronized (CAUSE_METHOD_NAMES) {                                                                    synchronized (CAUSE_METHOD_NAMES) {                                                                 
+CAUSE_METHOD_NAMES = toArray(list);                                                                    CAUSE_METHOD_NAMES = toArray(list);                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

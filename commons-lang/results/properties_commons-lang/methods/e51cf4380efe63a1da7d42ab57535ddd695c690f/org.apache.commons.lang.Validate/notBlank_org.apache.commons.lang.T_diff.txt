@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument character sequence is                               
+* if the argument String is blank (&lt;code&gt;null&lt;/code&gt;, empty or whitespace).&lt;/p&gt;    | * neither &lt;code&gt;null&lt;/code&gt;, a length of zero (no characters), empty                    
+                                                                                                     | * nor whitespace; otherwise throwing an exception.                                                  
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.notBlank(myString);&lt;/pre&gt;                                               
+* Validate.notBlank(myString);                                                                       |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is 'The validated string is blank'.&lt;/p&gt;                | * &lt;p&gt;The message in the exception is &quot;The validated character                            
+                                                                                                     | * sequence is blank&quot;.&lt;/p&gt;                                                                
+*                                                                                                      *                                                                                                   
+* @param string  the string to check is not blank                                                    | * @param &lt;T&gt; the character sequence type                                                      
+* @return the input string, never &lt;code&gt;null&lt;/code&gt; or blank, for chaining               | * @param chars the character sequence to check                                                      
+* @throws IllegalArgumentException if the string is blank                                            | * @return the validated character sequence (never &lt;code&gt;null&lt;/code&gt; method for chaining)
+* @see StringUtils#isBlank(CharSequence)                                                             | * @throws NullPointerException if the character sequence is &lt;code&gt;null&lt;/code&gt;           
+                                                                                                     | * @throws IllegalArgumentException if the character sequence is blank                               
+                                                                                                     | * @see #notBlank(CharSequence, String, Object...)                                                   
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends CharSequence&gt; T notBlank(T string) {                                  | public static &lt;T extends CharSequence&gt; T notBlank(T chars) {                                  
+return notBlank(string, "The validated string is blank");                                            | return notBlank(chars, DEFAULT_NOT_BLANK_EXCEPTION_MESSAGE);                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+// ----------------------------------------------------------------------------
+/**
+ * <p>Append the <code>toString</code> from the superclass.</p>
+ *
+ * <p>This method assumes that the superclass uses the same <code>ToStringStyle</code>
+ * as this one.</p>
+ *
+ * <p>If <code>superToString</code> is <code>null</code>, no change is made.</p>
+ *
+ * @param superToString  the result of <code>super.toString()</code>
+ * @return this
+ * @since 2.0
+ */
+public ToStringBuilder<T> appendSuper(String superToString) {
+    if (superToString != null) {
+        style.appendSuper(buffer, superToString);
+    }
+    return this;
+}

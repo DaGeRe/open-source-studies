@@ -1,0 +1,8 @@
+public void testIsDigits() {
+    assertEquals("isDigits(null) failed", false, NumberUtils.isDigits(null));
+    assertEquals("isDigits('') failed", false, NumberUtils.isDigits(""));
+    assertEquals("isDigits(String) failed", true, NumberUtils.isDigits("12345"));
+    assertEquals("isDigits(String) neg 1 failed", false, NumberUtils.isDigits("1234.5"));
+    assertEquals("isDigits(String) neg 3 failed", false, NumberUtils.isDigits("1ab"));
+    assertEquals("isDigits(String) neg 4 failed", false, NumberUtils.isDigits("abc"));
+}

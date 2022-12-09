@@ -1,0 +1,27 @@
+// LastIndexOf
+// -----------------------------------------------------------------------
+/**
+ * <p>Finds the last index within a String, handling <code>null</code>.
+ * This method uses {@link String#lastIndexOf(int)}.</p>
+ *
+ * <p>A <code>null</code> or empty ("") String will return <code>-1</code>.</p>
+ *
+ * <pre>
+ * StringUtils.lastIndexOf(null, *)         = -1
+ * StringUtils.lastIndexOf("", *)           = -1
+ * StringUtils.lastIndexOf("aabaabaa", 'a') = 7
+ * StringUtils.lastIndexOf("aabaabaa", 'b') = 5
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param searchChar  the character to find
+ * @return the last index of the search character,
+ *  -1 if no match or <code>null</code> string input
+ * @since 2.0
+ */
+public static int lastIndexOf(String str, char searchChar) {
+    if (isEmpty(str)) {
+        return INDEX_NOT_FOUND;
+    }
+    return str.lastIndexOf(searchChar);
+}

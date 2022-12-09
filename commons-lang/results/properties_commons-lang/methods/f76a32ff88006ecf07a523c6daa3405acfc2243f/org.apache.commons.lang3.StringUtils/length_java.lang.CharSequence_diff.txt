@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Gets a CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                      * Gets a CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                   
+* &lt;code&gt;null&lt;/code&gt;.                                                                       * &lt;code&gt;null&lt;/code&gt;.                                                                    
+*                                                                                                      *                                                                                                   
+* @param cs                                                                                            * @param cs                                                                                         
+*            a CharSequence or &lt;code&gt;null&lt;/code&gt;                                           *            a CharSequence or &lt;code&gt;null&lt;/code&gt;                                        
+* @return CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                     * @return CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                  
+*         &lt;code&gt;null&lt;/code&gt;.                                                               *         &lt;code&gt;null&lt;/code&gt;.                                                            
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+* @deprecated See {@link CharSequenceUtils#length(CharSequence)}                                     |                                                                                                     
+* @since 3.0 Changed signature from length(String) to length(CharSequence)                             * @since 3.0 Changed signature from length(String) to length(CharSequence)                          
+*/                                                                                                     */                                                                                                  
+@Deprecated                                                                                          |                                                                                                     
+public static int length(CharSequence cs) {                                                            public static int length(CharSequence cs) {                                                         
+return CharSequenceUtils.length(cs);                                                                 | return cs == null ? 0 : cs.length();                                                                
+}                                                                                                      }                                                                                                   

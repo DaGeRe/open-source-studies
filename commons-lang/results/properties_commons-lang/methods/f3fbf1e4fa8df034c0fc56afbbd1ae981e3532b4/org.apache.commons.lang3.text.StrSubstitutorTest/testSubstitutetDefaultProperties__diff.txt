@@ -1,0 +1,10 @@
+/**
+ * Test the replace of a properties object
+ */
+public void testSubstitutetDefaultProperties() {
+    String org = "${doesnotwork}";
+    System.setProperty("doesnotwork", "It work's!");
+    // create a new Properties object with the System.getProperties as default
+    Properties props = new Properties(System.getProperties());
+    assertEquals("It work's!", StrSubstitutor.replace(org, props));
+}

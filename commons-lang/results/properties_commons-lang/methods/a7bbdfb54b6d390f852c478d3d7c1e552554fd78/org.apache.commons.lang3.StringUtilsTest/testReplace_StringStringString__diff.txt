@@ -1,0 +1,17 @@
+public void testReplace_StringStringString() {
+    assertEquals(null, StringUtils.replace(null, null, null));
+    assertEquals(null, StringUtils.replace(null, null, "any"));
+    assertEquals(null, StringUtils.replace(null, "any", null));
+    assertEquals(null, StringUtils.replace(null, "any", "any"));
+    assertEquals("", StringUtils.replace("", null, null));
+    assertEquals("", StringUtils.replace("", null, "any"));
+    assertEquals("", StringUtils.replace("", "any", null));
+    assertEquals("", StringUtils.replace("", "any", "any"));
+    assertEquals("FOO", StringUtils.replace("FOO", "", "any"));
+    assertEquals("FOO", StringUtils.replace("FOO", null, "any"));
+    assertEquals("FOO", StringUtils.replace("FOO", "F", null));
+    assertEquals("FOO", StringUtils.replace("FOO", null, null));
+    assertEquals("", StringUtils.replace("foofoofoo", "foo", ""));
+    assertEquals("barbarbar", StringUtils.replace("foofoofoo", "foo", "bar"));
+    assertEquals("farfarfar", StringUtils.replace("foofoofoo", "oo", "ar"));
+}

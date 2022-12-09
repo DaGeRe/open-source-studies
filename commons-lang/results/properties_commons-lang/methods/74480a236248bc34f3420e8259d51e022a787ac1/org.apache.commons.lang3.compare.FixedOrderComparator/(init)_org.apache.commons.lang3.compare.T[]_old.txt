@@ -1,0 +1,18 @@
+/**
+ * Constructs a FixedOrderComparator which uses the order of the given array
+ * to compare the objects.
+ * <p>
+ * The array is copied, so later changes will not affect the comparator.
+ *
+ * @param items  the items that the comparator can compare in order
+ * @throws IllegalArgumentException if the array is null
+ */
+public FixedOrderComparator(T[] items) {
+    super();
+    if (items == null) {
+        throw new IllegalArgumentException("The list of items must not be null");
+    }
+    for (int i = 0; i < items.length; i++) {
+        add(items[i]);
+    }
+}

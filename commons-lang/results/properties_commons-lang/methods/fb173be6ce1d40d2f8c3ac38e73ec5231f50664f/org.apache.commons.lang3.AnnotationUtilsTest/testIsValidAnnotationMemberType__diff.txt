@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsValidAnnotationMemberType() {                                                        public void testIsValidAnnotationMemberType() {                                                     
+for (Class&lt;?&gt; type : new Class[] { byte.class, short.class, int.class, char.class, long.class,   for (Class&lt;?&gt; type : new Class[] { byte.class, short.class, int.class, char.class, long.class,
+assertTrue(AnnotationUtils.isValidAnnotationMemberType(type));                                         assertTrue(AnnotationUtils.isValidAnnotationMemberType(type));                                      
+assertTrue(AnnotationUtils.isValidAnnotationMemberType(Array.newInstance(type, 0).getClass()));        assertTrue(AnnotationUtils.isValidAnnotationMemberType(Array.newInstance(type, 0).getClass()));     
+}                                                                                                      }                                                                                                   
+                                                                                                     | for (Class&lt;?&gt; type : new Class[] { Object.class, Map.class, Collection.class }) {             
+                                                                                                     | assertFalse(AnnotationUtils.isValidAnnotationMemberType(type));                                     
+                                                                                                     | assertFalse(AnnotationUtils.isValidAnnotationMemberType(Array.newInstance(type, 0).getClass()));    
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

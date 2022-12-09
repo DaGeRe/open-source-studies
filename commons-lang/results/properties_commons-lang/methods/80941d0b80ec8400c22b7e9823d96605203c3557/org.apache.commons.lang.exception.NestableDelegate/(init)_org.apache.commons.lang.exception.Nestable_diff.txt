@@ -1,0 +1,15 @@
+/**
+ * Constructs a new <code>NestableDelegate</code> instance to manage the
+ * specified <code>Nestable</code>.
+ *
+ * @param nestable the Nestable implementation (<i>must</i> extend
+ * {@link java.lang.Throwable})
+ * @since 2.0
+ */
+public NestableDelegate(Nestable nestable) {
+    if (nestable instanceof Throwable) {
+        this.nestable = (Throwable) nestable;
+    } else {
+        throw new IllegalArgumentException(MUST_BE_THROWABLE);
+    }
+}

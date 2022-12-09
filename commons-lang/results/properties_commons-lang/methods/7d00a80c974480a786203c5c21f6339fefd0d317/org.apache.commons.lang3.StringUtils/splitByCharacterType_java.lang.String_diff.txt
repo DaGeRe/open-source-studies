@@ -1,0 +1,22 @@
+/**
+ * <p>Splits a String by Character type as returned by
+ * {@code java.lang.Character.getType(char)}. Groups of contiguous
+ * characters of the same type are returned as complete tokens.
+ * <pre>
+ * StringUtils.splitByCharacterType(null)         = null
+ * StringUtils.splitByCharacterType("")           = []
+ * StringUtils.splitByCharacterType("ab de fg")   = ["ab", " ", "de", " ", "fg"]
+ * StringUtils.splitByCharacterType("ab   de fg") = ["ab", "   ", "de", " ", "fg"]
+ * StringUtils.splitByCharacterType("ab:cd:ef")   = ["ab", ":", "cd", ":", "ef"]
+ * StringUtils.splitByCharacterType("number5")    = ["number", "5"]
+ * StringUtils.splitByCharacterType("fooBar")     = ["foo", "B", "ar"]
+ * StringUtils.splitByCharacterType("foo200Bar")  = ["foo", "200", "B", "ar"]
+ * StringUtils.splitByCharacterType("ASFRules")   = ["ASFR", "ules"]
+ * </pre>
+ * @param str the String to split, may be {@code null}
+ * @return an array of parsed Strings, {@code null} if null String input
+ * @since 2.4
+ */
+public static String[] splitByCharacterType(String str) {
+    return splitByCharacterType(str, false);
+}

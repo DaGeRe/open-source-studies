@@ -1,0 +1,18 @@
+public CharacterIterator(CharRange r) {
+    range = r;
+    hasNext = true;
+    if (range.negated) {
+        if (range.start == 0) {
+            if (range.end == Character.MAX_VALUE) {
+                // This range is an empty set
+                hasNext = false;
+            } else {
+                current = (char) (range.end + 1);
+            }
+        } else {
+            current = 0;
+        }
+    } else {
+        current = range.start;
+    }
+}

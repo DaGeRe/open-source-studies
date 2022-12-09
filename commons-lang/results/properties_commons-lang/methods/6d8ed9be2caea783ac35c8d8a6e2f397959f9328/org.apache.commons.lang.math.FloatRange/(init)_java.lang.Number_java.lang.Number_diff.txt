@@ -1,0 +1,42 @@
+/**
+ * <p>Constructs a new <code>FloatRange</code> with the specified
+ * minimum and maximum numbers (both inclusive).</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min). The
+ * getMinimum and getMaximum methods will return the correct values.</p>
+ *
+ * @param number1  first number that defines the edge of the range, inclusive
+ * @param number2  second number that defines the edge of the range, inclusive
+ * @throws IllegalArgumentException if either number is <code>null</code>
+ * @throws IllegalArgumentException if either number is <code>NaN</code>
+ */
+public FloatRange(Number number1, Number number2) {
+    super();
+    if (number1 == null || number2 == null) {
+        throw new IllegalArgumentException("The numbers must not be null");
+    }
+    float number1val = number1.floatValue();
+    float number2val = number2.floatValue();
+    if (Float.isNaN(number1val) || Float.isNaN(number2val)) {
+        throw new IllegalArgumentException("The numbers must not be NaN");
+    }
+    if (number2val < number1val) {
+        this.min = number2val;
+        this.max = number1val;
+        if (number2 instanceof Float) {
+            this.minObject = (Float) number2;
+        }
+        if (number1 instanceof Float) {
+            this.maxObject = (Float) number1;
+        }
+    } else {
+        this.min = number1val;
+        this.max = number2val;
+        if (number1 instanceof Float) {
+            this.minObject = (Float) number1;
+        }
+        if (number2 instanceof Float) {
+            this.maxObject = (Float) number2;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------
+public void testAppendNewLine() {
+    StrBuilder sb = new StrBuilder("---");
+    sb.appendNewLine().append("+++");
+    assertEquals("---" + SEP + "+++", sb.toString());
+    sb = new StrBuilder("---");
+    sb.setNewLineText("#").appendNewLine().setNewLineText(null).appendNewLine();
+    assertEquals("---#" + SEP, sb.toString());
+}

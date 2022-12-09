@@ -1,0 +1,18 @@
+/**
+ * Sets the variable prefix matcher currently in use.
+ * <p>
+ * The variable prefix is the characer or characters that identify the
+ * start of a variable. This prefix is expressed in terms of a matcher
+ * allowing advanced prefix matches.
+ *
+ * @param prefixMatcher  the prefix matcher to use, null ignored
+ * @return this, to enable chaining
+ * @throws IllegalArgumentException if the prefix matcher is null
+ */
+public StrSubstitutor setVariablePrefixMatcher(StrMatcher prefixMatcher) {
+    if (prefixMatcher == null) {
+        throw new IllegalArgumentException("Variable prefix matcher must not be null!");
+    }
+    this.prefixMatcher = prefixMatcher;
+    return this;
+}

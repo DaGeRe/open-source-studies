@@ -1,0 +1,19 @@
+/**
+ * <p>Outputs an array as a String handling <code>null</code>s.</p>
+ *
+ * <p>Multi-dimensional arrays are handled correctly, including
+ * multi-dimensional primitive arrays.</p>
+ *
+ * <p>The format is that of Java source code, for example <code>{a,b}</code>.</p>
+ *
+ * @param array  the array to get a toString for, may be <code>null</code>
+ * @param stringIfNull  the String to return if the array is <code>null</code>
+ * @return a String representation of the array
+ */
+@SuppressWarnings("unchecked")
+public static String toString(Object array, String stringIfNull) {
+    if (array == null) {
+        return stringIfNull;
+    }
+    return new ToStringBuilder(array, ToStringStyle.SIMPLE_STYLE).append(array).toString();
+}

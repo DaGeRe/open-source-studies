@@ -1,0 +1,9 @@
+@Test
+public void testLongArray() {
+    long[] array = new long[] { 1, 2, -3, 4 };
+    assertEquals("{1,2,-3,4}", new ToStringBuilder(base).append(array).toString());
+    assertEquals("{1,2,-3,4}", new ToStringBuilder(base).append((Object) array).toString());
+    array = null;
+    assertEquals("<null>", new ToStringBuilder(base).append(array).toString());
+    assertEquals("<null>", new ToStringBuilder(base).append((Object) array).toString());
+}

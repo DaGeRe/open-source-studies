@@ -1,0 +1,20 @@
+/**
+ * Compares this object with another one. This implementation returns
+ * <b>true</b> if and only if the passed in object is an instance of
+ * {@code ConstantInitializer} which refers to an object equals to the
+ * object managed by this instance.
+ *
+ * @param obj the object to compare to
+ * @return a flag whether the objects are equal
+ */
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
+    }
+    if (!(obj instanceof ConstantInitializer<?>)) {
+        return false;
+    }
+    ConstantInitializer<?> c = (ConstantInitializer<?>) obj;
+    return ObjectUtils.equals(getObject(), c.getObject());
+}

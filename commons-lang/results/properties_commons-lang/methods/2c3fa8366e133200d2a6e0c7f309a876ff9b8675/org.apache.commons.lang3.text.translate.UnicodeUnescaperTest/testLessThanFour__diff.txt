@@ -1,0 +1,10 @@
+public void testLessThanFour() {                                                                       public void testLessThanFour() {                                                                    
+UnicodeUnescaper uu = new UnicodeUnescaper();                                                          UnicodeUnescaper uu = new UnicodeUnescaper();                                                       
+String input = "\\0047\\u006";                                                                         String input = "\\0047\\u006";                                                                      
+try {                                                                                                  try {                                                                                               
+uu.translate(input);                                                                                   uu.translate(input);                                                                                
+fail("A lack of digits in a unicode escape sequence failed to throw an exception");                  | fail("A lack of digits in a Unicode escape sequence failed to throw an exception");                 
+} catch (IllegalArgumentException iae) {                                                               } catch (IllegalArgumentException iae) {                                                            
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

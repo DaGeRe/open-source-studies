@@ -1,0 +1,13 @@
+// testToPrimitive/Object for byte
+// -----------------------------------------------------------------------
+public void testToPrimitive_byte() {
+    final Byte[] b = null;
+    assertEquals(null, ArrayUtils.toPrimitive(b));
+    assertSame(ArrayUtils.EMPTY_BYTE_ARRAY, ArrayUtils.toPrimitive(new Byte[0]));
+    assertTrue(Arrays.equals(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.toPrimitive(new Byte[] { new Byte(Byte.MIN_VALUE), new Byte(Byte.MAX_VALUE), new Byte((byte) 9999999) })));
+    try {
+        ArrayUtils.toPrimitive(new Byte[] { new Byte(Byte.MIN_VALUE), null });
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

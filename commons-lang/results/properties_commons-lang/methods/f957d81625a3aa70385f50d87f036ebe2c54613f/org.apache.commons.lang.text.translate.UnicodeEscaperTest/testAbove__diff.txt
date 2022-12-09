@@ -1,0 +1,6 @@
+public void testAbove() throws IOException {
+    UnicodeEscaper nee = UnicodeEscaper.above('F');
+    String input = "ADFGZ";
+    String result = nee.translate(input);
+    assertEquals("Failed to escape unicode characters via the above method", "ADF\\u0047\\u005A", result);
+}

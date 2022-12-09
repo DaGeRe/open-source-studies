@@ -1,0 +1,30 @@
+public void testRemoveObjectArray() {
+    Object[] array;
+    array = ArrayUtils.remove(new Object[] { "a" }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_OBJECT_ARRAY, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new Object[] { "a", "b" }, 0);
+    assertTrue(Arrays.equals(new Object[] { "b" }, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new Object[] { "a", "b" }, 1);
+    assertTrue(Arrays.equals(new Object[] { "a" }, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new Object[] { "a", "b", "c" }, 1);
+    assertTrue(Arrays.equals(new Object[] { "a", "c" }, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new Object[] { "a", "b" }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new Object[] { "a", "b" }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((Object[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

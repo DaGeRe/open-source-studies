@@ -1,0 +1,24 @@
+// Basics
+// --------------------------------------------------------------------
+/**
+ * <p>Compares this range to another object to test if they are equal.</p>.
+ *
+ * <p>To be equal, the minimum and maximum values must be equal, which
+ * ignores any differences in the comparator.</p>
+ *
+ * @param obj the reference object with which to compare
+ * @return true if this object is equal
+ */
+@Override
+public boolean equals(Object obj) {
+    if (obj == this) {
+        return true;
+    } else if (obj == null || obj.getClass() != getClass()) {
+        return false;
+    } else {
+        // OK because we checked the class above
+        @SuppressWarnings("unchecked")
+        Range<T> range = (Range<T>) obj;
+        return minimum.equals(range.minimum) && maximum.equals(range.maximum);
+    }
+}

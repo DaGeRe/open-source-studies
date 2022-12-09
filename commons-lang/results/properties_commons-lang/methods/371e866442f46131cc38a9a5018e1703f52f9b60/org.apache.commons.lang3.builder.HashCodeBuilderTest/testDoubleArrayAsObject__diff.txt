@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testDoubleArrayAsObject() {                                                                public void testDoubleArrayAsObject() {                                                             
+double[] obj = new double[2];                                                                          double[] obj = new double[2];                                                                       
+assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());         | assertEquals(17 * 37 * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());          
+obj[0] = 5.4d;                                                                                         obj[0] = 5.4d;                                                                                      
+long l1 = Double.doubleToLongBits(5.4d);                                                               long l1 = Double.doubleToLongBits(5.4d);                                                            
+int h1 = (int) (l1 ^ (l1 &gt;&gt; 32));                                                              | int h1 = (int) (l1 ^ l1 &gt;&gt; 32);                                                               
+assertEquals((17 * 37 + h1) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());      assertEquals((17 * 37 + h1) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());   
+obj[1] = 6.3d;                                                                                         obj[1] = 6.3d;                                                                                      
+long l2 = Double.doubleToLongBits(6.3d);                                                               long l2 = Double.doubleToLongBits(6.3d);                                                            
+int h2 = (int) (l2 ^ (l2 &gt;&gt; 32));                                                              | int h2 = (int) (l2 ^ l2 &gt;&gt; 32);                                                               
+assertEquals((17 * 37 + h1) * 37 + h2, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode()   assertEquals((17 * 37 + h1) * 37 + h2, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode()
+}                                                                                                      }                                                                                                   

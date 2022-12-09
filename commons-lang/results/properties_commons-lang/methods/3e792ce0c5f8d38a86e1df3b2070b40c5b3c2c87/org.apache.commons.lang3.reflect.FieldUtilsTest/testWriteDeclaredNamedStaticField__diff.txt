@@ -1,0 +1,46 @@
+public void testWriteDeclaredNamedStaticField() throws Exception {
+    FieldUtils.writeStaticField(StaticContainer.class, "mutablePublic", "new");
+    assertEquals("new", StaticContainer.mutablePublic);
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutableProtected", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutablePackage", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutablePrivate", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PUBLIC", "new");
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PROTECTED", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PACKAGE", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PRIVATE", "new");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

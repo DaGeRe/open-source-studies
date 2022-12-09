@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Test availableLocaleSet() method.                                                                    * Test availableLocaleSet() method.                                                                 
+*/                                                                                                     */                                                                                                  
+public void testAvailableLocaleSet() {                                                                 public void testAvailableLocaleSet() {                                                              
+Set set = LocaleUtils.availableLocaleSet();                                                          | Set&lt;Locale&gt; set = LocaleUtils.availableLocaleSet();                                           
+Set set2 = LocaleUtils.availableLocaleSet();                                                         | Set&lt;Locale&gt; set2 = LocaleUtils.availableLocaleSet();                                          
+assertNotNull(set);                                                                                    assertNotNull(set);                                                                                 
+assertSame(set, set2);                                                                                 assertSame(set, set2);                                                                              
+assertUnmodifiableCollection(set);                                                                     assertUnmodifiableCollection(set);                                                                  
+Locale[] jdkLocaleArray = Locale.getAvailableLocales();                                                Locale[] jdkLocaleArray = Locale.getAvailableLocales();                                             
+List jdkLocaleList = Arrays.asList(jdkLocaleArray);                                                  | List&lt;Locale&gt; jdkLocaleList = Arrays.asList(jdkLocaleArray);                                   
+Set jdkLocaleSet = new HashSet(jdkLocaleList);                                                       | Set&lt;Locale&gt; jdkLocaleSet = new HashSet&lt;Locale&gt;(jdkLocaleList);                          
+assertEquals(jdkLocaleSet, set);                                                                       assertEquals(jdkLocaleSet, set);                                                                    
+}                                                                                                      }                                                                                                   

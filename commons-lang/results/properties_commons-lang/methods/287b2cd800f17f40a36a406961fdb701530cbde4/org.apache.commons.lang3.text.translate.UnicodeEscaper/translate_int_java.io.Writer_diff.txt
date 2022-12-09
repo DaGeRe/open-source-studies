@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean translate(int codepoint, Writer out) throws IOException {                               public boolean translate(int codepoint, Writer out) throws IOException {                            
+if (between) {                                                                                       | if (!range.contains(codepoint)) {                                                                   
+if (codepoint &lt; below || codepoint &gt; above) {                                                  |                                                                                                     
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+} else {                                                                                             |                                                                                                     
+if (codepoint &gt;= below && codepoint &lt;= above) {                                                |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+// TODO: Handle potential + sign per various unicode escape implementations                            // TODO: Handle potential + sign per various unicode escape implementations                         
+if (codepoint &gt; 0xffff) {                                                                           if (codepoint &gt; 0xffff) {                                                                        
+// TODO: Figure out what to do. Output as two unicodes?                                                // TODO: Figure out what to do. Output as two unicodes?                                             
+// Does this make this a Java-specific output class?                                                   // Does this make this a Java-specific output class?                                                
+out.write("\\u" + hex(codepoint));                                                                     out.write("\\u" + hex(codepoint));                                                                  
+} else if (codepoint &gt; 0xfff) {                                                                     } else if (codepoint &gt; 0xfff) {                                                                  
+out.write("\\u" + hex(codepoint));                                                                     out.write("\\u" + hex(codepoint));                                                                  
+} else if (codepoint &gt; 0xff) {                                                                      } else if (codepoint &gt; 0xff) {                                                                   
+out.write("\\u0" + hex(codepoint));                                                                    out.write("\\u0" + hex(codepoint));                                                                 
+} else if (codepoint &gt; 0xf) {                                                                       } else if (codepoint &gt; 0xf) {                                                                    
+out.write("\\u00" + hex(codepoint));                                                                   out.write("\\u00" + hex(codepoint));                                                                
+} else {                                                                                               } else {                                                                                            
+out.write("\\u000" + hex(codepoint));                                                                  out.write("\\u000" + hex(codepoint));                                                               
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

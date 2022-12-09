@@ -1,0 +1,23 @@
+public void testInvokeExactConstructor() throws Exception {                                            public void testInvokeExactConstructor() throws Exception {                                         
+assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, ArrayUtils.EMPTY_CLASS_AR | assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, (Object[]) ArrayUtils.EMP
+assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, (Class[]) null).toString( | assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, (Object[]) null).toString
+assertEquals("(String)", ConstructorUtils.invokeExactConstructor(TestBean.class, "").toString());      assertEquals("(String)", ConstructorUtils.invokeExactConstructor(TestBean.class, "").toString());   
+assertEquals("(Object)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object()).toStr   assertEquals("(Object)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object()).toStr
+assertEquals("(Integer)", ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.INTEGE   assertEquals("(Integer)", ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.INTEGE
+assertEquals("(double)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object[] { Numb   assertEquals("(double)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object[] { Numb
+try {                                                                                                  try {                                                                                               
+ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.BYTE_ONE);                         ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.BYTE_ONE);                      
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.LONG_ONE);                         ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.LONG_ONE);                      
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ConstructorUtils.invokeExactConstructor(TestBean.class, Boolean.TRUE);                                 ConstructorUtils.invokeExactConstructor(TestBean.class, Boolean.TRUE);                              
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

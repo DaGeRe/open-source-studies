@@ -1,0 +1,36 @@
+// Comparator methods
+// -----------------------------------------------------------------------
+/**
+ * Compares two objects according to the order of this Comparator.
+ * <p>
+ * It is important to note that this class will throw an IllegalArgumentException
+ * in the case of an unrecognised object. This is not specified in the
+ * Comparator interface, but is the most appropriate exception.
+ *
+ * @param obj1  the first object to compare
+ * @param obj2  the second object to compare
+ * @return negative if obj1 is less, positive if greater, zero if equal
+ * @throws IllegalArgumentException if obj1 or obj2 are not known
+ *  to this Comparator and an alternative behavior has not been set
+ *  via {@link #setUnknownObjectBehavior(UnknownObjectBehavior)}.
+ */
+public int compare(T obj1, T obj2) {
+    isLocked = true;
+    Integer position1 = map.get(obj1);
+    Integer position2 = map.get(obj2);
+    if (position1 == null || position2 == null) {
+        switch(unknownObjectBehavior) {
+            case BEFORE:
+                return position1 == null ? position2 == null ? 0 : -1 : 1;
+            case AFTER:
+                return position1 == null ? position2 == null ? 0 : 1 : -1;
+            case EXCEPTION:
+                Object unknownObj = (position1 == null) ? obj1 : obj2;
+                throw new IllegalArgumentException("Attempting to compare unknown object " + unknownObj);
+            default:
+                // could be null
+                throw new UnsupportedOperationException("Unknown unknownObjectBehavior: " + unknownObjectBehavior);
+        }
+    }
+    return position1.compareTo(position2);
+}

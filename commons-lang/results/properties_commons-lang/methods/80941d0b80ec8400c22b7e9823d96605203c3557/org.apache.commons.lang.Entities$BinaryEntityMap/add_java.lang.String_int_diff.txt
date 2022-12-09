@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void add(String name, int value) {
+    ensureCapacity(size + 1);
+    int insertAt = binarySearch(value);
+    if (insertAt > 0) {
+        // note: this means you can't insert the same value twice
+        return;
+    }
+    // binarySearch returns it negative and off-by-one
+    insertAt = -(insertAt + 1);
+    System.arraycopy(values, insertAt, values, insertAt + 1, size - insertAt);
+    values[insertAt] = value;
+    System.arraycopy(names, insertAt, names, insertAt + 1, size - insertAt);
+    names[insertAt] = name;
+    size++;
+}

@@ -1,0 +1,34 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Invokes a named method whose parameter type matches the object type.&lt;/p&gt;            | * &lt;p&gt;Invokes a named method without parameters.&lt;/p&gt;                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method delegates the method search to {@link #getMatchingAccessibleMethod(Class, Str   * &lt;p&gt;This method delegates the method search to {@link #getMatchingAccessibleMethod(Class, Str
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method supports calls to methods taking primitive parameters                           * &lt;p&gt;This method supports calls to methods taking primitive parameters                        
+* via passing in wrapping classes. So, for example, a &lt;code&gt;Boolean&lt;/code&gt; object          * via passing in wrapping classes. So, for example, a &lt;code&gt;Boolean&lt;/code&gt; object       
+* would match a &lt;code&gt;boolean&lt;/code&gt; primitive.&lt;/p&gt;                                  * would match a &lt;code&gt;boolean&lt;/code&gt; primitive.&lt;/p&gt;                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This is a convenient wrapper for                                                            * &lt;p&gt;This is a convenient wrapper for                                                         
+* {@link #invokeMethod(Object object,String methodName, Object[] args, Class[] parameterTypes)}.       * {@link #invokeMethod(Object object,String methodName, Object[] args, Class[] parameterTypes)}.    
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param object invoke method on this object                                                           * @param object invoke method on this object                                                        
+* @param methodName get method with this name                                                          * @param methodName get method with this name                                                       
+* @param args use these arguments - treat null as empty array                                        |                                                                                                     
+* @return The value returned by the invoked method                                                     * @return The value returned by the invoked method                                                  
+*                                                                                                      *                                                                                                   
+* @throws NoSuchMethodException if there is no such accessible method                                  * @throws NoSuchMethodException if there is no such accessible method                               
+* @throws InvocationTargetException wraps an exception thrown by the method invoked                    * @throws InvocationTargetException wraps an exception thrown by the method invoked                 
+* @throws IllegalAccessException if the requested method is not accessible via reflection              * @throws IllegalAccessException if the requested method is not accessible via reflection           
+                                                                                                     | * @since 3.0.2                                                                                      
+*/                                                                                                     */                                                                                                  
+public static Object invokeMethod(Object object, String methodName, Object... args) throws NoSuchMet | public static Object invokeMethod(Object object, String methodName) throws NoSuchMethodException, Il
+if (args == null) {                                                                                  | return invokeMethod(object, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY);                             
+args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                                |                                                                                                     
+}                                                                                                      }                                                                                                   
+int arguments = args.length;                                                                         |                                                                                                     
+Class&lt;?&gt;[] parameterTypes = new Class[arguments];                                              |                                                                                                     
+for (int i = 0; i &lt; arguments; i++) {                                                             |                                                                                                     
+parameterTypes[i] = args[i].getClass();                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+return invokeMethod(object, methodName, args, parameterTypes);                                       |                                                                                                     
+}                                                                                                    |                                                                                                     

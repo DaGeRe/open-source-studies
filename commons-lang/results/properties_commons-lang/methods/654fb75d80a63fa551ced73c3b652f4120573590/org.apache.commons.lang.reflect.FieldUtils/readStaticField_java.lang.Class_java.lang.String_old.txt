@@ -1,0 +1,11 @@
+/**
+ * Read the named public static field. Superclasses will be considered.
+ * @param cls  the class to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @return the value of the field
+ * @throws IllegalArgumentException if the class or field name is null
+ * @throws IllegalAccessException if the field is not accessible
+ */
+public static Object readStaticField(Class cls, String fieldName) throws IllegalAccessException {
+    return readStaticField(cls, fieldName, false);
+}

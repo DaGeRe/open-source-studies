@@ -1,0 +1,35 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* This method uses reflection to build a valid hash code.                                              * This method uses reflection to build a valid hash code.                                           
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* This constructor uses two hard coded choices for the constants needed to build a hash code.          * This constructor uses two hard coded choices for the constants needed to build a hash code.       
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* It uses &lt;code&gt;AccessibleObject.setAccessible&lt;/code&gt; to gain access to private fields.    * It uses &lt;code&gt;AccessibleObject.setAccessible&lt;/code&gt; to gain access to private fields. 
+* throw a security exception if run under a security manager, if the permissions are not set up corr   * throw a security exception if run under a security manager, if the permissions are not set up corr
+* also not as efficient as testing explicitly.                                                         * also not as efficient as testing explicitly.                                                      
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;P&gt;                                                                                            * &lt;P&gt;                                                                                         
+* If the TestTransients parameter is set to &lt;code&gt;true&lt;/code&gt;, transient members will be   * If the TestTransients parameter is set to &lt;code&gt;true&lt;/code&gt;, transient members will be
+* are ignored, as they are likely derived fields, and not part of the value of the &lt;code&gt;Objec   * are ignored, as they are likely derived fields, and not part of the value of the &lt;code&gt;Objec
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Static fields will not be tested. Superclass fields will be included.                                * Static fields will not be tested. Superclass fields will be included.                             
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param object                                                                                        * @param object                                                                                     
+*            the Object to create a &lt;code&gt;hashCode&lt;/code&gt; for                              *            the Object to create a &lt;code&gt;hashCode&lt;/code&gt; for                           
+* @param testTransients                                                                                * @param testTransients                                                                             
+*            whether to include transient fields                                                       *            whether to include transient fields                                                    
+* @return int hash code                                                                                * @return int hash code                                                                             
+* @throws IllegalArgumentException                                                                     * @throws IllegalArgumentException                                                                  
+*             if the object is &lt;code&gt;null&lt;/code&gt;                                           *             if the object is &lt;code&gt;null&lt;/code&gt;                                        
+*/                                                                                                     */                                                                                                  
+public static int reflectionHashCode(Object object, boolean testTransients) {                          public static int reflectionHashCode(Object object, boolean testTransients) {                       
+return reflectionHashCode(17, 37, object, testTransients, null, null);                               | return reflectionHashCode(17, 37, object, testTransients, null);                                    
+}                                                                                                      }                                                                                                   

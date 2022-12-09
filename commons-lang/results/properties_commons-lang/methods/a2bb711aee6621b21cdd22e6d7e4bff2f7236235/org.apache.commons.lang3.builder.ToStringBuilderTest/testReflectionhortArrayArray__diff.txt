@@ -1,0 +1,8 @@
+public void testReflectionhortArrayArray() {                                                           public void testReflectionhortArrayArray() {                                                        
+short[][] array = new short[][] { { 1, 2 }, null, { 5 } };                                             short[][] array = new short[][] { { 1, 2 }, null, { 5 } };                                          
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{{1,2},&lt;null&gt;,{5}}]", ToStringBuilder.reflectionToString(array));       assertEquals(baseStr + "[{{1,2},&lt;null&gt;,{5}}]", ToStringBuilder.reflectionToString(array));    
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

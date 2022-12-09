@@ -1,0 +1,11 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.YEAR
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateYear() throws Exception {
+    final int calendarField = Calendar.YEAR;
+    Date lastTruncateDate = dateTimeParser.parse("December 31, 2007 23:59:59.999");
+    baseTruncateTest(targetYearDate, lastTruncateDate, calendarField);
+}

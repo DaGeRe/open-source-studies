@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+private void assertIsEquals(Object array1, Object array2, Object array3) {
+    assertEquals(true, ArrayUtils.isEquals(array1, array1));
+    assertEquals(true, ArrayUtils.isEquals(array2, array2));
+    assertEquals(true, ArrayUtils.isEquals(array3, array3));
+    assertEquals(false, ArrayUtils.isEquals(array1, array2));
+    assertEquals(false, ArrayUtils.isEquals(array2, array1));
+    assertEquals(false, ArrayUtils.isEquals(array1, array3));
+    assertEquals(false, ArrayUtils.isEquals(array3, array1));
+    assertEquals(false, ArrayUtils.isEquals(array1, array2));
+    assertEquals(false, ArrayUtils.isEquals(array2, array1));
+}

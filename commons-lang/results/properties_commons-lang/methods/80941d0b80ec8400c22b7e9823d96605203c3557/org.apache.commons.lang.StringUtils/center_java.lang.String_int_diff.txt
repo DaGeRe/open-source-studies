@@ -1,0 +1,28 @@
+// Centering
+// -----------------------------------------------------------------------
+/**
+ * <p>Centers a String in a larger String of size <code>size</code>
+ * using the space character (' ').<p>
+ *
+ * <p>If the size is less than the String length, the String is returned.
+ * A <code>null</code> String returns <code>null</code>.
+ * A negative size is treated as zero.</p>
+ *
+ * <p>Equivalent to <code>center(str, size, " ")</code>.</p>
+ *
+ * <pre>
+ * StringUtils.center(null, *)   = null
+ * StringUtils.center("", 4)     = "    "
+ * StringUtils.center("ab", -1)  = "ab"
+ * StringUtils.center("ab", 4)   = " ab "
+ * StringUtils.center("abcd", 2) = "abcd"
+ * StringUtils.center("a", 4)    = " a  "
+ * </pre>
+ *
+ * @param str  the String to center, may be null
+ * @param size  the int size of new String, negative treated as zero
+ * @return centered String, <code>null</code> if null String input
+ */
+public static String center(String str, int size) {
+    return center(str, size, ' ');
+}

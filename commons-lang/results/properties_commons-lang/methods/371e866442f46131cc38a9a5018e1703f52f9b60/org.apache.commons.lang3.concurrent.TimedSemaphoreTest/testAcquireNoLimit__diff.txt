@@ -1,0 +1,19 @@
+/**
+ * Tests the acquire() method if no limit is set. A test thread is started
+ * that calls the semaphore a large number of times. Even if the semaphore's
+ * period does not end, the thread should never block.
+ */
+@Test
+public void testAcquireNoLimit() throws InterruptedException {
+    ScheduledExecutorService service = EasyMock.createMock(ScheduledExecutorService.class);
+    ScheduledFuture<?> future = EasyMock.createMock(ScheduledFuture.class);
+    prepareStartTimer(service, future);
+    EasyMock.replay(service, future);
+    TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(service, PERIOD, UNIT, TimedSemaphore.NO_LIMIT);
+    final int count = 1000;
+    CountDownLatch latch = new CountDownLatch(count);
+    SemaphoreThread t = new SemaphoreThread(semaphore, latch, count, count);
+    t.start();
+    latch.await();
+    EasyMock.verify(service, future);
+}

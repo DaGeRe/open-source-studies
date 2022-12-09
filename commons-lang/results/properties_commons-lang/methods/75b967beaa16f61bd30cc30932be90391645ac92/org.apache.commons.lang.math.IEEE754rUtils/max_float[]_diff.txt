@@ -1,0 +1,22 @@
+/**
+ * <p>Returns the maximum value in an array.</p>
+ *
+ * @param array  an array, must not be null or empty
+ * @return the minimum value in the array
+ * @throws IllegalArgumentException if <code>array</code> is <code>null</code>
+ * @throws IllegalArgumentException if <code>array</code> is empty
+ */
+public static float max(float[] array) {
+    // Validates input
+    if (array == null) {
+        throw new IllegalArgumentException("The Array must not be null");
+    } else if (array.length == 0) {
+        throw new IllegalArgumentException("Array cannot be empty.");
+    }
+    // Finds and returns max
+    float max = array[0];
+    for (int j = 1; j < array.length; j++) {
+        max = max(array[j], max);
+    }
+    return max;
+}

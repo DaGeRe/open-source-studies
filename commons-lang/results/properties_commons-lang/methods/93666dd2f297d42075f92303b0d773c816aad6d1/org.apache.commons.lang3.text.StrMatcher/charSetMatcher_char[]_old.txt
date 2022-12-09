@@ -1,0 +1,15 @@
+/**
+ * Constructor that creates a matcher from a set of characters.
+ *
+ * @param chars  the characters to match, null or empty matches nothing
+ * @return a new matcher for the given char[]
+ */
+public static StrMatcher charSetMatcher(char[] chars) {
+    if (chars == null || chars.length == 0) {
+        return NONE_MATCHER;
+    }
+    if (chars.length == 1) {
+        return new CharMatcher(chars[0]);
+    }
+    return new CharSetMatcher(chars);
+}

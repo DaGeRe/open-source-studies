@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Escapes the characters in a {@code String} using XML entities.</p>
+ *
+ * <p>For example: <tt>"bread" & "butter"</tt> =>
+ * <tt>&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;</tt>.
+ * </p>
+ *
+ * <p>Supports only the five basic XML entities (gt, lt, quot, amp, apos).
+ * Does not support DTDs or external entities.</p>
+ *
+ * <p>Note that unicode characters greater than 0x7f are as of 3.0, no longer
+ *    escaped. If you still wish this functionality, you can achieve it
+ *    via the following:
+ * {@code StringEscapeUtils.ESCAPE_XML.with( new UnicodeEscaper(Range.between(0x7f, Integer.MAX_VALUE)) );}</p>
+ *
+ * @param input  the {@code String} to escape, may be null
+ * @return a new escaped {@code String}, {@code null} if null string input
+ * @see #unescapeXml(java.lang.String)
+ */
+public static final String escapeXml(String input) {
+    return ESCAPE_XML.translate(input);
+}

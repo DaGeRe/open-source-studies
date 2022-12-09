@@ -1,0 +1,115 @@
+@Test
+public void testSplitPreserveAllTokens_StringString_StringStringInt() {
+    assertArrayEquals(null, StringUtils.splitPreserveAllTokens(null, "."));
+    assertArrayEquals(null, StringUtils.splitPreserveAllTokens(null, ".", 3));
+    assertEquals(0, StringUtils.splitPreserveAllTokens("", ".").length);
+    assertEquals(0, StringUtils.splitPreserveAllTokens("", ".", 3).length);
+    innerTestSplitPreserveAllTokens('.', ".", ' ');
+    innerTestSplitPreserveAllTokens('.', ".", ',');
+    innerTestSplitPreserveAllTokens('.', ".,", 'x');
+    for (int i = 0; i < WHITESPACE.length(); i++) {
+        for (int j = 0; j < NON_WHITESPACE.length(); j++) {
+            innerTestSplitPreserveAllTokens(WHITESPACE.charAt(i), null, NON_WHITESPACE.charAt(j));
+            innerTestSplitPreserveAllTokens(WHITESPACE.charAt(i), String.valueOf(WHITESPACE.charAt(i)), NON_WHITESPACE.charAt(j));
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "de fg" };
+        results = StringUtils.splitPreserveAllTokens("ab de fg", null, 2);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "  de fg" };
+        results = StringUtils.splitPreserveAllTokens("ab   de fg", null, 2);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "::de:fg" };
+        results = StringUtils.splitPreserveAllTokens("ab:::de:fg", ":", 2);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "", " de fg" };
+        results = StringUtils.splitPreserveAllTokens("ab   de fg", null, 3);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "", "", "de fg" };
+        results = StringUtils.splitPreserveAllTokens("ab   de fg", null, 4);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] expectedResults = { "ab", "cd:ef" };
+        String[] results;
+        results = StringUtils.splitPreserveAllTokens("ab:cd:ef", ":", 2);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", ":cd:ef" };
+        results = StringUtils.splitPreserveAllTokens("ab::cd:ef", ":", 2);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "", ":cd:ef" };
+        results = StringUtils.splitPreserveAllTokens("ab:::cd:ef", ":", 3);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "ab", "", "", "cd:ef" };
+        results = StringUtils.splitPreserveAllTokens("ab:::cd:ef", ":", 4);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "", "ab", "", "", "cd:ef" };
+        results = StringUtils.splitPreserveAllTokens(":ab:::cd:ef", ":", 5);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+    {
+        String[] results;
+        String[] expectedResults = { "", "", "ab", "", "", "cd:ef" };
+        results = StringUtils.splitPreserveAllTokens("::ab:::cd:ef", ":", 6);
+        assertEquals(expectedResults.length, results.length);
+        for (int i = 0; i < expectedResults.length; i++) {
+            assertEquals(expectedResults[i], results[i]);
+        }
+    }
+}

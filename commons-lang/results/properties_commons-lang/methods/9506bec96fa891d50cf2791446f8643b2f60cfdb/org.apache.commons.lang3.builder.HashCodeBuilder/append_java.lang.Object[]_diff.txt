@@ -1,0 +1,19 @@
+/**
+ * <p>
+ * Append a <code>hashCode</code> for an <code>Object</code> array.
+ * </p>
+ *
+ * @param array
+ *            the array to add to the <code>hashCode</code>
+ * @return this
+ */
+public HashCodeBuilder append(Object[] array) {
+    if (array == null) {
+        iTotal = iTotal * iConstant;
+    } else {
+        for (Object element : array) {
+            append(element);
+        }
+    }
+    return this;
+}

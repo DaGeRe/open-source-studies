@@ -1,0 +1,14 @@
+public void testLastIndexOfBooleanWithStartIndex() {
+    boolean[] array = null;
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, true, 2));
+    array = new boolean[0];
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, true, 2));
+    array = new boolean[] { true, false, true };
+    assertEquals(2, ArrayUtils.lastIndexOf(array, true, 2));
+    assertEquals(0, ArrayUtils.lastIndexOf(array, true, 1));
+    assertEquals(1, ArrayUtils.lastIndexOf(array, false, 2));
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, true, -1));
+    array = new boolean[] { true, true };
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, false, 2));
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, true, -1));
+}

@@ -1,0 +1,6 @@
+@Test
+public void testChar() {
+    assertEquals(baseStr + "[A]", new ToStringBuilder(base).append((char) 65).toString());
+    assertEquals(baseStr + "[a=A]", new ToStringBuilder(base).append("a", (char) 65).toString());
+    assertEquals(baseStr + "[a=A,b=B]", new ToStringBuilder(base).append("a", (char) 65).append("b", (char) 66).toString());
+}

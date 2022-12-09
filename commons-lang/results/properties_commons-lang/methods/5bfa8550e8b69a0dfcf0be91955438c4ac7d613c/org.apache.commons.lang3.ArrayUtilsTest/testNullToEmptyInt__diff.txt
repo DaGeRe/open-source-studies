@@ -1,0 +1,12 @@
+public void testNullToEmptyInt() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_INT_ARRAY, ArrayUtils.nullToEmpty((int[]) null));
+    // Test valid array handling
+    int[] original = new int[] { 1, 2 };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    int[] empty = new int[] {};
+    int[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_INT_ARRAY, result);
+    assertTrue(empty != result);
+}

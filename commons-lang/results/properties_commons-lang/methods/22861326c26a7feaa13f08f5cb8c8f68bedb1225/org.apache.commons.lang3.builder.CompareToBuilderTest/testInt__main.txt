@@ -1,0 +1,12 @@
+@Test
+public void testInt() {
+    int o1 = 1;
+    int o2 = 2;
+    assertTrue(new CompareToBuilder().append(o1, o1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(o1, o2).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(o2, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Integer.MAX_VALUE).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(Integer.MAX_VALUE, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Integer.MIN_VALUE).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(Integer.MIN_VALUE, o1).toComparison() < 0);
+}

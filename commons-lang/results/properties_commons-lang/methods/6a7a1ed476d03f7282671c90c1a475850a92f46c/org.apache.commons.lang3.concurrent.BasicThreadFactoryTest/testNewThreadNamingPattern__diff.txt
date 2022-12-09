@@ -1,0 +1,20 @@
+/**
+ * Tests whether the naming pattern is applied to new threads.
+ */
+@Test
+public void testNewThreadNamingPattern() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r = EasyMock.createMock(Runnable.class);
+    final int count = 12;
+    for (int i = 0; i < count; i++) {
+        EasyMock.expect(wrapped.newThread(r)).andReturn(new Thread());
+    }
+    EasyMock.replay(wrapped, r);
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).namingPattern(PATTERN).build();
+    for (int i = 0; i < count; i++) {
+        Thread t = factory.newThread(r);
+        assertEquals("Wrong thread name", String.format(PATTERN, Long.valueOf(i + 1)), t.getName());
+        assertEquals("Wrong thread count", i + 1, factory.getThreadCount());
+    }
+    EasyMock.verify(wrapped, r);
+}

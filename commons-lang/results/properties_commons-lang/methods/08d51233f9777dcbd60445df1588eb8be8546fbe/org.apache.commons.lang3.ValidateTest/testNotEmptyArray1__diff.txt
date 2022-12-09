@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testNotEmptyArray1() {
+    Validate.notEmpty(new Object[] { null });
+    try {
+        Validate.notEmpty((Object[]) null);
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+        assertEquals("The validated array is empty", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(new Object[0]);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("The validated array is empty", ex.getMessage());
+    }
+    String[] array = new String[] { "hi" };
+    String[] test = Validate.notEmpty(array);
+    assertSame(array, test);
+}

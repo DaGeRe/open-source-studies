@@ -1,0 +1,29 @@
+@Test(timeout = 666000)                                                                                @Test(timeout = 666000)                                                                             
+public void testGeneratedAnnotationEquivalentToRealAnnotation() throws Exception {                     public void testGeneratedAnnotationEquivalentToRealAnnotation() throws Exception {                  
+final Test real = getClass().getDeclaredMethod("testGeneratedAnnotationEquivalentToRealAnnotation").   final Test real = getClass().getDeclaredMethod("testGeneratedAnnotationEquivalentToRealAnnotation").
+InvocationHandler generatedTestInvocationHandler = new InvocationHandler() {                           InvocationHandler generatedTestInvocationHandler = new InvocationHandler() {                        
+                                                                                                                                                                                                           
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                 
+if ("equals".equals(method.getName()) && method.getParameterTypes().length == 1) {                     if ("equals".equals(method.getName()) && method.getParameterTypes().length == 1) {                  
+return proxy == args[0];                                                                             | return Boolean.valueOf(proxy == args[0]);                                                           
+}                                                                                                      }                                                                                                   
+if ("hashCode".equals(method.getName()) && method.getParameterTypes().length == 0) {                   if ("hashCode".equals(method.getName()) && method.getParameterTypes().length == 0) {                
+return System.identityHashCode(proxy);                                                               | return Integer.valueOf(System.identityHashCode(proxy));                                             
+}                                                                                                      }                                                                                                   
+if ("toString".equals(method.getName()) && method.getParameterTypes().length == 0) {                   if ("toString".equals(method.getName()) && method.getParameterTypes().length == 0) {                
+return "Test proxy";                                                                                   return "Test proxy";                                                                                
+}                                                                                                      }                                                                                                   
+return method.invoke(real, args);                                                                      return method.invoke(real, args);                                                                   
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+Test generated = (Test) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new C   Test generated = (Test) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new C
+assertTrue(real.equals(generated));                                                                    assertTrue(real.equals(generated));                                                                 
+assertFalse(generated.equals(real));                                                                   assertFalse(generated.equals(real));                                                                
+assertTrue(AnnotationUtils.equals(generated, real));                                                   assertTrue(AnnotationUtils.equals(generated, real));                                                
+assertTrue(AnnotationUtils.equals(real, generated));                                                   assertTrue(AnnotationUtils.equals(real, generated));                                                
+Test generated2 = (Test) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new    Test generated2 = (Test) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new 
+assertFalse(generated.equals(generated2));                                                             assertFalse(generated.equals(generated2));                                                          
+assertFalse(generated2.equals(generated));                                                             assertFalse(generated2.equals(generated));                                                          
+assertTrue(AnnotationUtils.equals(generated, generated2));                                             assertTrue(AnnotationUtils.equals(generated, generated2));                                          
+assertTrue(AnnotationUtils.equals(generated2, generated));                                             assertTrue(AnnotationUtils.equals(generated2, generated));                                          
+}                                                                                                      }                                                                                                   

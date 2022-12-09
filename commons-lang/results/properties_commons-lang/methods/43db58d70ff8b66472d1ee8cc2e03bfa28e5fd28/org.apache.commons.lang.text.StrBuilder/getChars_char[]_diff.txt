@@ -1,0 +1,14 @@
+/**
+ * Copies the character array into the specified array.
+ *
+ * @param destination  the destination array, null will cause an array to be created
+ * @return the input array, unless that was null or too small
+ */
+public char[] getChars(char[] destination) {
+    int len = length();
+    if (destination == null || destination.length < len) {
+        destination = new char[len];
+    }
+    System.arraycopy(buffer, 0, destination, 0, len);
+    return destination;
+}

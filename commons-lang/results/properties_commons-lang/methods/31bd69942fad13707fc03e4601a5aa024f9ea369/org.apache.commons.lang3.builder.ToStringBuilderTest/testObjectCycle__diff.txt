@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testObjectCycle() {                                                                        public void testObjectCycle() {                                                                     
+ObjectCycle a = new ObjectCycle();                                                                     ObjectCycle a = new ObjectCycle();                                                                  
+ObjectCycle b = new ObjectCycle();                                                                     ObjectCycle b = new ObjectCycle();                                                                  
+a.obj = b;                                                                                             a.obj = b;                                                                                          
+b.obj = a;                                                                                             b.obj = a;                                                                                          
+String expected = toBaseString(a) + "[" + toBaseString(b) + "[" + toBaseString(a) + "]]";              String expected = toBaseString(a) + "[" + toBaseString(b) + "[" + toBaseString(a) + "]]";           
+assertEquals(expected, a.toString());                                                                  assertEquals(expected, a.toString());                                                               
+validateNullToStringStyleRegistry();                                                                   validateNullToStringStyleRegistry();                                                                
+}                                                                                                      }                                                                                                   

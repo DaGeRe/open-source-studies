@@ -1,0 +1,18 @@
+public void test_isAssignable() throws Exception {                                                     public void test_isAssignable() throws Exception {                                                  
+assertFalse(ClassUtils.isAssignable((Class) null, null));                                            | assertFalse(ClassUtils.isAssignable((Class&lt;?&gt;) null, null));                                  
+assertFalse(ClassUtils.isAssignable(String.class, null));                                              assertFalse(ClassUtils.isAssignable(String.class, null));                                           
+assertTrue(ClassUtils.isAssignable(null, Object.class));                                               assertTrue(ClassUtils.isAssignable(null, Object.class));                                            
+assertTrue(ClassUtils.isAssignable(null, Integer.class));                                              assertTrue(ClassUtils.isAssignable(null, Integer.class));                                           
+assertFalse(ClassUtils.isAssignable(null, Integer.TYPE));                                              assertFalse(ClassUtils.isAssignable(null, Integer.TYPE));                                           
+assertTrue(ClassUtils.isAssignable(String.class, Object.class));                                       assertTrue(ClassUtils.isAssignable(String.class, Object.class));                                    
+assertTrue(ClassUtils.isAssignable(String.class, String.class));                                       assertTrue(ClassUtils.isAssignable(String.class, String.class));                                    
+assertFalse(ClassUtils.isAssignable(Object.class, String.class));                                      assertFalse(ClassUtils.isAssignable(Object.class, String.class));                                   
+assertFalse(ClassUtils.isAssignable(Integer.TYPE, Integer.class));                                     assertFalse(ClassUtils.isAssignable(Integer.TYPE, Integer.class));                                  
+assertFalse(ClassUtils.isAssignable(Integer.class, Integer.TYPE));                                     assertFalse(ClassUtils.isAssignable(Integer.class, Integer.TYPE));                                  
+assertTrue(ClassUtils.isAssignable(Integer.TYPE, Integer.TYPE));                                       assertTrue(ClassUtils.isAssignable(Integer.TYPE, Integer.TYPE));                                    
+assertTrue(ClassUtils.isAssignable(Integer.class, Integer.class));                                     assertTrue(ClassUtils.isAssignable(Integer.class, Integer.class));                                  
+assertFalse(ClassUtils.isAssignable(Boolean.TYPE, Boolean.class));                                     assertFalse(ClassUtils.isAssignable(Boolean.TYPE, Boolean.class));                                  
+assertFalse(ClassUtils.isAssignable(Boolean.class, Boolean.TYPE));                                     assertFalse(ClassUtils.isAssignable(Boolean.class, Boolean.TYPE));                                  
+assertTrue(ClassUtils.isAssignable(Boolean.TYPE, Boolean.TYPE));                                       assertTrue(ClassUtils.isAssignable(Boolean.TYPE, Boolean.TYPE));                                    
+assertTrue(ClassUtils.isAssignable(Boolean.class, Boolean.class));                                     assertTrue(ClassUtils.isAssignable(Boolean.class, Boolean.class));                                  
+}                                                                                                      }                                                                                                   

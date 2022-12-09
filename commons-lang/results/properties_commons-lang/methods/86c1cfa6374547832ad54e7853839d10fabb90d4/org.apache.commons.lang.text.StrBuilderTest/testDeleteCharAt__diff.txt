@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------
+public void testDeleteCharAt() {
+    StrBuilder sb = new StrBuilder("abc");
+    sb.deleteCharAt(0);
+    assertEquals("bc", sb.toString());
+    try {
+        sb.deleteCharAt(1000);
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

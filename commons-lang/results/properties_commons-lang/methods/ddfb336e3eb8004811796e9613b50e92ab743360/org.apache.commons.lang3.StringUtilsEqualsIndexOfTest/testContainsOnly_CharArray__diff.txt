@@ -1,0 +1,24 @@
+public void testContainsOnly_CharArray() {
+    String str1 = "a";
+    String str2 = "b";
+    String str3 = "ab";
+    char[] chars1 = { 'b' };
+    char[] chars2 = { 'a' };
+    char[] chars3 = { 'a', 'b' };
+    char[] emptyChars = new char[0];
+    assertEquals(false, StringUtils.containsOnly(null, (char[]) null));
+    assertEquals(false, StringUtils.containsOnly("", (char[]) null));
+    assertEquals(false, StringUtils.containsOnly(null, emptyChars));
+    assertEquals(false, StringUtils.containsOnly(str1, emptyChars));
+    assertEquals(true, StringUtils.containsOnly("", emptyChars));
+    assertEquals(true, StringUtils.containsOnly("", chars1));
+    assertEquals(false, StringUtils.containsOnly(str1, chars1));
+    assertEquals(true, StringUtils.containsOnly(str1, chars2));
+    assertEquals(true, StringUtils.containsOnly(str1, chars3));
+    assertEquals(true, StringUtils.containsOnly(str2, chars1));
+    assertEquals(false, StringUtils.containsOnly(str2, chars2));
+    assertEquals(true, StringUtils.containsOnly(str2, chars3));
+    assertEquals(false, StringUtils.containsOnly(str3, chars1));
+    assertEquals(false, StringUtils.containsOnly(str3, chars2));
+    assertEquals(true, StringUtils.containsOnly(str3, chars3));
+}

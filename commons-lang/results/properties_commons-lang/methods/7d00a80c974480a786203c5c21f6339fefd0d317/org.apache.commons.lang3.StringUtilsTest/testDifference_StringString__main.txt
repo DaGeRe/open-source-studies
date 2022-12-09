@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+@Test
+public void testDifference_StringString() {
+    assertEquals(null, StringUtils.difference(null, null));
+    assertEquals("", StringUtils.difference("", ""));
+    assertEquals("abc", StringUtils.difference("", "abc"));
+    assertEquals("", StringUtils.difference("abc", ""));
+    assertEquals("i am a robot", StringUtils.difference(null, "i am a robot"));
+    assertEquals("i am a machine", StringUtils.difference("i am a machine", null));
+    assertEquals("robot", StringUtils.difference("i am a machine", "i am a robot"));
+    assertEquals("", StringUtils.difference("abc", "abc"));
+    assertEquals("you are a robot", StringUtils.difference("i am a robot", "you are a robot"));
+}

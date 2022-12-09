@@ -1,0 +1,23 @@
+public void testFormatPeriodISO() {
+    TimeZone timeZone = TimeZone.getTimeZone("GMT-3");
+    Calendar base = Calendar.getInstance(timeZone);
+    base.set(1970, 0, 1, 0, 0, 0);
+    base.set(Calendar.MILLISECOND, 0);
+    Calendar cal = Calendar.getInstance(timeZone);
+    cal.set(2002, 1, 23, 9, 11, 12);
+    cal.set(Calendar.MILLISECOND, 1);
+    String text;
+    // repeat a test from testDateTimeISO to compare extended and not extended.
+    text = DateFormatUtils.ISO_DATETIME_TIME_ZONE_FORMAT.format(cal);
+    assertEquals("2002-02-23T09:11:12-03:00", text);
+    // test fixture is the same as above, but now with extended format.
+    text = DurationFormatUtils.formatPeriod(base.getTime().getTime(), cal.getTime().getTime(), DurationFormatUtils.ISO_EXTENDED_FORMAT_PATTERN, false, timeZone);
+    assertEquals("P32Y1M22DT9H11M12.001S", text);
+    // test fixture from example in http://www.w3.org/TR/xmlschema-2/#duration
+    cal.set(1971, 1, 3, 10, 30, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    text = DurationFormatUtils.formatPeriod(base.getTime().getTime(), cal.getTime().getTime(), DurationFormatUtils.ISO_EXTENDED_FORMAT_PATTERN, false, timeZone);
+    assertEquals("P1Y1M2DT10H30M0.000S", text);
+    // want a way to say 'don't print the seconds in format()' or other fields for that matter:
+    // assertEquals("P1Y2M3DT10H30M", text);
+}

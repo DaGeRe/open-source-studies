@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Try to learn whether a given member, on JDK &gt;= 1.5, is synthetic.                                 * Try to learn whether a given member, on JDK &gt;= 1.5, is synthetic.                              
+* @param m Member to check                                                                             * @param m Member to check                                                                          
+* @return true if &lt;code&gt;m&lt;/code&gt; was introduced by the compiler.                           * @return true if &lt;code&gt;m&lt;/code&gt; was introduced by the compiler.                        
+*/                                                                                                     */                                                                                                  
+static boolean isSynthetic(Member m) {                                                                 static boolean isSynthetic(Member m) {                                                              
+if (IS_SYNTHETIC != null) {                                                                            if (IS_SYNTHETIC != null) {                                                                         
+try {                                                                                                  try {                                                                                               
+return ((Boolean) IS_SYNTHETIC.invoke(m, null)).booleanValue();                                      | return ((Boolean) IS_SYNTHETIC.invoke(m, (Object[]) null)).booleanValue();                          
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Gets a copy of the full token list as an independent modifiable list.                                * Gets a copy of the full token list as an independent modifiable list.                             
+*                                                                                                      *                                                                                                   
+* @return the tokens as a String array                                                                 * @return the tokens as a String array                                                              
+*/                                                                                                     */                                                                                                  
+public List&lt;String&gt; getTokenList() {                                                             public List&lt;String&gt; getTokenList() {                                                          
+checkTokenized();                                                                                      checkTokenized();                                                                                   
+List&lt;String&gt; list = new ArrayList&lt;String&gt;(tokens.length);                                  List&lt;String&gt; list = new ArrayList&lt;String&gt;(tokens.length);                               
+for (int i = 0; i &lt; tokens.length; i++) {                                                         | for (String element : tokens) {                                                                     
+list.add(tokens[i]);                                                                                 | list.add(element);                                                                                  
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new {@code Range} using the specified                                        | * &lt;p&gt;Obtains a range using the specified element as both the minimum                          
+* element as both the minimum and maximum in this range.&lt;/p&gt;                                   | * and maximum in this range.&lt;/p&gt;                                                              
+* &lt;p&gt;The range uses the natural ordering of the elements to                                    |                                                                                                     
+* determine where values lie in the range.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the type of this {@code Range}                                                    | * &lt;p&gt;The range uses the natural ordering of the elements to determine where                   
+* @param element  the value to use for this range, must not be {@code null}                          | * values lie in the range.&lt;/p&gt;                                                                
+* @return the new range object                                                                       | *                                                                                                   
+* @throws IllegalArgumentException if the value is {@code null}                                      | * @param &lt;T&gt; the type of the elements in this range                                           
+* @throws ClassCastException if the value is not Comparable                                          | * @param element  the value to use for this range, not null                                         
+                                                                                                     | * @return the range object, not null                                                                
+                                                                                                     | * @throws IllegalArgumentException if the element is null                                           
+                                                                                                     | * @throws ClassCastException if the element is not {@code Comparable}                               
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Comparable&lt;T&gt;&gt; Range&lt;T&gt; is(T element) {                     public static &lt;T extends Comparable&lt;T&gt;&gt; Range&lt;T&gt; is(T element) {                  
+return new Range&lt;T&gt;(element, element, ComparableComparator.&lt;T&gt;getInstance());            | return between(element, element, null);                                                             
+}                                                                                                      }                                                                                                   

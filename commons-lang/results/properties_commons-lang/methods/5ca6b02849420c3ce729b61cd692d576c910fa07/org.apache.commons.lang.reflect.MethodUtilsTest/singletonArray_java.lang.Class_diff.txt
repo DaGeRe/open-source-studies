@@ -1,0 +1,8 @@
+private Class[] singletonArray(Class c) {                                                            | private Class&lt;?&gt;[] singletonArray(Class&lt;?&gt; c) {                                         
+Class[] result = (Class[]) classCache.get(c);                                                        | Class&lt;?&gt;[] result = classCache.get(c);                                                        
+if (result == null) {                                                                                  if (result == null) {                                                                               
+result = new Class[] { c };                                                                            result = new Class[] { c };                                                                         
+classCache.put(c, result);                                                                             classCache.put(c, result);                                                                          
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

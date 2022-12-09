@@ -1,0 +1,11 @@
+public void testLastIndexOf_String() {                                                                 public void testLastIndexOf_String() {                                                              
+assertEquals(-1, StringUtils.lastIndexOf(null, null));                                                 assertEquals(-1, StringUtils.lastIndexOf(null, null));                                              
+assertEquals(-1, StringUtils.lastIndexOf("", null));                                                   assertEquals(-1, StringUtils.lastIndexOf("", null));                                                
+assertEquals(-1, StringUtils.lastIndexOf("", "a"));                                                    assertEquals(-1, StringUtils.lastIndexOf("", "a"));                                                 
+assertEquals(0, StringUtils.lastIndexOf("", ""));                                                      assertEquals(0, StringUtils.lastIndexOf("", ""));                                                   
+assertEquals(8, StringUtils.lastIndexOf("aabaabaa", ""));                                              assertEquals(8, StringUtils.lastIndexOf("aabaabaa", ""));                                           
+assertEquals(7, StringUtils.lastIndexOf("aabaabaa", "a"));                                             assertEquals(7, StringUtils.lastIndexOf("aabaabaa", "a"));                                          
+assertEquals(5, StringUtils.lastIndexOf("aabaabaa", "b"));                                             assertEquals(5, StringUtils.lastIndexOf("aabaabaa", "b"));                                          
+assertEquals(4, StringUtils.lastIndexOf("aabaabaa", "ab"));                                            assertEquals(4, StringUtils.lastIndexOf("aabaabaa", "ab"));                                         
+                                                                                                     | assertEquals(4, StringUtils.lastIndexOf(new StringBuilder("aabaabaa"), "ab"));                      
+}                                                                                                      }                                                                                                   

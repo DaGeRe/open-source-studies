@@ -1,0 +1,10 @@
+@Test
+public void testObjectArray() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((Object[]) null).toHashCode());
+    Object[] obj = new Object[2];
+    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[0] = new Object();
+    assertEquals((17 * 37 + obj[0].hashCode()) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[1] = new Object();
+    assertEquals((17 * 37 + obj[0].hashCode()) * 37 + obj[1].hashCode(), new HashCodeBuilder(17, 37).append(obj).toHashCode());
+}

@@ -1,0 +1,24 @@
+/**
+ * <p>Ceil this date, leaving the field specified as the most
+ * significant field.</p>
+ *
+ * <p>For example, if you had the datetime of 28 Mar 2002
+ * 13:45:01.231, if you passed with HOUR, it would return 28 Mar
+ * 2002 13:00:00.000.  If this was passed with MONTH, it would
+ * return 1 Mar 2002 0:00:00.000.</p>
+ *
+ * @param date  the date to work with, not null
+ * @param field  the field from {@code Calendar} or <code>SEMI_MONTH</code>
+ * @return the different ceil date, not null
+ * @throws IllegalArgumentException if the date is <code>null</code>
+ * @throws ArithmeticException if the year is over 280 million
+ * @since 2.5
+ */
+public static Calendar ceiling(Calendar date, int field) {
+    if (date == null) {
+        throw new IllegalArgumentException("The date must not be null");
+    }
+    Calendar ceiled = (Calendar) date.clone();
+    modify(ceiled, field, MODIFY_CEILING);
+    return ceiled;
+}

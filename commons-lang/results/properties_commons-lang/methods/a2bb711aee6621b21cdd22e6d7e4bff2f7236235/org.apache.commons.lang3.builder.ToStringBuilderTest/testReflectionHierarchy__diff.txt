@@ -1,0 +1,23 @@
+public void testReflectionHierarchy() {                                                                public void testReflectionHierarchy() {                                                             
+ReflectionTestFixtureA baseA = new ReflectionTestFixtureA();                                           ReflectionTestFixtureA baseA = new ReflectionTestFixtureA();                                        
+String baseStr = this.toBaseString(baseA);                                                             String baseStr = this.toBaseString(baseA);                                                          
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA));                            assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA));                         
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null));                      assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null));                   
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false));               assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false));            
+assertEquals(baseStr + "[a=a,transientA=t]", ToStringBuilder.reflectionToString(baseA, null, true));   assertEquals(baseStr + "[a=a,transientA=t]", ToStringBuilder.reflectionToString(baseA, null, true));
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, null));         assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, null));      
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, Object.class)   assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, Object.class)
+assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, ReflectionTes   assertEquals(baseStr + "[a=a]", ToStringBuilder.reflectionToString(baseA, null, false, ReflectionTes
+ReflectionTestFixtureB baseB = new ReflectionTestFixtureB();                                           ReflectionTestFixtureB baseB = new ReflectionTestFixtureB();                                        
+baseStr = this.toBaseString(baseB);                                                                    baseStr = this.toBaseString(baseB);                                                                 
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB));                        assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB));                     
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB));                        assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB));                     
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null));                  assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null));               
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false));           assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false));        
+assertEquals(baseStr + "[b=b,transientB=t,a=a,transientA=t]", ToStringBuilder.reflectionToString(bas   assertEquals(baseStr + "[b=b,transientB=t,a=a,transientA=t]", ToStringBuilder.reflectionToString(bas
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, null));     assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, null));  
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, Object.cl   assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, Object.cl
+assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, Reflectio   assertEquals(baseStr + "[b=b,a=a]", ToStringBuilder.reflectionToString(baseB, null, false, Reflectio
+assertEquals(baseStr + "[b=b]", ToStringBuilder.reflectionToString(baseB, null, false, ReflectionTes   assertEquals(baseStr + "[b=b]", ToStringBuilder.reflectionToString(baseB, null, false, ReflectionTes
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

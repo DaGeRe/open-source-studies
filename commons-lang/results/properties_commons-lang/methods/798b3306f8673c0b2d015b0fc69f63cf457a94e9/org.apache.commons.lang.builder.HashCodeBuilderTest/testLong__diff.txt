@@ -1,0 +1,4 @@
+public void testLong() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((long) 0L).toHashCode());
+    assertEquals(17 * 37 + (int) (123456789L ^ (123456789L >> 32)), new HashCodeBuilder(17, 37).append((long) 123456789L).toHashCode());
+}

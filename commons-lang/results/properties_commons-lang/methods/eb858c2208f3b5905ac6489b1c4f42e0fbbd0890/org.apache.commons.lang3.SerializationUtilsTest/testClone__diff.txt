@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testClone() throws Exception {                                                             public void testClone() throws Exception {                                                          
+HashMap&lt;?, ?&gt; test = SerializationUtils.clone(iMap);                                           | Object test = SerializationUtils.clone(iMap);                                                       
+assertNotNull(test);                                                                                   assertNotNull(test);                                                                                
+assertTrue(test instanceof HashMap&lt;?, ?&gt;);                                                       assertTrue(test instanceof HashMap&lt;?, ?&gt;);                                                    
+assertTrue(test != iMap);                                                                              assertTrue(test != iMap);                                                                           
+HashMap&lt;?, ?&gt; testMap = (HashMap&lt;?, ?&gt;) test;                                              HashMap&lt;?, ?&gt; testMap = (HashMap&lt;?, ?&gt;) test;                                           
+assertEquals(iString, testMap.get("FOO"));                                                             assertEquals(iString, testMap.get("FOO"));                                                          
+assertTrue(iString != testMap.get("FOO"));                                                             assertTrue(iString != testMap.get("FOO"));                                                          
+assertEquals(iInteger, testMap.get("BAR"));                                                            assertEquals(iInteger, testMap.get("BAR"));                                                         
+assertTrue(iInteger != testMap.get("BAR"));                                                            assertTrue(iInteger != testMap.get("BAR"));                                                         
+assertEquals(iMap, testMap);                                                                           assertEquals(iMap, testMap);                                                                        
+}                                                                                                      }                                                                                                   

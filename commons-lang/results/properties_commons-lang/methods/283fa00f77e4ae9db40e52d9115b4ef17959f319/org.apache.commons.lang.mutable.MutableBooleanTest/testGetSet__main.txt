@@ -1,0 +1,19 @@
+public void testGetSet() {
+    assertEquals(false, new MutableBoolean().booleanValue());
+    assertEquals(Boolean.FALSE, new MutableBoolean().getValue());
+    final MutableBoolean mutBool = new MutableBoolean(false);
+    assertEquals(Boolean.FALSE, mutBool.toBoolean());
+    assertEquals(false, mutBool.booleanValue());
+    mutBool.setValue(Boolean.TRUE);
+    assertEquals(Boolean.TRUE, mutBool.toBoolean());
+    assertEquals(true, mutBool.booleanValue());
+    mutBool.setValue(false);
+    assertEquals(false, mutBool.booleanValue());
+    mutBool.setValue(true);
+    assertEquals(true, mutBool.booleanValue());
+    try {
+        mutBool.setValue(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

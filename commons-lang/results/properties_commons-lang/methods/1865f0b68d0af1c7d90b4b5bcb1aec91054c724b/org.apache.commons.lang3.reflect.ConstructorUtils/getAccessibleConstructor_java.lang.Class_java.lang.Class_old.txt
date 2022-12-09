@@ -1,0 +1,11 @@
+/**
+ * Returns a constructor with single argument.
+ * @param cls the class to be constructed
+ * @param parameterType The constructor parameter type
+ * @return null if matching accessible constructor can not be found.
+ * @see Class#getConstructor
+ * @see #getAccessibleConstructor(java.lang.reflect.Constructor)
+ */
+public static <T> Constructor<T> getAccessibleConstructor(Class<T> cls, Class<?> parameterType) {
+    return getAccessibleConstructor(cls, new Class[] { parameterType });
+}

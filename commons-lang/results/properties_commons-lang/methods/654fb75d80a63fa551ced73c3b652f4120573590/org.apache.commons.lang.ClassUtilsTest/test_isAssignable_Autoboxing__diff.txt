@@ -1,0 +1,18 @@
+public void test_isAssignable_Autoboxing() throws Exception {
+    assertFalse(ClassUtils.isAssignable((Class) null, null, true));
+    assertFalse(ClassUtils.isAssignable(String.class, null, true));
+    assertTrue(ClassUtils.isAssignable(null, Object.class, true));
+    assertTrue(ClassUtils.isAssignable(null, Integer.class, true));
+    assertFalse(ClassUtils.isAssignable(null, Integer.TYPE, true));
+    assertTrue(ClassUtils.isAssignable(String.class, Object.class, true));
+    assertTrue(ClassUtils.isAssignable(String.class, String.class, true));
+    assertFalse(ClassUtils.isAssignable(Object.class, String.class, true));
+    assertTrue(ClassUtils.isAssignable(Integer.TYPE, Integer.class, true));
+    assertTrue(ClassUtils.isAssignable(Integer.class, Integer.TYPE, true));
+    assertTrue(ClassUtils.isAssignable(Integer.TYPE, Integer.TYPE, true));
+    assertTrue(ClassUtils.isAssignable(Integer.class, Integer.class, true));
+    assertTrue(ClassUtils.isAssignable(Boolean.TYPE, Boolean.class, true));
+    assertTrue(ClassUtils.isAssignable(Boolean.class, Boolean.TYPE, true));
+    assertTrue(ClassUtils.isAssignable(Boolean.TYPE, Boolean.TYPE, true));
+    assertTrue(ClassUtils.isAssignable(Boolean.class, Boolean.class, true));
+}

@@ -1,0 +1,19 @@
+                                                                                                     | @Test                                                                                               
+public void testReadStaticFieldForceAccess() throws Exception {                                        public void testReadStaticFieldForceAccess() throws Exception {                                     
+assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(Foo.class, "VALUE")));          assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(Foo.class, "VALUE")));       
+assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(PublicChild.class, "VALUE")))   assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(PublicChild.class, "VALUE")))
+try {                                                                                                  try {                                                                                               
+FieldUtils.readStaticField(null, true);                                                                FieldUtils.readStaticField(null, true);                                                             
+fail("null field should cause an IllegalArgumentException");                                           fail("null field should cause an IllegalArgumentException");                                        
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Field nonStaticField = FieldUtils.getField(PublicChild.class, "s", true);                              Field nonStaticField = FieldUtils.getField(PublicChild.class, "s", true);                           
+assumeNotNull(nonStaticField);                                                                         assumeNotNull(nonStaticField);                                                                      
+FieldUtils.readStaticField(nonStaticField);                                                            FieldUtils.readStaticField(nonStaticField);                                                         
+fail("non-static field should cause an IllegalArgumentException");                                     fail("non-static field should cause an IllegalArgumentException");                                  
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

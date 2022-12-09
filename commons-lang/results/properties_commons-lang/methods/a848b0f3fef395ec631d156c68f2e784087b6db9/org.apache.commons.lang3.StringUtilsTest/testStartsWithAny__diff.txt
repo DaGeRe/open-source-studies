@@ -1,0 +1,9 @@
+public void testStartsWithAny() {                                                                      public void testStartsWithAny() {                                                                   
+assertFalse(StringUtils.startsWithAny(null, null));                                                  | assertFalse(StringUtils.startsWithAny(null, (String[]) null));                                      
+assertFalse(StringUtils.startsWithAny(null, new String[] { "abc" }));                                | assertFalse(StringUtils.startsWithAny(null, "abc"));                                                
+assertFalse(StringUtils.startsWithAny("abcxyz", null));                                              | assertFalse(StringUtils.startsWithAny("abcxyz", (String[]) null));                                  
+assertFalse(StringUtils.startsWithAny("abcxyz", new String[] {}));                                   | assertFalse(StringUtils.startsWithAny("abcxyz"));                                                   
+assertTrue(StringUtils.startsWithAny("abcxyz", new String[] { "abc" }));                             | assertTrue(StringUtils.startsWithAny("abcxyz", "abc"));                                             
+assertTrue(StringUtils.startsWithAny("abcxyz", new String[] { null, "xyz", "abc" }));                | assertTrue(StringUtils.startsWithAny("abcxyz", null, "xyz", "abc"));                                
+assertFalse(StringUtils.startsWithAny("abcxyz", new String[] { null, "xyz", "abcd" }));              | assertFalse(StringUtils.startsWithAny("abcxyz", null, "xyz", "abcd"));                              
+}                                                                                                      }                                                                                                   

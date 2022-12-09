@@ -1,0 +1,71 @@
+// -----------------------------------------------------------------------
+/**
+ * Test the implementation
+ */
+public void testRandomStringUtils() {
+    String r1 = RandomStringUtils.random(50);
+    assertEquals("random(50) length", 50, r1.length());
+    String r2 = RandomStringUtils.random(50);
+    assertEquals("random(50) length", 50, r2.length());
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.randomAscii(50);
+    assertEquals("randomAscii(50) length", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertTrue("char between 32 and 127", r1.charAt(i) >= 32 && r1.charAt(i) <= 127);
+    }
+    r2 = RandomStringUtils.randomAscii(50);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.randomAlphabetic(50);
+    assertEquals("randomAlphabetic(50)", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertEquals("r1 contains alphabetic", true, Character.isLetter(r1.charAt(i)) && !Character.isDigit(r1.charAt(i)));
+    }
+    r2 = RandomStringUtils.randomAlphabetic(50);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.randomAlphanumeric(50);
+    assertEquals("randomAlphanumeric(50)", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertEquals("r1 contains alphanumeric", true, Character.isLetterOrDigit(r1.charAt(i)));
+    }
+    r2 = RandomStringUtils.randomAlphabetic(50);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.randomNumeric(50);
+    assertEquals("randomNumeric(50)", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertEquals("r1 contains numeric", true, Character.isDigit(r1.charAt(i)) && !Character.isLetter(r1.charAt(i)));
+    }
+    r2 = RandomStringUtils.randomNumeric(50);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    String set = "abcdefg";
+    r1 = RandomStringUtils.random(50, set);
+    assertEquals("random(50, \"abcdefg\")", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertTrue("random char in set", set.indexOf(r1.charAt(i)) > -1);
+    }
+    r2 = RandomStringUtils.random(50, set);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.random(50, (String) null);
+    assertEquals("random(50) length", 50, r1.length());
+    r2 = RandomStringUtils.random(50, (String) null);
+    assertEquals("random(50) length", 50, r2.length());
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    set = "stuvwxyz";
+    r1 = RandomStringUtils.random(50, set.toCharArray());
+    assertEquals("random(50, \"stuvwxyz\")", 50, r1.length());
+    for (int i = 0; i < r1.length(); i++) {
+        assertTrue("random char in set", set.indexOf(r1.charAt(i)) > -1);
+    }
+    r2 = RandomStringUtils.random(50, set);
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    r1 = RandomStringUtils.random(50, (char[]) null);
+    assertEquals("random(50) length", 50, r1.length());
+    r2 = RandomStringUtils.random(50, (char[]) null);
+    assertEquals("random(50) length", 50, r2.length());
+    assertTrue("!r1.equals(r2)", !r1.equals(r2));
+    long seed = System.currentTimeMillis();
+    r1 = RandomStringUtils.random(50, 0, 0, true, true, null, new Random(seed));
+    r2 = RandomStringUtils.random(50, 0, 0, true, true, null, new Random(seed));
+    assertEquals("r1.equals(r2)", r1, r2);
+    r1 = RandomStringUtils.random(0);
+    assertEquals("random(0).equals(\"\")", "", r1);
+}

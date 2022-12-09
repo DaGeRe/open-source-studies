@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Compares two &lt;code&gt;Object&lt;/code&gt;s via reflection.&lt;/p&gt;                     * &lt;p&gt;Compares two &lt;code&gt;Object&lt;/code&gt;s via reflection.&lt;/p&gt;                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Fields can be private, thus &lt;code&gt;AccessibleObject.setAccessible&lt;/code&gt;         * &lt;p&gt;Fields can be private, thus &lt;code&gt;AccessibleObject.setAccessible&lt;/code&gt;      
+* is used to bypass normal access control checks. This will fail under a                               * is used to bypass normal access control checks. This will fail under a                            
+* security manager unless the appropriate permissions are set.&lt;/p&gt;                               * security manager unless the appropriate permissions are set.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;ul&gt;                                                                                           * &lt;ul&gt;                                                                                        
+* &lt;li&gt;Static fields will not be compared&lt;/li&gt;                                              * &lt;li&gt;Static fields will not be compared&lt;/li&gt;                                           
+* &lt;li&gt;Transient members will be not be compared, as they are likely derived                      * &lt;li&gt;Transient members will be not be compared, as they are likely derived                   
+*     fields&lt;/li&gt;                                                                                *     fields&lt;/li&gt;                                                                             
+* &lt;li&gt;Superclass fields will be compared&lt;/li&gt;                                              * &lt;li&gt;Superclass fields will be compared&lt;/li&gt;                                           
+* &lt;/ul&gt;                                                                                          * &lt;/ul&gt;                                                                                       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If both &lt;code&gt;lhs&lt;/code&gt; and &lt;code&gt;rhs&lt;/code&gt; are &lt;code&gt;nul   * &lt;p&gt;If both &lt;code&gt;lhs&lt;/code&gt; and &lt;code&gt;rhs&lt;/code&gt; are &lt;code&gt;nul
+* they are considered equal.&lt;/p&gt;                                                                 * they are considered equal.&lt;/p&gt;                                                              
+*                                                                                                      *                                                                                                   
+* @param lhs  left-hand object                                                                         * @param lhs  left-hand object                                                                      
+* @param rhs  right-hand object                                                                        * @param rhs  right-hand object                                                                     
+* @return a negative integer, zero, or a positive integer as &lt;code&gt;lhs&lt;/code&gt;              * @return a negative integer, zero, or a positive integer as &lt;code&gt;lhs&lt;/code&gt;           
+*  is less than, equal to, or greater than &lt;code&gt;rhs&lt;/code&gt;                                *  is less than, equal to, or greater than &lt;code&gt;rhs&lt;/code&gt;                             
+* @throws NullPointerException  if either (but not both) parameters are                                * @throws NullPointerException  if either (but not both) parameters are                             
+*  &lt;code&gt;null&lt;/code&gt;                                                                       *  &lt;code&gt;null&lt;/code&gt;                                                                    
+* @throws ClassCastException  if &lt;code&gt;rhs&lt;/code&gt; is not assignment-compatible             * @throws ClassCastException  if &lt;code&gt;rhs&lt;/code&gt; is not assignment-compatible          
+*  with &lt;code&gt;lhs&lt;/code&gt;                                                                   *  with &lt;code&gt;lhs&lt;/code&gt;                                                                
+*/                                                                                                     */                                                                                                  
+public static int reflectionCompare(Object lhs, Object rhs) {                                          public static int reflectionCompare(Object lhs, Object rhs) {                                       
+return reflectionCompare(lhs, rhs, false, null, null);                                               | return reflectionCompare(lhs, rhs, false, null);                                                    
+}                                                                                                      }                                                                                                   

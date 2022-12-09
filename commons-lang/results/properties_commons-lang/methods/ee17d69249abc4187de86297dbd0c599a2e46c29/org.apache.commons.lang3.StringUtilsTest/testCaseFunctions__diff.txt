@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------
+public void testCaseFunctions() {
+    assertEquals(null, StringUtils.upperCase(null));
+    assertEquals(null, StringUtils.upperCase(null, Locale.ENGLISH));
+    assertEquals(null, StringUtils.lowerCase(null));
+    assertEquals(null, StringUtils.lowerCase(null, Locale.ENGLISH));
+    assertEquals(null, StringUtils.capitalize(null));
+    assertEquals(null, StringUtils.uncapitalize(null));
+    assertEquals("capitalize(empty-string) failed", "", StringUtils.capitalize(""));
+    assertEquals("capitalize(single-char-string) failed", "X", StringUtils.capitalize("x"));
+    assertEquals("capitalize(single-char-string) failed", "X", StringUtils.capitalize(new StringBuilder("x")));
+    assertEquals("capitalize(single-char-string) failed", "X", StringUtils.capitalize(new StringBuffer("x")));
+    assertEquals("capitalize(single-char-string) failed", "X", StringUtils.capitalize(CharBuffer.wrap("x")));
+    assertEquals("uncapitalize(String) failed", FOO_UNCAP, StringUtils.uncapitalize(FOO_CAP));
+    assertEquals("uncapitalize(empty-string) failed", "", StringUtils.uncapitalize(""));
+    assertEquals("uncapitalize(single-char-string) failed", "x", StringUtils.uncapitalize("X"));
+    assertEquals("uncapitalize(single-char-string) failed", "x", StringUtils.uncapitalize(new StringBuilder("X")));
+    assertEquals("uncapitalize(single-char-string) failed", "x", StringUtils.uncapitalize(new StringBuffer("X")));
+    assertEquals("uncapitalize(single-char-string) failed", "x", StringUtils.uncapitalize(CharBuffer.wrap("X")));
+    // reflection type of tests: Sentences.
+    assertEquals("uncapitalize(capitalize(String)) failed", SENTENCE_UNCAP, StringUtils.uncapitalize(StringUtils.capitalize(SENTENCE_UNCAP)));
+    assertEquals("capitalize(uncapitalize(String)) failed", SENTENCE_CAP, StringUtils.capitalize(StringUtils.uncapitalize(SENTENCE_CAP)));
+    // reflection type of tests: One word.
+    assertEquals("uncapitalize(capitalize(String)) failed", FOO_UNCAP, StringUtils.uncapitalize(StringUtils.capitalize(FOO_UNCAP)));
+    assertEquals("capitalize(uncapitalize(String)) failed", FOO_CAP, StringUtils.capitalize(StringUtils.uncapitalize(FOO_CAP)));
+    assertEquals("upperCase(String) failed", "FOO TEST THING", StringUtils.upperCase("fOo test THING"));
+    assertEquals("upperCase(empty-string) failed", "", StringUtils.upperCase(""));
+    assertEquals("lowerCase(String) failed", "foo test thing", StringUtils.lowerCase("fOo test THING"));
+    assertEquals("lowerCase(empty-string) failed", "", StringUtils.lowerCase(""));
+    assertEquals("upperCase(String, Locale) failed", "FOO TEST THING", StringUtils.upperCase("fOo test THING", Locale.ENGLISH));
+    assertEquals("upperCase(empty-string, Locale) failed", "", StringUtils.upperCase("", Locale.ENGLISH));
+    assertEquals("lowerCase(String, Locale) failed", "foo test thing", StringUtils.lowerCase("fOo test THING", Locale.ENGLISH));
+    assertEquals("lowerCase(empty-string, Locale) failed", "", StringUtils.lowerCase("", Locale.ENGLISH));
+}

@@ -1,0 +1,33 @@
+                                                                                                     | // Delete                                                                                           
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Deletes all whitespaces from a String as defined by                                         * &lt;p&gt;Deletes all whitespaces from a String as defined by                                      
+* {@link Character#isWhitespace(char)}.&lt;/p&gt;                                                      * {@link Character#isWhitespace(char)}.&lt;/p&gt;                                                   
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.deleteWhitespace(null)         = null                                                    * StringUtils.deleteWhitespace(null)         = null                                                 
+* StringUtils.deleteWhitespace("")           = ""                                                      * StringUtils.deleteWhitespace("")           = ""                                                   
+* StringUtils.deleteWhitespace("abc")        = "abc"                                                   * StringUtils.deleteWhitespace("abc")        = "abc"                                                
+* StringUtils.deleteWhitespace("   ab  c  ") = "abc"                                                   * StringUtils.deleteWhitespace("   ab  c  ") = "abc"                                                
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to delete whitespace from, may be null                                        * @param str  the String to delete whitespace from, may be null                                     
+* @return the String without whitespaces, &lt;code&gt;null&lt;/code&gt; if null String input           * @return the String without whitespaces, &lt;code&gt;null&lt;/code&gt; if null String input        
+*/                                                                                                     */                                                                                                  
+public static String deleteWhitespace(String str) {                                                    public static String deleteWhitespace(String str) {                                                 
+if (isEmpty(str)) {                                                                                    if (isEmpty(str)) {                                                                                 
+return str;                                                                                            return str;                                                                                         
+}                                                                                                      }                                                                                                   
+int sz = str.length();                                                                                 int sz = str.length();                                                                              
+char[] chs = new char[sz];                                                                             char[] chs = new char[sz];                                                                          
+int count = 0;                                                                                         int count = 0;                                                                                      
+for (int i = 0; i &lt; sz; i++) {                                                                      for (int i = 0; i &lt; sz; i++) {                                                                   
+if (!Character.isWhitespace(str.charAt(i))) {                                                          if (!Character.isWhitespace(str.charAt(i))) {                                                       
+chs[count++] = str.charAt(i);                                                                          chs[count++] = str.charAt(i);                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if (count == sz) {                                                                                     if (count == sz) {                                                                                  
+return str;                                                                                            return str;                                                                                         
+}                                                                                                      }                                                                                                   
+return new String(chs, 0, count);                                                                      return new String(chs, 0, count);                                                                   
+}                                                                                                      }                                                                                                   

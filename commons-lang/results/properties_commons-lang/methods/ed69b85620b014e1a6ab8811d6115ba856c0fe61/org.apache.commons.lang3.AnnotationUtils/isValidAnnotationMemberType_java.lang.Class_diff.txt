@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Learn whether the specified type is permitted as an annotation member.                             | * &lt;p&gt;Checks if the specified type is permitted as an annotation member.&lt;/p&gt;             
+* These include {@link String}, {@link Class}, primitive types,                                      | *                                                                                                   
+* {@link Annotation}s, {@link Enum}s, and arrays of same.                                            | * &lt;p&gt;The Java language specification only permits certain types to be used                    
+* @param type to check                                                                               | * in annotations. These include {@link String}, {@link Class}, primitive types,                     
+* @return boolean                                                                                    | * {@link Annotation}, {@link Enum}, and arrays of these types.&lt;/p&gt;                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param type the type to check, null returns false                                                 
+                                                                                                     | * @return true if the type is a valid type to use in an annotation                                  
+*/                                                                                                     */                                                                                                  
+public static boolean isValidAnnotationMemberType(Class&lt;?&gt; type) {                               public static boolean isValidAnnotationMemberType(Class&lt;?&gt; type) {                            
+if (type == null) {                                                                                    if (type == null) {                                                                                 
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (type.isArray()) {                                                                                  if (type.isArray()) {                                                                               
+type = type.getComponentType();                                                                        type = type.getComponentType();                                                                     
+}                                                                                                      }                                                                                                   
+return type.isPrimitive() || type.isEnum() || type.isAnnotation() || String.class.equals(type) || Cl   return type.isPrimitive() || type.isEnum() || type.isAnnotation() || String.class.equals(type) || Cl
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testAddMinutes() throws Exception {
+    Date base = new Date(MILLIS_TEST);
+    Date result = DateUtils.addMinutes(base, 0);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 6, 5, 4, 3, 2, 1);
+    result = DateUtils.addMinutes(base, 1);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 6, 5, 4, 4, 2, 1);
+    result = DateUtils.addMinutes(base, -1);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 6, 5, 4, 2, 2, 1);
+}

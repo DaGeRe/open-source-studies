@@ -1,0 +1,19 @@
+                                                                                                     | // The following methods are used to support basic java.lang.String functionality                   
+                                                                                                     | // for CharSequences                                                                                
+// Used by the indexOf(CharSequence methods) as a green implementation of indexOf                      // Used by the indexOf(CharSequence methods) as a green implementation of indexOf                   
+static int indexOfSequence(CharSequence cs, int searchChar, int start) {                               static int indexOfSequence(CharSequence cs, int searchChar, int start) {                            
+if (cs instanceof String) {                                                                            if (cs instanceof String) {                                                                         
+return ((String) cs).indexOf(searchChar, start);                                                       return ((String) cs).indexOf(searchChar, start);                                                    
+} else {                                                                                               } else {                                                                                            
+int sz = cs.length();                                                                                  int sz = cs.length();                                                                               
+if (start &lt; 0) {                                                                                    if (start &lt; 0) {                                                                                 
+start = 0;                                                                                             start = 0;                                                                                          
+}                                                                                                      }                                                                                                   
+for (int i = start; i &lt; sz; i++) {                                                                  for (int i = start; i &lt; sz; i++) {                                                               
+if (cs.charAt(i) == searchChar) {                                                                      if (cs.charAt(i) == searchChar) {                                                                   
+return i;                                                                                              return i;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

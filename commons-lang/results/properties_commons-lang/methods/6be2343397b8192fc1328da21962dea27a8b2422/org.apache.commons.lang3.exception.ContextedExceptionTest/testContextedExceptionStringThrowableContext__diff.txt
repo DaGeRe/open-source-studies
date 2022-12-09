@@ -1,0 +1,9 @@
+public void testContextedExceptionStringThrowableContext() {                                           public void testContextedExceptionStringThrowableContext() {                                        
+contextedException = new ContextedException(TEST_MESSAGE_2, new Exception(TEST_MESSAGE), new Default | exceptionContext = new ContextedException(TEST_MESSAGE_2, new Exception(TEST_MESSAGE), new DefaultEx
+String message = contextedException.getMessage();                                                    | String message = exceptionContext.getMessage();                                                     
+String trace = ExceptionUtils.getStackTrace(contextedException);                                     | String trace = ExceptionUtils.getStackTrace(exceptionContext);                                      
+assertTrue(trace.indexOf("ContextedException") &gt;= 0);                                               assertTrue(trace.indexOf("ContextedException") &gt;= 0);                                            
+assertTrue(trace.indexOf(TEST_MESSAGE) &gt;= 0);                                                       assertTrue(trace.indexOf(TEST_MESSAGE) &gt;= 0);                                                    
+assertTrue(trace.indexOf(TEST_MESSAGE_2) &gt;= 0);                                                     assertTrue(trace.indexOf(TEST_MESSAGE_2) &gt;= 0);                                                  
+assertTrue(message.indexOf(TEST_MESSAGE_2) &gt;= 0);                                                   assertTrue(message.indexOf(TEST_MESSAGE_2) &gt;= 0);                                                
+}                                                                                                      }                                                                                                   

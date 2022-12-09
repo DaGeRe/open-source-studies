@@ -1,0 +1,21 @@
+/**
+ * Read a Field.
+ * @param field  the field to use
+ * @param target  the object to call on, may be null for static fields
+ * @param forceAccess  whether to break scope restrictions using the
+ *  <code>setAccessible</code> method.
+ * @return the field value
+ * @throws IllegalArgumentException if the field is null
+ * @throws IllegalAccessException if the field is not made accessible
+ */
+public static Object readField(Field field, Object target, boolean forceAccess) throws IllegalAccessException {
+    if (field == null) {
+        throw new IllegalArgumentException("The field must not be null");
+    }
+    if (forceAccess && !field.isAccessible()) {
+        field.setAccessible(true);
+    } else {
+        MemberUtils.setAccessibleWorkaround(field);
+    }
+    return field.get(target);
+}

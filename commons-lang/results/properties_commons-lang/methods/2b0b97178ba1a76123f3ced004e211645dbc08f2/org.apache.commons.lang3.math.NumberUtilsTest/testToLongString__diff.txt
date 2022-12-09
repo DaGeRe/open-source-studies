@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Test for {@link NumberUtils#toLong(String)}.                                                         * Test for {@link NumberUtils#toLong(String)}.                                                      
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testToLongString() {                                                                       public void testToLongString() {                                                                    
+assertTrue("toLong(String) 1 failed", NumberUtils.toLong("12345") == 12345l);                          assertTrue("toLong(String) 1 failed", NumberUtils.toLong("12345") == 12345l);                       
+assertTrue("toLong(String) 2 failed", NumberUtils.toLong("abc") == 0l);                                assertTrue("toLong(String) 2 failed", NumberUtils.toLong("abc") == 0l);                             
+assertTrue("toLong(String) 3 failed", NumberUtils.toLong("1L") == 0l);                                 assertTrue("toLong(String) 3 failed", NumberUtils.toLong("1L") == 0l);                              
+assertTrue("toLong(String) 4 failed", NumberUtils.toLong("1l") == 0l);                                 assertTrue("toLong(String) 4 failed", NumberUtils.toLong("1l") == 0l);                              
+assertTrue("toLong(Long.MAX_VALUE) failed", NumberUtils.toLong(Long.MAX_VALUE + "") == Long.MAX_VALU   assertTrue("toLong(Long.MAX_VALUE) failed", NumberUtils.toLong(Long.MAX_VALUE + "") == Long.MAX_VALU
+assertTrue("toLong(Long.MIN_VALUE) failed", NumberUtils.toLong(Long.MIN_VALUE + "") == Long.MIN_VALU   assertTrue("toLong(Long.MIN_VALUE) failed", NumberUtils.toLong(Long.MIN_VALUE + "") == Long.MIN_VALU
+assertTrue("toLong(empty) failed", NumberUtils.toLong("") == 0l);                                      assertTrue("toLong(empty) failed", NumberUtils.toLong("") == 0l);                                   
+assertTrue("toLong(null) failed", NumberUtils.toLong(null) == 0l);                                     assertTrue("toLong(null) failed", NumberUtils.toLong(null) == 0l);                                  
+}                                                                                                      }                                                                                                   

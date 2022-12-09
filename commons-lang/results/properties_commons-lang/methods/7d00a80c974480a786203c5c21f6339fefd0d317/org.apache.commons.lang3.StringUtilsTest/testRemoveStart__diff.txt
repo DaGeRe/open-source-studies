@@ -1,0 +1,16 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveStart() {                                                                        public void testRemoveStart() {                                                                     
+// StringUtils.removeStart("", *)        = ""                                                          // StringUtils.removeStart("", *)        = ""                                                       
+assertNull(StringUtils.removeStart(null, null));                                                       assertNull(StringUtils.removeStart(null, null));                                                    
+assertNull(StringUtils.removeStart(null, ""));                                                         assertNull(StringUtils.removeStart(null, ""));                                                      
+assertNull(StringUtils.removeStart(null, "a"));                                                        assertNull(StringUtils.removeStart(null, "a"));                                                     
+// StringUtils.removeStart(*, null)      = *                                                           // StringUtils.removeStart(*, null)      = *                                                        
+assertEquals(StringUtils.removeStart("", null), "");                                                   assertEquals(StringUtils.removeStart("", null), "");                                                
+assertEquals(StringUtils.removeStart("", ""), "");                                                     assertEquals(StringUtils.removeStart("", ""), "");                                                  
+assertEquals(StringUtils.removeStart("", "a"), "");                                                    assertEquals(StringUtils.removeStart("", "a"), "");                                                 
+// All others:                                                                                         // All others:                                                                                      
+assertEquals(StringUtils.removeStart("www.domain.com", "www."), "domain.com");                         assertEquals(StringUtils.removeStart("www.domain.com", "www."), "domain.com");                      
+assertEquals(StringUtils.removeStart("domain.com", "www."), "domain.com");                             assertEquals(StringUtils.removeStart("domain.com", "www."), "domain.com");                          
+assertEquals(StringUtils.removeStart("domain.com", ""), "domain.com");                                 assertEquals(StringUtils.removeStart("domain.com", ""), "domain.com");                              
+assertEquals(StringUtils.removeStart("domain.com", null), "domain.com");                               assertEquals(StringUtils.removeStart("domain.com", null), "domain.com");                            
+}                                                                                                      }                                                                                                   

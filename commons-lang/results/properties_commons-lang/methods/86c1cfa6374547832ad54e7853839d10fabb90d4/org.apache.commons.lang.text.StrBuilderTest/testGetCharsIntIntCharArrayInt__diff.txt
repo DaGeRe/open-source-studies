@@ -1,0 +1,30 @@
+public void testGetCharsIntIntCharArrayInt() {
+    StrBuilder sb = new StrBuilder();
+    sb.append("junit");
+    char[] a = new char[5];
+    sb.getChars(0, 5, a, 0);
+    assertTrue(Arrays.equals(new char[] { 'j', 'u', 'n', 'i', 't' }, a));
+    a = new char[5];
+    sb.getChars(0, 2, a, 3);
+    assertTrue(Arrays.equals(new char[] { 0, 0, 0, 'j', 'u' }, a));
+    try {
+        sb.getChars(-1, 0, a, 0);
+        fail("no exception");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.getChars(0, -1, a, 0);
+        fail("no exception");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.getChars(0, 20, a, 0);
+        fail("no exception");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.getChars(4, 2, a, 0);
+        fail("no exception");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

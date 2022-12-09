@@ -1,0 +1,76 @@
+/**
+ * <p>Appends to the <code>builder</code> the comparison of
+ * two <code>Object</code>s.</p>
+ *
+ * <ol>
+ * <li>Check if <code>lhs == rhs</code></li>
+ * <li>Check if either <code>lhs</code> or <code>rhs</code> is <code>null</code>,
+ *     a <code>null</code> object is less than a non-<code>null</code> object</li>
+ * <li>Check the object contents</li>
+ * </ol>
+ *
+ * <p>If <code>lhs</code> is an array, array comparison methods will be used.
+ * Otherwise <code>comparator</code> will be used to compare the objects.
+ * If <code>comparator</code> is <code>null</code>, <code>lhs</code> must
+ * implement {@link Comparable} instead.</p>
+ *
+ * @param lhs  left-hand object
+ * @param rhs  right-hand object
+ * @param comparator  <code>Comparator</code> used to compare the objects,
+ *  <code>null</code> means treat lhs as <code>Comparable</code>
+ * @return this - used to chain append calls
+ * @throws ClassCastException  if <code>rhs</code> is not assignment-compatible
+ *  with <code>lhs</code>
+ * @since 2.0
+ */
+@SuppressWarnings("unchecked")
+public CompareToBuilder append(Object lhs, Object rhs, Comparator<?> comparator) {
+    if (comparison != 0) {
+        return this;
+    }
+    if (lhs == rhs) {
+        return this;
+    }
+    if (lhs == null) {
+        comparison = -1;
+        return this;
+    }
+    if (rhs == null) {
+        comparison = +1;
+        return this;
+    }
+    if (lhs.getClass().isArray()) {
+        // switch on type of array, to dispatch to the correct handler
+        // handles multi dimensional arrays
+        // throws a ClassCastException if rhs is not the correct array type
+        if (lhs instanceof long[]) {
+            append((long[]) lhs, (long[]) rhs);
+        } else if (lhs instanceof int[]) {
+            append((int[]) lhs, (int[]) rhs);
+        } else if (lhs instanceof short[]) {
+            append((short[]) lhs, (short[]) rhs);
+        } else if (lhs instanceof char[]) {
+            append((char[]) lhs, (char[]) rhs);
+        } else if (lhs instanceof byte[]) {
+            append((byte[]) lhs, (byte[]) rhs);
+        } else if (lhs instanceof double[]) {
+            append((double[]) lhs, (double[]) rhs);
+        } else if (lhs instanceof float[]) {
+            append((float[]) lhs, (float[]) rhs);
+        } else if (lhs instanceof boolean[]) {
+            append((boolean[]) lhs, (boolean[]) rhs);
+        } else {
+            // not an array of primitives
+            // throws a ClassCastException if rhs is not an array
+            append((Object[]) lhs, (Object[]) rhs, comparator);
+        }
+    } else {
+        // the simple case, not an array, just test the element
+        if (comparator == null) {
+            comparison = ((Comparable) lhs).compareTo(rhs);
+        } else {
+            comparison = ((Comparator) comparator).compare(lhs, rhs);
+        }
+    }
+    return this;
+}

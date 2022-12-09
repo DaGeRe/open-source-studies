@@ -1,0 +1,18 @@
+public void testEquals() {
+    final MutableObject<String> mutNumA = new MutableObject<String>("ALPHA");
+    final MutableObject<String> mutNumB = new MutableObject<String>("ALPHA");
+    final MutableObject<String> mutNumC = new MutableObject<String>("BETA");
+    final MutableObject<String> mutNumD = new MutableObject<String>(null);
+    assertEquals(true, mutNumA.equals(mutNumA));
+    assertEquals(true, mutNumA.equals(mutNumB));
+    assertEquals(true, mutNumB.equals(mutNumA));
+    assertEquals(true, mutNumB.equals(mutNumB));
+    assertEquals(false, mutNumA.equals(mutNumC));
+    assertEquals(false, mutNumB.equals(mutNumC));
+    assertEquals(true, mutNumC.equals(mutNumC));
+    assertEquals(false, mutNumA.equals(mutNumD));
+    assertEquals(true, mutNumD.equals(mutNumD));
+    assertEquals(false, mutNumA.equals(null));
+    assertEquals(false, mutNumA.equals(new Object()));
+    assertEquals(false, mutNumA.equals("0"));
+}

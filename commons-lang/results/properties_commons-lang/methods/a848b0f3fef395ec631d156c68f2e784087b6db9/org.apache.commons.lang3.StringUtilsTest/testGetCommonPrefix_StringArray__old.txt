@@ -1,0 +1,19 @@
+public void testGetCommonPrefix_StringArray() {
+    assertEquals("", StringUtils.getCommonPrefix(null));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] {}));
+    assertEquals("abc", StringUtils.getCommonPrefix(new String[] { "abc" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { null, null }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "", "" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "", null }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "abc", null, null }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { null, null, "abc" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "", "abc" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "abc", "" }));
+    assertEquals("abc", StringUtils.getCommonPrefix(new String[] { "abc", "abc" }));
+    assertEquals("a", StringUtils.getCommonPrefix(new String[] { "abc", "a" }));
+    assertEquals("ab", StringUtils.getCommonPrefix(new String[] { "ab", "abxyz" }));
+    assertEquals("ab", StringUtils.getCommonPrefix(new String[] { "abcde", "abxyz" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "abcde", "xyz" }));
+    assertEquals("", StringUtils.getCommonPrefix(new String[] { "xyz", "abcde" }));
+    assertEquals("i am a ", StringUtils.getCommonPrefix(new String[] { "i am a machine", "i am a robot" }));
+}

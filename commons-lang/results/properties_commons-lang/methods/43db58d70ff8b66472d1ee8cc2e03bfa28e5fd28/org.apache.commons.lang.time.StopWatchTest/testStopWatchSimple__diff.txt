@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testStopWatchSimple() {
+    StopWatch watch = new StopWatch();
+    watch.start();
+    try {
+        Thread.sleep(550);
+    } catch (InterruptedException ex) {
+    }
+    watch.stop();
+    long time = watch.getTime();
+    assertEquals(time, watch.getTime());
+    assertTrue(time >= 500);
+    assertTrue(time < 700);
+    watch.reset();
+    assertEquals(0, watch.getTime());
+}

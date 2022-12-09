@@ -1,0 +1,21 @@
+// notBlank string                                                                                   |                                                                                                     
+// ---------------------------------------------------------------------------------                 |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          |                                                                                                     
+* if the argument String is blank (&lt;code&gt;null&lt;/code&gt;, empty or whitespace).&lt;/p&gt;    |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* Validate.notBlank(myString);                                                                       |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;The message in the exception is 'The validated string is blank'.&lt;/p&gt;                |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param string  the string to check is not blank                                                    |                                                                                                     
+* @throws IllegalArgumentException if the string is blank                                            |                                                                                                     
+* @see StringUtils#isBlank(CharSequence)                                                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static void notBlank(String string) {                                                         |                                                                                                     
+if (StringUtils.isBlank(string)) {                                                                   |                                                                                                     
+throw new IllegalArgumentException("The validated string is blank");                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

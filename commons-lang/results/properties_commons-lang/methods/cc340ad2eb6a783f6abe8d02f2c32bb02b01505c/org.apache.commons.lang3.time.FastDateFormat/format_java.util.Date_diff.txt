@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Formats a {@code Date} object using a {@code GregorianCalendar}.&lt;/p&gt;                  * &lt;p&gt;Formats a {@code Date} object using a {@code GregorianCalendar}.&lt;/p&gt;               
+*                                                                                                      *                                                                                                   
+* @param date  the date to format                                                                      * @param date  the date to format                                                                   
+* @return the formatted string                                                                         * @return the formatted string                                                                      
+*/                                                                                                     */                                                                                                  
+public String format(Date date) {                                                                      public String format(Date date) {                                                                   
+// hard code GregorianCalendar                                                                       | return printer.format(date);                                                                        
+Calendar c = new GregorianCalendar(mTimeZone, mLocale);                                              |                                                                                                     
+c.setTime(date);                                                                                     |                                                                                                     
+return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();                               |                                                                                                     
+}                                                                                                      }                                                                                                   

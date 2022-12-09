@@ -1,0 +1,16 @@
+public void testIsNumeric() {
+    assertEquals(false, StringUtils.isNumeric(null));
+    assertEquals(true, StringUtils.isNumeric(""));
+    assertEquals(false, StringUtils.isNumeric(" "));
+    assertEquals(false, StringUtils.isNumeric("a"));
+    assertEquals(false, StringUtils.isNumeric("A"));
+    assertEquals(false, StringUtils.isNumeric("kgKgKgKgkgkGkjkjlJlOKLgHdGdHgl"));
+    assertEquals(false, StringUtils.isNumeric("ham kso"));
+    assertEquals(true, StringUtils.isNumeric("1"));
+    assertEquals(true, StringUtils.isNumeric("1000"));
+    assertEquals(false, StringUtils.isNumeric("2.3"));
+    assertEquals(false, StringUtils.isNumeric("10 00"));
+    assertEquals(false, StringUtils.isNumeric("hkHKHik6iUGHKJgU7tUJgKJGI87GIkug"));
+    assertEquals(false, StringUtils.isNumeric("_"));
+    assertEquals(false, StringUtils.isNumeric("hkHKHik*khbkuh"));
+}

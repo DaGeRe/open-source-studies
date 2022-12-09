@@ -1,0 +1,27 @@
+// validIndex array
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validates that the index is within the bounds of the argument
+ * array; otherwise throwing an exception with the specified message.</p>
+ *
+ * <pre>Validate.validIndex(myArray, 2, "The array index is invalid: ");</pre>
+ *
+ * <p>If the array is <code>null</code>, then the message of the exception
+ * is &quot;The validated object is null&quot;.</p>
+ *
+ * @param <T> the array type
+ * @param array the array to check
+ * @param index the index
+ * @param message the exception message if invalid
+ * @return the validated array (never <code>null</code> for method chaining)
+ * @throws NullPointerException if the array is <code>null</code>
+ * @throws IndexOutOfBoundsException if the index is invalid
+ * @see #validIndex(Object[], int)
+ */
+public static <T> T[] validIndex(T[] array, int index, String message, Object... values) {
+    Validate.notNull(array);
+    if (index < 0 || index >= array.length) {
+        throw new IndexOutOfBoundsException(String.format(message, values));
+    }
+    return array;
+}

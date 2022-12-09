@@ -1,0 +1,21 @@
+public void test_isAssignable_NoAutoboxing() throws Exception {
+    assertFalse(ClassUtils.isAssignable((Class<?>) null, null, false));
+    assertFalse(ClassUtils.isAssignable(String.class, null, false));
+    assertTrue(ClassUtils.isAssignable(null, Object.class, false));
+    assertTrue(ClassUtils.isAssignable(null, Integer.class, false));
+    assertFalse(ClassUtils.isAssignable(null, Integer.TYPE, false));
+    assertTrue(ClassUtils.isAssignable(String.class, Object.class, false));
+    assertTrue(ClassUtils.isAssignable(String.class, String.class, false));
+    assertFalse(ClassUtils.isAssignable(Object.class, String.class, false));
+    assertFalse(ClassUtils.isAssignable(Integer.TYPE, Integer.class, false));
+    assertFalse(ClassUtils.isAssignable(Integer.TYPE, Object.class, false));
+    assertFalse(ClassUtils.isAssignable(Integer.class, Integer.TYPE, false));
+    assertTrue(ClassUtils.isAssignable(Integer.TYPE, Integer.TYPE, false));
+    assertTrue(ClassUtils.isAssignable(Integer.class, Integer.class, false));
+    assertFalse(ClassUtils.isAssignable(Boolean.TYPE, Boolean.class, false));
+    assertFalse(ClassUtils.isAssignable(Boolean.TYPE, Object.class, false));
+    assertFalse(ClassUtils.isAssignable(Boolean.class, Boolean.TYPE, false));
+    assertTrue(ClassUtils.isAssignable(Boolean.class, Object.class, false));
+    assertTrue(ClassUtils.isAssignable(Boolean.TYPE, Boolean.TYPE, false));
+    assertTrue(ClassUtils.isAssignable(Boolean.class, Boolean.class, false));
+}

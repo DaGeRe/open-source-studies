@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testNoNullElementsCollection2() {
+    List coll = new ArrayList();
+    coll.add("a");
+    coll.add("b");
+    Validate.noNullElements(coll, "MSG");
+    try {
+        Validate.noNullElements((Collection) null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("The validated object is null", ex.getMessage());
+    }
+    coll.set(1, null);
+    try {
+        Validate.noNullElements(coll, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+}

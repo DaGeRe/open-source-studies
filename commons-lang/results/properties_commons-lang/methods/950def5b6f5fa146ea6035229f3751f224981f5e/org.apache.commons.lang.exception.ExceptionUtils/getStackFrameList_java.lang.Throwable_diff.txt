@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Produces a &lt;code&gt;List&lt;/code&gt; of stack frames - the message                      * &lt;p&gt;Produces a &lt;code&gt;List&lt;/code&gt; of stack frames - the message                   
+* is not included. Only the trace of the specified exception is                                        * is not included. Only the trace of the specified exception is                                     
+* returned, any caused by trace is stripped.&lt;/p&gt;                                                 * returned, any caused by trace is stripped.&lt;/p&gt;                                              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This works in most cases - it will only fail if the exception                               * &lt;p&gt;This works in most cases - it will only fail if the exception                            
+* message contains a line that starts with:                                                            * message contains a line that starts with:                                                         
+* &lt;code&gt;&quot;&nbsp;&nbsp;&nbsp;at&quot;.&lt;/code&gt;&lt;/p&gt;                                 * &lt;code&gt;&quot;&nbsp;&nbsp;&nbsp;at&quot;.&lt;/code&gt;&lt;/p&gt;                              
+*                                                                                                      *                                                                                                   
+* @param t is any throwable                                                                            * @param t is any throwable                                                                         
+* @return List of stack frames                                                                         * @return List of stack frames                                                                      
+*/                                                                                                     */                                                                                                  
+static List getStackFrameList(Throwable t) {                                                         | static List&lt;String&gt; getStackFrameList(Throwable t) {                                          
+String stackTrace = getStackTrace(t);                                                                  String stackTrace = getStackTrace(t);                                                               
+String linebreak = SystemUtils.LINE_SEPARATOR;                                                         String linebreak = SystemUtils.LINE_SEPARATOR;                                                      
+StringTokenizer frames = new StringTokenizer(stackTrace, linebreak);                                   StringTokenizer frames = new StringTokenizer(stackTrace, linebreak);                                
+List list = new ArrayList();                                                                         | List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                            
+boolean traceStarted = false;                                                                          boolean traceStarted = false;                                                                       
+while (frames.hasMoreTokens()) {                                                                       while (frames.hasMoreTokens()) {                                                                    
+String token = frames.nextToken();                                                                     String token = frames.nextToken();                                                                  
+// Determine if the line starts with &lt;whitespace&gt;at                                              // Determine if the line starts with &lt;whitespace&gt;at                                           
+int at = token.indexOf("at");                                                                          int at = token.indexOf("at");                                                                       
+if (at != -1 && token.substring(0, at).trim().length() == 0) {                                         if (at != -1 && token.substring(0, at).trim().length() == 0) {                                      
+traceStarted = true;                                                                                   traceStarted = true;                                                                                
+list.add(token);                                                                                       list.add(token);                                                                                    
+} else if (traceStarted) {                                                                             } else if (traceStarted) {                                                                          
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

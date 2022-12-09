@@ -1,0 +1,27 @@
+@Test                                                                                                  @Test                                                                                               
+public void testWriteNamedFieldForceAccess() throws Exception {                                        public void testWriteNamedFieldForceAccess() throws Exception {                                     
+FieldUtils.writeField(publicChild, "s", "S", true);                                                    FieldUtils.writeField(publicChild, "s", "S", true);                                                 
+assertEquals("S", FieldUtils.readField(publicChild, "s", true));                                       assertEquals("S", FieldUtils.readField(publicChild, "s", true));                                    
+FieldUtils.writeField(publicChild, "b", Boolean.TRUE, true);                                           FieldUtils.writeField(publicChild, "b", Boolean.TRUE, true);                                        
+assertEquals(Boolean.TRUE, FieldUtils.readField(publicChild, "b", true));                              assertEquals(Boolean.TRUE, FieldUtils.readField(publicChild, "b", true));                           
+FieldUtils.writeField(publicChild, "i", new Integer(1), true);                                       | FieldUtils.writeField(publicChild, "i", Integer.valueOf(1), true);                                  
+assertEquals(new Integer(1), FieldUtils.readField(publicChild, "i", true));                          | assertEquals(Integer.valueOf(1), FieldUtils.readField(publicChild, "i", true));                     
+FieldUtils.writeField(publicChild, "d", new Double(1.0), true);                                        FieldUtils.writeField(publicChild, "d", new Double(1.0), true);                                     
+assertEquals(new Double(1.0), FieldUtils.readField(publicChild, "d", true));                           assertEquals(new Double(1.0), FieldUtils.readField(publicChild, "d", true));                        
+FieldUtils.writeField(publiclyShadowedChild, "s", "S", true);                                          FieldUtils.writeField(publiclyShadowedChild, "s", "S", true);                                       
+assertEquals("S", FieldUtils.readField(publiclyShadowedChild, "s", true));                             assertEquals("S", FieldUtils.readField(publiclyShadowedChild, "s", true));                          
+FieldUtils.writeField(publiclyShadowedChild, "b", Boolean.FALSE, true);                                FieldUtils.writeField(publiclyShadowedChild, "b", Boolean.FALSE, true);                             
+assertEquals(Boolean.FALSE, FieldUtils.readField(publiclyShadowedChild, "b", true));                   assertEquals(Boolean.FALSE, FieldUtils.readField(publiclyShadowedChild, "b", true));                
+FieldUtils.writeField(publiclyShadowedChild, "i", new Integer(0), true);                             | FieldUtils.writeField(publiclyShadowedChild, "i", Integer.valueOf(0), true);                        
+assertEquals(new Integer(0), FieldUtils.readField(publiclyShadowedChild, "i", true));                | assertEquals(Integer.valueOf(0), FieldUtils.readField(publiclyShadowedChild, "i", true));           
+FieldUtils.writeField(publiclyShadowedChild, "d", new Double(0.0), true);                              FieldUtils.writeField(publiclyShadowedChild, "d", new Double(0.0), true);                           
+assertEquals(new Double(0.0), FieldUtils.readField(publiclyShadowedChild, "d", true));                 assertEquals(new Double(0.0), FieldUtils.readField(publiclyShadowedChild, "d", true));              
+FieldUtils.writeField(privatelyShadowedChild, "s", "S", true);                                         FieldUtils.writeField(privatelyShadowedChild, "s", "S", true);                                      
+assertEquals("S", FieldUtils.readField(privatelyShadowedChild, "s", true));                            assertEquals("S", FieldUtils.readField(privatelyShadowedChild, "s", true));                         
+FieldUtils.writeField(privatelyShadowedChild, "b", Boolean.FALSE, true);                               FieldUtils.writeField(privatelyShadowedChild, "b", Boolean.FALSE, true);                            
+assertEquals(Boolean.FALSE, FieldUtils.readField(privatelyShadowedChild, "b", true));                  assertEquals(Boolean.FALSE, FieldUtils.readField(privatelyShadowedChild, "b", true));               
+FieldUtils.writeField(privatelyShadowedChild, "i", new Integer(0), true);                            | FieldUtils.writeField(privatelyShadowedChild, "i", Integer.valueOf(0), true);                       
+assertEquals(new Integer(0), FieldUtils.readField(privatelyShadowedChild, "i", true));               | assertEquals(Integer.valueOf(0), FieldUtils.readField(privatelyShadowedChild, "i", true));          
+FieldUtils.writeField(privatelyShadowedChild, "d", new Double(0.0), true);                             FieldUtils.writeField(privatelyShadowedChild, "d", new Double(0.0), true);                          
+assertEquals(new Double(0.0), FieldUtils.readField(privatelyShadowedChild, "d", true));                assertEquals(new Double(0.0), FieldUtils.readField(privatelyShadowedChild, "d", true));             
+}                                                                                                      }                                                                                                   

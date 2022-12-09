@@ -1,0 +1,22 @@
+/**
+ * Returns the full message contained by the <code>Nestable</code> and any nested <code>Throwable</code>s.
+ *
+ * @param baseMsg
+ *            the base message to use when creating the full message. Should be generally be called via
+ *            <code>nestableHelper.getMessage(super.getMessage())</code>, where <code>super</code> is an
+ *            instance of {@link java.lang.Throwable}.
+ * @return The concatenated message for this and all nested <code>Throwable</code>s
+ * @since 2.0
+ */
+public String getMessage(String baseMsg) {
+    Throwable nestedCause = ExceptionUtils.getCause(this.nestable);
+    String causeMsg = nestedCause == null ? null : nestedCause.getMessage();
+    if (nestedCause == null || causeMsg == null) {
+        // may be null, which is a valid result
+        return baseMsg;
+    }
+    if (baseMsg == null) {
+        return causeMsg;
+    }
+    return baseMsg + ": " + causeMsg;
+}

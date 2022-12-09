@@ -1,0 +1,12 @@
+/**
+ * Test an Object pointing to itself, the simplest test.
+ *
+ * @throws Exception
+ */
+public void testSimpleReflectionObjectCycle() throws Exception {
+    SimpleReflectionTestFixture simple = new SimpleReflectionTestFixture();
+    simple.o = simple;
+    assertTrue(ToStringStyle.getRegistry().isEmpty());
+    assertEquals(this.toBaseString(simple) + "[o=" + this.toBaseString(simple) + "]", simple.toString());
+    this.validateEmptyToStringStyleRegistry();
+}

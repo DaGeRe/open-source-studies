@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Unescapes a string containing entity escapes to a string                                    * &lt;p&gt;Unescapes a string containing entity escapes to a string                                 
+* containing the actual Unicode characters corresponding to the                                        * containing the actual Unicode characters corresponding to the                                     
+* escapes. Supports HTML 4.0 entities.&lt;/p&gt;                                                       * escapes. Supports HTML 4.0 entities.&lt;/p&gt;                                                    
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For example, the string "&amp;lt;Fran&amp;ccedil;ais&amp;gt;"                               * &lt;p&gt;For example, the string "&amp;lt;Fran&amp;ccedil;ais&amp;gt;"                            
+* will become "&lt;Fran&ccedil;ais&gt;"&lt;/p&gt;                                                      * will become "&lt;Fran&ccedil;ais&gt;"&lt;/p&gt;                                                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If an entity is unrecognized, it is left alone, and inserted                                * &lt;p&gt;If an entity is unrecognized, it is left alone, and inserted                             
+* verbatim into the result string. e.g. "&amp;gt;&amp;zzzz;x" will                                     * verbatim into the result string. e.g. "&amp;gt;&amp;zzzz;x" will                                  
+* become "&gt;&amp;zzzz;x".&lt;/p&gt;                                                                  * become "&gt;&amp;zzzz;x".&lt;/p&gt;                                                               
+*                                                                                                      *                                                                                                   
+* @param writer  the writer receiving the unescaped string, not null                                   * @param writer  the writer receiving the unescaped string, not null                                
+* @param string  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                          * @param string  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                       
+* @throws IllegalArgumentException if the writer is null                                               * @throws IllegalArgumentException if the writer is null                                            
+* @throws IOException if an IOException occurs                                                         * @throws IOException if an IOException occurs                                                      
+* @see #escapeHtml(String)                                                                             * @see #escapeHtml(String)                                                                          
+*/                                                                                                     */                                                                                                  
+public static void unescapeHtml(Writer writer, String string) throws IOException {                     public static void unescapeHtml(Writer writer, String string) throws IOException {                  
+if (writer == null) {                                                                                | UnescapeUtils.UNESCAPE_HTML4.translate(string, writer);                                             
+throw new IllegalArgumentException("The Writer must not be null.");                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+if (string == null) {                                                                                |                                                                                                     
+return;                                                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+Entities.HTML40.unescape(writer, string);                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

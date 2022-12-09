@@ -1,0 +1,7 @@
+public void testToString() {
+    assertNotNull(byteRange.toString());
+    String str = intRange.toString();
+    assertEquals("Range[10,20]", str);
+    // assertSame(str, intRange.toString());  // no longer passes - does it matter?
+    assertEquals("Range[-20,-10]", Range.between(-20, -10).toString());
+}

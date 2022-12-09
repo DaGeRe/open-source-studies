@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testReflectionBooleanArrayArray() {                                                        public void testReflectionBooleanArrayArray() {                                                     
+boolean[][] array = new boolean[][] { { true, false }, null, { false } };                              boolean[][] array = new boolean[][] { { true, false }, null, { false } };                           
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{{true,false},&lt;null&gt;,{false}}]", ToStringBuilder.reflectionToString(a   assertEquals(baseStr + "[{{true,false},&lt;null&gt;,{false}}]", ToStringBuilder.reflectionToString(a
+assertEquals(baseStr + "[{{true,false},&lt;null&gt;,{false}}]", ToStringBuilder.reflectionToString(a   assertEquals(baseStr + "[{{true,false},&lt;null&gt;,{false}}]", ToStringBuilder.reflectionToString(a
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

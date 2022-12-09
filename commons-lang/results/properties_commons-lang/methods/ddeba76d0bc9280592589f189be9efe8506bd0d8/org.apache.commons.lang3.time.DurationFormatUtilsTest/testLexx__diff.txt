@@ -1,0 +1,15 @@
+public void testLexx() {                                                                               public void testLexx() {                                                                            
+// tests each constant                                                                                 // tests each constant                                                                              
+assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(DurationFormatUtil   assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(DurationFormatUtil
+// tests the ISO8601-like                                                                              // tests the ISO8601-like                                                                           
+assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(DurationFormatUtil   assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(DurationFormatUtil
+// test the iso extended format                                                                        // test the iso extended format                                                                     
+assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(new StringBuffer("   assertArrayEquals(new DurationFormatUtils.Token[] { new DurationFormatUtils.Token(new StringBuffer("
+// test failures in equals                                                                             // test failures in equals                                                                          
+DurationFormatUtils.Token token = new DurationFormatUtils.Token(DurationFormatUtils.y, 4);             DurationFormatUtils.Token token = new DurationFormatUtils.Token(DurationFormatUtils.y, 4);          
+assertFalse("Token equal to non-Token class. ", token.equals(new Object()));                           assertFalse("Token equal to non-Token class. ", token.equals(new Object()));                        
+assertFalse("Token equal to Token with wrong value class. ", token.equals(new DurationFormatUtils.To   assertFalse("Token equal to Token with wrong value class. ", token.equals(new DurationFormatUtils.To
+assertFalse("Token equal to Token with different count. ", token.equals(new DurationFormatUtils.Toke   assertFalse("Token equal to Token with different count. ", token.equals(new DurationFormatUtils.Toke
+DurationFormatUtils.Token numToken = new DurationFormatUtils.Token(new Integer(1), 4);               | DurationFormatUtils.Token numToken = new DurationFormatUtils.Token(Integer.valueOf(1), 4);          
+assertTrue("Token with Number value not equal to itself. ", numToken.equals(numToken));                assertTrue("Token with Number value not equal to itself. ", numToken.equals(numToken));             
+}                                                                                                      }                                                                                                   

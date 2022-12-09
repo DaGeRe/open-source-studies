@@ -1,0 +1,7 @@
+@Test
+// cast is not really needed, keep for consistency
+@SuppressWarnings("cast")
+public void testInt() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((int) 0).toHashCode());
+    assertEquals(17 * 37 + 123456, new HashCodeBuilder(17, 37).append((int) 123456).toHashCode());
+}

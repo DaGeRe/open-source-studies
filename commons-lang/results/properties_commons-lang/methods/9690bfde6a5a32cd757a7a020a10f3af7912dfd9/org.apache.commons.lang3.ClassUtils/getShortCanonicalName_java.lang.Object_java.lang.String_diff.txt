@@ -1,0 +1,16 @@
+// Short canonical name
+// ----------------------------------------------------------------------
+/**
+ * <p>Gets the canonical name minus the package name for an {@code Object}.</p>
+ *
+ * @param object  the class to get the short name for, may be null
+ * @param valueIfNull  the value to return if null
+ * @return the canonical name of the object without the package name, or the null value
+ * @since 2.4
+ */
+public static String getShortCanonicalName(Object object, String valueIfNull) {
+    if (object == null) {
+        return valueIfNull;
+    }
+    return getShortCanonicalName(object.getClass().getName());
+}

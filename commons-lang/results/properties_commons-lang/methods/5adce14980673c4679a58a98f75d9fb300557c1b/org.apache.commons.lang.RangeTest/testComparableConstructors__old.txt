@@ -1,0 +1,15 @@
+// --------------------------------------------------------------------------
+public void testComparableConstructors() {
+    try {
+        Range range = new Range(new Object());
+        fail("IllegalArgumentException expected");
+    } catch (ClassCastException cce) {
+        // expected
+    }
+    try {
+        Range range = new Range(new Object(), new Object());
+        fail("ClassCastException expected");
+    } catch (ClassCastException cce) {
+        // expected
+    }
+}

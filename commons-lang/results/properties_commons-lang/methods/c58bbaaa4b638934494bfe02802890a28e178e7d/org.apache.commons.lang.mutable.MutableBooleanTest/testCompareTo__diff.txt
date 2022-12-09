@@ -1,0 +1,23 @@
+public void testCompareTo() {                                                                          public void testCompareTo() {                                                                       
+final MutableBoolean mutBool = new MutableBoolean(false);                                              final MutableBoolean mutBool = new MutableBoolean(false);                                           
+assertEquals(0, mutBool.compareTo(new MutableBoolean(false)));                                         assertEquals(0, mutBool.compareTo(new MutableBoolean(false)));                                      
+assertEquals(-1, mutBool.compareTo(new MutableBoolean(true)));                                         assertEquals(-1, mutBool.compareTo(new MutableBoolean(true)));                                      
+mutBool.setValue(true);                                                                                mutBool.setValue(true);                                                                             
+assertEquals(+1, mutBool.compareTo(new MutableBoolean(false)));                                        assertEquals(+1, mutBool.compareTo(new MutableBoolean(false)));                                     
+assertEquals(0, mutBool.compareTo(new MutableBoolean(true)));                                          assertEquals(0, mutBool.compareTo(new MutableBoolean(true)));                                       
+try {                                                                                                  try {                                                                                               
+mutBool.compareTo(null);                                                                               mutBool.compareTo(null);                                                                            
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+mutBool.compareTo(Boolean.FALSE);                                                                    |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (ClassCastException ex) {                                                                    |                                                                                                     
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+mutBool.compareTo("false");                                                                          |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (ClassCastException ex) {                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

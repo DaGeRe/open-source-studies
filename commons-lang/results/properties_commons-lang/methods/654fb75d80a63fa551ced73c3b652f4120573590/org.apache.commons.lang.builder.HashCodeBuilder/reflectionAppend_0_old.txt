@@ -1,0 +1,42 @@
+/**
+ * <p>
+ * Appends the fields and values defined by the given object of the given <code>Class</code>.
+ * </p>
+ *
+ * @param object
+ *            the object to append details of
+ * @param clazz
+ *            the class to append details of
+ * @param builder
+ *            the builder to append to
+ * @param useTransients
+ *            whether to use transient fields
+ * @param excludeFields
+ *            Collection of String field names to exclude from use in calculation of hash code
+ */
+private static void reflectionAppend(Object object, Class clazz, HashCodeBuilder builder, boolean useTransients, String[] excludeFields) {
+    if (isRegistered(object)) {
+        return;
+    }
+    try {
+        register(object);
+        Field[] fields = clazz.getDeclaredFields();
+        List excludedFieldList = excludeFields != null ? Arrays.asList(excludeFields) : Collections.EMPTY_LIST;
+        AccessibleObject.setAccessible(fields, true);
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            if (!excludedFieldList.contains(field.getName()) && (field.getName().indexOf('$') == -1) && (useTransients || !Modifier.isTransient(field.getModifiers())) && (!Modifier.isStatic(field.getModifiers()))) {
+                try {
+                    Object fieldValue = field.get(object);
+                    builder.append(fieldValue);
+                } catch (IllegalAccessException e) {
+                    // this can't happen. Would get a Security exception instead
+                    // throw a runtime exception in case the impossible happens.
+                    throw new InternalError("Unexpected IllegalAccessException");
+                }
+            }
+        }
+    } finally {
+        unregister(object);
+    }
+}

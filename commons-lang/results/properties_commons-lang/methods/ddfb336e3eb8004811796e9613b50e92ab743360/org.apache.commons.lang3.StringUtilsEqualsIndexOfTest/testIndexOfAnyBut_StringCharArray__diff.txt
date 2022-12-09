@@ -1,0 +1,14 @@
+public void testIndexOfAnyBut_StringCharArray() {
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, new char[0]));
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, new char[] { 'a', 'b' }));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", new char[0]));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", new char[] { 'a', 'b' }));
+    assertEquals(-1, StringUtils.indexOfAnyBut("zzabyycdxx", (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut("zzabyycdxx", new char[0]));
+    assertEquals(3, StringUtils.indexOfAnyBut("zzabyycdxx", new char[] { 'z', 'a' }));
+    assertEquals(0, StringUtils.indexOfAnyBut("zzabyycdxx", new char[] { 'b', 'y' }));
+    assertEquals(-1, StringUtils.indexOfAnyBut("aba", new char[] { 'a', 'b' }));
+    assertEquals(0, StringUtils.indexOfAnyBut("aba", new char[] { 'z' }));
+}

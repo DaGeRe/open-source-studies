@@ -1,0 +1,21 @@
+// notBlank string
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument String is blank (<code>null</code>, empty or whitespace).</p>
+ *
+ * <pre>
+ * Validate.notBlank(myString);
+ * </pre>
+ *
+ * <p>The message in the exception is 'The validated string is blank'.</p>
+ *
+ * @param string  the string to check is not blank
+ * @throws IllegalArgumentException if the string is blank
+ * @see StringUtils#isBlank(CharSequence)
+ */
+public static void notBlank(String string) {
+    if (StringUtils.isBlank(string)) {
+        throw new IllegalArgumentException("The validated string is blank");
+    }
+}

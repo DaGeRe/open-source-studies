@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an EventListenerSupport object which supports the provided                                   * Creates an EventListenerSupport object which supports the provided                                
+* listener interface using the specified class loader to create the JDK                                * listener interface using the specified class loader to create the JDK                             
+* dynamic proxy.                                                                                       * dynamic proxy.                                                                                    
+*                                                                                                      *                                                                                                   
+* @param listenerInterface the listener interface.                                                     * @param listenerInterface the listener interface.                                                  
+* @param classLoader       the class loader.                                                           * @param classLoader       the class loader.                                                        
+*                                                                                                      *                                                                                                   
+* @throws NullPointerException if &lt;code&gt;listenerInterface&lt;/code&gt; or                        * @throws NullPointerException if &lt;code&gt;listenerInterface&lt;/code&gt; or                     
+*         &lt;code&gt;classLoader&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;.                       *         &lt;code&gt;classLoader&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;.                    
+* @throws IllegalArgumentException if &lt;code&gt;listenerInterface&lt;/code&gt; is                    * @throws IllegalArgumentException if &lt;code&gt;listenerInterface&lt;/code&gt; is                 
+*         not an interface.                                                                            *         not an interface.                                                                         
+*/                                                                                                     */                                                                                                  
+public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {               public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {            
+Validate.notNull(listenerInterface, "Listener interface cannot be null.");                             Validate.notNull(listenerInterface, "Listener interface cannot be null.");                          
+Validate.notNull(classLoader, "ClassLoader cannot be null.");                                          Validate.notNull(classLoader, "ClassLoader cannot be null.");                                       
+Validate.isTrue(listenerInterface.isInterface(), "Class {0} is not an interface", listenerInterface.   Validate.isTrue(listenerInterface.isInterface(), "Class {0} is not an interface", listenerInterface.
+proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }   proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | final L[] prototypeArray = (L[]) Array.newInstance(listenerInterface, 0);                           
+                                                                                                     | this.prototypeArray = prototypeArray;                                                               
+}                                                                                                      }                                                                                                   

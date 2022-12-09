@@ -1,0 +1,13 @@
+/**
+ * Builds a String for a toString method excluding the given field names.
+ *
+ * @param object
+ *            The object to "toString".
+ * @param excludeFieldNames
+ *            The field names to exclude. Null excludes nothing.
+ * @return The toString value.
+ */
+public static String toStringExclude(Object object, Collection /*String*/
+excludeFieldNames) {
+    return toStringExclude(object, toNoNullStringArray(excludeFieldNames));
+}

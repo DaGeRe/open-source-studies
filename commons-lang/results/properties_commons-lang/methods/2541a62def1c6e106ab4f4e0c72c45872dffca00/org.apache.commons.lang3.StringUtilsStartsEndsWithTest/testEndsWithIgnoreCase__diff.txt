@@ -1,0 +1,23 @@
+/**
+ * Test StringUtils.endsWithIgnoreCase()
+ */
+public void testEndsWithIgnoreCase() {
+    assertTrue("endsWithIgnoreCase(null, null)", StringUtils.endsWithIgnoreCase(null, (String) null));
+    assertFalse("endsWithIgnoreCase(FOOBAR, null)", StringUtils.endsWithIgnoreCase(FOOBAR, (String) null));
+    assertFalse("endsWithIgnoreCase(null, FOO)", StringUtils.endsWithIgnoreCase(null, FOO));
+    assertTrue("endsWithIgnoreCase(FOOBAR, \"\")", StringUtils.endsWithIgnoreCase(FOOBAR, ""));
+    assertFalse("endsWithIgnoreCase(foobar, foo)", StringUtils.endsWithIgnoreCase(foobar, foo));
+    assertFalse("endsWithIgnoreCase(FOOBAR, FOO)", StringUtils.endsWithIgnoreCase(FOOBAR, FOO));
+    assertFalse("endsWithIgnoreCase(foobar, FOO)", StringUtils.endsWithIgnoreCase(foobar, FOO));
+    assertFalse("endsWithIgnoreCase(FOOBAR, foo)", StringUtils.endsWithIgnoreCase(FOOBAR, foo));
+    assertFalse("endsWithIgnoreCase(foo, foobar)", StringUtils.endsWithIgnoreCase(foo, foobar));
+    assertFalse("endsWithIgnoreCase(foo, foobar)", StringUtils.endsWithIgnoreCase(bar, foobar));
+    assertTrue("endsWithIgnoreCase(foobar, bar)", StringUtils.endsWithIgnoreCase(foobar, bar));
+    assertTrue("endsWithIgnoreCase(FOOBAR, BAR)", StringUtils.endsWithIgnoreCase(FOOBAR, BAR));
+    assertTrue("endsWithIgnoreCase(foobar, BAR)", StringUtils.endsWithIgnoreCase(foobar, BAR));
+    assertTrue("endsWithIgnoreCase(FOOBAR, bar)", StringUtils.endsWithIgnoreCase(FOOBAR, bar));
+    // javadoc
+    assertTrue(StringUtils.endsWithIgnoreCase("abcdef", "def"));
+    assertTrue(StringUtils.endsWithIgnoreCase("ABCDEF", "def"));
+    assertFalse(StringUtils.endsWithIgnoreCase("ABCDEF", "cde"));
+}

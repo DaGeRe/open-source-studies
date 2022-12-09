@@ -1,0 +1,13 @@
+/**
+ * Tests handleCauseUnchecked() if the cause is an error.
+ */
+@Test
+public void testHandleCauseUncheckedError() throws ConcurrentException {
+    Error err = new AssertionError("Test");
+    try {
+        ConcurrentUtils.handleCauseUnchecked(new ExecutionException(err));
+        fail("Error not thrown!");
+    } catch (Error e) {
+        assertEquals("Wrong error", err, e);
+    }
+}

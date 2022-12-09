@@ -1,0 +1,15 @@
+public void testEquals() {
+    final MutableBoolean mutBoolA = new MutableBoolean(false);
+    final MutableBoolean mutBoolB = new MutableBoolean(false);
+    final MutableBoolean mutBoolC = new MutableBoolean(true);
+    assertEquals(true, mutBoolA.equals(mutBoolA));
+    assertEquals(true, mutBoolA.equals(mutBoolB));
+    assertEquals(true, mutBoolB.equals(mutBoolA));
+    assertEquals(true, mutBoolB.equals(mutBoolB));
+    assertEquals(false, mutBoolA.equals(mutBoolC));
+    assertEquals(false, mutBoolB.equals(mutBoolC));
+    assertEquals(true, mutBoolC.equals(mutBoolC));
+    assertEquals(false, mutBoolA.equals(null));
+    assertEquals(false, mutBoolA.equals(Boolean.FALSE));
+    assertEquals(false, mutBoolA.equals("false"));
+}

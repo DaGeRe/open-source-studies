@@ -1,0 +1,11 @@
+public void testStartsWithAny() {                                                                      public void testStartsWithAny() {                                                                   
+assertFalse(StringUtils.startsWithAny(null, (String[]) null));                                         assertFalse(StringUtils.startsWithAny(null, (String[]) null));                                      
+assertFalse(StringUtils.startsWithAny(null, "abc"));                                                   assertFalse(StringUtils.startsWithAny(null, "abc"));                                                
+assertFalse(StringUtils.startsWithAny("abcxyz", (String[]) null));                                     assertFalse(StringUtils.startsWithAny("abcxyz", (String[]) null));                                  
+assertFalse(StringUtils.startsWithAny("abcxyz"));                                                      assertFalse(StringUtils.startsWithAny("abcxyz"));                                                   
+assertTrue(StringUtils.startsWithAny("abcxyz", "abc"));                                                assertTrue(StringUtils.startsWithAny("abcxyz", "abc"));                                             
+assertTrue(StringUtils.startsWithAny("abcxyz", null, "xyz", "abc"));                                   assertTrue(StringUtils.startsWithAny("abcxyz", null, "xyz", "abc"));                                
+assertFalse(StringUtils.startsWithAny("abcxyz", null, "xyz", "abcd"));                                 assertFalse(StringUtils.startsWithAny("abcxyz", null, "xyz", "abcd"));                              
+                                                                                                     | assertTrue("StringUtils.startsWithAny(abcxyz, StringBuilder(xyz), StringBuffer(abc))", StringUtils.s
+                                                                                                     | assertTrue("StringUtils.startsWithAny( StrBuilder(abcxyz), StringBuilder(xyz), StringBuffer(abc))", 
+}                                                                                                      }                                                                                                   

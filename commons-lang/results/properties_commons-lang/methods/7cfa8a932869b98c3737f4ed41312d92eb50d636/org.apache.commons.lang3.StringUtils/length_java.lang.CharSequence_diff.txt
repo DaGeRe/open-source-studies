@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Gets a String's length or &lt;code&gt;0&lt;/code&gt; if the String is &lt;code&gt;null&lt;/code&gt | * Gets a CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                   
+                                                                                                     | * &lt;code&gt;null&lt;/code&gt;.                                                                    
+*                                                                                                      *                                                                                                   
+* @param str                                                                                         | * @param cs                                                                                         
+*            a String or &lt;code&gt;null&lt;/code&gt;                                               | *            a CharSequence or &lt;code&gt;null&lt;/code&gt;                                        
+* @return String length or &lt;code&gt;0&lt;/code&gt; if the String is &lt;code&gt;null&lt;/code&gt; | * @return CharSequence length or &lt;code&gt;0&lt;/code&gt; if the CharSequence is                  
+                                                                                                     | *         &lt;code&gt;null&lt;/code&gt;.                                                            
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+                                                                                                     | * @deprecated See {@link CharSequenceUtils#length(CharSequence)}                                    
+*/                                                                                                     */                                                                                                  
+public static int length(CharSequence str) {                                                         | public static int length(CharSequence cs) {                                                         
+return str == null ? 0 : str.length();                                                               | return CharSequenceUtils.length(cs);                                                                
+}                                                                                                      }                                                                                                   

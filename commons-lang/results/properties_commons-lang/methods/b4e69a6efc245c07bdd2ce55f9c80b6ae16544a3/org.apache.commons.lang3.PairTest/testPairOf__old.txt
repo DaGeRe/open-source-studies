@@ -1,0 +1,9 @@
+@Test
+public void testPairOf() throws Exception {
+    Pair<Integer, String> pair = Pair.of(0, "foo");
+    assertEquals(0, pair.left.intValue());
+    assertEquals("foo", pair.right);
+    Pair<Object, String> pair2 = Pair.of(null, "bar");
+    assertNull(pair2.left);
+    assertEquals("bar", pair2.right);
+}

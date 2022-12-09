@@ -1,0 +1,17 @@
+// Range tests
+// --------------------------------------------------------------------
+/**
+ * <p>Checks whether this range contains all the elements of the specified range.</p>
+ *
+ * <p>This method may fail if the ranges have two different comparators or element types.</p>
+ *
+ * @param otherRange  the range to check, null returns false
+ * @return true if this range contains the specified range
+ * @throws RuntimeException if ranges cannot be compared
+ */
+public boolean containsRange(Range<T> otherRange) {
+    if (otherRange == null) {
+        return false;
+    }
+    return contains(otherRange.minimum) && contains(otherRange.maximum);
+}

@@ -1,0 +1,7 @@
+public void testGetThrowables_Throwable_recursiveCause() {
+    Throwable[] throwables = ExceptionUtils.getThrowables(cyclicCause);
+    assertEquals(3, throwables.length);
+    assertSame(cyclicCause, throwables[0]);
+    assertSame(cyclicCause.getCause(), throwables[1]);
+    assertSame(((ExceptionWithCause) cyclicCause.getCause()).getCause(), throwables[2]);
+}

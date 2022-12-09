@@ -1,0 +1,28 @@
+public void testSubclassInvocationHandling() throws PropertyVetoException {
+    @SuppressWarnings("serial")
+    EventListenerSupport<VetoableChangeListener> eventListenerSupport = new EventListenerSupport<VetoableChangeListener>(VetoableChangeListener.class) {
+
+        protected java.lang.reflect.InvocationHandler createInvocationHandler() {
+            return new ProxyInvocationHandler() {
+
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                    return "vetoableChange".equals(method.getName()) && "Hour".equals(((PropertyChangeEvent) args[0]).getPropertyName()) ? null : super.invoke(proxy, method, args);
+                }
+            };
+        }
+    };
+    VetoableChangeListener listener = EasyMock.createNiceMock(VetoableChangeListener.class);
+    eventListenerSupport.addListener(listener);
+    Object source = new Date();
+    PropertyChangeEvent ignore = new PropertyChangeEvent(source, "Hour", 5, 6);
+    PropertyChangeEvent respond = new PropertyChangeEvent(source, "Day", 6, 7);
+    listener.vetoableChange(respond);
+    EasyMock.replay(listener);
+    eventListenerSupport.fire().vetoableChange(ignore);
+    eventListenerSupport.fire().vetoableChange(respond);
+    EasyMock.verify(listener);
+}

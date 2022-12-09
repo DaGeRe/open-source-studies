@@ -1,0 +1,8 @@
+private VetoableChangeListener createListener(final List<VetoableChangeListener> calledListeners) {
+    return new VetoableChangeListener() {
+
+        public void vetoableChange(PropertyChangeEvent e) {
+            calledListeners.add(this);
+        }
+    };
+}

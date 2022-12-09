@@ -1,0 +1,9 @@
+@Test
+public void testComparable1() throws Exception {
+    Pair<String, String> pair1 = Pair.of("A", "D");
+    Pair<String, String> pair2 = Pair.of("B", "C");
+    assertTrue(pair1.compareTo(pair1) == 0);
+    assertTrue(pair1.compareTo(pair2) < 0);
+    assertTrue(pair2.compareTo(pair2) == 0);
+    assertTrue(pair2.compareTo(pair1) > 0);
+}

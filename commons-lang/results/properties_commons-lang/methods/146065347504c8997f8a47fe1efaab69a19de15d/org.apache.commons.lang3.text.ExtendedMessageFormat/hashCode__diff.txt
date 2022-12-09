@@ -1,0 +1,12 @@
+/**
+ * Return the hashcode.
+ *
+ * @return the hashcode
+ */
+@Override
+public int hashCode() {
+    int result = super.hashCode();
+    result = HASH_SEED * result + ObjectUtils.hashCode(registry);
+    result = HASH_SEED * result + ObjectUtils.hashCode(toPattern);
+    return result;
+}

@@ -1,0 +1,11 @@
+/**
+ * Returns a comparator for the specified {@code Comparable} type.
+ *
+ * @param <E> the {@code Comparable} type
+ * @return the comparator for this type
+ */
+// OK to cast, because comparator works for all types
+@SuppressWarnings("unchecked")
+public static <E extends Comparable<? super E>> ComparableComparator<E> getInstance() {
+    return (ComparableComparator<E>) INSTANCE;
+}

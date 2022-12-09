@@ -1,0 +1,12 @@
+/**
+ * Records this invocation. Optionally throws an exception.
+ */
+@Override
+protected Integer initialize() throws Exception {
+    currentExecutor = getActiveExecutor();
+    initializeCalls++;
+    if (ex != null) {
+        throw ex;
+    }
+    return initializeCalls;
+}

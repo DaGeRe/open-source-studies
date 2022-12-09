@@ -1,0 +1,10 @@
+public void testHashCode() {
+    final MutableBoolean mutBoolA = new MutableBoolean(false);
+    final MutableBoolean mutBoolB = new MutableBoolean(false);
+    final MutableBoolean mutBoolC = new MutableBoolean(true);
+    assertEquals(true, mutBoolA.hashCode() == mutBoolA.hashCode());
+    assertEquals(true, mutBoolA.hashCode() == mutBoolB.hashCode());
+    assertEquals(false, mutBoolA.hashCode() == mutBoolC.hashCode());
+    assertEquals(true, mutBoolA.hashCode() == Boolean.FALSE.hashCode());
+    assertEquals(true, mutBoolC.hashCode() == Boolean.TRUE.hashCode());
+}

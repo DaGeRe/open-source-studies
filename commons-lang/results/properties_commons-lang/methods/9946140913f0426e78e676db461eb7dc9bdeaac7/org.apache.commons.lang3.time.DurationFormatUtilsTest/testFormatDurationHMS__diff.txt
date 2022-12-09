@@ -1,0 +1,20 @@
+public void testFormatDurationHMS() {
+    long time = 0;
+    assertEquals("0:00:00.000", DurationFormatUtils.formatDurationHMS(time));
+    time = 1;
+    assertEquals("0:00:00.001", DurationFormatUtils.formatDurationHMS(time));
+    time = 15;
+    assertEquals("0:00:00.015", DurationFormatUtils.formatDurationHMS(time));
+    time = 165;
+    assertEquals("0:00:00.165", DurationFormatUtils.formatDurationHMS(time));
+    time = 1675;
+    assertEquals("0:00:01.675", DurationFormatUtils.formatDurationHMS(time));
+    time = 13465;
+    assertEquals("0:00:13.465", DurationFormatUtils.formatDurationHMS(time));
+    time = 72789;
+    assertEquals("0:01:12.789", DurationFormatUtils.formatDurationHMS(time));
+    time = 12789 + 32 * 60000;
+    assertEquals("0:32:12.789", DurationFormatUtils.formatDurationHMS(time));
+    time = 12789 + 62 * 60000;
+    assertEquals("1:02:12.789", DurationFormatUtils.formatDurationHMS(time));
+}

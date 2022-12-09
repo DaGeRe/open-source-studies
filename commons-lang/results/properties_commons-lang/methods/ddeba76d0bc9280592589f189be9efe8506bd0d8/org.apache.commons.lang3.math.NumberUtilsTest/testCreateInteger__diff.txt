@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testCreateInteger() {                                                                      public void testCreateInteger() {                                                                   
+assertEquals("createInteger(String) failed", new Integer("12345"), NumberUtils.createInteger("12345" | assertEquals("createInteger(String) failed", Integer.valueOf("12345"), NumberUtils.createInteger("12
+assertEquals("createInteger(null) failed", null, NumberUtils.createInteger(null));                     assertEquals("createInteger(null) failed", null, NumberUtils.createInteger(null));                  
+this.testCreateIntegerFailure("");                                                                     this.testCreateIntegerFailure("");                                                                  
+this.testCreateIntegerFailure(" ");                                                                    this.testCreateIntegerFailure(" ");                                                                 
+this.testCreateIntegerFailure("\b\t\n\f\r");                                                           this.testCreateIntegerFailure("\b\t\n\f\r");                                                        
+// Funky whitespaces                                                                                   // Funky whitespaces                                                                                
+this.testCreateIntegerFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");                     this.testCreateIntegerFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");                  
+}                                                                                                      }                                                                                                   

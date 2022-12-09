@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testIsTrue5() {                                                                            public void testIsTrue5() {                                                                         
+Validate.isTrue(true, "MSG", 7.4d);                                                                    Validate.isTrue(true, "MSG", 7.4d);                                                                 
+try {                                                                                                  try {                                                                                               
+Validate.isTrue(false, "MSG", 7.4d);                                                                   Validate.isTrue(false, "MSG", 7.4d);                                                                
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG7.4", ex.getMessage());                                                             | assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

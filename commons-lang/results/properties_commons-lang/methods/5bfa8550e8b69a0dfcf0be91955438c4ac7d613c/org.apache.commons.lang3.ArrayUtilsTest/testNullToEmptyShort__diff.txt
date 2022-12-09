@@ -1,0 +1,12 @@
+public void testNullToEmptyShort() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_SHORT_ARRAY, ArrayUtils.nullToEmpty((short[]) null));
+    // Test valid array handling
+    short[] original = new short[] { 1, 2 };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    short[] empty = new short[] {};
+    short[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_SHORT_ARRAY, result);
+    assertTrue(empty != result);
+}

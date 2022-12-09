@@ -1,0 +1,14 @@
+/**
+ * Test Objects pointing to each other.
+ *
+ * @throws Exception
+ */
+@Test
+public void testReflectionObjectCycle() throws Exception {
+    ReflectionTestCycleA a = new ReflectionTestCycleA();
+    ReflectionTestCycleB b = new ReflectionTestCycleB();
+    a.b = b;
+    b.a = a;
+    assertEquals(this.toBaseString(a) + "[b=" + this.toBaseString(b) + "[a=" + this.toBaseString(a) + "]]", a.toString());
+    this.validateNullToStringStyleRegistry();
+}

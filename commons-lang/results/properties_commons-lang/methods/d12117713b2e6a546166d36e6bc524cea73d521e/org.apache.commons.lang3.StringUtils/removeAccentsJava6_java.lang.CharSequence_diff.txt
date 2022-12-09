@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Use {@code java.text.Normalizer#normalize(CharSequence, Normalizer.Form)}                            * Use {@code java.text.Normalizer#normalize(CharSequence, Normalizer.Form)}                         
+* (but be careful, this classe exists in Java 1.3, with an entirely different meaning!)                * (but be careful, this classe exists in Java 1.3, with an entirely different meaning!)             
+* @param text                                                                                        | *                                                                                                   
+                                                                                                     | * @param text the text to be processed                                                              
+                                                                                                     | * @return the processed string                                                                      
+                                                                                                     | * @throws IllegalAccessException may be thrown by a reflection call                                 
+                                                                                                     | * @throws InvocationTargetException if a reflection call throws an exception                        
+                                                                                                     | * @throws IllegalStateException if the {@code Normalizer} class is not available                    
+*/                                                                                                     */                                                                                                  
+private static String removeAccentsJava6(CharSequence text) throws IllegalArgumentException, Illegal | private static String removeAccentsJava6(CharSequence text) throws IllegalAccessException, Invocatio
+/*                                                                                                     /*                                                                                                  
+String decomposed = java.text.Normalizer.normalize(CharSequence, Normalizer.Form.NFD);                 String decomposed = java.text.Normalizer.normalize(CharSequence, Normalizer.Form.NFD);              
+return java6Pattern.matcher(decomposed).replaceAll("");//$NON-NLS-1$                                   return java6Pattern.matcher(decomposed).replaceAll("");//$NON-NLS-1$                                
+*/                                                                                                     */                                                                                                  
+if (!java6Available || java6NormalizerFormNFD == null) {                                               if (!java6Available || java6NormalizerFormNFD == null) {                                            
+throw new IllegalStateException("java.text.Normalizer is not available");                              throw new IllegalStateException("java.text.Normalizer is not available");                           
+}                                                                                                      }                                                                                                   
+String result;                                                                                         String result;                                                                                      
+result = (String) java6NormalizeMethod.invoke(null, new Object[] { text, java6NormalizerFormNFD });    result = (String) java6NormalizeMethod.invoke(null, new Object[] { text, java6NormalizerFormNFD }); 
+// $NON-NLS-1$                                                                                         // $NON-NLS-1$                                                                                      
+result = java6Pattern.matcher(result).replaceAll("");                                                  result = java6Pattern.matcher(result).replaceAll("");                                               
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

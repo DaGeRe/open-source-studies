@@ -1,0 +1,26 @@
+// Java and JavaScript
+// --------------------------------------------------------------------------
+/**
+ * <p>Escapes the characters in a {@code String} using Java String rules.</p>
+ *
+ * <p>Deals correctly with quotes and control-chars (tab, backslash, cr, ff, etc.) </p>
+ *
+ * <p>So a tab becomes the characters {@code '\\'} and
+ * {@code 't'}.</p>
+ *
+ * <p>The only difference between Java strings and JavaScript strings
+ * is that in JavaScript, a single quote and forward-slash (/) are escaped.</p>
+ *
+ * <p>Example:
+ * <pre>
+ * input string: He didn't say, "Stop!"
+ * output string: He didn't say, \"Stop!\"
+ * </pre>
+ * </p>
+ *
+ * @param input  String to escape values in, may be null
+ * @return String with escaped values, {@code null} if null string input
+ */
+public static final String escapeJava(String input) {
+    return ESCAPE_JAVA.translate(input);
+}

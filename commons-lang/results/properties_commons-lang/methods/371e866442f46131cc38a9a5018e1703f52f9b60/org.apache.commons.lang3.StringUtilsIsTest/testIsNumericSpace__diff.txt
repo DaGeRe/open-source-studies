@@ -1,0 +1,16 @@
+public void testIsNumericSpace() {
+    assertEquals(false, StringUtils.isNumericSpace(null));
+    assertEquals(true, StringUtils.isNumericSpace(""));
+    assertEquals(true, StringUtils.isNumericSpace(" "));
+    assertEquals(false, StringUtils.isNumericSpace("a"));
+    assertEquals(false, StringUtils.isNumericSpace("A"));
+    assertEquals(false, StringUtils.isNumericSpace("kgKgKgKgkgkGkjkjlJlOKLgHdGdHgl"));
+    assertEquals(false, StringUtils.isNumericSpace("ham kso"));
+    assertEquals(true, StringUtils.isNumericSpace("1"));
+    assertEquals(true, StringUtils.isNumericSpace("1000"));
+    assertEquals(false, StringUtils.isNumericSpace("2.3"));
+    assertEquals(true, StringUtils.isNumericSpace("10 00"));
+    assertEquals(false, StringUtils.isNumericSpace("hkHKHik6iUGHKJgU7tUJgKJGI87GIkug"));
+    assertEquals(false, StringUtils.isNumericSpace("_"));
+    assertEquals(false, StringUtils.isNumericSpace("hkHKHik*khbkuh"));
+}

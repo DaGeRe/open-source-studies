@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Write a named static Field. Superclasses will be considered.                                         * Write a named static Field. Superclasses will be considered.                                      
+* @param cls Class on which the Field is to be found                                                   * @param cls Class on which the Field is to be found                                                
+* @param fieldName to write                                                                            * @param fieldName to write                                                                         
+* @param value to set                                                                                  * @param value to set                                                                               
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only             *  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only          
+*  match public fields.                                                                                *  match public fields.                                                                             
+* @throws IllegalArgumentException if the field cannot be located or is not static                     * @throws IllegalArgumentException if the field cannot be located or is not static                  
+* @throws IllegalAccessException if the field is not made accessible or is final                       * @throws IllegalAccessException if the field is not made accessible or is final                    
+*/                                                                                                     */                                                                                                  
+public static void writeStaticField(Class cls, String fieldName, Object value, boolean forceAccess)  | public static void writeStaticField(Class&lt;?&gt; cls, String fieldName, Object value, boolean forc
+Field field = getField(cls, fieldName, forceAccess);                                                   Field field = getField(cls, fieldName, forceAccess);                                                
+if (field == null) {                                                                                   if (field == null) {                                                                                
+throw new IllegalArgumentException("Cannot locate field " + fieldName + " on " + cls);                 throw new IllegalArgumentException("Cannot locate field " + fieldName + " on " + cls);              
+}                                                                                                      }                                                                                                   
+// already forced access above, don't repeat it here:                                                  // already forced access above, don't repeat it here:                                               
+writeStaticField(field, value);                                                                        writeStaticField(field, value);                                                                     
+}                                                                                                      }                                                                                                   

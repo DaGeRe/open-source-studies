@@ -1,0 +1,11 @@
+public void testChar() {
+    char o1 = 1;
+    char o2 = 2;
+    assertTrue(new CompareToBuilder().append(o1, o1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(o1, o2).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(o2, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Character.MAX_VALUE).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(Character.MAX_VALUE, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Character.MIN_VALUE).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(Character.MIN_VALUE, o1).toComparison() < 0);
+}

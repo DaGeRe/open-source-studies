@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new &lt;code&gt;NumberRange&lt;/code&gt; using the specified                   * &lt;p&gt;Constructs a new &lt;code&gt;NumberRange&lt;/code&gt; using the specified                
+* number as both the minimum and maximum in this range.&lt;/p&gt;                                      * number as both the minimum and maximum in this range.&lt;/p&gt;                                   
+*                                                                                                      *                                                                                                   
+* @param num the number to use for this range                                                          * @param num the number to use for this range                                                       
+* @throws IllegalArgumentException if the number is &lt;code&gt;null&lt;/code&gt;                      * @throws IllegalArgumentException if the number is &lt;code&gt;null&lt;/code&gt;                   
+* @throws IllegalArgumentException if the number doesn't implement &lt;code&gt;Comparable&lt;/code&g   * @throws IllegalArgumentException if the number doesn't implement &lt;code&gt;Comparable&lt;/code&g
+* @throws IllegalArgumentException if the number is &lt;code&gt;Double.NaN&lt;/code&gt; or &lt;code&   * @throws IllegalArgumentException if the number is &lt;code&gt;Double.NaN&lt;/code&gt; or &lt;code&
+*/                                                                                                     */                                                                                                  
+public NumberRange(Number num) {                                                                       public NumberRange(Number num) {                                                                    
+if (num == null) {                                                                                     if (num == null) {                                                                                  
+throw new IllegalArgumentException("The number must not be null");                                     throw new IllegalArgumentException("The number must not be null");                                  
+}                                                                                                      }                                                                                                   
+if (num instanceof Comparable == false) {                                                            | if (num instanceof Comparable&lt;?&gt; == false) {                                                  
+throw new IllegalArgumentException("The number must implement Comparable");                            throw new IllegalArgumentException("The number must implement Comparable");                         
+}                                                                                                      }                                                                                                   
+if (num instanceof Double && ((Double) num).isNaN()) {                                                 if (num instanceof Double && ((Double) num).isNaN()) {                                              
+throw new IllegalArgumentException("The number must not be NaN");                                      throw new IllegalArgumentException("The number must not be NaN");                                   
+}                                                                                                      }                                                                                                   
+if (num instanceof Float && ((Float) num).isNaN()) {                                                   if (num instanceof Float && ((Float) num).isNaN()) {                                                
+throw new IllegalArgumentException("The number must not be NaN");                                      throw new IllegalArgumentException("The number must not be NaN");                                   
+}                                                                                                      }                                                                                                   
+this.min = num;                                                                                        this.min = num;                                                                                     
+this.max = num;                                                                                        this.max = num;                                                                                     
+}                                                                                                      }                                                                                                   

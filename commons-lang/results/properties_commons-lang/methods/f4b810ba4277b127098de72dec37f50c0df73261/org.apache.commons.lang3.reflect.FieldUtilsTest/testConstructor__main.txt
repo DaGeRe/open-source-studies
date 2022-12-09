@@ -1,0 +1,9 @@
+@Test
+public void testConstructor() {
+    assertNotNull(new FieldUtils());
+    Constructor<?>[] cons = FieldUtils.class.getDeclaredConstructors();
+    assertEquals(1, cons.length);
+    assertTrue(Modifier.isPublic(cons[0].getModifiers()));
+    assertTrue(Modifier.isPublic(FieldUtils.class.getModifiers()));
+    assertFalse(Modifier.isFinal(FieldUtils.class.getModifiers()));
+}

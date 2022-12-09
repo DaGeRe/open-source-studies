@@ -1,0 +1,9 @@
+public void testSerializeStreamObjNull() throws Exception {
+    ByteArrayOutputStream streamTest = new ByteArrayOutputStream();
+    try {
+        SerializationUtils.serialize(iMap, null);
+    } catch (IllegalArgumentException ex) {
+        return;
+    }
+    fail();
+}

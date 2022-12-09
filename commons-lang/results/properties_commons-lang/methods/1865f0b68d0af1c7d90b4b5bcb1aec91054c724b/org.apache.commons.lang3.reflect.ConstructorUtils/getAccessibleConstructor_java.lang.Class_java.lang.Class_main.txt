@@ -1,0 +1,15 @@
+/**
+ * Returns a constructor given a class and signature.
+ * @param cls the class to be constructed
+ * @param parameterTypes the parameter array
+ * @return null if matching accessible constructor can not be found
+ * @see Class#getConstructor
+ * @see #getAccessibleConstructor(java.lang.reflect.Constructor)
+ */
+public static <T> Constructor<T> getAccessibleConstructor(Class<T> cls, Class<?>... parameterTypes) {
+    try {
+        return getAccessibleConstructor(cls.getConstructor(parameterTypes));
+    } catch (NoSuchMethodException e) {
+        return (null);
+    }
+}

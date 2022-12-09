@@ -1,0 +1,8 @@
+protected void testCreateBigDecimalFailure(String str) {
+    try {
+        BigDecimal value = NumberUtils.createBigDecimal(str);
+        fail("createBigDecimal(blank) failed: " + value);
+    } catch (NumberFormatException ex) {
+        // empty
+    }
+}

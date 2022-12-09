@@ -1,0 +1,9 @@
+@Test
+public void testReflectionByteArrayArray() {
+    byte[][] array = new byte[][] { { 1, 2 }, null, { 5 } };
+    String baseStr = this.toBaseString(array);
+    assertEquals(baseStr + "[{{1,2},<null>,{5}}]", ToStringBuilder.reflectionToString(array));
+    array = null;
+    assertReflectionArray("<null>", array);
+    this.validateNullToStringStyleRegistry();
+}

@@ -1,0 +1,10 @@
+public void testEnsureCapacity() {
+    StrBuilder sb = new StrBuilder();
+    sb.ensureCapacity(2);
+    assertEquals(true, sb.capacity() >= 2);
+    sb.ensureCapacity(-1);
+    assertEquals(true, sb.capacity() >= 0);
+    sb.append("HelloWorld");
+    sb.ensureCapacity(40);
+    assertEquals(true, sb.capacity() >= 40);
+}

@@ -1,0 +1,26 @@
+// Identity ToString
+// -----------------------------------------------------------------------
+/**
+ * <p>Gets the toString that would be produced by {@code Object}
+ * if a class did not override toString itself. {@code null}
+ * will return {@code null}.</p>
+ *
+ * <pre>
+ * ObjectUtils.identityToString(null)         = null
+ * ObjectUtils.identityToString("")           = "java.lang.String@1e23"
+ * ObjectUtils.identityToString(Boolean.TRUE) = "java.lang.Boolean@7fa"
+ * </pre>
+ *
+ * @param object  the object to create a toString for, may be
+ *  {@code null}
+ * @return the default toString text, or {@code null} if
+ *  {@code null} passed in
+ */
+public static String identityToString(Object object) {
+    if (object == null) {
+        return null;
+    }
+    StringBuffer buffer = new StringBuffer();
+    identityToString(buffer, object);
+    return buffer.toString();
+}

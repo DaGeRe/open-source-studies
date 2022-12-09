@@ -1,0 +1,25 @@
+// Basics                                                                                              // Basics                                                                                           
+// --------------------------------------------------------------------                                // --------------------------------------------------------------------                             
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Compares this range to another object to test if they are equal.&lt;/p&gt;.                 * &lt;p&gt;Compares this range to another object to test if they are equal.&lt;/p&gt;.              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;To be equal, the class, minimum and maximum must be equal.&lt;/p&gt;                        * &lt;p&gt;To be equal, the class, minimum and maximum must be equal.&lt;/p&gt;                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This implementation uses the {@link #getMinimum()} and                                    |                                                                                                     
+* {@link #getMaximum()} methods.                                                                     |                                                                                                     
+* Subclasses may be able to optimise this.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param obj the reference object with which to compare                                                * @param obj the reference object with which to compare                                             
+* @return &lt;code&gt;true&lt;/code&gt; if this object is equal                                        * @return &lt;code&gt;true&lt;/code&gt; if this object is equal                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+if (obj == this) {                                                                                     if (obj == this) {                                                                                  
+return true;                                                                                           return true;                                                                                        
+} else if (obj == null || obj.getClass() != getClass()) {                                              } else if (obj == null || obj.getClass() != getClass()) {                                           
+return false;                                                                                          return false;                                                                                       
+} else {                                                                                               } else {                                                                                            
+Range range = (Range) obj;                                                                             Range range = (Range) obj;                                                                          
+return getMinimum().equals(range.getMinimum()) && getMaximum().equals(range.getMaximum());             return getMinimum().equals(range.getMinimum()) && getMaximum().equals(range.getMaximum());          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

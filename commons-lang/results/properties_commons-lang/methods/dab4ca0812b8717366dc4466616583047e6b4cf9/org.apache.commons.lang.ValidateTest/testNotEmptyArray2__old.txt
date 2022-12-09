@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testNotEmptyArray2() {
+    Validate.notEmpty(new Object[] { null }, "MSG");
+    try {
+        Validate.notEmpty((Object[]) null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(new Object[0], "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+}

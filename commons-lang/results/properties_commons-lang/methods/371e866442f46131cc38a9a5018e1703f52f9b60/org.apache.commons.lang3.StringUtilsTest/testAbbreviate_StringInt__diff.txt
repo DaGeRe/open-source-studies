@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------
+@Test
+public void testAbbreviate_StringInt() {
+    assertEquals(null, StringUtils.abbreviate(null, 10));
+    assertEquals("", StringUtils.abbreviate("", 10));
+    assertEquals("short", StringUtils.abbreviate("short", 10));
+    assertEquals("Now is ...", StringUtils.abbreviate("Now is the time for all good men to come to the aid of their party.", 10));
+    String raspberry = "raspberry peach";
+    assertEquals("raspberry p...", StringUtils.abbreviate(raspberry, 14));
+    assertEquals("raspberry peach", StringUtils.abbreviate("raspberry peach", 15));
+    assertEquals("raspberry peach", StringUtils.abbreviate("raspberry peach", 16));
+    assertEquals("abc...", StringUtils.abbreviate("abcdefg", 6));
+    assertEquals("abcdefg", StringUtils.abbreviate("abcdefg", 7));
+    assertEquals("abcdefg", StringUtils.abbreviate("abcdefg", 8));
+    assertEquals("a...", StringUtils.abbreviate("abcdefg", 4));
+    assertEquals("", StringUtils.abbreviate("", 4));
+    try {
+        @SuppressWarnings("unused")
+        String res = StringUtils.abbreviate("abc", 3);
+        fail("StringUtils.abbreviate expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        // empty
+    }
+}

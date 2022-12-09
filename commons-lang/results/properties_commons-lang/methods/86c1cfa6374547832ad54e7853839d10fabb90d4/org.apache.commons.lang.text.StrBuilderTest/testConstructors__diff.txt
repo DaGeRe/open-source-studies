@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------
+public void testConstructors() {
+    StrBuilder sb0 = new StrBuilder();
+    assertEquals(32, sb0.capacity());
+    assertEquals(0, sb0.length());
+    assertEquals(0, sb0.size());
+    StrBuilder sb1 = new StrBuilder(32);
+    assertEquals(32, sb1.capacity());
+    assertEquals(0, sb1.length());
+    assertEquals(0, sb1.size());
+    StrBuilder sb2 = new StrBuilder(0);
+    assertEquals(32, sb2.capacity());
+    assertEquals(0, sb2.length());
+    assertEquals(0, sb2.size());
+    StrBuilder sb3 = new StrBuilder(-1);
+    assertEquals(32, sb3.capacity());
+    assertEquals(0, sb3.length());
+    assertEquals(0, sb3.size());
+    StrBuilder sb4 = new StrBuilder(1);
+    assertEquals(1, sb4.capacity());
+    assertEquals(0, sb4.length());
+    assertEquals(0, sb4.size());
+    StrBuilder sb5 = new StrBuilder((String) null);
+    assertEquals(32, sb5.capacity());
+    assertEquals(0, sb5.length());
+    assertEquals(0, sb5.size());
+    StrBuilder sb6 = new StrBuilder("");
+    assertEquals(32, sb6.capacity());
+    assertEquals(0, sb6.length());
+    assertEquals(0, sb6.size());
+    StrBuilder sb7 = new StrBuilder("foo");
+    assertEquals(35, sb7.capacity());
+    assertEquals(3, sb7.length());
+    assertEquals(3, sb7.size());
+}

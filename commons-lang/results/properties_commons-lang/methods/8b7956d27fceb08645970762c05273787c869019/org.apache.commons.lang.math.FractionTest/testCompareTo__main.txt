@@ -1,0 +1,26 @@
+public void testCompareTo() {
+    Fraction f1 = null;
+    Fraction f2 = null;
+    f1 = Fraction.getFraction(3, 5);
+    assertTrue(f1.compareTo(f1) == 0);
+    try {
+        f1.compareTo(null);
+        fail("expecting NullPointerException");
+    } catch (NullPointerException ex) {
+    }
+    f2 = Fraction.getFraction(2, 5);
+    assertTrue(f1.compareTo(f2) > 0);
+    assertTrue(f2.compareTo(f2) == 0);
+    f2 = Fraction.getFraction(4, 5);
+    assertTrue(f1.compareTo(f2) < 0);
+    assertTrue(f2.compareTo(f2) == 0);
+    f2 = Fraction.getFraction(3, 5);
+    assertTrue(f1.compareTo(f2) == 0);
+    assertTrue(f2.compareTo(f2) == 0);
+    f2 = Fraction.getFraction(6, 10);
+    assertTrue(f1.compareTo(f2) == 0);
+    assertTrue(f2.compareTo(f2) == 0);
+    f2 = Fraction.getFraction(-1, 1, Integer.MAX_VALUE);
+    assertTrue(f1.compareTo(f2) > 0);
+    assertTrue(f2.compareTo(f2) == 0);
+}

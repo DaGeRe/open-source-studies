@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns a hashcode compatible with equals.&lt;/p&gt;                                        * &lt;p&gt;Returns a hashcode compatible with equals.&lt;/p&gt;                                     
+*                                                                                                      *                                                                                                   
+* @return a hashcode compatible with equals                                                            * @return a hashcode compatible with equals                                                         
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public int hashCode() {                                                                                public int hashCode() {                                                                             
+int total = 0;                                                                                       | return mPattern.hashCode() + 13 * (mTimeZone.hashCode() + 13 * mLocale.hashCode());                 
+total += mPattern.hashCode();                                                                        |                                                                                                     
+total += mTimeZone.hashCode();                                                                       |                                                                                                     
+total += (mTimeZoneForced ? 1 : 0);                                                                  |                                                                                                     
+total += mLocale.hashCode();                                                                         |                                                                                                     
+total += (mLocaleForced ? 1 : 0);                                                                    |                                                                                                     
+return total;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   

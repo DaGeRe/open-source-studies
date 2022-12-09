@@ -1,0 +1,21 @@
+// Conversion
+// -----------------------------------------------------------------------
+/**
+ * <p>Escapes any values it finds into their String form.</p>
+ *
+ * <p>So a tab becomes the characters <code>'\\'</code> and
+ * <code>'t'</code>.</p>
+ *
+ * <p>As of Lang 2.0, this calls {@link StringEscapeUtils#escapeJava(String)}
+ * behind the scenes.
+ * </p>
+ * @see StringEscapeUtils#escapeJava(java.lang.String)
+ * @param str String to escape values in
+ * @return String with escaped values
+ * @throws NullPointerException if str is <code>null</code>
+ * @deprecated Use {@link StringEscapeUtils#escapeJava(String)}
+ *             This method will be removed in Commons Lang 3.0
+ */
+public static String escape(String str) {
+    return StringEscapeUtils.escapeJava(str);
+}

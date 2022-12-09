@@ -1,0 +1,24 @@
+@Test
+public void test_toBooleanObject_String_String_String_String() {
+    assertSame(Boolean.TRUE, BooleanUtils.toBooleanObject((String) null, null, "N", "U"));
+    assertSame(Boolean.FALSE, BooleanUtils.toBooleanObject((String) null, "Y", null, "U"));
+    assertSame(null, BooleanUtils.toBooleanObject((String) null, "Y", "N", null));
+    try {
+        BooleanUtils.toBooleanObject((String) null, "Y", "N", "U");
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("Y", "Y", "N", "U"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("N", "Y", "N", "U"));
+    assertEquals(null, BooleanUtils.toBooleanObject("U", "Y", "N", "U"));
+    try {
+        BooleanUtils.toBooleanObject(null, "Y", "N", "U");
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        BooleanUtils.toBooleanObject("X", "Y", "N", "U");
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

@@ -1,0 +1,11 @@
+/**
+ * @throws ParseException
+ */
+@Test
+public void testMilleniumBug() throws ParseException {
+    DateParser parser = getInstance(DMY_DOT);
+    Calendar cal = Calendar.getInstance();
+    cal.clear();
+    cal.set(1000, 0, 1);
+    assertEquals(cal.getTime(), parser.parse("01.01.1000"));
+}

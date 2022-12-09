@@ -1,0 +1,14 @@
+/**
+ * <p>
+ * Gets the Java IO temporary directory as a {@code File}.
+ * </p>
+ *
+ * @return a directory
+ * @throws SecurityException if a security manager exists and its {@code checkPropertyAccess} method doesn't allow
+ * access to the specified system property.
+ * @see System#getProperty(String)
+ * @since 2.1
+ */
+public static File getJavaIoTmpDir() {
+    return new File(System.getProperty(JAVA_IO_TMPDIR_KEY));
+}

@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;This constructs an &lt;code&gt;Iterator&lt;/code&gt; over each day in a date                * &lt;p&gt;This constructs an &lt;code&gt;Iterator&lt;/code&gt; over each day in a date             
+* range defined by a focus date and range style.&lt;/p&gt;                                             * range defined by a focus date and range style.&lt;/p&gt;                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For instance, passing Thursday, July 4, 2002 and a                                          * &lt;p&gt;For instance, passing Thursday, July 4, 2002 and a                                       
+* &lt;code&gt;RANGE_MONTH_SUNDAY&lt;/code&gt; will return an &lt;code&gt;Iterator&lt;/code&gt;         * &lt;code&gt;RANGE_MONTH_SUNDAY&lt;/code&gt; will return an &lt;code&gt;Iterator&lt;/code&gt;      
+* that starts with Sunday, June 30, 2002 and ends with Saturday, August 3,                             * that starts with Sunday, June 30, 2002 and ends with Saturday, August 3,                          
+* 2002, returning a Calendar instance for each intermediate day.&lt;/p&gt;                             * 2002, returning a Calendar instance for each intermediate day.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method provides an iterator that returns Calendar objects.                             * &lt;p&gt;This method provides an iterator that returns Calendar objects.                          
+* The days are progressed using {@link Calendar#add(int, int)}.&lt;/p&gt;                              * The days are progressed using {@link Calendar#add(int, int)}.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* @param focus  the date to work with, not null                                                        * @param focus  the date to work with, not null                                                     
+* @param rangeStyle  the style constant to use. Must be one of                                         * @param rangeStyle  the style constant to use. Must be one of                                      
+* {@link DateUtils#RANGE_MONTH_SUNDAY},                                                                * {@link DateUtils#RANGE_MONTH_SUNDAY},                                                             
+* {@link DateUtils#RANGE_MONTH_MONDAY},                                                                * {@link DateUtils#RANGE_MONTH_MONDAY},                                                             
+* {@link DateUtils#RANGE_WEEK_SUNDAY},                                                                 * {@link DateUtils#RANGE_WEEK_SUNDAY},                                                              
+* {@link DateUtils#RANGE_WEEK_MONDAY},                                                                 * {@link DateUtils#RANGE_WEEK_MONDAY},                                                              
+* {@link DateUtils#RANGE_WEEK_RELATIVE},                                                               * {@link DateUtils#RANGE_WEEK_RELATIVE},                                                            
+* {@link DateUtils#RANGE_WEEK_CENTER}                                                                  * {@link DateUtils#RANGE_WEEK_CENTER}                                                               
+* @return the date iterator, which always returns Calendar instances                                   * @return the date iterator, which always returns Calendar instances                                
+* @throws IllegalArgumentException if the date is &lt;code&gt;null&lt;/code&gt;                        * @throws IllegalArgumentException if the date is &lt;code&gt;null&lt;/code&gt;                     
+* @throws IllegalArgumentException if the rangeStyle is invalid                                        * @throws IllegalArgumentException if the rangeStyle is invalid                                     
+*/                                                                                                     */                                                                                                  
+public static Iterator iterator(Date focus, int rangeStyle) {                                        | public static Iterator&lt;Calendar&gt; iterator(Date focus, int rangeStyle) {                       
+if (focus == null) {                                                                                   if (focus == null) {                                                                                
+throw new IllegalArgumentException("The date must not be null");                                       throw new IllegalArgumentException("The date must not be null");                                    
+}                                                                                                      }                                                                                                   
+Calendar gval = Calendar.getInstance();                                                                Calendar gval = Calendar.getInstance();                                                             
+gval.setTime(focus);                                                                                   gval.setTime(focus);                                                                                
+return iterator(gval, rangeStyle);                                                                     return iterator(gval, rangeStyle);                                                                  
+}                                                                                                      }                                                                                                   

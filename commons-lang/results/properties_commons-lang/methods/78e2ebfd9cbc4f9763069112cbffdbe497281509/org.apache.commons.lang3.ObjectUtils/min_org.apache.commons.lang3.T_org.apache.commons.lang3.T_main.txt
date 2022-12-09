@@ -1,0 +1,25 @@
+// Min/Max
+// -----------------------------------------------------------------------
+/**
+ * Null safe comparison of Comparables.
+ *
+ * @param values the set of comparable values, may be null
+ * @return
+ *  <ul>
+ *   <li>If any objects are non-null and unequal, the lesser object.
+ *   <li>If all objects are non-null and equal, the first.
+ *   <li>If any of the comparables are null, the lesser of the non-null object.
+ *   <li>If all the comparables are null, null is returned.
+ *  </ul>
+ */
+public static <T extends Comparable<? super T>> T min(T... values) {
+    T result = null;
+    if (values != null) {
+        for (T value : values) {
+            if (compare(value, result, true) < 0) {
+                result = value;
+            }
+        }
+    }
+    return result;
+}

@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testValidIndex_withMessage_collection() {
+    Collection<String> coll = new ArrayList<String>();
+    coll.add(null);
+    coll.add(null);
+    Validate.validIndex(coll, 0, "Broken: ");
+    Validate.validIndex(coll, 1, "Broken: ");
+    try {
+        Validate.validIndex(coll, -1, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: -1", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(coll, 2, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: 2", ex.getMessage());
+    }
+}

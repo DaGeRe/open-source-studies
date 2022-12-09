@@ -1,0 +1,17 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Overriden version that uses the parametrized &lt;code&gt;ClassLoader&lt;/code&gt; or the &lt;code&
+                                                                                                     | * of the current &lt;code&gt;Thread&lt;/code&gt; to resolve the class.                              
+                                                                                                     | * @param desc An instance of class &lt;code&gt;ObjectStreamClass&lt;/code&gt;.                      
+                                                                                                     | * @return A &lt;code&gt;Class&lt;/code&gt; object corresponding to &lt;code&gt;desc&lt;/code&gt;.   
+                                                                                                     | * @throws IOException Any of the usual Input/Output exceptions.                                     
+                                                                                                     | * @throws ClassNotFoundException If class of a serialized object cannot be found.                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | protected Class&lt;?&gt; resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExcep
+                                                                                                     | String name = desc.getName();                                                                       
+                                                                                                     | try {                                                                                               
+                                                                                                     | return Class.forName(name, false, classLoader);                                                     
+                                                                                                     | } catch (ClassNotFoundException ex) {                                                               
+                                                                                                     | return Class.forName(name, false, Thread.currentThread().getContextClassLoader());                  
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

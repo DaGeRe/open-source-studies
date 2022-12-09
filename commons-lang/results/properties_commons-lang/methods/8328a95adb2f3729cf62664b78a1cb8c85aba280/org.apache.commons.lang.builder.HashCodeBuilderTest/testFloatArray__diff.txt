@@ -1,0 +1,11 @@
+public void testFloatArray() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((float[]) null).toHashCode());
+    float[] obj = new float[2];
+    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[0] = 5.4f;
+    int h1 = Float.floatToIntBits(5.4f);
+    assertEquals((17 * 37 + h1) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[1] = 6.3f;
+    int h2 = Float.floatToIntBits(6.3f);
+    assertEquals((17 * 37 + h1) * 37 + h2, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+}

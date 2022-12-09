@@ -1,0 +1,32 @@
+@Test
+public void testEscapeJava() throws IOException {
+    assertEquals(null, StringEscapeUtils.escapeJava(null));
+    try {
+        StringEscapeUtils.ESCAPE_JAVA.translate(null, null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        StringEscapeUtils.ESCAPE_JAVA.translate("", null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    assertEscapeJava("empty string", "", "");
+    assertEscapeJava(FOO, FOO);
+    assertEscapeJava("tab", "\\t", "\t");
+    assertEscapeJava("backslash", "\\\\", "\\");
+    assertEscapeJava("single quote should not be escaped", "'", "'");
+    assertEscapeJava("\\\\\\b\\t\\r", "\\\b\t\r");
+    assertEscapeJava("\\u1234", "\u1234");
+    assertEscapeJava("\\u0234", "\u0234");
+    assertEscapeJava("\\u00EF", "\u00ef");
+    assertEscapeJava("\\u0001", "\u0001");
+    assertEscapeJava("Should use capitalized Unicode hex", "\\uABCD", "\uabcd");
+    assertEscapeJava("He didn't say, \\\"stop!\\\"", "He didn't say, \"stop!\"");
+    assertEscapeJava("non-breaking space", "This space is non-breaking:" + "\\u00A0", "This space is non-breaking:\u00a0");
+    assertEscapeJava("\\uABCD\\u1234\\u012C", "\uABCD\u1234\u012C");
+}

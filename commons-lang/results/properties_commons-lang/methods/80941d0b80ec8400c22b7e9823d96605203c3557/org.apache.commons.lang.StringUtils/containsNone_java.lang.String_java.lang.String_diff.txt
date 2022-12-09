@@ -1,0 +1,28 @@
+/**
+ * <p>Checks that the String does not contain certain characters.</p>
+ *
+ * <p>A <code>null</code> String will return <code>true</code>.
+ * A <code>null</code> invalid character array will return <code>true</code>.
+ * An empty String ("") always returns true.</p>
+ *
+ * <pre>
+ * StringUtils.containsNone(null, *)       = true
+ * StringUtils.containsNone(*, null)       = true
+ * StringUtils.containsNone("", *)         = true
+ * StringUtils.containsNone("ab", "")      = true
+ * StringUtils.containsNone("abab", "xyz") = true
+ * StringUtils.containsNone("ab1", "xyz")  = true
+ * StringUtils.containsNone("abz", "xyz")  = false
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param invalidChars  a String of invalid chars, may be null
+ * @return true if it contains none of the invalid chars, or is null
+ * @since 2.0
+ */
+public static boolean containsNone(String str, String invalidChars) {
+    if (str == null || invalidChars == null) {
+        return true;
+    }
+    return containsNone(str, invalidChars.toCharArray());
+}

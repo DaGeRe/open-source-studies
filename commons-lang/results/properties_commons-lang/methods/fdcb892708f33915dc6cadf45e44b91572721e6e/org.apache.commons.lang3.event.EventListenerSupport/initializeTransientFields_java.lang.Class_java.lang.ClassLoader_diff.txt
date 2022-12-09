@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Initialize transient fields.                                                                         * Initialize transient fields.                                                                      
+* @param listenerInterface                                                                             * @param listenerInterface                                                                          
+* @param classLoader                                                                                   * @param classLoader                                                                                
+*/                                                                                                     */                                                                                                  
+private void initializeTransientFields(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {    private void initializeTransientFields(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) { 
+createProxy(listenerInterface, classLoader);                                                         |                                                                                                     
+@SuppressWarnings("unchecked")                                                                         @SuppressWarnings("unchecked")                                                                      
+L[] array = (L[]) Array.newInstance(listenerInterface, 0);                                             L[] array = (L[]) Array.newInstance(listenerInterface, 0);                                          
+this.prototypeArray = array;                                                                           this.prototypeArray = array;                                                                        
+                                                                                                     | createProxy(listenerInterface, classLoader);                                                        
+}                                                                                                      }                                                                                                   

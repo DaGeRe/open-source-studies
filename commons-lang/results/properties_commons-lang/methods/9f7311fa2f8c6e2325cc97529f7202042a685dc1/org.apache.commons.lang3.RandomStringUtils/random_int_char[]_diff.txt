@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Creates a random string whose length is the number of characters                            * &lt;p&gt;Creates a random string whose length is the number of characters                         
+* specified.&lt;/p&gt;                                                                                 * specified.&lt;/p&gt;                                                                              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Characters will be chosen from the set of characters specified.&lt;/p&gt;                   * &lt;p&gt;Characters will be chosen from the set of characters specified.&lt;/p&gt;                
+*                                                                                                      *                                                                                                   
+* @param count  the length of random string to create                                                  * @param count  the length of random string to create                                               
+* @param chars  the character array containing the set of characters to use,                           * @param chars  the character array containing the set of characters to use,                        
+*  may be null                                                                                         *  may be null                                                                                      
+* @return the random string                                                                            * @return the random string                                                                         
+* @throws IllegalArgumentException if {@code count} &lt; 0.                                            * @throws IllegalArgumentException if {@code count} &lt; 0.                                         
+*/                                                                                                     */                                                                                                  
+public static String random(int count, char[] chars) {                                               | public static String random(int count, char... chars) {                                             
+if (chars == null) {                                                                                   if (chars == null) {                                                                                
+return random(count, 0, 0, false, false, null, RANDOM);                                                return random(count, 0, 0, false, false, null, RANDOM);                                             
+}                                                                                                      }                                                                                                   
+return random(count, 0, chars.length, false, false, chars, RANDOM);                                    return random(count, 0, chars.length, false, false, chars, RANDOM);                                 
+}                                                                                                      }                                                                                                   

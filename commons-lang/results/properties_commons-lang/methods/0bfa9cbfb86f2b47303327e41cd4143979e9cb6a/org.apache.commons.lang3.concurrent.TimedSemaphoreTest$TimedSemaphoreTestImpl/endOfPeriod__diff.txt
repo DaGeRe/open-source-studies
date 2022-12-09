@@ -1,0 +1,10 @@
+/**
+ * Counts the number of invocations.
+ */
+@Override
+protected void endOfPeriod() {
+    super.endOfPeriod();
+    synchronized (this) {
+        periodEnds++;
+    }
+}

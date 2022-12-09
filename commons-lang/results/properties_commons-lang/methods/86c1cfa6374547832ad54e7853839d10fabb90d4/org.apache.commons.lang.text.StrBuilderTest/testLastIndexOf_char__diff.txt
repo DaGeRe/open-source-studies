@@ -1,0 +1,9 @@
+public void testLastIndexOf_char() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(2, sb.lastIndexOf('a'));
+    // should work like String#lastIndexOf
+    assertEquals("abab".lastIndexOf('a'), sb.lastIndexOf('a'));
+    assertEquals(3, sb.lastIndexOf('b'));
+    assertEquals("abab".lastIndexOf('b'), sb.lastIndexOf('b'));
+    assertEquals(-1, sb.lastIndexOf('z'));
+}

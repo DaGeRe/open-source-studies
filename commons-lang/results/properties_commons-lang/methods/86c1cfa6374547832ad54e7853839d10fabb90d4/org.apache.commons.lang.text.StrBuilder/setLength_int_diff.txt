@@ -1,0 +1,25 @@
+/**
+ * Updates the length of the builder by either dropping the last characters
+ * or adding filler of unicode zero.
+ *
+ * @param length  the length to set to, must be zero or positive
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if the length is negative
+ */
+public StrBuilder setLength(int length) {
+    if (length < 0) {
+        throw new StringIndexOutOfBoundsException(length);
+    }
+    if (length < size) {
+        size = length;
+    } else if (length > size) {
+        ensureCapacity(length);
+        int oldEnd = size;
+        int newEnd = length;
+        size = length;
+        for (int i = oldEnd; i < newEnd; i++) {
+            buffer[i] = '\0';
+        }
+    }
+    return this;
+}

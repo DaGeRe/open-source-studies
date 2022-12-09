@@ -1,0 +1,10 @@
+public void testIndexOf_String() {
+    assertEquals(-1, StringUtils.indexOf(null, null));
+    assertEquals(-1, StringUtils.indexOf("", null));
+    assertEquals(0, StringUtils.indexOf("", ""));
+    assertEquals(0, StringUtils.indexOf("aabaabaa", "a"));
+    assertEquals(2, StringUtils.indexOf("aabaabaa", "b"));
+    assertEquals(1, StringUtils.indexOf("aabaabaa", "ab"));
+    assertEquals(0, StringUtils.indexOf("aabaabaa", ""));
+    assertEquals(2, StringUtils.indexOf(new StringBuilder("aabaabaa"), "b"));
+}

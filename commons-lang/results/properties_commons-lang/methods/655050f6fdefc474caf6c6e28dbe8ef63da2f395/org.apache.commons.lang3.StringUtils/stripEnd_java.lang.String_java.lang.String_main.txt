@@ -1,0 +1,42 @@
+/**
+ * <p>Strips any of a set of characters from the end of a String.</p>
+ *
+ * <p>A <code>null</code> input String returns <code>null</code>.
+ * An empty string ("") input returns the empty string.</p>
+ *
+ * <p>If the stripChars String is <code>null</code>, whitespace is
+ * stripped as defined by {@link Character#isWhitespace(char)}.</p>
+ *
+ * <pre>
+ * StringUtils.stripEnd(null, *)          = null
+ * StringUtils.stripEnd("", *)            = ""
+ * StringUtils.stripEnd("abc", "")        = "abc"
+ * StringUtils.stripEnd("abc", null)      = "abc"
+ * StringUtils.stripEnd("  abc", null)    = "  abc"
+ * StringUtils.stripEnd("abc  ", null)    = "abc"
+ * StringUtils.stripEnd(" abc ", null)    = " abc"
+ * StringUtils.stripEnd("  abcyx", "xyz") = "  abc"
+ * </pre>
+ *
+ * @param str  the String to remove characters from, may be null
+ * @param stripChars  the characters to remove, null treated as whitespace
+ * @return the stripped String, <code>null</code> if null String input
+ */
+public static String stripEnd(String str, String stripChars) {
+    int end;
+    if (str == null || (end = str.length()) == 0) {
+        return str;
+    }
+    if (stripChars == null) {
+        while ((end != 0) && Character.isWhitespace(str.charAt(end - 1))) {
+            end--;
+        }
+    } else if (stripChars.length() == 0) {
+        return str;
+    } else {
+        while ((end != 0) && (stripChars.indexOf(str.charAt(end - 1)) != INDEX_NOT_FOUND)) {
+            end--;
+        }
+    }
+    return str.substring(0, end);
+}

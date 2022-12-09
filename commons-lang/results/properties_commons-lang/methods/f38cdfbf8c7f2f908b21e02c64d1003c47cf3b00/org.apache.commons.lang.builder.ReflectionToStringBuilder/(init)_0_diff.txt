@@ -1,0 +1,23 @@
+/**
+ * Constructor.
+ *
+ * @param object
+ *            the Object to build a <code>toString</code> for
+ * @param style
+ *            the style of the <code>toString</code> to create, may be <code>null</code>
+ * @param buffer
+ *            the <code>StringBuffer</code> to populate, may be <code>null</code>
+ * @param reflectUpToClass
+ *            the superclass to reflect up to (inclusive), may be <code>null</code>
+ * @param outputTransients
+ *            whether to include transient fields
+ * @param outputStatics
+ *            whether to include static fields
+ * @since 2.1
+ */
+public ReflectionToStringBuilder(T object, ToStringStyle style, StringBuffer buffer, Class<? super T> reflectUpToClass, boolean outputTransients, boolean outputStatics) {
+    super(object, style, buffer);
+    this.setUpToClass(reflectUpToClass);
+    this.setAppendTransients(outputTransients);
+    this.setAppendStatics(outputStatics);
+}

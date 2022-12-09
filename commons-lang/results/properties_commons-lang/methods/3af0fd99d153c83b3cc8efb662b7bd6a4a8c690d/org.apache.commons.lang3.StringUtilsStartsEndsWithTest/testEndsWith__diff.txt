@@ -1,0 +1,19 @@
+/**
+ * Test StringUtils.endsWith()
+ */
+public void testEndsWith() {
+    assertTrue("endsWith(null, null)", StringUtils.endsWith(null, (String) null));
+    assertFalse("endsWith(FOOBAR, null)", StringUtils.endsWith(FOOBAR, (String) null));
+    assertFalse("endsWith(null, FOO)", StringUtils.endsWith(null, FOO));
+    assertTrue("endsWith(FOOBAR, \"\")", StringUtils.endsWith(FOOBAR, ""));
+    assertFalse("endsWith(foobar, foo)", StringUtils.endsWith(foobar, foo));
+    assertFalse("endsWith(FOOBAR, FOO)", StringUtils.endsWith(FOOBAR, FOO));
+    assertFalse("endsWith(foobar, FOO)", StringUtils.endsWith(foobar, FOO));
+    assertFalse("endsWith(FOOBAR, foo)", StringUtils.endsWith(FOOBAR, foo));
+    assertFalse("endsWith(foo, foobar)", StringUtils.endsWith(foo, foobar));
+    assertFalse("endsWith(foo, foobar)", StringUtils.endsWith(bar, foobar));
+    assertTrue("endsWith(foobar, bar)", StringUtils.endsWith(foobar, bar));
+    assertTrue("endsWith(FOOBAR, BAR)", StringUtils.endsWith(FOOBAR, BAR));
+    assertFalse("endsWith(foobar, BAR)", StringUtils.endsWith(foobar, BAR));
+    assertFalse("endsWith(FOOBAR, bar)", StringUtils.endsWith(FOOBAR, bar));
+}

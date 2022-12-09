@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+public boolean addRegex(FastDateParser parser, StringBuilder regex) {
+    regex.append('(');
+    for (KeyValue textKeyValue : parser.getDisplayNames(field)) {
+        escapeRegex(regex, textKeyValue.key, false).append('|');
+    }
+    regex.setCharAt(regex.length() - 1, ')');
+    return true;
+}

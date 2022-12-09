@@ -1,0 +1,19 @@
+/**
+ * Tests the methods for statistics.
+ */
+@Test
+public void testGetAverageCallsPerPeriod() throws InterruptedException {
+    ScheduledExecutorService service = EasyMock.createMock(ScheduledExecutorService.class);
+    ScheduledFuture<?> future = EasyMock.createMock(ScheduledFuture.class);
+    prepareStartTimer(service, future);
+    EasyMock.replay(service, future);
+    TimedSemaphore semaphore = new TimedSemaphore(service, PERIOD, UNIT, LIMIT);
+    semaphore.acquire();
+    semaphore.endOfPeriod();
+    assertEquals("Wrong average (1)", 1.0, semaphore.getAverageCallsPerPeriod(), .005);
+    semaphore.acquire();
+    semaphore.acquire();
+    semaphore.endOfPeriod();
+    assertEquals("Wrong average (2)", 1.5, semaphore.getAverageCallsPerPeriod(), .005);
+    EasyMock.verify(service, future);
+}

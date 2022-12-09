@@ -1,0 +1,41 @@
+public void testFactory_String_improper() {
+    Fraction f = null;
+    f = Fraction.getFraction("0/1");
+    assertEquals(0, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction("1/5");
+    assertEquals(1, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f = Fraction.getFraction("1/2");
+    assertEquals(1, f.getNumerator());
+    assertEquals(2, f.getDenominator());
+    f = Fraction.getFraction("2/3");
+    assertEquals(2, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    f = Fraction.getFraction("7/3");
+    assertEquals(7, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    f = Fraction.getFraction("2/4");
+    assertEquals(2, f.getNumerator());
+    assertEquals(4, f.getDenominator());
+    try {
+        f = Fraction.getFraction("2/d");
+        fail("expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+    try {
+        f = Fraction.getFraction("2e/3");
+        fail("expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+    try {
+        f = Fraction.getFraction("2/");
+        fail("expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+    try {
+        f = Fraction.getFraction("/");
+        fail("expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+}

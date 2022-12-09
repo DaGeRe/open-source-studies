@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testNotBlankMsgNullStringShouldThrow() {
+    // given
+    String string = null;
+    try {
+        // when
+        Validate.notBlank(string, "Message");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // then
+        assertEquals("Message", e.getMessage());
+    }
+}

@@ -1,0 +1,31 @@
+/**
+ * <p>Finds the first index within a CharSequence from a start position,
+ * handling {@code null}.
+ * This method uses {@link String#indexOf(int, int)} if possible.</p>
+ *
+ * <p>A {@code null} or empty ("") CharSequence will return {@code (INDEX_NOT_FOUND) -1}.
+ * A negative start position is treated as zero.
+ * A start position greater than the string length returns {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.indexOf(null, *, *)          = -1
+ * StringUtils.indexOf("", *, *)            = -1
+ * StringUtils.indexOf("aabaabaa", 'b', 0)  = 2
+ * StringUtils.indexOf("aabaabaa", 'b', 3)  = 5
+ * StringUtils.indexOf("aabaabaa", 'b', 9)  = -1
+ * StringUtils.indexOf("aabaabaa", 'b', -1) = 2
+ * </pre>
+ *
+ * @param seq  the CharSequence to check, may be null
+ * @param searchChar  the character to find
+ * @param startPos  the start position, negative treated as zero
+ * @return the first index of the search character,
+ *  -1 if no match or {@code null} string input
+ * @since 2.0
+ */
+public static int indexOf(CharSequence seq, int searchChar, int startPos) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchChar, startPos);
+}

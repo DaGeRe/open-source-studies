@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts the specified primitive Class object to its corresponding                          * &lt;p&gt;Converts the specified primitive Class object to its corresponding                       
+* wrapper Class object.&lt;/p&gt;                                                                      * wrapper Class object.&lt;/p&gt;                                                                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;NOTE: From v2.2, this method handles &lt;code&gt;Void.TYPE&lt;/code&gt;,                    * &lt;p&gt;NOTE: From v2.2, this method handles &lt;code&gt;Void.TYPE&lt;/code&gt;,                 
+* returning &lt;code&gt;Void.TYPE&lt;/code&gt;.&lt;/p&gt;                                              * returning &lt;code&gt;Void.TYPE&lt;/code&gt;.&lt;/p&gt;                                           
+*                                                                                                      *                                                                                                   
+* @param cls  the class to convert, may be null                                                        * @param cls  the class to convert, may be null                                                     
+* @return the wrapper class for &lt;code&gt;cls&lt;/code&gt; or &lt;code&gt;cls&lt;/code&gt; if        * @return the wrapper class for &lt;code&gt;cls&lt;/code&gt; or &lt;code&gt;cls&lt;/code&gt; if     
+* &lt;code&gt;cls&lt;/code&gt; is not a primitive. &lt;code&gt;null&lt;/code&gt; if null input.        * &lt;code&gt;cls&lt;/code&gt; is not a primitive. &lt;code&gt;null&lt;/code&gt; if null input.     
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static Class primitiveToWrapper(Class cls) {                                                  | public static Class&lt;?&gt; primitiveToWrapper(Class&lt;?&gt; cls) {                               
+Class convertedClass = cls;                                                                          | Class&lt;?&gt; convertedClass = cls;                                                                
+if (cls != null && cls.isPrimitive()) {                                                                if (cls != null && cls.isPrimitive()) {                                                             
+convertedClass = (Class) primitiveWrapperMap.get(cls);                                               | convertedClass = primitiveWrapperMap.get(cls);                                                      
+}                                                                                                      }                                                                                                   
+return convertedClass;                                                                                 return convertedClass;                                                                              
+}                                                                                                      }                                                                                                   

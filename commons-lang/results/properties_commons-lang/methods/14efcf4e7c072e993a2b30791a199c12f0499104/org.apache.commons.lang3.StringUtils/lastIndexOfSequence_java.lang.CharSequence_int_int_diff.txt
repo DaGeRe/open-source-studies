@@ -1,0 +1,20 @@
+                                                                                                     | // Used by the lastIndexOf(CharSequence methods) as a green implementation of lastIndexOf           
+                                                                                                     | static int lastIndexOfSequence(CharSequence cs, int searchChar, int start) {                        
+                                                                                                     | if (cs instanceof String) {                                                                         
+                                                                                                     | return ((String) cs).lastIndexOf(searchChar, start);                                                
+                                                                                                     | } else {                                                                                            
+                                                                                                     | int sz = cs.length();                                                                               
+                                                                                                     | if (start &lt; 0) {                                                                                 
+                                                                                                     | return -1;                                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (start &gt;= sz) {                                                                               
+                                                                                                     | start = sz - 1;                                                                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | for (int i = start; i &gt;= 0; --i) {                                                               
+                                                                                                     | if (cs.charAt(i) == searchChar) {                                                                   
+                                                                                                     | return i;                                                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return -1;                                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

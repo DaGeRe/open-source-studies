@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Adds to the list of method names used in the search for <code>Throwable</code>
+ * objects.</p>
+ *
+ * @param methodName  the methodName to add to the list, <code>null</code>
+ *  and empty strings are ignored
+ * @since 2.0
+ */
+public static void addCauseMethodName(String methodName) {
+    if (StringUtils.isNotEmpty(methodName) && !isCauseMethodName(methodName)) {
+        List<String> list = getCauseMethodNameList();
+        if (list.add(methodName)) {
+            synchronized (CAUSE_METHOD_NAMES_LOCK) {
+                CAUSE_METHOD_NAMES = toArray(list);
+            }
+        }
+    }
+}

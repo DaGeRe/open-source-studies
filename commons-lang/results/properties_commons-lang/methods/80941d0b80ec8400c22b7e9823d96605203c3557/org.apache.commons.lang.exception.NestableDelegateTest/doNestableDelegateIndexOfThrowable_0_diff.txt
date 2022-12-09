@@ -1,0 +1,17 @@
+private void doNestableDelegateIndexOfThrowable(NestableDelegate d, Class type, int fromIndex, int expectedIndex, String expectedMsg) {
+    Throwable t = null;
+    int index = d.indexOfThrowable(type, fromIndex);
+    assertEquals("index of throwable " + (type == null ? "null" : type.getName()), expectedIndex, index);
+    if (expectedIndex > -1) {
+        t = d.getThrowable(index);
+        if (expectedMsg != null) {
+            String msg = null;
+            if (Nestable.class.isInstance(t)) {
+                msg = ((Nestable) t).getMessage(0);
+            } else {
+                msg = t.getMessage();
+            }
+            assertEquals("message of indexed throwable", expectedMsg, msg);
+        }
+    }
+}

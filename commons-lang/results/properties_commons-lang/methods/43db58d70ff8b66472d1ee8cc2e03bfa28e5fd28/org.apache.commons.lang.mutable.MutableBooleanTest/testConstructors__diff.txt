@@ -1,0 +1,13 @@
+// ----------------------------------------------------------------
+public void testConstructors() {
+    assertEquals(false, new MutableBoolean().booleanValue());
+    assertEquals(true, new MutableBoolean(true).booleanValue());
+    assertEquals(false, new MutableBoolean(false).booleanValue());
+    assertEquals(true, new MutableBoolean(Boolean.TRUE).booleanValue());
+    assertEquals(false, new MutableBoolean(Boolean.FALSE).booleanValue());
+    try {
+        new MutableBoolean(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

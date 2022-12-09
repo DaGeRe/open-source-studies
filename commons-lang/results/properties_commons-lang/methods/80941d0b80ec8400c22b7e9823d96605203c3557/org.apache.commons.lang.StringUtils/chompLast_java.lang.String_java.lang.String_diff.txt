@@ -1,0 +1,20 @@
+/**
+ * <p>Remove a value if and only if the String ends with that value.</p>
+ *
+ * @param str  the String to chomp from, must not be null
+ * @param sep  the String to chomp, must not be null
+ * @return String without chomped ending
+ * @throws NullPointerException if str or sep is <code>null</code>
+ * @deprecated Use {@link #chomp(String,String)} instead.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String chompLast(String str, String sep) {
+    if (str.length() == 0) {
+        return str;
+    }
+    String sub = str.substring(str.length() - sep.length());
+    if (sep.equals(sub)) {
+        return str.substring(0, str.length() - sep.length());
+    }
+    return str;
+}

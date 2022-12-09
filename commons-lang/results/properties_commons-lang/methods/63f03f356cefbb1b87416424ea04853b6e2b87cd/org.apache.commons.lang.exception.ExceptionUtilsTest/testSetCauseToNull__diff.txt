@@ -1,0 +1,10 @@
+/**
+ * Tests overriding a cause to <code>null</code>.
+ */
+public void testSetCauseToNull() {
+    Exception ex = new ExceptionWithCause(new IOException());
+    assertEquals(true, ExceptionUtils.setCause(ex, new IllegalStateException()));
+    assertNotNull(ExceptionUtils.getCause(ex));
+    assertEquals(true, ExceptionUtils.setCause(ex, null));
+    assertNull(ExceptionUtils.getCause(ex));
+}

@@ -1,0 +1,11 @@
+@SuppressWarnings("cast")
+public void testContainsFloat() {
+    float[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, (float) 1));
+    array = new float[] { 0, 1, 2, 3, 0 };
+    assertEquals(true, ArrayUtils.contains(array, (float) 0));
+    assertEquals(true, ArrayUtils.contains(array, (float) 1));
+    assertEquals(true, ArrayUtils.contains(array, (float) 2));
+    assertEquals(true, ArrayUtils.contains(array, (float) 3));
+    assertEquals(false, ArrayUtils.contains(array, (float) 99));
+}

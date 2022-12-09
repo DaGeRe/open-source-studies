@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testAppendAll_Collection() {                                                               public void testAppendAll_Collection() {                                                            
+StrBuilder sb = new StrBuilder();                                                                      StrBuilder sb = new StrBuilder();                                                                   
+sb.appendAll((Collection) null);                                                                     | sb.appendAll((Collection&lt;?&gt;) null);                                                           
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendAll(Collections.EMPTY_LIST);                                                                  sb.appendAll(Collections.EMPTY_LIST);                                                               
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendAll(Arrays.asList(new Object[] { "foo", "bar", "baz" }));                                     sb.appendAll(Arrays.asList(new Object[] { "foo", "bar", "baz" }));                                  
+assertEquals("foobarbaz", sb.toString());                                                              assertEquals("foobarbaz", sb.toString());                                                           
+}                                                                                                      }                                                                                                   

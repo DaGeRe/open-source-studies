@@ -1,0 +1,7 @@
+public void testUnescapeMiscellaneous() throws Exception {
+    doTestUnescapeEntity("&hello", "&hello");
+    doTestUnescapeEntity("&;", "&;");
+    doTestUnescapeEntity("&#;", "&#;");
+    doTestUnescapeEntity("&#invalid;", "&#invalid;");
+    doTestUnescapeEntity("A", "&#X41;");
+}

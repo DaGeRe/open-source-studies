@@ -1,0 +1,34 @@
+public void testFormatDuration() {
+    long duration = 0;
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "y"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "M"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "d"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "H"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "m"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "s"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "S"));
+    assertEquals("0000", DurationFormatUtils.formatDuration(duration, "SSSS"));
+    assertEquals("0000", DurationFormatUtils.formatDuration(duration, "yyyy"));
+    assertEquals("0000", DurationFormatUtils.formatDuration(duration, "yyMM"));
+    duration = 60 * 1000;
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "y"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "M"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "d"));
+    assertEquals("0", DurationFormatUtils.formatDuration(duration, "H"));
+    assertEquals("1", DurationFormatUtils.formatDuration(duration, "m"));
+    assertEquals("60", DurationFormatUtils.formatDuration(duration, "s"));
+    assertEquals("60000", DurationFormatUtils.formatDuration(duration, "S"));
+    assertEquals("01:00", DurationFormatUtils.formatDuration(duration, "mm:ss"));
+    Calendar base = Calendar.getInstance();
+    base.set(2000, 0, 1, 0, 0, 0);
+    base.set(Calendar.MILLISECOND, 0);
+    Calendar cal = Calendar.getInstance();
+    cal.set(2003, 1, 1, 0, 0, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    // duration from 2000-01-01 to cal
+    duration = cal.getTime().getTime() - base.getTime().getTime();
+    // don't use 1970 in test as time zones were less reliable in 1970 than now
+    // remember that duration formatting ignores time zones, working on strict hour lengths
+    int days = 366 + 365 + 365 + 31;
+    assertEquals("0 0 " + days, DurationFormatUtils.formatDuration(duration, "y M d"));
+}

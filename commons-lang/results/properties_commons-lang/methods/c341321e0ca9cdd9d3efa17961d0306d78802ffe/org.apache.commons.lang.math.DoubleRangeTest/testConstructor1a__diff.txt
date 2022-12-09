@@ -1,0 +1,11 @@
+// --------------------------------------------------------------------------
+public void testConstructor1a() {
+    DoubleRange nr = new DoubleRange(8d);
+    assertEquals(double8, nr.getMinimumNumber());
+    assertEquals(double8, nr.getMaximumNumber());
+    try {
+        new DoubleRange(Double.NaN);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

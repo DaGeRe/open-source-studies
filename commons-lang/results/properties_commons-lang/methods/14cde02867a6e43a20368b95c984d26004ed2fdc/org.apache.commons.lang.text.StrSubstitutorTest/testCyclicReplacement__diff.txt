@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Tests a cyclic replace operation.                                                                    * Tests a cyclic replace operation.                                                                 
+* The cycle should be detected and cause an exception to be thrown.                                    * The cycle should be detected and cause an exception to be thrown.                                 
+*/                                                                                                     */                                                                                                  
+public void testCyclicReplacement() {                                                                  public void testCyclicReplacement() {                                                               
+Map map = new HashMap();                                                                             | Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();                                
+map.put("animal", "${critter}");                                                                       map.put("animal", "${critter}");                                                                    
+map.put("target", "${pet}");                                                                           map.put("target", "${pet}");                                                                        
+map.put("pet", "${petCharacteristic} dog");                                                            map.put("pet", "${petCharacteristic} dog");                                                         
+map.put("petCharacteristic", "lazy");                                                                  map.put("petCharacteristic", "lazy");                                                               
+map.put("critter", "${critterSpeed} ${critterColor} ${critterType}");                                  map.put("critter", "${critterSpeed} ${critterColor} ${critterType}");                               
+map.put("critterSpeed", "quick");                                                                      map.put("critterSpeed", "quick");                                                                   
+map.put("critterColor", "brown");                                                                      map.put("critterColor", "brown");                                                                   
+map.put("critterType", "${animal}");                                                                   map.put("critterType", "${animal}");                                                                
+StrSubstitutor sub = new StrSubstitutor(map);                                                          StrSubstitutor sub = new StrSubstitutor(map);                                                       
+try {                                                                                                  try {                                                                                               
+sub.replace("The ${animal} jumps over the ${target}.");                                                sub.replace("The ${animal} jumps over the ${target}.");                                             
+fail("Cyclic replacement was not detected!");                                                          fail("Cyclic replacement was not detected!");                                                       
+} catch (IllegalStateException ex) {                                                                   } catch (IllegalStateException ex) {                                                                
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

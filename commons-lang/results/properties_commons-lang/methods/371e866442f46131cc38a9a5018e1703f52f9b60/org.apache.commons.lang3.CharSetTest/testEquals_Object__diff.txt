@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+public void testEquals_Object() {
+    CharSet abc = CharSet.getInstance("abc");
+    CharSet abc2 = CharSet.getInstance("abc");
+    CharSet atoc = CharSet.getInstance("a-c");
+    CharSet atoc2 = CharSet.getInstance("a-c");
+    CharSet notatoc = CharSet.getInstance("^a-c");
+    CharSet notatoc2 = CharSet.getInstance("^a-c");
+    assertEquals(false, abc.equals(null));
+    assertEquals(true, abc.equals(abc));
+    assertEquals(true, abc.equals(abc2));
+    assertEquals(false, abc.equals(atoc));
+    assertEquals(false, abc.equals(notatoc));
+    assertEquals(false, atoc.equals(abc));
+    assertEquals(true, atoc.equals(atoc));
+    assertEquals(true, atoc.equals(atoc2));
+    assertEquals(false, atoc.equals(notatoc));
+    assertEquals(false, notatoc.equals(abc));
+    assertEquals(false, notatoc.equals(atoc));
+    assertEquals(true, notatoc.equals(notatoc));
+    assertEquals(true, notatoc.equals(notatoc2));
+}

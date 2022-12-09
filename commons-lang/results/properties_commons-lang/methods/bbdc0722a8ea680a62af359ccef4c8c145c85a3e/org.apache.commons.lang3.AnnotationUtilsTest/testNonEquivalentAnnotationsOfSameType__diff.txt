@@ -1,0 +1,5 @@
+@Test
+public void testNonEquivalentAnnotationsOfSameType() {
+    assertFalse(AnnotationUtils.equals(field1.getAnnotation(TestAnnotation.class), field3.getAnnotation(TestAnnotation.class)));
+    assertFalse(AnnotationUtils.equals(field3.getAnnotation(TestAnnotation.class), field1.getAnnotation(TestAnnotation.class)));
+}

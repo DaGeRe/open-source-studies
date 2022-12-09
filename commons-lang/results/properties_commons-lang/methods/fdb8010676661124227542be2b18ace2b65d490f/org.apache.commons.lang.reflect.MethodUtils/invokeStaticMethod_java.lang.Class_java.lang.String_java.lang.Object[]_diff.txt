@@ -1,0 +1,35 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Invoke a named static method whose parameter type matches the object type.&lt;/p&gt;        * &lt;p&gt;Invoke a named static method whose parameter type matches the object type.&lt;/p&gt;     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method delegates the method search to {@link #getMatchingAccessibleMethod(Class, Str   * &lt;p&gt;This method delegates the method search to {@link #getMatchingAccessibleMethod(Class, Str
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method supports calls to methods taking primitive parameters                           * &lt;p&gt;This method supports calls to methods taking primitive parameters                        
+* via passing in wrapping classes. So, for example, a &lt;code&gt;Boolean&lt;/code&gt; class           * via passing in wrapping classes. So, for example, a &lt;code&gt;Boolean&lt;/code&gt; class        
+* would match a &lt;code&gt;boolean&lt;/code&gt; primitive.&lt;/p&gt;                                  * would match a &lt;code&gt;boolean&lt;/code&gt; primitive.&lt;/p&gt;                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt; This is a convenient wrapper for                                                           * &lt;p&gt; This is a convenient wrapper for                                                        
+* {@link #invokeStaticMethod(Class objectClass,String methodName,Object [] args,Class[] parameterTyp   * {@link #invokeStaticMethod(Class objectClass,String methodName,Object [] args,Class[] parameterTyp
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param cls invoke static method on this class                                                        * @param cls invoke static method on this class                                                     
+* @param methodName get method with this name                                                          * @param methodName get method with this name                                                       
+* @param args use these arguments - treat null as empty array                                          * @param args use these arguments - treat null as empty array                                       
+* @return The value returned by the invoked method                                                     * @return The value returned by the invoked method                                                  
+*                                                                                                      *                                                                                                   
+* @throws NoSuchMethodException if there is no such accessible method                                  * @throws NoSuchMethodException if there is no such accessible method                               
+* @throws InvocationTargetException wraps an exception thrown by the                                   * @throws InvocationTargetException wraps an exception thrown by the                                
+*  method invoked                                                                                      *  method invoked                                                                                   
+* @throws IllegalAccessException if the requested method is not accessible                             * @throws IllegalAccessException if the requested method is not accessible                          
+*  via reflection                                                                                      *  via reflection                                                                                   
+*/                                                                                                     */                                                                                                  
+public static Object invokeStaticMethod(Class cls, String methodName, Object[] args) throws NoSuchMe | public static Object invokeStaticMethod(Class&lt;?&gt; cls, String methodName, Object[] args) throws
+if (args == null) {                                                                                    if (args == null) {                                                                                 
+args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                                  args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                               
+}                                                                                                      }                                                                                                   
+int arguments = args.length;                                                                           int arguments = args.length;                                                                        
+Class[] parameterTypes = new Class[arguments];                                                       | Class&lt;?&gt;[] parameterTypes = new Class[arguments];                                             
+for (int i = 0; i &lt; arguments; i++) {                                                               for (int i = 0; i &lt; arguments; i++) {                                                            
+parameterTypes[i] = args[i].getClass();                                                                parameterTypes[i] = args[i].getClass();                                                             
+}                                                                                                      }                                                                                                   
+return invokeStaticMethod(cls, methodName, args, parameterTypes);                                      return invokeStaticMethod(cls, methodName, args, parameterTypes);                                   
+}                                                                                                      }                                                                                                   

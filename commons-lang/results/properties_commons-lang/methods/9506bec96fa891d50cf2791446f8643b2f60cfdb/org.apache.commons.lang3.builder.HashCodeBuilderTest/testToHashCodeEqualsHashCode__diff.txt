@@ -1,0 +1,8 @@
+/**                                                                                                    /**                                                                                                 
+* Ensures LANG-520 remains true                                                                        * Ensures LANG-520 remains true                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testToHashCodeEqualsHashCode() {                                                           public void testToHashCodeEqualsHashCode() {                                                        
+HashCodeBuilder hcb = new HashCodeBuilder(17, 37).append(new Object()).append('a');                    HashCodeBuilder hcb = new HashCodeBuilder(17, 37).append(new Object()).append('a');                 
+assertEquals("hashCode() is no longer returning the same value as toHashCode() - see LANG-520", hcb.   assertEquals("hashCode() is no longer returning the same value as toHashCode() - see LANG-520", hcb.
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,20 @@
+/**
+ * <p>Constructs a new <code>LongRange</code> using the specified
+ * number as both the minimum and maximum in this range.</p>
+ *
+ * @param number  the number to use for this range, must not
+ *  be <code>null</code>
+ * @throws IllegalArgumentException if the number is <code>null</code>
+ */
+public LongRange(Number number) {
+    super();
+    if (number == null) {
+        throw new IllegalArgumentException("The number must not be null");
+    }
+    this.min = number.longValue();
+    this.max = number.longValue();
+    if (number instanceof Long) {
+        this.minObject = (Long) number;
+        this.maxObject = (Long) number;
+    }
+}

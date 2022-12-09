@@ -1,0 +1,25 @@
+/**
+ * <p>Strips whitespace from the start and end of a String  returning
+ * an empty String if <code>null</code> input.</p>
+ *
+ * <p>This is similar to {@link #trimToEmpty(String)} but removes whitespace.
+ * Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+ *
+ * <pre>
+ * StringUtils.stripToEmpty(null)     = ""
+ * StringUtils.stripToEmpty("")       = ""
+ * StringUtils.stripToEmpty("   ")    = ""
+ * StringUtils.stripToEmpty("abc")    = "abc"
+ * StringUtils.stripToEmpty("  abc")  = "abc"
+ * StringUtils.stripToEmpty("abc  ")  = "abc"
+ * StringUtils.stripToEmpty(" abc ")  = "abc"
+ * StringUtils.stripToEmpty(" ab c ") = "ab c"
+ * </pre>
+ *
+ * @param str  the String to be stripped, may be null
+ * @return the trimmed String, or an empty String if <code>null</code> input
+ * @since 2.0
+ */
+public static String stripToEmpty(String str) {
+    return str == null ? EMPTY : strip(str, null);
+}

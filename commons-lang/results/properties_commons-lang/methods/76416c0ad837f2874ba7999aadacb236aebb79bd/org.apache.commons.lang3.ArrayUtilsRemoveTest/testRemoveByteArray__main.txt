@@ -1,0 +1,31 @@
+@Test
+public void testRemoveByteArray() {
+    byte[] array;
+    array = ArrayUtils.remove(new byte[] { 1 }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));
+    assertEquals(Byte.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new byte[] { 1, 2 }, 0);
+    assertTrue(Arrays.equals(new byte[] { 2 }, array));
+    assertEquals(Byte.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new byte[] { 1, 2 }, 1);
+    assertTrue(Arrays.equals(new byte[] { 1 }, array));
+    assertEquals(Byte.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new byte[] { 1, 2, 1 }, 1);
+    assertTrue(Arrays.equals(new byte[] { 1, 1 }, array));
+    assertEquals(Byte.TYPE, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new byte[] { 1, 2 }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new byte[] { 1, 2 }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((byte[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

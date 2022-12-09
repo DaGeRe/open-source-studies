@@ -1,0 +1,8 @@
+public void testRemoveNullListener() {
+    EventListenerSupport<ActionListener> listenerSupport = EventListenerSupport.create(ActionListener.class);
+    try {
+        listenerSupport.removeListener(null);
+        fail("Should not be able to remove a null listener.");
+    } catch (NullPointerException e) {
+    }
+}

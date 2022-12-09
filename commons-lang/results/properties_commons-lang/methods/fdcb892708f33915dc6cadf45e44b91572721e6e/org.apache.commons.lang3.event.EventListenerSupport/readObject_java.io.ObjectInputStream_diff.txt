@@ -1,0 +1,14 @@
+/**
+ * Deserialize.
+ * @param objectInputStream
+ * @throws IOException
+ * @throws ClassNotFoundException
+ */
+private void readObject(ObjectInputStream objectInputStream) throws IOException, ClassNotFoundException {
+    @SuppressWarnings("unchecked")
+    L[] listeners = (L[]) objectInputStream.readObject();
+    this.listeners = new CopyOnWriteArrayList<L>(listeners);
+    @SuppressWarnings("unchecked")
+    Class<L> listenerInterface = (Class<L>) listeners.getClass().getComponentType();
+    initializeTransientFields(listenerInterface, Thread.currentThread().getContextClassLoader());
+}

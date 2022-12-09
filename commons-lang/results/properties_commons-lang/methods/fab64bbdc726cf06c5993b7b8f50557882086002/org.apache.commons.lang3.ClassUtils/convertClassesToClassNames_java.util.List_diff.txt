@@ -1,0 +1,26 @@
+/**
+ * <p>Given a {@code List} of {@code Class} objects, this method converts
+ * them into class names.</p>
+ *
+ * <p>A new {@code List} is returned. {@code null} objects will be copied into
+ * the returned list as {@code null}.</p>
+ *
+ * @param classes  the classes to change
+ * @return a {@code List} of class names corresponding to the Class objects,
+ *  {@code null} if null input
+ * @throws ClassCastException if {@code classes} contains a non-{@code Class} entry
+ */
+public static List<String> convertClassesToClassNames(List<Class<?>> classes) {
+    if (classes == null) {
+        return null;
+    }
+    List<String> classNames = new ArrayList<String>(classes.size());
+    for (Class<?> cls : classes) {
+        if (cls == null) {
+            classNames.add(null);
+        } else {
+            classNames.add(cls.getName());
+        }
+    }
+    return classNames;
+}

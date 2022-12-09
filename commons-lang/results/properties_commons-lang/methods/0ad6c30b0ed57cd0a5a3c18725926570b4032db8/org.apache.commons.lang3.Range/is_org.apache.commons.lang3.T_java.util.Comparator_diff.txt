@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new {@code Range} using the specified                                        | * &lt;p&gt;Obtains a range using the specified element as both the minimum                          
+* element as both the minimum and maximum in this range.&lt;/p&gt;                                   | * and maximum in this range.&lt;/p&gt;                                                              
+* &lt;p&gt;The range uses the passed in {@code Comparator} to                                        |                                                                                                     
+* determine where values lie in the range.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the type of this {@code Range}                                                    | * &lt;p&gt;The range uses the specified {@code Comparator} to determine where                       
+                                                                                                     | * values lie in the range.&lt;/p&gt;                                                                
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param &lt;T&gt; the type of the elements in this range                                           
+* @param element  the value to use for this range, must not be {@code null}                            * @param element  the value to use for this range, must not be {@code null}                         
+* @param c comparator to be used                                                                     | * @param comparator  the comparator to be used, null for natural ordering                           
+* @return the new range object                                                                       | * @return the range object, not null                                                                
+* @throws IllegalArgumentException if the value is {@code null}                                      | * @throws IllegalArgumentException if the element is null                                           
+                                                                                                     | * @throws ClassCastException if using natural ordering and the elements are not {@code Comparable}  
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; Range&lt;T&gt; is(T element, Comparator&lt;T&gt; c) {                        | public static &lt;T&gt; Range&lt;T&gt; is(T element, Comparator&lt;T&gt; comparator) {              
+return new Range&lt;T&gt;(element, element, c);                                                      | return between(element, element, comparator);                                                       
+}                                                                                                      }                                                                                                   

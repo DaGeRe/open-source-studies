@@ -1,0 +1,17 @@
+// ----------------------------------------------------------------------------
+/**
+ * <p>Append to the <code>toString</code> the class name.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param object  the <code>Object</code> whose name to output
+ */
+protected void appendClassName(StringBuffer buffer, Object object) {
+    if (useClassName && object != null) {
+        register(object);
+        if (useShortClassName) {
+            buffer.append(getShortClassName(object.getClass()));
+        } else {
+            buffer.append(object.getClass().getName());
+        }
+    }
+}

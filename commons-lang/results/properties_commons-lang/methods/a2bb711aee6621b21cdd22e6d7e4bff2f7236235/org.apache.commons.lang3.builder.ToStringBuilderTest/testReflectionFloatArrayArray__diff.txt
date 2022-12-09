@@ -1,0 +1,9 @@
+// Reflection Array Array tests                                                                        // Reflection Array Array tests                                                                     
+public void testReflectionFloatArrayArray() {                                                          public void testReflectionFloatArrayArray() {                                                       
+float[][] array = new float[][] { { 1.0f, 2.29686f }, null, { Float.NaN } };                           float[][] array = new float[][] { { 1.0f, 2.29686f }, null, { Float.NaN } };                        
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{{1.0,2.29686},&lt;null&gt;,{NaN}}]", ToStringBuilder.reflectionToString(ar   assertEquals(baseStr + "[{{1.0,2.29686},&lt;null&gt;,{NaN}}]", ToStringBuilder.reflectionToString(ar
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

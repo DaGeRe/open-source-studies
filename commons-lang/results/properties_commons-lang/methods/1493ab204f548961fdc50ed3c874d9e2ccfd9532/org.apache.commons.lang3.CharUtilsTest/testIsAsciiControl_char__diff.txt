@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------                           | @Test                                                                                               
+public void testIsAsciiControl_char() {                                                                public void testIsAsciiControl_char() {                                                             
+assertEquals(false, CharUtils.isAsciiControl('a'));                                                    assertEquals(false, CharUtils.isAsciiControl('a'));                                                 
+assertEquals(false, CharUtils.isAsciiControl('A'));                                                    assertEquals(false, CharUtils.isAsciiControl('A'));                                                 
+assertEquals(false, CharUtils.isAsciiControl('3'));                                                    assertEquals(false, CharUtils.isAsciiControl('3'));                                                 
+assertEquals(false, CharUtils.isAsciiControl('-'));                                                    assertEquals(false, CharUtils.isAsciiControl('-'));                                                 
+assertEquals(true, CharUtils.isAsciiControl('\n'));                                                    assertEquals(true, CharUtils.isAsciiControl('\n'));                                                 
+assertEquals(false, CharUtils.isAsciiControl(CHAR_COPY));                                              assertEquals(false, CharUtils.isAsciiControl(CHAR_COPY));                                           
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+if (i &lt; 32 || i == 127) {                                                                           if (i &lt; 32 || i == 127) {                                                                        
+assertEquals(true, CharUtils.isAsciiControl((char) i));                                                assertEquals(true, CharUtils.isAsciiControl((char) i));                                             
+} else {                                                                                               } else {                                                                                            
+assertEquals(false, CharUtils.isAsciiControl((char) i));                                               assertEquals(false, CharUtils.isAsciiControl((char) i));                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

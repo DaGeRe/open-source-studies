@@ -1,0 +1,15 @@
+public void testSubstring_StringIntInt() {
+    assertEquals(null, StringUtils.substring(null, 0, 0));
+    assertEquals(null, StringUtils.substring(null, 1, 2));
+    assertEquals("", StringUtils.substring("", 0, 0));
+    assertEquals("", StringUtils.substring("", 1, 2));
+    assertEquals("", StringUtils.substring("", -2, -1));
+    assertEquals("", StringUtils.substring(SENTENCE, 8, 6));
+    assertEquals(FOO, StringUtils.substring(SENTENCE, 0, 3));
+    assertEquals("o", StringUtils.substring(SENTENCE, -9, 3));
+    assertEquals(FOO, StringUtils.substring(SENTENCE, 0, -8));
+    assertEquals("o", StringUtils.substring(SENTENCE, -9, -8));
+    assertEquals(SENTENCE, StringUtils.substring(SENTENCE, 0, 80));
+    assertEquals("", StringUtils.substring(SENTENCE, 2, 2));
+    assertEquals("b", StringUtils.substring("abc", -2, -1));
+}

@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a formatter instance using the specified pattern in the                                * &lt;p&gt;Gets a formatter instance using the specified pattern in the                             
+* default locale.&lt;/p&gt;                                                                            * default locale.&lt;/p&gt;                                                                         
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible                                        * @param pattern  {@link java.text.SimpleDateFormat} compatible                                     
+*  pattern                                                                                             *  pattern                                                                                          
+* @return a pattern based date/time formatter                                                          * @return a pattern based date/time formatter                                                       
+* @throws IllegalArgumentException if pattern is invalid                                               * @throws IllegalArgumentException if pattern is invalid                                            
+*/                                                                                                     */                                                                                                  
+public static FastDateFormat getInstance(String pattern) {                                             public static FastDateFormat getInstance(String pattern) {                                          
+return getInstance(pattern, null, null);                                                             | return cache.getInstance(pattern, null, null);                                                      
+}                                                                                                      }                                                                                                   

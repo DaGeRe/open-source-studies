@@ -1,0 +1,21 @@
+/**
+ * test the setValue() method
+ */
+public void testSetValue() {
+    for (int j = 0; j < 128; j++) {
+        assertEquals(bf_multi.getValue(bf_multi.setValue(0, j)), j);
+        assertEquals(bf_multi.setValue(0, j), j << 7);
+    }
+    for (int j = 0; j < 128; j++) {
+        assertEquals(bf_zero.getValue(bf_zero.setValue(0, j)), 0);
+        assertEquals(bf_zero.setValue(0, j), 0);
+    }
+    // verify that excess bits are stripped off
+    assertEquals(bf_multi.setValue(0x3f80, 128), 0);
+    for (int j = 0; j < 2; j++) {
+        assertEquals(bf_single.getValue(bf_single.setValue(0, j)), j);
+        assertEquals(bf_single.setValue(0, j), j << 14);
+    }
+    // verify that excess bits are stripped off
+    assertEquals(bf_single.setValue(0x4000, 2), 0);
+}

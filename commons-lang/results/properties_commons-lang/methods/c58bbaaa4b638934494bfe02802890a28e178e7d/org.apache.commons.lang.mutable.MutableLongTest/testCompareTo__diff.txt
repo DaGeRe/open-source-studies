@@ -1,0 +1,21 @@
+public void testCompareTo() {                                                                          public void testCompareTo() {                                                                       
+final MutableLong mutNum = new MutableLong(0);                                                         final MutableLong mutNum = new MutableLong(0);                                                      
+assertEquals(0, mutNum.compareTo(new MutableLong(0)));                                                 assertEquals(0, mutNum.compareTo(new MutableLong(0)));                                              
+assertEquals(+1, mutNum.compareTo(new MutableLong(-1)));                                               assertEquals(+1, mutNum.compareTo(new MutableLong(-1)));                                            
+assertEquals(-1, mutNum.compareTo(new MutableLong(1)));                                                assertEquals(-1, mutNum.compareTo(new MutableLong(1)));                                             
+try {                                                                                                  try {                                                                                               
+mutNum.compareTo(null);                                                                                mutNum.compareTo(null);                                                                             
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+mutNum.compareTo(new Long(0));                                                                       |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (ClassCastException ex) {                                                                    |                                                                                                     
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+mutNum.compareTo("0");                                                                               |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (ClassCastException ex) {                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

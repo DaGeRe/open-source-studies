@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNoNullElementsArray2() {                                                               public void testNoNullElementsArray2() {                                                            
+String[] array = new String[] { "a", "b" };                                                            String[] array = new String[] { "a", "b" };                                                         
+Validate.noNullElements(array, "MSG");                                                                 Validate.noNullElements(array, "MSG");                                                              
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements((Object[]) null, "MSG");                                                       Validate.noNullElements((Object[]) null, "MSG");                                                    
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException ex) {                                                              | } catch (NullPointerException ex) {                                                                 
+assertEquals("The validated object is null", ex.getMessage());                                         assertEquals("The validated object is null", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+array[1] = null;                                                                                       array[1] = null;                                                                                    
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements(array, "MSG");                                                                 Validate.noNullElements(array, "MSG");                                                              
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+array = new String[] { "a", "b" };                                                                     array = new String[] { "a", "b" };                                                                  
+String[] test = Validate.noNullElements(array, "Message");                                             String[] test = Validate.noNullElements(array, "Message");                                          
+assertSame(array, test);                                                                               assertSame(array, test);                                                                            
+}                                                                                                      }                                                                                                   

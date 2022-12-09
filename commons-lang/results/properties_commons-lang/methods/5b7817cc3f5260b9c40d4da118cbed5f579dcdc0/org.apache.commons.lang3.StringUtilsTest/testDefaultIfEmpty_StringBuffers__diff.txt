@@ -1,0 +1,8 @@
+public void testDefaultIfEmpty_StringBuffers() {                                                       public void testDefaultIfEmpty_StringBuffers() {                                                    
+assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuffer(""), new StringBuffer("NULL")).toSt   assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuffer(""), new StringBuffer("NULL")).toSt
+assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuffer("abc"), new StringBuffer("NULL")).to   assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuffer("abc"), new StringBuffer("NULL")).to
+assertNull(StringUtils.defaultIfEmpty(new StringBuffer(""), null));                                    assertNull(StringUtils.defaultIfEmpty(new StringBuffer(""), null));                                 
+                                                                                                     | // Tests compatibility for the API return type                                                      
+                                                                                                     | StringBuffer s = StringUtils.defaultIfEmpty(new StringBuffer("abc"), new StringBuffer("NULL"));     
+                                                                                                     | assertEquals("abc", s.toString());                                                                  
+}                                                                                                      }                                                                                                   

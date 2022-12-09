@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testIndexOfBoolean() {
+    boolean[] array = null;
+    assertEquals(-1, ArrayUtils.indexOf(array, true));
+    array = new boolean[0];
+    assertEquals(-1, ArrayUtils.indexOf(array, true));
+    array = new boolean[] { true, false, true };
+    assertEquals(0, ArrayUtils.indexOf(array, true));
+    assertEquals(1, ArrayUtils.indexOf(array, false));
+    array = new boolean[] { true, true };
+    assertEquals(-1, ArrayUtils.indexOf(array, false));
+}

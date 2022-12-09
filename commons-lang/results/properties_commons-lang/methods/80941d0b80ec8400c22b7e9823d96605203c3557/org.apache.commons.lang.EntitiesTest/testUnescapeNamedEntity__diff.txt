@@ -1,0 +1,7 @@
+public void testUnescapeNamedEntity() throws Exception {
+    assertEquals("\u00A1", entities.unescape("&foo;"));
+    assertEquals("x\u00A1", entities.unescape("x&foo;"));
+    assertEquals("\u00A1x", entities.unescape("&foo;x"));
+    assertEquals("x\u00A1x", entities.unescape("x&foo;x"));
+    assertEquals("\u00A1\u00A2", entities.unescape("&foo;&bar;"));
+}

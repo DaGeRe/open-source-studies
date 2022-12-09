@@ -1,0 +1,17 @@
+/**
+ * Replaces a portion of the string builder with another string.
+ * The length of the inserted string does not have to match the removed length.
+ *
+ * @param startIndex  the start index, inclusive, must be valid
+ * @param endIndex  the end index, exclusive, must be valid except
+ *  that if too large it is treated as end of string
+ * @param replaceStr  the string to replace with, null means delete range
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+public StrBuilder replace(int startIndex, int endIndex, String replaceStr) {
+    endIndex = validateRange(startIndex, endIndex);
+    int insertLen = (replaceStr == null ? 0 : replaceStr.length());
+    replaceImpl(startIndex, endIndex, endIndex - startIndex, replaceStr, insertLen);
+    return this;
+}

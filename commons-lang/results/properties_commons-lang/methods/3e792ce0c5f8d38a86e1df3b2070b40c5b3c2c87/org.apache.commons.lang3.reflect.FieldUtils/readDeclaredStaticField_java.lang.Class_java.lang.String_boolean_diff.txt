@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Gets a static Field value by name. Only the specified class will                                     * Gets a static Field value by name. Only the specified class will                                  
+* be considered.                                                                                       * be considered.                                                                                    
+*                                                                                                      *                                                                                                   
+* @param cls  the class to reflect, must not be null                                                   * @param cls  the class to reflect, must not be null                                                
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only             *  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only          
+*  match public fields.                                                                                *  match public fields.                                                                             
+* @return the Field object                                                                             * @return the Field object                                                                          
+* @throws IllegalArgumentException if the class or field name is null                                | * @throws IllegalArgumentException if the class is null, the field name is null or if the field coul
+* @throws IllegalAccessException if the field is not made accessible                                   * @throws IllegalAccessException if the field is not made accessible                                
+*/                                                                                                     */                                                                                                  
+public static Object readDeclaredStaticField(Class&lt;?&gt; cls, String fieldName, boolean forceAcce   public static Object readDeclaredStaticField(Class&lt;?&gt; cls, String fieldName, boolean forceAcce
+Field field = getDeclaredField(cls, fieldName, forceAccess);                                           Field field = getDeclaredField(cls, fieldName, forceAccess);                                        
+if (field == null) {                                                                                   if (field == null) {                                                                                
+throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName   throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName
+}                                                                                                      }                                                                                                   
+// already forced access above, don't repeat it here:                                                  // already forced access above, don't repeat it here:                                               
+return readStaticField(field, false);                                                                  return readStaticField(field, false);                                                               
+}                                                                                                      }                                                                                                   

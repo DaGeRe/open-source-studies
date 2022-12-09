@@ -1,0 +1,16 @@
+/**
+ * Tests createIfAbsent() if the map does not contain the key in question.
+ */
+@Test
+public void testCreateIfAbsentKeyNotPresent() throws ConcurrentException {
+    @SuppressWarnings("unchecked")
+    ConcurrentInitializer<Integer> init = EasyMock.createMock(ConcurrentInitializer.class);
+    final String key = "testKey";
+    final Integer value = 42;
+    EasyMock.expect(init.get()).andReturn(value);
+    EasyMock.replay(init);
+    ConcurrentMap<String, Integer> map = new ConcurrentHashMap<String, Integer>();
+    assertEquals("Wrong result", value, ConcurrentUtils.createIfAbsent(map, key, init));
+    assertEquals("Wrong value in map", value, map.get(key));
+    EasyMock.verify(init);
+}

@@ -1,0 +1,19 @@
+public void testNestableDelegateGetThrowableCount() {
+    Nestable n = null;
+    NestableDelegate d = null;
+    n = new NestableDelegateTester1();
+    d = new NestableDelegate(n);
+    doNestableDelegateGetThrowableCount(d, 1);
+    n = new NestableDelegateTester1("level 1");
+    d = new NestableDelegate(n);
+    doNestableDelegateGetThrowableCount(d, 1);
+    n = new NestableDelegateTester1(new Exception());
+    d = new NestableDelegate(n);
+    doNestableDelegateGetThrowableCount(d, 2);
+    n = new NestableDelegateTester1(new Exception("level 2"));
+    d = new NestableDelegate(n);
+    doNestableDelegateGetThrowableCount(d, 2);
+    n = new NestableDelegateTester1("level 1", new NestableDelegateTester2("level 2", new NestableDelegateTester1(new NestableDelegateTester2("level 4", new Exception("level 5")))));
+    d = new NestableDelegate(n);
+    doNestableDelegateGetThrowableCount(d, 5);
+}

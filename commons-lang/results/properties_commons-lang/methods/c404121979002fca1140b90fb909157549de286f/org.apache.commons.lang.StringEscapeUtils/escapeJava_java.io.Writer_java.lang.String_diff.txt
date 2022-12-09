@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using Java String rules to      * &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using Java String rules to   
+* a &lt;code&gt;Writer&lt;/code&gt;.&lt;/p&gt;                                                         * a &lt;code&gt;Writer&lt;/code&gt;.&lt;/p&gt;                                                      
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; string input has no effect.&lt;/p&gt;                       * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; string input has no effect.&lt;/p&gt;                    
+*                                                                                                      *                                                                                                   
+* @see #escapeJava(java.lang.String)                                                                   * @see #escapeJava(java.lang.String)                                                                
+* @param out  Writer to write escaped string into                                                      * @param out  Writer to write escaped string into                                                   
+* @param str  String to escape values in, may be null                                                  * @param str  String to escape values in, may be null                                               
+* @throws IllegalArgumentException if the Writer is &lt;code&gt;null&lt;/code&gt;                      * @throws IllegalArgumentException if the Writer is &lt;code&gt;null&lt;/code&gt;                   
+* @throws IOException if error occurs on underlying Writer                                             * @throws IOException if error occurs on underlying Writer                                          
+*/                                                                                                     */                                                                                                  
+public static void escapeJava(Writer out, String str) throws IOException {                             public static void escapeJava(Writer out, String str) throws IOException {                          
+escapeJavaStyleString(out, str, false, false);                                                       | EscapeUtils.ESCAPE_JAVA.translate(str, out);                                                        
+}                                                                                                      }                                                                                                   

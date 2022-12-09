@@ -1,0 +1,13 @@
+@Test
+public void testToIntValue_Character() {
+    assertEquals(0, CharUtils.toIntValue(new Character('0')));
+    assertEquals(3, CharUtils.toIntValue(new Character('3')));
+    try {
+        CharUtils.toIntValue(null);
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        CharUtils.toIntValue(CHARACTER_A);
+    } catch (IllegalArgumentException ex) {
+    }
+}

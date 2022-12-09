@@ -1,0 +1,15 @@
+public void testEquals() {
+    final MutableLong mutNumA = new MutableLong(0);
+    final MutableLong mutNumB = new MutableLong(0);
+    final MutableLong mutNumC = new MutableLong(1);
+    assertEquals(true, mutNumA.equals(mutNumA));
+    assertEquals(true, mutNumA.equals(mutNumB));
+    assertEquals(true, mutNumB.equals(mutNumA));
+    assertEquals(true, mutNumB.equals(mutNumB));
+    assertEquals(false, mutNumA.equals(mutNumC));
+    assertEquals(false, mutNumB.equals(mutNumC));
+    assertEquals(true, mutNumC.equals(mutNumC));
+    assertEquals(false, mutNumA.equals(null));
+    assertEquals(false, mutNumA.equals(new Long(0)));
+    assertEquals(false, mutNumA.equals("0"));
+}

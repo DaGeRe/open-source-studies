@@ -1,0 +1,16 @@
+public void testIndexOf_char_int() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(0, sb.indexOf('a', -1));
+    assertEquals(0, sb.indexOf('a', 0));
+    assertEquals(2, sb.indexOf('a', 1));
+    assertEquals(-1, sb.indexOf('a', 4));
+    assertEquals(-1, sb.indexOf('a', 5));
+    // should work like String#indexOf
+    assertEquals("abab".indexOf('a', 1), sb.indexOf('a', 1));
+    assertEquals(3, sb.indexOf('b', 2));
+    assertEquals("abab".indexOf('b', 2), sb.indexOf('b', 2));
+    assertEquals(-1, sb.indexOf('z', 2));
+    sb = new StrBuilder("xyzabc");
+    assertEquals(2, sb.indexOf('z', 0));
+    assertEquals(-1, sb.indexOf('z', 3));
+}

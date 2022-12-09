@@ -1,0 +1,20 @@
+/**
+ * Generate a hashcode for the given annotation; dynamically created
+ * {@link Annotation} instances are always proxy objects which cannot be
+ * depended upon to know how to implement {@link Annotation#hashCode()} per
+ * spec.
+ *
+ * @param a the Annotation for a hashcode calculation is desired
+ * @return the calculated hashcode
+ * @throws InvocationTargetException
+ * @throws IllegalAccessException
+ * @throws IllegalArgumentException
+ */
+public static int hashCode(Annotation a) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    int result = 0;
+    Class<? extends Annotation> type = a.annotationType();
+    for (Method m : type.getDeclaredMethods()) {
+        result += hashMember(m.getName(), m.invoke(a));
+    }
+    return result;
+}

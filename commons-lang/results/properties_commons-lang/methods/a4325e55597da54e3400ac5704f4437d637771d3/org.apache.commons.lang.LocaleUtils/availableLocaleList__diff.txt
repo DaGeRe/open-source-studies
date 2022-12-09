@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Obtains an unmodifiable list of installed locales.&lt;/p&gt;                                * &lt;p&gt;Obtains an unmodifiable list of installed locales.&lt;/p&gt;                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method is a wrapper around {@link Locale#getAvailableLocales()}.                       * &lt;p&gt;This method is a wrapper around {@link Locale#getAvailableLocales()}.                    
+* It is more efficient, as the JDK method must create a new array each                                 * It is more efficient, as the JDK method must create a new array each                              
+* time it is called.&lt;/p&gt;                                                                         * time it is called.&lt;/p&gt;                                                                      
+*                                                                                                      *                                                                                                   
+* @return the unmodifiable list of available locales                                                   * @return the unmodifiable list of available locales                                                
+*/                                                                                                     */                                                                                                  
+public static List&lt;Locale&gt; availableLocaleList() {                                               public static List&lt;Locale&gt; availableLocaleList() {                                            
+                                                                                                     | if (cAvailableLocaleList == null) {                                                                 
+                                                                                                     | initAvailableLocaleList();                                                                          
+                                                                                                     | }                                                                                                   
+return cAvailableLocaleList;                                                                           return cAvailableLocaleList;                                                                        
+}                                                                                                      }                                                                                                   

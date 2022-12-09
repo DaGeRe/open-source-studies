@@ -1,0 +1,14 @@
+/**
+ * <p>Gets a fraction that is the negative (-fraction) of this one.</p>
+ *
+ * <p>The returned fraction is not reduced.</p>
+ *
+ * @return a new fraction instance with the opposite signed numerator
+ */
+public Fraction negate() {
+    // the positive range is one smaller than the negative range of an int.
+    if (numerator == Integer.MIN_VALUE) {
+        throw new ArithmeticException("overflow: too large to negate");
+    }
+    return new Fraction(-numerator, denominator);
+}

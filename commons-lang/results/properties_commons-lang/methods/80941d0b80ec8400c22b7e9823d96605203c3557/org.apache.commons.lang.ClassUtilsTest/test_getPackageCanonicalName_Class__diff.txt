@@ -1,0 +1,7 @@
+public void test_getPackageCanonicalName_Class() {
+    assertEquals("org.apache.commons.lang", ClassUtils.getPackageCanonicalName(ClassUtils.class));
+    assertEquals("org.apache.commons.lang", ClassUtils.getPackageCanonicalName(ClassUtils[].class));
+    assertEquals("org.apache.commons.lang", ClassUtils.getPackageCanonicalName(ClassUtils[][].class));
+    assertEquals("", ClassUtils.getPackageCanonicalName(int[].class));
+    assertEquals("", ClassUtils.getPackageCanonicalName(int[][].class));
+}

@@ -1,0 +1,18 @@
+public void testEquals() {                                                                             public void testEquals() {                                                                          
+final MutableObject mutNumA = new MutableObject("ALPHA");                                            | final MutableObject&lt;String&gt; mutNumA = new MutableObject&lt;String&gt;("ALPHA");               
+final MutableObject mutNumB = new MutableObject("ALPHA");                                            | final MutableObject&lt;String&gt; mutNumB = new MutableObject&lt;String&gt;("ALPHA");               
+final MutableObject mutNumC = new MutableObject("BETA");                                             | final MutableObject&lt;String&gt; mutNumC = new MutableObject&lt;String&gt;("BETA");                
+final MutableObject mutNumD = new MutableObject(null);                                               | final MutableObject&lt;String&gt; mutNumD = new MutableObject&lt;String&gt;(null);                  
+assertEquals(true, mutNumA.equals(mutNumA));                                                           assertEquals(true, mutNumA.equals(mutNumA));                                                        
+assertEquals(true, mutNumA.equals(mutNumB));                                                           assertEquals(true, mutNumA.equals(mutNumB));                                                        
+assertEquals(true, mutNumB.equals(mutNumA));                                                           assertEquals(true, mutNumB.equals(mutNumA));                                                        
+assertEquals(true, mutNumB.equals(mutNumB));                                                           assertEquals(true, mutNumB.equals(mutNumB));                                                        
+assertEquals(false, mutNumA.equals(mutNumC));                                                          assertEquals(false, mutNumA.equals(mutNumC));                                                       
+assertEquals(false, mutNumB.equals(mutNumC));                                                          assertEquals(false, mutNumB.equals(mutNumC));                                                       
+assertEquals(true, mutNumC.equals(mutNumC));                                                           assertEquals(true, mutNumC.equals(mutNumC));                                                        
+assertEquals(false, mutNumA.equals(mutNumD));                                                          assertEquals(false, mutNumA.equals(mutNumD));                                                       
+assertEquals(true, mutNumD.equals(mutNumD));                                                           assertEquals(true, mutNumD.equals(mutNumD));                                                        
+assertEquals(false, mutNumA.equals(null));                                                             assertEquals(false, mutNumA.equals(null));                                                          
+assertEquals(false, mutNumA.equals(new Object()));                                                     assertEquals(false, mutNumA.equals(new Object()));                                                  
+assertEquals(false, mutNumA.equals("0"));                                                              assertEquals(false, mutNumA.equals("0"));                                                           
+}                                                                                                      }                                                                                                   

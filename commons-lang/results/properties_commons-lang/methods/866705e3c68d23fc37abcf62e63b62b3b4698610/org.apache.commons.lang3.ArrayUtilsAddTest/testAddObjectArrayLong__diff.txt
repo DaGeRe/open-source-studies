@@ -1,0 +1,17 @@
+                                                                                                     | @Test                                                                                               
+public void testAddObjectArrayLong() {                                                                 public void testAddObjectArrayLong() {                                                              
+long[] newArray;                                                                                       long[] newArray;                                                                                    
+newArray = ArrayUtils.add((long[]) null, 0);                                                           newArray = ArrayUtils.add((long[]) null, 0);                                                        
+assertTrue(Arrays.equals(new long[] { 0 }, newArray));                                                 assertTrue(Arrays.equals(new long[] { 0 }, newArray));                                              
+assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                       assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                    
+newArray = ArrayUtils.add((long[]) null, 1);                                                           newArray = ArrayUtils.add((long[]) null, 1);                                                        
+assertTrue(Arrays.equals(new long[] { 1 }, newArray));                                                 assertTrue(Arrays.equals(new long[] { 1 }, newArray));                                              
+assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                       assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                    
+long[] array1 = new long[] { 1, 2, 3 };                                                                long[] array1 = new long[] { 1, 2, 3 };                                                             
+newArray = ArrayUtils.add(array1, 0);                                                                  newArray = ArrayUtils.add(array1, 0);                                                               
+assertTrue(Arrays.equals(new long[] { 1, 2, 3, 0 }, newArray));                                        assertTrue(Arrays.equals(new long[] { 1, 2, 3, 0 }, newArray));                                     
+assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                       assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                    
+newArray = ArrayUtils.add(array1, 4);                                                                  newArray = ArrayUtils.add(array1, 4);                                                               
+assertTrue(Arrays.equals(new long[] { 1, 2, 3, 4 }, newArray));                                        assertTrue(Arrays.equals(new long[] { 1, 2, 3, 4 }, newArray));                                     
+assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                       assertEquals(Long.TYPE, newArray.getClass().getComponentType());                                    
+}                                                                                                      }                                                                                                   

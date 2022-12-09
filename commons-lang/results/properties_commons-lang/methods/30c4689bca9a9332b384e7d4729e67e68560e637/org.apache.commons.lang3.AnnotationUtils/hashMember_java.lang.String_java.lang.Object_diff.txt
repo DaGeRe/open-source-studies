@@ -1,0 +1,11 @@
+// besides modularity, this has the advantage of autoboxing primitives:
+private static int hashMember(String name, Object value) throws IllegalAccessException, InvocationTargetException {
+    int part1 = name.hashCode() * 127;
+    if (value.getClass().isArray()) {
+        return part1 ^ arrayMemberHash(value.getClass().getComponentType(), value);
+    }
+    if (value instanceof Annotation) {
+        return part1 ^ hashCode((Annotation) value);
+    }
+    return part1 ^ value.hashCode();
+}

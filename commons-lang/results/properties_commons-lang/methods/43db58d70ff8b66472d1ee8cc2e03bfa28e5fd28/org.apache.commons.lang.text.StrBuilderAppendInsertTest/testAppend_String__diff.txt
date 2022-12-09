@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testAppend_String() {
+    StrBuilder sb = new StrBuilder();
+    sb.setNullText("NULL").append((String) null);
+    assertEquals("NULL", sb.toString());
+    sb = new StrBuilder();
+    sb.append("foo");
+    assertEquals("foo", sb.toString());
+    sb.append("");
+    assertEquals("foo", sb.toString());
+    sb.append("bar");
+    assertEquals("foobar", sb.toString());
+}

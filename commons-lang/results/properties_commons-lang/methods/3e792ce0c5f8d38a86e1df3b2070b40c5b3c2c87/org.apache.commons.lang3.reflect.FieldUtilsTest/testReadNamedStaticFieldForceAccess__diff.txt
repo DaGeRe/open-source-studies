@@ -1,0 +1,30 @@
+public void testReadNamedStaticFieldForceAccess() throws Exception {                                   public void testReadNamedStaticFieldForceAccess() throws Exception {                                
+assertEquals(Foo.VALUE, FieldUtils.readStaticField(Foo.class, "VALUE", true));                         assertEquals(Foo.VALUE, FieldUtils.readStaticField(Foo.class, "VALUE", true));                      
+assertEquals(Foo.VALUE, FieldUtils.readStaticField(PubliclyShadowedChild.class, "VALUE", true));       assertEquals(Foo.VALUE, FieldUtils.readStaticField(PubliclyShadowedChild.class, "VALUE", true));    
+assertEquals(Foo.VALUE, FieldUtils.readStaticField(PrivatelyShadowedChild.class, "VALUE", true));      assertEquals(Foo.VALUE, FieldUtils.readStaticField(PrivatelyShadowedChild.class, "VALUE", true));   
+assertEquals("child", FieldUtils.readStaticField(PublicChild.class, "VALUE", true));                   assertEquals("child", FieldUtils.readStaticField(PublicChild.class, "VALUE", true));                
+                                                                                                     | try {                                                                                               
+                                                                                                     | FieldUtils.readStaticField(null, "none", true);                                                     
+                                                                                                     | fail("null class should cause an IllegalArgumentException");                                        
+                                                                                                     | } catch (IllegalArgumentException e) {                                                              
+                                                                                                     | // expected                                                                                         
+}                                                                                                      }                                                                                                   
+                                                                                                     | try {                                                                                               
+                                                                                                     | FieldUtils.readStaticField(Foo.class, null, true);                                                  
+                                                                                                     | fail("null field name should cause an IllegalArgumentException");                                   
+                                                                                                     | } catch (IllegalArgumentException e) {                                                              
+                                                                                                     | // expected                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | try {                                                                                               
+                                                                                                     | FieldUtils.readStaticField(Foo.class, "does_not_exist", true);                                      
+                                                                                                     | fail("a field that doesn't exist should cause an IllegalArgumentException");                        
+                                                                                                     | } catch (IllegalArgumentException e) {                                                              
+                                                                                                     | // expected                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | try {                                                                                               
+                                                                                                     | FieldUtils.readStaticField(PublicChild.class, "s", false);                                          
+                                                                                                     | fail("non-static field should cause an IllegalArgumentException");                                  
+                                                                                                     | } catch (IllegalArgumentException e) {                                                              
+                                                                                                     | // expected                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,25 @@
+/**
+ * Inspects the cause of the specified {@code ExecutionException} and
+ * creates a {@code ConcurrentException} with the checked cause if
+ * necessary. This method performs the following checks on the cause of the
+ * passed in exception:
+ * <ul>
+ * <li>If the passed in exception is <b>null</b> or the cause is
+ * <b>null</b>, this method returns <b>null</b>.</li>
+ * <li>If the cause is a runtime exception, it is directly thrown.</li>
+ * <li>If the cause is an error, it is directly thrown, too.</li>
+ * <li>In any other case the cause is a checked exception. The method then
+ * creates a {@link ConcurrentException}, initializes it with the cause, and
+ * returns it.</li>
+ * </ul>
+ *
+ * @param ex the exception to be processed
+ * @return a {@code ConcurrentException} with the checked cause
+ */
+public static ConcurrentException extractCause(ExecutionException ex) {
+    if (ex == null || ex.getCause() == null) {
+        return null;
+    }
+    throwCause(ex);
+    return new ConcurrentException(ex.getMessage(), ex.getCause());
+}

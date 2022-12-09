@@ -1,0 +1,8 @@
+public void testChopNewLine() {
+    String[][] newLineCases = { { FOO_UNCAP + "\r\n", FOO_UNCAP }, { FOO_UNCAP + "\n", FOO_UNCAP }, { FOO_UNCAP + "\r", FOO_UNCAP + "\r" }, { FOO_UNCAP, FOO_UNCAP }, { FOO_UNCAP + "\n" + FOO_UNCAP, FOO_UNCAP + "\n" + FOO_UNCAP }, { FOO_UNCAP + "\n\n", FOO_UNCAP + "\n" }, { "\n", "" }, { "", "" }, { "\r\n", "" } };
+    for (int i = 0; i < newLineCases.length; i++) {
+        String original = newLineCases[i][0];
+        String expectedResult = newLineCases[i][1];
+        assertEquals("chopNewline(String) failed", expectedResult, StringUtils.chopNewline(original));
+    }
+}

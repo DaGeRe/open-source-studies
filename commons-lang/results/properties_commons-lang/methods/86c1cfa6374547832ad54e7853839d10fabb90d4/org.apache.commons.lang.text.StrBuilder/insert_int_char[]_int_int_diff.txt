@@ -1,0 +1,30 @@
+/**
+ * Inserts part of the character array into this builder.
+ * Inserting null will use the stored null text value.
+ *
+ * @param index  the index to add at, must be valid
+ * @param chars  the char array to insert
+ * @param offset  the offset into the character array to start at, must be valid
+ * @param length  the length of the character array part to copy, must be positive
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if any index is invalid
+ */
+public StrBuilder insert(int index, char[] chars, int offset, int length) {
+    validateIndex(index);
+    if (chars == null) {
+        return insert(index, nullText);
+    }
+    if (offset < 0 || offset > chars.length) {
+        throw new StringIndexOutOfBoundsException("Invalid offset: " + offset);
+    }
+    if (length < 0 || offset + length > chars.length) {
+        throw new StringIndexOutOfBoundsException("Invalid length: " + length);
+    }
+    if (length > 0) {
+        ensureCapacity(size + length);
+        System.arraycopy(buffer, index, buffer, index + length, size - index);
+        System.arraycopy(chars, offset, buffer, index, length);
+        size += length;
+    }
+    return this;
+}

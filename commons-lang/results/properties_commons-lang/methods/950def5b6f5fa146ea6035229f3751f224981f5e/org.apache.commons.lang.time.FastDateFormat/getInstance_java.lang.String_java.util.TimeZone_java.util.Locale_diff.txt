@@ -1,0 +1,25 @@
+/**
+ * <p>Gets a formatter instance using the specified pattern, time zone
+ * and locale.</p>
+ *
+ * @param pattern  {@link java.text.SimpleDateFormat} compatible
+ *  pattern
+ * @param timeZone  optional time zone, overrides time zone of
+ *  formatted date
+ * @param locale  optional locale, overrides system locale
+ * @return a pattern based date/time formatter
+ * @throws IllegalArgumentException if pattern is invalid
+ *  or <code>null</code>
+ */
+public static synchronized FastDateFormat getInstance(String pattern, TimeZone timeZone, Locale locale) {
+    FastDateFormat emptyFormat = new FastDateFormat(pattern, timeZone, locale);
+    FastDateFormat format = (FastDateFormat) cInstanceCache.get(emptyFormat);
+    if (format == null) {
+        format = emptyFormat;
+        // convert shell format into usable one
+        format.init();
+        // this is OK!
+        cInstanceCache.put(format, format);
+    }
+    return format;
+}

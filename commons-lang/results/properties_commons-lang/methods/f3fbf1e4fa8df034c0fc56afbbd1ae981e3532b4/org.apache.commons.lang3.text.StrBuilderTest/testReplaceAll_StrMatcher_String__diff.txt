@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------
+public void testReplaceAll_StrMatcher_String() {
+    StrBuilder sb = new StrBuilder("abcbccba");
+    sb.replaceAll((StrMatcher) null, null);
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll((StrMatcher) null, "anything");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll(StrMatcher.noneMatcher(), null);
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll(StrMatcher.noneMatcher(), "anything");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll(StrMatcher.charMatcher('x'), "y");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll(StrMatcher.charMatcher('a'), "d");
+    assertEquals("dbcbccbd", sb.toString());
+    sb.replaceAll(StrMatcher.charMatcher('d'), null);
+    assertEquals("bcbccb", sb.toString());
+    sb.replaceAll(StrMatcher.stringMatcher("cb"), "-");
+    assertEquals("b-c-", sb.toString());
+    sb = new StrBuilder("abcba");
+    sb.replaceAll(StrMatcher.charMatcher('b'), "xbx");
+    assertEquals("axbxcxbxa", sb.toString());
+    sb = new StrBuilder("bb");
+    sb.replaceAll(StrMatcher.charMatcher('b'), "xbx");
+    assertEquals("xbxxbx", sb.toString());
+    sb = new StrBuilder("A1-A2A3-A4");
+    sb.replaceAll(A_NUMBER_MATCHER, "***");
+    assertEquals("***-******-***", sb.toString());
+}

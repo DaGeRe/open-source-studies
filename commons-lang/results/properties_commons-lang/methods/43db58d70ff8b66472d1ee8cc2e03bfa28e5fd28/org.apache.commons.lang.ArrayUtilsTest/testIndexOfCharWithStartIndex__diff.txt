@@ -1,0 +1,12 @@
+public void testIndexOfCharWithStartIndex() {
+    char[] array = null;
+    assertEquals(-1, ArrayUtils.indexOf(array, 'a', 2));
+    array = new char[] { 'a', 'b', 'c', 'd', 'a' };
+    assertEquals(4, ArrayUtils.indexOf(array, 'a', 2));
+    assertEquals(-1, ArrayUtils.indexOf(array, 'b', 2));
+    assertEquals(2, ArrayUtils.indexOf(array, 'c', 2));
+    assertEquals(3, ArrayUtils.indexOf(array, 'd', 2));
+    assertEquals(3, ArrayUtils.indexOf(array, 'd', -1));
+    assertEquals(-1, ArrayUtils.indexOf(array, 'e', 0));
+    assertEquals(-1, ArrayUtils.indexOf(array, 'a', 6));
+}

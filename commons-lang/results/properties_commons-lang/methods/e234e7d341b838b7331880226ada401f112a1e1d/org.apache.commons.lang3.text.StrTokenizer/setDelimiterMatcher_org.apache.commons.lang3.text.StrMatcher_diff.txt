@@ -1,0 +1,16 @@
+/**
+ * Sets the field delimiter matcher.
+ * <p>
+ * The delimitier is used to separate one token from another.
+ *
+ * @param delim  the delimiter matcher to use
+ * @return this, to enable chaining
+ */
+public StrTokenizer setDelimiterMatcher(StrMatcher delim) {
+    if (delim == null) {
+        this.delimMatcher = StrMatcher.noneMatcher();
+    } else {
+        this.delimMatcher = delim;
+    }
+    return this;
+}

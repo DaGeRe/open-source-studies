@@ -1,0 +1,13 @@
+/**
+ * Decides if the java version matches.
+ *
+ * @param versionPrefix
+ *                  the prefix for the java version
+ * @return true if matches, or false if not or can't determine
+ */
+private boolean getJavaVersionMatches(String versionPrefix) {
+    if (JAVA_VERSION_TRIMMED == null) {
+        return false;
+    }
+    return JAVA_VERSION_TRIMMED.startsWith(versionPrefix);
+}

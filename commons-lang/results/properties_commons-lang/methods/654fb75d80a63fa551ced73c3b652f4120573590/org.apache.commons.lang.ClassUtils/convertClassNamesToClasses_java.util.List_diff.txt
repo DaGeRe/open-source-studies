@@ -1,0 +1,29 @@
+// Convert list                                                                                        // Convert list                                                                                     
+// ----------------------------------------------------------------------                              // ----------------------------------------------------------------------                           
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Given a &lt;code&gt;List&lt;/code&gt; of class names, this method converts them into clas   * &lt;p&gt;Given a &lt;code&gt;List&lt;/code&gt; of class names, this method converts them into clas
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A new &lt;code&gt;List&lt;/code&gt; is returned. If the class name cannot be found, &lt;c   * &lt;p&gt;A new &lt;code&gt;List&lt;/code&gt; is returned. If the class name cannot be found, &lt;c
+* is stored in the &lt;code&gt;List&lt;/code&gt;. If the class name in the &lt;code&gt;List&lt;/code   * is stored in the &lt;code&gt;List&lt;/code&gt;. If the class name in the &lt;code&gt;List&lt;/code
+* &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; is stored in the output &lt;code&gt;L   * &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; is stored in the output &lt;code&gt;L
+*                                                                                                      *                                                                                                   
+* @param classNames  the classNames to change                                                          * @param classNames  the classNames to change                                                       
+* @return a &lt;code&gt;List&lt;/code&gt; of Class objects corresponding to the class names,           * @return a &lt;code&gt;List&lt;/code&gt; of Class objects corresponding to the class names,        
+*  &lt;code&gt;null&lt;/code&gt; if null input                                                         *  &lt;code&gt;null&lt;/code&gt; if null input                                                      
+* @throws ClassCastException if classNames contains a non String entry                                 * @throws ClassCastException if classNames contains a non String entry                              
+*/                                                                                                     */                                                                                                  
+public static List convertClassNamesToClasses(List classNames) {                                     | public static List&lt;Class&lt;?&gt;&gt; convertClassNamesToClasses(List&lt;String&gt; classNames) {
+if (classNames == null) {                                                                              if (classNames == null) {                                                                           
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+List classes = new ArrayList(classNames.size());                                                     | List&lt;Class&lt;?&gt;&gt; classes = new ArrayList&lt;Class&lt;?&gt;&gt;(classNames.size());        
+for (Iterator it = classNames.iterator(); it.hasNext(); ) {                                          | for (Iterator&lt;String&gt; it = classNames.iterator(); it.hasNext(); ) {                           
+String className = (String) it.next();                                                               | String className = it.next();                                                                       
+try {                                                                                                  try {                                                                                               
+classes.add(Class.forName(className));                                                                 classes.add(Class.forName(className));                                                              
+} catch (Exception ex) {                                                                               } catch (Exception ex) {                                                                            
+classes.add(null);                                                                                     classes.add(null);                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return classes;                                                                                        return classes;                                                                                     
+}                                                                                                      }                                                                                                   

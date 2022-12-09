@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Introspects the <code>Throwable</code> to obtain the cause.</p>
+ *
+ * <p>The method searches for methods with specific names that return a
+ * <code>Throwable</code> object. This will pick up most wrapping exceptions,
+ * including those from JDK 1.4.
+ *
+ * <p>The default list searched for are:</p>
+ * <ul>
+ *  <li><code>getCause()</code></li>
+ *  <li><code>getNextException()</code></li>
+ *  <li><code>getTargetException()</code></li>
+ *  <li><code>getException()</code></li>
+ *  <li><code>getSourceException()</code></li>
+ *  <li><code>getRootCause()</code></li>
+ *  <li><code>getCausedByException()</code></li>
+ *  <li><code>getNested()</code></li>
+ * </ul>
+ *
+ * <p>If none of the above is found, returns <code>null</code>.</p>
+ *
+ * @param throwable  the throwable to introspect for a cause, may be null
+ * @return the cause of the <code>Throwable</code>,
+ *  <code>null</code> if none found or null throwable input
+ * @since 1.0
+ * @deprecated This feature will be removed in Lang 4.0
+ */
+@Deprecated
+public static Throwable getCause(Throwable throwable) {
+    return getCause(throwable, CAUSE_METHOD_NAMES);
+}

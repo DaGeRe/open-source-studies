@@ -1,0 +1,31 @@
+/**
+ * <p>Generate a hash code for the given annotation.</p>
+ *
+ * <p>Dynamically created {@link Annotation} instances are always proxy
+ * objects which cannot be depended upon to know how to implement
+ * {@link Annotation#hashCode()} correctly.</p>
+ *
+ * @param a the Annotation for a hash code calculation is desired, not null
+ * @return the calculated hash code
+ * @throws RuntimeException if IllegalAccessException or InvocationTargetException
+ * or any other Exception is thrown during annotation access
+ * @throws IllegalStateException if an annotation method invocation returns {@code null}
+ */
+public static int hashCode(Annotation a) {
+    int result = 0;
+    Class<? extends Annotation> type = a.annotationType();
+    for (Method m : type.getDeclaredMethods()) {
+        try {
+            Object value = m.invoke(a);
+            if (value == null) {
+                throw new IllegalStateException(String.format("Annotation method %s returned null", m));
+            }
+            result += hashMember(m.getName(), value);
+        } catch (RuntimeException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    return result;
+}

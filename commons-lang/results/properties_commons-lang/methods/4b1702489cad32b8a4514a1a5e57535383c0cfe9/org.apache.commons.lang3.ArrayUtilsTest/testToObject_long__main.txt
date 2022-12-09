@@ -1,0 +1,6 @@
+public void testToObject_long() {
+    final long[] b = null;
+    assertEquals(null, ArrayUtils.toObject(b));
+    assertSame(ArrayUtils.EMPTY_LONG_OBJECT_ARRAY, ArrayUtils.toObject(new long[0]));
+    assertTrue(Arrays.equals(new Long[] { Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MAX_VALUE), Long.valueOf(9999999) }, ArrayUtils.toObject(new long[] { Long.MIN_VALUE, Long.MAX_VALUE, 9999999 })));
+}

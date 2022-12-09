@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+public void testNotEmptyString2() {
+    Validate.notEmpty("a", "MSG");
+    try {
+        Validate.notEmpty((String) null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty("", "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    String str = "Hi";
+    String testStr = Validate.notEmpty(str, "Message");
+    assertSame(str, testStr);
+}

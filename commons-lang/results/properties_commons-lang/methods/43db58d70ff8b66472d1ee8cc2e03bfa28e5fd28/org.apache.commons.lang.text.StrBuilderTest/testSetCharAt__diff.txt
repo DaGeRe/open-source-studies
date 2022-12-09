@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------
+public void testSetCharAt() {
+    StrBuilder sb = new StrBuilder();
+    try {
+        sb.setCharAt(0, 'f');
+        fail("setCharAt(0,) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    try {
+        sb.setCharAt(-1, 'f');
+        fail("setCharAt(-1,) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    sb.append("foo");
+    sb.setCharAt(0, 'b');
+    sb.setCharAt(1, 'a');
+    sb.setCharAt(2, 'r');
+    try {
+        sb.setCharAt(3, '!');
+        fail("setCharAt(3,) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    assertEquals("bar", sb.toString());
+}

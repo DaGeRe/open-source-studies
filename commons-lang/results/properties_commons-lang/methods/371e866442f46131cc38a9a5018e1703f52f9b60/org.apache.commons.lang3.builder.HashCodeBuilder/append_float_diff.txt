@@ -1,0 +1,13 @@
+/**
+ * <p>
+ * Append a <code>hashCode</code> for a <code>float</code>.
+ * </p>
+ *
+ * @param value
+ *            the float to add to the <code>hashCode</code>
+ * @return this
+ */
+public HashCodeBuilder append(float value) {
+    iTotal = iTotal * iConstant + Float.floatToIntBits(value);
+    return this;
+}

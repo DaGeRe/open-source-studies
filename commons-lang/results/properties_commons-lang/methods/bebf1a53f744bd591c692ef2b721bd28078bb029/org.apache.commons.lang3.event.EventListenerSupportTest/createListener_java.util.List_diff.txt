@@ -1,0 +1,8 @@
+private ActionListener createListener(final List&lt;ActionListener&gt; calledListeners) {            | private VetoableChangeListener createListener(final List&lt;VetoableChangeListener&gt; calledListene
+return new ActionListener() {                                                                        | return new VetoableChangeListener() {                                                               
+                                                                                                                                                                                                           
+public void actionPerformed(ActionEvent e) {                                                         | public void vetoableChange(PropertyChangeEvent e) {                                                 
+calledListeners.add(this);                                                                             calledListeners.add(this);                                                                          
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+}                                                                                                      }                                                                                                   

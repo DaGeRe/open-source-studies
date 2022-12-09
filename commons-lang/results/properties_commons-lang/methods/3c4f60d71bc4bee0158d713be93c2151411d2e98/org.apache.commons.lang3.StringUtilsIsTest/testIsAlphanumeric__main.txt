@@ -1,0 +1,13 @@
+public void testIsAlphanumeric() {
+    assertEquals(false, StringUtils.isAlphanumeric(null));
+    assertEquals(false, StringUtils.isAlphanumeric(""));
+    assertEquals(false, StringUtils.isAlphanumeric(" "));
+    assertEquals(true, StringUtils.isAlphanumeric("a"));
+    assertEquals(true, StringUtils.isAlphanumeric("A"));
+    assertEquals(true, StringUtils.isAlphanumeric("kgKgKgKgkgkGkjkjlJlOKLgHdGdHgl"));
+    assertEquals(false, StringUtils.isAlphanumeric("ham kso"));
+    assertEquals(true, StringUtils.isAlphanumeric("1"));
+    assertEquals(true, StringUtils.isAlphanumeric("hkHKHik6iUGHKJgU7tUJgKJGI87GIkug"));
+    assertEquals(false, StringUtils.isAlphanumeric("_"));
+    assertEquals(false, StringUtils.isAlphanumeric("hkHKHik*khbkuh"));
+}

@@ -1,0 +1,18 @@
+/**
+ * Tests whether exceptions are correctly handled by initializeUnchecked().
+ */
+@Test
+public void testInitializeUncheckedEx() throws ConcurrentException {
+    @SuppressWarnings("unchecked")
+    ConcurrentInitializer<Object> init = EasyMock.createMock(ConcurrentInitializer.class);
+    final Exception cause = new Exception();
+    EasyMock.expect(init.get()).andThrow(new ConcurrentException(cause));
+    EasyMock.replay(init);
+    try {
+        ConcurrentUtils.initializeUnchecked(init);
+        fail("Exception not thrown!");
+    } catch (ConcurrentRuntimeException crex) {
+        assertSame("Wrong cause", cause, crex.getCause());
+    }
+    EasyMock.verify(init);
+}

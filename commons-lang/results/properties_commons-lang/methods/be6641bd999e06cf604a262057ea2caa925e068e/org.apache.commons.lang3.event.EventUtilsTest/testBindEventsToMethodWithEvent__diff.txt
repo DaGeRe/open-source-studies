@@ -1,0 +1,8 @@
+public void testBindEventsToMethodWithEvent() {
+    final PropertyChangeSource src = new PropertyChangeSource();
+    final EventCounterWithEvent counter = new EventCounterWithEvent();
+    EventUtils.bindEventsToMethod(counter, "eventOccurred", src, PropertyChangeListener.class);
+    assertEquals(0, counter.getCount());
+    src.setProperty("newValue");
+    assertEquals(1, counter.getCount());
+}

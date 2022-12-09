@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Tests handleCauseUnchecked() if the cause is an error.                                               * Tests handleCauseUnchecked() if the cause is an error.                                            
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testHandleCauseUncheckedError() throws ConcurrentException {                             | public void testHandleCauseUncheckedError() {                                                       
+Error err = new AssertionError("Test");                                                                Error err = new AssertionError("Test");                                                             
+try {                                                                                                  try {                                                                                               
+ConcurrentUtils.handleCauseUnchecked(new ExecutionException(err));                                     ConcurrentUtils.handleCauseUnchecked(new ExecutionException(err));                                  
+fail("Error not thrown!");                                                                             fail("Error not thrown!");                                                                          
+} catch (Error e) {                                                                                    } catch (Error e) {                                                                                 
+assertEquals("Wrong error", err, e);                                                                   assertEquals("Wrong error", err, e);                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

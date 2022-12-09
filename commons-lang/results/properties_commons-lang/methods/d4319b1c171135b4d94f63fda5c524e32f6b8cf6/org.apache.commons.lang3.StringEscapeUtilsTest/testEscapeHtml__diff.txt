@@ -1,0 +1,16 @@
+                                                                                                     | @Test                                                                                               
+public void testEscapeHtml() {                                                                         public void testEscapeHtml() {                                                                      
+for (int i = 0; i &lt; htmlEscapes.length; ++i) {                                                      for (int i = 0; i &lt; htmlEscapes.length; ++i) {                                                   
+String message = htmlEscapes[i][0];                                                                    String message = htmlEscapes[i][0];                                                                 
+String expected = htmlEscapes[i][1];                                                                   String expected = htmlEscapes[i][1];                                                                
+String original = htmlEscapes[i][2];                                                                   String original = htmlEscapes[i][2];                                                                
+assertEquals(message, expected, StringEscapeUtils.escapeHtml4(original));                              assertEquals(message, expected, StringEscapeUtils.escapeHtml4(original));                           
+StringWriter sw = new StringWriter();                                                                  StringWriter sw = new StringWriter();                                                               
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_HTML4.translate(original, sw);                                                StringEscapeUtils.ESCAPE_HTML4.translate(original, sw);                                             
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+}                                                                                                      }                                                                                                   
+String actual = original == null ? null : sw.toString();                                               String actual = original == null ? null : sw.toString();                                            
+assertEquals(message, expected, actual);                                                               assertEquals(message, expected, actual);                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

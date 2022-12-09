@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a Boolean to a boolean handling {@code null}.&lt;/p&gt;                            * &lt;p&gt;Converts a Boolean to a boolean handling {@code null}.&lt;/p&gt;                         
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toBooleanDefaultIfNull(Boolean.TRUE, false) = true                                    *   BooleanUtils.toBooleanDefaultIfNull(Boolean.TRUE, false) = true                                 
+*   BooleanUtils.toBooleanDefaultIfNull(Boolean.FALSE, true) = false                                   *   BooleanUtils.toBooleanDefaultIfNull(Boolean.FALSE, true) = false                                
+*   BooleanUtils.toBooleanDefaultIfNull(null, true)          = true                                    *   BooleanUtils.toBooleanDefaultIfNull(null, true)          = true                                 
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the boolean to convert                                                                  * @param bool  the boolean to convert                                                               
+* @param valueIfNull  the boolean value to return if {@code null}                                      * @param valueIfNull  the boolean value to return if {@code null}                                   
+* @return {@code true} or {@code false}                                                                * @return {@code true} or {@code false}                                                             
+*/                                                                                                     */                                                                                                  
+public static boolean toBooleanDefaultIfNull(Boolean bool, boolean valueIfNull) {                      public static boolean toBooleanDefaultIfNull(Boolean bool, boolean valueIfNull) {                   
+if (bool == null) {                                                                                    if (bool == null) {                                                                                 
+return valueIfNull;                                                                                    return valueIfNull;                                                                                 
+}                                                                                                      }                                                                                                   
+return bool.booleanValue() ? true : false;                                                           | return bool.booleanValue();                                                                         
+}                                                                                                      }                                                                                                   

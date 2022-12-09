@@ -1,0 +1,20 @@
+public void testValidIndex_array() {
+    Object[] array = new Object[2];
+    Validate.validIndex(array, 0);
+    Validate.validIndex(array, 1);
+    try {
+        Validate.validIndex(array, -1);
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("The validated array index is invalid: -1", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(array, 2);
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("The validated array index is invalid: 2", ex.getMessage());
+    }
+    String[] strArray = new String[] { "Hi" };
+    String[] test = Validate.noNullElements(strArray);
+    assertSame(strArray, test);
+}

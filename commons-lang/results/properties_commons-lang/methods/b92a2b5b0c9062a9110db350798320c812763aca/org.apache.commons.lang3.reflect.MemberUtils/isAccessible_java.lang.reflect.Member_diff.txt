@@ -1,0 +1,8 @@
+/**                                                                                                    /**                                                                                                 
+* Check a Member for basic accessibility.                                                              * Check a Member for basic accessibility.                                                           
+* @param m Member to check                                                                             * @param m Member to check                                                                          
+* @return true if &lt;code&gt;m&lt;/code&gt; is accessible                                             * @return true if &lt;code&gt;m&lt;/code&gt; is accessible                                          
+*/                                                                                                     */                                                                                                  
+static boolean isAccessible(Member m) {                                                                static boolean isAccessible(Member m) {                                                             
+return m != null && Modifier.isPublic(m.getModifiers()) && !isSynthetic(m);                          | return m != null && Modifier.isPublic(m.getModifiers()) && !m.isSynthetic();                        
+}                                                                                                      }                                                                                                   

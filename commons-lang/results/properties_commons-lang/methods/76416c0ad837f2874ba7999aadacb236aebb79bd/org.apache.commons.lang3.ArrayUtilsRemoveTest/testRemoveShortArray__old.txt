@@ -1,0 +1,30 @@
+public void testRemoveShortArray() {
+    short[] array;
+    array = ArrayUtils.remove(new short[] { 1 }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_SHORT_ARRAY, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new short[] { 1, 2 }, 0);
+    assertTrue(Arrays.equals(new short[] { 2 }, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new short[] { 1, 2 }, 1);
+    assertTrue(Arrays.equals(new short[] { 1 }, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new short[] { 1, 2, 1 }, 1);
+    assertTrue(Arrays.equals(new short[] { 1, 1 }, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new short[] { 1, 2 }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new short[] { 1, 2 }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((short[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testReflectionCharArrayArray() {                                                           public void testReflectionCharArrayArray() {                                                        
+char[][] array = new char[][] { { 'A', 'B' }, null, { 'p' } };                                         char[][] array = new char[][] { { 'A', 'B' }, null, { 'p' } };                                      
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{{A,B},&lt;null&gt;,{p}}]", ToStringBuilder.reflectionToString(array));       assertEquals(baseStr + "[{{A,B},&lt;null&gt;,{p}}]", ToStringBuilder.reflectionToString(array));    
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

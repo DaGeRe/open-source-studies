@@ -1,0 +1,17 @@
+                                                                                                     | @Test                                                                                               
+public void testAddObjectArrayInt() {                                                                  public void testAddObjectArrayInt() {                                                               
+int[] newArray;                                                                                        int[] newArray;                                                                                     
+newArray = ArrayUtils.add((int[]) null, 0);                                                            newArray = ArrayUtils.add((int[]) null, 0);                                                         
+assertTrue(Arrays.equals(new int[] { 0 }, newArray));                                                  assertTrue(Arrays.equals(new int[] { 0 }, newArray));                                               
+assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                 
+newArray = ArrayUtils.add((int[]) null, 1);                                                            newArray = ArrayUtils.add((int[]) null, 1);                                                         
+assertTrue(Arrays.equals(new int[] { 1 }, newArray));                                                  assertTrue(Arrays.equals(new int[] { 1 }, newArray));                                               
+assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                 
+int[] array1 = new int[] { 1, 2, 3 };                                                                  int[] array1 = new int[] { 1, 2, 3 };                                                               
+newArray = ArrayUtils.add(array1, 0);                                                                  newArray = ArrayUtils.add(array1, 0);                                                               
+assertTrue(Arrays.equals(new int[] { 1, 2, 3, 0 }, newArray));                                         assertTrue(Arrays.equals(new int[] { 1, 2, 3, 0 }, newArray));                                      
+assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                 
+newArray = ArrayUtils.add(array1, 4);                                                                  newArray = ArrayUtils.add(array1, 4);                                                               
+assertTrue(Arrays.equals(new int[] { 1, 2, 3, 4 }, newArray));                                         assertTrue(Arrays.equals(new int[] { 1, 2, 3, 4 }, newArray));                                      
+assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Integer.TYPE, newArray.getClass().getComponentType());                                 
+}                                                                                                      }                                                                                                   

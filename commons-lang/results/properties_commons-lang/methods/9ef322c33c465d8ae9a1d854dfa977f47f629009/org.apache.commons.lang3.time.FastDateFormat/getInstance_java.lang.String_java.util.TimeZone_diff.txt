@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a formatter instance using the specified pattern and                                   * &lt;p&gt;Gets a formatter instance using the specified pattern and                                
+* time zone.&lt;/p&gt;                                                                                 * time zone.&lt;/p&gt;                                                                              
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible                                        * @param pattern  {@link java.text.SimpleDateFormat} compatible                                     
+*  pattern                                                                                             *  pattern                                                                                          
+* @param timeZone  optional time zone, overrides time zone of                                          * @param timeZone  optional time zone, overrides time zone of                                       
+*  formatted date                                                                                      *  formatted date                                                                                   
+* @return a pattern based date/time formatter                                                          * @return a pattern based date/time formatter                                                       
+* @throws IllegalArgumentException if pattern is invalid                                               * @throws IllegalArgumentException if pattern is invalid                                            
+*/                                                                                                     */                                                                                                  
+public static FastDateFormat getInstance(String pattern, TimeZone timeZone) {                          public static FastDateFormat getInstance(String pattern, TimeZone timeZone) {                       
+return getInstance(pattern, timeZone, null);                                                         | return cache.getInstance(pattern, timeZone, null);                                                  
+}                                                                                                      }                                                                                                   

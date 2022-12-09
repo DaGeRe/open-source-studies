@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Generate a hash code for the given annotation.&lt;/p&gt;                                    * &lt;p&gt;Generate a hash code for the given annotation.&lt;/p&gt;                                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Dynamically created {@link Annotation} instances are always proxy                           * &lt;p&gt;Dynamically created {@link Annotation} instances are always proxy                        
+* objects which cannot be depended upon to know how to implement                                       * objects which cannot be depended upon to know how to implement                                    
+* {@link Annotation#hashCode()} correctly.&lt;/p&gt;                                                   * {@link Annotation#hashCode()} correctly.&lt;/p&gt;                                                
+*                                                                                                      *                                                                                                   
+* @param a the Annotation for a hash code calculation is desired, not null                             * @param a the Annotation for a hash code calculation is desired, not null                          
+* @return the calculated hash code                                                                     * @return the calculated hash code                                                                  
+* @throws IllegalAccessException if thrown during annotation access                                  | * @throws RuntimeException if IllegalAccessException or InvocationTargetException                   
+* @throws InvocationTargetException if thrown during annotation access                               | * or any other Exception is thrown during annotation access                                         
+                                                                                                     | * @throws IllegalStateException if an annotation method invocation returns {@code null}             
+*/                                                                                                     */                                                                                                  
+public static int hashCode(Annotation a) {                                                             public static int hashCode(Annotation a) {                                                          
+int result = 0;                                                                                        int result = 0;                                                                                     
+Class&lt;? extends Annotation&gt; type = a.annotationType();                                           Class&lt;? extends Annotation&gt; type = a.annotationType();                                        
+for (Method m : type.getDeclaredMethods()) {                                                           for (Method m : type.getDeclaredMethods()) {                                                        
+try {                                                                                                  try {                                                                                               
+Object value = m.invoke(a);                                                                            Object value = m.invoke(a);                                                                         
+if (value == null) {                                                                                   if (value == null) {                                                                                
+throw new IllegalStateException(String.format("Annotation method %s returned null", m));               throw new IllegalStateException(String.format("Annotation method %s returned null", m));            
+}                                                                                                      }                                                                                                   
+result += hashMember(m.getName(), value);                                                              result += hashMember(m.getName(), value);                                                           
+} catch (RuntimeException ex) {                                                                        } catch (RuntimeException ex) {                                                                     
+throw ex;                                                                                              throw ex;                                                                                           
+} catch (Exception ex) {                                                                               } catch (Exception ex) {                                                                            
+throw new RuntimeException(ex);                                                                        throw new RuntimeException(ex);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

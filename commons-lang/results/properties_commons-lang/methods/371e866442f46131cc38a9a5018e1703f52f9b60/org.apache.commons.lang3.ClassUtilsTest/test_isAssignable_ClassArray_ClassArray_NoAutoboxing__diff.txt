@@ -1,0 +1,23 @@
+public void test_isAssignable_ClassArray_ClassArray_NoAutoboxing() throws Exception {
+    Class<?>[] array2 = new Class[] { Object.class, Object.class };
+    Class<?>[] array1 = new Class[] { Object.class };
+    Class<?>[] array1s = new Class[] { String.class };
+    Class<?>[] array0 = new Class[] {};
+    Class<?>[] arrayPrimitives = { Integer.TYPE, Boolean.TYPE };
+    Class<?>[] arrayWrappers = { Integer.class, Boolean.class };
+    assertFalse(ClassUtils.isAssignable(array1, array2, false));
+    assertFalse(ClassUtils.isAssignable(null, array2, false));
+    assertTrue(ClassUtils.isAssignable(null, array0, false));
+    assertTrue(ClassUtils.isAssignable(array0, array0, false));
+    assertTrue(ClassUtils.isAssignable(array0, null, false));
+    assertTrue(ClassUtils.isAssignable((Class[]) null, (Class[]) null, false));
+    assertFalse(ClassUtils.isAssignable(array1, array1s, false));
+    assertTrue(ClassUtils.isAssignable(array1s, array1s, false));
+    assertTrue(ClassUtils.isAssignable(array1s, array1, false));
+    assertFalse(ClassUtils.isAssignable(arrayPrimitives, arrayWrappers, false));
+    assertFalse(ClassUtils.isAssignable(arrayWrappers, arrayPrimitives, false));
+    assertFalse(ClassUtils.isAssignable(arrayPrimitives, array1, false));
+    assertFalse(ClassUtils.isAssignable(arrayWrappers, array1, false));
+    assertTrue(ClassUtils.isAssignable(arrayWrappers, array2, false));
+    assertFalse(ClassUtils.isAssignable(arrayPrimitives, array2, false));
+}

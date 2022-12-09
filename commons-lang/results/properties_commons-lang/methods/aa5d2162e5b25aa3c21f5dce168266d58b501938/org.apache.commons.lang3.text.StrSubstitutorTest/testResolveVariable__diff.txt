@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Tests protected.                                                                                     * Tests protected.                                                                                  
+*/                                                                                                     */                                                                                                  
+public void testResolveVariable() {                                                                    public void testResolveVariable() {                                                                 
+final StrBuilder builder = new StrBuilder("Hi ${name}!");                                              final StrBuilder builder = new StrBuilder("Hi ${name}!");                                           
+Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();                                 | Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();                                
+map.put("name", "commons");                                                                            map.put("name", "commons");                                                                         
+StrSubstitutor sub = new StrSubstitutor(map) {                                                         StrSubstitutor sub = new StrSubstitutor(map) {                                                      
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected String resolveVariable(String variableName, StrBuilder buf, int startPos, int endPos) {      protected String resolveVariable(String variableName, StrBuilder buf, int startPos, int endPos) {   
+assertEquals("name", variableName);                                                                    assertEquals("name", variableName);                                                                 
+assertSame(builder, buf);                                                                              assertSame(builder, buf);                                                                           
+assertEquals(3, startPos);                                                                             assertEquals(3, startPos);                                                                          
+assertEquals(10, endPos);                                                                              assertEquals(10, endPos);                                                                           
+return "jakarta";                                                                                      return "jakarta";                                                                                   
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+sub.replaceIn(builder);                                                                                sub.replaceIn(builder);                                                                             
+assertEquals("Hi jakarta!", builder.toString());                                                       assertEquals("Hi jakarta!", builder.toString());                                                    
+}                                                                                                      }                                                                                                   

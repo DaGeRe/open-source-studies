@@ -1,0 +1,24 @@
+/**
+ * <p>Converts a Boolean to a String returning one of the input Strings.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toString(Boolean.TRUE, "true", "false", null)   = "true"
+ *   BooleanUtils.toString(Boolean.FALSE, "true", "false", null)  = "false"
+ *   BooleanUtils.toString(null, "true", "false", null)           = null;
+ * </pre>
+ *
+ * @param bool  the Boolean to check
+ * @param trueString  the String to return if <code>true</code>,
+ *  may be <code>null</code>
+ * @param falseString  the String to return if <code>false</code>,
+ *  may be <code>null</code>
+ * @param nullString  the String to return if <code>null</code>,
+ *  may be <code>null</code>
+ * @return one of the three input Strings
+ */
+public static String toString(Boolean bool, String trueString, String falseString, String nullString) {
+    if (bool == null) {
+        return nullString;
+    }
+    return bool.booleanValue() ? trueString : falseString;
+}

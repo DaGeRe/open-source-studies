@@ -1,0 +1,27 @@
+public void testToCharArrayIntInt() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(ArrayUtils.EMPTY_CHAR_ARRAY, sb.toCharArray(0, 0));
+    sb.append("junit");
+    // too large test
+    char[] a = sb.toCharArray(0, 20);
+    assertEquals("toCharArray(int,int) result incorrect length", 5, a.length);
+    assertTrue("toCharArray(int,int) result does not match", Arrays.equals("junit".toCharArray(), a));
+    a = sb.toCharArray(0, 4);
+    assertEquals("toCharArray(int,int) result incorrect length", 4, a.length);
+    assertTrue("toCharArray(int,int) result does not match", Arrays.equals("juni".toCharArray(), a));
+    a = sb.toCharArray(0, 4);
+    assertEquals("toCharArray(int,int) result incorrect length", 4, a.length);
+    assertTrue("toCharArray(int,int) result does not match", Arrays.equals("juni".toCharArray(), a));
+    a = sb.toCharArray(0, 1);
+    assertNotNull("toCharArray(int,int) result is null", a);
+    try {
+        sb.toCharArray(-1, 5);
+        fail("no string index out of bound on -1");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.toCharArray(6, 5);
+        fail("no string index out of bound on -1");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

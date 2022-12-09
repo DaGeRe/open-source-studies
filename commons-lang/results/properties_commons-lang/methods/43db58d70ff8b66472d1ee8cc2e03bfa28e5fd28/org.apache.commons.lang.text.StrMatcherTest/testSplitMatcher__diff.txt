@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testSplitMatcher() {
+    StrMatcher matcher = StrMatcher.splitMatcher();
+    assertSame(matcher, StrMatcher.splitMatcher());
+    assertEquals(0, matcher.isMatch(BUFFER1, 2));
+    assertEquals(1, matcher.isMatch(BUFFER1, 3));
+    assertEquals(0, matcher.isMatch(BUFFER1, 4));
+    assertEquals(1, matcher.isMatch(BUFFER1, 5));
+    assertEquals(0, matcher.isMatch(BUFFER1, 6));
+    assertEquals(1, matcher.isMatch(BUFFER1, 7));
+    assertEquals(1, matcher.isMatch(BUFFER1, 8));
+    assertEquals(1, matcher.isMatch(BUFFER1, 9));
+    assertEquals(0, matcher.isMatch(BUFFER1, 10));
+}

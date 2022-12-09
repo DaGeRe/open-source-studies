@@ -1,0 +1,14 @@
+public void testReadNamedFieldForceAccess() throws Exception {
+    assertEquals("s", FieldUtils.readField(publicChild, "s", true));
+    assertEquals("ss", FieldUtils.readField(publiclyShadowedChild, "s", true));
+    assertEquals("ss", FieldUtils.readField(privatelyShadowedChild, "s", true));
+    assertEquals(Boolean.FALSE, FieldUtils.readField(publicChild, "b", true));
+    assertEquals(Boolean.TRUE, FieldUtils.readField(publiclyShadowedChild, "b", true));
+    assertEquals(Boolean.TRUE, FieldUtils.readField(privatelyShadowedChild, "b", true));
+    assertEquals(I0, FieldUtils.readField(publicChild, "i", true));
+    assertEquals(I1, FieldUtils.readField(publiclyShadowedChild, "i", true));
+    assertEquals(I1, FieldUtils.readField(privatelyShadowedChild, "i", true));
+    assertEquals(D0, FieldUtils.readField(publicChild, "d", true));
+    assertEquals(D1, FieldUtils.readField(publiclyShadowedChild, "d", true));
+    assertEquals(D1, FieldUtils.readField(privatelyShadowedChild, "d", true));
+}

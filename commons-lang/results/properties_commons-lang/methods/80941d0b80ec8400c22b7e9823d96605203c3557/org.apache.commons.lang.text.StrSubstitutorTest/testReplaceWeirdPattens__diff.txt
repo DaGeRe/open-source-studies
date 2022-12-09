@@ -1,0 +1,22 @@
+/**
+ * Tests interpolation with weird boundary patterns.
+ */
+public void testReplaceWeirdPattens() {
+    doTestNoReplace("");
+    doTestNoReplace("${}");
+    doTestNoReplace("${ }");
+    doTestNoReplace("${\t}");
+    doTestNoReplace("${\n}");
+    doTestNoReplace("${\b}");
+    doTestNoReplace("${");
+    doTestNoReplace("$}");
+    doTestNoReplace("}");
+    doTestNoReplace("${}$");
+    doTestNoReplace("${${");
+    doTestNoReplace("${${}}");
+    doTestNoReplace("${$${}}");
+    doTestNoReplace("${$$${}}");
+    doTestNoReplace("${$$${$}}");
+    doTestNoReplace("${${}}");
+    doTestNoReplace("${${ }}");
+}

@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt; if the   | * &lt;p&gt;Validates that the index is within the bounds of the argument                            
+* index for the argument array is invalid or if the array is &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt | * array; otherwise throwing an exception.&lt;/p&gt;                                                 
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.validIndex(myArray, 2);&lt;/pre&gt;                                           
+* Validate.validIndex(myArray, 2);                                                                   |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the array index is invalid the message in the exception is                             | * &lt;p&gt;If the array is &lt;code&gt;null&lt;/code&gt;, then the message of the exception         
+* 'The validated array index is invalid: ' followed by the index.&lt;/p&gt;                          | * is &quot;The validated object is null&quot;.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the array is null then the message in the exception is 'The validated object is null'. | * &lt;p&gt;If the index is invalid, then the message of the exception is                            
+                                                                                                     | * &quot;The validated array index is invalid: &quot; followed by the                                
+                                                                                                     | * index.&lt;/p&gt;                                                                                  
+*                                                                                                      *                                                                                                   
+* @param array  the array to check, not null                                                         | * @param &lt;T&gt; the array type                                                                   
+* @return the validated input array, never &lt;code&gt;null&lt;/code&gt;, for chaining               | * @param array the array to check                                                                   
+* @throws IllegalArgumentException if the array index is invalid or null                             | * @param index the index                                                                            
+                                                                                                     | * @return the validated array (never &lt;code&gt;null&lt;/code&gt; for method chaining)             
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+                                                                                                     | * @throws IndexOutOfBoundsException if the index is invalid                                         
+                                                                                                     | * @see #validIndex(Object[], int, String, Object...)                                                
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T[] validIndex(T[] array, int index) {                                         public static &lt;T&gt; T[] validIndex(T[] array, int index) {                                      
+return validIndex(array, index, "The validated array index is invalid: ");                           | return validIndex(array, index, DEFAULT_VALID_INDEX_ARRAY_EXCEPTION_MESSAGE, index);                
+}                                                                                                      }                                                                                                   

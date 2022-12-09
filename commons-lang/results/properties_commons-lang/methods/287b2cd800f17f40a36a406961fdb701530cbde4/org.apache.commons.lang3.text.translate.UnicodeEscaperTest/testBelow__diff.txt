@@ -1,0 +1,6 @@
+public void testBelow() {                                                                              public void testBelow() {                                                                           
+UnicodeEscaper ue = UnicodeEscaper.below('F');                                                       | UnicodeEscaper ue = new UnicodeEscaper(Range.between(0, (int) 'E'));                                
+String input = "ADFGZ";                                                                                String input = "ADFGZ";                                                                             
+String result = ue.translate(input);                                                                   String result = ue.translate(input);                                                                
+assertEquals("Failed to escape unicode characters via the below method", "\\u0041\\u0044FGZ", result   assertEquals("Failed to escape unicode characters via the below method", "\\u0041\\u0044FGZ", result
+}                                                                                                      }                                                                                                   

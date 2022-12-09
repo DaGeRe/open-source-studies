@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Returns &lt;code&gt;true&lt;/code&gt; if the registry contains the given object.                     * Returns &lt;code&gt;true&lt;/code&gt; if the registry contains the given object.                  
+* Used by the reflection methods to avoid infinite loops.                                              * Used by the reflection methods to avoid infinite loops.                                           
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param value                                                                                         * @param value                                                                                      
+*                  The object to lookup in the registry.                                               *                  The object to lookup in the registry.                                            
+* @return boolean &lt;code&gt;true&lt;/code&gt; if the registry contains the given                     * @return boolean &lt;code&gt;true&lt;/code&gt; if the registry contains the given                  
+*             object.                                                                                  *             object.                                                                               
+*/                                                                                                     */                                                                                                  
+static boolean isRegistered(Object value) {                                                            static boolean isRegistered(Object value) {                                                         
+return getRegistry().contains(value);                                                                | Map&lt;Object, Object&gt; m = getRegistry();                                                        
+                                                                                                     | return m != null && m.containsKey(value);                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+public void testCount_StringStringarray() {
+    assertEquals(0, CharSetUtils.count(null, (String[]) null));
+    assertEquals(0, CharSetUtils.count(null, new String[0]));
+    assertEquals(0, CharSetUtils.count(null, new String[] { null }));
+    assertEquals(0, CharSetUtils.count(null, new String[] { "a-e" }));
+    assertEquals(0, CharSetUtils.count("", (String[]) null));
+    assertEquals(0, CharSetUtils.count("", new String[0]));
+    assertEquals(0, CharSetUtils.count("", new String[] { null }));
+    assertEquals(0, CharSetUtils.count("", new String[] { "a-e" }));
+    assertEquals(0, CharSetUtils.count("hello", (String[]) null));
+    assertEquals(0, CharSetUtils.count("hello", new String[0]));
+    assertEquals(0, CharSetUtils.count("hello", new String[] { null }));
+    assertEquals(1, CharSetUtils.count("hello", new String[] { "a-e" }));
+    assertEquals(3, CharSetUtils.count("hello", new String[] { "el" }));
+    assertEquals(0, CharSetUtils.count("hello", new String[] { "x" }));
+    assertEquals(2, CharSetUtils.count("hello", new String[] { "e-i" }));
+    assertEquals(5, CharSetUtils.count("hello", new String[] { "a-z" }));
+    assertEquals(0, CharSetUtils.count("hello", new String[] { "" }));
+}

@@ -1,0 +1,24 @@
+/**
+ * <p>Generate a string representation of an Annotation, as suggested by
+ * {@link Annotation#toString()}.</p>
+ *
+ * @param a the annotation of which a string representation is desired
+ * @return the standard string representation of an annotation, not null
+ */
+public static String toString(final Annotation a) {
+    ToStringBuilder builder = new ToStringBuilder(a, TO_STRING_STYLE);
+    for (Method m : a.annotationType().getDeclaredMethods()) {
+        if (m.getParameterTypes().length > 0) {
+            // wtf?
+            continue;
+        }
+        try {
+            builder.append(m.getName(), m.invoke(a));
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    return builder.build();
+}

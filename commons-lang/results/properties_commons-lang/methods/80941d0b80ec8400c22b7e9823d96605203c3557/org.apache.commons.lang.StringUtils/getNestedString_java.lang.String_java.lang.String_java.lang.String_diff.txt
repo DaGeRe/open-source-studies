@@ -1,0 +1,29 @@
+/**
+ * <p>Gets the String that is nested in between two Strings.
+ * Only the first match is returned.</p>
+ *
+ * <p>A <code>null</code> input String returns <code>null</code>.
+ * A <code>null</code> open/close returns <code>null</code> (no match).
+ * An empty ("") open/close returns an empty string.</p>
+ *
+ * <pre>
+ * StringUtils.getNestedString(null, *, *)          = null
+ * StringUtils.getNestedString("", "", "")          = ""
+ * StringUtils.getNestedString("", "", "tag")       = null
+ * StringUtils.getNestedString("", "tag", "tag")    = null
+ * StringUtils.getNestedString("yabcz", null, null) = null
+ * StringUtils.getNestedString("yabcz", "", "")     = ""
+ * StringUtils.getNestedString("yabcz", "y", "z")   = "abc"
+ * StringUtils.getNestedString("yabczyabcz", "y", "z")   = "abc"
+ * </pre>
+ *
+ * @param str  the String containing nested-string, may be null
+ * @param open  the String before nested-string, may be null
+ * @param close  the String after nested-string, may be null
+ * @return the nested String, <code>null</code> if no match
+ * @deprecated Use the better named {@link #substringBetween(String, String, String)}.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String getNestedString(String str, String open, String close) {
+    return substringBetween(str, open, close);
+}

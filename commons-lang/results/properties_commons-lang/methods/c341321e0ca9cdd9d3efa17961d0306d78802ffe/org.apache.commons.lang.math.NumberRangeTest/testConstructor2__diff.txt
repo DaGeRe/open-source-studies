@@ -1,0 +1,11 @@
+/**
+ * Tests non-exceptional conditions for the two argument constructor.
+ */
+public void testConstructor2() {
+    NumberRange nr = new NumberRange(five, ten);
+    assertSame(five, nr.getMinimumNumber());
+    assertSame(ten, nr.getMaximumNumber());
+    nr = new NumberRange(ten, five);
+    assertSame(five, nr.getMinimumNumber());
+    assertSame(ten, nr.getMaximumNumber());
+}

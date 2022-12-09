@@ -1,0 +1,20 @@
+/**
+ * <p>Reverses a CharSequence as per {@link StringBuilder#reverse()}.</p>
+ *
+ * <p>A <code>null</code> CharSequence returns <code>null</code>.</p>
+ *
+ * <pre>
+ * CharSequenceUtils.reverse(null) = null
+ * CharSequenceUtils.reverse("").toString() = ""
+ * CharSequenceUtils.reverse("bat").toString() = "tab"
+ * </pre>
+ *
+ * @param str  the String to reverse, may be null
+ * @return the reversed String, <code>null</code> if null String input
+ */
+public static CharSequence reverse(CharSequence str) {
+    if (str == null) {
+        return null;
+    }
+    return new StringBuilder(str).reverse();
+}

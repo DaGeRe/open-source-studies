@@ -1,0 +1,25 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Null safe comparison of Comparables.                                                              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param c1  the first comparable, may be null                                                      
+                                                                                                     | * @param c2  the second comparable, may be null                                                     
+                                                                                                     | * @param nullGreater if true &lt;code&gt;null&lt;/code&gt; is considered greater                    
+                                                                                                     | * than a Non-&lt;code&gt;null&lt;/code&gt; value or if false &lt;code&gt;null&lt;/code&gt; is       
+                                                                                                     | * considered less than a Non-&lt;code&gt;null&lt;/code&gt; value                                    
+                                                                                                     | * @return a negative value if c1 &lt; c2, zero if c1 = c2                                           
+                                                                                                     | * and a positive value if c1 &gt; c2                                                                
+                                                                                                     | * @see java.lang.Comparator#compare(Object, Object)                                                 
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T extends Comparable&lt;? super T&gt;&gt; int compare(T c1, T c2, boolean nullGrea
+                                                                                                     | int result = 0;                                                                                     
+                                                                                                     | if ((c1 == null) || (c2 == null)) {                                                                 
+                                                                                                     | if (nullGreater) {                                                                                  
+                                                                                                     | result = (c1 == null ? 1 : 0) - (c2 == null ? 1 : 0);                                               
+                                                                                                     | } else {                                                                                            
+                                                                                                     | result = (c1 == null ? -1 : 0) - (c2 == null ? -1 : 0);                                             
+                                                                                                     | }                                                                                                   
+                                                                                                     | } else {                                                                                            
+                                                                                                     | result = c1.compareTo(c2);                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | return result;                                                                                      
+                                                                                                     | }                                                                                                   

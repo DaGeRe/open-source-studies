@@ -1,0 +1,12 @@
+public void testEventDispatchOrder() throws PropertyVetoException {
+    EventListenerSupport<VetoableChangeListener> listenerSupport = EventListenerSupport.create(VetoableChangeListener.class);
+    final List<VetoableChangeListener> calledListeners = new ArrayList<VetoableChangeListener>();
+    final VetoableChangeListener listener1 = createListener(calledListeners);
+    final VetoableChangeListener listener2 = createListener(calledListeners);
+    listenerSupport.addListener(listener1);
+    listenerSupport.addListener(listener2);
+    listenerSupport.fire().vetoableChange(new PropertyChangeEvent(new Date(), "Day", 4, 5));
+    assertEquals(calledListeners.size(), 2);
+    assertSame(calledListeners.get(0), listener1);
+    assertSame(calledListeners.get(1), listener2);
+}

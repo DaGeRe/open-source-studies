@@ -1,0 +1,18 @@
+/**
+ * Initializes a shutdown. After that the object cannot be used any more.
+ * This method can be invoked an arbitrary number of times. All invocations
+ * after the first one do not have any effect.
+ */
+public synchronized void shutdown() {
+    if (!shutdown) {
+        if (ownExecutor) {
+            // if the executor was created by this instance, it has
+            // to be shutdown
+            getExecutorService().shutdownNow();
+        }
+        if (task != null) {
+            task.cancel(false);
+        }
+        shutdown = true;
+    }
+}

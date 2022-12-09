@@ -1,0 +1,13 @@
+public void testDeserializeStreamClassNotFound() throws Exception {
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(new ClassNotFoundSerializationTest());
+    oos.flush();
+    oos.close();
+    ByteArrayInputStream inTest = new ByteArrayInputStream(streamReal.toByteArray());
+    try {
+        Object test = SerializationUtils.deserialize(inTest);
+    } catch (SerializationException se) {
+        assertEquals("java.lang.ClassNotFoundException: " + CLASS_NOT_FOUND_MESSAGE, se.getMessage());
+    }
+}

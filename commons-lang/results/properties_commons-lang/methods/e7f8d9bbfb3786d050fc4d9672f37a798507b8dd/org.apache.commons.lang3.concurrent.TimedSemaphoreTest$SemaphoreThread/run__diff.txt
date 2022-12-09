@@ -1,0 +1,18 @@
+/**
+ * Calls acquire() on the semaphore for the specified number of times.
+ * Optionally the latch will also be triggered to synchronize with the
+ * main test thread.
+ */
+@Override
+public void run() {
+    try {
+        for (int i = 0; i < count; i++) {
+            semaphore.acquire();
+            if (i < latchCount) {
+                latch.countDown();
+            }
+        }
+    } catch (InterruptedException iex) {
+        Thread.currentThread().interrupt();
+    }
+}

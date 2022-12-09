@@ -1,0 +1,32 @@
+/**
+ * <p>Removes the first occurrence of the specified element from the
+ * specified array. All subsequent elements are shifted to the left
+ * (substracts one from their indices). If the array doesn't contains
+ * such an element, no elements are removed from the array.</p>
+ *
+ * <p>This method returns a new array with the same elements of the input
+ * array except the first occurrence of the specified element. The component
+ * type of the returned array is always the same as that of the input
+ * array.</p>
+ *
+ * <pre>
+ * ArrayUtils.removeElement(null, 'a')            = null
+ * ArrayUtils.removeElement([], 'a')              = []
+ * ArrayUtils.removeElement(['a'], 'b')           = ['a']
+ * ArrayUtils.removeElement(['a', 'b'], 'a')      = ['b']
+ * ArrayUtils.removeElement(['a', 'b', 'a'], 'a') = ['b', 'a']
+ * </pre>
+ *
+ * @param array  the array to remove the element from, may be <code>null</code>
+ * @param element  the element to be removed
+ * @return A new array containing the existing elements except the first
+ *         occurrence of the specified element.
+ * @since 2.1
+ */
+public static char[] removeElement(char[] array, char element) {
+    int index = indexOf(array, element);
+    if (index == INDEX_NOT_FOUND) {
+        return clone(array);
+    }
+    return remove(array, index);
+}

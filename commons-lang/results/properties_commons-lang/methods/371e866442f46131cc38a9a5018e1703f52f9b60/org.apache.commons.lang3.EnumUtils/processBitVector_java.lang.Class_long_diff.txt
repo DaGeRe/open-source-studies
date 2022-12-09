@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Convert a long value created by {@link EnumUtils#generateBitVector} into the set of         * &lt;p&gt;Convert a long value created by {@link EnumUtils#generateBitVector} into the set of      
+* enum values that it represents.&lt;/p&gt;                                                            * enum values that it represents.&lt;/p&gt;                                                         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If you store this value, beware any changes to the enum that would affect ordinal values.   * &lt;p&gt;If you store this value, beware any changes to the enum that would affect ordinal values.
+* @param enumClass the class of the enum we are working with, not {@code null}                         * @param enumClass the class of the enum we are working with, not {@code null}                      
+* @param value     the long value representation of a set of enum values                               * @param value     the long value representation of a set of enum values                            
+* @param &lt;E&gt;       the type of the enumeration                                                   * @param &lt;E&gt;       the type of the enumeration                                                
+* @return a set of enum values                                                                         * @return a set of enum values                                                                      
+* @throws NullPointerException if {@code enumClass} is {@code null}                                    * @throws NullPointerException if {@code enumClass} is {@code null}                                 
+* @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 val   * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 val
+* @since 3.0.1                                                                                         * @since 3.0.1                                                                                      
+*/                                                                                                     */                                                                                                  
+public static &lt;E extends Enum&lt;E&gt;&gt; EnumSet&lt;E&gt; processBitVector(Class&lt;E&gt; enumC   public static &lt;E extends Enum&lt;E&gt;&gt; EnumSet&lt;E&gt; processBitVector(Class&lt;E&gt; enumC
+final E[] constants = checkBitVectorable(enumClass).getEnumConstants();                                final E[] constants = checkBitVectorable(enumClass).getEnumConstants();                             
+final EnumSet&lt;E&gt; results = EnumSet.noneOf(enumClass);                                            final EnumSet&lt;E&gt; results = EnumSet.noneOf(enumClass);                                         
+for (E constant : constants) {                                                                         for (E constant : constants) {                                                                      
+if ((value & (1 &lt;&lt; constant.ordinal())) != 0) {                                                | if ((value & 1 &lt;&lt; constant.ordinal()) != 0) {                                                 
+results.add(constant);                                                                                 results.add(constant);                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return results;                                                                                        return results;                                                                                     
+}                                                                                                      }                                                                                                   

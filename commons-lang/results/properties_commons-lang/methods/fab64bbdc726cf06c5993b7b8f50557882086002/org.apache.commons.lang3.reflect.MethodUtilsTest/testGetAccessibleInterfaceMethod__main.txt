@@ -1,0 +1,9 @@
+public void testGetAccessibleInterfaceMethod() throws Exception {
+    Class<?>[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };
+    for (Class<?>[] element : p) {
+        Method method = TestMutable.class.getMethod("getValue", element);
+        Method accessibleMethod = MethodUtils.getAccessibleMethod(method);
+        assertNotSame(accessibleMethod, method);
+        assertSame(Mutable.class, accessibleMethod.getDeclaringClass());
+    }
+}

@@ -1,0 +1,17 @@
+/**
+ * Returns the error message of this and any nested <code>Throwable</code>s in an array of Strings, one element
+ * for each message. Any <code>Throwable</code> not containing a message is represented in the array by a null.
+ * This has the effect of cause the length of the returned array to be equal to the result of the
+ * {@link #getThrowableCount()} operation.
+ *
+ * @return the error messages
+ * @since 2.0
+ */
+public String[] getMessages() {
+    Throwable[] throwables = this.getThrowables();
+    String[] msgs = new String[throwables.length];
+    for (int i = 0; i < throwables.length; i++) {
+        msgs[i] = (Nestable.class.isInstance(throwables[i]) ? ((Nestable) throwables[i]).getMessage(0) : throwables[i].getMessage());
+    }
+    return msgs;
+}

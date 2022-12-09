@@ -1,0 +1,6 @@
+private void unescapeIt(Entities entities) {
+    for (int i = 0; i < COUNT; ++i) {
+        String unescaped = entities.unescape(stringWithEntities);
+        assertEquals("xxxx\u00A0", unescaped.substring(0, 5));
+    }
+}

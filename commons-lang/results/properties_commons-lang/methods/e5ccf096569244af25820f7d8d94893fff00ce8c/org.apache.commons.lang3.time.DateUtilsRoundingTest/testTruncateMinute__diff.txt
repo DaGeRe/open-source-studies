@@ -1,0 +1,11 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.MINUTE
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateMinute() throws Exception {
+    final int calendarField = Calendar.MINUTE;
+    Date lastTruncateDate = dateTimeParser.parse("June 1, 2008 8:15:59.999");
+    baseTruncateTest(targetMinuteDate, lastTruncateDate, calendarField);
+}

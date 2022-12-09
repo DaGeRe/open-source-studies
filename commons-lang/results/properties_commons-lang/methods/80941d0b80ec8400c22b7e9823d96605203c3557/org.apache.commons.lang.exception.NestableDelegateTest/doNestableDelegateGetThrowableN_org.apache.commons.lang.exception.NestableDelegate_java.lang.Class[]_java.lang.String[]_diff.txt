@@ -1,0 +1,25 @@
+private void doNestableDelegateGetThrowableN(NestableDelegate d, Class[] classes, String[] msgs) {
+    Throwable t = null;
+    String msg = null;
+    for (int i = 0; i < classes.length; i++) {
+        t = d.getThrowable(i);
+        assertEquals("throwable class", classes[i], t.getClass());
+        if (Nestable.class.isInstance(t)) {
+            msg = ((Nestable) t).getMessage(0);
+        } else {
+            msg = t.getMessage();
+        }
+        assertEquals("throwable message", msgs[i], msg);
+    }
+    // Test for index out of bounds
+    try {
+        t = d.getThrowable(-1);
+        fail("getThrowable(-1) should have thrown IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ioobe) {
+    }
+    try {
+        t = d.getThrowable(999);
+        fail("getThrowable(999) should have thrown IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ioobe) {
+    }
+}

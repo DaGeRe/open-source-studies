@@ -1,0 +1,12 @@
+@Test
+public void testLongArray() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((long[]) null).toHashCode());
+    long[] obj = new long[2];
+    assertEquals(17 * 37 * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[0] = 5L;
+    int h1 = (int) (5L ^ 5L >> 32);
+    assertEquals((17 * 37 + h1) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[1] = 6L;
+    int h2 = (int) (6L ^ 6L >> 32);
+    assertEquals((17 * 37 + h1) * 37 + h2, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+}

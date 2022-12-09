@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+public void testValidIndex_withMessage_charSequence() {                                                public void testValidIndex_withMessage_charSequence() {                                             
+CharSequence str = "Hi";                                                                               CharSequence str = "Hi";                                                                            
+Validate.validIndex(str, 0, "Broken: ");                                                               Validate.validIndex(str, 0, "Broken: ");                                                            
+Validate.validIndex(str, 1, "Broken: ");                                                               Validate.validIndex(str, 1, "Broken: ");                                                            
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(str, -1, "Broken: ");                                                              Validate.validIndex(str, -1, "Broken: ");                                                           
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("Broken: -1", ex.getMessage());                                                           assertEquals("Broken: -1", ex.getMessage());                                                        
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(str, 2, "Broken: ");                                                               Validate.validIndex(str, 2, "Broken: ");                                                            
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("Broken: 2", ex.getMessage());                                                            assertEquals("Broken: 2", ex.getMessage());                                                         
+}                                                                                                      }                                                                                                   
+                                                                                                     | String input = "Hi";                                                                                
+                                                                                                     | String test = Validate.validIndex(input, 0, "Message");                                             
+                                                                                                     | assertSame(input, test);                                                                            
+}                                                                                                      }                                                                                                   

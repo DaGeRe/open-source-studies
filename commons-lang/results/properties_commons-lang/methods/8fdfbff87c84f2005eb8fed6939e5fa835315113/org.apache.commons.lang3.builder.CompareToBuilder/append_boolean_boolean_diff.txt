@@ -1,0 +1,22 @@
+/**
+ * Appends to the <code>builder</code> the comparison of
+ * two <code>booleans</code>s.
+ *
+ * @param lhs  left-hand value
+ * @param rhs  right-hand value
+ * @return this - used to chain append calls
+ */
+public CompareToBuilder append(boolean lhs, boolean rhs) {
+    if (comparison != 0) {
+        return this;
+    }
+    if (lhs == rhs) {
+        return this;
+    }
+    if (lhs == false) {
+        comparison = -1;
+    } else {
+        comparison = +1;
+    }
+    return this;
+}

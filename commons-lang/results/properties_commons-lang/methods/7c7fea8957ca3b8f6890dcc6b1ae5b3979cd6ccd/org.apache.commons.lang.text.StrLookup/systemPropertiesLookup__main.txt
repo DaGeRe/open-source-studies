@@ -1,0 +1,14 @@
+/**
+ * Returns a lookup which uses {@link System#getProperties() System properties}
+ * to lookup the key to value.
+ * <p>
+ * If a security manager blocked access to system properties, then null will
+ * be returned from every lookup.
+ * <p>
+ * If a null key is used, this lookup will throw a NullPointerException.
+ *
+ * @return a lookup using system properties, not null
+ */
+public static StrLookup<Object> systemPropertiesLookup() {
+    return SYSTEM_PROPERTIES_LOOKUP;
+}

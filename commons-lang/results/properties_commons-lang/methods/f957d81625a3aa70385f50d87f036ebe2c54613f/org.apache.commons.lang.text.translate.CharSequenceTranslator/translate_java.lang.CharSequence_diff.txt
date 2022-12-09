@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Helper for non-Writer usage.                                                                         * Helper for non-Writer usage.                                                                      
+* @param input CharSequence to be translated                                                           * @param input CharSequence to be translated                                                        
+* @return String output of translation                                                                 * @return String output of translation                                                              
+*/                                                                                                     */                                                                                                  
+public final String translate(CharSequence input) {                                                    public final String translate(CharSequence input) {                                                 
+if (input == null) {                                                                                   if (input == null) {                                                                                
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+// TODO: Make the 2 part of the API???                                                                 // TODO: Make the 2 part of the API???                                                              
+StringWriter writer = new StringWriter(input.length() * 2);                                            StringWriter writer = new StringWriter(input.length() * 2);                                         
+translate(input, writer);                                                                              translate(input, writer);                                                                           
+return writer.toString();                                                                              return writer.toString();                                                                           
+} catch (IOException ioe) {                                                                            } catch (IOException ioe) {                                                                         
+// this should never ever happen while writing to a StringWriter                                       // this should never ever happen while writing to a StringWriter                                    
+throw new UnhandledException(ioe);                                                                   | throw new RuntimeException(ioe);                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

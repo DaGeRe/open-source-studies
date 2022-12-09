@@ -1,0 +1,9 @@
+public void testGetAccessibleInterfaceMethod() throws Exception {                                      public void testGetAccessibleInterfaceMethod() throws Exception {                                   
+Class&lt;?&gt;[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };                                         Class&lt;?&gt;[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };                                      
+for (int i = 0; i &lt; p.length; i++) {                                                              | for (Class&lt;?&gt;[] element : p) {                                                                
+Method method = TestMutable.class.getMethod("getValue", p[i]);                                       | Method method = TestMutable.class.getMethod("getValue", element);                                   
+Method accessibleMethod = MethodUtils.getAccessibleMethod(method);                                     Method accessibleMethod = MethodUtils.getAccessibleMethod(method);                                  
+assertNotSame(accessibleMethod, method);                                                               assertNotSame(accessibleMethod, method);                                                            
+assertSame(Mutable.class, accessibleMethod.getDeclaringClass());                                       assertSame(Mutable.class, accessibleMethod.getDeclaringClass());                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

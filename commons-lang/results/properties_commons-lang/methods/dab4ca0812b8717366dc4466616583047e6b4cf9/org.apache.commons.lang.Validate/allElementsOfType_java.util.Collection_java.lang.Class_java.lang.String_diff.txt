@@ -1,0 +1,25 @@
+                                                                                                     | // allElementsOfType collection                                                                     
+                                                                                                     | // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;            * &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;         
+* if the argument collection  is &lt;code&gt;null&lt;/code&gt; or has elements that                    * if the argument collection  is &lt;code&gt;null&lt;/code&gt; or has elements that                 
+* are not of type &lt;code&gt;clazz&lt;/code&gt; or a subclass.&lt;/p&gt;                              * are not of type &lt;code&gt;clazz&lt;/code&gt; or a subclass.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* Validate.allElementsOfType(collection, String.class, "Collection has invalid elements");             * Validate.allElementsOfType(collection, String.class, "Collection has invalid elements");          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param collection  the collection to check, not null                                                 * @param collection  the collection to check, not null                                              
+* @param clazz  the &lt;code&gt;Class&lt;/code&gt; which the collection's elements are expected to b   * @param clazz  the &lt;code&gt;Class&lt;/code&gt; which the collection's elements are expected to b
+* @param message  the exception message if the &lt;code&gt;Collection&lt;/code&gt; has elements not    * @param message  the exception message if the &lt;code&gt;Collection&lt;/code&gt; has elements not 
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void allElementsOfType(Collection&lt;?&gt; collection, Class&lt;?&gt; clazz, String me   public static void allElementsOfType(Collection&lt;?&gt; collection, Class&lt;?&gt; clazz, String me
+Validate.notNull(collection);                                                                          Validate.notNull(collection);                                                                       
+Validate.notNull(clazz);                                                                               Validate.notNull(clazz);                                                                            
+for (Iterator&lt;?&gt; it = collection.iterator(); it.hasNext(); ) {                                   for (Iterator&lt;?&gt; it = collection.iterator(); it.hasNext(); ) {                                
+if (clazz.isInstance(it.next()) == false) {                                                            if (clazz.isInstance(it.next()) == false) {                                                         
+throw new IllegalArgumentException(message);                                                           throw new IllegalArgumentException(message);                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

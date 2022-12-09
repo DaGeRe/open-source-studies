@@ -1,0 +1,30 @@
+                                                                                                     | // Keep                                                                                             
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                           * &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                        
+* and keeps any of characters present in the specified string.&lt;/p&gt;                               * and keeps any of characters present in the specified string.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;An example would be:&lt;/p&gt;                                                            | * &lt;pre&gt;                                                                                       
+* &lt;ul&gt;                                                                                         | * CharSetUtils.keep(null, *)        = null                                                          
+*  &lt;li&gt;keep(&quot;hello&quot;, {&quot;c-f&quot;, &quot;o&quot;})                               | * CharSetUtils.keep("", *)          = ""                                                            
+*   returns &quot;eo&quot;&lt;/li&gt;                                                                | * CharSetUtils.keep(*, null)        = ""                                                            
+* &lt;/ul&gt;                                                                                        | * CharSetUtils.keep(*, "")          = ""                                                            
+                                                                                                     | * CharSetUtils.keep("hello", "hl")  = "hll"                                                         
+                                                                                                     | * CharSetUtils.keep("hello", "le")  = "ell"                                                         
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @see CharSet#getInstance(java.lang.String) for set-syntax.                                           * @see CharSet#getInstance(java.lang.String) for set-syntax.                                        
+* @param str  String to keep characters from, may be null                                              * @param str  String to keep characters from, may be null                                           
+* @param set  String[] set of characters to keep, may be null                                          * @param set  String[] set of characters to keep, may be null                                       
+* @return the modified String, {@code null} if null string input                                       * @return the modified String, {@code null} if null string input                                    
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String keep(String str, String[] set) {                                                | public static String keep(String str, String... set) {                                              
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+if (str.length() == 0 || ArrayUtils.isEmpty(set)) {                                                  | if (str.length() == 0 || deepEmpty(set)) {                                                          
+return "";                                                                                             return "";                                                                                          
+}                                                                                                      }                                                                                                   
+return modify(str, set, true);                                                                         return modify(str, set, true);                                                                      
+}                                                                                                      }                                                                                                   

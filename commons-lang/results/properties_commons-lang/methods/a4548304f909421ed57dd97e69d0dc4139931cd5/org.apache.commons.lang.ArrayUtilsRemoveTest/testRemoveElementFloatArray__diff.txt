@@ -1,0 +1,18 @@
+                                                                                                     | @SuppressWarnings("cast")                                                                           
+public void testRemoveElementFloatArray() {                                                            public void testRemoveElementFloatArray() {                                                         
+float[] array;                                                                                         float[] array;                                                                                      
+array = ArrayUtils.removeElement((float[]) null, (float) 1);                                           array = ArrayUtils.removeElement((float[]) null, (float) 1);                                        
+assertNull(array);                                                                                     assertNull(array);                                                                                  
+array = ArrayUtils.removeElement(ArrayUtils.EMPTY_FLOAT_ARRAY, (float) 1);                             array = ArrayUtils.removeElement(ArrayUtils.EMPTY_FLOAT_ARRAY, (float) 1);                          
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_FLOAT_ARRAY, array));                                        assertTrue(Arrays.equals(ArrayUtils.EMPTY_FLOAT_ARRAY, array));                                     
+assertEquals(Float.TYPE, array.getClass().getComponentType());                                         assertEquals(Float.TYPE, array.getClass().getComponentType());                                      
+array = ArrayUtils.removeElement(new float[] { 1 }, (float) 1);                                        array = ArrayUtils.removeElement(new float[] { 1 }, (float) 1);                                     
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_FLOAT_ARRAY, array));                                        assertTrue(Arrays.equals(ArrayUtils.EMPTY_FLOAT_ARRAY, array));                                     
+assertEquals(Float.TYPE, array.getClass().getComponentType());                                         assertEquals(Float.TYPE, array.getClass().getComponentType());                                      
+array = ArrayUtils.removeElement(new float[] { 1, 2 }, (float) 1);                                     array = ArrayUtils.removeElement(new float[] { 1, 2 }, (float) 1);                                  
+assertTrue(Arrays.equals(new float[] { 2 }, array));                                                   assertTrue(Arrays.equals(new float[] { 2 }, array));                                                
+assertEquals(Float.TYPE, array.getClass().getComponentType());                                         assertEquals(Float.TYPE, array.getClass().getComponentType());                                      
+array = ArrayUtils.removeElement(new float[] { 1, 2, 1 }, (float) 1);                                  array = ArrayUtils.removeElement(new float[] { 1, 2, 1 }, (float) 1);                               
+assertTrue(Arrays.equals(new float[] { 2, 1 }, array));                                                assertTrue(Arrays.equals(new float[] { 2, 1 }, array));                                             
+assertEquals(Float.TYPE, array.getClass().getComponentType());                                         assertEquals(Float.TYPE, array.getClass().getComponentType());                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,24 @@
+/**
+ * <p>Append to the <code>toString</code> another toString.</p>
+ * <p>NOTE: It assumes that the toString has been created from the same ToStringStyle. </p>
+ *
+ * <p>A <code>null</code> <code>toString</code> is ignored.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param toString  the additional <code>toString</code>
+ * @since 2.0
+ */
+public void appendToString(StringBuffer buffer, String toString) {
+    if (toString != null) {
+        int pos1 = toString.indexOf(contentStart) + contentStart.length();
+        int pos2 = toString.lastIndexOf(contentEnd);
+        if (pos1 != pos2 && pos1 >= 0 && pos2 >= 0) {
+            String data = toString.substring(pos1, pos2);
+            if (fieldSeparatorAtStart) {
+                removeLastFieldSeparator(buffer);
+            }
+            buffer.append(data);
+            appendFieldSeparator(buffer);
+        }
+    }
+}

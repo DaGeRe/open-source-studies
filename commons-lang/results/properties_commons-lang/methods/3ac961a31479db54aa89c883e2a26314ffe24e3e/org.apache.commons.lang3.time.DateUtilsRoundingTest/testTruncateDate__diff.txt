@@ -1,0 +1,11 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.DATE
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateDate() throws Exception {
+    final int calendarField = Calendar.DATE;
+    Date lastTruncateDate = dateTimeParser.parse("June 1, 2008 23:59:59.999");
+    baseTruncateTest(targetDateDate, lastTruncateDate, calendarField);
+}

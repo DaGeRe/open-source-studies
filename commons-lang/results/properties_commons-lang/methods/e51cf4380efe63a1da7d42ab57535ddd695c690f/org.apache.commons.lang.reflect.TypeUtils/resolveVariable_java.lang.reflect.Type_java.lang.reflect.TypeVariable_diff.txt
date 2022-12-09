@@ -1,0 +1,48 @@
+/**
+ * We plan to return Class<?> from the top-level call, as evidenced by the
+ * cast in the above method, but to handle recursion and falling back up the
+ * graph, as it were, return Type
+ * @param enclosingType
+ * @param typeVar
+ * @return Type resolved
+ */
+// original code stolen from commons [proxy]'s 2.0 branch, then kneaded until firm
+private static Type resolveVariable(Type enclosingType, TypeVariable<?> typeVar) {
+    if (enclosingType instanceof ParameterizedType) {
+        ParameterizedType parameterizedEnclosingType = (ParameterizedType) enclosingType;
+        TypeVariable<?>[] typeVariables = getRawType(null, parameterizedEnclosingType.getRawType()).getTypeParameters();
+        // look for the matching variable:
+        for (int i = 0; i < typeVariables.length; i++) {
+            if (typeVariables[i].equals(typeVar)) {
+                return parameterizedEnclosingType.getActualTypeArguments()[i];
+            }
+        }
+        // otherwise recurse to try against raw class
+        Type result = resolveVariable(parameterizedEnclosingType.getRawType(), typeVar);
+        // unroll variable if returned
+        if (result instanceof TypeVariable<?>) {
+            return resolveVariable(enclosingType, (TypeVariable<?>) result);
+        }
+        return result;
+    }
+    if (enclosingType instanceof Class<?>) {
+        Class<?> enclosingClass = (Class<?>) enclosingType;
+        Type result = null;
+        Type genericSuperclass = enclosingClass.getGenericSuperclass();
+        if (genericSuperclass != null && !Object.class.equals(genericSuperclass)) {
+            result = resolveVariable(genericSuperclass, typeVar);
+        }
+        if (result == null) {
+            for (Type genericInterface : enclosingClass.getGenericInterfaces()) {
+                result = resolveVariable(genericInterface, typeVar);
+                if (result != null) {
+                    break;
+                }
+            }
+        }
+        if (result != null) {
+            return result;
+        }
+    }
+    throw new IllegalArgumentException(String.valueOf(typeVar));
+}

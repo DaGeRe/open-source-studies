@@ -1,0 +1,17 @@
+public void testGetMessage_Indexed() throws Exception {
+    if (SystemUtils.isJavaVersionAtLeast(1.4f)) {
+        Exception ex1 = new Exception("nested 2");
+        Constructor con = Exception.class.getConstructor(new Class[] { String.class, Throwable.class });
+        Exception ex2 = (Exception) con.newInstance(new Object[] { "nested 1", ex1 });
+        NotImplementedException ex = new NotImplementedException(ex2);
+        assertEquals("Code is not implemented", ex.getMessage());
+        assertEquals("Code is not implemented", ex.getMessage(0));
+        assertEquals("nested 1", ex.getMessage(1));
+        assertEquals("nested 2", ex.getMessage(2));
+        String[] messages = ex.getMessages();
+        assertEquals(3, messages.length);
+        assertEquals("Code is not implemented", messages[0]);
+        assertEquals("nested 1", messages[1]);
+        assertEquals("nested 2", messages[2]);
+    }
+}

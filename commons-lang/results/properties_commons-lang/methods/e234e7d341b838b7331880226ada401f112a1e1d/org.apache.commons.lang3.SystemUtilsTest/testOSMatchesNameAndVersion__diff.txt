@@ -1,0 +1,23 @@
+public void testOSMatchesNameAndVersion() {
+    String osName = null;
+    String osVersion = null;
+    assertEquals(false, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "";
+    osVersion = "";
+    assertEquals(false, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "Windows 95";
+    osVersion = "4.0";
+    assertEquals(false, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "Windows 95";
+    osVersion = "4.1";
+    assertEquals(true, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "Windows 98";
+    osVersion = "4.1";
+    assertEquals(true, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "Windows NT";
+    osVersion = "4.0";
+    assertEquals(false, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+    osName = "OS/2";
+    osVersion = "4.0";
+    assertEquals(false, SystemUtils.isOSMatch(osName, osVersion, "Windows 9", "4.1"));
+}

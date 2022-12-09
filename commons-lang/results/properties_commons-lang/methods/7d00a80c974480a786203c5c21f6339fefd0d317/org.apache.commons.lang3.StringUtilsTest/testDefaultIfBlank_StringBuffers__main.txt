@@ -1,0 +1,10 @@
+@Test
+public void testDefaultIfBlank_StringBuffers() {
+    assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(""), new StringBuffer("NULL")).toString());
+    assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(" "), new StringBuffer("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL")).toString());
+    assertNull(StringUtils.defaultIfBlank(new StringBuffer(""), null));
+    // Tests compatibility for the API return type
+    StringBuffer s = StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL"));
+    assertEquals("abc", s.toString());
+}

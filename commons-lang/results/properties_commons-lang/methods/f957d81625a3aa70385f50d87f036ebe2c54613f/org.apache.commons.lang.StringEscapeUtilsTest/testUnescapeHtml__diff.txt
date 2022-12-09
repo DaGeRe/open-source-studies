@@ -1,0 +1,23 @@
+public void testUnescapeHtml() {
+    for (int i = 0; i < htmlEscapes.length; ++i) {
+        String message = htmlEscapes[i][0];
+        String expected = htmlEscapes[i][2];
+        String original = htmlEscapes[i][1];
+        assertEquals(message, expected, StringEscapeUtils.unescapeHtml(original));
+        StringWriter sw = new StringWriter();
+        try {
+            StringEscapeUtils.unescapeHtml(sw, original);
+        } catch (IOException e) {
+        }
+        String actual = original == null ? null : sw.toString();
+        assertEquals(message, expected, actual);
+    }
+    // \u00E7 is a cedilla (c with wiggle under)
+    // note that the test string must be 7-bit-clean (unicode escaped) or else it will compile incorrectly
+    // on some locales
+    assertEquals("funny chars pass through OK", "Fran\u00E7ais", StringEscapeUtils.unescapeHtml("Fran\u00E7ais"));
+    assertEquals("Hello&;World", StringEscapeUtils.unescapeHtml("Hello&;World"));
+    assertEquals("Hello&#;World", StringEscapeUtils.unescapeHtml("Hello&#;World"));
+    assertEquals("Hello&# ;World", StringEscapeUtils.unescapeHtml("Hello&# ;World"));
+    assertEquals("Hello&##;World", StringEscapeUtils.unescapeHtml("Hello&##;World"));
+}

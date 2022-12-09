@@ -1,0 +1,14 @@
+public void testIsNestedThrowable_Throwable() {
+    assertEquals(true, ExceptionUtils.isNestedThrowable(new SQLException()));
+    assertEquals(true, ExceptionUtils.isNestedThrowable(new InvocationTargetException(new Exception())));
+    assertEquals(true, ExceptionUtils.isNestedThrowable(new NestableRuntimeException()));
+    assertEquals(true, ExceptionUtils.isNestedThrowable(withCause));
+    assertEquals(true, ExceptionUtils.isNestedThrowable(nested));
+    if (SystemUtils.isJavaVersionAtLeast(140)) {
+        assertEquals(true, ExceptionUtils.isNestedThrowable(withoutCause));
+        assertEquals(true, ExceptionUtils.isNestedThrowable(new Throwable()));
+    } else {
+        assertEquals(false, ExceptionUtils.isNestedThrowable(withoutCause));
+        assertEquals(false, ExceptionUtils.isNestedThrowable(new Throwable()));
+    }
+}

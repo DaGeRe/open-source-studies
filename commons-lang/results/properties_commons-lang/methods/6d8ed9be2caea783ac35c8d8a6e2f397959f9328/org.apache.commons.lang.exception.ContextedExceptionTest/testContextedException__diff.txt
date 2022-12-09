@@ -1,0 +1,7 @@
+public void testContextedException() {
+    contextedException = new ContextedException();
+    String message = contextedException.getMessage();
+    String trace = ExceptionUtils.getStackTrace(contextedException);
+    assertTrue(trace.indexOf("ContextedException") >= 0);
+    assertTrue(StringUtils.isEmpty(message));
+}

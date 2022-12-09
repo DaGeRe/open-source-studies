@@ -1,0 +1,24 @@
+/**
+ * <p>Null safe comparison of Comparables.</p>
+ *
+ * @param <T> type of the values processed by this method
+ * @param values the set of comparable values, may be null
+ * @return
+ *  <ul>
+ *   <li>If any objects are non-null and unequal, the greater object.
+ *   <li>If all objects are non-null and equal, the first.
+ *   <li>If any of the comparables are null, the greater of the non-null objects.
+ *   <li>If all the comparables are null, null is returned.
+ *  </ul>
+ */
+public static <T extends Comparable<? super T>> T max(T... values) {
+    T result = null;
+    if (values != null) {
+        for (T value : values) {
+            if (compare(value, result, false) > 0) {
+                result = value;
+            }
+        }
+    }
+    return result;
+}

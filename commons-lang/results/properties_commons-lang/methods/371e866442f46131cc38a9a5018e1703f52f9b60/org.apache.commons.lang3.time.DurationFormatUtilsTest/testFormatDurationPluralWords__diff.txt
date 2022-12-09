@@ -1,0 +1,40 @@
+/**
+ * Tests that "1 <unit>s" gets converted to "1 <unit>" but that "11 <unit>s" is left alone.
+ */
+public void testFormatDurationPluralWords() {
+    long oneSecond = 1000;
+    long oneMinute = oneSecond * 60;
+    long oneHour = oneMinute * 60;
+    long oneDay = oneHour * 24;
+    String text = null;
+    text = DurationFormatUtils.formatDurationWords(oneSecond, false, false);
+    assertEquals("0 days 0 hours 0 minutes 1 second", text);
+    text = DurationFormatUtils.formatDurationWords(oneSecond * 2, false, false);
+    assertEquals("0 days 0 hours 0 minutes 2 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneSecond * 11, false, false);
+    assertEquals("0 days 0 hours 0 minutes 11 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneMinute, false, false);
+    assertEquals("0 days 0 hours 1 minute 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneMinute * 2, false, false);
+    assertEquals("0 days 0 hours 2 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneMinute * 11, false, false);
+    assertEquals("0 days 0 hours 11 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneMinute + oneSecond, false, false);
+    assertEquals("0 days 0 hours 1 minute 1 second", text);
+    text = DurationFormatUtils.formatDurationWords(oneHour, false, false);
+    assertEquals("0 days 1 hour 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneHour * 2, false, false);
+    assertEquals("0 days 2 hours 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneHour * 11, false, false);
+    assertEquals("0 days 11 hours 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneHour + oneMinute + oneSecond, false, false);
+    assertEquals("0 days 1 hour 1 minute 1 second", text);
+    text = DurationFormatUtils.formatDurationWords(oneDay, false, false);
+    assertEquals("1 day 0 hours 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneDay * 2, false, false);
+    assertEquals("2 days 0 hours 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneDay * 11, false, false);
+    assertEquals("11 days 0 hours 0 minutes 0 seconds", text);
+    text = DurationFormatUtils.formatDurationWords(oneDay + oneHour + oneMinute + oneSecond, false, false);
+    assertEquals("1 day 1 hour 1 minute 1 second", text);
+}

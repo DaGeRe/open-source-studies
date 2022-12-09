@@ -1,0 +1,9 @@
+public void testGetRootCause_Throwable() {                                                             public void testGetRootCause_Throwable() {                                                          
+assertSame(null, ExceptionUtils.getRootCause(null));                                                   assertSame(null, ExceptionUtils.getRootCause(null));                                                
+assertSame(null, ExceptionUtils.getRootCause(withoutCause));                                           assertSame(null, ExceptionUtils.getRootCause(withoutCause));                                        
+assertSame(withoutCause, ExceptionUtils.getRootCause(nested));                                         assertSame(withoutCause, ExceptionUtils.getRootCause(nested));                                      
+assertSame(withoutCause, ExceptionUtils.getRootCause(withCause));                                      assertSame(withoutCause, ExceptionUtils.getRootCause(withCause));                                   
+assertSame(null, ExceptionUtils.getRootCause(jdkNoCause));                                             assertSame(null, ExceptionUtils.getRootCause(jdkNoCause));                                          
+assertSame(null, ExceptionUtils.getRootCause(selfCause));                                            |                                                                                                     
+assertSame(((ExceptionWithCause) cyclicCause.getCause()).getCause(), ExceptionUtils.getRootCause(cyc   assertSame(((ExceptionWithCause) cyclicCause.getCause()).getCause(), ExceptionUtils.getRootCause(cyc
+}                                                                                                      }                                                                                                   

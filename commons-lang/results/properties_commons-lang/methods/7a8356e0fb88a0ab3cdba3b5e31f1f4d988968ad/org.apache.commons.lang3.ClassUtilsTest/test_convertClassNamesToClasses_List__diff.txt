@@ -1,0 +1,24 @@
+// -------------------------------------------------------------------------                           // -------------------------------------------------------------------------                        
+public void test_convertClassNamesToClasses_List() {                                                   public void test_convertClassNamesToClasses_List() {                                                
+List list = new ArrayList();                                                                         | List&lt;String&gt; list = new ArrayList&lt;String&gt;();                                            
+List result = ClassUtils.convertClassNamesToClasses(list);                                           | List&lt;Class&lt;?&gt;&gt; result = ClassUtils.convertClassNamesToClasses(list);                    
+assertEquals(0, result.size());                                                                        assertEquals(0, result.size());                                                                     
+list.add("java.lang.String");                                                                          list.add("java.lang.String");                                                                       
+list.add("java.lang.xxx");                                                                             list.add("java.lang.xxx");                                                                          
+list.add("java.lang.Object");                                                                          list.add("java.lang.Object");                                                                       
+result = ClassUtils.convertClassNamesToClasses(list);                                                  result = ClassUtils.convertClassNamesToClasses(list);                                               
+assertEquals(3, result.size());                                                                        assertEquals(3, result.size());                                                                     
+assertEquals(String.class, result.get(0));                                                             assertEquals(String.class, result.get(0));                                                          
+assertEquals(null, result.get(1));                                                                     assertEquals(null, result.get(1));                                                                  
+assertEquals(Object.class, result.get(2));                                                             assertEquals(Object.class, result.get(2));                                                          
+list.add(new Object());                                                                              | // test what happens when non-gneric code adds wrong type of element                                
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | List&lt;Object&gt; olist = (List&lt;Object&gt;) (List&lt;?&gt;) list;                               
+                                                                                                     | olist.add(new Object());                                                                            
+try {                                                                                                  try {                                                                                               
+ClassUtils.convertClassNamesToClasses(list);                                                           ClassUtils.convertClassNamesToClasses(list);                                                        
+fail();                                                                                              | fail("Should not have been able to convert list");                                                  
+} catch (ClassCastException ex) {                                                                    | } catch (ClassCastException expected) {                                                             
+}                                                                                                      }                                                                                                   
+assertEquals(null, ClassUtils.convertClassNamesToClasses(null));                                       assertEquals(null, ClassUtils.convertClassNamesToClasses(null));                                    
+}                                                                                                      }                                                                                                   

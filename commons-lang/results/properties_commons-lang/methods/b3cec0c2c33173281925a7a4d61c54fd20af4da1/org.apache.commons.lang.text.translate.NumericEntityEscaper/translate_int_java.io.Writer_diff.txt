@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public boolean translate(int codepoint, Writer out) throws IOException {                               public boolean translate(int codepoint, Writer out) throws IOException {                            
+if (between) {                                                                                         if (between) {                                                                                      
+if (codepoint &lt; below || codepoint &gt; above) {                                                    if (codepoint &lt; below || codepoint &gt; above) {                                                 
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+if (codepoint &gt;= below && codepoint &lt;= above) {                                                  if (codepoint &gt;= below && codepoint &lt;= above) {                                               
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+// TODO: if (codepoint &gt; 0xffff) ?                                                                  // TODO: if (codepoint &gt; 0xffff) ?                                                               
+out.write("&#");                                                                                       out.write("&#");                                                                                    
+out.write(Integer.toString(codepoint, 10));                                                            out.write(Integer.toString(codepoint, 10));                                                         
+out.write(';');                                                                                        out.write(';');                                                                                     
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

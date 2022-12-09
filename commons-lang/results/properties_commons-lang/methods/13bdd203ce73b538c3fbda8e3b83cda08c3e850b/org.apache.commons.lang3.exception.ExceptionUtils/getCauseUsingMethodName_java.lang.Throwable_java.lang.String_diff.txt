@@ -1,0 +1,30 @@
+/**
+ * <p>Finds a <code>Throwable</code> by method name.</p>
+ *
+ * @param throwable  the exception to examine
+ * @param methodName  the name of the method to find and invoke
+ * @return the wrapped exception, or <code>null</code> if not found
+ */
+// TODO: Remove in Lang 4.0
+private static Throwable getCauseUsingMethodName(Throwable throwable, String methodName) {
+    Method method = null;
+    try {
+        method = throwable.getClass().getMethod(methodName, (Class[]) null);
+    } catch (NoSuchMethodException ignored) {
+        // exception ignored
+    } catch (SecurityException ignored) {
+        // exception ignored
+    }
+    if (method != null && Throwable.class.isAssignableFrom(method.getReturnType())) {
+        try {
+            return (Throwable) method.invoke(throwable, ArrayUtils.EMPTY_OBJECT_ARRAY);
+        } catch (IllegalAccessException ignored) {
+            // exception ignored
+        } catch (IllegalArgumentException ignored) {
+            // exception ignored
+        } catch (InvocationTargetException ignored) {
+            // exception ignored
+        }
+    }
+    return null;
+}

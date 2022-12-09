@@ -1,0 +1,18 @@
+public void testJavaAwtHeadless() {                                                                    public void testJavaAwtHeadless() {                                                                 
+boolean atLeastJava14 = SystemUtils.isJavaVersionAtLeast(140);                                       | boolean atLeastJava14 = SystemUtils.isJavaVersionAtLeast(JAVA_1_4);                                 
+String expectedStringValue = System.getProperty("java.awt.headless");                                  String expectedStringValue = System.getProperty("java.awt.headless");                               
+String expectedStringValueWithDefault = System.getProperty("java.awt.headless", "false");              String expectedStringValueWithDefault = System.getProperty("java.awt.headless", "false");           
+assertNotNull(expectedStringValueWithDefault);                                                         assertNotNull(expectedStringValueWithDefault);                                                      
+if (atLeastJava14) {                                                                                   if (atLeastJava14) {                                                                                
+boolean expectedValue = Boolean.valueOf(expectedStringValue).booleanValue();                           boolean expectedValue = Boolean.valueOf(expectedStringValue).booleanValue();                        
+if (expectedStringValue != null) {                                                                     if (expectedStringValue != null) {                                                                  
+assertEquals(expectedStringValue, SystemUtils.JAVA_AWT_HEADLESS);                                      assertEquals(expectedStringValue, SystemUtils.JAVA_AWT_HEADLESS);                                   
+}                                                                                                      }                                                                                                   
+assertEquals(expectedValue, SystemUtils.isJavaAwtHeadless());                                          assertEquals(expectedValue, SystemUtils.isJavaAwtHeadless());                                       
+} else {                                                                                               } else {                                                                                            
+assertNull(expectedStringValue);                                                                       assertNull(expectedStringValue);                                                                    
+assertNull(SystemUtils.JAVA_AWT_HEADLESS);                                                             assertNull(SystemUtils.JAVA_AWT_HEADLESS);                                                          
+assertEquals(expectedStringValueWithDefault, "" + SystemUtils.isJavaAwtHeadless());                    assertEquals(expectedStringValueWithDefault, "" + SystemUtils.isJavaAwtHeadless());                 
+}                                                                                                      }                                                                                                   
+assertEquals(expectedStringValueWithDefault, "" + SystemUtils.isJavaAwtHeadless());                    assertEquals(expectedStringValueWithDefault, "" + SystemUtils.isJavaAwtHeadless());                 
+}                                                                                                      }                                                                                                   

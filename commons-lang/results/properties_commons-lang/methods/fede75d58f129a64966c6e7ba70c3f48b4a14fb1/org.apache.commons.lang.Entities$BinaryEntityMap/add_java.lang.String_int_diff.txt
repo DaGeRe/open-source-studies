@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public void add(String name, int value) {                                                              public void add(String name, int value) {                                                           
+ensureCapacity(size + 1);                                                                              ensureCapacity(size + 1);                                                                           
+int insertAt = binarySearch(value);                                                                    int insertAt = binarySearch(value);                                                                 
+if (insertAt &gt; 0) {                                                                                 if (insertAt &gt; 0) {                                                                              
+// note: this means you can't insert the same value twice                                              // note: this means you can't insert the same value twice                                           
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+// binarySearch returns it negative and off-by-one                                                     // binarySearch returns it negative and off-by-one                                                  
+insertAt = -(insertAt + 1);                                                                            insertAt = -(insertAt + 1);                                                                         
+System.arraycopy(values, insertAt, values, insertAt + 1, size - insertAt);                             System.arraycopy(values, insertAt, values, insertAt + 1, size - insertAt);                          
+values[insertAt] = value;                                                                              values[insertAt] = value;                                                                           
+System.arraycopy(names, insertAt, names, insertAt + 1, size - insertAt);                               System.arraycopy(names, insertAt, names, insertAt + 1, size - insertAt);                            
+names[insertAt] = name;                                                                                names[insertAt] = name;                                                                             
+size++;                                                                                                size++;                                                                                             
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+/**
+ * Handles the specified {@code ExecutionException}. This method calls
+ * {@link #extractCause(ExecutionException)} for obtaining the cause of the
+ * exception - which might already cause an unchecked exception or an error
+ * being thrown. If the cause is a checked exception however, it is wrapped
+ * in a {@code ConcurrentException}, which is thrown. If the passed in
+ * exception is <b>null</b> or has no cause, the method simply returns
+ * without throwing an exception.
+ *
+ * @param ex the exception to be handled
+ * @throws ConcurrentException if the cause of the {@code
+ * ExecutionException} is a checked exception
+ */
+public static void handleCause(ExecutionException ex) throws ConcurrentException {
+    ConcurrentException cex = extractCause(ex);
+    if (cex != null) {
+        throw cex;
+    }
+}

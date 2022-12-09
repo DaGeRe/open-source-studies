@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Appends a separator if the builder is currently non-empty.                                           * Appends a separator if the builder is currently non-empty.                                        
+* Appending a null separator will have no effect.                                                      * Appending a null separator will have no effect.                                                   
+* The separator is appended using {@link #append(String)}.                                             * The separator is appended using {@link #append(String)}.                                          
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* This method is useful for adding a separator each time around the                                    * This method is useful for adding a separator each time around the                                 
+* loop except the first.                                                                               * loop except the first.                                                                            
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* for (Iterator it = list.iterator(); it.hasNext(); ) {                                                * for (Iterator it = list.iterator(); it.hasNext(); ) {                                             
+*   appendSeparator(",");                                                                              *   appendSeparator(",");                                                                           
+*   append(it.next());                                                                                 *   append(it.next());                                                                              
+* }                                                                                                    * }                                                                                                 
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+* Note that for this simple example, you should use                                                    * Note that for this simple example, you should use                                                 
+* {@link #appendWithSeparators(Collection, String)}.                                                   * {@link #appendWithSeparators(Collection, String)}.                                                
+*                                                                                                      *                                                                                                   
+* @param separator  the separator to use, null means no separator                                      * @param separator  the separator to use, null means no separator                                   
+* @return this, to enable chaining                                                                     * @return this, to enable chaining                                                                  
+* @since 2.3                                                                                           * @since 2.3                                                                                        
+*/                                                                                                     */                                                                                                  
+public StrBuilder appendSeparator(String separator) {                                                  public StrBuilder appendSeparator(String separator) {                                               
+if (separator != null && size() &gt; 0) {                                                            | return appendSeparator(separator, null);                                                            
+append(separator);                                                                                   |                                                                                                     
+}                                                                                                      }                                                                                                   
+return this;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

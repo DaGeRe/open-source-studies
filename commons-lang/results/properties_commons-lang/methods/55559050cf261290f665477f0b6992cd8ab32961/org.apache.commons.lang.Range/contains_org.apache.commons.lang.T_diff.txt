@@ -1,0 +1,16 @@
+// Include tests
+// --------------------------------------------------------------------
+/**
+ * <p>Tests whether the specified element occurs within this range.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * @param element  the element to test, may be <code>null</code>
+ * @return <code>true</code> if the specified element occurs within this range
+ */
+public boolean contains(T element) {
+    if (element == null) {
+        return false;
+    }
+    return (comparator.compare(element, getMinimum()) > -1) && (comparator.compare(element, getMaximum()) < 1);
+}

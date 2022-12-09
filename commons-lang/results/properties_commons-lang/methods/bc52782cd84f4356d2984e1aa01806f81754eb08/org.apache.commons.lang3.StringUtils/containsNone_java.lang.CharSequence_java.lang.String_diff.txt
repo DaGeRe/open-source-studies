@@ -1,0 +1,28 @@
+/**
+ * <p>Checks that the CharSequence does not contain certain characters.</p>
+ *
+ * <p>A <code>null</code> CharSequence will return <code>true</code>.
+ * A <code>null</code> invalid character array will return <code>true</code>.
+ * An empty String ("") always returns true.</p>
+ *
+ * <pre>
+ * StringUtils.containsNone(null, *)       = true
+ * StringUtils.containsNone(*, null)       = true
+ * StringUtils.containsNone("", *)         = true
+ * StringUtils.containsNone("ab", "")      = true
+ * StringUtils.containsNone("abab", "xyz") = true
+ * StringUtils.containsNone("ab1", "xyz")  = true
+ * StringUtils.containsNone("abz", "xyz")  = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @param invalidChars  a String of invalid chars, may be null
+ * @return true if it contains none of the invalid chars, or is null
+ * @since 2.0
+ */
+public static boolean containsNone(CharSequence cs, String invalidChars) {
+    if (cs == null || invalidChars == null) {
+        return true;
+    }
+    return containsNone(cs, invalidChars.toCharArray());
+}

@@ -1,0 +1,26 @@
+                                                                                                     | // notEmpty array                                                                                   
+                                                                                                     | // ---------------------------------------------------------------------------------                
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Validate that the specified argument array is neither &lt;code&gt;null&lt;/code&gt;      
+                                                                                                     | * nor a length of zero (no elements); otherwise throwing an exception                               
+                                                                                                     | * with the specified message.                                                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;Validate.notEmpty(myArray, "The array must not be empty");&lt;/pre&gt;                 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param &lt;T&gt; the array type                                                                   
+                                                                                                     | * @param array the array to check                                                                   
+                                                                                                     | * @param message the exception message if invalid                                                   
+                                                                                                     | * @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)             
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+                                                                                                     | * @throws IllegalArgumentException if the array is empty                                            
+                                                                                                     | * @see #notEmpty(Object[])                                                                          
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T&gt; T[] notEmpty(T[] array, String message, Object... values) {                 
+                                                                                                     | if (array == null) {                                                                                
+                                                                                                     | throw new NullPointerException(String.format(message, values));                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (array.length == 0) {                                                                            
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values));                                 
+                                                                                                     | }                                                                                                   
+                                                                                                     | return array;                                                                                       
+                                                                                                     | }                                                                                                   

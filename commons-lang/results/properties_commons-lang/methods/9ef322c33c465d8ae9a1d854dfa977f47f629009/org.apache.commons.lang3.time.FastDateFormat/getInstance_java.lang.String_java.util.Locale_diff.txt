@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a formatter instance using the specified pattern and                                   * &lt;p&gt;Gets a formatter instance using the specified pattern and                                
+* locale.&lt;/p&gt;                                                                                    * locale.&lt;/p&gt;                                                                                 
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible                                        * @param pattern  {@link java.text.SimpleDateFormat} compatible                                     
+*  pattern                                                                                             *  pattern                                                                                          
+* @param locale  optional locale, overrides system locale                                              * @param locale  optional locale, overrides system locale                                           
+* @return a pattern based date/time formatter                                                          * @return a pattern based date/time formatter                                                       
+* @throws IllegalArgumentException if pattern is invalid                                               * @throws IllegalArgumentException if pattern is invalid                                            
+*/                                                                                                     */                                                                                                  
+public static FastDateFormat getInstance(String pattern, Locale locale) {                              public static FastDateFormat getInstance(String pattern, Locale locale) {                           
+return getInstance(pattern, null, locale);                                                           | return cache.getInstance(pattern, null, locale);                                                    
+}                                                                                                      }                                                                                                   

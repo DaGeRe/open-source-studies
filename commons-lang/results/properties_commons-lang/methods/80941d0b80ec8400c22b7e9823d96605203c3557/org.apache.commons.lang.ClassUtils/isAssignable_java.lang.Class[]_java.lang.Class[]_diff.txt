@@ -1,0 +1,37 @@
+// Is assignable
+// ----------------------------------------------------------------------
+/**
+ * <p>Checks if an array of Classes can be assigned to another array of Classes.</p>
+ *
+ * <p>This method calls {@link #isAssignable(Class, Class) isAssignable} for each
+ * Class pair in the input arrays. It can be used to check if a set of arguments
+ * (the first parameter) are suitably compatible with a set of method parameter types
+ * (the second parameter).</p>
+ *
+ * <p>Unlike the {@link Class#isAssignableFrom(java.lang.Class)} method, this
+ * method takes into account widenings of primitive classes and
+ * <code>null</code>s.</p>
+ *
+ * <p>Primitive widenings allow an int to be assigned to a <code>long</code>,
+ * <code>float</code> or <code>double</code>. This method returns the correct
+ * result for these cases.</p>
+ *
+ * <p><code>Null</code> may be assigned to any reference type. This method will
+ * return <code>true</code> if <code>null</code> is passed in and the toClass is
+ * non-primitive.</p>
+ *
+ * <p>Specifically, this method tests whether the type represented by the
+ * specified <code>Class</code> parameter can be converted to the type
+ * represented by this <code>Class</code> object via an identity conversion
+ * widening primitive or widening reference conversion. See
+ * <em><a href="http://java.sun.com/docs/books/jls/">The Java Language Specification</a></em>,
+ * sections 5.1.1, 5.1.2 and 5.1.4 for details.</p>
+ *
+ * @param classArray  the array of Classes to check, may be <code>null</code>
+ * @param toClassArray  the array of Classes to try to assign into, may be <code>null</code>
+ * @return <code>true</code> if assignment possible
+ */
+// TODO when we bump the major version we should default autoboxing to true on platforms >= 1.5
+public static boolean isAssignable(Class[] classArray, Class[] toClassArray) {
+    return isAssignable(classArray, toClassArray, false);
+}

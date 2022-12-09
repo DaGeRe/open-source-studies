@@ -1,0 +1,13 @@
+/**
+ * <p>Append the {@link System#identityHashCode(java.lang.Object)}.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param object  the <code>Object</code> whose id to output
+ */
+protected void appendIdentityHashCode(StringBuffer buffer, Object object) {
+    if (this.isUseIdentityHashCode() && object != null) {
+        register(object);
+        buffer.append('@');
+        buffer.append(Integer.toHexString(System.identityHashCode(object)));
+    }
+}

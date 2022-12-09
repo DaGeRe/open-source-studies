@@ -1,0 +1,20 @@
+/**
+ * Appends a char array to the string builder.
+ * Appending null will call {@link #appendNull()}.
+ *
+ * @param chars  the char array to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(char[] chars) {
+    if (chars == null) {
+        return appendNull();
+    }
+    int strLen = chars.length;
+    if (strLen > 0) {
+        int len = length();
+        ensureCapacity(len + strLen);
+        System.arraycopy(chars, 0, buffer, len, strLen);
+        size += strLen;
+    }
+    return this;
+}

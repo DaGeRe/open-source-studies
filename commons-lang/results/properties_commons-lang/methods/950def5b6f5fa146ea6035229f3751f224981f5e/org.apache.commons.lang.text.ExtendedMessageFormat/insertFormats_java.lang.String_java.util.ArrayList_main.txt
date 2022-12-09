@@ -1,0 +1,42 @@
+/**
+ * Insert formats back into the pattern for toPattern() support.
+ *
+ * @param pattern source
+ * @param customPatterns The custom patterns to re-insert, if any
+ * @return full pattern
+ */
+private String insertFormats(String pattern, ArrayList<String> customPatterns) {
+    if (!containsElements(customPatterns)) {
+        return pattern;
+    }
+    StringBuffer sb = new StringBuffer(pattern.length() * 2);
+    ParsePosition pos = new ParsePosition(0);
+    int fe = -1;
+    int depth = 0;
+    while (pos.getIndex() < pattern.length()) {
+        char c = pattern.charAt(pos.getIndex());
+        switch(c) {
+            case QUOTE:
+                appendQuotedString(pattern, pos, sb, false);
+                break;
+            case START_FE:
+                depth++;
+                if (depth == 1) {
+                    fe++;
+                    sb.append(START_FE).append(readArgumentIndex(pattern, next(pos)));
+                    String customPattern = customPatterns.get(fe);
+                    if (customPattern != null) {
+                        sb.append(START_FMT).append(customPattern);
+                    }
+                }
+                break;
+            case END_FE:
+                depth--;
+            // fall through:
+            default:
+                sb.append(c);
+                next(pos);
+        }
+    }
+    return sb.toString();
+}

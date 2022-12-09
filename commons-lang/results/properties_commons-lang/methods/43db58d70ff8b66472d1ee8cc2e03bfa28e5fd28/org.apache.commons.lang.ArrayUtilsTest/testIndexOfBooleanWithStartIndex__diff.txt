@@ -1,0 +1,14 @@
+public void testIndexOfBooleanWithStartIndex() {
+    boolean[] array = null;
+    assertEquals(-1, ArrayUtils.indexOf(array, true, 2));
+    array = new boolean[0];
+    assertEquals(-1, ArrayUtils.indexOf(array, true, 2));
+    array = new boolean[] { true, false, true };
+    assertEquals(2, ArrayUtils.indexOf(array, true, 1));
+    assertEquals(-1, ArrayUtils.indexOf(array, false, 2));
+    assertEquals(1, ArrayUtils.indexOf(array, false, 0));
+    assertEquals(1, ArrayUtils.indexOf(array, false, -1));
+    array = new boolean[] { true, true };
+    assertEquals(-1, ArrayUtils.indexOf(array, false, 0));
+    assertEquals(-1, ArrayUtils.indexOf(array, false, -1));
+}

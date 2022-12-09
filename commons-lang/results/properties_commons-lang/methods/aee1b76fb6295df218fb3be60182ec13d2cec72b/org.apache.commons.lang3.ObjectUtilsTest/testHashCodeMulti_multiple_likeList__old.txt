@@ -1,0 +1,10 @@
+public void testHashCodeMulti_multiple_likeList() {
+    List<Object> list0 = new ArrayList<Object>(Arrays.asList());
+    assertEquals(list0.hashCode(), ObjectUtils.hashCodeMulti());
+    List<Object> list1 = new ArrayList<Object>(Arrays.asList("a"));
+    assertEquals(list1.hashCode(), ObjectUtils.hashCodeMulti("a"));
+    List<Object> list2 = new ArrayList<Object>(Arrays.asList("a", "b"));
+    assertEquals(list2.hashCode(), ObjectUtils.hashCodeMulti("a", "b"));
+    List<Object> list3 = new ArrayList<Object>(Arrays.asList("a", "b", "c"));
+    assertEquals(list3.hashCode(), ObjectUtils.hashCodeMulti("a", "b", "c"));
+}

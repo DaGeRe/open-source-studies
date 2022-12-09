@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if a {@code Boolean} value is {@code false},                                         * &lt;p&gt;Checks if a {@code Boolean} value is {@code false},                                      
+* handling {@code null} by returning {@code false}.&lt;/p&gt;                                          * handling {@code null} by returning {@code false}.&lt;/p&gt;                                       
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.isFalse(Boolean.TRUE)  = false                                                        *   BooleanUtils.isFalse(Boolean.TRUE)  = false                                                     
+*   BooleanUtils.isFalse(Boolean.FALSE) = true                                                         *   BooleanUtils.isFalse(Boolean.FALSE) = true                                                      
+*   BooleanUtils.isFalse(null)          = false                                                        *   BooleanUtils.isFalse(null)          = false                                                     
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the boolean to check, null returns {@code false}                                        * @param bool  the boolean to check, null returns {@code false}                                     
+* @return {@code true} only if the input is non-null and false                                         * @return {@code true} only if the input is non-null and false                                      
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static boolean isFalse(Boolean bool) {                                                          public static boolean isFalse(Boolean bool) {                                                       
+if (bool == null) {                                                                                  | return Boolean.FALSE.equals(bool);                                                                  
+return false;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+return bool.booleanValue() ? false : true;                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     

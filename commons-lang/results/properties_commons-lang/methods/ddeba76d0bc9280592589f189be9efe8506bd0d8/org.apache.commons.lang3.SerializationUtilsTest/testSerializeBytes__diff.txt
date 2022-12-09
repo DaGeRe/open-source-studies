@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testSerializeBytes() throws Exception {
+    byte[] testBytes = SerializationUtils.serialize(iMap);
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(iMap);
+    oos.flush();
+    oos.close();
+    byte[] realBytes = streamReal.toByteArray();
+    assertEquals(testBytes.length, realBytes.length);
+    for (int i = 0; i < realBytes.length; i++) {
+        assertEquals(realBytes[i], testBytes[i]);
+    }
+}

@@ -1,0 +1,13 @@
+/**
+ * Tries to query the exception flag of an unknown child initializer from
+ * the results object. This should cause an exception.
+ */
+public void testResultIsExceptionUnknown() throws ConcurrentException {
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res = checkInitialize();
+    try {
+        res.isException("unknown");
+        fail("Could obtain exception status from unknown child initializer!");
+    } catch (NoSuchElementException nex) {
+        // ok
+    }
+}

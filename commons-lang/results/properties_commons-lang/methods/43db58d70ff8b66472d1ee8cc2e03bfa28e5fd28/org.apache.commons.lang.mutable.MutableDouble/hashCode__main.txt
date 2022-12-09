@@ -1,0 +1,10 @@
+/**
+ * Returns a suitable hashcode for this mutable.
+ *
+ * @return a suitable hashcode
+ */
+@Override
+public int hashCode() {
+    long bits = Double.doubleToLongBits(value);
+    return (int) (bits ^ (bits >>> 32));
+}

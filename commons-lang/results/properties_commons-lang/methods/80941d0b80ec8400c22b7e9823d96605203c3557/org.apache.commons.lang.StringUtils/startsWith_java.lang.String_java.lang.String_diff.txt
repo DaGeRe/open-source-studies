@@ -1,0 +1,46 @@
+/**
+ * <p>Gets the minimum of three <code>int</code> values.</p>
+ *
+ * @param a  value 1
+ * @param b  value 2
+ * @param c  value 3
+ * @return  the smallest of the values
+ */
+/*
+    private static int min(int a, int b, int c) {
+        // Method copied from NumberUtils to avoid dependency on subpackage
+        if (b < a) {
+            a = b;
+        }
+        if (c < a) {
+            a = c;
+        }
+        return a;
+    }
+*/
+// startsWith
+// -----------------------------------------------------------------------
+/**
+ * <p>Check if a String starts with a specified prefix.</p>
+ *
+ * <p><code>null</code>s are handled without exceptions. Two <code>null</code>
+ * references are considered to be equal. The comparison is case sensitive.</p>
+ *
+ * <pre>
+ * StringUtils.startsWith(null, null)      = true
+ * StringUtils.startsWith(null, "abc")     = false
+ * StringUtils.startsWith("abcdef", null)  = false
+ * StringUtils.startsWith("abcdef", "abc") = true
+ * StringUtils.startsWith("ABCDEF", "abc") = false
+ * </pre>
+ *
+ * @see java.lang.String#startsWith(String)
+ * @param str  the String to check, may be null
+ * @param prefix the prefix to find, may be null
+ * @return <code>true</code> if the String starts with the prefix, case sensitive, or
+ *  both <code>null</code>
+ * @since 2.4
+ */
+public static boolean startsWith(String str, String prefix) {
+    return startsWith(str, prefix, false);
+}

@@ -1,0 +1,9 @@
+@Test
+public void testFloatArray() {
+    float[] array = new float[] { 1.0f, 2.9876f, -3.00001f, 4.3f };
+    assertEquals(baseStr + "[{1.0,2.9876,-3.00001,4.3}]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[{1.0,2.9876,-3.00001,4.3}]", new ToStringBuilder(base).append((Object) array).toString());
+    array = null;
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append((Object) array).toString());
+}

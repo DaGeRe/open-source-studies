@@ -1,0 +1,16 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.AM_PM
+ * Includes truncating the extremes of both AM and PM of one day
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateAmPm() throws Exception {
+    final int calendarField = Calendar.AM_PM;
+    // AM
+    Date lastTruncateDate = dateTimeParser.parse("June 1, 2008 11:59:59.999");
+    baseTruncateTest(targetAmDate, lastTruncateDate, calendarField);
+    // PM
+    lastTruncateDate = dateTimeParser.parse("June 1, 2008 23:59:59.999");
+    baseTruncateTest(targetPmDate, lastTruncateDate, calendarField);
+}

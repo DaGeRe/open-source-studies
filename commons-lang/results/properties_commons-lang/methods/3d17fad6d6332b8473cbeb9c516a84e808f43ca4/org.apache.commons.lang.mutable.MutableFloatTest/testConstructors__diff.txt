@@ -1,0 +1,13 @@
+// ----------------------------------------------------------------                                    // ----------------------------------------------------------------                                 
+public void testConstructors() {                                                                       public void testConstructors() {                                                                    
+assertEquals(0f, new MutableFloat().floatValue(), 0.0001f);                                            assertEquals(0f, new MutableFloat().floatValue(), 0.0001f);                                         
+assertEquals(1f, new MutableFloat(1f).floatValue(), 0.0001f);                                          assertEquals(1f, new MutableFloat(1f).floatValue(), 0.0001f);                                       
+assertEquals(2f, new MutableFloat(new Float(2f)).floatValue(), 0.0001f);                               assertEquals(2f, new MutableFloat(new Float(2f)).floatValue(), 0.0001f);                            
+assertEquals(3f, new MutableFloat(new MutableFloat(3f)).floatValue(), 0.0001f);                        assertEquals(3f, new MutableFloat(new MutableFloat(3f)).floatValue(), 0.0001f);                     
+                                                                                                     | assertEquals(2f, new MutableDouble("2.0").floatValue(), 0.0001f);                                   
+try {                                                                                                  try {                                                                                               
+new MutableFloat(null);                                                                              | new MutableFloat((Number) null);                                                                    
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

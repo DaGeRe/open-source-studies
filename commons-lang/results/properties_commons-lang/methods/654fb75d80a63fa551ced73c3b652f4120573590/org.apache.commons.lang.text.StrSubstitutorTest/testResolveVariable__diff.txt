@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+/**
+ * Tests protected.
+ */
+public void testResolveVariable() {
+    final StrBuilder builder = new StrBuilder("Hi ${name}!");
+    Map map = new HashMap();
+    map.put("name", "commons");
+    StrSubstitutor sub = new StrSubstitutor(map) {
+
+        @Override
+        protected String resolveVariable(String variableName, StrBuilder buf, int startPos, int endPos) {
+            assertEquals("name", variableName);
+            assertSame(builder, buf);
+            assertEquals(3, startPos);
+            assertEquals(10, endPos);
+            return "jakarta";
+        }
+    };
+    sub.replaceIn(builder);
+    assertEquals("Hi jakarta!", builder.toString());
+}

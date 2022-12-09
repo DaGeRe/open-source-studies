@@ -1,0 +1,6 @@
+public void testWithInterleavingWhitespace() throws ClassNotFoundException {
+    assertEquals(int[].class, ClassUtils.getClass(" int [ ] "));
+    assertEquals(long[].class, ClassUtils.getClass("\rlong\t[\n]\r"));
+    assertEquals(short[].class, ClassUtils.getClass("\tshort                \t\t[]"));
+    assertEquals(byte[].class, ClassUtils.getClass("byte[\t\t\n\r]   "));
+}

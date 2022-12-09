@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>
+ * Puts a value in the specified {@code ConcurrentMap} if the key is not yet
+ * present. This method works similar to the {@code putIfAbsent()} method of
+ * the {@code ConcurrentMap} interface, but the value returned is different.
+ * Basically, this method is equivalent to the following code fragment:
+ *
+ * <pre>
+ * if (!map.containsKey(key)) {
+ *     map.put(key, value);
+ *     return value;
+ * } else {
+ *     return map.get(key);
+ * }
+ * </pre>
+ *
+ * except that the action is performed atomically. So this method always
+ * returns the value which is stored in the map.
+ * </p>
+ * <p>
+ * This method is <b>null</b>-safe: It accepts a <b>null</b> map as input
+ * without throwing an exception. In this case the return value is
+ * <b>null</b>, too.
+ * </p>
+ *
+ * @param <K> the type of the keys of the map
+ * @param <V> the type of the values of the map
+ * @param map the map to be modified
+ * @param key the key of the value to be added
+ * @param value the value to be added
+ * @return the value stored in the map after this operation
+ */
+public static <K, V> V putIfAbsent(ConcurrentMap<K, V> map, K key, V value) {
+    if (map == null) {
+        return null;
+    }
+    V result = map.putIfAbsent(key, value);
+    return (result != null) ? result : value;
+}

@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Compares this object against the specified object. The result is &lt;code&gt;true&lt;/code&gt; if    * Compares this object against the specified object. The result is &lt;code&gt;true&lt;/code&gt; if 
+* is not &lt;code&gt;null&lt;/code&gt; and is a &lt;code&gt;Double&lt;/code&gt; object that represen   * is not &lt;code&gt;null&lt;/code&gt; and is a &lt;code&gt;Double&lt;/code&gt; object that represen
+* bit pattern to the bit pattern of the double represented by this object. For this purpose, two       * bit pattern to the bit pattern of the double represented by this object. For this purpose, two    
+* &lt;code&gt;double&lt;/code&gt; values are considered to be the same if and only if the method       * &lt;code&gt;double&lt;/code&gt; values are considered to be the same if and only if the method    
+* {@link Double#doubleToLongBits(double)}returns the same long value when applied to each.             * {@link Double#doubleToLongBits(double)}returns the same long value when applied to each.          
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Note that in most cases, for two instances of class &lt;code&gt;Double&lt;/code&gt;,&lt;code&gt;d1   * Note that in most cases, for two instances of class &lt;code&gt;Double&lt;/code&gt;,&lt;code&gt;d1
+* the value of &lt;code&gt;d1.equals(d2)&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; if and only i   * the value of &lt;code&gt;d1.equals(d2)&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; if and only i
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   d1.doubleValue()&nbsp;== d2.doubleValue()                                                          *   d1.doubleValue()&nbsp;== d2.doubleValue()                                                       
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* &lt;/blockquote&gt;                                                                                  * &lt;/blockquote&gt;                                                                               
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* also has the value &lt;code&gt;true&lt;/code&gt;. However, there are two exceptions:                 * also has the value &lt;code&gt;true&lt;/code&gt;. However, there are two exceptions:              
+* &lt;ul&gt;                                                                                           * &lt;ul&gt;                                                                                        
+* &lt;li&gt;If &lt;code&gt;d1&lt;/code&gt; and &lt;code&gt;d2&lt;/code&gt; both represent &lt;code&g   * &lt;li&gt;If &lt;code&gt;d1&lt;/code&gt; and &lt;code&gt;d2&lt;/code&gt; both represent &lt;code&g
+* &lt;code&gt;equals&lt;/code&gt; method returns &lt;code&gt;true&lt;/code&gt;, even though &lt;code   * &lt;code&gt;equals&lt;/code&gt; method returns &lt;code&gt;true&lt;/code&gt;, even though &lt;code
+* the value &lt;code&gt;false&lt;/code&gt;.                                                            * the value &lt;code&gt;false&lt;/code&gt;.                                                         
+* &lt;li&gt;If &lt;code&gt;d1&lt;/code&gt; represents &lt;code&gt;+0.0&lt;/code&gt; while &lt;code&g   * &lt;li&gt;If &lt;code&gt;d1&lt;/code&gt; represents &lt;code&gt;+0.0&lt;/code&gt; while &lt;code&g
+* or vice versa, the &lt;code&gt;equal&lt;/code&gt; test has the value &lt;code&gt;false&lt;/code&gt   * or vice versa, the &lt;code&gt;equal&lt;/code&gt; test has the value &lt;code&gt;false&lt;/code&gt
+* &lt;code&gt;+0.0==-0.0&lt;/code&gt; has the value &lt;code&gt;true&lt;/code&gt;. This allows hasht   * &lt;code&gt;+0.0==-0.0&lt;/code&gt; has the value &lt;code&gt;true&lt;/code&gt;. This allows hasht
+* &lt;/ul&gt;                                                                                          * &lt;/ul&gt;                                                                                       
+*                                                                                                      *                                                                                                   
+* @param obj                                                                                           * @param obj                                                                                        
+*            the object to compare with.                                                               *            the object to compare with.                                                            
+* @return &lt;code&gt;true&lt;/code&gt; if the objects are the same; &lt;code&gt;false&lt;/code&gt;    * @return &lt;code&gt;true&lt;/code&gt; if the objects are the same; &lt;code&gt;false&lt;/code&gt; 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+return (obj instanceof MutableDouble) && (Double.doubleToLongBits(((MutableDouble) obj).value) == Do   return (obj instanceof MutableDouble) && (Double.doubleToLongBits(((MutableDouble) obj).value) == Do
+}                                                                                                      }                                                                                                   

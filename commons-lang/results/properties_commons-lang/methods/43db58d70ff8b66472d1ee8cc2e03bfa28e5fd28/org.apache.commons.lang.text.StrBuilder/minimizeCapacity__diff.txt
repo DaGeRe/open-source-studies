@@ -1,0 +1,13 @@
+/**
+ * Minimizes the capacity to the actual length of the string.
+ *
+ * @return this, to enable chaining
+ */
+public StrBuilder minimizeCapacity() {
+    if (buffer.length > length()) {
+        char[] old = buffer;
+        buffer = new char[length()];
+        System.arraycopy(old, 0, buffer, 0, size);
+    }
+    return this;
+}

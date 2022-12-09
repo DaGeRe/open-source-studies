@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------
+/**
+ * Test availableLocaleSet() method.
+ */
+public void testAvailableLocaleSet() {
+    Set<Locale> set = LocaleUtils.availableLocaleSet();
+    Set<Locale> set2 = LocaleUtils.availableLocaleSet();
+    assertNotNull(set);
+    assertSame(set, set2);
+    assertUnmodifiableCollection(set);
+    Locale[] jdkLocaleArray = Locale.getAvailableLocales();
+    List<Locale> jdkLocaleList = Arrays.asList(jdkLocaleArray);
+    Set<Locale> jdkLocaleSet = new HashSet<Locale>(jdkLocaleList);
+    assertEquals(jdkLocaleSet, set);
+}

@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Converts the given Collection into an array of Strings. The returned array does not contain &lt;co   * Converts the given Collection into an array of Strings. The returned array does not contain &lt;co
+* entries. Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointerException} if an    * entries. Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointerException} if an 
+* is &lt;code&gt;null&lt;/code&gt;.                                                                    * is &lt;code&gt;null&lt;/code&gt;.                                                                 
+*                                                                                                      *                                                                                                   
+* @param collection                                                                                    * @param collection                                                                                 
+*            The collection to convert                                                                 *            The collection to convert                                                              
+* @return A new array of Strings.                                                                      * @return A new array of Strings.                                                                   
+*/                                                                                                     */                                                                                                  
+static String[] toNoNullStringArray(Collection collection) {                                         | static String[] toNoNullStringArray(Collection&lt;String&gt; collection) {                          
+if (collection == null) {                                                                              if (collection == null) {                                                                           
+return ArrayUtils.EMPTY_STRING_ARRAY;                                                                  return ArrayUtils.EMPTY_STRING_ARRAY;                                                               
+}                                                                                                      }                                                                                                   
+return toNoNullStringArray(collection.toArray());                                                      return toNoNullStringArray(collection.toArray());                                                   
+}                                                                                                      }                                                                                                   

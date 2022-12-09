@@ -1,0 +1,33 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Creates a long bit vector representation of the given subset of an Enum.&lt;/p&gt;        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;This generates a value that is usable by {@link EnumUtils#processBitVector}.&lt;/p&gt;    |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;Do not use this method if you have more than 64 values in your Enum, as this              |                                                                                                     
+* would create a value greater than a long can hold.&lt;/p&gt;                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param enumClass the class of the enum we are working with, not null                               |                                                                                                     
+* @param set       the set of enum values we want to convert                                         |                                                                                                     
+* @param &lt;E&gt;       the type of the enumeration                                                 |                                                                                                     
+* @return a long whose binary value represents the given set of enum values.                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static &lt;E extends Enum&lt;E&gt;&gt; long generateBitVector(Class&lt;E&gt; enumClass, EnumS |                                                                                                     
+if (enumClass == null) {                                                                             |                                                                                                     
+throw new IllegalArgumentException("EnumClass must be defined.");                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+final E[] constants = enumClass.getEnumConstants();                                                  |                                                                                                     
+if (constants != null && constants.length &gt; 64) {                                                 |                                                                                                     
+throw new IllegalArgumentException("EnumClass is too big to be stored in a 64-bit value.");          |                                                                                                     
+}                                                                                                    |                                                                                                     
+long total = 0;                                                                                      |                                                                                                     
+if (set != null) {                                                                                   |                                                                                                     
+if (constants != null && constants.length &gt; 0) {                                                  |                                                                                                     
+for (E constant : constants) {                                                                       |                                                                                                     
+if (set.contains(constant)) {                                                                        |                                                                                                     
+total += Math.pow(2, constant.ordinal());                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return total;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

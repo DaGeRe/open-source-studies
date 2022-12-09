@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts the character to a Character.&lt;/p&gt;                                            * &lt;p&gt;Converts the character to a Character.&lt;/p&gt;                                         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For ASCII 7 bit characters, this uses a cache that will return the                          * &lt;p&gt;For ASCII 7 bit characters, this uses a cache that will return the                       
+* same Character object each time.&lt;/p&gt;                                                           * same Character object each time.&lt;/p&gt;                                                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   CharUtils.toCharacterObject(' ')  = ' '                                                            *   CharUtils.toCharacterObject(' ')  = ' '                                                         
+*   CharUtils.toCharacterObject('A')  = 'A'                                                            *   CharUtils.toCharacterObject('A')  = 'A'                                                         
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+                                                                                                     | * @deprecated Java 5 introduced {@link Character#valueOf(char)} which caches chars 0 through 127.   
+* @param ch  the character to convert                                                                  * @param ch  the character to convert                                                               
+* @return a Character of the specified character                                                       * @return a Character of the specified character                                                    
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Deprecated                                                                                         
+public static Character toCharacterObject(char ch) {                                                   public static Character toCharacterObject(char ch) {                                                
+if (ch &lt; CHAR_ARRAY.length) {                                                                     | return Character.valueOf(ch);                                                                       
+return CHAR_ARRAY[ch];                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   
+return new Character(ch);                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

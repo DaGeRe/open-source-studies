@@ -1,0 +1,20 @@
+/**
+ * <p>
+ * Suspend the stopwatch for later resumption.
+ * </p>
+ *
+ * <p>
+ * This method suspends the watch until it is resumed. The watch will not include time between the suspend and
+ * resume calls in the total time.
+ * </p>
+ *
+ * @throws IllegalStateException
+ *             if the StopWatch is not currently running.
+ */
+public void suspend() {
+    if (this.runningState != STATE_RUNNING) {
+        throw new IllegalStateException("Stopwatch must be running to suspend. ");
+    }
+    this.stopTime = System.nanoTime();
+    this.runningState = STATE_SUSPENDED;
+}

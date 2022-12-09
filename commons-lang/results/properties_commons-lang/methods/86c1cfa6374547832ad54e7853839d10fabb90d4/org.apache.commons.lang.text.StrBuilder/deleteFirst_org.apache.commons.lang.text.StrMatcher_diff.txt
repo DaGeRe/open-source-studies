@@ -1,0 +1,13 @@
+/**
+ * Deletes the first match within the builder using the specified matcher.
+ * <p>
+ * Matchers can be used to perform advanced deletion behaviour.
+ * For example you could write a matcher to delete
+ * where the character 'a' is followed by a number.
+ *
+ * @param matcher  the matcher to use to find the deletion, null causes no action
+ * @return this, to enable chaining
+ */
+public StrBuilder deleteFirst(StrMatcher matcher) {
+    return replace(matcher, null, 0, size, 1);
+}

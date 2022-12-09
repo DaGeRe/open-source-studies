@@ -1,0 +1,33 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Append the &lt;code&gt;toString&lt;/code&gt; from another object.&lt;/p&gt;                 * &lt;p&gt;Append the &lt;code&gt;toString&lt;/code&gt; from another object.&lt;/p&gt;              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method is useful where a class delegates most of the implementation of                 * &lt;p&gt;This method is useful where a class delegates most of the implementation of              
+* its properties to another class. You can then call &lt;code&gt;toString()&lt;/code&gt; on            * its properties to another class. You can then call &lt;code&gt;toString()&lt;/code&gt; on         
+* the other class and pass the result into this method.&lt;/p&gt;                                      * the other class and pass the result into this method.&lt;/p&gt;                                   
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   private AnotherObject delegate;                                                                    *   private AnotherObject delegate;                                                                 
+*   private String fieldInThisClass;                                                                   *   private String fieldInThisClass;                                                                
+*                                                                                                      *                                                                                                   
+*   public String toString() {                                                                         *   public String toString() {                                                                      
+*     return new ToStringBuilder(this).                                                                *     return new ToStringBuilder(this).                                                             
+*       appendToString(delegate.toString()).                                                           *       appendToString(delegate.toString()).                                                        
+*       append(fieldInThisClass).                                                                      *       append(fieldInThisClass).                                                                   
+*       toString();                                                                                    *       toString();                                                                                 
+*   }&lt;/pre&gt;                                                                                      *   }&lt;/pre&gt;                                                                                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method assumes that the other object uses the same &lt;code&gt;ToStringStyle&lt;/cod   * &lt;p&gt;This method assumes that the other object uses the same &lt;code&gt;ToStringStyle&lt;/cod
+* as this one.&lt;/p&gt;                                                                               * as this one.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the &lt;code&gt;toString&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, no change is m   * &lt;p&gt;If the &lt;code&gt;toString&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, no change is m
+*                                                                                                      *                                                                                                   
+* @param toString  the result of &lt;code&gt;toString()&lt;/code&gt; on another object                 * @param toString  the result of &lt;code&gt;toString()&lt;/code&gt; on another object              
+* @return this                                                                                         * @return this                                                                                      
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public ToStringBuilder appendToString(String toString) {                                             | public ToStringBuilder&lt;T&gt; appendToString(String toString) {                                   
+if (toString != null) {                                                                                if (toString != null) {                                                                             
+style.appendToString(buffer, toString);                                                                style.appendToString(buffer, toString);                                                             
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

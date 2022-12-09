@@ -1,0 +1,21 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.HOUR_OF_DAY
+ * Includes rounding the extremes of one hour
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundHourOfDay() throws Exception {
+    final int calendarField = Calendar.HOUR_OF_DAY;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 9:00:00.000");
+    roundedDownDate = targetHourOfDayDate;
+    lastRoundedDownDate = dateTimeParser.parse("June 1, 2008 8:29:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 31, 2007 23:30:00.000");
+    maxDate = dateTimeParser.parse("January 1, 2008 0:29:59.999");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

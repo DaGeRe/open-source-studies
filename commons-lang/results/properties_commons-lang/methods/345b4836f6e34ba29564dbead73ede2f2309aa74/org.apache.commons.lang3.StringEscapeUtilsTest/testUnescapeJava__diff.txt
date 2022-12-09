@@ -1,0 +1,32 @@
+public void testUnescapeJava() throws IOException {
+    assertEquals(null, StringEscapeUtils.unescapeJava(null));
+    try {
+        StringEscapeUtils.UNESCAPE_JAVA.translate(null, null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        StringEscapeUtils.UNESCAPE_JAVA.translate("", null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        StringEscapeUtils.unescapeJava("\\u02-3");
+        fail();
+    } catch (RuntimeException ex) {
+    }
+    assertUnescapeJava("", "");
+    assertUnescapeJava("test", "test");
+    assertUnescapeJava("\ntest\b", "\\ntest\\b");
+    assertUnescapeJava("\u123425foo\ntest\b", "\\u123425foo\\ntest\\b");
+    assertUnescapeJava("'\foo\teste\r", "\\'\\foo\\teste\\r");
+    assertUnescapeJava("", "\\");
+    // foo
+    assertUnescapeJava("lowercase unicode", "\uABCDx", "\\uabcdx");
+    assertUnescapeJava("uppercase unicode", "\uABCDx", "\\uABCDx");
+    assertUnescapeJava("unicode as final character", "\uABCD", "\\uabcd");
+}

@@ -1,0 +1,17 @@
+                                                                                                     | @Test                                                                                               
+public void testReadDeclaredNamedStaticFieldForceAccess() throws Exception {                           public void testReadDeclaredNamedStaticFieldForceAccess() throws Exception {                        
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(Foo.class, "VALUE", true));                 assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(Foo.class, "VALUE", true));              
+assertEquals("child", FieldUtils.readDeclaredStaticField(PublicChild.class, "VALUE", true));           assertEquals("child", FieldUtils.readDeclaredStaticField(PublicChild.class, "VALUE", true));        
+try {                                                                                                  try {                                                                                               
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PubliclyShadowedChild.class, "VALUE", tru   assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PubliclyShadowedChild.class, "VALUE", tru
+fail("expected IllegalArgumentException");                                                             fail("expected IllegalArgumentException");                                                          
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PrivatelyShadowedChild.class, "VALUE", tr   assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PrivatelyShadowedChild.class, "VALUE", tr
+fail("expected IllegalArgumentException");                                                             fail("expected IllegalArgumentException");                                                          
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotEmptyString2() {                                                                    public void testNotEmptyString2() {                                                                 
+Validate.notEmpty("a", "MSG");                                                                         Validate.notEmpty("a", "MSG");                                                                      
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((String) null, "MSG");                                                               Validate.notEmpty((String) null, "MSG");                                                            
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException ex) {                                                              | } catch (NullPointerException ex) {                                                                 
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty("", "MSG");                                                                          Validate.notEmpty("", "MSG");                                                                       
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+String str = "Hi";                                                                                     String str = "Hi";                                                                                  
+String testStr = Validate.notEmpty(str, "Message");                                                    String testStr = Validate.notEmpty(str, "Message");                                                 
+assertSame(str, testStr);                                                                              assertSame(str, testStr);                                                                           
+}                                                                                                      }                                                                                                   

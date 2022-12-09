@@ -1,0 +1,6 @@
+public void testToObject_char() {
+    final char[] b = null;
+    assertEquals(null, ArrayUtils.toObject(b));
+    assertSame(ArrayUtils.EMPTY_CHARACTER_OBJECT_ARRAY, ArrayUtils.toObject(new char[0]));
+    assertTrue(Arrays.equals(new Character[] { Character.MIN_VALUE, Character.MAX_VALUE, '0' }, ArrayUtils.toObject(new char[] { Character.MIN_VALUE, Character.MAX_VALUE, '0' })));
+}

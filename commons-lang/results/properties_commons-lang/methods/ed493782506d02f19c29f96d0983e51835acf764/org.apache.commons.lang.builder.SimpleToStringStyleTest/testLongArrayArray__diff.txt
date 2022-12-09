@@ -1,0 +1,8 @@
+public void testLongArrayArray() {
+    long[][] array = new long[][] { { 1, 2 }, null, { 5 } };
+    assertEquals("{{1,2},<null>,{5}}", new ToStringBuilder(base).append(array).toString());
+    assertEquals("{{1,2},<null>,{5}}", new ToStringBuilder(base).append((Object) array).toString());
+    array = null;
+    assertEquals("<null>", new ToStringBuilder(base).append(array).toString());
+    assertEquals("<null>", new ToStringBuilder(base).append((Object) array).toString());
+}

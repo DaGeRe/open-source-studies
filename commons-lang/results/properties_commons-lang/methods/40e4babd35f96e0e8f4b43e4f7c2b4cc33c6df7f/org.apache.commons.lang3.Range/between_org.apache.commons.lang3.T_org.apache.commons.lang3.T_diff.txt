@@ -1,0 +1,19 @@
+/**
+ * <p>Obtains a range with the specified minimum and maximum values (both inclusive).</p>
+ *
+ * <p>The range uses the natural ordering of the elements to determine where
+ * values lie in the range.</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min).
+ * The getMinimum and getMaximum methods will return the correct values.</p>
+ *
+ * @param <T> the type of the elements in this range
+ * @param fromInclusive  the first value that defines the edge of the range, inclusive
+ * @param toInclusive  the second value that defines the edge of the range, inclusive
+ * @return the range object, not null
+ * @throws IllegalArgumentException if either element is null
+ * @throws ClassCastException if the elements are not {@code Comparable}
+ */
+public static <T extends Comparable<T>> Range<T> between(T fromInclusive, T toInclusive) {
+    return between(fromInclusive, toInclusive, null);
+}

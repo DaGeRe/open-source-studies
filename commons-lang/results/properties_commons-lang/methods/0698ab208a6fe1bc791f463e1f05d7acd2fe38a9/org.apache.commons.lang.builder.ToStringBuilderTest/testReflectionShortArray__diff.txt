@@ -1,0 +1,8 @@
+public void testReflectionShortArray() {
+    short[] array = new short[] { 1, 2, -3, 4 };
+    String baseStr = this.toBaseString(array);
+    assertEquals(baseStr + "[{1,2,-3,4}]", ToStringBuilder.reflectionToString(array));
+    array = null;
+    assertReflectionArray("<null>", array);
+    this.validateEmptyToStringStyleRegistry();
+}

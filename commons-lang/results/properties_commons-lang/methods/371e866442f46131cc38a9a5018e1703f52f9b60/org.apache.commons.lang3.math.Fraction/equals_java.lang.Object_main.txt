@@ -1,0 +1,21 @@
+// Basics
+// -------------------------------------------------------------------
+/**
+ * <p>Compares this fraction to another object to test if they are equal.</p>.
+ *
+ * <p>To be equal, both values must be equal. Thus 2/4 is not equal to 1/2.</p>
+ *
+ * @param obj the reference object with which to compare
+ * @return <code>true</code> if this object is equal
+ */
+@Override
+public boolean equals(Object obj) {
+    if (obj == this) {
+        return true;
+    }
+    if (obj instanceof Fraction == false) {
+        return false;
+    }
+    Fraction other = (Fraction) obj;
+    return getNumerator() == other.getNumerator() && getDenominator() == other.getDenominator();
+}

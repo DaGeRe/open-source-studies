@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                              * &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p   * &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p
+*                                                                                                      *                                                                                                   
+* @return the &lt;code&gt;String&lt;/code&gt; representation of this range                             * @return the &lt;code&gt;String&lt;/code&gt; representation of this range                          
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+if (toString == null) {                                                                              | String result = toString;                                                                           
+                                                                                                     | if (result == null) {                                                                               
+StringBuilder buf = new StringBuilder(32);                                                             StringBuilder buf = new StringBuilder(32);                                                          
+buf.append("Range[");                                                                                  buf.append("Range[");                                                                               
+buf.append(this.minimum);                                                                              buf.append(this.minimum);                                                                           
+buf.append(',');                                                                                       buf.append(',');                                                                                    
+buf.append(this.maximum);                                                                              buf.append(this.maximum);                                                                           
+buf.append(']');                                                                                       buf.append(']');                                                                                    
+toString = buf.toString();                                                                           | result = buf.toString();                                                                            
+                                                                                                     | toString = result;                                                                                  
+}                                                                                                      }                                                                                                   
+return toString;                                                                                     | return result;                                                                                      
+}                                                                                                      }                                                                                                   

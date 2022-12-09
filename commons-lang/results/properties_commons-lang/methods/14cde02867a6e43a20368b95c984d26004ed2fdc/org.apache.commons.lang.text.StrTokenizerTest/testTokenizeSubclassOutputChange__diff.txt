@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testTokenizeSubclassOutputChange() {                                                       public void testTokenizeSubclassOutputChange() {                                                    
+StrTokenizer tkn = new StrTokenizer("a b c") {                                                         StrTokenizer tkn = new StrTokenizer("a b c") {                                                      
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+protected List tokenize(char[] chars, int offset, int count) {                                       | protected List&lt;String&gt; tokenize(char[] chars, int offset, int count) {                        
+List list = super.tokenize(chars, offset, count);                                                    | List&lt;String&gt; list = super.tokenize(chars, offset, count);                                     
+Collections.reverse(list);                                                                             Collections.reverse(list);                                                                          
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+assertEquals("c", tkn.next());                                                                         assertEquals("c", tkn.next());                                                                      
+assertEquals("b", tkn.next());                                                                         assertEquals("b", tkn.next());                                                                      
+assertEquals("a", tkn.next());                                                                         assertEquals("a", tkn.next());                                                                      
+}                                                                                                      }                                                                                                   

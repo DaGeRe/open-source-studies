@@ -1,0 +1,47 @@
+@Test
+public void testReadDeclaredNamedFieldForceAccess() throws Exception {
+    try {
+        FieldUtils.readDeclaredField(publicChild, null, true);
+        fail("a null field name should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        FieldUtils.readDeclaredField((Object) null, "none", true);
+        fail("a null target should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        assertEquals("s", FieldUtils.readDeclaredField(publicChild, "s", true));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals("ss", FieldUtils.readDeclaredField(publiclyShadowedChild, "s", true));
+    assertEquals("ss", FieldUtils.readDeclaredField(privatelyShadowedChild, "s", true));
+    try {
+        assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(publicChild, "b", true));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(Boolean.TRUE, FieldUtils.readDeclaredField(publiclyShadowedChild, "b", true));
+    assertEquals(Boolean.TRUE, FieldUtils.readDeclaredField(privatelyShadowedChild, "b", true));
+    try {
+        assertEquals(I0, FieldUtils.readDeclaredField(publicChild, "i", true));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(I1, FieldUtils.readDeclaredField(publiclyShadowedChild, "i", true));
+    assertEquals(I1, FieldUtils.readDeclaredField(privatelyShadowedChild, "i", true));
+    try {
+        assertEquals(D0, FieldUtils.readDeclaredField(publicChild, "d", true));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(D1, FieldUtils.readDeclaredField(publiclyShadowedChild, "d", true));
+    assertEquals(D1, FieldUtils.readDeclaredField(privatelyShadowedChild, "d", true));
+}

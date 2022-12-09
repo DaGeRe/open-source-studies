@@ -1,0 +1,33 @@
+public void testIndexOf_StrMatcher_int() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(-1, sb.indexOf((StrMatcher) null, 2));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('a'), 2));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('a'), 0));
+    sb.append("ab bd");
+    assertEquals(0, sb.indexOf(StrMatcher.charMatcher('a'), -2));
+    assertEquals(0, sb.indexOf(StrMatcher.charMatcher('a'), 0));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('a'), 2));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('a'), 20));
+    assertEquals(1, sb.indexOf(StrMatcher.charMatcher('b'), -1));
+    assertEquals(1, sb.indexOf(StrMatcher.charMatcher('b'), 0));
+    assertEquals(1, sb.indexOf(StrMatcher.charMatcher('b'), 1));
+    assertEquals(3, sb.indexOf(StrMatcher.charMatcher('b'), 2));
+    assertEquals(3, sb.indexOf(StrMatcher.charMatcher('b'), 3));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('b'), 4));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('b'), 5));
+    assertEquals(-1, sb.indexOf(StrMatcher.charMatcher('b'), 6));
+    assertEquals(2, sb.indexOf(StrMatcher.spaceMatcher(), -2));
+    assertEquals(2, sb.indexOf(StrMatcher.spaceMatcher(), 0));
+    assertEquals(2, sb.indexOf(StrMatcher.spaceMatcher(), 2));
+    assertEquals(-1, sb.indexOf(StrMatcher.spaceMatcher(), 4));
+    assertEquals(-1, sb.indexOf(StrMatcher.spaceMatcher(), 20));
+    assertEquals(-1, sb.indexOf(StrMatcher.noneMatcher(), 0));
+    assertEquals(-1, sb.indexOf((StrMatcher) null, 0));
+    sb.append(" A1 junction with A2");
+    assertEquals(6, sb.indexOf(A_NUMBER_MATCHER, 5));
+    assertEquals(6, sb.indexOf(A_NUMBER_MATCHER, 6));
+    assertEquals(23, sb.indexOf(A_NUMBER_MATCHER, 7));
+    assertEquals(23, sb.indexOf(A_NUMBER_MATCHER, 22));
+    assertEquals(23, sb.indexOf(A_NUMBER_MATCHER, 23));
+    assertEquals(-1, sb.indexOf(A_NUMBER_MATCHER, 24));
+}

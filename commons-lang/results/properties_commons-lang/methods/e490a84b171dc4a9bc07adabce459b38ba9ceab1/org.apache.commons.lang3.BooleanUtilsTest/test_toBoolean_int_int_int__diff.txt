@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void test_toBoolean_int_int_int() {
+    assertEquals(true, BooleanUtils.toBoolean(6, 6, 7));
+    assertEquals(false, BooleanUtils.toBoolean(7, 6, 7));
+    try {
+        BooleanUtils.toBoolean(8, 6, 7);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

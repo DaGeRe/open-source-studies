@@ -1,0 +1,12 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Initializes the instance for first use.&lt;/p&gt;                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private void init() {                                                                                |                                                                                                     
+List&lt;Rule&gt; rulesList = parsePattern();                                                         |                                                                                                     
+mRules = rulesList.toArray(new Rule[rulesList.size()]);                                              |                                                                                                     
+int len = 0;                                                                                         |                                                                                                     
+for (int i = mRules.length; --i &gt;= 0; ) {                                                         |                                                                                                     
+len += mRules[i].estimateLength();                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+mMaxLengthEstimate = len;                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

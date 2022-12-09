@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+// TODO: Handle \\u+0045 variant                                                                       // TODO: Handle \\u+0045 variant                                                                    
+@Override                                                                                              @Override                                                                                           
+public int translate(CharSequence input, int index, Writer out) throws IOException {                   public int translate(CharSequence input, int index, Writer out) throws IOException {                
+if (input.charAt(index) == '\\') {                                                                     if (input.charAt(index) == '\\') {                                                                  
+if ((index + 1 &lt; input.length()) && input.charAt(index + 1) == 'u') {                               if ((index + 1 &lt; input.length()) && input.charAt(index + 1) == 'u') {                            
+// consume optional additional 'u' chars                                                               // consume optional additional 'u' chars                                                            
+int i = 2;                                                                                             int i = 2;                                                                                          
+while ((index + i &lt; input.length()) && input.charAt(index + i) == 'u') {                            while ((index + i &lt; input.length()) && input.charAt(index + i) == 'u') {                         
+i++;                                                                                                   i++;                                                                                                
+}                                                                                                      }                                                                                                   
+// consume + symbol in \\u+0045                                                                        // consume + symbol in \\u+0045                                                                     
+if (isSet(PARAM.escapePlus)) {                                                                       | if (isSet(OPTION.escapePlus)) {                                                                     
+if ((index + i &lt; input.length()) && (input.charAt(index + i) == '+')) {                             if ((index + i &lt; input.length()) && (input.charAt(index + i) == '+')) {                          
+i++;                                                                                                   i++;                                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if ((index + i + 4 &lt;= input.length())) {                                                            if ((index + i + 4 &lt;= input.length())) {                                                         
+// Get 4 hex digits                                                                                    // Get 4 hex digits                                                                                 
+CharSequence unicode = input.subSequence(index + i, index + i + 4);                                    CharSequence unicode = input.subSequence(index + i, index + i + 4);                                 
+try {                                                                                                  try {                                                                                               
+int value = Integer.parseInt(unicode.toString(), 16);                                                  int value = Integer.parseInt(unicode.toString(), 16);                                               
+out.write((char) value);                                                                               out.write((char) value);                                                                            
+} catch (NumberFormatException nfe) {                                                                  } catch (NumberFormatException nfe) {                                                               
+throw new IllegalArgumentException("Unable to parse unicode value: " + unicode, nfe);                  throw new IllegalArgumentException("Unable to parse unicode value: " + unicode, nfe);               
+}                                                                                                      }                                                                                                   
+return i + 4;                                                                                          return i + 4;                                                                                       
+} else {                                                                                               } else {                                                                                            
+throw new IllegalArgumentException("Less than 4 hex digits in unicode value: '" + input.subSequence(   throw new IllegalArgumentException("Less than 4 hex digits in unicode value: '" + input.subSequence(
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   

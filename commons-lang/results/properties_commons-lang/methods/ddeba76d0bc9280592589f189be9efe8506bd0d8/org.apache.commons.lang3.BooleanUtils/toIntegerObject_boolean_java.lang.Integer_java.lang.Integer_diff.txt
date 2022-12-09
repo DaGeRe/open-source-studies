@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a boolean to an Integer specifying the conversion values.&lt;/p&gt;                * &lt;p&gt;Converts a boolean to an Integer specifying the conversion values.&lt;/p&gt;             
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toIntegerObject(true, new Integer(1), new Integer(0))  = new Integer(1)             | *   BooleanUtils.toIntegerObject(true, Integer.valueOf(1), Integer.valueOf(0))  = Integer.valueOf(1)
+*   BooleanUtils.toIntegerObject(false, new Integer(1), new Integer(0)) = new Integer(0)             | *   BooleanUtils.toIntegerObject(false, Integer.valueOf(1), Integer.valueOf(0)) = Integer.valueOf(0)
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the to convert                                                                          * @param bool  the to convert                                                                       
+* @param trueValue  the value to return if {@code true}, may be {@code null}                           * @param trueValue  the value to return if {@code true}, may be {@code null}                        
+* @param falseValue  the value to return if {@code false}, may be {@code null}                         * @param falseValue  the value to return if {@code false}, may be {@code null}                      
+* @return the appropriate value                                                                        * @return the appropriate value                                                                     
+*/                                                                                                     */                                                                                                  
+public static Integer toIntegerObject(boolean bool, Integer trueValue, Integer falseValue) {           public static Integer toIntegerObject(boolean bool, Integer trueValue, Integer falseValue) {        
+return bool ? trueValue : falseValue;                                                                  return bool ? trueValue : falseValue;                                                               
+}                                                                                                      }                                                                                                   

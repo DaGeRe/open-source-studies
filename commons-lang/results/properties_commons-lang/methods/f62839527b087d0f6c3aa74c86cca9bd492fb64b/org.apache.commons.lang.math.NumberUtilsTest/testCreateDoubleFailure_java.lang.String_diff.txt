@@ -1,0 +1,8 @@
+protected void testCreateDoubleFailure(String str) {
+    try {
+        Double value = NumberUtils.createDouble(str);
+        fail("createDouble(blank) failed: " + value);
+    } catch (NumberFormatException ex) {
+        // empty
+    }
+}

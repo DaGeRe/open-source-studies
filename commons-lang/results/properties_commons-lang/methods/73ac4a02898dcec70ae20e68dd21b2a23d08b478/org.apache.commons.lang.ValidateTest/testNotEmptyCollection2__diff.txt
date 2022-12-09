@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testNotEmptyCollection2() {
+    Collection coll = new ArrayList();
+    try {
+        Validate.notEmpty((Collection) null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(coll, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    coll.add(new Integer(8));
+    Validate.notEmpty(coll, "MSG");
+}

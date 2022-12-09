@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testGetRootCauseStackTrace_Throwable() throws Exception {                                  public void testGetRootCauseStackTrace_Throwable() throws Exception {                               
+assertEquals(0, ExceptionUtils.getRootCauseStackTrace(null).length);                                   assertEquals(0, ExceptionUtils.getRootCauseStackTrace(null).length);                                
+Throwable withCause = createExceptionWithCause();                                                      Throwable withCause = createExceptionWithCause();                                                   
+String[] stackTrace = ExceptionUtils.getRootCauseStackTrace(withCause);                                String[] stackTrace = ExceptionUtils.getRootCauseStackTrace(withCause);                             
+boolean match = false;                                                                                 boolean match = false;                                                                              
+for (int i = 0; i &lt; stackTrace.length; i++) {                                                     | for (String element : stackTrace) {                                                                 
+if (stackTrace[i].startsWith(ExceptionUtils.WRAPPED_MARKER)) {                                       | if (element.startsWith(ExceptionUtils.WRAPPED_MARKER)) {                                            
+match = true;                                                                                          match = true;                                                                                       
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+assertEquals(true, match);                                                                             assertEquals(true, match);                                                                          
+stackTrace = ExceptionUtils.getRootCauseStackTrace(withoutCause);                                      stackTrace = ExceptionUtils.getRootCauseStackTrace(withoutCause);                                   
+match = false;                                                                                         match = false;                                                                                      
+for (int i = 0; i &lt; stackTrace.length; i++) {                                                     | for (String element : stackTrace) {                                                                 
+if (stackTrace[i].startsWith(ExceptionUtils.WRAPPED_MARKER)) {                                       | if (element.startsWith(ExceptionUtils.WRAPPED_MARKER)) {                                            
+match = true;                                                                                          match = true;                                                                                       
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+assertEquals(false, match);                                                                            assertEquals(false, match);                                                                         
+}                                                                                                      }                                                                                                   

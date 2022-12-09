@@ -1,0 +1,7 @@
+public void test_isEnum() {
+    assertEquals(true, EnumUtils.isValidEnum(Traffic.class, "RED"));
+    assertEquals(true, EnumUtils.isValidEnum(Traffic.class, "AMBER"));
+    assertEquals(true, EnumUtils.isValidEnum(Traffic.class, "GREEN"));
+    assertEquals(false, EnumUtils.isValidEnum(Traffic.class, "PURPLE"));
+    assertEquals(false, EnumUtils.isValidEnum(Traffic.class, null));
+}

@@ -1,0 +1,13 @@
+public void test_getInstance_String() {                                                                public void test_getInstance_String() {                                                             
+FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy");                                     FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy");                                  
+FastDateFormat format2 = FastDateFormat.getInstance("MM-DD-yyyy");                                     FastDateFormat format2 = FastDateFormat.getInstance("MM-DD-yyyy");                                  
+FastDateFormat format3 = FastDateFormat.getInstance("MM-DD-yyyy");                                     FastDateFormat format3 = FastDateFormat.getInstance("MM-DD-yyyy");                                  
+// -- junit 3.8 version -- assertFalse(format1 == format2);                                            // -- junit 3.8 version -- assertFalse(format1 == format2);                                         
+assertTrue(format1 != format2);                                                                        assertTrue(format1 != format2);                                                                     
+assertSame(format2, format3);                                                                          assertSame(format2, format3);                                                                       
+assertEquals("MM/DD/yyyy", format1.getPattern());                                                      assertEquals("MM/DD/yyyy", format1.getPattern());                                                   
+assertEquals(TimeZone.getDefault(), format1.getTimeZone());                                            assertEquals(TimeZone.getDefault(), format1.getTimeZone());                                         
+assertEquals(TimeZone.getDefault(), format2.getTimeZone());                                            assertEquals(TimeZone.getDefault(), format2.getTimeZone());                                         
+assertEquals(false, format1.getTimeZoneOverridesCalendar());                                         |                                                                                                     
+assertEquals(false, format2.getTimeZoneOverridesCalendar());                                         |                                                                                                     
+}                                                                                                      }                                                                                                   

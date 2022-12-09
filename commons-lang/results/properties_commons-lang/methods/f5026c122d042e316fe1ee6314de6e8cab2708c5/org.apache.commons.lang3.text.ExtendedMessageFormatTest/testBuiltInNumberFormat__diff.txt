@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Test the built in number formats.                                                                    * Test the built in number formats.                                                                 
+*/                                                                                                     */                                                                                                  
+public void testBuiltInNumberFormat() {                                                                public void testBuiltInNumberFormat() {                                                             
+Object[] args = new Object[] { new Double("6543.21") };                                              | Object[] args = new Object[] { Double.valueOf("6543.21") };                                         
+Locale[] availableLocales = NumberFormat.getAvailableLocales();                                        Locale[] availableLocales = NumberFormat.getAvailableLocales();                                     
+checkBuiltInFormat("1: {0,number}", args, availableLocales);                                           checkBuiltInFormat("1: {0,number}", args, availableLocales);                                        
+checkBuiltInFormat("2: {0,number,integer}", args, availableLocales);                                   checkBuiltInFormat("2: {0,number,integer}", args, availableLocales);                                
+checkBuiltInFormat("3: {0,number,currency}", args, availableLocales);                                  checkBuiltInFormat("3: {0,number,currency}", args, availableLocales);                               
+checkBuiltInFormat("4: {0,number,percent}", args, availableLocales);                                   checkBuiltInFormat("4: {0,number,percent}", args, availableLocales);                                
+checkBuiltInFormat("5: {0,number,00000.000}", args, availableLocales);                                 checkBuiltInFormat("5: {0,number,00000.000}", args, availableLocales);                              
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,6 @@
+public void testAbove() {                                                                              public void testAbove() {                                                                           
+NumericEntityEscaper nee = NumericEntityEscaper.above('F');                                          | NumericEntityEscaper nee = new NumericEntityEscaper(Range.between((int) 'G', Integer.MAX_VALUE));   
+String input = "ADFGZ";                                                                                String input = "ADFGZ";                                                                             
+String result = nee.translate(input);                                                                  String result = nee.translate(input);                                                               
+assertEquals("Failed to escape numeric entities via the above method", "ADF&#71;&#90;", result);       assertEquals("Failed to escape numeric entities via the above method", "ADF&#71;&#90;", result);    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Returns the registry of objects being traversed by the &lt;code&gt;reflectionToString&lt;/code&gt;   * Returns the registry of objects being traversed by the &lt;code&gt;reflectionToString&lt;/code&gt;
+* methods in the current thread.                                                                       * methods in the current thread.                                                                    
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @return Set the registry of objects being traversed                                                  * @return Set the registry of objects being traversed                                               
+*/                                                                                                     */                                                                                                  
+static Set&lt;Object&gt; getRegistry() {                                                               static Set&lt;Object&gt; getRegistry() {                                                            
+return registry.get();                                                                               | WeakHashMap&lt;Object, Object&gt; m = REGISTRY.get();                                               
+                                                                                                     | return m == null ? Collections.&lt;Object&gt;emptySet() : m.keySet();                               
+}                                                                                                      }                                                                                                   

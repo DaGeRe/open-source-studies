@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Initializes the specified thread. This method is called by                                           * Initializes the specified thread. This method is called by                                        
+* {@link #newThread(Runnable)} after a new thread has been obtained from                               * {@link #newThread(Runnable)} after a new thread has been obtained from                            
+* the wrapped thread factory. It initializes the thread according to the                               * the wrapped thread factory. It initializes the thread according to the                            
+* options set for this factory.                                                                        * options set for this factory.                                                                     
+*                                                                                                      *                                                                                                   
+* @param t the thread to be initialized                                                                * @param t the thread to be initialized                                                             
+*/                                                                                                     */                                                                                                  
+private void initializeThread(Thread t) {                                                              private void initializeThread(Thread t) {                                                           
+long count = threadCounter.incrementAndGet();                                                        |                                                                                                     
+if (getNamingPattern() != null) {                                                                      if (getNamingPattern() != null) {                                                                   
+                                                                                                     | Long count = Long.valueOf(threadCounter.incrementAndGet());                                         
+t.setName(String.format(getNamingPattern(), count));                                                   t.setName(String.format(getNamingPattern(), count));                                                
+}                                                                                                      }                                                                                                   
+if (getUncaughtExceptionHandler() != null) {                                                           if (getUncaughtExceptionHandler() != null) {                                                        
+t.setUncaughtExceptionHandler(getUncaughtExceptionHandler());                                          t.setUncaughtExceptionHandler(getUncaughtExceptionHandler());                                       
+}                                                                                                      }                                                                                                   
+if (getPriority() != null) {                                                                           if (getPriority() != null) {                                                                        
+t.setPriority(getPriority().intValue());                                                               t.setPriority(getPriority().intValue());                                                            
+}                                                                                                      }                                                                                                   
+if (getDaemonFlag() != null) {                                                                         if (getDaemonFlag() != null) {                                                                      
+t.setDaemon(getDaemonFlag().booleanValue());                                                           t.setDaemon(getDaemonFlag().booleanValue());                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

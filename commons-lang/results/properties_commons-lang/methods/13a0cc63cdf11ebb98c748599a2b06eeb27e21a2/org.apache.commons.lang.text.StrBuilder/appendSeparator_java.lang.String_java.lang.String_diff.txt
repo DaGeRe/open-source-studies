@@ -1,0 +1,34 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Appends one of both separators to the StrBuilder.                                                 
+                                                                                                     | * If the builder is currently empty it will append the defaultIfEmpty-separator                     
+                                                                                                     | * Otherwise it will append the standard-separator                                                   
+                                                                                                     | *                                                                                                   
+                                                                                                     | * Appending a null separator will have no effect.                                                   
+                                                                                                     | * The separator is appended using {@link #append(String)}.                                          
+                                                                                                     | * &lt;p&gt;                                                                                         
+                                                                                                     | * This method is for example useful for constructing queries                                        
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StrBuilder whereClause = new StrBuilder();                                                        
+                                                                                                     | * if(searchCommand.getPriority() != null) {                                                         
+                                                                                                     | *  whereClause.appendSeparator(" and", " where");                                                   
+                                                                                                     | *  whereClause.append(" priority = ?")                                                              
+                                                                                                     | * }                                                                                                 
+                                                                                                     | * if(searchCommand.getComponent() != null) {                                                        
+                                                                                                     | *  whereClause.appendSeparator(" and", " where");                                                   
+                                                                                                     | *  whereClause.append(" component = ?")                                                             
+                                                                                                     | * }                                                                                                 
+                                                                                                     | * selectClause.append(whereClause)                                                                  
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param standard the separator if builder is not empty, null means no separator                    
+                                                                                                     | * @param defaultIfEmpty the separator if builder is empty, null means no separator                  
+                                                                                                     | * @return this, to enable chaining                                                                  
+                                                                                                     | * @since 3.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public StrBuilder appendSeparator(String standard, String defaultIfEmpty) {                         
+                                                                                                     | String str = isEmpty() ? defaultIfEmpty : standard;                                                 
+                                                                                                     | if (str != null) {                                                                                  
+                                                                                                     | append(str);                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | return this;                                                                                        
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,32 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Gets the rightmost {@code len} characters of a String.&lt;/p&gt;                         
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If {@code len} characters are not available, or the String                               
+                                                                                                     | * is {@code null}, the String will be returned without an                                           
+                                                                                                     | * an exception. An empty String is returned if len is negative.&lt;/p&gt;                           
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.right(null, *)    = null                                                              
+                                                                                                     | * StringUtils.right(*, -ve)     = ""                                                                
+                                                                                                     | * StringUtils.right("", *)      = ""                                                                
+                                                                                                     | * StringUtils.right("abc", 0)   = ""                                                                
+                                                                                                     | * StringUtils.right("abc", 2)   = "bc"                                                              
+                                                                                                     | * StringUtils.right("abc", 4)   = "abc"                                                             
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param str  the String to get the rightmost characters from, may be null                          
+                                                                                                     | * @param len  the length of the required String                                                     
+                                                                                                     | * @return the rightmost characters, {@code null} if null String input                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static String right(String str, int len) {                                                   
+                                                                                                     | if (str == null) {                                                                                  
+                                                                                                     | return null;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (len &lt; 0) {                                                                                   
+                                                                                                     | return EMPTY;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (str.length() &lt;= len) {                                                                       
+                                                                                                     | return str;                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | return str.substring(str.length() - len);                                                           
+                                                                                                     | }                                                                                                   

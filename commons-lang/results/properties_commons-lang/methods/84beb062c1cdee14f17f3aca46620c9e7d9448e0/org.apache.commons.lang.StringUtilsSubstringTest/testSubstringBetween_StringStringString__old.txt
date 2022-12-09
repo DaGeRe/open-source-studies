@@ -1,0 +1,9 @@
+public void testSubstringBetween_StringStringString() {
+    assertEquals(null, StringUtils.substringBetween(null, "", ""));
+    assertEquals("", StringUtils.substringBetween("", "", ""));
+    assertEquals("", StringUtils.substringBetween("foo", "", ""));
+    assertEquals(null, StringUtils.substringBetween("foo", "", "]"));
+    assertEquals(null, StringUtils.substringBetween("foo", "[", "]"));
+    assertEquals("", StringUtils.substringBetween("    ", " ", "  "));
+    assertEquals("bar", StringUtils.substringBetween("<foo>bar</foo>", "<foo>", "</foo>"));
+}

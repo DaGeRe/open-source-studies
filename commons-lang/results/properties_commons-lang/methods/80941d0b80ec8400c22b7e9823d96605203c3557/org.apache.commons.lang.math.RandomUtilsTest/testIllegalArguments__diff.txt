@@ -1,0 +1,17 @@
+/**
+ * make sure that illegal arguments fail
+ */
+public void testIllegalArguments() {
+    try {
+        RandomUtils.JVM_RANDOM.nextInt(-1);
+        fail("expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        // empty
+    }
+    try {
+        JVMRandom.nextLong(-1L);
+        fail("expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        // empty
+    }
+}

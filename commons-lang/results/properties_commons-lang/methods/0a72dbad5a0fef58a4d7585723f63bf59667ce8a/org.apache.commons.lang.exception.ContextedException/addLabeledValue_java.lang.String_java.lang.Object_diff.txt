@@ -1,0 +1,16 @@
+                                                                                                     | // -----------------------------------------------------------------------                          
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Adds information helpful to a developer in diagnosing and correcting                              
+                                                                                                     | * the problem.  For the information to be meaningful, the value passed                              
+                                                                                                     | * should have a reasonable toString() implementation.                                               
+                                                                                                     | * &lt;p&gt;                                                                                         
+                                                                                                     | * Note: This exception is only serializable if the object added is serializable.                    
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param label  a textual label associated with information, null not recommended                   
+                                                                                                     | * @param value  information needed to understand exception, may be null                             
+                                                                                                     | * @return this, for method chaining                                                                 
+                                                                                                     | */                                                                                                  
+                                                                                                     | public ContextedException addLabeledValue(String label, Object value) {                             
+                                                                                                     | exceptionContext.addLabeledValue(label, value);                                                     
+                                                                                                     | return this;                                                                                        
+                                                                                                     | }                                                                                                   

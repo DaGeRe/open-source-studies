@@ -1,0 +1,19 @@
+/**
+ * <p>Convert a <code>String</code> to a <code>BigDecimal</code>.</p>
+ *
+ * <p>Returns <code>null</code> if the string is <code>null</code>.</p>
+ *
+ * @param str  a <code>String</code> to convert, may be null
+ * @return converted <code>BigDecimal</code>
+ * @throws NumberFormatException if the value cannot be converted
+ */
+public static BigDecimal createBigDecimal(String str) {
+    if (str == null) {
+        return null;
+    }
+    // handle JDK1.3.1 bug where "" throws IndexOutOfBoundsException
+    if (StringUtils.isBlank(str)) {
+        throw new NumberFormatException("A blank string is not a valid number");
+    }
+    return new BigDecimal(str);
+}

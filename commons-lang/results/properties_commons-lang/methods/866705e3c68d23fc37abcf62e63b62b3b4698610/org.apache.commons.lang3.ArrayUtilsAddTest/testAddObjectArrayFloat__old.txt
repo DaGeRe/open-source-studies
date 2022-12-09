@@ -1,0 +1,16 @@
+public void testAddObjectArrayFloat() {
+    float[] newArray;
+    newArray = ArrayUtils.add((float[]) null, 0);
+    assertTrue(Arrays.equals(new float[] { 0 }, newArray));
+    assertEquals(Float.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add((float[]) null, 1);
+    assertTrue(Arrays.equals(new float[] { 1 }, newArray));
+    assertEquals(Float.TYPE, newArray.getClass().getComponentType());
+    float[] array1 = new float[] { 1, 2, 3 };
+    newArray = ArrayUtils.add(array1, 0);
+    assertTrue(Arrays.equals(new float[] { 1, 2, 3, 0 }, newArray));
+    assertEquals(Float.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add(array1, 4);
+    assertTrue(Arrays.equals(new float[] { 1, 2, 3, 4 }, newArray));
+    assertEquals(Float.TYPE, newArray.getClass().getComponentType());
+}

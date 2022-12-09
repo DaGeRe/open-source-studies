@@ -1,0 +1,9 @@
+public void testWrapperToPrimitive() {                                                                 public void testWrapperToPrimitive() {                                                              
+// an array with classes to convert                                                                    // an array with classes to convert                                                                 
+final Class[] primitives = { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.TYPE, Long | final Class&lt;?&gt;[] primitives = { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.T
+for (int i = 0; i &lt; primitives.length; i++) {                                                       for (int i = 0; i &lt; primitives.length; i++) {                                                    
+Class wrapperCls = ClassUtils.primitiveToWrapper(primitives[i]);                                     | Class&lt;?&gt; wrapperCls = ClassUtils.primitiveToWrapper(primitives[i]);                           
+assertFalse("Still primitive", wrapperCls.isPrimitive());                                              assertFalse("Still primitive", wrapperCls.isPrimitive());                                           
+assertEquals(wrapperCls + " -&gt; " + primitives[i], primitives[i], ClassUtils.wrapperToPrimitive(wr   assertEquals(wrapperCls + " -&gt; " + primitives[i], primitives[i], ClassUtils.wrapperToPrimitive(wr
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

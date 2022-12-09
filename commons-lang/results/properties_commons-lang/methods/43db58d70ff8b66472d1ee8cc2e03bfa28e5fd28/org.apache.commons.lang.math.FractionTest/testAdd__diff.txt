@@ -1,0 +1,108 @@
+public void testAdd() {
+    Fraction f = null;
+    Fraction f1 = null;
+    Fraction f2 = null;
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(1, 5);
+    f = f1.add(f2);
+    assertEquals(4, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(2, 5);
+    f = f1.add(f2);
+    assertEquals(1, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(3, 5);
+    f = f1.add(f2);
+    assertEquals(6, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(-4, 5);
+    f = f1.add(f2);
+    assertEquals(-1, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MAX_VALUE - 1, 1);
+    f2 = Fraction.ONE;
+    f = f1.add(f2);
+    assertEquals(Integer.MAX_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(1, 2);
+    f = f1.add(f2);
+    assertEquals(11, f.getNumerator());
+    assertEquals(10, f.getDenominator());
+    f1 = Fraction.getFraction(3, 8);
+    f2 = Fraction.getFraction(1, 6);
+    f = f1.add(f2);
+    assertEquals(13, f.getNumerator());
+    assertEquals(24, f.getDenominator());
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(1, 5);
+    f = f1.add(f2);
+    assertSame(f2, f);
+    f = f2.add(f1);
+    assertSame(f2, f);
+    f1 = Fraction.getFraction(-1, 13 * 13 * 2 * 2);
+    f2 = Fraction.getFraction(-2, 13 * 17 * 2);
+    f = f1.add(f2);
+    assertEquals(13 * 13 * 17 * 2 * 2, f.getDenominator());
+    assertEquals(-17 - 2 * 13 * 2, f.getNumerator());
+    try {
+        f.add(null);
+        fail("expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+    }
+    // if this fraction is added naively, it will overflow.
+    // check that it doesn't.
+    f1 = Fraction.getFraction(1, 32768 * 3);
+    f2 = Fraction.getFraction(1, 59049);
+    f = f1.add(f2);
+    assertEquals(52451, f.getNumerator());
+    assertEquals(1934917632, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MIN_VALUE, 3);
+    f2 = Fraction.ONE_THIRD;
+    f = f1.add(f2);
+    assertEquals(Integer.MIN_VALUE + 1, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MAX_VALUE - 1, 1);
+    f2 = Fraction.ONE;
+    f = f1.add(f2);
+    assertEquals(Integer.MAX_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    try {
+        // should overflow
+        f = f.add(Fraction.ONE);
+        fail("expecting ArithmeticException but got: " + f.toString());
+    } catch (ArithmeticException ex) {
+    }
+    // denominator should not be a multiple of 2 or 3 to trigger overflow
+    f1 = Fraction.getFraction(Integer.MIN_VALUE, 5);
+    f2 = Fraction.getFraction(-1, 5);
+    try {
+        // should overflow
+        f = f1.add(f2);
+        fail("expecting ArithmeticException but got: " + f.toString());
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(-Integer.MAX_VALUE, 1);
+        f = f.add(f);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(-Integer.MAX_VALUE, 1);
+        f = f.add(f);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    f1 = Fraction.getFraction(3, 327680);
+    f2 = Fraction.getFraction(2, 59049);
+    try {
+        // should overflow
+        f = f1.add(f2);
+        fail("expecting ArithmeticException but got: " + f.toString());
+    } catch (ArithmeticException ex) {
+    }
+}

@@ -1,0 +1,18 @@
+public void testSubstringIntInt() {
+    StrBuilder sb = new StrBuilder("hello goodbye");
+    assertEquals("hello", sb.substring(0, 5));
+    assertEquals("hello goodbye".substring(0, 6), sb.substring(0, 6));
+    assertEquals("goodbye", sb.substring(6, 13));
+    assertEquals("hello goodbye".substring(6, 13), sb.substring(6, 13));
+    assertEquals("goodbye", sb.substring(6, 20));
+    try {
+        sb.substring(-1, 5);
+        fail();
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.substring(15, 20);
+        fail();
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

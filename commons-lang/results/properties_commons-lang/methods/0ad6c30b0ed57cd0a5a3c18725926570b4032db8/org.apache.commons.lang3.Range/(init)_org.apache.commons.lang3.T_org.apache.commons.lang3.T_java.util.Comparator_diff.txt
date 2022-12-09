@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a new instance of {@code Range}.                                                           | * Creates an instance.                                                                              
+*                                                                                                      *                                                                                                   
+* @param element1 the first element                                                                  | * @param element1  the first element, not null                                                      
+* @param element2 the second element                                                                 | * @param element2  the second element, not null                                                     
+* @param c the comparator to be used                                                                 | * @param comparator  the comparator to be used, null for natural ordering                           
+*/                                                                                                     */                                                                                                  
+private Range(T element1, T element2, Comparator&lt;T&gt; c) {                                       | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | private Range(T element1, T element2, Comparator&lt;T&gt; comparator) {                             
+if (element1 == null || element2 == null) {                                                            if (element1 == null || element2 == null) {                                                         
+throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ",   throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ",
+}                                                                                                      }                                                                                                   
+if (c == null) {                                                                                     | if (comparator == null) {                                                                           
+throw new IllegalArgumentException("Comparator must not be null");                                   | comparator = ComparableComparator.INSTANCE;                                                         
+}                                                                                                      }                                                                                                   
+if (c.compare(element1, element2) &lt; 1) {                                                          | if (comparator.compare(element1, element2) &lt; 1) {                                                
+this.minimum = element1;                                                                               this.minimum = element1;                                                                            
+this.maximum = element2;                                                                               this.maximum = element2;                                                                            
+} else {                                                                                               } else {                                                                                            
+this.minimum = element2;                                                                               this.minimum = element2;                                                                            
+this.maximum = element1;                                                                               this.maximum = element1;                                                                            
+}                                                                                                      }                                                                                                   
+this.comparator = c;                                                                                 | this.comparator = comparator;                                                                       
+}                                                                                                      }                                                                                                   

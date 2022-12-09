@@ -1,0 +1,8 @@
+public void testJavaVersionAtLeastInt() {
+    int version = SystemUtils.JAVA_VERSION_INT;
+    assertEquals(true, SystemUtils.isJavaVersionAtLeast(version));
+    version -= 10;
+    assertEquals(true, SystemUtils.isJavaVersionAtLeast(version));
+    version += 20;
+    assertEquals(false, SystemUtils.isJavaVersionAtLeast(version));
+}

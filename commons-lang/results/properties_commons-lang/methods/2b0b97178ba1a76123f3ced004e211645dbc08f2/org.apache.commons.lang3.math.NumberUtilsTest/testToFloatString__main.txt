@@ -1,0 +1,13 @@
+/**
+ * Test for {@link NumberUtils#toFloat(String)}.
+ */
+@Test
+public void testToFloatString() {
+    assertTrue("toFloat(String) 1 failed", NumberUtils.toFloat("-1.2345") == -1.2345f);
+    assertTrue("toFloat(String) 2 failed", NumberUtils.toFloat("1.2345") == 1.2345f);
+    assertTrue("toFloat(String) 3 failed", NumberUtils.toFloat("abc") == 0.0f);
+    assertTrue("toFloat(Float.MAX_VALUE) failed", NumberUtils.toFloat(Float.MAX_VALUE + "") == Float.MAX_VALUE);
+    assertTrue("toFloat(Float.MIN_VALUE) failed", NumberUtils.toFloat(Float.MIN_VALUE + "") == Float.MIN_VALUE);
+    assertTrue("toFloat(empty) failed", NumberUtils.toFloat("") == 0.0f);
+    assertTrue("toFloat(null) failed", NumberUtils.toFloat(null) == 0.0f);
+}

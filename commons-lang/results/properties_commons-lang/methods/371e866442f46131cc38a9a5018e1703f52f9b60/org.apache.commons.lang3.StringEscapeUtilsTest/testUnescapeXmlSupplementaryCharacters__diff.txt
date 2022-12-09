@@ -1,0 +1,9 @@
+/**
+ * Reverse of the above.
+ *
+ * @see <a href="https://issues.apache.org/jira/browse/LANG-729">LANG-729</a>
+ */
+@Test
+public void testUnescapeXmlSupplementaryCharacters() {
+    assertEquals("Supplementary character must be represented using a single escape", "\uD84C\uDFB4", StringEscapeUtils.unescapeXml("&#144308;"));
+}

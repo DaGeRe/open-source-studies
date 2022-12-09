@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------
+public void testGetRootCauseStackTrace_Throwable() throws Exception {
+    assertEquals(0, ExceptionUtils.getRootCauseStackTrace(null).length);
+    Throwable withCause = createExceptionWithCause();
+    String[] stackTrace = ExceptionUtils.getRootCauseStackTrace(withCause);
+    boolean match = false;
+    for (int i = 0; i < stackTrace.length; i++) {
+        if (stackTrace[i].startsWith(ExceptionUtils.WRAPPED_MARKER)) {
+            match = true;
+            break;
+        }
+    }
+    assertEquals(true, match);
+    stackTrace = ExceptionUtils.getRootCauseStackTrace(withoutCause);
+    match = false;
+    for (int i = 0; i < stackTrace.length; i++) {
+        if (stackTrace[i].startsWith(ExceptionUtils.WRAPPED_MARKER)) {
+            match = true;
+            break;
+        }
+    }
+    assertEquals(false, match);
+}

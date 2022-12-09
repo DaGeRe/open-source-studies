@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------
+public void testDeleteIntInt() {
+    StrBuilder sb = new StrBuilder("abc");
+    sb.delete(0, 1);
+    assertEquals("bc", sb.toString());
+    sb.delete(1, 2);
+    assertEquals("b", sb.toString());
+    sb.delete(0, 1);
+    assertEquals("", sb.toString());
+    sb.delete(0, 1000);
+    assertEquals("", sb.toString());
+    try {
+        sb.delete(1, 2);
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.delete(-1, 1);
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    sb = new StrBuilder("anything");
+    try {
+        sb.delete(2, 1);
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

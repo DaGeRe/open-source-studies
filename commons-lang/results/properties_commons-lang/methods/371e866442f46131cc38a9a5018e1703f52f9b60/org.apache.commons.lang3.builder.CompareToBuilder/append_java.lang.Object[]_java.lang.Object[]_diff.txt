@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Appends to the <code>builder</code> the deep comparison of
+ * two <code>Object</code> arrays.</p>
+ *
+ * <ol>
+ *  <li>Check if arrays are the same using <code>==</code></li>
+ *  <li>Check if for <code>null</code>, <code>null</code> is less than non-<code>null</code></li>
+ *  <li>Check array length, a short length array is less than a long length array</li>
+ *  <li>Check array contents element by element using {@link #append(Object, Object, Comparator)}</li>
+ * </ol>
+ *
+ * <p>This method will also will be called for the top level of multi-dimensional,
+ * ragged, and multi-typed arrays.</p>
+ *
+ * @param lhs  left-hand array
+ * @param rhs  right-hand array
+ * @return this - used to chain append calls
+ * @throws ClassCastException  if <code>rhs</code> is not assignment-compatible
+ *  with <code>lhs</code>
+ */
+public CompareToBuilder append(Object[] lhs, Object[] rhs) {
+    return append(lhs, rhs, null);
+}

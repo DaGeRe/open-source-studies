@@ -1,0 +1,20 @@
+/**
+ * Searches the string builder to find the first reference to the specified char.
+ *
+ * @param ch  the character to find
+ * @param startIndex  the index to start at, invalid index rounded to edge
+ * @return the first index of the character, or -1 if not found
+ */
+public int indexOf(char ch, int startIndex) {
+    startIndex = (startIndex < 0 ? 0 : startIndex);
+    if (startIndex >= size) {
+        return -1;
+    }
+    char[] thisBuf = buffer;
+    for (int i = startIndex; i < size; i++) {
+        if (thisBuf[i] == ch) {
+            return i;
+        }
+    }
+    return -1;
+}

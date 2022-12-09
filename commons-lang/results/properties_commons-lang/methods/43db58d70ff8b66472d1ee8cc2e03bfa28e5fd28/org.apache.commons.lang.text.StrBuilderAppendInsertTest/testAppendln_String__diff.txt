@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testAppendln_String() {                                                                    public void testAppendln_String() {                                                                 
+final int[] count = new int[2];                                                                        final int[] count = new int[2];                                                                     
+StrBuilder sb = new StrBuilder() {                                                                     StrBuilder sb = new StrBuilder() {                                                                  
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public StrBuilder append(String str) {                                                                 public StrBuilder append(String str) {                                                              
+count[0]++;                                                                                            count[0]++;                                                                                         
+return super.append(str);                                                                              return super.append(str);                                                                           
+}                                                                                                      }                                                                                                   
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+public StrBuilder appendNewLine() {                                                                    public StrBuilder appendNewLine() {                                                                 
+count[1]++;                                                                                            count[1]++;                                                                                         
+return super.appendNewLine();                                                                          return super.appendNewLine();                                                                       
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+sb.appendln("foo");                                                                                    sb.appendln("foo");                                                                                 
+assertEquals("foo" + SEP, sb.toString());                                                              assertEquals("foo" + SEP, sb.toString());                                                           
+// appendNewLine() calls append(String)                                                                // appendNewLine() calls append(String)                                                             
+assertEquals(2, count[0]);                                                                             assertEquals(2, count[0]);                                                                          
+assertEquals(1, count[1]);                                                                             assertEquals(1, count[1]);                                                                          
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public void testIndexOfWithStartIndex() {
+    Object[] array = new Object[] { "0", "1", "2", "3", null, "0" };
+    assertEquals(-1, ArrayUtils.indexOf(null, null, 2));
+    assertEquals(-1, ArrayUtils.indexOf(new Object[0], "0", 0));
+    assertEquals(-1, ArrayUtils.indexOf(null, "0", 2));
+    assertEquals(5, ArrayUtils.indexOf(array, "0", 2));
+    assertEquals(-1, ArrayUtils.indexOf(array, "1", 2));
+    assertEquals(2, ArrayUtils.indexOf(array, "2", 2));
+    assertEquals(3, ArrayUtils.indexOf(array, "3", 2));
+    assertEquals(4, ArrayUtils.indexOf(array, null, 2));
+    assertEquals(-1, ArrayUtils.indexOf(array, "notInArray", 2));
+    assertEquals(4, ArrayUtils.indexOf(array, null, -1));
+    assertEquals(-1, ArrayUtils.indexOf(array, null, 8));
+    assertEquals(-1, ArrayUtils.indexOf(array, "0", 8));
+}

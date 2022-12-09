@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Tests if the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&g   * &lt;p&gt;Tests if the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&g
+* objects include the given name.&lt;/p&gt;                                                            * objects include the given name.&lt;/p&gt;                                                         
+*                                                                                                      *                                                                                                   
+* @param methodName  the methodName to search in the list.                                             * @param methodName  the methodName to search in the list.                                          
+* @return if the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&gt;        * @return if the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&gt;     
+*  objects include the given name.                                                                     *  objects include the given name.                                                                  
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static boolean isCauseMethodName(String methodName) {                                           public static boolean isCauseMethodName(String methodName) {                                        
+synchronized (CAUSE_METHOD_NAMES) {                                                                  | synchronized (CAUSE_METHOD_NAMES_LOCK) {                                                            
+return ArrayUtils.indexOf(CAUSE_METHOD_NAMES, methodName) &gt;= 0;                                     return ArrayUtils.indexOf(CAUSE_METHOD_NAMES, methodName) &gt;= 0;                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

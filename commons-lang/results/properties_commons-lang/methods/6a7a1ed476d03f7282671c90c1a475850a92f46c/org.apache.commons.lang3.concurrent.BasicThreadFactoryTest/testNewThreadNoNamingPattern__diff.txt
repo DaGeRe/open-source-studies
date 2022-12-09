@@ -1,0 +1,17 @@
+/**
+ * Tests whether the thread name is not modified if no naming pattern is
+ * set.
+ */
+@Test
+public void testNewThreadNoNamingPattern() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r = EasyMock.createMock(Runnable.class);
+    final String name = "unchangedThreadName";
+    Thread t = new Thread(name);
+    EasyMock.expect(wrapped.newThread(r)).andReturn(t);
+    EasyMock.replay(wrapped, r);
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).build();
+    assertSame("Wrong thread", t, factory.newThread(r));
+    assertEquals("Name was changed", name, t.getName());
+    EasyMock.verify(wrapped, r);
+}

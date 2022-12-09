@@ -1,0 +1,18 @@
+// Range tests
+// --------------------------------------------------------------------
+/**
+ * <p>Tests whether the specified range occurs entirely within this range.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * @param range  the range to test, may be <code>null</code>
+ * @return <code>true</code> if the specified range occurs entirely within
+ *  this range; otherwise, <code>false</code>
+ * @throws IllegalArgumentException if the <code>Range</code> cannot be compared
+ */
+public boolean containsRange(Range<T> range) {
+    if (range == null) {
+        return false;
+    }
+    return contains(range.getMinimum()) && contains(range.getMaximum());
+}

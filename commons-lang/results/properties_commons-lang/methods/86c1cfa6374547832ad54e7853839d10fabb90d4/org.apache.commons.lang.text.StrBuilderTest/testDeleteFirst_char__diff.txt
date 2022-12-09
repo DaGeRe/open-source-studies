@@ -1,0 +1,14 @@
+public void testDeleteFirst_char() {
+    StrBuilder sb = new StrBuilder("abcba");
+    sb.deleteFirst('X');
+    assertEquals("abcba", sb.toString());
+    sb.deleteFirst('a');
+    assertEquals("bcba", sb.toString());
+    sb.deleteFirst('c');
+    assertEquals("bba", sb.toString());
+    sb.deleteFirst('b');
+    assertEquals("ba", sb.toString());
+    sb = new StrBuilder("");
+    sb.deleteFirst('b');
+    assertEquals("", sb.toString());
+}

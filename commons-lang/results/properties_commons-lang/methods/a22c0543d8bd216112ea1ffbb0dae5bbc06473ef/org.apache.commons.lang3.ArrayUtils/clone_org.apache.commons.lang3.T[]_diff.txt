@@ -1,0 +1,20 @@
+// Clone
+// -----------------------------------------------------------------------
+/**
+ * <p>Shallow clones an array returning a typecast result and handling
+ * <code>null</code>.</p>
+ *
+ * <p>The objects in the array are not cloned, thus there is no special
+ * handling for multi-dimensional arrays.</p>
+ *
+ * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+ *
+ * @param array  the array to shallow clone, may be <code>null</code>
+ * @return the cloned array, <code>null</code> if <code>null</code> input
+ */
+public static <T> T[] clone(T[] array) {
+    if (array == null) {
+        return null;
+    }
+    return array.clone();
+}

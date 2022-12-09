@@ -1,0 +1,24 @@
+/**
+ * <p>Constructs a new <code>DoubleRange</code> using the specified
+ * number as both the minimum and maximum in this range.</p>
+ *
+ * @param number  the number to use for this range, must not
+ *  be <code>null</code>
+ * @throws IllegalArgumentException if the number is <code>null</code>
+ * @throws IllegalArgumentException if the number is <code>NaN</code>
+ */
+public DoubleRange(Number number) {
+    super();
+    if (number == null) {
+        throw new IllegalArgumentException("The number must not be null");
+    }
+    this.min = number.doubleValue();
+    this.max = number.doubleValue();
+    if (Double.isNaN(min) || Double.isNaN(max)) {
+        throw new IllegalArgumentException("The number must not be NaN");
+    }
+    if (number instanceof Double) {
+        this.minObject = (Double) number;
+        this.maxObject = (Double) number;
+    }
+}

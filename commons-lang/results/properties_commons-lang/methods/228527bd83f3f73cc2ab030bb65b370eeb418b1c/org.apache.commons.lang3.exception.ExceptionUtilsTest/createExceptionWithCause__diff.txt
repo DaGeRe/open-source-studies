@@ -1,0 +1,11 @@
+private Throwable createExceptionWithCause() {
+    try {
+        try {
+            throw new ExceptionWithCause(createExceptionWithoutCause());
+        } catch (Throwable t) {
+            throw new ExceptionWithCause(t);
+        }
+    } catch (Throwable t) {
+        return t;
+    }
+}

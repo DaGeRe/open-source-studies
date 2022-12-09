@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+public int translate(CharSequence input, int index, Writer out) throws IOException {
+    int max = longest;
+    if (index + longest > input.length()) {
+        max = input.length() - index;
+    }
+    // descend so as to get a greedy algorithm
+    for (int i = max; i >= shortest; i--) {
+        CharSequence subSeq = input.subSequence(index, index + i);
+        CharSequence result = lookupMap.get(subSeq);
+        if (result != null) {
+            out.write(result.toString());
+            return i;
+        }
+    }
+    return 0;
+}

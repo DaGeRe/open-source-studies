@@ -1,0 +1,25 @@
+/**
+ * Construct a Strategy that parses a TimeZone
+ * @param locale The Locale
+ */
+TimeZoneStrategy(Locale locale) {
+    for (String id : TimeZone.getAvailableIDs()) {
+        if (id.startsWith("GMT")) {
+            continue;
+        }
+        TimeZone tz = TimeZone.getTimeZone(id);
+        tzNames.put(tz.getDisplayName(false, TimeZone.SHORT, locale), tz);
+        tzNames.put(tz.getDisplayName(false, TimeZone.LONG, locale), tz);
+        if (tz.useDaylightTime()) {
+            tzNames.put(tz.getDisplayName(true, TimeZone.SHORT, locale), tz);
+            tzNames.put(tz.getDisplayName(true, TimeZone.LONG, locale), tz);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
+    for (String id : tzNames.keySet()) {
+        escapeRegex(sb, id, false).append('|');
+    }
+    sb.setCharAt(sb.length() - 1, ')');
+    validTimeZoneChars = sb.toString();
+}

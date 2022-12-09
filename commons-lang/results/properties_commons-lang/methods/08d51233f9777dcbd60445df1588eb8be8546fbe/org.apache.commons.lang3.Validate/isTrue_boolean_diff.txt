@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise            * &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise         
+* throwing an exception. This method is useful when validating according                               * throwing an exception. This method is useful when validating according                            
+* to an arbitrary boolean expression, such as validating a                                             * to an arbitrary boolean expression, such as validating a                                          
+* primitive number or using your own custom validation expression.&lt;/p&gt;                           * primitive number or using your own custom validation expression.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* Validate.isTrue(i &gt; 0);                                                                           * Validate.isTrue(i &gt; 0);                                                                        
+* Validate.isTrue(myObject.isOk());&lt;/pre&gt;                                                        * Validate.isTrue(myObject.isOk());&lt;/pre&gt;                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message of the exception is &quot;The validated expression is                           * &lt;p&gt;The message of the exception is &quot;The validated expression is                        
+* false&quot;.&lt;/p&gt;                                                                               * false&quot;.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* @param expression the boolean expression to check                                                    * @param expression the boolean expression to check                                                 
+* @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                     * @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                  
+* @see #isTrue(boolean, String, long)                                                                  * @see #isTrue(boolean, String, long)                                                               
+* @see #isTrue(boolean, String, double)                                                                * @see #isTrue(boolean, String, double)                                                             
+* @see #isTrue(boolean, String, Object)                                                              |                                                                                                     
+* @see #isTrue(boolean, String, Object...)                                                             * @see #isTrue(boolean, String, Object...)                                                          
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression) {                                                        public static void isTrue(boolean expression) {                                                     
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException(DEFAULT_IS_TRUE_EXCEPTION_MESSAGE);                               | throw new IllegalArgumentException(DEFAULT_IS_TRUE_EX_MESSAGE);                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

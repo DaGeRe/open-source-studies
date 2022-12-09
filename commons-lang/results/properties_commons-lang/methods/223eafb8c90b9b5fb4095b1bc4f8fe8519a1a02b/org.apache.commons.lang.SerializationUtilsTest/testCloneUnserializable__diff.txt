@@ -1,0 +1,9 @@
+public void testCloneUnserializable() throws Exception {
+    try {
+        iMap.put(new Object(), new Object());
+        SerializationUtils.clone(iMap);
+    } catch (SerializationException ex) {
+        return;
+    }
+    fail();
+}

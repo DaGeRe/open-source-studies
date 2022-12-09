@@ -1,0 +1,39 @@
+/**
+ * <p>Returns the number of days within the
+ * fragment. All datefields greater than the fragment will be ignored.</p>
+ *
+ * <p>Asking the days of any date will only return the number of days
+ * of the current month (resulting in a number between 1 and 31). This
+ * method will retrieve the number of days for any fragment.
+ * For example, if you want to calculate the number of days past this year,
+ * your fragment is Calendar.YEAR. The result will be all days of the
+ * past month(s).</p>
+ *
+ * <p>Valid fragments are: Calendar.YEAR, Calendar.MONTH, both
+ * Calendar.DAY_OF_YEAR and Calendar.DATE, Calendar.HOUR_OF_DAY,
+ * Calendar.MINUTE, Calendar.SECOND and Calendar.MILLISECOND
+ * A fragment less than or equal to a DAY field will return 0.</p>
+ *
+ * <p>
+ * <ul>
+ *  <li>January 28, 2008 with Calendar.MONTH as fragment will return 28
+ *   (equivalent to deprecated date.getDay())</li>
+ *  <li>February 28, 2008 with Calendar.MONTH as fragment will return 28
+ *   (equivalent to deprecated date.getDay())</li>
+ *  <li>January 28, 2008 with Calendar.YEAR as fragment will return 28</li>
+ *  <li>February 28, 2008 with Calendar.YEAR as fragment will return 59</li>
+ *  <li>January 28, 2008 with Calendar.MILLISECOND as fragment will return 0
+ *   (a millisecond cannot be split in days)</li>
+ * </ul>
+ * </p>
+ *
+ * @param date the date to work with, not null
+ * @param fragment the Calendar field part of date to calculate
+ * @return number of days  within the fragment of date
+ * @throws IllegalArgumentException if the date is <code>null</code> or
+ * fragment is not supported
+ * @since 2.4
+ */
+public static long getFragmentInDays(Date date, int fragment) {
+    return getFragment(date, fragment, Calendar.DAY_OF_YEAR);
+}

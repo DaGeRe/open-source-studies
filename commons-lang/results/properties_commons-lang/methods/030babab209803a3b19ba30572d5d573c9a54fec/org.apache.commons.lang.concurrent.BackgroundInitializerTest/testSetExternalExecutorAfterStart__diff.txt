@@ -1,0 +1,13 @@
+/**
+ * Tests that setting an executor after start() causes an exception.
+ */
+public void testSetExternalExecutorAfterStart() throws ConcurrentException {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    init.start();
+    try {
+        init.setExternalExecutor(Executors.newSingleThreadExecutor());
+        fail("Could set executor after start()!");
+    } catch (IllegalStateException istex) {
+        init.get();
+    }
+}

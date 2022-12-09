@@ -1,0 +1,20 @@
+// -------------------------------------------------------------------------
+/**
+ * <p>
+ * Append a <code>hashCode</code> for a <code>byte</code> array.
+ * </p>
+ *
+ * @param array
+ *            the array to add to the <code>hashCode</code>
+ * @return this
+ */
+public HashCodeBuilder append(byte[] array) {
+    if (array == null) {
+        iTotal = iTotal * iConstant;
+    } else {
+        for (int i = 0; i < array.length; i++) {
+            append(array[i]);
+        }
+    }
+    return this;
+}

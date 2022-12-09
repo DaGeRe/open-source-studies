@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+/**
+ * Pass in a valid language, test toLocale.
+ *
+ * @param language  the language string
+ */
+private void assertValidToLocale(String language) {
+    Locale locale = LocaleUtils.toLocale(language);
+    assertNotNull("valid locale", locale);
+    assertEquals(language, locale.getLanguage());
+    // country and variant are empty
+    assertTrue(locale.getCountry() == null || locale.getCountry().length() == 0);
+    assertTrue(locale.getVariant() == null || locale.getVariant().length() == 0);
+}

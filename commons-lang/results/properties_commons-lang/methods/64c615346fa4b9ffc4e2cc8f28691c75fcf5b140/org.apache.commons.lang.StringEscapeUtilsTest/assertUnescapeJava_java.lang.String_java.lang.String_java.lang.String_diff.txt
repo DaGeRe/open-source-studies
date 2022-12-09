@@ -1,0 +1,9 @@
+private void assertUnescapeJava(String message, String unescaped, String original) throws IOException {
+    String expected = unescaped;
+    String actual = StringEscapeUtils.unescapeJava(original);
+    assertEquals("unescape(String) failed" + (message == null ? "" : (": " + message)) + ": expected '" + StringEscapeUtils.escapeJava(expected) + // we escape this so we can see it in the error message
+    "' actual '" + StringEscapeUtils.escapeJava(actual) + "'", expected, actual);
+    StringWriter writer = new StringWriter();
+    StringEscapeUtils.unescapeJava(writer, original);
+    assertEquals(unescaped, writer.toString());
+}

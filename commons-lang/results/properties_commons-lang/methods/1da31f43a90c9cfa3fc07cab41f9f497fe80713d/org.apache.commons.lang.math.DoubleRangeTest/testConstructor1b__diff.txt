@@ -1,0 +1,16 @@
+public void testConstructor1b() {                                                                      public void testConstructor1b() {                                                                   
+DoubleRange nr = new DoubleRange(double8);                                                             DoubleRange nr = new DoubleRange(double8);                                                          
+assertSame(double8, nr.getMinimumNumber());                                                            assertSame(double8, nr.getMinimumNumber());                                                         
+assertSame(double8, nr.getMaximumNumber());                                                            assertSame(double8, nr.getMaximumNumber());                                                         
+Range r = new DoubleRange(nonComparableNumber);                                                      | new DoubleRange(nonComparableNumber);                                                               
+try {                                                                                                  try {                                                                                               
+new DoubleRange(null);                                                                                 new DoubleRange(null);                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+new DoubleRange(new Double(Double.NaN));                                                               new DoubleRange(new Double(Double.NaN));                                                            
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

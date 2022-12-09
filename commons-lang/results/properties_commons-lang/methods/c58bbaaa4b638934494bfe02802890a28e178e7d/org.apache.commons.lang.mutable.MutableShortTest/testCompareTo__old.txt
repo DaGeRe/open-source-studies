@@ -1,0 +1,21 @@
+public void testCompareTo() {
+    final MutableShort mutNum = new MutableShort((short) 0);
+    assertEquals((short) 0, mutNum.compareTo(new MutableShort((short) 0)));
+    assertEquals((short) +1, mutNum.compareTo(new MutableShort((short) -1)));
+    assertEquals((short) -1, mutNum.compareTo(new MutableShort((short) 1)));
+    try {
+        mutNum.compareTo(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        mutNum.compareTo(new Short((short) 0));
+        fail();
+    } catch (ClassCastException ex) {
+    }
+    try {
+        mutNum.compareTo("0");
+        fail();
+    } catch (ClassCastException ex) {
+    }
+}

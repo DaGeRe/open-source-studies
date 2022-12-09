@@ -1,0 +1,25 @@
+/**
+ * <p>Removes <code>\n</code> from end of a String if it's there.
+ * If a <code>\r</code> precedes it, then remove that too.</p>
+ *
+ * @param str  the String to chop a newline from, must not be null
+ * @return String without newline
+ * @throws NullPointerException if str is <code>null</code>
+ * @deprecated Use {@link #chomp(String)} instead.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String chopNewline(String str) {
+    int lastIdx = str.length() - 1;
+    if (lastIdx <= 0) {
+        return EMPTY;
+    }
+    char last = str.charAt(lastIdx);
+    if (last == CharUtils.LF) {
+        if (str.charAt(lastIdx - 1) == CharUtils.CR) {
+            lastIdx--;
+        }
+    } else {
+        lastIdx++;
+    }
+    return str.substring(0, lastIdx);
+}

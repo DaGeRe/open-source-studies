@@ -1,0 +1,16 @@
+/**
+ * Sets the uncaught exception handler for the threads created by the
+ * new {@code BasicThreadFactory}.
+ *
+ * @param handler the {@code UncaughtExceptionHandler} (must not be
+ * <b>null</b>)
+ * @return a reference to this {@code Builder}
+ * @throws NullPointerException if the exception handler is <b>null</b>
+ */
+public Builder uncaughtExceptionHandler(Thread.UncaughtExceptionHandler handler) {
+    if (handler == null) {
+        throw new NullPointerException("Uncaught exception handler must not be null!");
+    }
+    exceptionHandler = handler;
+    return this;
+}

@@ -1,0 +1,21 @@
+public void testDeleteFirst_String() {
+    StrBuilder sb = new StrBuilder("abcbccba");
+    sb.deleteFirst((String) null);
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteFirst("");
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteFirst("X");
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteFirst("a");
+    assertEquals("bcbccba", sb.toString());
+    sb.deleteFirst("c");
+    assertEquals("bbccba", sb.toString());
+    sb.deleteFirst("b");
+    assertEquals("bccba", sb.toString());
+    sb = new StrBuilder("abcbccba");
+    sb.deleteFirst("bc");
+    assertEquals("abccba", sb.toString());
+    sb = new StrBuilder("");
+    sb.deleteFirst("bc");
+    assertEquals("", sb.toString());
+}

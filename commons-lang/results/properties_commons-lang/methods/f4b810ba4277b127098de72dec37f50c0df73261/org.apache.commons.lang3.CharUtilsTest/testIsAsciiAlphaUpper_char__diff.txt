@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsAsciiAlphaUpper_char() {                                                             public void testIsAsciiAlphaUpper_char() {                                                          
+assertEquals(false, CharUtils.isAsciiAlphaUpper('a'));                                               | assertFalse(CharUtils.isAsciiAlphaUpper('a'));                                                      
+assertEquals(true, CharUtils.isAsciiAlphaUpper('A'));                                                | assertTrue(CharUtils.isAsciiAlphaUpper('A'));                                                       
+assertEquals(false, CharUtils.isAsciiAlphaUpper('3'));                                               | assertFalse(CharUtils.isAsciiAlphaUpper('3'));                                                      
+assertEquals(false, CharUtils.isAsciiAlphaUpper('-'));                                               | assertFalse(CharUtils.isAsciiAlphaUpper('-'));                                                      
+assertEquals(false, CharUtils.isAsciiAlphaUpper('\n'));                                              | assertFalse(CharUtils.isAsciiAlphaUpper('\n'));                                                     
+assertEquals(false, CharUtils.isAsciiAlphaUpper(CHAR_COPY));                                         | assertFalse(CharUtils.isAsciiAlphaUpper(CHAR_COPY));                                                
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+if (i &gt;= 'A' && i &lt;= 'Z') {                                                                      if (i &gt;= 'A' && i &lt;= 'Z') {                                                                   
+assertEquals(true, CharUtils.isAsciiAlphaUpper((char) i));                                           | assertTrue(CharUtils.isAsciiAlphaUpper((char) i));                                                  
+} else {                                                                                               } else {                                                                                            
+assertEquals(false, CharUtils.isAsciiAlphaUpper((char) i));                                          | assertFalse(CharUtils.isAsciiAlphaUpper((char) i));                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,60 @@
+/**
+ * <p>Compares two floats for order.</p>
+ *
+ * <p>This method is more comprehensive than the standard Java greater than,
+ * less than and equals operators.</p>
+ * <ul>
+ *  <li>It returns <code>-1</code> if the first value is less than the second.
+ *  <li>It returns <code>+1</code> if the first value is greater than the second.
+ *  <li>It returns <code>0</code> if the values are equal.
+ * </ul>
+ *
+ * <p> The ordering is as follows, largest to smallest:
+ * <ul>
+ * <li>NaN
+ * <li>Positive infinity
+ * <li>Maximum float
+ * <li>Normal positive numbers
+ * <li>+0.0
+ * <li>-0.0
+ * <li>Normal negative numbers
+ * <li>Minimum float (<code>-Float.MAX_VALUE</code>)
+ * <li>Negative infinity
+ * </ul>
+ *
+ * <p>Comparing <code>NaN</code> with <code>NaN</code> will return
+ * <code>0</code>.</p>
+ *
+ * @param lhs  the first <code>float</code>
+ * @param rhs  the second <code>float</code>
+ * @return <code>-1</code> if lhs is less, <code>+1</code> if greater,
+ *  <code>0</code> if equal to rhs
+ */
+public static int compare(float lhs, float rhs) {
+    if (lhs < rhs) {
+        return -1;
+    }
+    if (lhs > rhs) {
+        return +1;
+    }
+    // Need to compare bits to handle 0.0 == -0.0 being true
+    // compare should put -0.0 < +0.0
+    // Two NaNs are also == for compare purposes
+    // where NaN == NaN is false
+    int lhsBits = Float.floatToIntBits(lhs);
+    int rhsBits = Float.floatToIntBits(rhs);
+    if (lhsBits == rhsBits) {
+        return 0;
+    }
+    // Something exotic! A comparison to NaN or 0.0 vs -0.0
+    // Fortunately NaN's int is > than everything else
+    // Also negzeros bits < poszero
+    // NAN: 2143289344
+    // MAX: 2139095039
+    // NEGZERO: -2147483648
+    if (lhsBits < rhsBits) {
+        return -1;
+    } else {
+        return +1;
+    }
+}

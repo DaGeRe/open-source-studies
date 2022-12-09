@@ -1,0 +1,18 @@
+/**
+ * Decides if the operating system matches.
+ * <p>
+ * This method is package private instead of private to support unit test invocation.
+ * </p>
+ *
+ * @param osName the actual OS name
+ * @param osVersion the actual OS version
+ * @param osNamePrefix the prefix for the expected OS name
+ * @param osVersionPrefix the prefix for the expected OS version
+ * @return true if matches, or false if not or can't determine
+ */
+static boolean isOSMatch(String osName, String osVersion, String osNamePrefix, String osVersionPrefix) {
+    if (osName == null || osVersion == null) {
+        return false;
+    }
+    return osName.startsWith(osNamePrefix) && osVersion.startsWith(osVersionPrefix);
+}

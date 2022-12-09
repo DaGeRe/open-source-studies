@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testKeep_StringString() {
+    assertEquals(null, CharSetUtils.keep(null, (String) null));
+    assertEquals(null, CharSetUtils.keep(null, ""));
+    assertEquals("", CharSetUtils.keep("", (String) null));
+    assertEquals("", CharSetUtils.keep("", ""));
+    assertEquals("", CharSetUtils.keep("", "a-e"));
+    assertEquals("", CharSetUtils.keep("hello", (String) null));
+    assertEquals("", CharSetUtils.keep("hello", ""));
+    assertEquals("", CharSetUtils.keep("hello", "xyz"));
+    assertEquals("hello", CharSetUtils.keep("hello", "a-z"));
+    assertEquals("hello", CharSetUtils.keep("hello", "oleh"));
+    assertEquals("ell", CharSetUtils.keep("hello", "el"));
+}

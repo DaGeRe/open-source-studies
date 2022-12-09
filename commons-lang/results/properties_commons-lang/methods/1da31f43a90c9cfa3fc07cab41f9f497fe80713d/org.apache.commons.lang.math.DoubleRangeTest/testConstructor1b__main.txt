@@ -1,0 +1,16 @@
+public void testConstructor1b() {
+    DoubleRange nr = new DoubleRange(double8);
+    assertSame(double8, nr.getMinimumNumber());
+    assertSame(double8, nr.getMaximumNumber());
+    new DoubleRange(nonComparableNumber);
+    try {
+        new DoubleRange(null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new DoubleRange(new Double(Double.NaN));
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

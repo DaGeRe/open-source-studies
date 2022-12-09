@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Gets a suitable hash code for this builder.                                                          * Gets a suitable hash code for this builder.                                                       
+*                                                                                                      *                                                                                                   
+* @return a hash code                                                                                  * @return a hash code                                                                               
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public int hashCode() {                                                                                public int hashCode() {                                                                             
+char[] buf = buffer;                                                                                   char[] buf = buffer;                                                                                
+int hash = 0;                                                                                          int hash = 0;                                                                                       
+for (int i = size - 1; i &gt;= 0; i--) {                                                               for (int i = size - 1; i &gt;= 0; i--) {                                                            
+hash = 31 * hash + buf[i];                                                                             hash = 31 * hash + buf[i];                                                                          
+}                                                                                                      }                                                                                                   
+return hash;                                                                                           return hash;                                                                                        
+}                                                                                                      }                                                                                                   

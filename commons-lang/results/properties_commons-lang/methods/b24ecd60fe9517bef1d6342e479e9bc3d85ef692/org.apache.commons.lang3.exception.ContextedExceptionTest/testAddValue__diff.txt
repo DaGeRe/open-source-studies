@@ -1,0 +1,25 @@
+public void testAddValue() {
+    contextedException = new ContextedException(new Exception(TEST_MESSAGE)).addValue("test1", null).addValue("test2", "some value").addValue("test Date", new Date()).addValue("test Nbr", new Integer(5));
+    String message = contextedException.getMessage();
+    assertTrue(message.indexOf(TEST_MESSAGE) >= 0);
+    assertTrue(message.indexOf("test1") >= 0);
+    assertTrue(message.indexOf("test2") >= 0);
+    assertTrue(message.indexOf("test Date") >= 0);
+    assertTrue(message.indexOf("test Nbr") >= 0);
+    assertTrue(message.indexOf("some value") >= 0);
+    assertTrue(message.indexOf("5") >= 0);
+    assertTrue(contextedException.getValue("test1") == null);
+    assertTrue(contextedException.getValue("test2").equals("some value"));
+    assertTrue(contextedException.getLabelSet().size() == 4);
+    assertTrue(contextedException.getLabelSet().contains("test1"));
+    assertTrue(contextedException.getLabelSet().contains("test2"));
+    assertTrue(contextedException.getLabelSet().contains("test Date"));
+    assertTrue(contextedException.getLabelSet().contains("test Nbr"));
+    contextedException.addValue("test2", "different value");
+    assertTrue(contextedException.getLabelSet().size() == 5);
+    assertTrue(contextedException.getLabelSet().contains("test2"));
+    assertTrue(contextedException.getLabelSet().contains("test2[1]"));
+    String contextMessage = contextedException.getFormattedExceptionMessage(null);
+    assertTrue(contextMessage.indexOf(TEST_MESSAGE) == -1);
+    assertTrue(contextedException.getMessage().endsWith(contextMessage));
+}

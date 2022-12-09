@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Unregisters an event listener.                                                                       * Unregisters an event listener.                                                                    
+*                                                                                                      *                                                                                                   
+* @param listener the event listener                                                                 | * @param listener the event listener (may not be &lt;code&gt;null&lt;/code&gt;).                    
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @throws NullPointerException if &lt;code&gt;listener&lt;/code&gt; is                              
+                                                                                                     | *         &lt;code&gt;null&lt;/code&gt;.                                                            
+*/                                                                                                     */                                                                                                  
+public void removeListener(L listener) {                                                               public void removeListener(L listener) {                                                            
+Validate.notNull(listener, "Listener object cannot be null.");                                         Validate.notNull(listener, "Listener object cannot be null.");                                      
+listeners.remove(listener);                                                                            listeners.remove(listener);                                                                         
+}                                                                                                      }                                                                                                   

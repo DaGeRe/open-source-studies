@@ -1,0 +1,31 @@
+/**
+ * <p>Compares this object to another based on size.</p>
+ *
+ * <p>Note: this class has a natural ordering that is inconsistent
+ * with equals, because, for example, equals treats 1/2 and 2/4 as
+ * different, whereas compareTo treats them as equal.
+ *
+ * @param object  the object to compare to
+ * @return -1 if this is less, 0 if equal, +1 if greater
+ * @throws ClassCastException if the object is not a <code>Fraction</code>
+ * @throws NullPointerException if the object is <code>null</code>
+ */
+public int compareTo(Object object) {
+    Fraction other = (Fraction) object;
+    if (this == other) {
+        return 0;
+    }
+    if (numerator == other.numerator && denominator == other.denominator) {
+        return 0;
+    }
+    // otherwise see which is less
+    long first = (long) numerator * (long) other.denominator;
+    long second = (long) other.numerator * (long) denominator;
+    if (first == second) {
+        return 0;
+    } else if (first < second) {
+        return -1;
+    } else {
+        return 1;
+    }
+}

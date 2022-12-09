@@ -1,0 +1,13 @@
+                                                                                                     | @Test                                                                                               
+public void testJoin_IteratorString() {                                                                public void testJoin_IteratorString() {                                                             
+assertEquals(null, StringUtils.join((Iterator&lt;?&gt;) null, null));                                  assertEquals(null, StringUtils.join((Iterator&lt;?&gt;) null, null));                               
+assertEquals(TEXT_LIST_NOSEP, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), null));           assertEquals(TEXT_LIST_NOSEP, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), null));        
+assertEquals(TEXT_LIST_NOSEP, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), ""));             assertEquals(TEXT_LIST_NOSEP, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), ""));          
+assertEquals("foo", StringUtils.join(Collections.singleton("foo").iterator(), "x"));                   assertEquals("foo", StringUtils.join(Collections.singleton("foo").iterator(), "x"));                
+assertEquals("foo", StringUtils.join(Collections.singleton("foo").iterator(), null));                  assertEquals("foo", StringUtils.join(Collections.singleton("foo").iterator(), null));               
+assertEquals("", StringUtils.join(Arrays.asList(NULL_ARRAY_LIST).iterator(), null));                   assertEquals("", StringUtils.join(Arrays.asList(NULL_ARRAY_LIST).iterator(), null));                
+assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), null));                  assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), null));               
+assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), ""));                    assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), ""));                 
+assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), SEPARATOR));             assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST).iterator(), SEPARATOR));          
+assertEquals(TEXT_LIST, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), SEPARATOR));            assertEquals(TEXT_LIST, StringUtils.join(Arrays.asList(ARRAY_LIST).iterator(), SEPARATOR));         
+}                                                                                                      }                                                                                                   

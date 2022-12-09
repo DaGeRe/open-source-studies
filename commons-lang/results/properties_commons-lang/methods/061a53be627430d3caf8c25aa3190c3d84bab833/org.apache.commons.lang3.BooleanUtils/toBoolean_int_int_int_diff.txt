@@ -1,0 +1,26 @@
+/**
+ * <p>Converts an int to a boolean specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBoolean(0, 1, 0) = false
+ *   BooleanUtils.toBoolean(1, 1, 0) = true
+ *   BooleanUtils.toBoolean(2, 1, 2) = false
+ *   BooleanUtils.toBoolean(2, 2, 0) = true
+ * </pre>
+ *
+ * @param value  the Integer to convert
+ * @param trueValue  the value to match for {@code true}
+ * @param falseValue  the value to match for {@code false}
+ * @return {@code true} or {@code false}
+ * @throws IllegalArgumentException if no match
+ */
+public static boolean toBoolean(int value, int trueValue, int falseValue) {
+    if (value == trueValue) {
+        return true;
+    }
+    if (value == falseValue) {
+        return false;
+    }
+    // no match
+    throw new IllegalArgumentException("The Integer did not match either specified value");
+}

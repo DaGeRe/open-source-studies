@@ -1,0 +1,21 @@
+/**
+ * Extracts the leftmost characters from the string builder without
+ * throwing an exception.
+ * <p>
+ * This method extracts the left <code>length</code> characters from
+ * the builder. If this many characters are not available, the whole
+ * builder is returned. Thus the returned string may be shorter than the
+ * length requested.
+ *
+ * @param length  the number of characters to extract, negative returns empty string
+ * @return the new string
+ */
+public String leftString(int length) {
+    if (length <= 0) {
+        return "";
+    } else if (length >= size) {
+        return new String(buffer, 0, size);
+    } else {
+        return new String(buffer, 0, length);
+    }
+}

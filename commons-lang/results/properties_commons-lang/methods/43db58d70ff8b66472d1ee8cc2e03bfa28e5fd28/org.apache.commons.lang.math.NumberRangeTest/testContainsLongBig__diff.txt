@@ -1,0 +1,7 @@
+// --------------------------------------------------------------------------
+public void testContainsLongBig() {
+    // original NumberRange class failed this test
+    NumberRange big = new NumberRange(new Long(Long.MAX_VALUE), new Long(Long.MAX_VALUE - 2));
+    assertEquals(true, big.containsLong(Long.MAX_VALUE - 1));
+    assertEquals(false, big.containsLong(Long.MAX_VALUE - 3));
+}

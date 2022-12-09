@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Helper method for testing whether the daemon flag is taken into account.                             * Helper method for testing whether the daemon flag is taken into account.                          
+*                                                                                                      *                                                                                                   
+* @param flag the value of the flag                                                                    * @param flag the value of the flag                                                                 
+*/                                                                                                     */                                                                                                  
+private void checkDaemonFlag(boolean flag) {                                                           private void checkDaemonFlag(boolean flag) {                                                        
+ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);                                      ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);                                   
+Runnable r = EasyMock.createMock(Runnable.class);                                                      Runnable r = EasyMock.createMock(Runnable.class);                                                   
+Thread t = new Thread();                                                                               Thread t = new Thread();                                                                            
+EasyMock.expect(wrapped.newThread(r)).andReturn(t);                                                    EasyMock.expect(wrapped.newThread(r)).andReturn(t);                                                 
+EasyMock.replay(wrapped, r);                                                                           EasyMock.replay(wrapped, r);                                                                        
+BasicThreadFactory factory = builder.wrappedFactory(wrapped).daemon(flag).build();                     BasicThreadFactory factory = builder.wrappedFactory(wrapped).daemon(flag).build();                  
+assertSame("Wrong thread", t, factory.newThread(r));                                                   assertSame("Wrong thread", t, factory.newThread(r));                                                
+assertEquals("Wrong daemon flag", flag, t.isDaemon());                                               | assertTrue("Wrong daemon flag", flag == t.isDaemon());                                              
+EasyMock.verify(wrapped, r);                                                                           EasyMock.verify(wrapped, r);                                                                        
+}                                                                                                      }                                                                                                   

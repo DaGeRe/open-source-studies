@@ -1,0 +1,16 @@
+                                                                                                     | @Test                                                                                               
+public void testReflectionHierarchyCompareExcludeFields() {                                            public void testReflectionHierarchyCompareExcludeFields() {                                         
+String[] excludeFields = new String[] { "b" };                                                         String[] excludeFields = new String[] { "b" };                                                      
+testReflectionHierarchyCompare(true, excludeFields);                                                   testReflectionHierarchyCompare(true, excludeFields);                                                
+TestSubObject x;                                                                                       TestSubObject x;                                                                                    
+TestSubObject y;                                                                                       TestSubObject y;                                                                                    
+TestSubObject z;                                                                                       TestSubObject z;                                                                                    
+x = new TestSubObject(1, 1);                                                                           x = new TestSubObject(1, 1);                                                                        
+y = new TestSubObject(2, 1);                                                                           y = new TestSubObject(2, 1);                                                                        
+z = new TestSubObject(3, 1);                                                                           z = new TestSubObject(3, 1);                                                                        
+assertXYZCompareOrder(x, y, z, true, excludeFields);                                                   assertXYZCompareOrder(x, y, z, true, excludeFields);                                                
+x = new TestSubObject(1, 3);                                                                           x = new TestSubObject(1, 3);                                                                        
+y = new TestSubObject(2, 2);                                                                           y = new TestSubObject(2, 2);                                                                        
+z = new TestSubObject(3, 1);                                                                           z = new TestSubObject(3, 1);                                                                        
+assertXYZCompareOrder(x, y, z, true, excludeFields);                                                   assertXYZCompareOrder(x, y, z, true, excludeFields);                                                
+}                                                                                                      }                                                                                                   

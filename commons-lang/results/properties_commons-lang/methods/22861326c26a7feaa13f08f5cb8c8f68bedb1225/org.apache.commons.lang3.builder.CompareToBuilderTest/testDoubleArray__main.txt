@@ -1,0 +1,23 @@
+@Test
+public void testDoubleArray() {
+    double[] obj1 = new double[2];
+    obj1[0] = 5;
+    obj1[1] = 6;
+    double[] obj2 = new double[2];
+    obj2[0] = 5;
+    obj2[1] = 6;
+    double[] obj3 = new double[3];
+    obj3[0] = 5;
+    obj3[1] = 6;
+    obj3[2] = 7;
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    obj1[1] = 7;
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj1, null).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append((double[]) null, (double[]) null).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(null, obj1).toComparison() < 0);
+}

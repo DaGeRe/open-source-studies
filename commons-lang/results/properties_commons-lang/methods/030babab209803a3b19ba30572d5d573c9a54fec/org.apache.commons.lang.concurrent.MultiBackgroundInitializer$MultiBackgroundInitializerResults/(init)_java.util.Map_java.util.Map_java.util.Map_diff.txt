@@ -1,0 +1,14 @@
+/**
+ * Creates a new instance of {@code MultiBackgroundInitializerResults}
+ * and initializes it with maps for the {@code BackgroundInitializer}
+ * objects, their result objects and the exceptions thrown by them.
+ *
+ * @param inits the {@code BackgroundInitializer} objects
+ * @param results the result objects
+ * @param excepts the exceptions
+ */
+private MultiBackgroundInitializerResults(Map<String, BackgroundInitializer<?>> inits, Map<String, Object> results, Map<String, ConcurrentException> excepts) {
+    initializers = inits;
+    resultObjects = results;
+    exceptions = excepts;
+}

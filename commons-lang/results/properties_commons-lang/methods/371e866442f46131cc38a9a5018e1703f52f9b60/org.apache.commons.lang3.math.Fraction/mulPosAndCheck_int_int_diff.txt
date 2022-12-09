@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+*  Multiply two non-negative integers, checking for overflow.                                          *  Multiply two non-negative integers, checking for overflow.                                       
+*                                                                                                      *                                                                                                   
+* @param x a non-negative factor                                                                       * @param x a non-negative factor                                                                    
+* @param y a non-negative factor                                                                       * @param y a non-negative factor                                                                    
+* @return the product &lt;code&gt;x*y&lt;/code&gt;                                                     * @return the product &lt;code&gt;x*y&lt;/code&gt;                                                  
+* @throws ArithmeticException if the result can not be represented as                                  * @throws ArithmeticException if the result can not be represented as                               
+* an int                                                                                               * an int                                                                                            
+*/                                                                                                     */                                                                                                  
+private static int mulPosAndCheck(int x, int y) {                                                      private static int mulPosAndCheck(int x, int y) {                                                   
+/* assert x&gt;=0 && y&gt;=0; */                                                                       /* assert x&gt;=0 && y&gt;=0; */                                                                    
+long m = ((long) x) * ((long) y);                                                                    | long m = (long) x * (long) y;                                                                       
+if (m &gt; Integer.MAX_VALUE) {                                                                        if (m &gt; Integer.MAX_VALUE) {                                                                     
+throw new ArithmeticException("overflow: mulPos");                                                     throw new ArithmeticException("overflow: mulPos");                                                  
+}                                                                                                      }                                                                                                   
+return (int) m;                                                                                        return (int) m;                                                                                     
+}                                                                                                      }                                                                                                   

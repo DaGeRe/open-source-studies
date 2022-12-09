@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a date/time formatter instance using the specified style and                           * &lt;p&gt;Gets a date/time formatter instance using the specified style and                        
+* locale in the default time zone.&lt;/p&gt;                                                           * locale in the default time zone.&lt;/p&gt;                                                        
+*                                                                                                      *                                                                                                   
+* @param dateStyle  date style: FULL, LONG, MEDIUM, or SHORT                                           * @param dateStyle  date style: FULL, LONG, MEDIUM, or SHORT                                        
+* @param timeStyle  time style: FULL, LONG, MEDIUM, or SHORT                                           * @param timeStyle  time style: FULL, LONG, MEDIUM, or SHORT                                        
+* @param locale  optional locale, overrides system locale                                              * @param locale  optional locale, overrides system locale                                           
+* @return a localized standard date/time formatter                                                     * @return a localized standard date/time formatter                                                  
+* @throws IllegalArgumentException if the Locale has no date/time                                      * @throws IllegalArgumentException if the Locale has no date/time                                   
+*  pattern defined                                                                                     *  pattern defined                                                                                  
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static FastDateFormat getDateTimeInstance(int dateStyle, int timeStyle, Locale locale) {        public static FastDateFormat getDateTimeInstance(int dateStyle, int timeStyle, Locale locale) {     
+return getDateTimeInstance(dateStyle, timeStyle, null, locale);                                      | return cache.getDateTimeInstance(dateStyle, timeStyle, null, locale);                               
+}                                                                                                      }                                                                                                   

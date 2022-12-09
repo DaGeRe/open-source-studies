@@ -1,0 +1,10 @@
+@Test
+public void testDefaultIfBlank_StringBuilders() {
+    assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuilder(""), new StringBuilder("NULL")).toString());
+    assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuilder(" "), new StringBuilder("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfBlank(new StringBuilder("abc"), new StringBuilder("NULL")).toString());
+    assertNull(StringUtils.defaultIfBlank(new StringBuilder(""), null));
+    // Tests compatibility for the API return type
+    StringBuilder s = StringUtils.defaultIfBlank(new StringBuilder("abc"), new StringBuilder("NULL"));
+    assertEquals("abc", s.toString());
+}

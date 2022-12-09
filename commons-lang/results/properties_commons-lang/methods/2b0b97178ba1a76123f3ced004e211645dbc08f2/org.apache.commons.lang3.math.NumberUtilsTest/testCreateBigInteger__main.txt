@@ -1,0 +1,10 @@
+@Test
+public void testCreateBigInteger() {
+    assertEquals("createBigInteger(String) failed", new BigInteger("12345"), NumberUtils.createBigInteger("12345"));
+    assertEquals("createBigInteger(null) failed", null, NumberUtils.createBigInteger(null));
+    this.testCreateBigIntegerFailure("");
+    this.testCreateBigIntegerFailure(" ");
+    this.testCreateBigIntegerFailure("\b\t\n\f\r");
+    // Funky whitespaces
+    this.testCreateBigIntegerFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");
+}

@@ -1,0 +1,7 @@
+public void testPrintStackTrace_Writer() {
+    NotImplementedException ex = new NotImplementedException(new NestableException("nested 1", new NestableException("nested 2")));
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter writer = new PrintWriter(stringWriter);
+    ex.printStackTrace(writer);
+    assertTrue(stringWriter.toString().length() > 0);
+}

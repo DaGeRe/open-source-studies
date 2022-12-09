@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean translate(int codepoint, Writer out) throws IOException {
+    if (between) {
+        if (codepoint < below || codepoint > above) {
+            return false;
+        }
+    } else {
+        if (codepoint >= below && codepoint <= above) {
+            return false;
+        }
+    }
+    out.write("&#");
+    out.write(Integer.toString(codepoint, 10));
+    out.write(';');
+    return true;
+}

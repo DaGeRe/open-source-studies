@@ -1,0 +1,7 @@
+public void testEscapeNamedEntity() throws Exception {
+    doTestEscapeNamedEntity("&foo;", "\u00A1");
+    doTestEscapeNamedEntity("x&foo;", "x\u00A1");
+    doTestEscapeNamedEntity("&foo;x", "\u00A1x");
+    doTestEscapeNamedEntity("x&foo;x", "x\u00A1x");
+    doTestEscapeNamedEntity("&foo;&bar;", "\u00A1\u00A2");
+}

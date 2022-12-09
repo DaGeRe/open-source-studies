@@ -1,0 +1,9 @@
+public void testReflectionCompareEx1() {
+    TestObject o1 = new TestObject(4);
+    try {
+        CompareToBuilder.reflectionCompare(o1, null);
+    } catch (NullPointerException ex) {
+        return;
+    }
+    fail();
+}

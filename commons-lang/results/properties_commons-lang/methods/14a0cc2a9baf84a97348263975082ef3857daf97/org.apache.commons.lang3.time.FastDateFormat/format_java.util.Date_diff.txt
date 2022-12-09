@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Formats a &lt;code&gt;Date&lt;/code&gt; object.&lt;/p&gt;                                   * &lt;p&gt;Formats a &lt;code&gt;Date&lt;/code&gt; object.&lt;/p&gt;                                
+*                                                                                                      *                                                                                                   
+* @param date  the date to format                                                                      * @param date  the date to format                                                                   
+* @return the formatted string                                                                         * @return the formatted string                                                                      
+*/                                                                                                     */                                                                                                  
+public String format(Date date) {                                                                      public String format(Date date) {                                                                   
+Calendar c = new GregorianCalendar(mTimeZone);                                                       | Calendar c = new GregorianCalendar(mTimeZone, mLocale);                                             
+c.setTime(date);                                                                                       c.setTime(date);                                                                                    
+return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();                                 return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();                              
+}                                                                                                      }                                                                                                   

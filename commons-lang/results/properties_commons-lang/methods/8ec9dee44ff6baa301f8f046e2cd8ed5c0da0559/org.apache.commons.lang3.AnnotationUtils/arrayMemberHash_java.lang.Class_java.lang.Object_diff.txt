@@ -1,0 +1,34 @@
+/**
+ * Helper method for generating a hash code for an array.
+ *
+ * @param componentType the component type of the array
+ * @param o the array
+ * @return a hash code for this array
+ */
+private static int arrayMemberHash(Class<?> componentType, Object o) {
+    if (componentType.equals(Byte.TYPE)) {
+        return Arrays.hashCode((byte[]) o);
+    }
+    if (componentType.equals(Short.TYPE)) {
+        return Arrays.hashCode((short[]) o);
+    }
+    if (componentType.equals(Integer.TYPE)) {
+        return Arrays.hashCode((int[]) o);
+    }
+    if (componentType.equals(Character.TYPE)) {
+        return Arrays.hashCode((char[]) o);
+    }
+    if (componentType.equals(Long.TYPE)) {
+        return Arrays.hashCode((long[]) o);
+    }
+    if (componentType.equals(Float.TYPE)) {
+        return Arrays.hashCode((float[]) o);
+    }
+    if (componentType.equals(Double.TYPE)) {
+        return Arrays.hashCode((double[]) o);
+    }
+    if (componentType.equals(Boolean.TYPE)) {
+        return Arrays.hashCode((boolean[]) o);
+    }
+    return Arrays.hashCode((Object[]) o);
+}

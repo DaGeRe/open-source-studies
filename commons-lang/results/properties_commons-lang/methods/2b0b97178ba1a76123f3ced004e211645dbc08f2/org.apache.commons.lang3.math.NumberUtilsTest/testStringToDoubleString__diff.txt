@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Test for {@link NumberUtils#toDouble(String)}.                                                       * Test for {@link NumberUtils#toDouble(String)}.                                                    
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testStringToDoubleString() {                                                               public void testStringToDoubleString() {                                                            
+assertTrue("toDouble(String) 1 failed", NumberUtils.toDouble("-1.2345") == -1.2345d);                  assertTrue("toDouble(String) 1 failed", NumberUtils.toDouble("-1.2345") == -1.2345d);               
+assertTrue("toDouble(String) 2 failed", NumberUtils.toDouble("1.2345") == 1.2345d);                    assertTrue("toDouble(String) 2 failed", NumberUtils.toDouble("1.2345") == 1.2345d);                 
+assertTrue("toDouble(String) 3 failed", NumberUtils.toDouble("abc") == 0.0d);                          assertTrue("toDouble(String) 3 failed", NumberUtils.toDouble("abc") == 0.0d);                       
+assertTrue("toDouble(Double.MAX_VALUE) failed", NumberUtils.toDouble(Double.MAX_VALUE + "") == Doubl   assertTrue("toDouble(Double.MAX_VALUE) failed", NumberUtils.toDouble(Double.MAX_VALUE + "") == Doubl
+assertTrue("toDouble(Double.MIN_VALUE) failed", NumberUtils.toDouble(Double.MIN_VALUE + "") == Doubl   assertTrue("toDouble(Double.MIN_VALUE) failed", NumberUtils.toDouble(Double.MIN_VALUE + "") == Doubl
+assertTrue("toDouble(empty) failed", NumberUtils.toDouble("") == 0.0d);                                assertTrue("toDouble(empty) failed", NumberUtils.toDouble("") == 0.0d);                             
+assertTrue("toDouble(null) failed", NumberUtils.toDouble(null) == 0.0d);                               assertTrue("toDouble(null) failed", NumberUtils.toDouble(null) == 0.0d);                            
+}                                                                                                      }                                                                                                   

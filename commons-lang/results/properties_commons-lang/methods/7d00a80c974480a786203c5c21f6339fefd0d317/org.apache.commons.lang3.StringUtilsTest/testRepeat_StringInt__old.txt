@@ -1,0 +1,12 @@
+public void testRepeat_StringInt() {
+    assertEquals(null, StringUtils.repeat(null, 2));
+    assertEquals("", StringUtils.repeat("ab", 0));
+    assertEquals("", StringUtils.repeat("", 3));
+    assertEquals("aaa", StringUtils.repeat("a", 3));
+    assertEquals("ababab", StringUtils.repeat("ab", 3));
+    assertEquals("abcabcabc", StringUtils.repeat("abc", 3));
+    // bigger than pad limit
+    String str = StringUtils.repeat("a", 10000);
+    assertEquals(10000, str.length());
+    assertEquals(true, StringUtils.containsOnly(str, new char[] { 'a' }));
+}

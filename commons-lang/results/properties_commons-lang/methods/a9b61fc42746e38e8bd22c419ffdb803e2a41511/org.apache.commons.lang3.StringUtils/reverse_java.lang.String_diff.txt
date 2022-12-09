@@ -1,0 +1,22 @@
+// Reversing                                                                                           // Reversing                                                                                        
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Reverses a String as per {@link StringBuilder#reverse()}.&lt;/p&gt;                         * &lt;p&gt;Reverses a String as per {@link StringBuilder#reverse()}.&lt;/p&gt;                      
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; String returns &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;     * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; String returns &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;  
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.reverse(null)  = null                                                                    * StringUtils.reverse(null)  = null                                                                 
+* StringUtils.reverse("")    = ""                                                                      * StringUtils.reverse("")    = ""                                                                   
+* StringUtils.reverse("bat") = "tab"                                                                   * StringUtils.reverse("bat") = "tab"                                                                
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to reverse, may be null                                                       * @param str  the String to reverse, may be null                                                    
+* @return the reversed String, &lt;code&gt;null&lt;/code&gt; if null String input                      * @return the reversed String, &lt;code&gt;null&lt;/code&gt; if null String input                   
+*/                                                                                                     */                                                                                                  
+public static String reverse(String str) {                                                             public static String reverse(String str) {                                                          
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return CharSequenceUtils.reverse(str).toString();                                                    | return new StringBuilder(str).reverse().toString();                                                 
+}                                                                                                      }                                                                                                   

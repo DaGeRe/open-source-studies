@@ -1,0 +1,14 @@
+/**
+ * Test case for {@link FastDateParser#getDateInstance(int, java.util.Locale)}.
+ * @throws ParseException
+ */
+@Test
+public void testShortDateStyleWithLocales() throws ParseException {
+    DateParser fdf = getDateInstance(FastDateFormat.SHORT, Locale.US);
+    Calendar cal = Calendar.getInstance();
+    cal.clear();
+    cal.set(2004, 1, 3);
+    assertEquals(cal.getTime(), fdf.parse("2/3/04"));
+    fdf = getDateInstance(FastDateFormat.SHORT, SWEDEN);
+    assertEquals(cal.getTime(), fdf.parse("2004-02-03"));
+}

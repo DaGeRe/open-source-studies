@@ -1,0 +1,21 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.SECOND
+ * Includes rounding the extremes of one second
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundSecond() throws Exception {
+    final int calendarField = Calendar.SECOND;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 8:15:15.000");
+    roundedDownDate = targetSecondDate;
+    lastRoundedDownDate = dateTimeParser.parse("June 1, 2008 8:15:14.499");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 31, 2007 23:59:59.500");
+    maxDate = dateTimeParser.parse("January 1, 2008 0:00:00.499");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

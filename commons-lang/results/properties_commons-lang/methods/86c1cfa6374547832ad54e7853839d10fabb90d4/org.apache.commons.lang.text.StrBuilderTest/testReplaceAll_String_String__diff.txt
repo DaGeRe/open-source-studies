@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------
+public void testReplaceAll_String_String() {
+    StrBuilder sb = new StrBuilder("abcbccba");
+    sb.replaceAll((String) null, null);
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll((String) null, "anything");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll("", null);
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll("", "anything");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll("x", "y");
+    assertEquals("abcbccba", sb.toString());
+    sb.replaceAll("a", "d");
+    assertEquals("dbcbccbd", sb.toString());
+    sb.replaceAll("d", null);
+    assertEquals("bcbccb", sb.toString());
+    sb.replaceAll("cb", "-");
+    assertEquals("b-c-", sb.toString());
+    sb = new StrBuilder("abcba");
+    sb.replaceAll("b", "xbx");
+    assertEquals("axbxcxbxa", sb.toString());
+    sb = new StrBuilder("bb");
+    sb.replaceAll("b", "xbx");
+    assertEquals("xbxxbx", sb.toString());
+}

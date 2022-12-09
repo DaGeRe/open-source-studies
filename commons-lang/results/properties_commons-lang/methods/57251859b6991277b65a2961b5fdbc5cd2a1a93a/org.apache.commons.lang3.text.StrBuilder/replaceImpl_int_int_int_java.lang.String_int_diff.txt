@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+/**
+ * Internal method to delete a range without validation.
+ *
+ * @param startIndex  the start index, must be valid
+ * @param endIndex  the end index (exclusive), must be valid
+ * @param removeLen  the length to remove (endIndex - startIndex), must be valid
+ * @param insertStr  the string to replace with, null means delete range
+ * @param insertLen  the length of the insert string, must be valid
+ * @throws IndexOutOfBoundsException if any index is invalid
+ */
+private void replaceImpl(int startIndex, int endIndex, int removeLen, String insertStr, int insertLen) {
+    int newSize = size - removeLen + insertLen;
+    if (insertLen != removeLen) {
+        ensureCapacity(newSize);
+        System.arraycopy(buffer, endIndex, buffer, startIndex + insertLen, size - endIndex);
+        size = newSize;
+    }
+    if (insertLen > 0) {
+        insertStr.getChars(0, insertLen, buffer, startIndex);
+    }
+}

@@ -1,0 +1,11 @@
+/**
+ * <p>Format this {@link Pair}.  Basic format is in the form: (L,R).</p>
+ *
+ * @param formatter  the target formatter to append to, not null
+ * @param flags  the flags for output format, see {@code Formattable}
+ * @param width  the width of the output, see {@code Formattable}
+ * @param precision the precision of the output, see {@code Formattable}
+ */
+public void formatTo(Formatter formatter, int flags, int width, int precision) {
+    FormattableUtils.append(String.format(DEFAULT_FORMAT_STRING, getLeft(), getRight()), formatter, flags, width, precision);
+}

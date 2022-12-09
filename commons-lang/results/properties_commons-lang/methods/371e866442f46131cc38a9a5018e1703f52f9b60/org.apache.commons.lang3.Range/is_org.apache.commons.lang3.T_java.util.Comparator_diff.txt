@@ -1,0 +1,17 @@
+/**
+ * <p>Obtains a range using the specified element as both the minimum
+ * and maximum in this range.</p>
+ *
+ * <p>The range uses the specified {@code Comparator} to determine where
+ * values lie in the range.</p>
+ *
+ * @param <T> the type of the elements in this range
+ * @param element  the value to use for this range, must not be {@code null}
+ * @param comparator  the comparator to be used, null for natural ordering
+ * @return the range object, not null
+ * @throws IllegalArgumentException if the element is null
+ * @throws ClassCastException if using natural ordering and the elements are not {@code Comparable}
+ */
+public static <T> Range<T> is(T element, Comparator<T> comparator) {
+    return between(element, element, comparator);
+}

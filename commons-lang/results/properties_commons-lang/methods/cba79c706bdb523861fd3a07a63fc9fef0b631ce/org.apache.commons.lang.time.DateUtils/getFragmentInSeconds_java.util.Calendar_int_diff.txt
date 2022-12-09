@@ -1,0 +1,39 @@
+/**
+ * <p>Returns the number of seconds within the
+ * fragment. All datefields greater than the fragment will be ignored.</p>
+ *
+ * <p>Asking the seconds of any date will only return the number of seconds
+ * of the current minute (resulting in a number between 0 and 59). This
+ * method will retrieve the number of seconds for any fragment.
+ * For example, if you want to calculate the number of seconds past today,
+ * your fragment is Calendar.DATE or Calendar.DAY_OF_YEAR. The result will
+ * be all seconds of the past hour(s) and minutes(s).</p>
+ *
+ * <p>Valid fragments are: Calendar.YEAR, Calendar.MONTH, both
+ * Calendar.DAY_OF_YEAR and Calendar.DATE, Calendar.HOUR_OF_DAY,
+ * Calendar.MINUTE, Calendar.SECOND and Calendar.MILLISECOND
+ * A fragment less than or equal to a SECOND field will return 0.</p>
+ *
+ * <p>
+ * <ul>
+ *  <li>January 1, 2008 7:15:10.538 with Calendar.MINUTE as fragment will return 10
+ *   (equivalent to calendar.get(Calendar.SECOND))</li>
+ *  <li>January 6, 2008 7:15:10.538 with Calendar.MINUTE as fragment will return 10
+ *   (equivalent to calendar.get(Calendar.SECOND))</li>
+ *  <li>January 6, 2008 7:15:10.538 with Calendar.DAY_OF_YEAR as fragment will return 26110
+ *   (7*3600 + 15*60 + 10)</li>
+ *  <li>January 16, 2008 7:15:10.538 with Calendar.MILLISECOND as fragment will return 0
+ *   (a millisecond cannot be split in seconds)</li>
+ * </ul>
+ * </p>
+ *
+ * @param calendar the calendar to work with, not null
+ * @param fragment the Calendar field part of calendar to calculate
+ * @return number of seconds within the fragment of date
+ * @throws IllegalArgumentException if the date is <code>null</code> or
+ * fragment is not supported
+ * @since 2.4
+ */
+public static long getFragmentInSeconds(Calendar calendar, int fragment) {
+    return getFragment(calendar, fragment, Calendar.SECOND);
+}

@@ -1,0 +1,18 @@
+/**
+ * Creates a new instance of {@code ThreadFactoryImpl} and configures it
+ * from the specified {@code Builder} object.
+ *
+ * @param builder the {@code Builder} object
+ */
+private BasicThreadFactory(Builder builder) {
+    if (builder.wrappedFactory == null) {
+        wrappedFactory = Executors.defaultThreadFactory();
+    } else {
+        wrappedFactory = builder.wrappedFactory;
+    }
+    namingPattern = builder.namingPattern;
+    priority = builder.priority;
+    daemonFlag = builder.daemonFlag;
+    uncaughtExceptionHandler = builder.exceptionHandler;
+    threadCounter = new AtomicLong();
+}

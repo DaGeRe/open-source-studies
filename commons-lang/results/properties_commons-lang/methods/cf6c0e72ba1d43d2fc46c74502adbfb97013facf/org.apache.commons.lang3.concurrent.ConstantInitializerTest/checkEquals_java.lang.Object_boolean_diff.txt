@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Helper method for testing equals() and hashCode().                                                   * Helper method for testing equals() and hashCode().                                                
+*                                                                                                      *                                                                                                   
+* @param obj the object to compare with the test instance                                              * @param obj the object to compare with the test instance                                           
+* @param expected the expected result                                                                  * @param expected the expected result                                                               
+*/                                                                                                     */                                                                                                  
+private void checkEquals(Object obj, boolean expected) {                                               private void checkEquals(Object obj, boolean expected) {                                            
+assertEquals("Wrong result of equals", expected, init.equals(obj));                                  | assertTrue("Wrong result of equals", expected == init.equals(obj));                                 
+if (obj != null) {                                                                                     if (obj != null) {                                                                                  
+assertEquals("Not symmetric", expected, obj.equals(init));                                           | assertTrue("Not symmetric", expected == obj.equals(init));                                          
+if (expected) {                                                                                        if (expected) {                                                                                     
+assertEquals("Different hash codes", init.hashCode(), obj.hashCode());                                 assertEquals("Different hash codes", init.hashCode(), obj.hashCode());                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

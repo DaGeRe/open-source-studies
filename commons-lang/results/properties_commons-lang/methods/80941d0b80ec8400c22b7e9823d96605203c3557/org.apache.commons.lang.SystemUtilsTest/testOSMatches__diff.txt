@@ -1,0 +1,10 @@
+public void testOSMatches() {
+    OS_NAME = null;
+    assertEquals(false, getOSMatches("Windows"));
+    OS_NAME = "Windows 95";
+    assertEquals(true, getOSMatches("Windows"));
+    OS_NAME = "Windows NT";
+    assertEquals(true, getOSMatches("Windows"));
+    OS_NAME = "OS/2";
+    assertEquals(false, getOSMatches("Windows"));
+}

@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testEscapeCsvWriter() throws Exception {                                                   public void testEscapeCsvWriter() throws Exception {                                                
+checkCsvEscapeWriter("foo.bar", "foo.bar");                                                            checkCsvEscapeWriter("foo.bar", "foo.bar");                                                         
+checkCsvEscapeWriter("\"foo,bar\"", "foo,bar");                                                        checkCsvEscapeWriter("\"foo,bar\"", "foo,bar");                                                     
+checkCsvEscapeWriter("\"foo\nbar\"", "foo\nbar");                                                      checkCsvEscapeWriter("\"foo\nbar\"", "foo\nbar");                                                   
+checkCsvEscapeWriter("\"foo\rbar\"", "foo\rbar");                                                      checkCsvEscapeWriter("\"foo\rbar\"", "foo\rbar");                                                   
+checkCsvEscapeWriter("\"foo\"\"bar\"", "foo\"bar");                                                    checkCsvEscapeWriter("\"foo\"\"bar\"", "foo\"bar");                                                 
+checkCsvEscapeWriter("", null);                                                                        checkCsvEscapeWriter("", null);                                                                     
+checkCsvEscapeWriter("", "");                                                                          checkCsvEscapeWriter("", "");                                                                       
+}                                                                                                      }                                                                                                   

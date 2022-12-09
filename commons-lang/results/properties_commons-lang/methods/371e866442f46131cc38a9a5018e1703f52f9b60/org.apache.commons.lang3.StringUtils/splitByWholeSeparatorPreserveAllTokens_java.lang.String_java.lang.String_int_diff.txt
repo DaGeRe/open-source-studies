@@ -1,0 +1,32 @@
+/**
+ * <p>Splits the provided text into an array, separator string specified.
+ * Returns a maximum of {@code max} substrings.</p>
+ *
+ * <p>The separator is not included in the returned String array.
+ * Adjacent separators are treated as separators for empty tokens.
+ * For more control over the split use the StrTokenizer class.</p>
+ *
+ * <p>A {@code null} input String returns {@code null}.
+ * A {@code null} separator splits on whitespace.</p>
+ *
+ * <pre>
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens(null, *, *)               = null
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("", *, *)                 = []
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("ab de fg", null, 0)      = ["ab", "de", "fg"]
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("ab   de fg", null, 0)    = ["ab", "", "", "de", "fg"]
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("ab:cd:ef", ":", 2)       = ["ab", "cd:ef"]
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("ab-!-cd-!-ef", "-!-", 5) = ["ab", "cd", "ef"]
+ * StringUtils.splitByWholeSeparatorPreserveAllTokens("ab-!-cd-!-ef", "-!-", 2) = ["ab", "cd-!-ef"]
+ * </pre>
+ *
+ * @param str  the String to parse, may be null
+ * @param separator  String containing the String to be used as a delimiter,
+ *  {@code null} splits on whitespace
+ * @param max  the maximum number of elements to include in the returned
+ *  array. A zero or negative value implies no limit.
+ * @return an array of parsed Strings, {@code null} if null String was input
+ * @since 2.4
+ */
+public static String[] splitByWholeSeparatorPreserveAllTokens(String str, String separator, int max) {
+    return splitByWholeSeparatorWorker(str, separator, max, true);
+}

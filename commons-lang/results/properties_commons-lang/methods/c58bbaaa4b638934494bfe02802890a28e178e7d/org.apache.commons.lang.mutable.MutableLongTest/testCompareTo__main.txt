@@ -1,0 +1,11 @@
+public void testCompareTo() {
+    final MutableLong mutNum = new MutableLong(0);
+    assertEquals(0, mutNum.compareTo(new MutableLong(0)));
+    assertEquals(+1, mutNum.compareTo(new MutableLong(-1)));
+    assertEquals(-1, mutNum.compareTo(new MutableLong(1)));
+    try {
+        mutNum.compareTo(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

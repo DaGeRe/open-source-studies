@@ -1,0 +1,7 @@
+public void testOutOfBounds() {                                                                        public void testOutOfBounds() {                                                                     
+NumericEntityUnescaper neu = new NumericEntityUnescaper();                                             NumericEntityUnescaper neu = new NumericEntityUnescaper();                                          
+String input = "Test &";                                                                             | assertEquals("Failed to ignore when last character is &", "Test &", neu.translate("Test &"));       
+String expected = input;                                                                             | assertEquals("Failed to ignore when last character is &", "Test &#", neu.translate("Test &#"));     
+String result = neu.translate(input);                                                                | assertEquals("Failed to ignore when last character is &", "Test &#x", neu.translate("Test &#x"));   
+assertEquals("Failed to ignore when last character is &", expected, result);                         | assertEquals("Failed to ignore when last character is &", "Test &#X", neu.translate("Test &#X"));   
+}                                                                                                      }                                                                                                   

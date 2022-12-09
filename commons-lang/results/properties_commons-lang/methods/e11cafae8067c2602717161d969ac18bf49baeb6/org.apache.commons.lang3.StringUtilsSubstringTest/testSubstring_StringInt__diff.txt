@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+public void testSubstring_StringInt() {
+    assertEquals(null, StringUtils.substring(null, 0));
+    assertEquals("", StringUtils.substring("", 0));
+    assertEquals("", StringUtils.substring("", 2));
+    assertEquals("", StringUtils.substring(SENTENCE, 80));
+    assertEquals(BAZ, StringUtils.substring(SENTENCE, 8));
+    assertEquals(BAZ, StringUtils.substring(SENTENCE, -3));
+    assertEquals(SENTENCE, StringUtils.substring(SENTENCE, 0));
+    assertEquals("abc", StringUtils.substring("abc", -4));
+    assertEquals("abc", StringUtils.substring("abc", -3));
+    assertEquals("bc", StringUtils.substring("abc", -2));
+    assertEquals("c", StringUtils.substring("abc", -1));
+    assertEquals("abc", StringUtils.substring("abc", 0));
+    assertEquals("bc", StringUtils.substring("abc", 1));
+    assertEquals("c", StringUtils.substring("abc", 2));
+    assertEquals("", StringUtils.substring("abc", 3));
+    assertEquals("", StringUtils.substring("abc", 4));
+}

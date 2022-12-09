@@ -1,0 +1,21 @@
+// Basics                                                                                              // Basics                                                                                           
+// -------------------------------------------------------------------                                 // -------------------------------------------------------------------                              
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Compares this fraction to another object to test if they are equal.&lt;/p&gt;.              * &lt;p&gt;Compares this fraction to another object to test if they are equal.&lt;/p&gt;.           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;To be equal, both values must be equal. Thus 2/4 is not equal to 1/2.&lt;/p&gt;             * &lt;p&gt;To be equal, both values must be equal. Thus 2/4 is not equal to 1/2.&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* @param obj the reference object with which to compare                                                * @param obj the reference object with which to compare                                             
+* @return &lt;code&gt;true&lt;/code&gt; if this object is equal                                        * @return &lt;code&gt;true&lt;/code&gt; if this object is equal                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+if (obj == this) {                                                                                     if (obj == this) {                                                                                  
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+if (obj instanceof Fraction == false) {                                                                if (obj instanceof Fraction == false) {                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+Fraction other = (Fraction) obj;                                                                       Fraction other = (Fraction) obj;                                                                    
+return (getNumerator() == other.getNumerator() && getDenominator() == other.getDenominator());         return (getNumerator() == other.getNumerator() && getDenominator() == other.getDenominator());      
+}                                                                                                      }                                                                                                   

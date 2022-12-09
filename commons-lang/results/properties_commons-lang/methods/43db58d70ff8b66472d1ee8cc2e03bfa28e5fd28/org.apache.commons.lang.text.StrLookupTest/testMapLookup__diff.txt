@@ -1,0 +1,10 @@
+public void testMapLookup() {
+    Map map = new HashMap();
+    map.put("key", "value");
+    map.put("number", new Integer(2));
+    assertEquals("value", StrLookup.mapLookup(map).lookup("key"));
+    assertEquals("2", StrLookup.mapLookup(map).lookup("number"));
+    assertEquals(null, StrLookup.mapLookup(map).lookup(null));
+    assertEquals(null, StrLookup.mapLookup(map).lookup(""));
+    assertEquals(null, StrLookup.mapLookup(map).lookup("other"));
+}

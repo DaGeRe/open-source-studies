@@ -1,0 +1,19 @@
+/**
+ * <p>
+ * Registers the given object pair.
+ * Used by the reflection methods to avoid infinite loops.
+ * </p>
+ *
+ * @param lhs <code>this</code> object to register
+ * @param rhs the other object to register
+ */
+static void register(Object lhs, Object rhs) {
+    synchronized (HashCodeBuilder.class) {
+        if (getRegistry() == null) {
+            REGISTRY.set(new HashSet<Pair<IDKey, IDKey>>());
+        }
+    }
+    Set<Pair<IDKey, IDKey>> registry = getRegistry();
+    Pair<IDKey, IDKey> pair = getRegisterPair(lhs, rhs);
+    registry.add(pair);
+}

@@ -1,0 +1,16 @@
+/**
+ * <p>Append to the <code>toString</code> the start of data indicator.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param object  the <code>Object</code> to build a <code>toString</code> for
+ */
+public void appendStart(StringBuffer buffer, Object object) {
+    if (object != null) {
+        appendClassName(buffer, object);
+        appendIdentityHashCode(buffer, object);
+        appendContentStart(buffer);
+        if (fieldSeparatorAtStart) {
+            appendFieldSeparator(buffer);
+        }
+    }
+}

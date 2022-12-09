@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+/**
+ * Test StringUtils.startsWith()
+ */
+public void testStartsWith() {
+    assertTrue("startsWith(null, null)", StringUtils.startsWith(null, (String) null));
+    assertFalse("startsWith(FOOBAR, null)", StringUtils.startsWith(FOOBAR, (String) null));
+    assertFalse("startsWith(null, FOO)", StringUtils.startsWith(null, FOO));
+    assertTrue("startsWith(FOOBAR, \"\")", StringUtils.startsWith(FOOBAR, ""));
+    assertTrue("startsWith(foobar, foo)", StringUtils.startsWith(foobar, foo));
+    assertTrue("startsWith(FOOBAR, FOO)", StringUtils.startsWith(FOOBAR, FOO));
+    assertFalse("startsWith(foobar, FOO)", StringUtils.startsWith(foobar, FOO));
+    assertFalse("startsWith(FOOBAR, foo)", StringUtils.startsWith(FOOBAR, foo));
+    assertFalse("startsWith(foo, foobar)", StringUtils.startsWith(foo, foobar));
+    assertFalse("startsWith(foo, foobar)", StringUtils.startsWith(bar, foobar));
+    assertFalse("startsWith(foobar, bar)", StringUtils.startsWith(foobar, bar));
+    assertFalse("startsWith(FOOBAR, BAR)", StringUtils.startsWith(FOOBAR, BAR));
+    assertFalse("startsWith(foobar, BAR)", StringUtils.startsWith(foobar, BAR));
+    assertFalse("startsWith(FOOBAR, bar)", StringUtils.startsWith(FOOBAR, bar));
+}

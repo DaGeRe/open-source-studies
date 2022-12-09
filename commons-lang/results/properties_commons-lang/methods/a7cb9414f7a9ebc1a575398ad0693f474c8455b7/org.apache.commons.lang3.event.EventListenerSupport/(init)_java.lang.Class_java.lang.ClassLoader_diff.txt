@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an EventListenerSupport object which supports the provided listener interface using the sp   * Creates an EventListenerSupport object which supports the provided listener interface using the sp
+* class loader to create the JDK dynamic proxy.                                                        * class loader to create the JDK dynamic proxy.                                                     
+*                                                                                                      *                                                                                                   
+* @param listenerInterface the listener interface                                                      * @param listenerInterface the listener interface                                                   
+* @param classLoader       the class loader                                                            * @param classLoader       the class loader                                                         
+*/                                                                                                     */                                                                                                  
+public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {               public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {            
+listeners = new CopyOnWriteArrayList&lt;L&gt;();                                                     |                                                                                                     
+proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }   proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }
+}                                                                                                      }                                                                                                   

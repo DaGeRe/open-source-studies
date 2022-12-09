@@ -1,0 +1,13 @@
+public void testConstructor2a() {
+    FloatRange nr = new FloatRange(8f, 10f);
+    assertEquals(float8, nr.getMinimumNumber());
+    assertEquals(float10, nr.getMaximumNumber());
+    nr = new FloatRange(10f, 8f);
+    assertEquals(float8, nr.getMinimumNumber());
+    assertEquals(float10, nr.getMaximumNumber());
+    try {
+        new FloatRange(Float.NaN, 8f);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

@@ -1,0 +1,10 @@
+public void testBindFilteredEventsToMethod() {                                                         public void testBindFilteredEventsToMethod() {                                                      
+final MultipleEventSource src = new MultipleEventSource();                                             final MultipleEventSource src = new MultipleEventSource();                                          
+final EventCounter counter = new EventCounter();                                                       final EventCounter counter = new EventCounter();                                                    
+EventUtils.bindEventsToMethod(counter, "eventOccurred", src, MultipleEventListener.class, "event1");   EventUtils.bindEventsToMethod(counter, "eventOccurred", src, MultipleEventListener.class, "event1");
+assertEquals(0, counter.getCount());                                                                   assertEquals(0, counter.getCount());                                                                
+src.listeners.fire().event1(new ActionEvent(src, ActionEvent.ACTION_PERFORMED, "event1"));           | src.listeners.fire().event1(new PropertyChangeEvent(new Date(), "Day", 0, 1));                      
+assertEquals(1, counter.getCount());                                                                   assertEquals(1, counter.getCount());                                                                
+src.listeners.fire().event2(new ActionEvent(src, ActionEvent.ACTION_PERFORMED, "event2"));           | src.listeners.fire().event2(new PropertyChangeEvent(new Date(), "Day", 1, 2));                      
+assertEquals(1, counter.getCount());                                                                   assertEquals(1, counter.getCount());                                                                
+}                                                                                                      }                                                                                                   

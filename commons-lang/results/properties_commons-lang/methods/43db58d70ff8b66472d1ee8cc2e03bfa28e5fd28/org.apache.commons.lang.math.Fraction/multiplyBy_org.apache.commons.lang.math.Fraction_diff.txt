@@ -1,0 +1,23 @@
+/**
+ * <p>Multiplies the value of this fraction by another, returning the
+ * result in reduced form.</p>
+ *
+ * @param fraction  the fraction to multiply by, must not be <code>null</code>
+ * @return a <code>Fraction</code> instance with the resulting values
+ * @throws IllegalArgumentException if the fraction is <code>null</code>
+ * @throws ArithmeticException if the resulting numerator or denominator exceeds
+ *  <code>Integer.MAX_VALUE</code>
+ */
+public Fraction multiplyBy(Fraction fraction) {
+    if (fraction == null) {
+        throw new IllegalArgumentException("The fraction must not be null");
+    }
+    if (numerator == 0 || fraction.numerator == 0) {
+        return ZERO;
+    }
+    // knuth 4.5.1
+    // make sure we don't overflow unless the result *must* overflow.
+    int d1 = greatestCommonDivisor(numerator, fraction.denominator);
+    int d2 = greatestCommonDivisor(fraction.numerator, denominator);
+    return getReducedFraction(mulAndCheck(numerator / d1, fraction.numerator / d2), mulPosAndCheck(denominator / d2, fraction.denominator / d1));
+}

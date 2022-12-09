@@ -1,0 +1,6 @@
+public void testIndexOfAnyBut_StringCharArrayWithSupplementaryChars() {
+    assertEquals(2, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20000.toCharArray()));
+    assertEquals(0, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20001.toCharArray()));
+    assertEquals(-1, StringUtils.indexOfAnyBut(CharU20000, CharU20000.toCharArray()));
+    assertEquals(0, StringUtils.indexOfAnyBut(CharU20000, CharU20001.toCharArray()));
+}

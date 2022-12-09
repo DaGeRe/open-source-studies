@@ -1,0 +1,13 @@
+@Test
+public void testCompatibilityBetweenPairs() throws Exception {
+    Pair<Integer, String> pair = ImmutablePair.of(0, "foo");
+    Pair<Integer, String> pair2 = MutablePair.of(0, "foo");
+    assertEquals(pair, pair2);
+    assertEquals(pair.hashCode(), pair2.hashCode());
+    HashSet<Pair<Integer, String>> set = new HashSet<Pair<Integer, String>>();
+    set.add(pair);
+    assertTrue(set.contains(pair2));
+    pair2.setValue("bar");
+    assertFalse(pair.equals(pair2));
+    assertFalse(pair.hashCode() == pair2.hashCode());
+}

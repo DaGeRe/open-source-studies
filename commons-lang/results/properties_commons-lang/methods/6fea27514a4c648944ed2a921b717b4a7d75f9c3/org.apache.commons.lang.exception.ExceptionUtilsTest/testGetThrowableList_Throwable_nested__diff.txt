@@ -1,0 +1,6 @@
+public void testGetThrowableList_Throwable_nested() {                                                  public void testGetThrowableList_Throwable_nested() {                                               
+List throwables = ExceptionUtils.getThrowableList(nested);                                           | List&lt;?&gt; throwables = ExceptionUtils.getThrowableList(nested);                                 
+assertEquals(2, throwables.size());                                                                    assertEquals(2, throwables.size());                                                                 
+assertSame(nested, throwables.get(0));                                                                 assertSame(nested, throwables.get(0));                                                              
+assertSame(withoutCause, throwables.get(1));                                                           assertSame(withoutCause, throwables.get(1));                                                        
+}                                                                                                      }                                                                                                   

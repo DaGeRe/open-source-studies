@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise         
+* if the test result is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                    | * throwing an exception with the specified message. This method is useful when                      
+                                                                                                     | * validating according to an arbitrary boolean expression, such as validating a                     
+                                                                                                     | * primitive number or using your own custom validation expression.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This is used when validating according to an arbitrary boolean expression,                | * &lt;pre&gt;Validate.isTrue(d &gt; 0.0, "The value must be greater than zero: %s", d);&lt;/pre&gt; 
+* such as validating a primitive number or using your own custom validation                          |                                                                                                     
+* expression.&lt;/p&gt;                                                                              |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* Validate.isTrue( d &gt; 0.0, "The value must be greater than zero: ", d);                          |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;For performance reasons, the double value is passed as a separate parameter and             * &lt;p&gt;For performance reasons, the double value is passed as a separate parameter and          
+* appended to the message string only in the case of an error.&lt;/p&gt;                             | * appended to the exception message only in the case of an error.&lt;/p&gt;                         
+*                                                                                                      *                                                                                                   
+* @param expression  a boolean expression                                                            | * @param expression the boolean expression to check                                                 
+* @param message  the exception message you would like to see if the expression                      | * @param message the exception message if invalid                                                   
+*  is &lt;code&gt;false&lt;/code&gt;                                                                 | * @param value the value to append to the message when invalid                                      
+* @param value  the value to append to the message in case of error                                  |                                                                                                     
+* @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                     * @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                  
+                                                                                                     | * @see #isTrue(boolean)                                                                             
+                                                                                                     | * @see #isTrue(boolean, String, long)                                                               
+                                                                                                     | * @see #isTrue(boolean, String, Object)                                                             
+                                                                                                     | * @see #isTrue(boolean, String, Object...)                                                          
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression, String message, double value) {                          public static void isTrue(boolean expression, String message, double value) {                       
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException(message + value);                                                 | throw new IllegalArgumentException(String.format(message, value));                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,28 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;This method uses reflection to build a suitable                                          
+                                                                                                     | * &lt;code&gt;toString&lt;/code&gt; value which includes static fields.&lt;/p&gt;                   
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;It uses &lt;code&gt;AccessibleObject.setAccessible&lt;/code&gt; to gain access to private
+                                                                                                     | * fields. This means that it will throw a security exception if run                                 
+                                                                                                     | * under a security manager, if the permissions are not set up correctly.                            
+                                                                                                     | * It is also not as efficient as testing explicitly. &lt;/p&gt;                                     
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;Transient fields are not output.&lt;/p&gt;                                               
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;Superclass fields will be appended up to and including the specified superclass.         
+                                                                                                     | * A null superclass is treated as &lt;code&gt;java.lang.Object&lt;/code&gt;.&lt;/p&gt;              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the style is &lt;code&gt;null&lt;/code&gt;, the default                               
+                                                                                                     | * &lt;code&gt;ToStringStyle&lt;/code&gt; is used.&lt;/p&gt;                                         
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param object  the Object to be output                                                            
+                                                                                                     | * @param style  the style of the &lt;code&gt;toString&lt;/code&gt; to create,                       
+                                                                                                     | *  may be &lt;code&gt;null&lt;/code&gt;                                                             
+                                                                                                     | * @param reflectUpToClass  the superclass to reflect up to (inclusive),                             
+                                                                                                     | *  may be &lt;code&gt;null&lt;/code&gt;                                                             
+                                                                                                     | * @return the String result                                                                         
+                                                                                                     | * @throws IllegalArgumentException if the Object is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | public &lt;T&gt; String toStringWithStatics(T object, ToStringStyle style, Class&lt;? super T&gt; re
+                                                                                                     | return ReflectionToStringBuilder.toString(object, style, false, true, reflectUpToClass);            
+                                                                                                     | }                                                                                                   

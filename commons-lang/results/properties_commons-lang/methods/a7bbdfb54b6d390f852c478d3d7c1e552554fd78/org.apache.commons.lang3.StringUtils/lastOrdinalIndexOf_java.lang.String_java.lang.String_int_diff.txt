@@ -1,0 +1,36 @@
+/**
+ * <p>Finds the n-th last index within a String, handling <code>null</code>.
+ * This method uses {@link String#lastIndexOf(String)}.</p>
+ *
+ * <p>A <code>null</code> String will return <code>-1</code>.</p>
+ *
+ * <pre>
+ * StringUtils.lastOrdinalIndexOf(null, *, *)          = -1
+ * StringUtils.lastOrdinalIndexOf(*, null, *)          = -1
+ * StringUtils.lastOrdinalIndexOf("", "", *)           = 0
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "a", 1)  = 7
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "a", 2)  = 6
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "b", 1)  = 5
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "b", 2)  = 2
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "ab", 1) = 4
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "ab", 2) = 1
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "", 1)   = 8
+ * StringUtils.lastOrdinalIndexOf("aabaabaa", "", 2)   = 8
+ * </pre>
+ *
+ * <p>Note that 'tail(String str, int n)' may be implemented as: </p>
+ *
+ * <pre>
+ *   str.substring(lastOrdinalIndexOf(str, "\n", n) + 1)
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param searchStr  the String to find, may be null
+ * @param ordinal  the n-th last <code>searchStr</code> to find
+ * @return the n-th last index of the search String,
+ *  <code>-1</code> (<code>INDEX_NOT_FOUND</code>) if no match or <code>null</code> string input
+ * @since 3.0
+ */
+public static int lastOrdinalIndexOf(String str, String searchStr, int ordinal) {
+    return ordinalIndexOf(str, searchStr, ordinal, true);
+}

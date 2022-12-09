@@ -1,0 +1,13 @@
+public void testNullToEmptyShortObject() {                                                             public void testNullToEmptyShortObject() {                                                          
+// Test null handling                                                                                  // Test null handling                                                                               
+assertEquals(ArrayUtils.EMPTY_SHORT_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Short[]) null));             assertEquals(ArrayUtils.EMPTY_SHORT_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Short[]) null));          
+// Test valid array handling                                                                           // Test valid array handling                                                                        
+                                                                                                     | @SuppressWarnings("boxing")                                                                         
+Short[] original = new Short[] { 1, 2 };                                                               Short[] original = new Short[] { 1, 2 };                                                            
+assertEquals(original, ArrayUtils.nullToEmpty(original));                                              assertEquals(original, ArrayUtils.nullToEmpty(original));                                           
+// Test empty array handling                                                                           // Test empty array handling                                                                        
+Short[] empty = new Short[] {};                                                                        Short[] empty = new Short[] {};                                                                     
+Short[] result = ArrayUtils.nullToEmpty(empty);                                                        Short[] result = ArrayUtils.nullToEmpty(empty);                                                     
+assertEquals(ArrayUtils.EMPTY_SHORT_OBJECT_ARRAY, result);                                             assertEquals(ArrayUtils.EMPTY_SHORT_OBJECT_ARRAY, result);                                          
+assertTrue(empty != result);                                                                           assertTrue(empty != result);                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,17 @@
+                                                                                                     | @Test                                                                                               
+public void testObject() {                                                                             public void testObject() {                                                                          
+Integer i3 = Integer.valueOf(3);                                                                       Integer i3 = Integer.valueOf(3);                                                                    
+Integer i4 = Integer.valueOf(4);                                                                       Integer i4 = Integer.valueOf(4);                                                                    
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) null).toString())   assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) null).toString())
+assertEquals(baseStr + "[3]", new ToStringBuilder(base).append(i3).toString());                        assertEquals(baseStr + "[3]", new ToStringBuilder(base).append(i3).toString());                     
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append("a", (Object) null).toStri   assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append("a", (Object) null).toStri
+assertEquals(baseStr + "[3]", new ToStringBuilder(base).append("a", i3).toString());                   assertEquals(baseStr + "[3]", new ToStringBuilder(base).append("a", i3).toString());                
+assertEquals(baseStr + "[3,4]", new ToStringBuilder(base).append("a", i3).append("b", i4).toString()   assertEquals(baseStr + "[3,4]", new ToStringBuilder(base).append("a", i3).append("b", i4).toString()
+assertEquals(baseStr + "[&lt;Integer&gt;]", new ToStringBuilder(base).append("a", i3, false).toStrin   assertEquals(baseStr + "[&lt;Integer&gt;]", new ToStringBuilder(base).append("a", i3, false).toStrin
+assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", new ArrayList&lt;Ob   assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", new ArrayList&lt;Ob
+assertEquals(baseStr + "[[]]", new ToStringBuilder(base).append("a", new ArrayList&lt;Object&gt;(),    assertEquals(baseStr + "[[]]", new ToStringBuilder(base).append("a", new ArrayList&lt;Object&gt;(), 
+assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", new HashMap&lt;Obje   assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", new HashMap&lt;Obje
+assertEquals(baseStr + "[{}]", new ToStringBuilder(base).append("a", new HashMap&lt;Object, Object&g   assertEquals(baseStr + "[{}]", new ToStringBuilder(base).append("a", new HashMap&lt;Object, Object&g
+assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", (Object) new String   assertEquals(baseStr + "[&lt;size=0&gt;]", new ToStringBuilder(base).append("a", (Object) new String
+assertEquals(baseStr + "[{}]", new ToStringBuilder(base).append("a", (Object) new String[0], true).t   assertEquals(baseStr + "[{}]", new ToStringBuilder(base).append("a", (Object) new String[0], true).t
+}                                                                                                      }                                                                                                   

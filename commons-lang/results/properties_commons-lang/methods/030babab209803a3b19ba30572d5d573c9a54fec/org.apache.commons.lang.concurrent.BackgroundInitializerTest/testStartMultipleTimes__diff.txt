@@ -1,0 +1,12 @@
+/**
+ * Tests invoking start() multiple times. Only the first invocation should
+ * have an effect.
+ */
+public void testStartMultipleTimes() {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    assertTrue("Wrong result for start()", init.start());
+    for (int i = 0; i < 10; i++) {
+        assertFalse("Could start again", init.start());
+    }
+    checkInitialize(init);
+}

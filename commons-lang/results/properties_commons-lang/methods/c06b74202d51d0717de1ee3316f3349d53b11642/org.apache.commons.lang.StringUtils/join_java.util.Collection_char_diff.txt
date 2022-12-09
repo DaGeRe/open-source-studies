@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Joins the elements of the provided &lt;code&gt;Collection&lt;/code&gt; into                 * &lt;p&gt;Joins the elements of the provided &lt;code&gt;Collection&lt;/code&gt; into              
+* a single String containing the provided elements.&lt;/p&gt;                                          * a single String containing the provided elements.&lt;/p&gt;                                       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;No delimiter is added before or after the list. Null objects or empty                       * &lt;p&gt;No delimiter is added before or after the list. Null objects or empty                    
+* strings within the iteration are represented by empty strings.&lt;/p&gt;                             * strings within the iteration are represented by empty strings.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;See the examples here: {@link #join(Object[],char)}. &lt;/p&gt;                             * &lt;p&gt;See the examples here: {@link #join(Object[],char)}. &lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* @param collection  the &lt;code&gt;Collection&lt;/code&gt; of values to join together, may be null   * @param collection  the &lt;code&gt;Collection&lt;/code&gt; of values to join together, may be null
+* @param separator  the separator character to use                                                     * @param separator  the separator character to use                                                  
+* @return the joined String, &lt;code&gt;null&lt;/code&gt; if null iterator input                      * @return the joined String, &lt;code&gt;null&lt;/code&gt; if null iterator input                   
+* @since 2.3                                                                                           * @since 2.3                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String join(Collection collection, char separator) {                                   | public static String join(Collection&lt;?&gt; collection, char separator) {                         
+if (collection == null) {                                                                              if (collection == null) {                                                                           
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return join(collection.iterator(), separator);                                                         return join(collection.iterator(), separator);                                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,26 @@
+                                                                                                     | // notEmpty collection                                                                              
+                                                                                                     | // ---------------------------------------------------------------------------------                
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Validate that the specified argument collection is neither &lt;code&gt;null&lt;/code&gt; 
+                                                                                                     | * nor a size of zero (no elements); otherwise throwing an exception                                 
+                                                                                                     | * with the specified message.                                                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;Validate.notEmpty(myCollection, "The collection must not be empty");&lt;/pre&gt;       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param &lt;T&gt; the collection type                                                              
+                                                                                                     | * @param collection the collection to check                                                         
+                                                                                                     | * @param message the exception message if invalid                                                   
+                                                                                                     | * @return the validated collection (never &lt;code&gt;null&lt;/code&gt; method for chaining)        
+                                                                                                     | * @throws NullPointerException if the collection is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | * @throws IllegalArgumentException if the collection is empty                                       
+                                                                                                     | * @see #notEmpty(Object[])                                                                          
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T extends Collection&lt;?&gt;&gt; T notEmpty(T collection, String message, Object.
+                                                                                                     | if (collection == null) {                                                                           
+                                                                                                     | throw new NullPointerException(String.format(message, values));                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (collection.size() == 0) {                                                                       
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values));                                 
+                                                                                                     | }                                                                                                   
+                                                                                                     | return collection;                                                                                  
+                                                                                                     | }                                                                                                   

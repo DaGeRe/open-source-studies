@@ -1,0 +1,12 @@
+public void testNullToEmptyFloat() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_FLOAT_ARRAY, ArrayUtils.nullToEmpty((float[]) null));
+    // Test valid array handling
+    float[] original = new float[] { 2.6f, 3.8f };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    float[] empty = new float[] {};
+    float[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_FLOAT_ARRAY, result);
+    assertTrue(empty != result);
+}

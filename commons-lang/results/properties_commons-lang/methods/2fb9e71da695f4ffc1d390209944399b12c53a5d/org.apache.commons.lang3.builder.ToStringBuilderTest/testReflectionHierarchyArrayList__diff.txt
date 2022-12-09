@@ -1,0 +1,8 @@
+// Reflection hierarchy tests
+public void testReflectionHierarchyArrayList() {
+    List<Object> base = new ArrayList<Object>();
+    String baseStr = this.toBaseString(base);
+    assertEquals(baseStr + "[elementData={<null>,<null>,<null>,<null>,<null>,<null>,<null>,<null>,<null>,<null>},size=0,modCount=0]", ToStringBuilder.reflectionToString(base, null, true));
+    assertEquals(baseStr + "[size=0]", ToStringBuilder.reflectionToString(base, null, false));
+    this.validateNullToStringStyleRegistry();
+}

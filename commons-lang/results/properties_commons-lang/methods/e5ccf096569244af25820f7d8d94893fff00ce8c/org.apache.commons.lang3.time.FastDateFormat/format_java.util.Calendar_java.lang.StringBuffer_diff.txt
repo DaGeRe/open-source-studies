@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Formats a &lt;code&gt;Calendar&lt;/code&gt; object into the                                 * &lt;p&gt;Formats a &lt;code&gt;Calendar&lt;/code&gt; object into the                              
+* supplied &lt;code&gt;StringBuffer&lt;/code&gt;.&lt;/p&gt;                                            * supplied &lt;code&gt;StringBuffer&lt;/code&gt;.&lt;/p&gt;                                         
+*                                                                                                      *                                                                                                   
+* @param calendar  the calendar to format                                                              * @param calendar  the calendar to format                                                           
+* @param buf  the buffer to format into                                                                * @param buf  the buffer to format into                                                             
+* @return the specified string buffer                                                                  * @return the specified string buffer                                                               
+*/                                                                                                     */                                                                                                  
+public StringBuffer format(Calendar calendar, StringBuffer buf) {                                      public StringBuffer format(Calendar calendar, StringBuffer buf) {                                   
+if (mTimeZoneForced) {                                                                                 if (mTimeZoneForced) {                                                                              
+// / LANG-538                                                                                          // / LANG-538                                                                                       
+calendar.getTime();                                                                                  | calendar.getTimeInMillis();                                                                         
+calendar = (Calendar) calendar.clone();                                                                calendar = (Calendar) calendar.clone();                                                             
+calendar.setTimeZone(mTimeZone);                                                                       calendar.setTimeZone(mTimeZone);                                                                    
+}                                                                                                      }                                                                                                   
+return applyRules(calendar, buf);                                                                      return applyRules(calendar, buf);                                                                   
+}                                                                                                      }                                                                                                   

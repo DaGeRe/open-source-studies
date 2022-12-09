@@ -1,0 +1,33 @@
+/**
+ * <p>Finds the index of the given value in the array starting at the given index.
+ * This method will return the index of the first value which falls between the region
+ * defined by valueToFind - tolerance and valueToFind + tolerance.</p>
+ *
+ * <p>This method returns {@link #INDEX_NOT_FOUND} (<code>-1</code>) for a <code>null</code> input array.</p>
+ *
+ * <p>A negative startIndex is treated as zero. A startIndex larger than the array
+ * length will return {@link #INDEX_NOT_FOUND} (<code>-1</code>).</p>
+ *
+ * @param array  the array to search through for the object, may be <code>null</code>
+ * @param valueToFind  the value to find
+ * @param startIndex  the index to start searching at
+ * @param tolerance tolerance of the search
+ * @return the index of the value within the array,
+ *  {@link #INDEX_NOT_FOUND} (<code>-1</code>) if not found or <code>null</code> array input
+ */
+public static int indexOf(double[] array, double valueToFind, int startIndex, double tolerance) {
+    if (ArrayUtils.isEmpty(array)) {
+        return INDEX_NOT_FOUND;
+    }
+    if (startIndex < 0) {
+        startIndex = 0;
+    }
+    double min = valueToFind - tolerance;
+    double max = valueToFind + tolerance;
+    for (int i = startIndex; i < array.length; i++) {
+        if (array[i] >= min && array[i] <= max) {
+            return i;
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

@@ -1,0 +1,37 @@
+public void testExceptions() {
+    try {
+        RandomStringUtils.random(-1);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, true, true);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, new char[0]);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, "");
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, 'a', 'z', false, false);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, 'a', 'z', false, false, new char[0]);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        RandomStringUtils.random(-1, 'a', 'z', false, false, new char[0], new Random());
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

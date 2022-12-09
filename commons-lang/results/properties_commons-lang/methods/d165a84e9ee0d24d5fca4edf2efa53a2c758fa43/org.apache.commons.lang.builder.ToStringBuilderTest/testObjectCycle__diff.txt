@@ -1,0 +1,9 @@
+public void testObjectCycle() {
+    ObjectCycle a = new ObjectCycle();
+    ObjectCycle b = new ObjectCycle();
+    a.obj = b;
+    b.obj = a;
+    String expected = toBaseString(a) + "[" + toBaseString(b) + "[" + toBaseString(a) + "]]";
+    assertEquals(expected, a.toString());
+    validateEmptyToStringStyleRegistry();
+}

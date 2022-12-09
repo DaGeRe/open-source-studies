@@ -1,0 +1,30 @@
+/**
+ * <p>
+ * Unescapes the entities in a <code>String</code>.
+ * </p>
+ *
+ * <p>
+ * For example, if you have called addEntity(&quot;foo&quot;, 0xA1), unescape(&quot;&amp;foo;&quot;) will return
+ * &quot;\u00A1&quot;
+ * </p>
+ *
+ * @param str
+ *            The <code>String</code> to escape.
+ * @return A new escaped <code>String</code>.
+ */
+public String unescape(String str) {
+    int firstAmp = str.indexOf('&');
+    if (firstAmp < 0) {
+        return str;
+    } else {
+        StringWriter stringWriter = createStringWriter(str);
+        try {
+            this.doUnescape(stringWriter, str, firstAmp);
+        } catch (IOException e) {
+            // This should never happen because ALL the StringWriter methods called by #escape(Writer, String)
+            // do not throw IOExceptions.
+            throw new UnhandledException(e);
+        }
+        return stringWriter.toString();
+    }
+}

@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a formatter instance using the specified pattern, time zone                            * &lt;p&gt;Gets a formatter instance using the specified pattern, time zone                         
+* and locale.&lt;/p&gt;                                                                                * and locale.&lt;/p&gt;                                                                             
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible                                        * @param pattern  {@link java.text.SimpleDateFormat} compatible                                     
+*  pattern                                                                                             *  pattern                                                                                          
+* @param timeZone  optional time zone, overrides time zone of                                          * @param timeZone  optional time zone, overrides time zone of                                       
+*  formatted date                                                                                      *  formatted date                                                                                   
+* @param locale  optional locale, overrides system locale                                              * @param locale  optional locale, overrides system locale                                           
+* @return a pattern based date/time formatter                                                          * @return a pattern based date/time formatter                                                       
+* @throws IllegalArgumentException if pattern is invalid                                               * @throws IllegalArgumentException if pattern is invalid                                            
+*  or &lt;code&gt;null&lt;/code&gt;                                                                    *  or &lt;code&gt;null&lt;/code&gt;                                                                 
+*/                                                                                                     */                                                                                                  
+public static synchronized FastDateFormat getInstance(String pattern, TimeZone timeZone, Locale loca   public static synchronized FastDateFormat getInstance(String pattern, TimeZone timeZone, Locale loca
+FastDateFormat emptyFormat = new FastDateFormat(pattern, timeZone, locale);                            FastDateFormat emptyFormat = new FastDateFormat(pattern, timeZone, locale);                         
+FastDateFormat format = (FastDateFormat) cInstanceCache.get(emptyFormat);                            | FastDateFormat format = cInstanceCache.get(emptyFormat);                                            
+if (format == null) {                                                                                  if (format == null) {                                                                               
+format = emptyFormat;                                                                                  format = emptyFormat;                                                                               
+// convert shell format into usable one                                                                // convert shell format into usable one                                                             
+format.init();                                                                                         format.init();                                                                                      
+// this is OK!                                                                                         // this is OK!                                                                                      
+cInstanceCache.put(format, format);                                                                    cInstanceCache.put(format, format);                                                                 
+}                                                                                                      }                                                                                                   
+return format;                                                                                         return format;                                                                                      
+}                                                                                                      }                                                                                                   

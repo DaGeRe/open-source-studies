@@ -1,0 +1,7 @@
+/**
+ * Tests background processing if a temporary executor is used.
+ */
+public void testInitializeTempExec() throws ConcurrentException {
+    checkInitialize();
+    assertTrue("Executor not shutdown", initializer.getActiveExecutor().isShutdown());
+}

@@ -1,0 +1,33 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Finds the last index within a String from a start position,                              
+                                                                                                     | * handling {@code null}.                                                                            
+                                                                                                     | * This method uses {@link String#lastIndexOf(int, int)}.&lt;/p&gt;                                  
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;A {@code null} or empty ("") String will return {@code -1}.                              
+                                                                                                     | * A negative start position returns {@code -1}.                                                     
+                                                                                                     | * A start position greater than the string length searches the whole string.&lt;/p&gt;              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.lastIndexOf(null, *, *)          = -1                                                 
+                                                                                                     | * StringUtils.lastIndexOf("", *,  *)           = -1                                                 
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'b', 8)  = 5                                                  
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'b', 4)  = 2                                                  
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'b', 0)  = -1                                                 
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'b', 9)  = 5                                                  
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'b', -1) = -1                                                 
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", 'a', 0)  = 0                                                  
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param str  the String to check, may be null                                                      
+                                                                                                     | * @param searchChar  the character to find                                                          
+                                                                                                     | * @param startPos  the start position                                                               
+                                                                                                     | * @return the last index of the search character,                                                   
+                                                                                                     | *  -1 if no match or {@code null} string input                                                      
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static int lastIndexOf(String str, int searchChar, int startPos) {                           
+                                                                                                     | if (isEmpty(str)) {                                                                                 
+                                                                                                     | return INDEX_NOT_FOUND;                                                                             
+                                                                                                     | }                                                                                                   
+                                                                                                     | return str.lastIndexOf(searchChar, startPos);                                                       
+                                                                                                     | }                                                                                                   

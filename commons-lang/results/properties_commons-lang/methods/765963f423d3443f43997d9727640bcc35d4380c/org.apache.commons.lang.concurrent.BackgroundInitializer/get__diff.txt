@@ -1,0 +1,27 @@
+/**
+ * Returns the result of the background initialization. This method blocks
+ * until initialization is complete. If the background processing caused a
+ * runtime exception, it is directly thrown by this method. Checked
+ * exceptions, including {@code InterruptedException} are wrapped in a
+ * {@link ConcurrentException}. Calling this method before {@link #start()}
+ * was called causes an {@code IllegalStateException} exception to be
+ * thrown.
+ *
+ * @return the object produced by this initializer
+ * @throws ConcurrentException if a checked exception occurred during
+ * background processing
+ * @throws IllegalStateException if {@link #start()} has not been called
+ */
+public T get() throws ConcurrentException {
+    try {
+        return getFuture().get();
+    } catch (ExecutionException execex) {
+        ConcurrentUtils.handleCause(execex);
+        // should not be reached
+        return null;
+    } catch (InterruptedException iex) {
+        // reset interrupted state
+        Thread.currentThread().interrupt();
+        throw new ConcurrentException(iex);
+    }
+}

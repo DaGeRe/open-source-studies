@@ -1,0 +1,15 @@
+/**                                                                                                  |                                                                                                     
+* Compare the relative fitness of two sets of parameter types in terms of                            |                                                                                                     
+* matching a third set of runtime parameter types, such that a list ordered                          |                                                                                                     
+* by the results of the comparison would return the best match first (least).                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param left the "left" parameter set                                                               |                                                                                                     
+* @param right the "right" parameter set                                                             |                                                                                                     
+* @param actual the runtime parameter types to match against &lt;code&gt;left&lt;/code&gt;/&lt;code& |                                                                                                     
+* @return int consistent with &lt;code&gt;compare&lt;/code&gt; semantics                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+static int compareParameterTypes(Class[] left, Class[] right, Class[] actual) {                      |                                                                                                     
+float leftCost = getTotalTransformationCost(actual, left);                                           |                                                                                                     
+float rightCost = getTotalTransformationCost(actual, right);                                         |                                                                                                     
+return leftCost &lt; rightCost ? -1 : rightCost &lt; leftCost ? 1 : 0;                               |                                                                                                     
+}                                                                                                    |                                                                                                     

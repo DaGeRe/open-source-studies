@@ -1,0 +1,12 @@
+void testEmpty(StrTokenizer tokenizer) {
+    this.checkClone(tokenizer);
+    assertEquals(false, tokenizer.hasNext());
+    assertEquals(false, tokenizer.hasPrevious());
+    assertEquals(null, tokenizer.nextToken());
+    assertEquals(0, tokenizer.size());
+    try {
+        tokenizer.next();
+        fail();
+    } catch (NoSuchElementException ex) {
+    }
+}

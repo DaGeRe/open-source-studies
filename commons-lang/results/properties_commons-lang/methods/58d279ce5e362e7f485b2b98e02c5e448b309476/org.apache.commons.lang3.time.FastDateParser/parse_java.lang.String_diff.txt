@@ -1,0 +1,11 @@
+/* (non-Javadoc)                                                                                       /* (non-Javadoc)                                                                                    
+* @see org.apache.commons.lang3.time.DateParser#parse(java.lang.String)                                * @see org.apache.commons.lang3.time.DateParser#parse(java.lang.String)                             
+*/                                                                                                     */                                                                                                  
+@Override                                                                                            |                                                                                                     
+public Date parse(String source) throws ParseException {                                               public Date parse(String source) throws ParseException {                                            
+Date date = parse(source, new ParsePosition(0));                                                       Date date = parse(source, new ParsePosition(0));                                                    
+if (date == null) {                                                                                    if (date == null) {                                                                                 
+throw new ParseException(source + " does not match " + parsePattern.pattern(), 0);                     throw new ParseException(source + " does not match " + parsePattern.pattern(), 0);                  
+}                                                                                                      }                                                                                                   
+return date;                                                                                           return date;                                                                                        
+}                                                                                                      }                                                                                                   

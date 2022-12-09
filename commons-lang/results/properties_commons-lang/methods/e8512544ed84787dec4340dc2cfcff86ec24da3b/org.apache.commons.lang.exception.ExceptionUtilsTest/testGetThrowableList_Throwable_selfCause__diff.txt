@@ -1,0 +1,5 @@
+public void testGetThrowableList_Throwable_selfCause() {
+    List throwables = ExceptionUtils.getThrowableList(selfCause);
+    assertEquals(1, throwables.size());
+    assertSame(selfCause, throwables.get(0));
+}

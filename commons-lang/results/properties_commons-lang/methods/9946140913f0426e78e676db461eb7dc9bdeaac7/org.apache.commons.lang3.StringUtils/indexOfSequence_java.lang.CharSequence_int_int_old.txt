@@ -1,0 +1,30 @@
+// The following methods are used to support basic java.lang.String functionality
+// for CharSequences. Currently keeping these as package private; they may be
+// useful as public methods so others can also support CharSequence instead of
+// String. At that point they may make more sense on a CharSequenceUtils and
+// will want a name change.
+/**
+ * Used by the indexOf(CharSequence methods) as a green implementation of
+ * indexOf.
+ *
+ * @param cs the {@code CharSequence} to be processed
+ * @param searchChar the char to be searched for
+ * @param start the start index
+ * @return the index where the search char was found
+ */
+static int indexOfSequence(CharSequence cs, int searchChar, int start) {
+    if (cs instanceof String) {
+        return ((String) cs).indexOf(searchChar, start);
+    } else {
+        int sz = cs.length();
+        if (start < 0) {
+            start = 0;
+        }
+        for (int i = start; i < sz; i++) {
+            if (cs.charAt(i) == searchChar) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}

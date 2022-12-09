@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotEmptyString1() {                                                                    public void testNotEmptyString1() {                                                                 
+Validate.notEmpty("hjl");                                                                              Validate.notEmpty("hjl");                                                                           
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((String) null);                                                                      Validate.notEmpty((String) null);                                                                   
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException ex) {                                                              | } catch (NullPointerException ex) {                                                                 
+assertEquals("The validated string is empty", ex.getMessage());                                      | assertEquals("The validated character sequence is empty", ex.getMessage());                         
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty("");                                                                                 Validate.notEmpty("");                                                                              
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated string is empty", ex.getMessage());                                      | assertEquals("The validated character sequence is empty", ex.getMessage());                         
+}                                                                                                      }                                                                                                   
+String str = "Hi";                                                                                     String str = "Hi";                                                                                  
+String testStr = Validate.notEmpty(str);                                                               String testStr = Validate.notEmpty(str);                                                            
+assertSame(str, testStr);                                                                              assertSame(str, testStr);                                                                           
+}                                                                                                      }                                                                                                   

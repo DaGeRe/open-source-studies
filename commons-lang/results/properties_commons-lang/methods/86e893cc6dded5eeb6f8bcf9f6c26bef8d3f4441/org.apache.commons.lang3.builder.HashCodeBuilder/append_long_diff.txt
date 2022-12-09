@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Append a &lt;code&gt;hashCode&lt;/code&gt; for a &lt;code&gt;long&lt;/code&gt;.                      * Append a &lt;code&gt;hashCode&lt;/code&gt; for a &lt;code&gt;long&lt;/code&gt;.                   
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+* &lt;p&gt;                                                                                          |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param value                                                                                         * @param value                                                                                      
+*            the long to add to the &lt;code&gt;hashCode&lt;/code&gt;                                  *            the long to add to the &lt;code&gt;hashCode&lt;/code&gt;                               
+* @return this                                                                                         * @return this                                                                                      
+*/                                                                                                     */                                                                                                  
+// NOTE: This method uses &gt;&gt; and not &gt;&gt;&gt; as Effective Java and                          // NOTE: This method uses &gt;&gt; and not &gt;&gt;&gt; as Effective Java and                       
+// Long.hashCode do. Ideally we should switch to &gt;&gt;&gt; at                                       // Long.hashCode do. Ideally we should switch to &gt;&gt;&gt; at                                    
+// some stage. There are backwards compat issues, so                                                   // some stage. There are backwards compat issues, so                                                
+// that will have to wait for the time being. cf LANG-342.                                             // that will have to wait for the time being. cf LANG-342.                                          
+public HashCodeBuilder append(long value) {                                                            public HashCodeBuilder append(long value) {                                                         
+iTotal = iTotal * iConstant + ((int) (value ^ (value &gt;&gt; 32)));                                   iTotal = iTotal * iConstant + ((int) (value ^ (value &gt;&gt; 32)));                                
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

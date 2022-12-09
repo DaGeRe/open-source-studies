@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------
+@Test
+public void test_toBoolean_String() {
+    assertFalse(BooleanUtils.toBoolean((String) null));
+    assertFalse(BooleanUtils.toBoolean(""));
+    assertFalse(BooleanUtils.toBoolean("off"));
+    assertFalse(BooleanUtils.toBoolean("oof"));
+    assertFalse(BooleanUtils.toBoolean("yep"));
+    assertFalse(BooleanUtils.toBoolean("trux"));
+    assertFalse(BooleanUtils.toBoolean("false"));
+    assertFalse(BooleanUtils.toBoolean("a"));
+    // interned handled differently
+    assertTrue(BooleanUtils.toBoolean("true"));
+    assertTrue(BooleanUtils.toBoolean(new StringBuffer("tr").append("ue").toString()));
+    assertTrue(BooleanUtils.toBoolean("truE"));
+    assertTrue(BooleanUtils.toBoolean("trUe"));
+    assertTrue(BooleanUtils.toBoolean("trUE"));
+    assertTrue(BooleanUtils.toBoolean("tRue"));
+    assertTrue(BooleanUtils.toBoolean("tRuE"));
+    assertTrue(BooleanUtils.toBoolean("tRUe"));
+    assertTrue(BooleanUtils.toBoolean("tRUE"));
+    assertTrue(BooleanUtils.toBoolean("TRUE"));
+    assertTrue(BooleanUtils.toBoolean("TRUe"));
+    assertTrue(BooleanUtils.toBoolean("TRuE"));
+    assertTrue(BooleanUtils.toBoolean("TRue"));
+    assertTrue(BooleanUtils.toBoolean("TrUE"));
+    assertTrue(BooleanUtils.toBoolean("TrUe"));
+    assertTrue(BooleanUtils.toBoolean("TruE"));
+    assertTrue(BooleanUtils.toBoolean("True"));
+    assertTrue(BooleanUtils.toBoolean("on"));
+    assertTrue(BooleanUtils.toBoolean("oN"));
+    assertTrue(BooleanUtils.toBoolean("On"));
+    assertTrue(BooleanUtils.toBoolean("ON"));
+    assertTrue(BooleanUtils.toBoolean("yes"));
+    assertTrue(BooleanUtils.toBoolean("yeS"));
+    assertTrue(BooleanUtils.toBoolean("yEs"));
+    assertTrue(BooleanUtils.toBoolean("yES"));
+    assertTrue(BooleanUtils.toBoolean("Yes"));
+    assertTrue(BooleanUtils.toBoolean("YeS"));
+    assertTrue(BooleanUtils.toBoolean("YEs"));
+    assertTrue(BooleanUtils.toBoolean("YES"));
+    assertFalse(BooleanUtils.toBoolean("yes?"));
+    assertFalse(BooleanUtils.toBoolean("tru"));
+    assertFalse(BooleanUtils.toBoolean("no"));
+    assertFalse(BooleanUtils.toBoolean("off"));
+    assertFalse(BooleanUtils.toBoolean("yoo"));
+}

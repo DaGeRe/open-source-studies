@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------
+/**
+ * Gets the contents of this builder as a Reader.
+ * <p>
+ * This method allows the contents of the builder to be read
+ * using any standard method that expects a Reader.
+ * <p>
+ * To use, simply create a <code>StrBuilder</code>, populate it with
+ * data, call <code>asReader</code>, and then read away.
+ * <p>
+ * The internal character array is shared between the builder and the reader.
+ * This allows you to append to the builder after creating the reader,
+ * and the changes will be picked up.
+ * Note however, that no synchronization occurs, so you must perform
+ * all operations with the builder and the reader in one thread.
+ * <p>
+ * The returned reader supports marking, and ignores the flush method.
+ *
+ * @return a reader that reads from this builder
+ */
+public Reader asReader() {
+    return new StrBuilderReader();
+}

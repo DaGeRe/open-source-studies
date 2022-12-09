@@ -1,0 +1,29 @@
+// Convert list
+// ----------------------------------------------------------------------
+/**
+ * <p>Given a <code>List</code> of class names, this method converts them into classes.</p>
+ *
+ * <p>A new <code>List</code> is returned. If the class name cannot be found, <code>null</code>
+ * is stored in the <code>List</code>. If the class name in the <code>List</code> is
+ * <code>null</code>, <code>null</code> is stored in the output <code>List</code>.</p>
+ *
+ * @param classNames  the classNames to change
+ * @return a <code>List</code> of Class objects corresponding to the class names,
+ *  <code>null</code> if null input
+ * @throws ClassCastException if classNames contains a non String entry
+ */
+public static List<Class<?>> convertClassNamesToClasses(List<String> classNames) {
+    if (classNames == null) {
+        return null;
+    }
+    List<Class<?>> classes = new ArrayList<Class<?>>(classNames.size());
+    for (Iterator<String> it = classNames.iterator(); it.hasNext(); ) {
+        String className = it.next();
+        try {
+            classes.add(Class.forName(className));
+        } catch (Exception ex) {
+            classes.add(null);
+        }
+    }
+    return classes;
+}

@@ -1,0 +1,27 @@
+/**
+ * Appends a char array to the string builder.
+ * Appending null will call {@link #appendNull()}.
+ *
+ * @param chars  the char array to append
+ * @param startIndex  the start index, inclusive, must be valid
+ * @param length  the length to append, must be valid
+ * @return this, to enable chaining
+ */
+public StrBuilder append(char[] chars, int startIndex, int length) {
+    if (chars == null) {
+        return appendNull();
+    }
+    if (startIndex < 0 || startIndex > chars.length) {
+        throw new StringIndexOutOfBoundsException("Invalid startIndex: " + length);
+    }
+    if (length < 0 || (startIndex + length) > chars.length) {
+        throw new StringIndexOutOfBoundsException("Invalid length: " + length);
+    }
+    if (length > 0) {
+        int len = length();
+        ensureCapacity(len + length);
+        System.arraycopy(chars, startIndex, buffer, len, length);
+        size += length;
+    }
+    return this;
+}

@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testReset() {
+    StrTokenizer tok = new StrTokenizer("a b c");
+    assertEquals("a", tok.next());
+    assertEquals("b", tok.next());
+    assertEquals("c", tok.next());
+    assertEquals(false, tok.hasNext());
+    tok.reset();
+    assertEquals("a", tok.next());
+    assertEquals("b", tok.next());
+    assertEquals("c", tok.next());
+    assertEquals(false, tok.hasNext());
+}

@@ -1,0 +1,22 @@
+                                                                                                     | // notNull                                                                                          
+                                                                                                     | // ---------------------------------------------------------------------------------                
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;         
+                                                                                                     | * if the argument is &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * Validate.notNull(myObject, "The object must not be null");                                        
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param object  the object to check is not &lt;code&gt;null&lt;/code&gt;                           
+                                                                                                     | * @param message  the exception message you would like to see                                       
+                                                                                                     | *  if the object is &lt;code&gt;null&lt;/code&gt;                                                   
+                                                                                                     | * @return the input object, never &lt;code&gt;null&lt;/code&gt;, for chaining                       
+                                                                                                     | * @throws IllegalArgumentException if the object is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T&gt; T notNull(T object, String message) {                                       
+                                                                                                     | if (object == null) {                                                                               
+                                                                                                     | throw new IllegalArgumentException(message);                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | return object;                                                                                      
+                                                                                                     | }                                                                                                   

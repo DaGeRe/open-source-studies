@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------
+public void testParseDate() throws Exception {
+    GregorianCalendar cal = new GregorianCalendar(1972, 11, 3);
+    String dateStr = "1972-12-03";
+    String[] parsers = new String[] { "yyyy'-'DDD", "yyyy'-'MM'-'dd", "yyyyMMdd" };
+    Date date = DateUtils.parseDate(dateStr, parsers);
+    assertEquals(cal.getTime(), date);
+    dateStr = "1972-338";
+    date = DateUtils.parseDate(dateStr, parsers);
+    assertEquals(cal.getTime(), date);
+    dateStr = "19721203";
+    date = DateUtils.parseDate(dateStr, parsers);
+    assertEquals(cal.getTime(), date);
+    try {
+        DateUtils.parseDate("PURPLE", parsers);
+        fail();
+    } catch (ParseException ex) {
+    }
+    try {
+        DateUtils.parseDate("197212AB", parsers);
+        fail();
+    } catch (ParseException ex) {
+    }
+    try {
+        DateUtils.parseDate(null, parsers);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.parseDate(dateStr, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.parseDate(dateStr, new String[0]);
+        fail();
+    } catch (ParseException ex) {
+    }
+}

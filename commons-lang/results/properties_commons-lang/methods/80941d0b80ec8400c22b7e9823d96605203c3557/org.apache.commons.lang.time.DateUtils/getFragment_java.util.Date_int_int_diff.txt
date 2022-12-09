@@ -1,0 +1,19 @@
+/**
+ * Date-version for fragment-calculation in any unit
+ *
+ * @param date the date to work with, not null
+ * @param fragment the Calendar field part of date to calculate
+ * @param unit Calendar field defining the unit
+ * @return number of units within the fragment of the date
+ * @throws IllegalArgumentException if the date is <code>null</code> or
+ * fragment is not supported
+ * @since 2.4
+ */
+private static long getFragment(Date date, int fragment, int unit) {
+    if (date == null) {
+        throw new IllegalArgumentException("The date must not be null");
+    }
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    return getFragment(calendar, fragment, unit);
+}

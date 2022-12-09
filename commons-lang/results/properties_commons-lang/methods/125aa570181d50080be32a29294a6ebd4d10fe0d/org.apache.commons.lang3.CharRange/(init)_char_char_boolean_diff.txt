@@ -1,0 +1,25 @@
+/**
+ * <p>Constructs a {@code CharRange} over a set of characters,
+ * optionally negating the range.</p>
+ *
+ * <p>A negated range includes everything except that defined by the
+ * start and end characters.</p>
+ *
+ * <p>If start and end are in the wrong order, they are reversed.
+ * Thus {@code a-e} is the same as {@code e-a}.</p>
+ *
+ * @param start  first character, inclusive, in this range
+ * @param end  last character, inclusive, in this range
+ * @param negated  true to express everything except the range
+ */
+private CharRange(char start, char end, boolean negated) {
+    super();
+    if (start > end) {
+        char temp = start;
+        start = end;
+        end = temp;
+    }
+    this.start = start;
+    this.end = end;
+    this.negated = negated;
+}

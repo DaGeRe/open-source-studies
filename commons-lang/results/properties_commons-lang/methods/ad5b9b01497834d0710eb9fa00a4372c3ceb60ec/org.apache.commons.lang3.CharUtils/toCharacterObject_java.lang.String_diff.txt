@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts the String to a Character using the first character, returning                     * &lt;p&gt;Converts the String to a Character using the first character, returning                  
+* null for empty Strings.&lt;/p&gt;                                                                    * null for empty Strings.&lt;/p&gt;                                                                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For ASCII 7 bit characters, this uses a cache that will return the                          * &lt;p&gt;For ASCII 7 bit characters, this uses a cache that will return the                       
+* same Character object each time.&lt;/p&gt;                                                           * same Character object each time.&lt;/p&gt;                                                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   CharUtils.toCharacterObject(null) = null                                                           *   CharUtils.toCharacterObject(null) = null                                                        
+*   CharUtils.toCharacterObject("")   = null                                                           *   CharUtils.toCharacterObject("")   = null                                                        
+*   CharUtils.toCharacterObject("A")  = 'A'                                                            *   CharUtils.toCharacterObject("A")  = 'A'                                                         
+*   CharUtils.toCharacterObject("BA") = 'B'                                                            *   CharUtils.toCharacterObject("BA") = 'B'                                                         
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the character to convert                                                                 * @param str  the character to convert                                                              
+* @return the Character value of the first letter of the String                                        * @return the Character value of the first letter of the String                                     
+*/                                                                                                     */                                                                                                  
+public static Character toCharacterObject(String str) {                                                public static Character toCharacterObject(String str) {                                             
+if (StringUtils.isEmpty(str)) {                                                                        if (StringUtils.isEmpty(str)) {                                                                     
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return toCharacterObject(str.charAt(0));                                                             | return Character.valueOf(str.charAt(0));                                                            
+}                                                                                                      }                                                                                                   

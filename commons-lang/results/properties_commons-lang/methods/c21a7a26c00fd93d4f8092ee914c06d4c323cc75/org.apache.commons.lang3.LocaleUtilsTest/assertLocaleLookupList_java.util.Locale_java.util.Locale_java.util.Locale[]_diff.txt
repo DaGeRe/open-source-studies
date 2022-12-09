@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+/**
+ * Helper method for local lookups.
+ *
+ * @param locale  the input locale
+ * @param defaultLocale  the input default locale
+ * @param expected  expected results
+ */
+private void assertLocaleLookupList(Locale locale, Locale defaultLocale, Locale[] expected) {
+    List<Locale> localeList = defaultLocale == null ? LocaleUtils.localeLookupList(locale) : LocaleUtils.localeLookupList(locale, defaultLocale);
+    assertEquals(expected.length, localeList.size());
+    assertEquals(Arrays.asList(expected), localeList);
+    assertUnmodifiableCollection(localeList);
+}

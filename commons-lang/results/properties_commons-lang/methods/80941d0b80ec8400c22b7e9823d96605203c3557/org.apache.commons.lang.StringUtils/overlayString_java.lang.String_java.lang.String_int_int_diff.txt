@@ -1,0 +1,30 @@
+// Overlay
+// -----------------------------------------------------------------------
+/**
+ * <p>Overlays part of a String with another String.</p>
+ *
+ * <pre>
+ * StringUtils.overlayString(null, *, *, *)           = NullPointerException
+ * StringUtils.overlayString(*, null, *, *)           = NullPointerException
+ * StringUtils.overlayString("", "abc", 0, 0)         = "abc"
+ * StringUtils.overlayString("abcdef", null, 2, 4)    = "abef"
+ * StringUtils.overlayString("abcdef", "", 2, 4)      = "abef"
+ * StringUtils.overlayString("abcdef", "zzzz", 2, 4)  = "abzzzzef"
+ * StringUtils.overlayString("abcdef", "zzzz", 4, 2)  = "abcdzzzzcdef"
+ * StringUtils.overlayString("abcdef", "zzzz", -1, 4) = IndexOutOfBoundsException
+ * StringUtils.overlayString("abcdef", "zzzz", 2, 8)  = IndexOutOfBoundsException
+ * </pre>
+ *
+ * @param text  the String to do overlaying in, may be null
+ * @param overlay  the String to overlay, may be null
+ * @param start  the position to start overlaying at, must be valid
+ * @param end  the position to stop overlaying before, must be valid
+ * @return overlayed String, <code>null</code> if null String input
+ * @throws NullPointerException if text or overlay is null
+ * @throws IndexOutOfBoundsException if either position is invalid
+ * @deprecated Use better named {@link #overlay(String, String, int, int)} instead.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String overlayString(String text, String overlay, int start, int end) {
+    return new StringBuffer(start + overlay.length() + text.length() - end + 1).append(text.substring(0, start)).append(overlay).append(text.substring(end)).toString();
+}

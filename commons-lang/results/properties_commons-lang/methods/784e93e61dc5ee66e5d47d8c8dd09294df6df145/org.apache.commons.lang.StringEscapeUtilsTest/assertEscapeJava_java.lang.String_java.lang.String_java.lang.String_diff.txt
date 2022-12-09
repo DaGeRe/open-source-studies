@@ -1,0 +1,8 @@
+private void assertEscapeJava(String message, String expected, String original) throws IOException {
+    String converted = StringEscapeUtils.escapeJava(original);
+    message = "escapeJava(String) failed" + (message == null ? "" : (": " + message));
+    assertEquals(message, expected, converted);
+    StringWriter writer = new StringWriter();
+    StringEscapeUtils.escapeJava(writer, original);
+    assertEquals(expected, writer.toString());
+}

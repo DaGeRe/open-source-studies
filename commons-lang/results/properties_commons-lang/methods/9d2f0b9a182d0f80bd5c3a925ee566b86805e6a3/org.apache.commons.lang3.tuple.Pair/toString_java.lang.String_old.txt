@@ -1,0 +1,17 @@
+/**
+ * <p>Returns a String representation in the given format.</p>
+ *
+ * <p>The format specified uses the syntax from {@link Formatter}.
+ * There are three arguments available:</p>
+ * <ol>
+ * <li>The simple class name</li>
+ * <li>The left object</li>
+ * <li>The right object</li>
+ * </ol>
+ *
+ * @param format  the format suitable for use with {@code Formatter}, not null
+ * @return a string describing for this object, not null
+ */
+public String toString(String format) {
+    return String.format(format, getClass().getSimpleName(), getLeft(), getRight());
+}

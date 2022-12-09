@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* Null safe comparison of Comparables.                                                                 * Null safe comparison of Comparables.                                                              
+*                                                                                                      *                                                                                                   
+* @param c1  the first comparable, may be null                                                         * @param c1  the first comparable, may be null                                                      
+* @param c2  the second comparable, may be null                                                        * @param c2  the second comparable, may be null                                                     
+* @return                                                                                              * @return                                                                                           
+*  &lt;ul&gt;                                                                                          *  &lt;ul&gt;                                                                                       
+*   &lt;li&gt;If both objects are non-null and unequal, the greater object.                            *   &lt;li&gt;If both objects are non-null and unequal, the greater object.                         
+*   &lt;li&gt;If both objects are non-null and equal, c1.                                              *   &lt;li&gt;If both objects are non-null and equal, c1.                                           
+*   &lt;li&gt;If one of the comparables is null, the non-null object.                                  *   &lt;li&gt;If one of the comparables is null, the non-null object.                               
+*   &lt;li&gt;If both the comparables are null, null is returned.                                      *   &lt;li&gt;If both the comparables are null, null is returned.                                   
+*  &lt;/ul&gt;                                                                                         *  &lt;/ul&gt;                                                                                      
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Comparable&lt;? super T&gt;&gt; T max(T c1, T c2) {                        public static &lt;T extends Comparable&lt;? super T&gt;&gt; T max(T c1, T c2) {                     
+if (c1 != null && c2 != null) {                                                                      | return compare(c1, c2, false) &gt;= 0 ? c1 : c2;                                                    
+return c1.compareTo(c2) &gt;= 0 ? c1 : c2;                                                           |                                                                                                     
+} else {                                                                                             |                                                                                                     
+return c1 != null ? c1 : c2;                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

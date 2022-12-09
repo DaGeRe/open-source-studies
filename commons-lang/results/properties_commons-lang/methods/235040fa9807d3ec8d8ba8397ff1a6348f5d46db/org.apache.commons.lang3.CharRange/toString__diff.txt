@@ -1,0 +1,21 @@
+/**
+ * <p>Gets a string representation of the character range.</p>
+ *
+ * @return string representation of this range
+ */
+@Override
+public String toString() {
+    if (iToString == null) {
+        StringBuilder buf = new StringBuilder(4);
+        if (isNegated()) {
+            buf.append('^');
+        }
+        buf.append(start);
+        if (start != end) {
+            buf.append('-');
+            buf.append(end);
+        }
+        iToString = buf.toString();
+    }
+    return iToString;
+}

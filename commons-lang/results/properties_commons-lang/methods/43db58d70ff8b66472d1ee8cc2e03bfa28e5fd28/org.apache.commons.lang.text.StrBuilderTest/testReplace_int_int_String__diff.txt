@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------
+public void testReplace_int_int_String() {
+    StrBuilder sb = new StrBuilder("abc");
+    sb.replace(0, 1, "d");
+    assertEquals("dbc", sb.toString());
+    sb.replace(0, 1, "aaa");
+    assertEquals("aaabc", sb.toString());
+    sb.replace(0, 3, "");
+    assertEquals("bc", sb.toString());
+    sb.replace(1, 2, (String) null);
+    assertEquals("b", sb.toString());
+    sb.replace(1, 1000, "text");
+    assertEquals("btext", sb.toString());
+    sb.replace(0, 1000, "text");
+    assertEquals("text", sb.toString());
+    sb = new StrBuilder("atext");
+    sb.replace(1, 1, "ny");
+    assertEquals("anytext", sb.toString());
+    try {
+        sb.replace(2, 1, "anything");
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    sb = new StrBuilder();
+    try {
+        sb.replace(1, 2, "anything");
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        sb.replace(-1, 1, "anything");
+        fail("Expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

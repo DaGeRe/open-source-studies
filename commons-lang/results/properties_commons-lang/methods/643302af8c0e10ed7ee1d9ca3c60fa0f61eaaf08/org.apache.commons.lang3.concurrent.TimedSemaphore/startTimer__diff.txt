@@ -1,0 +1,15 @@
+/**
+ * Starts the timer. This method is called when {@link #acquire()} is called
+ * for the first time. It schedules a task to be executed at fixed rate to
+ * monitor the time period specified.
+ *
+ * @return a future object representing the task scheduled
+ */
+protected ScheduledFuture<?> startTimer() {
+    return getExecutorService().scheduleAtFixedRate(new Runnable() {
+
+        public void run() {
+            endOfPeriod();
+        }
+    }, getPeriod(), getPeriod(), getUnit());
+}

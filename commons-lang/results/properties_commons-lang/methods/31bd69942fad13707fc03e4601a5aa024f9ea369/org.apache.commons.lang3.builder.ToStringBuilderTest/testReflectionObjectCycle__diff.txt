@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Test Objects pointing to each other.                                                                 * Test Objects pointing to each other.                                                              
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testReflectionObjectCycle() throws Exception {                                             public void testReflectionObjectCycle() throws Exception {                                          
+ReflectionTestCycleA a = new ReflectionTestCycleA();                                                   ReflectionTestCycleA a = new ReflectionTestCycleA();                                                
+ReflectionTestCycleB b = new ReflectionTestCycleB();                                                   ReflectionTestCycleB b = new ReflectionTestCycleB();                                                
+a.b = b;                                                                                               a.b = b;                                                                                            
+b.a = a;                                                                                               b.a = a;                                                                                            
+assertEquals(this.toBaseString(a) + "[b=" + this.toBaseString(b) + "[a=" + this.toBaseString(a) + "]   assertEquals(this.toBaseString(a) + "[b=" + this.toBaseString(b) + "[a=" + this.toBaseString(a) + "]
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* This checks that this is a 7 divisble iterator of Calendar objects                                   * This checks that this is a 7 divisble iterator of Calendar objects                                
+* that are dates (no time), and exactly 1 day spaced after each other                                  * that are dates (no time), and exactly 1 day spaced after each other                               
+* (in addition to the proper start and stop dates)                                                     * (in addition to the proper start and stop dates)                                                  
+*/                                                                                                     */                                                                                                  
+private static void assertWeekIterator(Iterator it, Calendar start, Calendar end) {                  | private static void assertWeekIterator(Iterator&lt;?&gt; it, Calendar start, Calendar end) {        
+Calendar cal = (Calendar) it.next();                                                                   Calendar cal = (Calendar) it.next();                                                                
+assertEquals("", start, cal, 0);                                                                       assertEquals("", start, cal, 0);                                                                    
+Calendar last = null;                                                                                  Calendar last = null;                                                                               
+int count = 1;                                                                                         int count = 1;                                                                                      
+while (it.hasNext()) {                                                                                 while (it.hasNext()) {                                                                              
+// Check this is just a date (no time component)                                                       // Check this is just a date (no time component)                                                    
+assertEquals("", cal, DateUtils.truncate(cal, Calendar.DATE), 0);                                      assertEquals("", cal, DateUtils.truncate(cal, Calendar.DATE), 0);                                   
+last = cal;                                                                                            last = cal;                                                                                         
+cal = (Calendar) it.next();                                                                            cal = (Calendar) it.next();                                                                         
+count++;                                                                                               count++;                                                                                            
+// Check that this is one day more than the last date                                                  // Check that this is one day more than the last date                                               
+last.add(Calendar.DATE, 1);                                                                            last.add(Calendar.DATE, 1);                                                                         
+assertEquals("", last, cal, 0);                                                                        assertEquals("", last, cal, 0);                                                                     
+}                                                                                                      }                                                                                                   
+if (count % 7 != 0) {                                                                                  if (count % 7 != 0) {                                                                               
+throw new AssertionFailedError("There were " + count + " days in this iterator");                      throw new AssertionFailedError("There were " + count + " days in this iterator");                   
+}                                                                                                      }                                                                                                   
+assertEquals("", end, cal, 0);                                                                         assertEquals("", end, cal, 0);                                                                      
+}                                                                                                      }                                                                                                   

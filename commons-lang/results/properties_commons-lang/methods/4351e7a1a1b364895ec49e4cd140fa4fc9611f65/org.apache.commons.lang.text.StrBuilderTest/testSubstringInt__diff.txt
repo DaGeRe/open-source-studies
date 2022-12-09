@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------                           |                                                                                                     
+public void testSubstringInt() {                                                                       public void testSubstringInt() {                                                                    
+StrBuilder sb = new StrBuilder("hello goodbye");                                                       StrBuilder sb = new StrBuilder("hello goodbye");                                                    
+assertEquals("goodbye", sb.substring(6));                                                              assertEquals("goodbye", sb.substring(6));                                                           
+assertEquals("hello goodbye".substring(6), sb.substring(6));                                           assertEquals("hello goodbye".substring(6), sb.substring(6));                                        
+assertEquals("hello goodbye", sb.substring(0));                                                        assertEquals("hello goodbye", sb.substring(0));                                                     
+assertEquals("hello goodbye".substring(0), sb.substring(0));                                           assertEquals("hello goodbye".substring(0), sb.substring(0));                                        
+try {                                                                                                  try {                                                                                               
+sb.substring(-1);                                                                                      sb.substring(-1);                                                                                   
+fail();                                                                                                fail();                                                                                             
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+sb.substring(15);                                                                                      sb.substring(15);                                                                                   
+fail();                                                                                                fail();                                                                                             
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

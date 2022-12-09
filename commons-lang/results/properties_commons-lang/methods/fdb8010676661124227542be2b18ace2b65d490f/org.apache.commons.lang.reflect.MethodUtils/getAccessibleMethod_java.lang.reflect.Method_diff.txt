@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Return an accessible method (that is, one that can be invoked via                           * &lt;p&gt;Return an accessible method (that is, one that can be invoked via                        
+* reflection) that implements the specified Method.  If no such method                                 * reflection) that implements the specified Method.  If no such method                              
+* can be found, return &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                        * can be found, return &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                     
+*                                                                                                      *                                                                                                   
+* @param method The method that we wish to call                                                        * @param method The method that we wish to call                                                     
+* @return The accessible method                                                                        * @return The accessible method                                                                     
+*/                                                                                                     */                                                                                                  
+public static Method getAccessibleMethod(Method method) {                                              public static Method getAccessibleMethod(Method method) {                                           
+if (!MemberUtils.isAccessible(method)) {                                                               if (!MemberUtils.isAccessible(method)) {                                                            
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+// If the declaring class is public, we are done                                                       // If the declaring class is public, we are done                                                    
+Class cls = method.getDeclaringClass();                                                              | Class&lt;?&gt; cls = method.getDeclaringClass();                                                    
+if (Modifier.isPublic(cls.getModifiers())) {                                                           if (Modifier.isPublic(cls.getModifiers())) {                                                        
+return method;                                                                                         return method;                                                                                      
+}                                                                                                      }                                                                                                   
+String methodName = method.getName();                                                                  String methodName = method.getName();                                                               
+Class[] parameterTypes = method.getParameterTypes();                                                 | Class&lt;?&gt;[] parameterTypes = method.getParameterTypes();                                       
+// Check the implemented interfaces and subinterfaces                                                  // Check the implemented interfaces and subinterfaces                                               
+method = getAccessibleMethodFromInterfaceNest(cls, methodName, parameterTypes);                        method = getAccessibleMethodFromInterfaceNest(cls, methodName, parameterTypes);                     
+// Check the superclass chain                                                                          // Check the superclass chain                                                                       
+if (method == null) {                                                                                  if (method == null) {                                                                               
+method = getAccessibleMethodFromSuperclass(cls, methodName, parameterTypes);                           method = getAccessibleMethodFromSuperclass(cls, methodName, parameterTypes);                        
+}                                                                                                      }                                                                                                   
+return method;                                                                                         return method;                                                                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,18 @@
+/**
+ * Tests a bigger number of invocations that span multiple periods. The
+ * period is set to a very short time. A background thread calls the
+ * semaphore a large number of times. While it runs at last one end of a
+ * period should be reached.
+ */
+@Test
+public void testAcquireMultiplePeriods() throws InterruptedException {
+    final int count = 1000;
+    TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(PERIOD / 10, TimeUnit.MILLISECONDS, 1);
+    semaphore.setLimit(count / 4);
+    CountDownLatch latch = new CountDownLatch(count);
+    SemaphoreThread t = new SemaphoreThread(semaphore, latch, count, count);
+    t.start();
+    latch.await();
+    semaphore.shutdown();
+    assertTrue("End of period not reached", semaphore.getPeriodEnds() > 0);
+}

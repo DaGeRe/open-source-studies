@@ -1,0 +1,16 @@
+@Test
+public void testReplaceOnce_StringStringString() {
+    assertEquals(null, StringUtils.replaceOnce(null, null, null));
+    assertEquals(null, StringUtils.replaceOnce(null, null, "any"));
+    assertEquals(null, StringUtils.replaceOnce(null, "any", null));
+    assertEquals(null, StringUtils.replaceOnce(null, "any", "any"));
+    assertEquals("", StringUtils.replaceOnce("", null, null));
+    assertEquals("", StringUtils.replaceOnce("", null, "any"));
+    assertEquals("", StringUtils.replaceOnce("", "any", null));
+    assertEquals("", StringUtils.replaceOnce("", "any", "any"));
+    assertEquals("FOO", StringUtils.replaceOnce("FOO", "", "any"));
+    assertEquals("FOO", StringUtils.replaceOnce("FOO", null, "any"));
+    assertEquals("FOO", StringUtils.replaceOnce("FOO", "F", null));
+    assertEquals("FOO", StringUtils.replaceOnce("FOO", null, null));
+    assertEquals("foofoo", StringUtils.replaceOnce("foofoofoo", "foo", ""));
+}

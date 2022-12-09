@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Creates a compact stack trace for the root cause of the supplied
+ * <code>Throwable</code>.</p>
+ *
+ * <p>The output of this method is consistent across JDK versions.
+ * It consists of the root exception followed by each of its wrapping
+ * exceptions separated by '[wrapped]'. Note that this is the opposite
+ * order to the JDK1.4 display.</p>
+ *
+ * @param throwable  the throwable to examine, may be null
+ * @return an array of stack trace frames, never null
+ * @since 2.0
+ */
+public static String[] getRootCauseStackTrace(Throwable throwable) {
+    if (throwable == null) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    Throwable[] throwables = getThrowables(throwable);
+    int count = throwables.length;
+    List<String> frames = new ArrayList<String>();
+    List<String> nextTrace = getStackFrameList(throwables[count - 1]);
+    for (int i = count; --i >= 0; ) {
+        List<String> trace = nextTrace;
+        if (i != 0) {
+            nextTrace = getStackFrameList(throwables[i - 1]);
+            removeCommonFrames(trace, nextTrace);
+        }
+        if (i == count - 1) {
+            frames.add(throwables[i].toString());
+        } else {
+            frames.add(WRAPPED_MARKER + throwables[i].toString());
+        }
+        for (int j = 0; j < trace.size(); j++) {
+            frames.add(trace.get(j));
+        }
+    }
+    return frames.toArray(new String[frames.size()]);
+}

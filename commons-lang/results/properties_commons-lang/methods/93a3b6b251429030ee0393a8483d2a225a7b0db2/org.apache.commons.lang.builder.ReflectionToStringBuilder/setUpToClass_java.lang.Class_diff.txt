@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Sets the last super class to stop appending fields for.                                              * Sets the last super class to stop appending fields for.                                           
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param clazz                                                                                         * @param clazz                                                                                      
+*            The last super class to stop appending fields for.                                        *            The last super class to stop appending fields for.                                     
+*/                                                                                                     */                                                                                                  
+public void setUpToClass(Class&lt;? super T&gt; clazz) {                                             | public void setUpToClass(Class&lt;?&gt; clazz) {                                                    
+                                                                                                     | if (clazz != null) {                                                                                
+                                                                                                     | Object object = getObject();                                                                        
+                                                                                                     | if (object != null && clazz.isInstance(object) == false) {                                          
+                                                                                                     | throw new IllegalArgumentException("Specified class is not a superclass of the object");            
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+this.upToClass = clazz;                                                                                this.upToClass = clazz;                                                                             
+}                                                                                                      }                                                                                                   

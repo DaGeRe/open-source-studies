@@ -1,0 +1,43 @@
+/**
+ * <p>Search a CharSequence to find the first index of any
+ * character not in the given set of characters.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A {@code null} or empty search string will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAnyBut(null, *)            = -1
+ * StringUtils.indexOfAnyBut("", *)              = -1
+ * StringUtils.indexOfAnyBut(*, null)            = -1
+ * StringUtils.indexOfAnyBut(*, "")              = -1
+ * StringUtils.indexOfAnyBut("zzabyycdxx", "za") = 3
+ * StringUtils.indexOfAnyBut("zzabyycdxx", "")   = -1
+ * StringUtils.indexOfAnyBut("aba","ab")         = -1
+ * </pre>
+ *
+ * @param seq  the CharSequence to check, may be null
+ * @param searchChars  the chars to search for, may be null
+ * @return the index of any of the chars, -1 if no match or null input
+ * @since 2.0
+ */
+public static int indexOfAnyBut(CharSequence seq, CharSequence searchChars) {
+    if (isEmpty(seq) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    int strLen = seq.length();
+    for (int i = 0; i < strLen; i++) {
+        char ch = seq.charAt(i);
+        boolean chFound = indexOfSequence(searchChars, ch, 0) >= 0;
+        if (i + 1 < strLen && Character.isHighSurrogate(ch)) {
+            char ch2 = seq.charAt(i + 1);
+            if (chFound && indexOfSequence(searchChars, ch2, 0) < 0) {
+                return i;
+            }
+        } else {
+            if (!chFound) {
+                return i;
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

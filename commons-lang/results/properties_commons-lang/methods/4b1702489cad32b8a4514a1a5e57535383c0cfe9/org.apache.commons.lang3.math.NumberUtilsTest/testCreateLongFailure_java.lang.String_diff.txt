@@ -1,0 +1,8 @@
+protected void testCreateLongFailure(String str) {
+    try {
+        Long value = NumberUtils.createLong(str);
+        fail("createLong(blank) failed: " + value);
+    } catch (NumberFormatException ex) {
+        // empty
+    }
+}

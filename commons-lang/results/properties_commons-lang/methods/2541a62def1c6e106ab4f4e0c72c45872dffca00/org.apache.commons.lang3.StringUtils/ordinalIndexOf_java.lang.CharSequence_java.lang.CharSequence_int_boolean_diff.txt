@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Finds the n-th index within a String, handling {@code null}.                                * &lt;p&gt;Finds the n-th index within a String, handling {@code null}.                             
+* This method uses {@link String#indexOf(String)} if possible.&lt;/p&gt;                               * This method uses {@link String#indexOf(String)} if possible.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A {@code null} CharSequence will return {@code -1}.&lt;/p&gt;                               * &lt;p&gt;A {@code null} CharSequence will return {@code -1}.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* @param str  the CharSequence to check, may be null                                                   * @param str  the CharSequence to check, may be null                                                
+* @param searchStr  the CharSequence to find, may be null                                              * @param searchStr  the CharSequence to find, may be null                                           
+* @param ordinal  the n-th {@code searchStr} to find                                                   * @param ordinal  the n-th {@code searchStr} to find                                                
+* @param lastIndex true if lastOrdinalIndexOf() otherwise false if ordinalIndexOf()                    * @param lastIndex true if lastOrdinalIndexOf() otherwise false if ordinalIndexOf()                 
+* @return the n-th index of the search CharSequence,                                                   * @return the n-th index of the search CharSequence,                                                
+*  {@code -1} ({@code INDEX_NOT_FOUND}) if no match or {@code null} string input                       *  {@code -1} ({@code INDEX_NOT_FOUND}) if no match or {@code null} string input                    
+*/                                                                                                     */                                                                                                  
+// Shared code between ordinalIndexOf(String,String,int) and lastOrdinalIndexOf(String,String,int)     // Shared code between ordinalIndexOf(String,String,int) and lastOrdinalIndexOf(String,String,int)  
+private static int ordinalIndexOf(CharSequence str, CharSequence searchStr, int ordinal, boolean las   private static int ordinalIndexOf(CharSequence str, CharSequence searchStr, int ordinal, boolean las
+if (str == null || searchStr == null || ordinal &lt;= 0) {                                             if (str == null || searchStr == null || ordinal &lt;= 0) {                                          
+return INDEX_NOT_FOUND;                                                                                return INDEX_NOT_FOUND;                                                                             
+}                                                                                                      }                                                                                                   
+if (searchStr.length() == 0) {                                                                         if (searchStr.length() == 0) {                                                                      
+return lastIndex ? str.length() : 0;                                                                   return lastIndex ? str.length() : 0;                                                                
+}                                                                                                      }                                                                                                   
+int found = 0;                                                                                         int found = 0;                                                                                      
+int index = lastIndex ? str.length() : INDEX_NOT_FOUND;                                                int index = lastIndex ? str.length() : INDEX_NOT_FOUND;                                             
+do {                                                                                                   do {                                                                                                
+if (lastIndex) {                                                                                       if (lastIndex) {                                                                                    
+index = lastIndexOfSequence(str, searchStr, index - 1);                                              | index = CharSequenceUtils.lastIndexOf(str, searchStr, index - 1);                                   
+} else {                                                                                               } else {                                                                                            
+index = indexOfSequence(str, searchStr, index + 1);                                                  | index = CharSequenceUtils.indexOf(str, searchStr, index + 1);                                       
+}                                                                                                      }                                                                                                   
+if (index &lt; 0) {                                                                                    if (index &lt; 0) {                                                                                 
+return index;                                                                                          return index;                                                                                       
+}                                                                                                      }                                                                                                   
+found++;                                                                                               found++;                                                                                            
+} while (found &lt; ordinal);                                                                          } while (found &lt; ordinal);                                                                       
+return index;                                                                                          return index;                                                                                       
+}                                                                                                      }                                                                                                   

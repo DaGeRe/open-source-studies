@@ -1,0 +1,50 @@
+/**
+ * Returns the index, numbered from 0, of the first <code>Throwable</code>
+ * that matches the specified type, or a subclass, in the chain of <code>Throwable</code>s
+ * with an index greater than or equal to the specified index.
+ * The method returns -1 if the specified type is not found in the chain.
+ * <p>
+ * NOTE: From v2.1, we have clarified the <code>Nestable</code> interface
+ * such that this method matches subclasses.
+ * If you want to NOT match subclasses, please use
+ * {@link ExceptionUtils#indexOfThrowable(Throwable, Class, int)}
+ * (which is avaiable in all versions of lang).
+ * An alternative is to use the public static flag {@link #matchSubclasses}
+ * on <code>NestableDelegate</code>, however this is not recommended.
+ *
+ * @param type  the type to find, subclasses match, null returns -1
+ * @param fromIndex the index, numbered from 0, of the starting position in
+ * the chain to be searched
+ * @return index of the first occurrence of the type in the chain, or -1 if
+ * the type is not found
+ * @throws IndexOutOfBoundsException if the <code>fromIndex</code> argument
+ * is negative or not less than the count of <code>Throwable</code>s in the
+ * chain
+ * @since 2.0
+ */
+public int indexOfThrowable(Class type, int fromIndex) {
+    if (type == null) {
+        return -1;
+    }
+    if (fromIndex < 0) {
+        throw new IndexOutOfBoundsException("The start index was out of bounds: " + fromIndex);
+    }
+    Throwable[] throwables = ExceptionUtils.getThrowables(this.nestable);
+    if (fromIndex >= throwables.length) {
+        throw new IndexOutOfBoundsException("The start index was out of bounds: " + fromIndex + " >= " + throwables.length);
+    }
+    if (matchSubclasses) {
+        for (int i = fromIndex; i < throwables.length; i++) {
+            if (type.isAssignableFrom(throwables[i].getClass())) {
+                return i;
+            }
+        }
+    } else {
+        for (int i = fromIndex; i < throwables.length; i++) {
+            if (type.equals(throwables[i].getClass())) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}

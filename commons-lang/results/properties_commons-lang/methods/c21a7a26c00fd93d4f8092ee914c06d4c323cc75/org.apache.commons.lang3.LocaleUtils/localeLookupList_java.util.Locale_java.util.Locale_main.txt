@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Obtains the list of locales to search through when performing
+ * a locale search.</p>
+ *
+ * <pre>
+ * localeLookupList(Locale("fr", "CA", "xxx"), Locale("en"))
+ *   = [Locale("fr","CA","xxx"), Locale("fr","CA"), Locale("fr"), Locale("en"]
+ * </pre>
+ *
+ * <p>The result list begins with the most specific locale, then the
+ * next more general and so on, finishing with the default locale.
+ * The list will never contain the same locale twice.</p>
+ *
+ * @param locale  the locale to start from, null returns empty list
+ * @param defaultLocale  the default locale to use if no other is found
+ * @return the unmodifiable list of Locale objects, 0 being locale, not null
+ */
+public static List<Locale> localeLookupList(Locale locale, Locale defaultLocale) {
+    List<Locale> list = new ArrayList<Locale>(4);
+    if (locale != null) {
+        list.add(locale);
+        if (locale.getVariant().length() > 0) {
+            list.add(new Locale(locale.getLanguage(), locale.getCountry()));
+        }
+        if (locale.getCountry().length() > 0) {
+            list.add(new Locale(locale.getLanguage(), ""));
+        }
+        if (list.contains(defaultLocale) == false) {
+            list.add(defaultLocale);
+        }
+    }
+    return Collections.unmodifiableList(list);
+}

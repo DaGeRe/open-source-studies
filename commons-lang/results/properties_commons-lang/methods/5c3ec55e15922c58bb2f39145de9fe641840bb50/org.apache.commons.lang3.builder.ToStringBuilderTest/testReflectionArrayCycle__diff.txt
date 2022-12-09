@@ -1,0 +1,10 @@
+// Reflection cycle tests
+/**
+ * Test an array element pointing to its container.
+ */
+public void testReflectionArrayCycle() throws Exception {
+    Object[] objects = new Object[1];
+    objects[0] = objects;
+    assertEquals(this.toBaseString(objects) + "[{" + this.toBaseString(objects) + "}]", ToStringBuilder.reflectionToString(objects));
+    this.validateEmptyToStringStyleRegistry();
+}

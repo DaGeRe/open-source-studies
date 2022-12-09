@@ -1,0 +1,17 @@
+// Methods for adding items
+// -----------------------------------------------------------------------
+/**
+ * Adds an item, which compares as after all items known to the Comparator.
+ * If the item is already known to the Comparator, its old position is
+ * replaced with the new position.
+ *
+ * @param obj  the item to be added to the Comparator.
+ * @return true if obj has been added for the first time, false if
+ *  it was already known to the Comparator.
+ * @throws UnsupportedOperationException if a comparison has already been made
+ */
+public boolean add(T obj) {
+    checkLocked();
+    Integer position = map.put(obj, new Integer(counter++));
+    return (position == null);
+}

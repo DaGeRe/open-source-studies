@@ -1,0 +1,39 @@
+/**
+ * <p>Returns the number of hours within the
+ * fragment. All datefields greater than the fragment will be ignored.</p>
+ *
+ * <p>Asking the hours of any date will only return the number of hours
+ * of the current day (resulting in a number between 0 and 23). This
+ * method will retrieve the number of hours for any fragment.
+ * For example, if you want to calculate the number of hours past this month,
+ * your fragment is Calendar.MONTH. The result will be all hours of the
+ * past day(s).</p>
+ *
+ * <p>Valid fragments are: Calendar.YEAR, Calendar.MONTH, both
+ * Calendar.DAY_OF_YEAR and Calendar.DATE, Calendar.HOUR_OF_DAY,
+ * Calendar.MINUTE, Calendar.SECOND and Calendar.MILLISECOND
+ * A fragment less than or equal to a HOUR field will return 0.</p>
+ *
+ * <p>
+ * <ul>
+ *  <li>January 1, 2008 7:15:10.538 with Calendar.DAY_OF_YEAR as fragment will return 7
+ *   (equivalent to deprecated date.getHours())</li>
+ *  <li>January 6, 2008 7:15:10.538 with Calendar.DAY_OF_YEAR as fragment will return 7
+ *   (equivalent to deprecated date.getHours())</li>
+ *  <li>January 1, 2008 7:15:10.538 with Calendar.MONTH as fragment will return 7</li>
+ *  <li>January 6, 2008 7:15:10.538 with Calendar.MONTH as fragment will return 127 (5*24 + 7)</li>
+ *  <li>January 16, 2008 7:15:10.538 with Calendar.MILLISECOND as fragment will return 0
+ *   (a millisecond cannot be split in hours)</li>
+ * </ul>
+ * </p>
+ *
+ * @param date the date to work with, not null
+ * @param fragment the Calendar field part of date to calculate
+ * @return number of hours within the fragment of date
+ * @throws IllegalArgumentException if the date is <code>null</code> or
+ * fragment is not supported
+ * @since 2.4
+ */
+public static long getFragmentInHours(Date date, int fragment) {
+    return getFragment(date, fragment, Calendar.HOUR_OF_DAY);
+}

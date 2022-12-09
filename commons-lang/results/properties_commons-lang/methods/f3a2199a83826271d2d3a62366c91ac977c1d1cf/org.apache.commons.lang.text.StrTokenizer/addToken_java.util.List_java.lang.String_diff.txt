@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Adds a token to a list, paying attention to the parameters we've set.                                * Adds a token to a list, paying attention to the parameters we've set.                             
+*                                                                                                      *                                                                                                   
+* @param list  the list to add to                                                                      * @param list  the list to add to                                                                   
+* @param tok  the token to add                                                                         * @param tok  the token to add                                                                      
+*/                                                                                                     */                                                                                                  
+private void addToken(List list, String tok) {                                                       | private void addToken(List&lt;String&gt; list, String tok) {                                        
+if (tok == null || tok.length() == 0) {                                                                if (tok == null || tok.length() == 0) {                                                             
+if (isIgnoreEmptyTokens()) {                                                                           if (isIgnoreEmptyTokens()) {                                                                        
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+if (isEmptyTokenAsNull()) {                                                                            if (isEmptyTokenAsNull()) {                                                                         
+tok = null;                                                                                            tok = null;                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+list.add(tok);                                                                                         list.add(tok);                                                                                      
+}                                                                                                      }                                                                                                   

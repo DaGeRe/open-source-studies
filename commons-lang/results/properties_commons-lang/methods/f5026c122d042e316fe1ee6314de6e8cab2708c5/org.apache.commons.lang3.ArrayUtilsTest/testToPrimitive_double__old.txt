@@ -1,0 +1,13 @@
+// testToPrimitive/Object for double
+// -----------------------------------------------------------------------
+public void testToPrimitive_double() {
+    final Double[] b = null;
+    assertEquals(null, ArrayUtils.toPrimitive(b));
+    assertSame(ArrayUtils.EMPTY_DOUBLE_ARRAY, ArrayUtils.toPrimitive(new Double[0]));
+    assertTrue(Arrays.equals(new double[] { Double.MIN_VALUE, Double.MAX_VALUE, 9999999 }, ArrayUtils.toPrimitive(new Double[] { new Double(Double.MIN_VALUE), new Double(Double.MAX_VALUE), new Double(9999999) })));
+    try {
+        ArrayUtils.toPrimitive(new Float[] { new Float(Float.MIN_VALUE), null });
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

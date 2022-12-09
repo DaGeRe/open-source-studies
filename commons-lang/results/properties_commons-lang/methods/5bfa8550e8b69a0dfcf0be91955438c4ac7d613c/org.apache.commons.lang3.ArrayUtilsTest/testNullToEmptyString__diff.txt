@@ -1,0 +1,12 @@
+public void testNullToEmptyString() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_STRING_ARRAY, ArrayUtils.nullToEmpty((String[]) null));
+    // Test valid array handling
+    String[] original = new String[] { "abc", "def" };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    String[] empty = new String[] {};
+    String[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_STRING_ARRAY, result);
+    assertTrue(empty != result);
+}

@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------
+public void test1() {
+    String input = "a;b;c;\"d;\"\"e\";f; ; ;  ";
+    StrTokenizer tok = new StrTokenizer(input);
+    tok.setDelimiterChar(';');
+    tok.setQuoteChar('"');
+    tok.setIgnoredMatcher(StrMatcher.trimMatcher());
+    tok.setIgnoreEmptyTokens(false);
+    String[] tokens = tok.getTokenArray();
+    String[] expected = new String[] { "a", "b", "c", "d;\"e", "f", "", "", "" };
+    assertEquals(ArrayUtils.toString(tokens), expected.length, tokens.length);
+    for (int i = 0; i < expected.length; i++) {
+        assertTrue("token[" + i + "] was '" + tokens[i] + "' but was expected to be '" + expected[i] + "'", ObjectUtils.equals(expected[i], tokens[i]));
+    }
+}

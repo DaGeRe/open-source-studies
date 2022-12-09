@@ -1,0 +1,26 @@
+/**
+ * <p>
+ * Unregisters the given object.
+ * </p>
+ *
+ * <p>
+ * Used by the reflection methods to avoid infinite loops.
+ * </p>
+ *
+ * @param value
+ *                  The object to unregister.
+ */
+static void unregister(Object value) {
+    if (value != null) {
+        WeakHashMap<Object, Object> m;
+        synchronized (ToStringStyle.class) {
+            m = REGISTRY.get();
+            if (m != null) {
+                m.remove(value);
+                if (m.isEmpty()) {
+                    REGISTRY.remove();
+                }
+            }
+        }
+    }
+}

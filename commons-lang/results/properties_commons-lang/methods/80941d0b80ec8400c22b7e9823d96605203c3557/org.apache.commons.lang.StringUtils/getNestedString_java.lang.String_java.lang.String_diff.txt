@@ -1,0 +1,27 @@
+// Nested extraction
+// -----------------------------------------------------------------------
+/**
+ * <p>Gets the String that is nested in between two instances of the
+ * same String.</p>
+ *
+ * <p>A <code>null</code> input String returns <code>null</code>.
+ * A <code>null</code> tag returns <code>null</code>.</p>
+ *
+ * <pre>
+ * StringUtils.getNestedString(null, *)            = null
+ * StringUtils.getNestedString("", "")             = ""
+ * StringUtils.getNestedString("", "tag")          = null
+ * StringUtils.getNestedString("tagabctag", null)  = null
+ * StringUtils.getNestedString("tagabctag", "")    = ""
+ * StringUtils.getNestedString("tagabctag", "tag") = "abc"
+ * </pre>
+ *
+ * @param str  the String containing nested-string, may be null
+ * @param tag  the String before and after nested-string, may be null
+ * @return the nested String, <code>null</code> if no match
+ * @deprecated Use the better named {@link #substringBetween(String, String)}.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String getNestedString(String str, String tag) {
+    return substringBetween(str, tag, tag);
+}

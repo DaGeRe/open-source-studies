@@ -1,0 +1,22 @@
+/**
+ * <p>Converts the character to the Integer it represents, throwing an
+ * exception if the character is not numeric.</p>
+ *
+ * <p>This method coverts the char '1' to the int 1 and so on.</p>
+ *
+ * <pre>
+ *   CharUtils.toIntValue('3')  = 3
+ *   CharUtils.toIntValue(null) throws IllegalArgumentException
+ *   CharUtils.toIntValue('A')  throws IllegalArgumentException
+ * </pre>
+ *
+ * @param ch  the character to convert, not null
+ * @return the int value of the character
+ * @throws IllegalArgumentException if the Character is not ASCII numeric or is null
+ */
+public static int toIntValue(Character ch) {
+    if (ch == null) {
+        throw new IllegalArgumentException("The character must not be null");
+    }
+    return toIntValue(ch.charValue());
+}

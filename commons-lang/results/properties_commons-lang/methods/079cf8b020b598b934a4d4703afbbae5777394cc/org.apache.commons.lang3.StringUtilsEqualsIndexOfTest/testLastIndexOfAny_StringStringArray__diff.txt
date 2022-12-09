@@ -1,0 +1,16 @@
+public void testLastIndexOfAny_StringStringArray() {
+    assertEquals(-1, StringUtils.lastIndexOfAny(null, null));
+    assertEquals(-1, StringUtils.lastIndexOfAny(null, FOOBAR_SUB_ARRAY));
+    assertEquals(-1, StringUtils.lastIndexOfAny(FOOBAR, null));
+    assertEquals(3, StringUtils.lastIndexOfAny(FOOBAR, FOOBAR_SUB_ARRAY));
+    assertEquals(-1, StringUtils.lastIndexOfAny(FOOBAR, new String[0]));
+    assertEquals(-1, StringUtils.lastIndexOfAny(null, new String[0]));
+    assertEquals(-1, StringUtils.lastIndexOfAny("", new String[0]));
+    assertEquals(-1, StringUtils.lastIndexOfAny(FOOBAR, new String[] { "llll" }));
+    assertEquals(6, StringUtils.lastIndexOfAny(FOOBAR, new String[] { "" }));
+    assertEquals(0, StringUtils.lastIndexOfAny("", new String[] { "" }));
+    assertEquals(-1, StringUtils.lastIndexOfAny("", new String[] { "a" }));
+    assertEquals(-1, StringUtils.lastIndexOfAny("", new String[] { null }));
+    assertEquals(-1, StringUtils.lastIndexOfAny(FOOBAR, new String[] { null }));
+    assertEquals(-1, StringUtils.lastIndexOfAny(null, new String[] { null }));
+}

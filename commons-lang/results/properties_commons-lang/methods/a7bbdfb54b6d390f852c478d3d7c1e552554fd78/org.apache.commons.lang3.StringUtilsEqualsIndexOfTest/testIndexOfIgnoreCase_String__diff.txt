@@ -1,0 +1,13 @@
+public void testIndexOfIgnoreCase_String() {
+    assertEquals(-1, StringUtils.indexOfIgnoreCase(null, null));
+    assertEquals(-1, StringUtils.indexOfIgnoreCase(null, ""));
+    assertEquals(-1, StringUtils.indexOfIgnoreCase("", null));
+    assertEquals(0, StringUtils.indexOfIgnoreCase("", ""));
+    assertEquals(0, StringUtils.indexOfIgnoreCase("aabaabaa", "a"));
+    assertEquals(0, StringUtils.indexOfIgnoreCase("aabaabaa", "A"));
+    assertEquals(2, StringUtils.indexOfIgnoreCase("aabaabaa", "b"));
+    assertEquals(2, StringUtils.indexOfIgnoreCase("aabaabaa", "B"));
+    assertEquals(1, StringUtils.indexOfIgnoreCase("aabaabaa", "ab"));
+    assertEquals(1, StringUtils.indexOfIgnoreCase("aabaabaa", "AB"));
+    assertEquals(0, StringUtils.indexOfIgnoreCase("aabaabaa", ""));
+}

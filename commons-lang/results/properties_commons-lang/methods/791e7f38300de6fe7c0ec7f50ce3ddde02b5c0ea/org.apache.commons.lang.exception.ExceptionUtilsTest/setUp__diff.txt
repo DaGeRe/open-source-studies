@@ -1,0 +1,13 @@
+@Override
+public void setUp() {
+    withoutCause = createExceptionWithoutCause();
+    nested = new NestableException(withoutCause);
+    withCause = new ExceptionWithCause(nested);
+    jdkNoCause = new NullPointerException();
+    selfCause = new ExceptionWithCause(null);
+    selfCause.setCause(selfCause);
+    ExceptionWithCause a = new ExceptionWithCause(null);
+    ExceptionWithCause b = new ExceptionWithCause(a);
+    a.setCause(b);
+    cyclicCause = new ExceptionWithCause(a);
+}

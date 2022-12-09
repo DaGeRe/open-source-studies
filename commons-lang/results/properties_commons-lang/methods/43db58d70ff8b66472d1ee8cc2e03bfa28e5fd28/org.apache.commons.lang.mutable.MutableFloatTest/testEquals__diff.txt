@@ -1,0 +1,15 @@
+public void testEquals() {
+    final MutableFloat mutNumA = new MutableFloat(0f);
+    final MutableFloat mutNumB = new MutableFloat(0f);
+    final MutableFloat mutNumC = new MutableFloat(1f);
+    assertEquals(true, mutNumA.equals(mutNumA));
+    assertEquals(true, mutNumA.equals(mutNumB));
+    assertEquals(true, mutNumB.equals(mutNumA));
+    assertEquals(true, mutNumB.equals(mutNumB));
+    assertEquals(false, mutNumA.equals(mutNumC));
+    assertEquals(false, mutNumB.equals(mutNumC));
+    assertEquals(true, mutNumC.equals(mutNumC));
+    assertEquals(false, mutNumA.equals(null));
+    assertEquals(false, mutNumA.equals(new Float(0f)));
+    assertEquals(false, mutNumA.equals("0"));
+}

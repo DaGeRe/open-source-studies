@@ -1,0 +1,12 @@
+// Inner class
+// ----------------------------------------------------------------------
+/**
+ * <p>Is the specified class an inner class or static nested class.</p>
+ *
+ * @param cls  the class to check, may be null
+ * @return <code>true</code> if the class is an inner or static nested class,
+ *  false if not or <code>null</code>
+ */
+public static boolean isInnerClass(Class<?> cls) {
+    return cls != null && cls.getEnclosingClass() != null;
+}

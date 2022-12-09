@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Gets the String built by this builder.                                                               * Gets the String built by this builder.                                                            
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @return the built string                                                                             * @return the built string                                                                          
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+if (this.getObject() == null) {                                                                        if (this.getObject() == null) {                                                                     
+return this.getStyle().getNullText();                                                                  return this.getStyle().getNullText();                                                               
+}                                                                                                      }                                                                                                   
+Class clazz = this.getObject().getClass();                                                             Class clazz = this.getObject().getClass();                                                          
+this.appendFieldsIn(clazz);                                                                            this.appendFieldsIn(clazz);                                                                         
+while (clazz.getSuperclass() != null && clazz != this.getUpToClass()) {                                while (clazz.getSuperclass() != null && clazz != this.getUpToClass()) {                             
+clazz = clazz.getSuperclass();                                                                         clazz = clazz.getSuperclass();                                                                      
+this.appendFieldsIn(clazz);                                                                            this.appendFieldsIn(clazz);                                                                         
+}                                                                                                      }                                                                                                   
+return super.toString();                                                                               return super.toString();                                                                            
+}                                                                                                      }                                                                                                   

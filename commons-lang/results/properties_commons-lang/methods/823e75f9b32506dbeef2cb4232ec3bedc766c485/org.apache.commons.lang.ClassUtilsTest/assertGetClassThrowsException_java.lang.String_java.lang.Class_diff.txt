@@ -1,0 +1,8 @@
+private void assertGetClassThrowsException(String className, Class exceptionType) throws Exception { | private void assertGetClassThrowsException(String className, Class&lt;?&gt; exceptionType) throws Ex
+try {                                                                                                  try {                                                                                               
+ClassUtils.getClass(className);                                                                        ClassUtils.getClass(className);                                                                     
+fail("ClassUtils.getClass() should fail with an exception of type " + exceptionType.getName() + " wh   fail("ClassUtils.getClass() should fail with an exception of type " + exceptionType.getName() + " wh
+} catch (Exception e) {                                                                                } catch (Exception e) {                                                                             
+assertTrue(exceptionType.isAssignableFrom(e.getClass()));                                              assertTrue(exceptionType.isAssignableFrom(e.getClass()));                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

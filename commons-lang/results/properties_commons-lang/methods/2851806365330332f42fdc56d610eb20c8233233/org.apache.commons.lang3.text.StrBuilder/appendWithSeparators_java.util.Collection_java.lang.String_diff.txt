@@ -1,0 +1,23 @@
+/**                                                                                                  |                                                                                                     
+* Appends a collection placing separators between each value, but                                    |                                                                                                     
+* not before the first or after the last.                                                            |                                                                                                     
+* Appending a null collection will have no effect.                                                   |                                                                                                     
+* Each object is appended using {@link #append(Object)}.                                             |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param coll  the collection to append                                                              |                                                                                                     
+* @param separator  the separator to use, null means no separator                                    |                                                                                                     
+* @return this, to enable chaining                                                                   |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public StrBuilder appendWithSeparators(Collection&lt;?&gt; coll, String separator) {                 |                                                                                                     
+if (coll != null && coll.size() &gt; 0) {                                                            |                                                                                                     
+separator = (separator == null ? "" : separator);                                                    |                                                                                                     
+Iterator&lt;?&gt; it = coll.iterator();                                                              |                                                                                                     
+while (it.hasNext()) {                                                                               |                                                                                                     
+append(it.next());                                                                                   |                                                                                                     
+if (it.hasNext()) {                                                                                  |                                                                                                     
+append(separator);                                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return this;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

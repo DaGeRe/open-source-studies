@@ -1,0 +1,26 @@
+/**
+ * <p>
+ * Unregisters the given object pair.
+ * </p>
+ *
+ * <p>
+ * Used by the reflection methods to avoid infinite loops.
+ *
+ * @param lhs <code>this</code> object to unregister
+ * @param rhs the other object to unregister
+ * @since 3.0
+ */
+static void unregister(Object lhs, Object rhs) {
+    Set<Pair<IDKey, IDKey>> registry = getRegistry();
+    if (registry != null) {
+        Pair<IDKey, IDKey> pair = getRegisterPair(lhs, rhs);
+        registry.remove(pair);
+        synchronized (EqualsBuilder.class) {
+            // read again
+            registry = getRegistry();
+            if (registry != null && registry.isEmpty()) {
+                REGISTRY.remove();
+            }
+        }
+    }
+}

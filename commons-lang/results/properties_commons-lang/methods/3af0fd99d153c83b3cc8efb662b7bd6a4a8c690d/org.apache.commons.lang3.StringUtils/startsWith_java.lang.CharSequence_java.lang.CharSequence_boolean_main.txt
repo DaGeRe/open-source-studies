@@ -1,0 +1,20 @@
+/**
+ * <p>Check if a CharSequence starts with a specified prefix (optionally case insensitive).</p>
+ *
+ * @see java.lang.String#startsWith(String)
+ * @param str  the CharSequence to check, may be null
+ * @param prefix the prefix to find, may be null
+ * @param ignoreCase inidicates whether the compare should ignore case
+ *  (case insensitive) or not.
+ * @return {@code true} if the CharSequence starts with the prefix or
+ *  both {@code null}
+ */
+private static boolean startsWith(CharSequence str, CharSequence prefix, boolean ignoreCase) {
+    if (str == null || prefix == null) {
+        return (str == null && prefix == null);
+    }
+    if (prefix.length() > str.length()) {
+        return false;
+    }
+    return regionMatchesSequence(str, ignoreCase, 0, prefix, 0, prefix.length());
+}

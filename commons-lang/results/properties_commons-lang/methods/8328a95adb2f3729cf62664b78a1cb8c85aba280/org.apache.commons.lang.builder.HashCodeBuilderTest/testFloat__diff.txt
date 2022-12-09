@@ -1,0 +1,8 @@
+                                                                                                     | // cast is not really needed, keep for consistency                                                  
+                                                                                                     | @SuppressWarnings("cast")                                                                           
+public void testFloat() {                                                                              public void testFloat() {                                                                           
+assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((float) 0f).toHashCode());                    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((float) 0f).toHashCode());                 
+float f = 1234.89f;                                                                                    float f = 1234.89f;                                                                                 
+int i = Float.floatToIntBits(f);                                                                       int i = Float.floatToIntBits(f);                                                                    
+assertEquals(17 * 37 + i, new HashCodeBuilder(17, 37).append(f).toHashCode());                         assertEquals(17 * 37 + i, new HashCodeBuilder(17, 37).append(f).toHashCode());                      
+}                                                                                                      }                                                                                                   

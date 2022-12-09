@@ -1,0 +1,11 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.DAY_OF_MONTH
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateDayOfMonth() throws Exception {
+    final int calendarField = Calendar.DAY_OF_MONTH;
+    Date lastTruncateDate = dateTimeParser.parse("June 1, 2008 23:59:59.999");
+    baseTruncateTest(targetDayOfMonthDate, lastTruncateDate, calendarField);
+}

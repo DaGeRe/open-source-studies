@@ -1,0 +1,22 @@
+public void testOverlapsRange() {
+    // null handling
+    assertFalse(intRange.overlapsRange(null));
+    // easy inside range
+    assertTrue(intRange.overlapsRange(new Range(12, 18)));
+    // outside range on each side
+    assertFalse(intRange.overlapsRange(new Range(32, 45)));
+    assertFalse(intRange.overlapsRange(new Range(2, 8)));
+    // equals range
+    assertTrue(intRange.overlapsRange(new Range(10, 20)));
+    // overlaps
+    assertTrue(intRange.overlapsRange(new Range(9, 14)));
+    assertTrue(intRange.overlapsRange(new Range(16, 21)));
+    // touches lower boundary
+    assertTrue(intRange.overlapsRange(new Range(10, 19)));
+    assertTrue(intRange.overlapsRange(new Range(10, 21)));
+    // touches upper boundary
+    assertTrue(intRange.overlapsRange(new Range(11, 20)));
+    assertTrue(intRange.overlapsRange(new Range(9, 20)));
+    // negative
+    assertFalse(intRange.overlapsRange(new Range(-11, -18)));
+}

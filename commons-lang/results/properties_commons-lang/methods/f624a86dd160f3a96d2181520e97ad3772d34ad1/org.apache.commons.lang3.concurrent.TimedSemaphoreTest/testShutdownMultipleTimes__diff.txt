@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Tests multiple invocations of the shutdown() method.                                                 * Tests multiple invocations of the shutdown() method.                                              
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testShutdownMultipleTimes() throws InterruptedException {                                  public void testShutdownMultipleTimes() throws InterruptedException {                               
+ScheduledExecutorService service = EasyMock.createMock(ScheduledExecutorService.class);                ScheduledExecutorService service = EasyMock.createMock(ScheduledExecutorService.class);             
+ScheduledFuture&lt;?&gt; future = EasyMock.createMock(ScheduledFuture.class);                          ScheduledFuture&lt;?&gt; future = EasyMock.createMock(ScheduledFuture.class);                       
+prepareStartTimer(service, future);                                                                    prepareStartTimer(service, future);                                                                 
+EasyMock.expect(future.cancel(false)).andReturn(true);                                               | EasyMock.expect(Boolean.valueOf(future.cancel(false))).andReturn(Boolean.TRUE);                     
+EasyMock.replay(service, future);                                                                      EasyMock.replay(service, future);                                                                   
+TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(service, PERIOD, UNIT, LIMIT);           TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(service, PERIOD, UNIT, LIMIT);        
+semaphore.acquire();                                                                                   semaphore.acquire();                                                                                
+for (int i = 0; i &lt; 10; i++) {                                                                      for (int i = 0; i &lt; 10; i++) {                                                                   
+semaphore.shutdown();                                                                                  semaphore.shutdown();                                                                               
+}                                                                                                      }                                                                                                   
+EasyMock.verify(service, future);                                                                      EasyMock.verify(service, future);                                                                   
+}                                                                                                      }                                                                                                   

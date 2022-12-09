@@ -1,0 +1,23 @@
+// Short array converters
+// ----------------------------------------------------------------------
+/**
+ * <p>Converts an array of object Shorts to primitives.</p>
+ *
+ * <p>This method returns {@code null} for a {@code null} input array.</p>
+ *
+ * @param array  a {@code Short} array, may be {@code null}
+ * @return a {@code byte} array, {@code null} if null array input
+ * @throws NullPointerException if array content is {@code null}
+ */
+public static short[] toPrimitive(Short[] array) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_SHORT_ARRAY;
+    }
+    final short[] result = new short[array.length];
+    for (int i = 0; i < array.length; i++) {
+        result[i] = array[i].shortValue();
+    }
+    return result;
+}

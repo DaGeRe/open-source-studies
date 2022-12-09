@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Unescapes a string containing XML entity escapes to a string                                * &lt;p&gt;Unescapes a string containing XML entity escapes to a string                             
+* containing the actual Unicode characters corresponding to the                                        * containing the actual Unicode characters corresponding to the                                     
+* escapes.&lt;/p&gt;                                                                                   * escapes.&lt;/p&gt;                                                                                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                        * &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                     
+* Does not support DTDs or external entities.&lt;/p&gt;                                                * Does not support DTDs or external entities.&lt;/p&gt;                                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Note that numerical \\u unicode codes are unescaped to their respective                     * &lt;p&gt;Note that numerical \\u unicode codes are unescaped to their respective                  
+*    unicode characters. This may change in future releases. &lt;/p&gt;                                *    unicode characters. This may change in future releases. &lt;/p&gt;                             
+*                                                                                                      *                                                                                                   
+* @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                             * @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                          
+* @return a new unescaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null str   * @return a new unescaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null str
+* @see #escapeXml(String)                                                                              * @see #escapeXml(String)                                                                           
+*/                                                                                                     */                                                                                                  
+public static String unescapeXml(String str) {                                                         public static String unescapeXml(String str) {                                                      
+return UnescapeUtils.UNESCAPE_XML.translate(str);                                                    | return UnescapeUtils.unescapeXml(str);                                                              
+}                                                                                                      }                                                                                                   

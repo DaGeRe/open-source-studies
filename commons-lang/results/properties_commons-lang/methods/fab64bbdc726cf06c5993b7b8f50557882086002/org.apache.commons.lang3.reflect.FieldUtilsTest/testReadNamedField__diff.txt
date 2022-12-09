@@ -1,0 +1,57 @@
+@Test
+public void testReadNamedField() throws Exception {
+    assertEquals("s", FieldUtils.readField(publicChild, "s"));
+    assertEquals("ss", FieldUtils.readField(publiclyShadowedChild, "s"));
+    assertEquals("s", FieldUtils.readField(privatelyShadowedChild, "s"));
+    try {
+        FieldUtils.readField(publicChild, null);
+        fail("a null field name should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        FieldUtils.readField((Object) null, "none");
+        fail("a null target should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        assertEquals(Boolean.FALSE, FieldUtils.readField(publicChild, "b"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(Boolean.TRUE, FieldUtils.readField(publiclyShadowedChild, "b"));
+    try {
+        assertEquals(Boolean.FALSE, FieldUtils.readField(privatelyShadowedChild, "b"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(I0, FieldUtils.readField(publicChild, "i"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(I1, FieldUtils.readField(publiclyShadowedChild, "i"));
+    try {
+        assertEquals(I0, FieldUtils.readField(privatelyShadowedChild, "i"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(D0, FieldUtils.readField(publicChild, "d"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(D1, FieldUtils.readField(publiclyShadowedChild, "d"));
+    try {
+        assertEquals(D0, FieldUtils.readField(privatelyShadowedChild, "d"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

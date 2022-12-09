@@ -1,0 +1,38 @@
+/**
+ * <p>Converts an Integer to a Boolean specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBooleanObject(new Integer(0), new Integer(0), new Integer(2), new Integer(3)) = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject(new Integer(2), new Integer(1), new Integer(2), new Integer(3)) = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject(new Integer(3), new Integer(1), new Integer(2), new Integer(3)) = null
+ * </pre>
+ *
+ * @param value  the Integer to convert
+ * @param trueValue  the value to match for <code>true</code>,
+ *  may be <code>null</code>
+ * @param falseValue  the value to match for <code>false</code>,
+ *  may be <code>null</code>
+ * @param nullValue  the value to to match for <code>null</code>,
+ *  may be <code>null</code>
+ * @return Boolean.TRUE, Boolean.FALSE, or <code>null</code>
+ * @throws IllegalArgumentException if no match
+ */
+public static Boolean toBooleanObject(Integer value, Integer trueValue, Integer falseValue, Integer nullValue) {
+    if (value == null) {
+        if (trueValue == null) {
+            return Boolean.TRUE;
+        } else if (falseValue == null) {
+            return Boolean.FALSE;
+        } else if (nullValue == null) {
+            return null;
+        }
+    } else if (value.equals(trueValue)) {
+        return Boolean.TRUE;
+    } else if (value.equals(falseValue)) {
+        return Boolean.FALSE;
+    } else if (value.equals(nullValue)) {
+        return null;
+    }
+    // no match
+    throw new IllegalArgumentException("The Integer did not match any specified value");
+}

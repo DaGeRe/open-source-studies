@@ -1,0 +1,12 @@
+/**
+ * The current time period is finished. This method is called by the timer
+ * used internally to monitor the time period. It resets the counter and
+ * releases the threads waiting for this barrier.
+ */
+synchronized void endOfPeriod() {
+    lastCallsPerPeriod = acquireCount;
+    totalAcquireCount += acquireCount;
+    periodCount++;
+    acquireCount = 0;
+    notifyAll();
+}

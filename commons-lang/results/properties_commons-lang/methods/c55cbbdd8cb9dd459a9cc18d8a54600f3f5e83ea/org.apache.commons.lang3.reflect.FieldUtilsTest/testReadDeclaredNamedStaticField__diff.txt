@@ -1,0 +1,22 @@
+                                                                                                     | @Test                                                                                               
+public void testReadDeclaredNamedStaticField() throws Exception {                                      public void testReadDeclaredNamedStaticField() throws Exception {                                   
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(Foo.class, "VALUE"));                       assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(Foo.class, "VALUE"));                    
+try {                                                                                                  try {                                                                                               
+assertEquals("child", FieldUtils.readDeclaredStaticField(PublicChild.class, "VALUE"));                 assertEquals("child", FieldUtils.readDeclaredStaticField(PublicChild.class, "VALUE"));              
+fail("expected IllegalArgumentException");                                                             fail("expected IllegalArgumentException");                                                          
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PubliclyShadowedChild.class, "VALUE"));     assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PubliclyShadowedChild.class, "VALUE"));  
+fail("expected IllegalArgumentException");                                                             fail("expected IllegalArgumentException");                                                          
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PrivatelyShadowedChild.class, "VALUE"));    assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PrivatelyShadowedChild.class, "VALUE")); 
+fail("expected IllegalArgumentException");                                                             fail("expected IllegalArgumentException");                                                          
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

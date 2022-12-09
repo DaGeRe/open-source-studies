@@ -1,0 +1,22 @@
+public void testValidIndex_collection() {                                                              public void testValidIndex_collection() {                                                           
+Collection&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                         Collection&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                      
+coll.add(null);                                                                                        coll.add(null);                                                                                     
+coll.add(null);                                                                                        coll.add(null);                                                                                     
+Validate.validIndex(coll, 0);                                                                          Validate.validIndex(coll, 0);                                                                       
+Validate.validIndex(coll, 1);                                                                          Validate.validIndex(coll, 1);                                                                       
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(coll, -1);                                                                         Validate.validIndex(coll, -1);                                                                      
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting IndexOutOfBoundsException");                                                        
+} catch (IllegalArgumentException ex) {                                                              | } catch (IndexOutOfBoundsException ex) {                                                            
+assertEquals("The validated collection index is invalid: -1", ex.getMessage());                        assertEquals("The validated collection index is invalid: -1", ex.getMessage());                     
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(coll, 2);                                                                          Validate.validIndex(coll, 2);                                                                       
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting IndexOutOfBoundsException");                                                        
+} catch (IllegalArgumentException ex) {                                                              | } catch (IndexOutOfBoundsException ex) {                                                            
+assertEquals("The validated collection index is invalid: 2", ex.getMessage());                         assertEquals("The validated collection index is invalid: 2", ex.getMessage());                      
+}                                                                                                      }                                                                                                   
+List&lt;String&gt; strColl = Arrays.asList(new String[] { "Hi" });                                     List&lt;String&gt; strColl = Arrays.asList(new String[] { "Hi" });                                  
+List&lt;String&gt; test = Validate.validIndex(strColl, 0);                                             List&lt;String&gt; test = Validate.validIndex(strColl, 0);                                          
+assertSame(strColl, test);                                                                             assertSame(strColl, test);                                                                          
+}                                                                                                      }                                                                                                   

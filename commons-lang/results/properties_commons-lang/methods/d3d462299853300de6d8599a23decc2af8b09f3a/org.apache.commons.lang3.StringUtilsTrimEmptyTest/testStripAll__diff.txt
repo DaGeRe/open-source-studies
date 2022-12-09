@@ -1,0 +1,15 @@
+public void testStripAll() {                                                                           public void testStripAll() {                                                                        
+// test stripAll method, merely an array version of the above strip                                    // test stripAll method, merely an array version of the above strip                                 
+String[] empty = new String[0];                                                                        String[] empty = new String[0];                                                                     
+String[] fooSpace = new String[] { "  " + FOO + "  ", "  " + FOO, FOO + "  " };                        String[] fooSpace = new String[] { "  " + FOO + "  ", "  " + FOO, FOO + "  " };                     
+String[] fooDots = new String[] { ".." + FOO + "..", ".." + FOO, FOO + ".." };                         String[] fooDots = new String[] { ".." + FOO + "..", ".." + FOO, FOO + ".." };                      
+String[] foo = new String[] { FOO, FOO, FOO };                                                         String[] foo = new String[] { FOO, FOO, FOO };                                                      
+assertEquals(null, StringUtils.stripAll(null));                                                      | // Test both varargs invocations                                                                    
+                                                                                                     | assertEquals(null, StringUtils.stripAll((String[]) null));                                          
+                                                                                                     | assertEquals(null, StringUtils.stripAll((String) null));                                            
+assertArrayEquals(empty, StringUtils.stripAll(empty));                                                 assertArrayEquals(empty, StringUtils.stripAll(empty));                                              
+assertArrayEquals(foo, StringUtils.stripAll(fooSpace));                                                assertArrayEquals(foo, StringUtils.stripAll(fooSpace));                                             
+assertEquals(null, StringUtils.stripAll(null, null));                                                  assertEquals(null, StringUtils.stripAll(null, null));                                               
+assertArrayEquals(foo, StringUtils.stripAll(fooSpace, null));                                          assertArrayEquals(foo, StringUtils.stripAll(fooSpace, null));                                       
+assertArrayEquals(foo, StringUtils.stripAll(fooDots, "."));                                            assertArrayEquals(foo, StringUtils.stripAll(fooDots, "."));                                         
+}                                                                                                      }                                                                                                   

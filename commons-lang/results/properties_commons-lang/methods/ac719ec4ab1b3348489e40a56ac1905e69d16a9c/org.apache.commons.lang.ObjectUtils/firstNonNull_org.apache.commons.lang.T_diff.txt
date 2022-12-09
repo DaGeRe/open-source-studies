@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns the first passed value which is not &lt;code&gt;null&lt;/code&gt; or              | * &lt;p&gt;Returns the first value in the array which is not &lt;code&gt;null&lt;/code&gt;.         
+* &lt;code&gt;null&lt;/code&gt; otherwise.&lt;/p&gt;                                                 | * If all the values are &lt;code&gt;null&lt;/code&gt; or the array is &lt;code&gt;null&lt;/code&gt; 
+                                                                                                     | * or empty then &lt;code&gt;null&lt;/code&gt; is returned.&lt;/p&gt;                                
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* ObjectUtils.firstNonNull(null, null)      = null                                                     * ObjectUtils.firstNonNull(null, null)      = null                                                  
+* ObjectUtils.firstNonNull(null, "")        = ""                                                       * ObjectUtils.firstNonNull(null, "")        = ""                                                    
+* ObjectUtils.firstNonNull(null, null, "")  = ""                                                       * ObjectUtils.firstNonNull(null, null, "")  = ""                                                    
+* ObjectUtils.firstNonNull(null, "zz")      = "zz"                                                     * ObjectUtils.firstNonNull(null, "zz")      = "zz"                                                  
+* ObjectUtils.firstNonNull("abc", *)        = "abc"                                                    * ObjectUtils.firstNonNull("abc", *)        = "abc"                                                 
+* ObjectUtils.firstNonNull(null, "xyz", *)  = "xyz"                                                    * ObjectUtils.firstNonNull(null, "xyz", *)  = "xyz"                                                 
+* ObjectUtils.firstNonNull(Boolean.TRUE, *) = Boolean.TRUE                                             * ObjectUtils.firstNonNull(Boolean.TRUE, *) = Boolean.TRUE                                          
+* ObjectUtils.firstNonNull()                = null                                                     * ObjectUtils.firstNonNull()                = null                                                  
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param values  the values to test, may be &lt;code&gt;null&lt;/code&gt; or empty                     * @param values  the values to test, may be &lt;code&gt;null&lt;/code&gt; or empty                  
+*                                                                                                    | * @return the first value from &lt;code&gt;values&lt;/code&gt; which is not &lt;code&gt;null&lt;/cod
+* @return The first value from &lt;code&gt;values&lt;/code&gt; which is not                          | *  or &lt;code&gt;null&lt;/code&gt; if there are no non-null values                                 
+*         &lt;code&gt;null&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt; otherwise.                  |                                                                                                     
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T firstNonNull(T... values) {                                                  public static &lt;T&gt; T firstNonNull(T... values) {                                               
+// This is a trivial implementation. There may be faster ones.                                       |                                                                                                     
+// According to the JRE Libraries, overloading the method with fixed                                 |                                                                                                     
+// parameter sizes may be faster.                                                                    |                                                                                                     
+for (T val : values) {                                                                                 for (T val : values) {                                                                              
+if (val != null && val != ObjectUtils.NULL) {                                                          if (val != null && val != ObjectUtils.NULL) {                                                       
+return val;                                                                                            return val;                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

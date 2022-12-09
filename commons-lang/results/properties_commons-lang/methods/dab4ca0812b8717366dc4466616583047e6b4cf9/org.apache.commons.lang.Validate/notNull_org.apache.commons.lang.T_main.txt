@@ -1,0 +1,17 @@
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument is <code>null</code>.</p>
+ *
+ * <pre>
+ * Validate.notNull(myObject);
+ * </pre>
+ *
+ * <p>The message in the exception is 'The validated object is null'.</p>
+ *
+ * @param object  the object to check is not <code>null</code>
+ * @return the input object, never <code>null</code>, for chaining
+ * @throws IllegalArgumentException if the object is <code>null</code>
+ */
+public static <T> T notNull(T object) {
+    return notNull(object, "The validated object is null");
+}

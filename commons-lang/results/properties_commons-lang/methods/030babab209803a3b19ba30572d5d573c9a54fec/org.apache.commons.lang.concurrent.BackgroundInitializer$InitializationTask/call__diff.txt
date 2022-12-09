@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Initiates initialization and returns the result.                                                     * Initiates initialization and returns the result.                                                  
+*                                                                                                      *                                                                                                   
+* @return the result object                                                                            * @return the result object                                                                         
+* @throws Exception if an error occurs                                                                 * @throws Exception if an error occurs                                                              
+*/                                                                                                     */                                                                                                  
+public T call() throws Exception {                                                                     public T call() throws Exception {                                                                  
+try {                                                                                                  try {                                                                                               
+return initialize();                                                                                   return initialize();                                                                                
+} finally {                                                                                            } finally {                                                                                         
+if (executor != null) {                                                                              | if (execFinally != null) {                                                                          
+executor.shutdown();                                                                                 | execFinally.shutdown();                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

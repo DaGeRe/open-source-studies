@@ -1,0 +1,15 @@
+/**
+ * <p>Append to the <code>toString</code> an <code>Object</code>
+ * value that has been detected to participate in a cycle. This
+ * implementation will print the standard string value of the value.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param fieldName  the field name, typically not used as already appended
+ * @param value  the value to add to the <code>toString</code>,
+ *  not <code>null</code>
+ *
+ * @since 2.2
+ */
+protected void appendCyclicObject(StringBuffer buffer, String fieldName, Object value) {
+    ObjectUtils.identityToString(buffer, value);
+}

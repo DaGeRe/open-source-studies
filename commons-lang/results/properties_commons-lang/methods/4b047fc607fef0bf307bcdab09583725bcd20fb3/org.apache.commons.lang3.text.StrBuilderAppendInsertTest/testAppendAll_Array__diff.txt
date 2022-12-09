@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testAppendAll_Array() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendAll((Object[]) null);
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendAll(new Object[0]);
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendAll(new Object[] { "foo", "bar", "baz" });
+    assertEquals("foobarbaz", sb.toString());
+}

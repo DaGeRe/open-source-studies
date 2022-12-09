@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public long skip(long n) {
+    if (pos + n > StrBuilder.this.size()) {
+        n = StrBuilder.this.size() - pos;
+    }
+    if (n < 0) {
+        return 0;
+    }
+    pos += n;
+    return n;
+}

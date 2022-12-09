@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------
+/**
+ * Test for {@link ArrayUtils#isEmpty(java.lang.Object[])}.
+ */
+public void testIsEmptyObject() {
+    Object[] emptyArray = new Object[] {};
+    Object[] notEmptyArray = new Object[] { new String("Value") };
+    assertEquals(true, ArrayUtils.isEmpty((Object[]) null));
+    assertEquals(true, ArrayUtils.isEmpty(emptyArray));
+    assertEquals(false, ArrayUtils.isEmpty(notEmptyArray));
+}

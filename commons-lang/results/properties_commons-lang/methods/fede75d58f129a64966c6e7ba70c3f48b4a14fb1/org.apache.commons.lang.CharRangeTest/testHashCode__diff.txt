@@ -1,0 +1,17 @@
+public void testHashCode() {
+    CharRange rangea = new CharRange('a');
+    CharRange rangeae = new CharRange('a', 'e');
+    CharRange rangenotbf = new CharRange('b', 'f', false);
+    assertEquals(true, rangea.hashCode() == rangea.hashCode());
+    assertEquals(true, rangea.hashCode() == new CharRange('a').hashCode());
+    assertEquals(true, rangeae.hashCode() == rangeae.hashCode());
+    assertEquals(true, rangeae.hashCode() == new CharRange('a', 'e').hashCode());
+    assertEquals(true, rangenotbf.hashCode() == rangenotbf.hashCode());
+    assertEquals(true, rangenotbf.hashCode() == new CharRange('b', 'f', false).hashCode());
+    assertEquals(false, rangea.hashCode() == rangeae.hashCode());
+    assertEquals(false, rangea.hashCode() == rangenotbf.hashCode());
+    assertEquals(false, rangeae.hashCode() == rangea.hashCode());
+    assertEquals(false, rangeae.hashCode() == rangenotbf.hashCode());
+    assertEquals(false, rangenotbf.hashCode() == rangea.hashCode());
+    assertEquals(false, rangenotbf.hashCode() == rangeae.hashCode());
+}

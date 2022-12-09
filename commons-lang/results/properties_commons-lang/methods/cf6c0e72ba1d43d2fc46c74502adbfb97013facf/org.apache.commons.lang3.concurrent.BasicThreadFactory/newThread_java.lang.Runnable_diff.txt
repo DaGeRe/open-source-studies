@@ -1,0 +1,13 @@
+/**
+ * Creates a new thread. This implementation delegates to the wrapped
+ * factory for creating the thread. Then, on the newly created thread the
+ * corresponding configuration options are set.
+ *
+ * @param r the {@code Runnable} to be executed by the new thread
+ * @return the newly created thread
+ */
+public Thread newThread(Runnable r) {
+    Thread t = getWrappedFactory().newThread(r);
+    initializeThread(t);
+    return t;
+}

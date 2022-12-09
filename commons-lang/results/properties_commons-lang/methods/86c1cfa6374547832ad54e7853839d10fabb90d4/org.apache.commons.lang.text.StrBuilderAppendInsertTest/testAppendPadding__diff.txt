@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testAppendPadding() {
+    StrBuilder sb = new StrBuilder();
+    sb.append("foo");
+    assertEquals("foo", sb.toString());
+    sb.appendPadding(-1, '-');
+    assertEquals("foo", sb.toString());
+    sb.appendPadding(0, '-');
+    assertEquals("foo", sb.toString());
+    sb.appendPadding(1, '-');
+    assertEquals("foo-", sb.toString());
+    sb.appendPadding(16, '-');
+    assertEquals(20, sb.length());
+    // 12345678901234567890
+    assertEquals("foo-----------------", sb.toString());
+}

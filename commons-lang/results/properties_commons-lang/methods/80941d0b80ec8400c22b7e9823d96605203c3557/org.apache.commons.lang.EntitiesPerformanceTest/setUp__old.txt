@@ -1,0 +1,12 @@
+public void setUp() {
+    if (stringWithUnicode == null) {
+        StringBuffer buf = new StringBuffer(STRING_LENGTH);
+        for (int i = 0; i < STRING_LENGTH / 5; ++i) {
+            buf.append("xxxx");
+            char ch = isovalue(i);
+            buf.append(ch);
+        }
+        stringWithUnicode = buf.toString();
+        stringWithEntities = Entities.HTML40.unescape(stringWithUnicode);
+    }
+}

@@ -1,0 +1,10 @@
+public void testSerializeStreamUnserializable() throws Exception {
+    ByteArrayOutputStream streamTest = new ByteArrayOutputStream();
+    try {
+        iMap.put(new Object(), new Object());
+        SerializationUtils.serialize(iMap, streamTest);
+    } catch (SerializationException ex) {
+        return;
+    }
+    fail();
+}

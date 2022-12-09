@@ -1,0 +1,13 @@
+/**
+ * Sets the limit. This is the number of times the {@link #acquire()} method
+ * can be called within the time period specified. If this limit is reached,
+ * further invocations of {@link #acquire()} will block. Setting the limit
+ * to a value &lt;= {@link #NO_LIMIT} will cause the limit to be disabled,
+ * i.e. an arbitrary number of{@link #acquire()} invocations is allowed in
+ * the time period.
+ *
+ * @param limit the limit
+ */
+public final synchronized void setLimit(int limit) {
+    this.limit = limit;
+}

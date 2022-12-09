@@ -1,0 +1,11 @@
+/**
+ * Tests createIfAbsentUnchecked() if no exception is thrown.
+ */
+@Test
+public void testCreateIfAbsentUncheckedSuccess() {
+    final String key = "testKey";
+    final Integer value = 42;
+    ConcurrentMap<String, Integer> map = new ConcurrentHashMap<String, Integer>();
+    assertEquals("Wrong result", value, ConcurrentUtils.createIfAbsentUnchecked(map, key, new ConstantInitializer<Integer>(value)));
+    assertEquals("Wrong value in map", value, map.get(key));
+}

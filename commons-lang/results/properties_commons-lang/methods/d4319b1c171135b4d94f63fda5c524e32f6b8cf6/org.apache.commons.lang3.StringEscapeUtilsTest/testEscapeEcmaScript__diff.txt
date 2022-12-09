@@ -1,0 +1,20 @@
+                                                                                                     | @Test                                                                                               
+public void testEscapeEcmaScript() {                                                                   public void testEscapeEcmaScript() {                                                                
+assertEquals(null, StringEscapeUtils.escapeEcmaScript(null));                                          assertEquals(null, StringEscapeUtils.escapeEcmaScript(null));                                       
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_ECMASCRIPT.translate(null, null);                                             StringEscapeUtils.ESCAPE_ECMASCRIPT.translate(null, null);                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_ECMASCRIPT.translate("", null);                                               StringEscapeUtils.ESCAPE_ECMASCRIPT.translate("", null);                                            
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+assertEquals("He didn\\'t say, \\\"stop!\\\"", StringEscapeUtils.escapeEcmaScript("He didn't say, \"   assertEquals("He didn\\'t say, \\\"stop!\\\"", StringEscapeUtils.escapeEcmaScript("He didn't say, \"
+assertEquals("document.getElementById(\\\"test\\\").value = \\'&lt;script&gt;alert(\\'aaa\\');&lt;\\   assertEquals("document.getElementById(\\\"test\\\").value = \\'&lt;script&gt;alert(\\'aaa\\');&lt;\\
+}                                                                                                      }                                                                                                   

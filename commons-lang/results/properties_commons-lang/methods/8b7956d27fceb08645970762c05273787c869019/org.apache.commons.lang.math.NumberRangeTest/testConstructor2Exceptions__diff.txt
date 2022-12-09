@@ -1,0 +1,25 @@
+/**
+ * Tests exceptional conditions for the two argument constructor.
+ */
+public void testConstructor2Exceptions() {
+    this.checkConstructorException(null, null);
+    this.checkConstructorException(new Float(12.2f), new Double(12.2));
+    this.checkConstructorException(new Float(Float.NaN), new Double(12.2));
+    this.checkConstructorException(new Double(Double.NaN), new Double(12.2));
+    this.checkConstructorException(new Double(12.2), new Double(Double.NaN));
+    this.checkConstructorException(new Double(Double.NaN), new Double(Double.NaN));
+    this.checkConstructorException(null, new Double(12.2));
+    this.checkConstructorException(new Double(12.2), null);
+    this.checkConstructorException(new Double(12.2f), new Float(12.2));
+    this.checkConstructorException(new Double(Double.NaN), new Float(12.2));
+    this.checkConstructorException(new Float(Float.NaN), new Float(12.2));
+    this.checkConstructorException(new Float(12.2), new Float(Float.NaN));
+    this.checkConstructorException(new Float(Float.NaN), new Float(Float.NaN));
+    this.checkConstructorException(null, new Float(12.2));
+    this.checkConstructorException(new Float(12.2), null);
+    this.checkConstructorException(nonComparableNumber, nonComparableNumber);
+    this.checkConstructorException(null, nonComparableNumber);
+    this.checkConstructorException(nonComparableNumber, null);
+    this.checkConstructorException(new Float(12.2), nonComparableNumber);
+    this.checkConstructorException(nonComparableNumber, new Float(12.2));
+}

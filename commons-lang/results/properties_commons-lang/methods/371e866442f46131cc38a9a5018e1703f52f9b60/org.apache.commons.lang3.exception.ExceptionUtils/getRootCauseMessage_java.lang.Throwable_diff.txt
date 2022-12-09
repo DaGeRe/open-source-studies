@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Gets a short message summarising the root cause exception.                                           * Gets a short message summarising the root cause exception.                                        
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* The message returned is of the form                                                                  * The message returned is of the form                                                               
+* {ClassNameWithoutPackage}: {ThrowableMessage}                                                        * {ClassNameWithoutPackage}: {ThrowableMessage}                                                     
+*                                                                                                      *                                                                                                   
+* @param th  the throwable to get a message for, null returns empty string                             * @param th  the throwable to get a message for, null returns empty string                          
+* @return the message, non-null                                                                        * @return the message, non-null                                                                     
+* @since Commons Lang 2.2                                                                              * @since Commons Lang 2.2                                                                           
+*/                                                                                                     */                                                                                                  
+public static String getRootCauseMessage(Throwable th) {                                               public static String getRootCauseMessage(Throwable th) {                                            
+Throwable root = ExceptionUtils.getRootCause(th);                                                      Throwable root = ExceptionUtils.getRootCause(th);                                                   
+root = (root == null ? th : root);                                                                   | root = root == null ? th : root;                                                                    
+return getMessage(root);                                                                               return getMessage(root);                                                                            
+}                                                                                                      }                                                                                                   

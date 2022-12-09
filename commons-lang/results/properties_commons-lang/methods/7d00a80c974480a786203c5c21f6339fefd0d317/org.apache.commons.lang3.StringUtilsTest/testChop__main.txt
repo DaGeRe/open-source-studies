@@ -1,0 +1,9 @@
+@Test
+public void testChop() {
+    String[][] chopCases = { { FOO_UNCAP + "\r\n", FOO_UNCAP }, { FOO_UNCAP + "\n", FOO_UNCAP }, { FOO_UNCAP + "\r", FOO_UNCAP }, { FOO_UNCAP + " \r", FOO_UNCAP + " " }, { "foo", "fo" }, { "foo\nfoo", "foo\nfo" }, { "\n", "" }, { "\r", "" }, { "\r\n", "" }, { null, null }, { "", "" }, { "a", "" } };
+    for (String[] chopCase : chopCases) {
+        String original = chopCase[0];
+        String expectedResult = chopCase[1];
+        assertEquals("chop(String) failed", expectedResult, StringUtils.chop(original));
+    }
+}

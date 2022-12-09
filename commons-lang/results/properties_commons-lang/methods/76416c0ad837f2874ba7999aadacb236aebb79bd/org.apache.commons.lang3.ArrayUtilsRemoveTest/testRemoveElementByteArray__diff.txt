@@ -1,0 +1,18 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveElementByteArray() {                                                             public void testRemoveElementByteArray() {                                                          
+byte[] array;                                                                                          byte[] array;                                                                                       
+array = ArrayUtils.removeElement((byte[]) null, (byte) 1);                                             array = ArrayUtils.removeElement((byte[]) null, (byte) 1);                                          
+assertNull(array);                                                                                     assertNull(array);                                                                                  
+array = ArrayUtils.removeElement(ArrayUtils.EMPTY_BYTE_ARRAY, (byte) 1);                               array = ArrayUtils.removeElement(ArrayUtils.EMPTY_BYTE_ARRAY, (byte) 1);                            
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                      
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.removeElement(new byte[] { 1 }, (byte) 1);                                          array = ArrayUtils.removeElement(new byte[] { 1 }, (byte) 1);                                       
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                      
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.removeElement(new byte[] { 1, 2 }, (byte) 1);                                       array = ArrayUtils.removeElement(new byte[] { 1, 2 }, (byte) 1);                                    
+assertTrue(Arrays.equals(new byte[] { 2 }, array));                                                    assertTrue(Arrays.equals(new byte[] { 2 }, array));                                                 
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.removeElement(new byte[] { 1, 2, 1 }, (byte) 1);                                    array = ArrayUtils.removeElement(new byte[] { 1, 2, 1 }, (byte) 1);                                 
+assertTrue(Arrays.equals(new byte[] { 2, 1 }, array));                                                 assertTrue(Arrays.equals(new byte[] { 2, 1 }, array));                                              
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+}                                                                                                      }                                                                                                   

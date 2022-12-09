@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testMatcherIndices() {
+    // remember that the API contract is tight for the isMatch() method
+    // all the onus is on the caller, so invalid inputs are not
+    // the concern of StrMatcher, and are not bugs
+    StrMatcher matcher = StrMatcher.stringMatcher("bc");
+    assertEquals(2, matcher.isMatch(BUFFER2, 1, 1, BUFFER2.length));
+    assertEquals(2, matcher.isMatch(BUFFER2, 1, 0, 3));
+    assertEquals(0, matcher.isMatch(BUFFER2, 1, 0, 2));
+}

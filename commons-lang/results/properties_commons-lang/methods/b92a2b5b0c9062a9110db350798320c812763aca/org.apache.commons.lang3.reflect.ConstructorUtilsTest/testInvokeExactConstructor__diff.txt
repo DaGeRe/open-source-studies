@@ -1,0 +1,23 @@
+public void testInvokeExactConstructor() throws Exception {
+    assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, ArrayUtils.EMPTY_CLASS_ARRAY).toString());
+    assertEquals("()", ConstructorUtils.invokeExactConstructor(TestBean.class, (Class[]) null).toString());
+    assertEquals("(String)", ConstructorUtils.invokeExactConstructor(TestBean.class, "").toString());
+    assertEquals("(Object)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object()).toString());
+    assertEquals("(Integer)", ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.INTEGER_ONE).toString());
+    assertEquals("(double)", ConstructorUtils.invokeExactConstructor(TestBean.class, new Object[] { NumberUtils.DOUBLE_ONE }, new Class[] { Double.TYPE }).toString());
+    try {
+        ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.BYTE_ONE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+    try {
+        ConstructorUtils.invokeExactConstructor(TestBean.class, NumberUtils.LONG_ONE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+    try {
+        ConstructorUtils.invokeExactConstructor(TestBean.class, Boolean.TRUE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+}

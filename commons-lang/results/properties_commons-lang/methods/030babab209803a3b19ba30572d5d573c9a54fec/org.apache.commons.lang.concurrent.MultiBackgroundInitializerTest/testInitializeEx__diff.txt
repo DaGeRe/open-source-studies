@@ -1,0 +1,15 @@
+/**
+ * Tests the behavior of the initializer if one of the child initializers
+ * throws a checked exception.
+ */
+public void testInitializeEx() throws ConcurrentException {
+    ChildBackgroundInitializer child = new ChildBackgroundInitializer();
+    child.ex = new Exception();
+    initializer.addInitializer(CHILD_INIT, child);
+    initializer.start();
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res = initializer.get();
+    assertTrue("No exception flag", res.isException(CHILD_INIT));
+    assertNull("Got a results object", res.getResultObject(CHILD_INIT));
+    ConcurrentException cex = res.getException(CHILD_INIT);
+    assertEquals("Wrong cause", child.ex, cex.getCause());
+}

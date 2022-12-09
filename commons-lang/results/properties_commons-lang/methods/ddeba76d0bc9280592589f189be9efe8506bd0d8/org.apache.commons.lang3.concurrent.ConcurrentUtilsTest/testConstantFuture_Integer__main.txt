@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+/**
+ * Tests constant future.
+ */
+@Test
+public void testConstantFuture_Integer() throws Exception {
+    Integer value = Integer.valueOf(5);
+    Future<Integer> test = ConcurrentUtils.constantFuture(value);
+    assertTrue(test.isDone());
+    assertSame(value, test.get());
+    assertSame(value, test.get(1000, TimeUnit.SECONDS));
+    assertSame(value, test.get(1000, null));
+    assertFalse(test.isCancelled());
+    assertFalse(test.cancel(true));
+    assertFalse(test.cancel(false));
+}

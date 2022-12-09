@@ -1,0 +1,10 @@
+private void assertAbbreviateWithOffset(String expected, int offset, int maxWidth) {
+    String abcdefghijklmno = "abcdefghijklmno";
+    String message = "abbreviate(String,int,int) failed";
+    String actual = StringUtils.abbreviate(abcdefghijklmno, offset, maxWidth);
+    if (offset >= 0 && offset < abcdefghijklmno.length()) {
+        assertTrue(message + " -- should contain offset character", actual.indexOf((char) ('a' + offset)) != -1);
+    }
+    assertTrue(message + " -- should not be greater than maxWidth", actual.length() <= maxWidth);
+    assertEquals(message, expected, actual);
+}

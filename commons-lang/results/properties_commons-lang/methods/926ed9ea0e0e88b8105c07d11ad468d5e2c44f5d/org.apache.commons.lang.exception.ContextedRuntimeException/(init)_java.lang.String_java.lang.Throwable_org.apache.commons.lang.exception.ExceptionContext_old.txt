@@ -1,0 +1,13 @@
+/**
+ * Instantiates ContextedRuntimeException with cause, message, and ExceptionContext.
+ * @param message The exception message
+ * @param cause Exception creating need for ContextedRuntimeException
+ * @param context Context used to store additional information
+ * @since 3.0
+ */
+public ContextedRuntimeException(String message, Throwable cause, ExceptionContext context) {
+    super(message, cause);
+    if (context != null) {
+        this.exceptionContext = context;
+    }
+}

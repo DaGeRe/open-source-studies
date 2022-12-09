@@ -1,0 +1,33 @@
+/**                                                                                                    /**                                                                                                 
+* Gets an accessible &lt;code&gt;Field&lt;/code&gt; by name breaking scope                             * Gets an accessible &lt;code&gt;Field&lt;/code&gt; by name breaking scope                          
+* if requested. Only the specified class will be considered.                                           * if requested. Only the specified class will be considered.                                        
+*                                                                                                      *                                                                                                   
+* @param cls  the class to reflect, must not be null                                                   * @param cls  the class to reflect, must not be null                                                
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. False will only match public fields.                 *  &lt;code&gt;setAccessible&lt;/code&gt; method. False will only match public fields.              
+* @return the Field object                                                                             * @return the Field object                                                                          
+* @throws IllegalArgumentException if the class or field name is null                                  * @throws IllegalArgumentException if the class or field name is null                               
+*/                                                                                                     */                                                                                                  
+public static Field getDeclaredField(Class cls, String fieldName, boolean forceAccess) {             | public static Field getDeclaredField(Class&lt;?&gt; cls, String fieldName, boolean forceAccess) {   
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+throw new IllegalArgumentException("The class must not be null");                                      throw new IllegalArgumentException("The class must not be null");                                   
+}                                                                                                      }                                                                                                   
+if (fieldName == null) {                                                                               if (fieldName == null) {                                                                            
+throw new IllegalArgumentException("The field name must not be null");                                 throw new IllegalArgumentException("The field name must not be null");                              
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+// only consider the specified class by using getDeclaredField()                                       // only consider the specified class by using getDeclaredField()                                    
+Field field = cls.getDeclaredField(fieldName);                                                         Field field = cls.getDeclaredField(fieldName);                                                      
+if (!MemberUtils.isAccessible(field)) {                                                                if (!MemberUtils.isAccessible(field)) {                                                             
+if (forceAccess) {                                                                                     if (forceAccess) {                                                                                  
+field.setAccessible(true);                                                                             field.setAccessible(true);                                                                          
+} else {                                                                                               } else {                                                                                            
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return field;                                                                                          return field;                                                                                       
+} catch (NoSuchFieldException e) {                                                                     } catch (NoSuchFieldException e) {                                                                  
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

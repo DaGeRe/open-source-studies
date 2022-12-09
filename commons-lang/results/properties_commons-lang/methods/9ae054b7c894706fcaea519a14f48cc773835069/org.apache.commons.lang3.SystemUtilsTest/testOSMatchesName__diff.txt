@@ -1,0 +1,12 @@
+public void testOSMatchesName() {
+    String osName = null;
+    assertEquals(false, SystemUtils.isOSNameMatch(osName, "Windows"));
+    osName = "";
+    assertEquals(false, SystemUtils.isOSNameMatch(osName, "Windows"));
+    osName = "Windows 95";
+    assertEquals(true, SystemUtils.isOSNameMatch(osName, "Windows"));
+    osName = "Windows NT";
+    assertEquals(true, SystemUtils.isOSNameMatch(osName, "Windows"));
+    osName = "OS/2";
+    assertEquals(false, SystemUtils.isOSNameMatch(osName, "Windows"));
+}

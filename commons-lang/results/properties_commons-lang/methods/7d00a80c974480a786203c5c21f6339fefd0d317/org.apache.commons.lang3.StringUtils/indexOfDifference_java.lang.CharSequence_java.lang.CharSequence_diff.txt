@@ -1,0 +1,43 @@
+/**
+ * <p>Compares two CharSequences, and returns the index at which the
+ * CharSequences begin to differ.</p>
+ *
+ * <p>For example,
+ * {@code indexOfDifference("i am a machine", "i am a robot") -> 7}</p>
+ *
+ * <pre>
+ * StringUtils.indexOfDifference(null, null) = -1
+ * StringUtils.indexOfDifference("", "") = -1
+ * StringUtils.indexOfDifference("", "abc") = 0
+ * StringUtils.indexOfDifference("abc", "") = 0
+ * StringUtils.indexOfDifference("abc", "abc") = -1
+ * StringUtils.indexOfDifference("ab", "abxyz") = 2
+ * StringUtils.indexOfDifference("abcde", "abxyz") = 2
+ * StringUtils.indexOfDifference("abcde", "xyz") = 0
+ * </pre>
+ *
+ * @param cs1  the first CharSequence, may be null
+ * @param cs2  the second CharSequence, may be null
+ * @return the index where cs1 and cs2 begin to differ; -1 if they are equal
+ * @since 2.0
+ * @since 3.0 Changed signature from indexOfDifference(String, String) to
+ * indexOfDifference(CharSequence, CharSequence)
+ */
+public static int indexOfDifference(CharSequence cs1, CharSequence cs2) {
+    if (cs1 == cs2) {
+        return INDEX_NOT_FOUND;
+    }
+    if (cs1 == null || cs2 == null) {
+        return 0;
+    }
+    int i;
+    for (i = 0; i < cs1.length() && i < cs2.length(); ++i) {
+        if (cs1.charAt(i) != cs2.charAt(i)) {
+            break;
+        }
+    }
+    if (i < cs2.length() || i < cs1.length()) {
+        return i;
+    }
+    return INDEX_NOT_FOUND;
+}

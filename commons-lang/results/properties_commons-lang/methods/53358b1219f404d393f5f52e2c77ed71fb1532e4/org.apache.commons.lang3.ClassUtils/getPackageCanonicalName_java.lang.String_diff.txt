@@ -1,0 +1,13 @@
+/**
+ * <p>Gets the package name from the canonical name. </p>
+ *
+ * <p>The string passed in is assumed to be a canonical name - it is not checked.</p>
+ * <p>If the class is unpackaged, return an empty string.</p>
+ *
+ * @param canonicalName  the canonical name to get the package name for, may be {@code null}
+ * @return the package name or an empty string
+ * @since 2.4
+ */
+public static String getPackageCanonicalName(String canonicalName) {
+    return ClassUtils.getPackageName(getCanonicalName(canonicalName));
+}

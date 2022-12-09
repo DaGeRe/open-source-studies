@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Read the named field. Superclasses will be considered.                                               * Read the named field. Superclasses will be considered.                                            
+* @param target  the object to reflect, must not be null                                               * @param target  the object to reflect, must not be null                                            
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only             *  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only          
+*  match public fields.                                                                                *  match public fields.                                                                             
+* @return the field value                                                                              * @return the field value                                                                           
+* @throws IllegalArgumentException if the class or field name is null                                  * @throws IllegalArgumentException if the class or field name is null                               
+* @throws IllegalAccessException if the named field is not made accessible                             * @throws IllegalAccessException if the named field is not made accessible                          
+*/                                                                                                     */                                                                                                  
+public static Object readField(Object target, String fieldName, boolean forceAccess) throws IllegalA   public static Object readField(Object target, String fieldName, boolean forceAccess) throws IllegalA
+if (target == null) {                                                                                  if (target == null) {                                                                               
+throw new IllegalArgumentException("target object must not be null");                                  throw new IllegalArgumentException("target object must not be null");                               
+}                                                                                                      }                                                                                                   
+Class cls = target.getClass();                                                                       | Class&lt;?&gt; cls = target.getClass();                                                             
+Field field = getField(cls, fieldName, forceAccess);                                                   Field field = getField(cls, fieldName, forceAccess);                                                
+if (field == null) {                                                                                   if (field == null) {                                                                                
+throw new IllegalArgumentException("Cannot locate field " + fieldName + " on " + cls);                 throw new IllegalArgumentException("Cannot locate field " + fieldName + " on " + cls);              
+}                                                                                                      }                                                                                                   
+// already forced access above, don't repeat it here:                                                  // already forced access above, don't repeat it here:                                               
+return readField(field, target);                                                                       return readField(field, target);                                                                    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if CharSequence contains a search CharSequence irrespective of case,                 * &lt;p&gt;Checks if CharSequence contains a search CharSequence irrespective of case,              
+* handling {@code null}. Case-insensitivity is defined as by                                           * handling {@code null}. Case-insensitivity is defined as by                                        
+* {@link String#equalsIgnoreCase(String)}.                                                             * {@link String#equalsIgnoreCase(String)}.                                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A {@code null} CharSequence will return {@code false}.&lt;/p&gt;                            * &lt;p&gt;A {@code null} CharSequence will return {@code false}.&lt;/p&gt;                         
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.contains(null, *) = false                                                                * StringUtils.contains(null, *) = false                                                             
+* StringUtils.contains(*, null) = false                                                                * StringUtils.contains(*, null) = false                                                             
+* StringUtils.contains("", "") = true                                                                  * StringUtils.contains("", "") = true                                                               
+* StringUtils.contains("abc", "") = true                                                               * StringUtils.contains("abc", "") = true                                                            
+* StringUtils.contains("abc", "a") = true                                                              * StringUtils.contains("abc", "a") = true                                                           
+* StringUtils.contains("abc", "z") = false                                                             * StringUtils.contains("abc", "z") = false                                                          
+* StringUtils.contains("abc", "A") = true                                                              * StringUtils.contains("abc", "A") = true                                                           
+* StringUtils.contains("abc", "Z") = false                                                             * StringUtils.contains("abc", "Z") = false                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the CharSequence to check, may be null                                                   * @param str  the CharSequence to check, may be null                                                
+* @param searchStr  the CharSequence to find, may be null                                              * @param searchStr  the CharSequence to find, may be null                                           
+* @return true if the CharSequence contains the search CharSequence irrespective of                    * @return true if the CharSequence contains the search CharSequence irrespective of                 
+* case or false if not or {@code null} string input                                                    * case or false if not or {@code null} string input                                                 
+*/                                                                                                     */                                                                                                  
+public static boolean containsIgnoreCase(CharSequence str, CharSequence searchStr) {                   public static boolean containsIgnoreCase(CharSequence str, CharSequence searchStr) {                
+if (str == null || searchStr == null) {                                                                if (str == null || searchStr == null) {                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int len = searchStr.length();                                                                          int len = searchStr.length();                                                                       
+int max = str.length() - len;                                                                          int max = str.length() - len;                                                                       
+for (int i = 0; i &lt;= max; i++) {                                                                    for (int i = 0; i &lt;= max; i++) {                                                                 
+if (regionMatchesSequence(str, true, i, searchStr, 0, len)) {                                        | if (CharSequenceUtils.regionMatches(str, true, i, searchStr, 0, len)) {                             
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,9 @@
+private void checkCsvUnescapeWriter(String expected, String value) {
+    try {
+        StringWriter writer = new StringWriter();
+        StringEscapeUtils.unescapeCsv(writer, value);
+        assertEquals(expected, writer.toString());
+    } catch (IOException e) {
+        fail("Threw: " + e);
+    }
+}

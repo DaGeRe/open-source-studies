@@ -1,0 +1,32 @@
+// Keep                                                                                                // Keep                                                                                             
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                           * &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                        
+* and keeps any of characters present in the specified string.&lt;/p&gt;                               * and keeps any of characters present in the specified string.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* CharSetUtils.keep(null, *)        = null                                                             * CharSetUtils.keep(null, *)        = null                                                          
+* CharSetUtils.keep("", *)          = ""                                                               * CharSetUtils.keep("", *)          = ""                                                            
+* CharSetUtils.keep(*, null)        = ""                                                               * CharSetUtils.keep(*, null)        = ""                                                            
+* CharSetUtils.keep(*, "")          = ""                                                               * CharSetUtils.keep(*, "")          = ""                                                            
+* CharSetUtils.keep("hello", "hl")  = "hll"                                                            * CharSetUtils.keep("hello", "hl")  = "hll"                                                         
+* CharSetUtils.keep("hello", "le")  = "ell"                                                            * CharSetUtils.keep("hello", "le")  = "ell"                                                         
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @see CharSet#getInstance(java.lang.String) for set-syntax.                                           * @see CharSet#getInstance(java.lang.String) for set-syntax.                                        
+* @param str  String to keep characters from, may be null                                              * @param str  String to keep characters from, may be null                                           
+* @param set  String set of characters to keep, may be null                                          | * @param set  String[] set of characters to keep, may be null                                       
+* @return the modified String, {@code null} if null string input                                       * @return the modified String, {@code null} if null string input                                    
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String keep(String str, String set) {                                                  | public static String keep(String str, String... set) {                                              
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+if (str.length() == 0 || StringUtils.isEmpty(set)) {                                                 | if (str.length() == 0 || deepEmpty(set)) {                                                          
+return "";                                                                                             return "";                                                                                          
+}                                                                                                      }                                                                                                   
+String[] strs = new String[1];                                                                       | return modify(str, set, true);                                                                      
+strs[0] = set;                                                                                       |                                                                                                     
+return keep(str, strs);                                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   

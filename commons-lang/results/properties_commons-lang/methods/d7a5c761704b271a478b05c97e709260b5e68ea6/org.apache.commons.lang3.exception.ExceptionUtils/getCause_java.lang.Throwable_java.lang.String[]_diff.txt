@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the cause.&lt;/p&gt;           * &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the cause.&lt;/p&gt;        
+*                                                                                                      *                                                                                                   
+* &lt;ol&gt;                                                                                           * &lt;ol&gt;                                                                                        
+* &lt;li&gt;Try known exception types.&lt;/li&gt;                                                      * &lt;li&gt;Try known exception types.&lt;/li&gt;                                                   
+* &lt;li&gt;Try the supplied array of method names.&lt;/li&gt;                                         * &lt;li&gt;Try the supplied array of method names.&lt;/li&gt;                                      
+* &lt;li&gt;Try the field 'detail'.&lt;/li&gt;                                                         * &lt;li&gt;Try the field 'detail'.&lt;/li&gt;                                                      
+* &lt;/ol&gt;                                                                                          * &lt;/ol&gt;                                                                                       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; set of method names means use the default set.              * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; set of method names means use the default set.           
+* A &lt;code&gt;null&lt;/code&gt; in the set of method names will be ignored.&lt;/p&gt;                * A &lt;code&gt;null&lt;/code&gt; in the set of method names will be ignored.&lt;/p&gt;             
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to introspect for a cause, may be null                               * @param throwable  the throwable to introspect for a cause, may be null                            
+* @param methodNames  the method names, null treated as default set                                    * @param methodNames  the method names, null treated as default set                                 
+* @return the cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                         * @return the cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                      
+*  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                                 *  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                              
+* @since 1.0                                                                                           * @since 1.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static Throwable getCause(Throwable throwable, String[] methodNames) {                          public static Throwable getCause(Throwable throwable, String[] methodNames) {                       
+if (throwable == null) {                                                                               if (throwable == null) {                                                                            
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+if (methodNames == null) {                                                                             if (methodNames == null) {                                                                          
+methodNames = CAUSE_METHOD_NAMES;                                                                      methodNames = CAUSE_METHOD_NAMES;                                                                   
+}                                                                                                      }                                                                                                   
+for (int i = 0; i &lt; methodNames.length; i++) {                                                      for (int i = 0; i &lt; methodNames.length; i++) {                                                   
+String methodName = methodNames[i];                                                                    String methodName = methodNames[i];                                                                 
+if (methodName != null) {                                                                              if (methodName != null) {                                                                           
+Throwable cause = getCauseUsingMethodName(throwable, methodName);                                      Throwable cause = getCauseUsingMethodName(throwable, methodName);                                   
+if (cause != null) {                                                                                   if (cause != null) {                                                                                
+return cause;                                                                                          return cause;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return getCauseUsingFieldName(throwable, "detail");                                                  | return null;                                                                                        
+}                                                                                                      }                                                                                                   

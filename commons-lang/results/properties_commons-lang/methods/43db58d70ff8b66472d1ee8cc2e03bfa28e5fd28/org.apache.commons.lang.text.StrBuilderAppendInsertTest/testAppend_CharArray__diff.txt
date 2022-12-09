@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------
+public void testAppend_CharArray() {
+    StrBuilder sb = new StrBuilder();
+    sb.setNullText("NULL").append((char[]) null);
+    assertEquals("NULL", sb.toString());
+    sb = new StrBuilder();
+    sb.append(new char[0]);
+    assertEquals("", sb.toString());
+    sb.append(new char[] { 'f', 'o', 'o' });
+    assertEquals("foo", sb.toString());
+}

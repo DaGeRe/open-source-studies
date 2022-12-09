@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------                           |                                                                                                     
+public void testContainsOnly_String() {                                                                public void testContainsOnly_String() {                                                             
+String str1 = "a";                                                                                     String str1 = "a";                                                                                  
+String str2 = "b";                                                                                     String str2 = "b";                                                                                  
+String str3 = "ab";                                                                                    String str3 = "ab";                                                                                 
+String chars1 = "b";                                                                                   String chars1 = "b";                                                                                
+String chars2 = "a";                                                                                   String chars2 = "a";                                                                                
+String chars3 = "ab";                                                                                  String chars3 = "ab";                                                                               
+assertEquals(false, StringUtils.containsOnly(null, (String) null));                                    assertEquals(false, StringUtils.containsOnly(null, (String) null));                                 
+assertEquals(false, StringUtils.containsOnly("", (String) null));                                      assertEquals(false, StringUtils.containsOnly("", (String) null));                                   
+assertEquals(false, StringUtils.containsOnly(null, ""));                                               assertEquals(false, StringUtils.containsOnly(null, ""));                                            
+assertEquals(false, StringUtils.containsOnly(str1, ""));                                               assertEquals(false, StringUtils.containsOnly(str1, ""));                                            
+assertEquals(true, StringUtils.containsOnly("", ""));                                                  assertEquals(true, StringUtils.containsOnly("", ""));                                               
+assertEquals(true, StringUtils.containsOnly("", chars1));                                              assertEquals(true, StringUtils.containsOnly("", chars1));                                           
+assertEquals(false, StringUtils.containsOnly(str1, chars1));                                           assertEquals(false, StringUtils.containsOnly(str1, chars1));                                        
+assertEquals(true, StringUtils.containsOnly(str1, chars2));                                            assertEquals(true, StringUtils.containsOnly(str1, chars2));                                         
+assertEquals(true, StringUtils.containsOnly(str1, chars3));                                            assertEquals(true, StringUtils.containsOnly(str1, chars3));                                         
+assertEquals(true, StringUtils.containsOnly(str2, chars1));                                            assertEquals(true, StringUtils.containsOnly(str2, chars1));                                         
+assertEquals(false, StringUtils.containsOnly(str2, chars2));                                           assertEquals(false, StringUtils.containsOnly(str2, chars2));                                        
+assertEquals(true, StringUtils.containsOnly(str2, chars3));                                            assertEquals(true, StringUtils.containsOnly(str2, chars3));                                         
+assertEquals(false, StringUtils.containsOnly(str3, chars1));                                           assertEquals(false, StringUtils.containsOnly(str3, chars1));                                        
+assertEquals(false, StringUtils.containsOnly(str3, chars2));                                           assertEquals(false, StringUtils.containsOnly(str3, chars2));                                        
+assertEquals(true, StringUtils.containsOnly(str3, chars3));                                            assertEquals(true, StringUtils.containsOnly(str3, chars3));                                         
+}                                                                                                      }                                                                                                   

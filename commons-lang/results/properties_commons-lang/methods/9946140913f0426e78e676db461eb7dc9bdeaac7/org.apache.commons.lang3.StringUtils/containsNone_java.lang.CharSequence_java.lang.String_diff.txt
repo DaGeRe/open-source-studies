@@ -1,0 +1,29 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Checks that the CharSequence does not contain certain characters.&lt;/p&gt;              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;A {@code null} CharSequence will return {@code true}.                                    
+                                                                                                     | * A {@code null} invalid character array will return {@code true}.                                  
+                                                                                                     | * An empty String ("") always returns true.&lt;/p&gt;                                               
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.containsNone(null, *)       = true                                                    
+                                                                                                     | * StringUtils.containsNone(*, null)       = true                                                    
+                                                                                                     | * StringUtils.containsNone("", *)         = true                                                    
+                                                                                                     | * StringUtils.containsNone("ab", "")      = true                                                    
+                                                                                                     | * StringUtils.containsNone("abab", "xyz") = true                                                    
+                                                                                                     | * StringUtils.containsNone("ab1", "xyz")  = true                                                    
+                                                                                                     | * StringUtils.containsNone("abz", "xyz")  = false                                                   
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param cs  the CharSequence to check, may be null                                                 
+                                                                                                     | * @param invalidChars  a String of invalid chars, may be null                                       
+                                                                                                     | * @return true if it contains none of the invalid chars, or is null                                 
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | * @since 3.0 Changed signature from containsNone(String, String) to containsNone(CharSequence, Strin
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static boolean containsNone(CharSequence cs, String invalidChars) {                          
+                                                                                                     | if (cs == null || invalidChars == null) {                                                           
+                                                                                                     | return true;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | return containsNone(cs, invalidChars.toCharArray());                                                
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,25 @@
+                                                                                                     | @Test                                                                                               
+public void testSplitByWholeString_StringStringBoolean() {                                             public void testSplitByWholeString_StringStringBoolean() {                                          
+assertEquals(null, StringUtils.splitByWholeSeparator(null, "."));                                      assertEquals(null, StringUtils.splitByWholeSeparator(null, "."));                                   
+assertEquals(0, StringUtils.splitByWholeSeparator("", ".").length);                                    assertEquals(0, StringUtils.splitByWholeSeparator("", ".").length);                                 
+String stringToSplitOnNulls = "ab   de fg";                                                            String stringToSplitOnNulls = "ab   de fg";                                                         
+String[] splitOnNullExpectedResults = { "ab", "de", "fg" };                                            String[] splitOnNullExpectedResults = { "ab", "de", "fg" };                                         
+String[] splitOnNullResults = StringUtils.splitByWholeSeparator(stringToSplitOnNulls, null);           String[] splitOnNullResults = StringUtils.splitByWholeSeparator(stringToSplitOnNulls, null);        
+assertEquals(splitOnNullExpectedResults.length, splitOnNullResults.length);                            assertEquals(splitOnNullExpectedResults.length, splitOnNullResults.length);                         
+for (int i = 0; i &lt; splitOnNullExpectedResults.length; i += 1) {                                    for (int i = 0; i &lt; splitOnNullExpectedResults.length; i += 1) {                                 
+assertEquals(splitOnNullExpectedResults[i], splitOnNullResults[i]);                                    assertEquals(splitOnNullExpectedResults[i], splitOnNullResults[i]);                                 
+}                                                                                                      }                                                                                                   
+String stringToSplitOnCharactersAndString = "abstemiouslyaeiouyabstemiously";                          String stringToSplitOnCharactersAndString = "abstemiouslyaeiouyabstemiously";                       
+String[] splitOnStringExpectedResults = { "abstemiously", "abstemiously" };                            String[] splitOnStringExpectedResults = { "abstemiously", "abstemiously" };                         
+String[] splitOnStringResults = StringUtils.splitByWholeSeparator(stringToSplitOnCharactersAndString   String[] splitOnStringResults = StringUtils.splitByWholeSeparator(stringToSplitOnCharactersAndString
+assertEquals(splitOnStringExpectedResults.length, splitOnStringResults.length);                        assertEquals(splitOnStringExpectedResults.length, splitOnStringResults.length);                     
+for (int i = 0; i &lt; splitOnStringExpectedResults.length; i += 1) {                                  for (int i = 0; i &lt; splitOnStringExpectedResults.length; i += 1) {                               
+assertEquals(splitOnStringExpectedResults[i], splitOnStringResults[i]);                                assertEquals(splitOnStringExpectedResults[i], splitOnStringResults[i]);                             
+}                                                                                                      }                                                                                                   
+String[] splitWithMultipleSeparatorExpectedResults = { "ab", "cd", "ef" };                             String[] splitWithMultipleSeparatorExpectedResults = { "ab", "cd", "ef" };                          
+String[] splitWithMultipleSeparator = StringUtils.splitByWholeSeparator("ab:cd::ef", ":");             String[] splitWithMultipleSeparator = StringUtils.splitByWholeSeparator("ab:cd::ef", ":");          
+assertEquals(splitWithMultipleSeparatorExpectedResults.length, splitWithMultipleSeparator.length);     assertEquals(splitWithMultipleSeparatorExpectedResults.length, splitWithMultipleSeparator.length);  
+for (int i = 0; i &lt; splitWithMultipleSeparatorExpectedResults.length; i++) {                        for (int i = 0; i &lt; splitWithMultipleSeparatorExpectedResults.length; i++) {                     
+assertEquals(splitWithMultipleSeparatorExpectedResults[i], splitWithMultipleSeparator[i]);             assertEquals(splitWithMultipleSeparatorExpectedResults[i], splitWithMultipleSeparator[i]);          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

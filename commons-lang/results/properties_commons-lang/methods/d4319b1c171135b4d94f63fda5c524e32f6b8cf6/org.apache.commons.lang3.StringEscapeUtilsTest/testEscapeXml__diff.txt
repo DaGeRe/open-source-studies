@@ -1,0 +1,24 @@
+                                                                                                     | @Test                                                                                               
+public void testEscapeXml() throws Exception {                                                         public void testEscapeXml() throws Exception {                                                      
+assertEquals("&lt;abc&gt;", StringEscapeUtils.escapeXml("&lt;abc&gt;"));                               assertEquals("&lt;abc&gt;", StringEscapeUtils.escapeXml("&lt;abc&gt;"));                            
+assertEquals("&lt;abc&gt;", StringEscapeUtils.unescapeXml("&lt;abc&gt;"));                             assertEquals("&lt;abc&gt;", StringEscapeUtils.unescapeXml("&lt;abc&gt;"));                          
+assertEquals("XML should not escape &gt;0x7f values", "\u00A1", StringEscapeUtils.escapeXml("\u00A1"   assertEquals("XML should not escape &gt;0x7f values", "\u00A1", StringEscapeUtils.escapeXml("\u00A1"
+assertEquals("XML should be able to unescape &gt;0x7f values", "\u00A0", StringEscapeUtils.unescapeX   assertEquals("XML should be able to unescape &gt;0x7f values", "\u00A0", StringEscapeUtils.unescapeX
+assertEquals("ain't", StringEscapeUtils.unescapeXml("ain&apos;t"));                                    assertEquals("ain't", StringEscapeUtils.unescapeXml("ain&apos;t"));                                 
+assertEquals("ain&apos;t", StringEscapeUtils.escapeXml("ain't"));                                      assertEquals("ain&apos;t", StringEscapeUtils.escapeXml("ain't"));                                   
+assertEquals("", StringEscapeUtils.escapeXml(""));                                                     assertEquals("", StringEscapeUtils.escapeXml(""));                                                  
+assertEquals(null, StringEscapeUtils.escapeXml(null));                                                 assertEquals(null, StringEscapeUtils.escapeXml(null));                                              
+assertEquals(null, StringEscapeUtils.unescapeXml(null));                                               assertEquals(null, StringEscapeUtils.unescapeXml(null));                                            
+StringWriter sw = new StringWriter();                                                                  StringWriter sw = new StringWriter();                                                               
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_XML.translate("&lt;abc&gt;", sw);                                             StringEscapeUtils.ESCAPE_XML.translate("&lt;abc&gt;", sw);                                          
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+}                                                                                                      }                                                                                                   
+assertEquals("XML was escaped incorrectly", "&lt;abc&gt;", sw.toString());                             assertEquals("XML was escaped incorrectly", "&lt;abc&gt;", sw.toString());                          
+sw = new StringWriter();                                                                               sw = new StringWriter();                                                                            
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.UNESCAPE_XML.translate("&lt;abc&gt;", sw);                                           StringEscapeUtils.UNESCAPE_XML.translate("&lt;abc&gt;", sw);                                        
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+}                                                                                                      }                                                                                                   
+assertEquals("XML was unescaped incorrectly", "&lt;abc&gt;", sw.toString());                           assertEquals("XML was unescaped incorrectly", "&lt;abc&gt;", sw.toString());                        
+}                                                                                                      }                                                                                                   

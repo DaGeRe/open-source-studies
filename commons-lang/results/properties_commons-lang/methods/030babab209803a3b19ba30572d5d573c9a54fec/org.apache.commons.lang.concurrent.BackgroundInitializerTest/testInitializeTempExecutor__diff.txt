@@ -1,0 +1,10 @@
+/**
+ * Tests the execution of the background task if a temporary executor has to
+ * be created.
+ */
+public void testInitializeTempExecutor() {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    assertTrue("Wrong result of start()", init.start());
+    checkInitialize(init);
+    assertTrue("Executor not shutdown", init.getActiveExecutor().isShutdown());
+}

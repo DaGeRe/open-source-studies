@@ -1,0 +1,16 @@
+/**
+ * Validate that {@code enumClass} is compatible with representation in a {@code long}.
+ * @param <E> the type of the enumeration
+ * @param enumClass to check
+ * @return {@code enumClass}
+ * @throws NullPointerException if {@code enumClass} is {@code null}
+ * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values
+ * @since 3.0.1
+ */
+private static <E extends Enum<E>> Class<E> checkBitVectorable(Class<E> enumClass) {
+    Validate.notNull(enumClass, "EnumClass must be defined.");
+    final E[] constants = enumClass.getEnumConstants();
+    Validate.isTrue(constants != null, "%s does not seem to be an Enum type", enumClass);
+    Validate.isTrue(constants.length <= Long.SIZE, "Cannot store %s %s values in %s bits", constants.length, enumClass.getSimpleName(), Long.SIZE);
+    return enumClass;
+}

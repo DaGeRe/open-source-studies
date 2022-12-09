@@ -1,0 +1,17 @@
+public void testRemoveElementDoubleArray() {
+    double[] array;
+    array = ArrayUtils.removeElement((double[]) null, (double) 1);
+    assertNull(array);
+    array = ArrayUtils.removeElement(ArrayUtils.EMPTY_DOUBLE_ARRAY, (double) 1);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));
+    assertEquals(Double.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new double[] { 1 }, (double) 1);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));
+    assertEquals(Double.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new double[] { 1, 2 }, (double) 1);
+    assertTrue(Arrays.equals(new double[] { 2 }, array));
+    assertEquals(Double.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new double[] { 1, 2, 1 }, (double) 1);
+    assertTrue(Arrays.equals(new double[] { 2, 1 }, array));
+    assertEquals(Double.TYPE, array.getClass().getComponentType());
+}

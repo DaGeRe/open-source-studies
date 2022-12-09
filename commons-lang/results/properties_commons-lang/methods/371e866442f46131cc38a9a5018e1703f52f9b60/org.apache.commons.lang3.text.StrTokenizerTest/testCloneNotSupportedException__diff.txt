@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Tests that the {@link StrTokenizer#clone()} clone method catches {@link CloneNotSupportedException   * Tests that the {@link StrTokenizer#clone()} clone method catches {@link CloneNotSupportedException
+* &lt;code&gt;null&lt;/code&gt;.                                                                       * &lt;code&gt;null&lt;/code&gt;.                                                                    
+*/                                                                                                     */                                                                                                  
+public void testCloneNotSupportedException() {                                                         public void testCloneNotSupportedException() {                                                      
+Object notCloned = (new StrTokenizer() {                                                             | Object notCloned = new StrTokenizer() {                                                             
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+Object cloneReset() throws CloneNotSupportedException {                                                Object cloneReset() throws CloneNotSupportedException {                                             
+throw new CloneNotSupportedException("test");                                                          throw new CloneNotSupportedException("test");                                                       
+}                                                                                                      }                                                                                                   
+}).clone();                                                                                          | }.clone();                                                                                          
+assertNull(notCloned);                                                                                 assertNull(notCloned);                                                                              
+}                                                                                                      }                                                                                                   

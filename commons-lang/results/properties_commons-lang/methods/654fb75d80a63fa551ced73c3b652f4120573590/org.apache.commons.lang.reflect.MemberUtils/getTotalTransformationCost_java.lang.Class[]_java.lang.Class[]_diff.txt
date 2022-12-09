@@ -1,0 +1,17 @@
+/**                                                                                                  |                                                                                                     
+* Returns the sum of the object transformation cost for each class in the source                     |                                                                                                     
+* argument list.                                                                                     |                                                                                                     
+* @param srcArgs The source arguments                                                                |                                                                                                     
+* @param destArgs The destination arguments                                                          |                                                                                                     
+* @return The total transformation cost                                                              |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private static float getTotalTransformationCost(Class[] srcArgs, Class[] destArgs) {                 |                                                                                                     
+float totalCost = 0.0f;                                                                              |                                                                                                     
+for (int i = 0; i &lt; srcArgs.length; i++) {                                                        |                                                                                                     
+Class srcClass, destClass;                                                                           |                                                                                                     
+srcClass = srcArgs[i];                                                                               |                                                                                                     
+destClass = destArgs[i];                                                                             |                                                                                                     
+totalCost += getObjectTransformationCost(srcClass, destClass);                                       |                                                                                                     
+}                                                                                                    |                                                                                                     
+return totalCost;                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

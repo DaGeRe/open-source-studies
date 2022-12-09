@@ -1,0 +1,16 @@
+/**
+ * Sets the field names to exclude.
+ *
+ * @param excludeFieldNamesParam
+ *            The excludeFieldNames to excluding from toString or <code>null</code>.
+ * @return <code>this</code>
+ */
+public ReflectionToStringBuilder<T> setExcludeFieldNames(String[] excludeFieldNamesParam) {
+    if (excludeFieldNamesParam == null) {
+        this.excludeFieldNames = null;
+    } else {
+        this.excludeFieldNames = toNoNullStringArray(excludeFieldNamesParam);
+        Arrays.sort(this.excludeFieldNames);
+    }
+    return this;
+}

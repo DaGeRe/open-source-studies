@@ -1,0 +1,7 @@
+public void testCreateWithNonInterfaceParameter() {
+    try {
+        EventListenerSupport.create(String.class);
+        fail("Should not be able to create using non-interface class.");
+    } catch (IllegalArgumentException e) {
+    }
+}

@@ -1,0 +1,28 @@
+// isTrue
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the test result is <code>false</code>.</p>
+ *
+ * <p>This is used when validating according to an arbitrary boolean expression,
+ * such as validating a primitive number or using your own custom validation
+ * expression.</p>
+ *
+ * <pre>
+ * Validate.isTrue( myObject.isOk(), "The object is not OK: ", myObject);
+ * </pre>
+ *
+ * <p>For performance reasons, the object is passed as a separate parameter and
+ * appended to the message string only in the case of an error.</p>
+ *
+ * @param expression  a boolean expression
+ * @param message  the exception message you would like to see if the
+ *  expression is <code>false</code>
+ * @param value  the value to append to the message in case of error
+ * @throws IllegalArgumentException if expression is <code>false</code>
+ */
+public static void isTrue(boolean expression, String message, Object value) {
+    if (expression == false) {
+        throw new IllegalArgumentException(getMessage(message, value));
+    }
+}

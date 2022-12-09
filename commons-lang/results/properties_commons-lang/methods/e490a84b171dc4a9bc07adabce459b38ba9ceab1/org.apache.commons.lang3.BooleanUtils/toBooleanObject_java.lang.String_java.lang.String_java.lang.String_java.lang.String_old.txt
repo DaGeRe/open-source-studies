@@ -1,0 +1,38 @@
+/**
+ * <p>Converts a String to a Boolean throwing an exception if no match.</p>
+ *
+ * <p>NOTE: This returns null and will throw a NullPointerException if autoboxed to a boolean. </p>
+ *
+ * <pre>
+ *   BooleanUtils.toBooleanObject("true", "true", "false", "null")  = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject("false", "true", "false", "null") = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject("null", "true", "false", "null")  = null
+ * </pre>
+ *
+ * @param str  the String to check
+ * @param trueString  the String to match for {@code true} (case sensitive), may be {@code null}
+ * @param falseString  the String to match for {@code false} (case sensitive), may be {@code null}
+ * @param nullString  the String to match for {@code null} (case sensitive), may be {@code null}
+ * @return the Boolean value of the string, {@code null} if either the String matches {@code nullString}
+ *  or if {@code null} input and {@code nullString} is {@code null}
+ * @throws IllegalArgumentException if the String doesn't match
+ */
+public static Boolean toBooleanObject(String str, String trueString, String falseString, String nullString) {
+    if (str == null) {
+        if (trueString == null) {
+            return Boolean.TRUE;
+        } else if (falseString == null) {
+            return Boolean.FALSE;
+        } else if (nullString == null) {
+            return null;
+        }
+    } else if (str.equals(trueString)) {
+        return Boolean.TRUE;
+    } else if (str.equals(falseString)) {
+        return Boolean.FALSE;
+    } else if (str.equals(nullString)) {
+        return null;
+    }
+    // no match
+    throw new IllegalArgumentException("The String did not match any specified value");
+}

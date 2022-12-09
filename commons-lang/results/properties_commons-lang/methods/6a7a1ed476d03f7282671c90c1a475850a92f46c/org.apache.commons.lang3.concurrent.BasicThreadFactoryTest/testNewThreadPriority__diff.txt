@@ -1,0 +1,16 @@
+/**
+ * Tests whether the priority is set on newly created threads.
+ */
+@Test
+public void testNewThreadPriority() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r = EasyMock.createMock(Runnable.class);
+    Thread t = new Thread();
+    EasyMock.expect(wrapped.newThread(r)).andReturn(t);
+    EasyMock.replay(wrapped, r);
+    final int priority = Thread.NORM_PRIORITY + 1;
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).priority(priority).build();
+    assertSame("Wrong thread", t, factory.newThread(r));
+    assertEquals("Wrong priority", priority, t.getPriority());
+    EasyMock.verify(wrapped, r);
+}

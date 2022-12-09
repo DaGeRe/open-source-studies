@@ -1,0 +1,13 @@
+/**
+ * Appends a CharSequence to this string builder.
+ * Appending null will call {@link #appendNull()}.
+ *
+ * @param seq  the CharSequence to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(CharSequence seq) {
+    if (seq == null) {
+        return appendNull();
+    }
+    return append(seq.toString());
+}

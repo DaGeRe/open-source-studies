@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotEmptyCollection1() {                                                                public void testNotEmptyCollection1() {                                                             
+Collection&lt;Integer&gt; coll = new ArrayList&lt;Integer&gt;();                                       Collection&lt;Integer&gt; coll = new ArrayList&lt;Integer&gt;();                                    
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((Collection&lt;?&gt;) null);                                                         Validate.notEmpty((Collection&lt;?&gt;) null);                                                      
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException ex) {                                                              | } catch (NullPointerException ex) {                                                                 
+assertEquals("The validated collection is empty", ex.getMessage());                                    assertEquals("The validated collection is empty", ex.getMessage());                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty(coll);                                                                               Validate.notEmpty(coll);                                                                            
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated collection is empty", ex.getMessage());                                    assertEquals("The validated collection is empty", ex.getMessage());                                 
+}                                                                                                      }                                                                                                   
+coll.add(new Integer(8));                                                                              coll.add(new Integer(8));                                                                           
+Validate.notEmpty(coll);                                                                               Validate.notEmpty(coll);                                                                            
+Collection&lt;Integer&gt; test = Validate.notEmpty(coll);                                              Collection&lt;Integer&gt; test = Validate.notEmpty(coll);                                           
+assertSame(coll, test);                                                                                assertSame(coll, test);                                                                             
+}                                                                                                      }                                                                                                   

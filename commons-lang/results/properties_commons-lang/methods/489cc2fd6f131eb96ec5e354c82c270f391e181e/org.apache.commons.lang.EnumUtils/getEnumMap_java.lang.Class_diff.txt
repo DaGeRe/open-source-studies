@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the &lt;code&gt;Map&lt;/code&gt; of &lt;code&gt;enums&lt;/code&gt; by name.&lt;/p&gt   * &lt;p&gt;Gets the &lt;code&gt;Map&lt;/code&gt; of &lt;code&gt;enums&lt;/code&gt; by name.&lt;/p&gt
+*                                                                                                      *                                                                                                   
+* @param enumClass the class of the &lt;code&gt;enum&lt;/code&gt; to get                               * @param enumClass the class of the &lt;code&gt;enum&lt;/code&gt; to get                            
+* @return the enum Map                                                                                 * @return the enum Map                                                                              
+*/                                                                                                     */                                                                                                  
+public static Map&lt;String, Enum&lt;?&gt;&gt; getEnumMap(Class enumClass) {                         | public static &lt;E extends Enum&lt;E&gt;&gt; Map&lt;String, Enum&lt;E&gt;&gt; getEnumMap(Class&lt;E
+Map&lt;String, Enum&lt;?&gt;&gt; map = new LinkedHashMap&lt;String, Enum&lt;?&gt;&gt;();             | Map&lt;String, Enum&lt;E&gt;&gt; map = new LinkedHashMap&lt;String, Enum&lt;E&gt;&gt;();            
+Iterator&lt;? extends Enum&lt;?&gt;&gt; itr = EnumSet.allOf(enumClass).iterator();                   | for (E e : EnumSet.allOf(enumClass)) {                                                              
+while (itr.hasNext()) {                                                                              | map.put(e.name(), e);                                                                               
+Enum&lt;?&gt; enm = itr.next();                                                                      |                                                                                                     
+map.put(enm.name(), enm);                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   
+return map;                                                                                            return map;                                                                                         
+}                                                                                                      }                                                                                                   

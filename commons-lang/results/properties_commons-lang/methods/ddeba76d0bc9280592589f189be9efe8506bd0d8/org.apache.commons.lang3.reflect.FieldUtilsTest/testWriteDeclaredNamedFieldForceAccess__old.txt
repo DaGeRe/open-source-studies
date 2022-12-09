@@ -1,0 +1,43 @@
+@Test
+public void testWriteDeclaredNamedFieldForceAccess() throws Exception {
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "s", "S", true);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "b", Boolean.TRUE, true);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "i", new Integer(1), true);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "d", new Double(1.0), true);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "s", "S", true);
+    assertEquals("S", FieldUtils.readDeclaredField(publiclyShadowedChild, "s", true));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "b", Boolean.FALSE, true);
+    assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(publiclyShadowedChild, "b", true));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "i", new Integer(0), true);
+    assertEquals(new Integer(0), FieldUtils.readDeclaredField(publiclyShadowedChild, "i", true));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "d", new Double(0.0), true);
+    assertEquals(new Double(0.0), FieldUtils.readDeclaredField(publiclyShadowedChild, "d", true));
+    FieldUtils.writeDeclaredField(privatelyShadowedChild, "s", "S", true);
+    assertEquals("S", FieldUtils.readDeclaredField(privatelyShadowedChild, "s", true));
+    FieldUtils.writeDeclaredField(privatelyShadowedChild, "b", Boolean.FALSE, true);
+    assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(privatelyShadowedChild, "b", true));
+    FieldUtils.writeDeclaredField(privatelyShadowedChild, "i", new Integer(0), true);
+    assertEquals(new Integer(0), FieldUtils.readDeclaredField(privatelyShadowedChild, "i", true));
+    FieldUtils.writeDeclaredField(privatelyShadowedChild, "d", new Double(0.0), true);
+    assertEquals(new Double(0.0), FieldUtils.readDeclaredField(privatelyShadowedChild, "d", true));
+}

@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Make sure the language by country is correct. It checks that                                         * Make sure the language by country is correct. It checks that                                      
+* the LocaleUtils.languagesByCountry(country) call contains the                                        * the LocaleUtils.languagesByCountry(country) call contains the                                     
+* array of languages passed in. It may contain more due to JVM                                         * array of languages passed in. It may contain more due to JVM                                      
+* variations.                                                                                          * variations.                                                                                       
+*                                                                                                      *                                                                                                   
+* @param country                                                                                       * @param country                                                                                    
+* @param languages array of languages that should be returned                                          * @param languages array of languages that should be returned                                       
+*/                                                                                                     */                                                                                                  
+private void assertLanguageByCountry(String country, String[] languages) {                             private void assertLanguageByCountry(String country, String[] languages) {                          
+List&lt;Locale&gt; list = LocaleUtils.languagesByCountry(country);                                     List&lt;Locale&gt; list = LocaleUtils.languagesByCountry(country);                                  
+List&lt;Locale&gt; list2 = LocaleUtils.languagesByCountry(country);                                    List&lt;Locale&gt; list2 = LocaleUtils.languagesByCountry(country);                                 
+assertNotNull(list);                                                                                   assertNotNull(list);                                                                                
+assertSame(list, list2);                                                                               assertSame(list, list2);                                                                            
+// search through langauges                                                                            // search through langauges                                                                         
+for (int i = 0; i &lt; languages.length; i++) {                                                      | for (String language : languages) {                                                                 
+Iterator&lt;Locale&gt; iterator = list.iterator();                                                     Iterator&lt;Locale&gt; iterator = list.iterator();                                                  
+boolean found = false;                                                                                 boolean found = false;                                                                              
+// see if it was returned by the set                                                                   // see if it was returned by the set                                                                
+while (iterator.hasNext()) {                                                                           while (iterator.hasNext()) {                                                                        
+Locale locale = iterator.next();                                                                       Locale locale = iterator.next();                                                                    
+// should have an en empty variant                                                                     // should have an en empty variant                                                                  
+assertTrue(locale.getVariant() == null || locale.getVariant().length() == 0);                          assertTrue(locale.getVariant() == null || locale.getVariant().length() == 0);                       
+assertEquals(country, locale.getCountry());                                                            assertEquals(country, locale.getCountry());                                                         
+if (languages[i].equals(locale.getLanguage())) {                                                     | if (language.equals(locale.getLanguage())) {                                                        
+found = true;                                                                                          found = true;                                                                                       
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+if (!found) {                                                                                          if (!found) {                                                                                       
+fail("Cound not find language: " + languages[i] + " for country: " + country);                       | fail("Cound not find language: " + language + " for country: " + country);                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+assertUnmodifiableCollection(list);                                                                    assertUnmodifiableCollection(list);                                                                 
+}                                                                                                      }                                                                                                   

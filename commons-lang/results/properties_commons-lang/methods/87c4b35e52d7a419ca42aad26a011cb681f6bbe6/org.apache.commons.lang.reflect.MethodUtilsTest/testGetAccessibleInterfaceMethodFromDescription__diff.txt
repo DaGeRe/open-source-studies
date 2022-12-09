@@ -1,0 +1,7 @@
+public void testGetAccessibleInterfaceMethodFromDescription() throws Exception {
+    Class<?>[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };
+    for (int i = 0; i < p.length; i++) {
+        Method accessibleMethod = MethodUtils.getAccessibleMethod(TestMutable.class, "getValue", p[i]);
+        assertSame(Mutable.class, accessibleMethod.getDeclaringClass());
+    }
+}

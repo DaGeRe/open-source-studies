@@ -1,0 +1,29 @@
+/**
+ * <p>Checks if the CharSequence contains only certain characters.</p>
+ *
+ * <p>A <code>null</code> CharSequence will return <code>false</code>.
+ * A <code>null</code> valid character String will return <code>false</code>.
+ * An empty String (length()=0) always returns <code>true</code>.</p>
+ *
+ * <pre>
+ * StringUtils.containsOnly(null, *)       = false
+ * StringUtils.containsOnly(*, null)       = false
+ * StringUtils.containsOnly("", *)         = true
+ * StringUtils.containsOnly("ab", "")      = false
+ * StringUtils.containsOnly("abab", "abc") = true
+ * StringUtils.containsOnly("ab1", "abc")  = false
+ * StringUtils.containsOnly("abz", "abc")  = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @param validChars  a String of valid chars, may be null
+ * @return true if it only contains valid chars and is non-null
+ * @since 2.0
+ * @since 3.0 Changed signature from containsOnly(String, String) to containsOnly(CharSequence, String)
+ */
+public static boolean containsOnly(CharSequence cs, String validChars) {
+    if (cs == null || validChars == null) {
+        return false;
+    }
+    return containsOnly(cs, validChars.toCharArray());
+}

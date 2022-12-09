@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the specified argument character sequence is                                  * &lt;p&gt;Validate that the specified argument character sequence is                               
+* neither &lt;code&gt;null&lt;/code&gt;, a length of zero (no characters), empty                       * neither &lt;code&gt;null&lt;/code&gt;, a length of zero (no characters), empty                    
+* nor whitespace; otherwise throwing an exception.                                                     * nor whitespace; otherwise throwing an exception.                                                  
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;Validate.notBlank(myString);&lt;/pre&gt;                                                  * &lt;pre&gt;Validate.notBlank(myString);&lt;/pre&gt;                                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is &quot;The validated character                               * &lt;p&gt;The message in the exception is &quot;The validated character                            
+* sequence is blank&quot;.&lt;/p&gt;                                                                   * sequence is blank&quot;.&lt;/p&gt;                                                                
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the character sequence type                                                         * @param &lt;T&gt; the character sequence type                                                      
+* @param chars the character sequence to check                                                         * @param chars the character sequence to check                                                      
+* @return the validated character sequence (never &lt;code&gt;null&lt;/code&gt; method for chaining)   * @return the validated character sequence (never &lt;code&gt;null&lt;/code&gt; method for chaining)
+* @throws NullPointerException if the character sequence is &lt;code&gt;null&lt;/code&gt;              * @throws NullPointerException if the character sequence is &lt;code&gt;null&lt;/code&gt;           
+* @throws IllegalArgumentException if the character sequence is blank                                  * @throws IllegalArgumentException if the character sequence is blank                               
+* @see #notBlank(CharSequence, String, Object...)                                                      * @see #notBlank(CharSequence, String, Object...)                                                   
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends CharSequence&gt; T notBlank(T chars) {                                     public static &lt;T extends CharSequence&gt; T notBlank(T chars) {                                  
+return notBlank(chars, DEFAULT_NOT_BLANK_EXCEPTION_MESSAGE);                                         | return notBlank(chars, DEFAULT_NOT_BLANK_EX_MESSAGE);                                               
+}                                                                                                      }                                                                                                   

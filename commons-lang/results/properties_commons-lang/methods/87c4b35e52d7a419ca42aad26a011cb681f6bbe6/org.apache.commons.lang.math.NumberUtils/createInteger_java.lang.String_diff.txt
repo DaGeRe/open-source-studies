@@ -1,0 +1,17 @@
+/**
+ * <p>Convert a <code>String</code> to a <code>Integer</code>, handling
+ * hex and octal notations.</p>
+ *
+ * <p>Returns <code>null</code> if the string is <code>null</code>.</p>
+ *
+ * @param str  a <code>String</code> to convert, may be null
+ * @return converted <code>Integer</code>
+ * @throws NumberFormatException if the value cannot be converted
+ */
+public static Integer createInteger(String str) {
+    if (str == null) {
+        return null;
+    }
+    // decode() handles 0xAABD and 0777 (hex and octal) as well.
+    return Integer.decode(str);
+}

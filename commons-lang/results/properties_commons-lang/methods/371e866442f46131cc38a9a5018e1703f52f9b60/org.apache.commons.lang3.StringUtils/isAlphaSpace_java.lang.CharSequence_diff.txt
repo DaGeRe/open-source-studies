@@ -1,0 +1,34 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if the CharSequence contains only Unicode letters and                                * &lt;p&gt;Checks if the CharSequence contains only Unicode letters and                             
+* space (' ').&lt;/p&gt;                                                                               * space (' ').&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null} will return {@code false}                                                      * &lt;p&gt;{@code null} will return {@code false}                                                   
+* An empty CharSequence (length()=0) will return {@code true}.&lt;/p&gt;                               * An empty CharSequence (length()=0) will return {@code true}.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.isAlphaSpace(null)   = false                                                             * StringUtils.isAlphaSpace(null)   = false                                                          
+* StringUtils.isAlphaSpace("")     = true                                                              * StringUtils.isAlphaSpace("")     = true                                                           
+* StringUtils.isAlphaSpace("  ")   = true                                                              * StringUtils.isAlphaSpace("  ")   = true                                                           
+* StringUtils.isAlphaSpace("abc")  = true                                                              * StringUtils.isAlphaSpace("abc")  = true                                                           
+* StringUtils.isAlphaSpace("ab c") = true                                                              * StringUtils.isAlphaSpace("ab c") = true                                                           
+* StringUtils.isAlphaSpace("ab2c") = false                                                             * StringUtils.isAlphaSpace("ab2c") = false                                                          
+* StringUtils.isAlphaSpace("ab-c") = false                                                             * StringUtils.isAlphaSpace("ab-c") = false                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param cs  the CharSequence to check, may be null                                                    * @param cs  the CharSequence to check, may be null                                                 
+* @return {@code true} if only contains letters and space,                                             * @return {@code true} if only contains letters and space,                                          
+*  and is non-null                                                                                     *  and is non-null                                                                                  
+* @since 3.0 Changed signature from isAlphaSpace(String) to isAlphaSpace(CharSequence)                 * @since 3.0 Changed signature from isAlphaSpace(String) to isAlphaSpace(CharSequence)              
+*/                                                                                                     */                                                                                                  
+public static boolean isAlphaSpace(CharSequence cs) {                                                  public static boolean isAlphaSpace(CharSequence cs) {                                               
+if (cs == null) {                                                                                      if (cs == null) {                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int sz = cs.length();                                                                                  int sz = cs.length();                                                                               
+for (int i = 0; i &lt; sz; i++) {                                                                      for (int i = 0; i &lt; sz; i++) {                                                                   
+if ((Character.isLetter(cs.charAt(i)) == false) && (cs.charAt(i) != ' ')) {                          | if (Character.isLetter(cs.charAt(i)) == false && cs.charAt(i) != ' ') {                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

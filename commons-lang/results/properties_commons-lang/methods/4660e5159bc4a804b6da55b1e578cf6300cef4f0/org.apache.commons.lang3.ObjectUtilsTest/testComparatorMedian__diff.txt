@@ -1,0 +1,14 @@
+@Test
+public void testComparatorMedian() {
+    CharSequenceComparator cmp = new CharSequenceComparator();
+    NonComparableCharSequence foo = new NonComparableCharSequence("foo");
+    NonComparableCharSequence bar = new NonComparableCharSequence("bar");
+    NonComparableCharSequence baz = new NonComparableCharSequence("baz");
+    NonComparableCharSequence blah = new NonComparableCharSequence("blah");
+    NonComparableCharSequence wah = new NonComparableCharSequence("wah");
+    assertSame(foo, ObjectUtils.median(cmp, foo));
+    assertSame(bar, ObjectUtils.median(cmp, foo, bar));
+    assertSame(baz, ObjectUtils.median(cmp, foo, bar, baz));
+    assertSame(baz, ObjectUtils.median(cmp, foo, bar, baz, blah));
+    assertSame(blah, ObjectUtils.median(cmp, foo, bar, baz, blah, wah));
+}

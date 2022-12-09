@@ -1,0 +1,19 @@
+/**
+ * <p>
+ * Remove a split.
+ * </p>
+ *
+ * <p>
+ * This method clears the stop time. The start time is unaffected, enabling timing from the original start point to
+ * continue.
+ * </p>
+ *
+ * @throws IllegalStateException
+ *             if the StopWatch has not been split.
+ */
+public void unsplit() {
+    if (this.splitState != STATE_SPLIT) {
+        throw new IllegalStateException("Stopwatch has not been split. ");
+    }
+    this.splitState = STATE_UNSPLIT;
+}

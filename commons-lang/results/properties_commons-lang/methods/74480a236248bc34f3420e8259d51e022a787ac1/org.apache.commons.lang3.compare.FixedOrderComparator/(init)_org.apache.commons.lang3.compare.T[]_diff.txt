@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Constructs a FixedOrderComparator which uses the order of the given array                            * Constructs a FixedOrderComparator which uses the order of the given array                         
+* to compare the objects.                                                                              * to compare the objects.                                                                           
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* The array is copied, so later changes will not affect the comparator.                                * The array is copied, so later changes will not affect the comparator.                             
+*                                                                                                      *                                                                                                   
+* @param items  the items that the comparator can compare in order                                     * @param items  the items that the comparator can compare in order                                  
+* @throws IllegalArgumentException if the array is null                                                * @throws IllegalArgumentException if the array is null                                             
+*/                                                                                                     */                                                                                                  
+public FixedOrderComparator(T[] items) {                                                               public FixedOrderComparator(T[] items) {                                                            
+super();                                                                                               super();                                                                                            
+if (items == null) {                                                                                   if (items == null) {                                                                                
+throw new IllegalArgumentException("The list of items must not be null");                              throw new IllegalArgumentException("The list of items must not be null");                           
+}                                                                                                      }                                                                                                   
+for (int i = 0; i &lt; items.length; i++) {                                                          | for (T item : items) {                                                                              
+add(items[i]);                                                                                       | add(item);                                                                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

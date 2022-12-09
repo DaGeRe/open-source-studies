@@ -1,0 +1,14 @@
+public void testHashCode() {
+    CharSet abc = CharSet.getInstance("abc");
+    CharSet abc2 = CharSet.getInstance("abc");
+    CharSet atoc = CharSet.getInstance("a-c");
+    CharSet atoc2 = CharSet.getInstance("a-c");
+    CharSet notatoc = CharSet.getInstance("^a-c");
+    CharSet notatoc2 = CharSet.getInstance("^a-c");
+    assertEquals(abc.hashCode(), abc.hashCode());
+    assertEquals(abc.hashCode(), abc2.hashCode());
+    assertEquals(atoc.hashCode(), atoc.hashCode());
+    assertEquals(atoc.hashCode(), atoc2.hashCode());
+    assertEquals(notatoc.hashCode(), notatoc.hashCode());
+    assertEquals(notatoc.hashCode(), notatoc2.hashCode());
+}

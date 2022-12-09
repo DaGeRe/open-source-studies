@@ -1,0 +1,21 @@
+@Test                                                                                                  @Test                                                                                               
+public void testSplitByWholeString_StringStringBooleanInt() {                                          public void testSplitByWholeString_StringStringBooleanInt() {                                       
+assertEquals(null, StringUtils.splitByWholeSeparator(null, ".", 3));                                 | assertArrayEquals(null, StringUtils.splitByWholeSeparator(null, ".", 3));                           
+assertEquals(0, StringUtils.splitByWholeSeparator("", ".", 3).length);                                 assertEquals(0, StringUtils.splitByWholeSeparator("", ".", 3).length);                              
+String stringToSplitOnNulls = "ab   de fg";                                                            String stringToSplitOnNulls = "ab   de fg";                                                         
+String[] splitOnNullExpectedResults = { "ab", "de fg" };                                               String[] splitOnNullExpectedResults = { "ab", "de fg" };                                            
+// String[] splitOnNullExpectedResults = { "ab", "de" } ;                                              // String[] splitOnNullExpectedResults = { "ab", "de" } ;                                           
+String[] splitOnNullResults = StringUtils.splitByWholeSeparator(stringToSplitOnNulls, null, 2);        String[] splitOnNullResults = StringUtils.splitByWholeSeparator(stringToSplitOnNulls, null, 2);     
+assertEquals(splitOnNullExpectedResults.length, splitOnNullResults.length);                            assertEquals(splitOnNullExpectedResults.length, splitOnNullResults.length);                         
+for (int i = 0; i &lt; splitOnNullExpectedResults.length; i += 1) {                                    for (int i = 0; i &lt; splitOnNullExpectedResults.length; i += 1) {                                 
+assertEquals(splitOnNullExpectedResults[i], splitOnNullResults[i]);                                    assertEquals(splitOnNullExpectedResults[i], splitOnNullResults[i]);                                 
+}                                                                                                      }                                                                                                   
+String stringToSplitOnCharactersAndString = "abstemiouslyaeiouyabstemiouslyaeiouyabstemiously";        String stringToSplitOnCharactersAndString = "abstemiouslyaeiouyabstemiouslyaeiouyabstemiously";     
+String[] splitOnStringExpectedResults = { "abstemiously", "abstemiouslyaeiouyabstemiously" };          String[] splitOnStringExpectedResults = { "abstemiously", "abstemiouslyaeiouyabstemiously" };       
+// String[] splitOnStringExpectedResults = { "abstemiously", "abstemiously" } ;                        // String[] splitOnStringExpectedResults = { "abstemiously", "abstemiously" } ;                     
+String[] splitOnStringResults = StringUtils.splitByWholeSeparator(stringToSplitOnCharactersAndString   String[] splitOnStringResults = StringUtils.splitByWholeSeparator(stringToSplitOnCharactersAndString
+assertEquals(splitOnStringExpectedResults.length, splitOnStringResults.length);                        assertEquals(splitOnStringExpectedResults.length, splitOnStringResults.length);                     
+for (int i = 0; i &lt; splitOnStringExpectedResults.length; i++) {                                     for (int i = 0; i &lt; splitOnStringExpectedResults.length; i++) {                                  
+assertEquals(splitOnStringExpectedResults[i], splitOnStringResults[i]);                                assertEquals(splitOnStringExpectedResults[i], splitOnStringResults[i]);                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

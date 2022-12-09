@@ -1,0 +1,14 @@
+                                                                                                     | @Test                                                                                               
+public void testAddObjectArrayBoolean() {                                                              public void testAddObjectArrayBoolean() {                                                           
+boolean[] newArray;                                                                                    boolean[] newArray;                                                                                 
+newArray = ArrayUtils.add((boolean[]) null, false);                                                    newArray = ArrayUtils.add((boolean[]) null, false);                                                 
+assertTrue(Arrays.equals(new boolean[] { false }, newArray));                                          assertTrue(Arrays.equals(new boolean[] { false }, newArray));                                       
+assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                 
+newArray = ArrayUtils.add((boolean[]) null, true);                                                     newArray = ArrayUtils.add((boolean[]) null, true);                                                  
+assertTrue(Arrays.equals(new boolean[] { true }, newArray));                                           assertTrue(Arrays.equals(new boolean[] { true }, newArray));                                        
+assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                 
+boolean[] array1 = new boolean[] { true, false, true };                                                boolean[] array1 = new boolean[] { true, false, true };                                             
+newArray = ArrayUtils.add(array1, false);                                                              newArray = ArrayUtils.add(array1, false);                                                           
+assertTrue(Arrays.equals(new boolean[] { true, false, true, false }, newArray));                       assertTrue(Arrays.equals(new boolean[] { true, false, true, false }, newArray));                    
+assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                    assertEquals(Boolean.TYPE, newArray.getClass().getComponentType());                                 
+}                                                                                                      }                                                                                                   

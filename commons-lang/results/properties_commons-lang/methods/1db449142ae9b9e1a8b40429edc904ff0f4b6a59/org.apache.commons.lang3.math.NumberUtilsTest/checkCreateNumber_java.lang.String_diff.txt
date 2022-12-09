@@ -1,0 +1,11 @@
+private boolean checkCreateNumber(String val) {
+    try {
+        Object obj = NumberUtils.createNumber(val);
+        if (obj == null) {
+            return false;
+        }
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}

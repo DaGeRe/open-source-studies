@@ -1,0 +1,10 @@
+public void testContainsBoolean() {
+    boolean[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, true));
+    array = new boolean[] { true, false, true };
+    assertEquals(true, ArrayUtils.contains(array, true));
+    assertEquals(true, ArrayUtils.contains(array, false));
+    array = new boolean[] { true, true };
+    assertEquals(true, ArrayUtils.contains(array, true));
+    assertEquals(false, ArrayUtils.contains(array, false));
+}

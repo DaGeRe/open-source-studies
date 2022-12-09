@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotBlankMsgNullStringShouldThrow() {                                                   public void testNotBlankMsgNullStringShouldThrow() {                                                
+// given                                                                                               // given                                                                                            
+String string = null;                                                                                  String string = null;                                                                               
+try {                                                                                                  try {                                                                                               
+// when                                                                                                // when                                                                                             
+Validate.notBlank(string, "Message");                                                                  Validate.notBlank(string, "Message");                                                               
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException e) {                                                               | } catch (NullPointerException e) {                                                                  
+// then                                                                                                // then                                                                                             
+assertEquals("Message", e.getMessage());                                                               assertEquals("Message", e.getMessage());                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

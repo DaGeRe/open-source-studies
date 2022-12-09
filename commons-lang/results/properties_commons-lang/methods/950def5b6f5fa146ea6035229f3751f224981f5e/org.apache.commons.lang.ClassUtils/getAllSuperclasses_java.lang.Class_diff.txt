@@ -1,0 +1,21 @@
+// Superclasses/Superinterfaces                                                                        // Superclasses/Superinterfaces                                                                     
+// ----------------------------------------------------------------------                              // ----------------------------------------------------------------------                           
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a &lt;code&gt;List&lt;/code&gt; of superclasses for the given class.&lt;/p&gt;         * &lt;p&gt;Gets a &lt;code&gt;List&lt;/code&gt; of superclasses for the given class.&lt;/p&gt;      
+*                                                                                                      *                                                                                                   
+* @param cls  the class to look up, may be &lt;code&gt;null&lt;/code&gt;                               * @param cls  the class to look up, may be &lt;code&gt;null&lt;/code&gt;                            
+* @return the &lt;code&gt;List&lt;/code&gt; of superclasses in order going up from this one            * @return the &lt;code&gt;List&lt;/code&gt; of superclasses in order going up from this one         
+*  &lt;code&gt;null&lt;/code&gt; if null input                                                         *  &lt;code&gt;null&lt;/code&gt; if null input                                                      
+*/                                                                                                     */                                                                                                  
+public static List getAllSuperclasses(Class cls) {                                                   | public static List&lt;Class&lt;?&gt;&gt; getAllSuperclasses(Class&lt;?&gt; cls) {                   
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+List classes = new ArrayList();                                                                      | List&lt;Class&lt;?&gt;&gt; classes = new ArrayList&lt;Class&lt;?&gt;&gt;();                         
+Class superclass = cls.getSuperclass();                                                              | Class&lt;?&gt; superclass = cls.getSuperclass();                                                    
+while (superclass != null) {                                                                           while (superclass != null) {                                                                        
+classes.add(superclass);                                                                               classes.add(superclass);                                                                            
+superclass = superclass.getSuperclass();                                                               superclass = superclass.getSuperclass();                                                            
+}                                                                                                      }                                                                                                   
+return classes;                                                                                        return classes;                                                                                     
+}                                                                                                      }                                                                                                   

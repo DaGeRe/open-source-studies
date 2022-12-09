@@ -1,0 +1,32 @@
+public void testConstructor_String_combo() {                                                           public void testConstructor_String_combo() {                                                        
+CharSet set;                                                                                           CharSet set;                                                                                        
+CharRange[] array;                                                                                     CharRange[] array;                                                                                  
+set = CharSet.getInstance("abc");                                                                      set = CharSet.getInstance("abc");                                                                   
+array = set.getCharRanges();                                                                           array = set.getCharRanges();                                                                        
+assertEquals(3, array.length);                                                                         assertEquals(3, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));                                  
+assertEquals(true, ArrayUtils.contains(array, new CharRange('b')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('b')));                                  
+assertEquals(true, ArrayUtils.contains(array, new CharRange('c')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('c')));                                  
+set = CharSet.getInstance("a-ce-f");                                                                   set = CharSet.getInstance("a-ce-f");                                                                
+array = set.getCharRanges();                                                                           array = set.getCharRanges();                                                                        
+assertEquals(2, array.length);                                                                         assertEquals(2, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a', 'c')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('a', 'c')));                           
+assertEquals(true, ArrayUtils.contains(array, new CharRange('e', 'f')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('e', 'f')));                           
+set = CharSet.getInstance("ae-f");                                                                     set = CharSet.getInstance("ae-f");                                                                  
+array = set.getCharRanges();                                                                           array = set.getCharRanges();                                                                        
+assertEquals(2, array.length);                                                                         assertEquals(2, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));                                  
+assertEquals(true, ArrayUtils.contains(array, new CharRange('e', 'f')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('e', 'f')));                           
+set = CharSet.getInstance("e-fa");                                                                     set = CharSet.getInstance("e-fa");                                                                  
+array = set.getCharRanges();                                                                           array = set.getCharRanges();                                                                        
+assertEquals(2, array.length);                                                                         assertEquals(2, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));                                  
+assertEquals(true, ArrayUtils.contains(array, new CharRange('e', 'f')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('e', 'f')));                           
+set = CharSet.getInstance("ae-fm-pz");                                                                 set = CharSet.getInstance("ae-fm-pz");                                                              
+array = set.getCharRanges();                                                                           array = set.getCharRanges();                                                                        
+assertEquals(4, array.length);                                                                         assertEquals(4, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));                                  
+assertEquals(true, ArrayUtils.contains(array, new CharRange('e', 'f')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('e', 'f')));                           
+assertEquals(true, ArrayUtils.contains(array, new CharRange('m', 'p')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('m', 'p')));                           
+assertEquals(true, ArrayUtils.contains(array, new CharRange('z')));                                  | assertEquals(true, ArrayUtils.contains(array, CharRange.is('z')));                                  
+}                                                                                                      }                                                                                                   

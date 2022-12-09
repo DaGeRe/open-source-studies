@@ -1,0 +1,20 @@
+/**
+ * Copies part of the builder's character array into a new character array.
+ *
+ * @param startIndex  the start index, inclusive, must be valid
+ * @param endIndex  the end index, exclusive, must be valid except that
+ *  if too large it is treated as end of string
+ * @return a new array that holds part of the contents of the builder
+ * @throws IndexOutOfBoundsException if startIndex is invalid,
+ *  or if endIndex is invalid (but endIndex greater than size is valid)
+ */
+public char[] toCharArray(int startIndex, int endIndex) {
+    endIndex = validateRange(startIndex, endIndex);
+    int len = endIndex - startIndex;
+    if (len == 0) {
+        return ArrayUtils.EMPTY_CHAR_ARRAY;
+    }
+    char[] chars = new char[len];
+    System.arraycopy(buffer, startIndex, chars, 0, len);
+    return chars;
+}

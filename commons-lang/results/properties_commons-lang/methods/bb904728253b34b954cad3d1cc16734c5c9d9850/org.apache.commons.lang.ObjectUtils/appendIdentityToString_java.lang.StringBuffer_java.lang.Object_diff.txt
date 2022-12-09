@@ -1,0 +1,28 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Appends the toString that would be produced by &lt;code&gt;Object&lt;/code&gt;            |                                                                                                     
+* if a class did not override toString itself. &lt;code&gt;null&lt;/code&gt;                         |                                                                                                     
+* will return &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                               |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* ObjectUtils.appendIdentityToString(*, null)            = null                                      |                                                                                                     
+* ObjectUtils.appendIdentityToString(null, "")           = "java.lang.String@1e23"                   |                                                                                                     
+* ObjectUtils.appendIdentityToString(null, Boolean.TRUE) = "java.lang.Boolean@7fa"                   |                                                                                                     
+* ObjectUtils.appendIdentityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa")       |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param buffer  the buffer to append to, may be &lt;code&gt;null&lt;/code&gt;                       |                                                                                                     
+* @param object  the object to create a toString for, may be &lt;code&gt;null&lt;/code&gt;           |                                                                                                     
+* @return the default toString text, or &lt;code&gt;null&lt;/code&gt; if                             |                                                                                                     
+*  &lt;code&gt;null&lt;/code&gt; passed in                                                           |                                                                                                     
+* @since 2.0                                                                                         |                                                                                                     
+* @deprecated The design of this method is bad - see LANG-360. Instead, use identityToString(StringB |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static StringBuffer appendIdentityToString(StringBuffer buffer, Object object) {              |                                                                                                     
+if (object == null) {                                                                                |                                                                                                     
+return null;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (buffer == null) {                                                                                |                                                                                                     
+buffer = new StringBuffer();                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+return buffer.append(object.getClass().getName()).append('@').append(Integer.toHexString(System.iden |                                                                                                     
+}                                                                                                    |                                                                                                     

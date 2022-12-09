@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void testMinShort() {                                                                           public void testMinShort() {                                                                        
+final short[] s = null;                                                                              |                                                                                                     
+try {                                                                                                |                                                                                                     
+NumberUtils.min(s);                                                                                  |                                                                                                     
+fail("No exception was thrown for null input.");                                                     |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+try {                                                                                                |                                                                                                     
+NumberUtils.min(new short[0]);                                                                       |                                                                                                     
+fail("No exception was thrown for empty input.");                                                    |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+assertEquals("min(short[]) failed for array length 1", 5, NumberUtils.min(new short[] { 5 }));         assertEquals("min(short[]) failed for array length 1", 5, NumberUtils.min(new short[] { 5 }));      
+assertEquals("min(short[]) failed for array length 2", 6, NumberUtils.min(new short[] { 6, 9 }));      assertEquals("min(short[]) failed for array length 2", 6, NumberUtils.min(new short[] { 6, 9 }));   
+assertEquals(-10, NumberUtils.min(new short[] { -10, -5, 0, 5, 10 }));                                 assertEquals(-10, NumberUtils.min(new short[] { -10, -5, 0, 5, 10 }));                              
+assertEquals(-10, NumberUtils.min(new short[] { -5, 0, -10, 5, 10 }));                                 assertEquals(-10, NumberUtils.min(new short[] { -5, 0, -10, 5, 10 }));                              
+}                                                                                                      }                                                                                                   

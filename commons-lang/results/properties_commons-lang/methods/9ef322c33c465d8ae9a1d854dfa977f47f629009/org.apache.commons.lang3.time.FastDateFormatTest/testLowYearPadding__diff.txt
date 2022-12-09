@@ -1,0 +1,15 @@
+/**
+ * Tests that pre-1000AD years get padded with yyyy
+ */
+public void testLowYearPadding() {
+    Calendar cal = Calendar.getInstance();
+    FastDateFormat format = FastDateFormat.getInstance("yyyy/MM/DD");
+    cal.set(1, 0, 1);
+    assertEquals("0001/01/01", format.format(cal));
+    cal.set(10, 0, 1);
+    assertEquals("0010/01/01", format.format(cal));
+    cal.set(100, 0, 1);
+    assertEquals("0100/01/01", format.format(cal));
+    cal.set(999, 0, 1);
+    assertEquals("0999/01/01", format.format(cal));
+}

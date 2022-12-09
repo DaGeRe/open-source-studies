@@ -1,0 +1,26 @@
+// Java and JavaScript                                                                                 // Java and JavaScript                                                                              
+// --------------------------------------------------------------------------                          // --------------------------------------------------------------------------                       
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using Java String rules.&lt;/   * &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using Java String rules.&lt;/
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Deals correctly with quotes and control-chars (tab, backslash, cr, ff, etc.) &lt;/p&gt;     * &lt;p&gt;Deals correctly with quotes and control-chars (tab, backslash, cr, ff, etc.) &lt;/p&gt;  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;So a tab becomes the characters &lt;code&gt;'\\'&lt;/code&gt; and                           * &lt;p&gt;So a tab becomes the characters &lt;code&gt;'\\'&lt;/code&gt; and                        
+* &lt;code&gt;'t'&lt;/code&gt;.&lt;/p&gt;                                                              * &lt;code&gt;'t'&lt;/code&gt;.&lt;/p&gt;                                                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The only difference between Java strings and JavaScript strings                             * &lt;p&gt;The only difference between Java strings and JavaScript strings                          
+* is that in JavaScript, a single quote must be escaped.&lt;/p&gt;                                     * is that in JavaScript, a single quote must be escaped.&lt;/p&gt;                                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Example:                                                                                    * &lt;p&gt;Example:                                                                                 
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* input string: He didn't say, "Stop!"                                                                 * input string: He didn't say, "Stop!"                                                              
+* output string: He didn't say, \"Stop!\"                                                              * output string: He didn't say, \"Stop!\"                                                           
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param str  String to escape values in, may be null                                                  * @param str  String to escape values in, may be null                                               
+* @return String with escaped values, &lt;code&gt;null&lt;/code&gt; if null string input               * @return String with escaped values, &lt;code&gt;null&lt;/code&gt; if null string input            
+*/                                                                                                     */                                                                                                  
+public static String escapeJava(String str) {                                                          public static String escapeJava(String str) {                                                       
+return EscapeUtils.ESCAPE_JAVA.translate(str);                                                       | return EscapeUtils.escapeJava(str);                                                                 
+}                                                                                                      }                                                                                                   

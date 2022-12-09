@@ -1,0 +1,18 @@
+@Test
+public void testInvokeStaticMethod() throws Exception {
+    assertEquals("bar()", MethodUtils.invokeStaticMethod(TestBean.class, "bar", (Object[]) ArrayUtils.EMPTY_CLASS_ARRAY));
+    assertEquals("bar()", MethodUtils.invokeStaticMethod(TestBean.class, "bar", (Object[]) null));
+    assertEquals("bar()", MethodUtils.invokeStaticMethod(TestBean.class, "bar", (Object[]) null, (Class<?>[]) null));
+    assertEquals("bar(String)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", ""));
+    assertEquals("bar(Object)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", new Object()));
+    assertEquals("bar(Object)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", Boolean.TRUE));
+    assertEquals("bar(Integer)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", NumberUtils.INTEGER_ONE));
+    assertEquals("bar(int)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", NumberUtils.BYTE_ONE));
+    assertEquals("bar(double)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", NumberUtils.LONG_ONE));
+    assertEquals("bar(double)", MethodUtils.invokeStaticMethod(TestBean.class, "bar", NumberUtils.DOUBLE_ONE));
+    try {
+        MethodUtils.invokeStaticMethod(TestBean.class, "does_not_exist");
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+}

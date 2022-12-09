@@ -1,0 +1,9 @@
+@Test
+public void testEquals() throws Exception {
+    assertEquals(Pair.of(null, "foo"), Pair.of(null, "foo"));
+    assertFalse(Pair.of("foo", 0).equals(Pair.of("foo", null)));
+    assertFalse(Pair.of("foo", "bar").equals(Pair.of("xyz", "bar")));
+    Pair p = Pair.of("foo", "bar");
+    assertTrue(p.equals(p));
+    assertFalse(p.equals(new Object()));
+}

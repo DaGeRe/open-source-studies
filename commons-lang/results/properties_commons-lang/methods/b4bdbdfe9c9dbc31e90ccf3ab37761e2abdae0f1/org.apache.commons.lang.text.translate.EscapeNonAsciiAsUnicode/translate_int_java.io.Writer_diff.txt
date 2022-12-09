@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+public boolean translate(int codepoint, Writer out) throws IOException {
+    // if (codepoint > 0xffff) {
+    // TODO: Figure out what to do. Output as two unicodes?
+    // Does this make this a Java-specific output class?
+    if (codepoint > 0x7f) {
+        super.translate(codepoint, out);
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotEmptyCollection2() {                                                                public void testNotEmptyCollection2() {                                                             
+Collection coll = new ArrayList();                                                                   | Collection&lt;Integer&gt; coll = new ArrayList&lt;Integer&gt;();                                    
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((Collection) null, "MSG");                                                         | Validate.notEmpty((Collection&lt;?&gt;) null, "MSG");                                               
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty(coll, "MSG");                                                                        Validate.notEmpty(coll, "MSG");                                                                     
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+coll.add(new Integer(8));                                                                              coll.add(new Integer(8));                                                                           
+Validate.notEmpty(coll, "MSG");                                                                        Validate.notEmpty(coll, "MSG");                                                                     
+}                                                                                                      }                                                                                                   

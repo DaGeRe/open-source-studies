@@ -1,0 +1,13 @@
+public void testContainsString() {
+    assertEquals(false, StringUtils.contains(null, null));
+    assertEquals(false, StringUtils.contains(null, ""));
+    assertEquals(false, StringUtils.contains(null, "a"));
+    assertEquals(false, StringUtils.contains("", null));
+    assertEquals(true, StringUtils.contains("", ""));
+    assertEquals(false, StringUtils.contains("", "a"));
+    assertEquals(true, StringUtils.contains("abc", "a"));
+    assertEquals(true, StringUtils.contains("abc", "b"));
+    assertEquals(true, StringUtils.contains("abc", "c"));
+    assertEquals(true, StringUtils.contains("abc", "abc"));
+    assertEquals(false, StringUtils.contains("abc", "z"));
+}

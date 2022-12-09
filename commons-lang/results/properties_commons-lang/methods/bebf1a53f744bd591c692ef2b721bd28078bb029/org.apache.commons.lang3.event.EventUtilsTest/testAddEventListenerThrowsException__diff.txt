@@ -1,0 +1,13 @@
+public void testAddEventListenerThrowsException() {                                                    public void testAddEventListenerThrowsException() {                                                 
+final ExceptionEventSource src = new ExceptionEventSource();                                           final ExceptionEventSource src = new ExceptionEventSource();                                        
+try {                                                                                                  try {                                                                                               
+EventUtils.addEventListener(src, ActionListener.class, new ActionListener() {                        | EventUtils.addEventListener(src, PropertyChangeListener.class, new PropertyChangeListener() {       
+                                                                                                                                                                                                           
+public void actionPerformed(ActionEvent e) {                                                         | public void propertyChange(PropertyChangeEvent e) {                                                 
+// Do nothing!                                                                                         // Do nothing!                                                                                      
+}                                                                                                      }                                                                                                   
+});                                                                                                    });                                                                                                 
+fail("Add method should have thrown an exception, so method should fail.");                            fail("Add method should have thrown an exception, so method should fail.");                         
+} catch (RuntimeException e) {                                                                         } catch (RuntimeException e) {                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

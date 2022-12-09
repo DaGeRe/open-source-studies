@@ -1,0 +1,22 @@
+/**
+ * Tests whether the daemon flag is not touched on newly created threads if
+ * it is not specified.
+ */
+@Test
+public void testNewThreadNoDaemonFlag() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r1 = EasyMock.createMock(Runnable.class);
+    Runnable r2 = EasyMock.createMock(Runnable.class);
+    Thread t1 = new Thread();
+    Thread t2 = new Thread();
+    t1.setDaemon(true);
+    EasyMock.expect(wrapped.newThread(r1)).andReturn(t1);
+    EasyMock.expect(wrapped.newThread(r2)).andReturn(t2);
+    EasyMock.replay(wrapped, r1, r2);
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).build();
+    assertSame("Wrong thread 1", t1, factory.newThread(r1));
+    assertTrue("No daemon thread", t1.isDaemon());
+    assertSame("Wrong thread 2", t2, factory.newThread(r2));
+    assertFalse("A daemon thread", t2.isDaemon());
+    EasyMock.verify(wrapped, r1, r2);
+}

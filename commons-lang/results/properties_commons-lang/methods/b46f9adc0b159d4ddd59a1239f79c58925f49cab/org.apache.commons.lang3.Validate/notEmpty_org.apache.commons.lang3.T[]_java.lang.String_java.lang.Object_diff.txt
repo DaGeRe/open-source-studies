@@ -1,0 +1,27 @@
+// notEmpty array
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate that the specified argument array is neither {@code null}
+ * nor a length of zero (no elements); otherwise throwing an exception
+ * with the specified message.
+ *
+ * <pre>Validate.notEmpty(myArray, "The array must not be empty");</pre>
+ *
+ * @param <T> the array type
+ * @param array  the array to check, validated not null by this method
+ * @param message  the {@link String#format(String, Object...)} exception message if invalid, not null
+ * @param values  the optional values for the formatted exception message, null array not recommended
+ * @return the validated array (never {@code null} method for chaining)
+ * @throws NullPointerException if the array is {@code null}
+ * @throws IllegalArgumentException if the array is empty
+ * @see #notEmpty(Object[])
+ */
+public static <T> T[] notEmpty(T[] array, String message, Object... values) {
+    if (array == null) {
+        throw new NullPointerException(String.format(message, values));
+    }
+    if (array.length == 0) {
+        throw new IllegalArgumentException(String.format(message, values));
+    }
+    return array;
+}

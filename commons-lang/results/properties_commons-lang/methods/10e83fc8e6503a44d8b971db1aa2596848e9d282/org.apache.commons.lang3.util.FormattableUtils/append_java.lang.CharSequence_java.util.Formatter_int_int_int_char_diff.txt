@@ -1,0 +1,15 @@
+/**
+ * Handles the common {@link Formattable} operations of truncate-pad-append,
+ * with no ellipsis on precision overflow.
+ *
+ * @param seq to handle
+ * @param formatter destination
+ * @param flags for formatting
+ * @param width of output
+ * @param precision of output
+ * @param padChar to use
+ * @return {@code formatter}
+ */
+public static Formatter append(CharSequence seq, Formatter formatter, int flags, int width, int precision, char padChar) {
+    return append(seq, formatter, flags, width, precision, padChar, null);
+}

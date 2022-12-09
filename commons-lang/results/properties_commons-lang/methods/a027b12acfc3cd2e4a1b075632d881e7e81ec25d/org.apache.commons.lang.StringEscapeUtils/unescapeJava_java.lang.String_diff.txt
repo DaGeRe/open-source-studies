@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Unescapes any Java literals found in the &lt;code&gt;String&lt;/code&gt;.                   * &lt;p&gt;Unescapes any Java literals found in the &lt;code&gt;String&lt;/code&gt;.                
+* For example, it will turn a sequence of &lt;code&gt;'\'&lt;/code&gt; and                             * For example, it will turn a sequence of &lt;code&gt;'\'&lt;/code&gt; and                          
+* &lt;code&gt;'n'&lt;/code&gt; into a newline character, unless the &lt;code&gt;'\'&lt;/code&gt;       * &lt;code&gt;'n'&lt;/code&gt; into a newline character, unless the &lt;code&gt;'\'&lt;/code&gt;    
+* is preceded by another &lt;code&gt;'\'&lt;/code&gt;.&lt;/p&gt;                                       * is preceded by another &lt;code&gt;'\'&lt;/code&gt;.&lt;/p&gt;                                    
+*                                                                                                      *                                                                                                   
+* @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                             * @param str  the &lt;code&gt;String&lt;/code&gt; to unescape, may be null                          
+* @return a new unescaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null str   * @return a new unescaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null str
+*/                                                                                                     */                                                                                                  
+public static String unescapeJava(String str) {                                                        public static String unescapeJava(String str) {                                                     
+return UnescapeUtils.UNESCAPE_JAVA.translate(str);                                                   | return UnescapeUtils.unescapeJava(str);                                                             
+}                                                                                                      }                                                                                                   

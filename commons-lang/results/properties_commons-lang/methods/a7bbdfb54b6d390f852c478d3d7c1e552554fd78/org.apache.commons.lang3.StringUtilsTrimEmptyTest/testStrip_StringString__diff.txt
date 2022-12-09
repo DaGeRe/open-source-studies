@@ -1,0 +1,26 @@
+public void testStrip_StringString() {
+    // null strip
+    assertEquals(null, StringUtils.strip(null, null));
+    assertEquals("", StringUtils.strip("", null));
+    assertEquals("", StringUtils.strip("        ", null));
+    assertEquals("abc", StringUtils.strip("  abc  ", null));
+    assertEquals(StringUtilsTest.NON_WHITESPACE, StringUtils.strip(StringUtilsTest.WHITESPACE + StringUtilsTest.NON_WHITESPACE + StringUtilsTest.WHITESPACE, null));
+    // "" strip
+    assertEquals(null, StringUtils.strip(null, ""));
+    assertEquals("", StringUtils.strip("", ""));
+    assertEquals("        ", StringUtils.strip("        ", ""));
+    assertEquals("  abc  ", StringUtils.strip("  abc  ", ""));
+    assertEquals(StringUtilsTest.WHITESPACE, StringUtils.strip(StringUtilsTest.WHITESPACE, ""));
+    // " " strip
+    assertEquals(null, StringUtils.strip(null, " "));
+    assertEquals("", StringUtils.strip("", " "));
+    assertEquals("", StringUtils.strip("        ", " "));
+    assertEquals("abc", StringUtils.strip("  abc  ", " "));
+    // "ab" strip
+    assertEquals(null, StringUtils.strip(null, "ab"));
+    assertEquals("", StringUtils.strip("", "ab"));
+    assertEquals("        ", StringUtils.strip("        ", "ab"));
+    assertEquals("  abc  ", StringUtils.strip("  abc  ", "ab"));
+    assertEquals("c", StringUtils.strip("abcabab", "ab"));
+    assertEquals(StringUtilsTest.WHITESPACE, StringUtils.strip(StringUtilsTest.WHITESPACE, ""));
+}

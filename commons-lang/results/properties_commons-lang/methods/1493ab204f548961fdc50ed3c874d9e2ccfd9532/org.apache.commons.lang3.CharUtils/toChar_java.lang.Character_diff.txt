@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Converts the Character to a char throwing an exception for {@code null}.</p>
+ *
+ * <pre>
+ *   CharUtils.toChar(' ')  = ' '
+ *   CharUtils.toChar('A')  = 'A'
+ *   CharUtils.toChar(null) throws IllegalArgumentException
+ * </pre>
+ *
+ * @param ch  the character to convert
+ * @return the char value of the Character
+ * @throws IllegalArgumentException if the Character is null
+ */
+public static char toChar(Character ch) {
+    if (ch == null) {
+        throw new IllegalArgumentException("The Character must not be null");
+    }
+    return ch.charValue();
+}

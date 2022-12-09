@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------
+/**
+ * Replaces all the occurrences of variables within the given source buffer
+ * with their matching values from the resolver.
+ * The buffer is updated with the result.
+ *
+ * @param source  the buffer to replace in, updated, null returns zero
+ * @return true if altered
+ */
+public boolean replaceIn(StringBuffer source) {
+    if (source == null) {
+        return false;
+    }
+    return replaceIn(source, 0, source.length());
+}

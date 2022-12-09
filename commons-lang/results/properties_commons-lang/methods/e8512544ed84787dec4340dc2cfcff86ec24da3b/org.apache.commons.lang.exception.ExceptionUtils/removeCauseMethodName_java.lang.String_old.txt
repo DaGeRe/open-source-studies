@@ -1,0 +1,18 @@
+/**
+ * <p>Removes from the list of method names used in the search for <code>Throwable</code>
+ * objects.</p>
+ *
+ * @param methodName  the methodName to remove from the list, <code>null</code>
+ *  and empty strings are ignored
+ * @since 2.1
+ */
+public static void removeCauseMethodName(String methodName) {
+    if (StringUtils.isNotEmpty(methodName)) {
+        List<String> list = getCauseMethodNameList();
+        if (list.remove(methodName)) {
+            synchronized (CAUSE_METHOD_NAMES) {
+                CAUSE_METHOD_NAMES = toArray(list);
+            }
+        }
+    }
+}

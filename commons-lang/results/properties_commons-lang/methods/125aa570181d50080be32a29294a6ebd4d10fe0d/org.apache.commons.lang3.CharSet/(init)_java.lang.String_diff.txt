@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new CharSet using the set syntax.&lt;/p&gt;                                  | * &lt;p&gt;Constructs a new CharSet using the set syntax.                                           
+                                                                                                     | * Each string is merged in with the set.&lt;/p&gt;                                                  
+*                                                                                                      *                                                                                                   
+* @param setStr  the String describing the set, may be null                                          | * @param set  Strings to merge into the initial set                                                 
+* @since 2.0                                                                                         | * @throws NullPointerException if set is {@code null}                                               
+*/                                                                                                     */                                                                                                  
+protected CharSet(String setStr) {                                                                   | protected CharSet(String... set) {                                                                  
+super();                                                                                               super();                                                                                            
+add(setStr);                                                                                         | int sz = set.length;                                                                                
+                                                                                                     | for (int i = 0; i &lt; sz; i++) {                                                                   
+                                                                                                     | add(set[i]);                                                                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

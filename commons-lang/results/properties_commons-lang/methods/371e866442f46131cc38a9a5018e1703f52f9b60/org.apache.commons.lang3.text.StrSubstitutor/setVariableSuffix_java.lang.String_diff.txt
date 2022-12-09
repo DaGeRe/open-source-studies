@@ -1,0 +1,16 @@
+/**
+ * Sets the variable suffix to use.
+ * <p>
+ * The variable suffix is the character or characters that identify the
+ * end of a variable. This method allows a string suffix to be easily set.
+ *
+ * @param suffix  the suffix for variables, not null
+ * @return this, to enable chaining
+ * @throws IllegalArgumentException if the suffix is null
+ */
+public StrSubstitutor setVariableSuffix(String suffix) {
+    if (suffix == null) {
+        throw new IllegalArgumentException("Variable suffix must not be null!");
+    }
+    return setVariableSuffixMatcher(StrMatcher.stringMatcher(suffix));
+}

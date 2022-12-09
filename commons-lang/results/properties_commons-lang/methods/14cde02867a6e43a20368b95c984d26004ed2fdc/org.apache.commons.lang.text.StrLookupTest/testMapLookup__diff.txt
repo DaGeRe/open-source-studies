@@ -1,0 +1,10 @@
+public void testMapLookup() {                                                                          public void testMapLookup() {                                                                       
+Map map = new HashMap();                                                                             | Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();                                
+map.put("key", "value");                                                                               map.put("key", "value");                                                                            
+map.put("number", new Integer(2));                                                                     map.put("number", new Integer(2));                                                                  
+assertEquals("value", StrLookup.mapLookup(map).lookup("key"));                                         assertEquals("value", StrLookup.mapLookup(map).lookup("key"));                                      
+assertEquals("2", StrLookup.mapLookup(map).lookup("number"));                                          assertEquals("2", StrLookup.mapLookup(map).lookup("number"));                                       
+assertEquals(null, StrLookup.mapLookup(map).lookup(null));                                             assertEquals(null, StrLookup.mapLookup(map).lookup(null));                                          
+assertEquals(null, StrLookup.mapLookup(map).lookup(""));                                               assertEquals(null, StrLookup.mapLookup(map).lookup(""));                                            
+assertEquals(null, StrLookup.mapLookup(map).lookup("other"));                                          assertEquals(null, StrLookup.mapLookup(map).lookup("other"));                                       
+}                                                                                                      }                                                                                                   

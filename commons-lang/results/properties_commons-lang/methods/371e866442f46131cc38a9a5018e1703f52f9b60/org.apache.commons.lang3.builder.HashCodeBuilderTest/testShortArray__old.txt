@@ -1,0 +1,10 @@
+@Test
+public void testShortArray() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((short[]) null).toHashCode());
+    short[] obj = new short[2];
+    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[0] = (short) 5;
+    assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+    obj[1] = (short) 6;
+    assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append(obj).toHashCode());
+}

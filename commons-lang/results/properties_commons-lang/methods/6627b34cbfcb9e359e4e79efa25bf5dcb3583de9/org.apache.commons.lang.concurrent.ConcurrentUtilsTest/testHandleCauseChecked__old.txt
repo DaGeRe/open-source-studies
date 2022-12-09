@@ -1,0 +1,12 @@
+/**
+ * Tests handleCause() if the cause is a checked exception.
+ */
+public void testHandleCauseChecked() throws ConcurrentException {
+    Exception ex = new Exception("Test");
+    try {
+        ConcurrentUtils.handleCause(new ExecutionException(ex));
+        fail("ConcurrentException not thrown!");
+    } catch (ConcurrentException cex) {
+        assertEquals("Wrong cause", ex, cex.getCause());
+    }
+}

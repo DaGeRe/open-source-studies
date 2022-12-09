@@ -1,0 +1,27 @@
+// Contains                                                                                          |                                                                                                     
+// -----------------------------------------------------------------------                           |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Checks if String contains a search character, handling {@code null}.                      |                                                                                                     
+* This method uses {@link String#indexOf(int)}.&lt;/p&gt;                                            |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;A {@code null} or empty ("") String will return {@code false}.&lt;/p&gt;                  |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* StringUtils.contains(null, *)    = false                                                           |                                                                                                     
+* StringUtils.contains("", *)      = false                                                           |                                                                                                     
+* StringUtils.contains("abc", 'a') = true                                                            |                                                                                                     
+* StringUtils.contains("abc", 'z') = false                                                           |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str  the String to check, may be null                                                       |                                                                                                     
+* @param searchChar  the character to find                                                           |                                                                                                     
+* @return true if the String contains the search character,                                          |                                                                                                     
+*  false if not or {@code null} string input                                                         |                                                                                                     
+* @since 2.0                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static boolean contains(String str, int searchChar) {                                         |                                                                                                     
+if (isEmpty(str)) {                                                                                  |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+return str.indexOf(searchChar) &gt;= 0;                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     

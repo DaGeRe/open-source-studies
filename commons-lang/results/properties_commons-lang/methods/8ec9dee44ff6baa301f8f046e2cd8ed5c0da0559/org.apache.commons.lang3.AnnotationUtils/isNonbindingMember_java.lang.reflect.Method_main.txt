@@ -1,0 +1,8 @@
+/**
+ * Helper method to look for the CDI Nonbinding annotation on an Annotation member.
+ * @param accessor the accessor method to check
+ * @return whether the Nonbinding annotation was found
+ */
+private static boolean isNonbindingMember(Method accessor) {
+    return NONBINDING_ANNOTATION_TYPE != null && accessor.isAnnotationPresent(NONBINDING_ANNOTATION_TYPE);
+}

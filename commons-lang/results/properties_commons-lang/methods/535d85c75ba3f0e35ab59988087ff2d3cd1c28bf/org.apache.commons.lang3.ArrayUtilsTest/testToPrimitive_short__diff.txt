@@ -1,0 +1,13 @@
+// testToPrimitive/Object for short                                                                    // testToPrimitive/Object for short                                                                 
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testToPrimitive_short() {                                                                  public void testToPrimitive_short() {                                                               
+final Short[] b = null;                                                                                final Short[] b = null;                                                                             
+assertEquals(null, ArrayUtils.toPrimitive(b));                                                         assertEquals(null, ArrayUtils.toPrimitive(b));                                                      
+assertSame(ArrayUtils.EMPTY_SHORT_ARRAY, ArrayUtils.toPrimitive(new Short[0]));                        assertSame(ArrayUtils.EMPTY_SHORT_ARRAY, ArrayUtils.toPrimitive(new Short[0]));                     
+assertTrue(Arrays.equals(new short[] { Short.MIN_VALUE, Short.MAX_VALUE, (short) 9999999 }, ArrayUti | assertTrue(Arrays.equals(new short[] { Short.MIN_VALUE, Short.MAX_VALUE, (short) 9999999 }, ArrayUti
+try {                                                                                                  try {                                                                                               
+ArrayUtils.toPrimitive(new Short[] { new Short(Short.MIN_VALUE), null });                            | ArrayUtils.toPrimitive(new Short[] { Short.MIN_VALUE, null });                                      
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

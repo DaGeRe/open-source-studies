@@ -1,0 +1,6 @@
+public void test_toStringExcludeCollectionWithNull() {
+    List<String> excludeList = new ArrayList<String>();
+    excludeList.add(null);
+    String toString = ReflectionToStringBuilder.toStringExclude(new TestFixture(), excludeList);
+    this.validateSecretFieldPresent(toString);
+}

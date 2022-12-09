@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testEquals() {
+    StrBuilder sb1 = new StrBuilder();
+    StrBuilder sb2 = new StrBuilder();
+    assertEquals(true, sb1.equals(sb2));
+    assertEquals(true, sb1.equals(sb1));
+    assertEquals(true, sb2.equals(sb2));
+    assertEquals(true, sb1.equals((Object) sb2));
+    sb1.append("abc");
+    assertEquals(false, sb1.equals(sb2));
+    assertEquals(false, sb1.equals((Object) sb2));
+    sb2.append("ABC");
+    assertEquals(false, sb1.equals(sb2));
+    assertEquals(false, sb1.equals((Object) sb2));
+    sb2.clear().append("abc");
+    assertEquals(true, sb1.equals(sb2));
+    assertEquals(true, sb1.equals((Object) sb2));
+    assertEquals(false, sb1.equals(Integer.valueOf(1)));
+    assertEquals(false, sb1.equals("abc"));
+}

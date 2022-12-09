@@ -1,0 +1,21 @@
+// notEmpty array
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument array is empty (<code>null</code> or no elements).</p>
+ *
+ * <pre>
+ * Validate.notEmpty(myArray, "The array must not be empty");
+ * </pre>
+ *
+ * @param array  the array to check is not empty
+ * @param message  the exception message you would like to see if the array is empty
+ * @return the input array, never <code>null</code> or empty, for chaining
+ * @throws IllegalArgumentException if the array is empty
+ */
+public static <T> T[] notEmpty(T[] array, String message) {
+    if (array == null || array.length == 0) {
+        throw new IllegalArgumentException(message);
+    }
+    return array;
+}

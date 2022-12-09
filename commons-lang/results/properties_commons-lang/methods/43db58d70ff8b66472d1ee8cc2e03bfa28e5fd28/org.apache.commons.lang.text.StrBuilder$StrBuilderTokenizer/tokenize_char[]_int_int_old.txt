@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+protected List tokenize(char[] chars, int offset, int count) {
+    if (chars == null) {
+        return super.tokenize(StrBuilder.this.buffer, 0, StrBuilder.this.size());
+    } else {
+        return super.tokenize(chars, offset, count);
+    }
+}

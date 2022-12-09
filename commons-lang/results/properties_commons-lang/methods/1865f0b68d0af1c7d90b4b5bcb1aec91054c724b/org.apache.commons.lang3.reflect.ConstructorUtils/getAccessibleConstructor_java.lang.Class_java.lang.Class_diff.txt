@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Returns a constructor with single argument.                                                        | * Returns a constructor given a class and signature.                                                
+* @param cls the class to be constructed                                                               * @param cls the class to be constructed                                                            
+* @param parameterType The constructor parameter type                                                | * @param parameterTypes the parameter array                                                         
+* @return null if matching accessible constructor can not be found.                                  | * @return null if matching accessible constructor can not be found                                  
+* @see Class#getConstructor                                                                            * @see Class#getConstructor                                                                         
+* @see #getAccessibleConstructor(java.lang.reflect.Constructor)                                        * @see #getAccessibleConstructor(java.lang.reflect.Constructor)                                     
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; Constructor&lt;T&gt; getAccessibleConstructor(Class&lt;T&gt; cls, Class&lt;? | public static &lt;T&gt; Constructor&lt;T&gt; getAccessibleConstructor(Class&lt;T&gt; cls, Class&lt;?
+return getAccessibleConstructor(cls, new Class[] { parameterType });                                 | try {                                                                                               
+                                                                                                     | return getAccessibleConstructor(cls.getConstructor(parameterTypes));                                
+                                                                                                     | } catch (NoSuchMethodException e) {                                                                 
+                                                                                                     | return (null);                                                                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

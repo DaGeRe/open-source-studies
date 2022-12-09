@@ -1,0 +1,9 @@
+public void testCreateFloat() {
+    assertEquals("createFloat(String) failed", new Float("1234.5"), NumberUtils.createFloat("1234.5"));
+    assertEquals("createFloat(null) failed", null, NumberUtils.createFloat(null));
+    this.testCreateFloatFailure("");
+    this.testCreateFloatFailure(" ");
+    this.testCreateFloatFailure("\b\t\n\f\r");
+    // Funky whitespaces
+    this.testCreateFloatFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");
+}

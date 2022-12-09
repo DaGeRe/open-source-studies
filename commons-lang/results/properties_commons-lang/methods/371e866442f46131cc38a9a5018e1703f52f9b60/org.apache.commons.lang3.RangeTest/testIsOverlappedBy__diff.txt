@@ -1,0 +1,23 @@
+@Test
+public void testIsOverlappedBy() {
+    // null handling
+    assertFalse(intRange.isOverlappedBy(null));
+    // easy inside range
+    assertTrue(intRange.isOverlappedBy(Range.between(12, 18)));
+    // outside range on each side
+    assertFalse(intRange.isOverlappedBy(Range.between(32, 45)));
+    assertFalse(intRange.isOverlappedBy(Range.between(2, 8)));
+    // equals range
+    assertTrue(intRange.isOverlappedBy(Range.between(10, 20)));
+    // overlaps
+    assertTrue(intRange.isOverlappedBy(Range.between(9, 14)));
+    assertTrue(intRange.isOverlappedBy(Range.between(16, 21)));
+    // touches lower boundary
+    assertTrue(intRange.isOverlappedBy(Range.between(10, 19)));
+    assertTrue(intRange.isOverlappedBy(Range.between(10, 21)));
+    // touches upper boundary
+    assertTrue(intRange.isOverlappedBy(Range.between(11, 20)));
+    assertTrue(intRange.isOverlappedBy(Range.between(9, 20)));
+    // negative
+    assertFalse(intRange.isOverlappedBy(Range.between(-11, -18)));
+}

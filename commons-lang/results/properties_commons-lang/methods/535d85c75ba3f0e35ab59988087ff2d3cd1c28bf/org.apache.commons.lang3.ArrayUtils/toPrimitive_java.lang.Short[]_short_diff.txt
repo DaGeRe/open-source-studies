@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an array of object Short to primitives handling <code>null</code>.</p>
+ *
+ * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+ *
+ * @param array  a <code>Short</code> array, may be <code>null</code>
+ * @param valueForNull  the value to insert if <code>null</code> found
+ * @return a <code>byte</code> array, <code>null</code> if null array input
+ */
+public static short[] toPrimitive(Short[] array, short valueForNull) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_SHORT_ARRAY;
+    }
+    final short[] result = new short[array.length];
+    for (int i = 0; i < array.length; i++) {
+        Short b = array[i];
+        result[i] = (b == null ? valueForNull : b.shortValue());
+    }
+    return result;
+}

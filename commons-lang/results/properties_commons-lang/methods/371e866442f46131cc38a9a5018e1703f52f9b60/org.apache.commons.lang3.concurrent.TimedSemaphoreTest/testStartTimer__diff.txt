@@ -1,0 +1,19 @@
+/**
+ * Tests starting the timer.
+ */
+@Test
+public void testStartTimer() throws InterruptedException {
+    TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(PERIOD, UNIT, LIMIT);
+    ScheduledFuture<?> future = semaphore.startTimer();
+    assertNotNull("No future returned", future);
+    Thread.sleep(PERIOD);
+    final int trials = 10;
+    int count = 0;
+    do {
+        Thread.sleep(PERIOD);
+        if (count++ > trials) {
+            fail("endOfPeriod() not called!");
+        }
+    } while (semaphore.getPeriodEnds() <= 0);
+    semaphore.shutdown();
+}

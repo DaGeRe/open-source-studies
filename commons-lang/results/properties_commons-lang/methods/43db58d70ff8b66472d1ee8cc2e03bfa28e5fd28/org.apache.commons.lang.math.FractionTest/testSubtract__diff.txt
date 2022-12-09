@@ -1,0 +1,103 @@
+public void testSubtract() {
+    Fraction f = null;
+    Fraction f1 = null;
+    Fraction f2 = null;
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(1, 5);
+    f = f1.subtract(f2);
+    assertEquals(2, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(7, 5);
+    f2 = Fraction.getFraction(2, 5);
+    f = f1.subtract(f2);
+    assertEquals(1, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(3, 5);
+    f = f1.subtract(f2);
+    assertEquals(0, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(-4, 5);
+    f = f1.subtract(f2);
+    assertEquals(7, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(4, 5);
+    f = f1.subtract(f2);
+    assertEquals(-4, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(-4, 5);
+    f = f1.subtract(f2);
+    assertEquals(4, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(1, 2);
+    f = f1.subtract(f2);
+    assertEquals(1, f.getNumerator());
+    assertEquals(10, f.getDenominator());
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(1, 5);
+    f = f2.subtract(f1);
+    assertSame(f2, f);
+    try {
+        f.subtract(null);
+        fail("expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+    }
+    // if this fraction is subtracted naively, it will overflow.
+    // check that it doesn't.
+    f1 = Fraction.getFraction(1, 32768 * 3);
+    f2 = Fraction.getFraction(1, 59049);
+    f = f1.subtract(f2);
+    assertEquals(-13085, f.getNumerator());
+    assertEquals(1934917632, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MIN_VALUE, 3);
+    f2 = Fraction.ONE_THIRD.negate();
+    f = f1.subtract(f2);
+    assertEquals(Integer.MIN_VALUE + 1, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MAX_VALUE, 1);
+    f2 = Fraction.ONE;
+    f = f1.subtract(f2);
+    assertEquals(Integer.MAX_VALUE - 1, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    try {
+        f1 = Fraction.getFraction(1, Integer.MAX_VALUE);
+        f2 = Fraction.getFraction(1, Integer.MAX_VALUE - 1);
+        f = f1.subtract(f2);
+        // should overflow
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    // denominator should not be a multiple of 2 or 3 to trigger overflow
+    f1 = Fraction.getFraction(Integer.MIN_VALUE, 5);
+    f2 = Fraction.getFraction(1, 5);
+    try {
+        // should overflow
+        f = f1.subtract(f2);
+        fail("expecting ArithmeticException but got: " + f.toString());
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(Integer.MIN_VALUE, 1);
+        f = f.subtract(Fraction.ONE);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(Integer.MAX_VALUE, 1);
+        f = f.subtract(Fraction.ONE.negate());
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    f1 = Fraction.getFraction(3, 327680);
+    f2 = Fraction.getFraction(2, 59049);
+    try {
+        // should overflow
+        f = f1.subtract(f2);
+        fail("expecting ArithmeticException but got: " + f.toString());
+    } catch (ArithmeticException ex) {
+    }
+}

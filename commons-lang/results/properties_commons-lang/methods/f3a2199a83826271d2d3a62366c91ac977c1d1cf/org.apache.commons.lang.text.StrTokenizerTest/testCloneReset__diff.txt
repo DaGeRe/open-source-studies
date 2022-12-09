@@ -1,0 +1,14 @@
+public void testCloneReset() {
+    char[] input = new char[] { 'a' };
+    StrTokenizer tokenizer = new StrTokenizer(input);
+    // Start sanity check
+    assertEquals("a", tokenizer.nextToken());
+    tokenizer.reset();
+    assertEquals("a", tokenizer.nextToken());
+    // End sanity check
+    StrTokenizer clonedTokenizer = (StrTokenizer) tokenizer.clone();
+    input[0] = 'b';
+    tokenizer.reset();
+    assertEquals("b", tokenizer.nextToken());
+    assertEquals("a", clonedTokenizer.nextToken());
+}

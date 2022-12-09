@@ -1,0 +1,17 @@
+public void testJoin_Objectarray() {                                                                   public void testJoin_Objectarray() {                                                                
+// assertEquals(null, StringUtils.join(null)); // generates warning                                    // assertEquals(null, StringUtils.join(null)); // generates warning                                 
+// equivalent explicit cast                                                                            // equivalent explicit cast                                                                         
+assertEquals(null, StringUtils.join((Object[]) null));                                                 assertEquals(null, StringUtils.join((Object[]) null));                                              
+// test additional varargs calls                                                                       // test additional varargs calls                                                                    
+// empty array                                                                                         // empty array                                                                                      
+assertEquals("", StringUtils.join());                                                                  assertEquals("", StringUtils.join());                                                               
+// =&gt; new Object[]{null}                                                                            // =&gt; new Object[]{null}                                                                         
+assertEquals("", StringUtils.join((Object) null));                                                     assertEquals("", StringUtils.join((Object) null));                                                  
+assertEquals("", StringUtils.join(EMPTY_ARRAY_LIST));                                                  assertEquals("", StringUtils.join(EMPTY_ARRAY_LIST));                                               
+assertEquals("", StringUtils.join(NULL_ARRAY_LIST));                                                   assertEquals("", StringUtils.join(NULL_ARRAY_LIST));                                                
+                                                                                                     | assertEquals("null", StringUtils.join(NULL_TO_STRING_LIST));                                        
+assertEquals("abc", StringUtils.join(new String[] { "a", "b", "c" }));                                 assertEquals("abc", StringUtils.join(new String[] { "a", "b", "c" }));                              
+assertEquals("a", StringUtils.join(new String[] { null, "a", "" }));                                   assertEquals("a", StringUtils.join(new String[] { null, "a", "" }));                                
+assertEquals("foo", StringUtils.join(MIXED_ARRAY_LIST));                                               assertEquals("foo", StringUtils.join(MIXED_ARRAY_LIST));                                            
+assertEquals("foo2", StringUtils.join(MIXED_TYPE_LIST));                                               assertEquals("foo2", StringUtils.join(MIXED_TYPE_LIST));                                            
+}                                                                                                      }                                                                                                   

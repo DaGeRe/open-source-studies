@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Green implementation of toCharArray.                                                                 * Green implementation of toCharArray.                                                              
+*                                                                                                      *                                                                                                   
+* @param cs the {@code CharSequence} to be processed                                                   * @param cs the {@code CharSequence} to be processed                                                
+* @return the resulting char array                                                                     * @return the resulting char array                                                                  
+*/                                                                                                     */                                                                                                  
+//                                                                                                     //                                                                                                  
+static char[] toCharArraySequence(CharSequence cs) {                                                   static char[] toCharArraySequence(CharSequence cs) {                                                
+if (cs instanceof String) {                                                                            if (cs instanceof String) {                                                                         
+return ((String) cs).toCharArray();                                                                    return ((String) cs).toCharArray();                                                                 
+} else {                                                                                               } else {                                                                                            
+// TODO: Implement rather than convert to String                                                     | int sz = cs.length();                                                                               
+return cs.toString().toCharArray();                                                                  | char[] array = new char[cs.length()];                                                               
+                                                                                                     | for (int i = 0; i &lt; sz; i++) {                                                                   
+                                                                                                     | array[i] = cs.charAt(i);                                                                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | return array;                                                                                       
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

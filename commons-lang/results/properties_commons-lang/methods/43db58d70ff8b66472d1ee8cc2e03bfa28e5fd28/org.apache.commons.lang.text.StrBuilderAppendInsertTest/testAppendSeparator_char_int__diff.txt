@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testAppendSeparator_char_int() {
+    StrBuilder sb = new StrBuilder();
+    // no effect
+    sb.appendSeparator(',', 0);
+    assertEquals("", sb.toString());
+    sb.append("foo");
+    assertEquals("foo", sb.toString());
+    sb.appendSeparator(',', 1);
+    assertEquals("foo,", sb.toString());
+    // no effect
+    sb.appendSeparator(',', -1);
+    assertEquals("foo,", sb.toString());
+}

@@ -1,0 +1,28 @@
+/**
+ * <p>Checks if the String contains only certain characters.</p>
+ *
+ * <p>A <code>null</code> String will return <code>false</code>.
+ * A <code>null</code> valid character String will return <code>false</code>.
+ * An empty String ("") always returns <code>true</code>.</p>
+ *
+ * <pre>
+ * StringUtils.containsOnly(null, *)       = false
+ * StringUtils.containsOnly(*, null)       = false
+ * StringUtils.containsOnly("", *)         = true
+ * StringUtils.containsOnly("ab", "")      = false
+ * StringUtils.containsOnly("abab", "abc") = true
+ * StringUtils.containsOnly("ab1", "abc")  = false
+ * StringUtils.containsOnly("abz", "abc")  = false
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param validChars  a String of valid chars, may be null
+ * @return true if it only contains valid chars and is non-null
+ * @since 2.0
+ */
+public static boolean containsOnly(String str, String validChars) {
+    if (str == null || validChars == null) {
+        return false;
+    }
+    return containsOnly(str, validChars.toCharArray());
+}

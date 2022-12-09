@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Constructor that creates a matcher from a string.                                                    * Constructor that creates a matcher from a string.                                                 
+*                                                                                                      *                                                                                                   
+* @param str  the string to match, null or empty matches nothing                                       * @param str  the string to match, null or empty matches nothing                                    
+* @return a new Matcher for the given String                                                           * @return a new Matcher for the given String                                                        
+*/                                                                                                     */                                                                                                  
+public static StrMatcher stringMatcher(String str) {                                                   public static StrMatcher stringMatcher(String str) {                                                
+if (str == null || str.length() == 0) {                                                              | if (StringUtils.isEmpty(str)) {                                                                     
+return NONE_MATCHER;                                                                                   return NONE_MATCHER;                                                                                
+}                                                                                                      }                                                                                                   
+return new StringMatcher(str);                                                                         return new StringMatcher(str);                                                                      
+}                                                                                                      }                                                                                                   

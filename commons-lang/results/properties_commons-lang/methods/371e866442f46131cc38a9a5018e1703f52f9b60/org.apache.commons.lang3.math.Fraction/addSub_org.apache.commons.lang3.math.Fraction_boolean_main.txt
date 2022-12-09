@@ -1,0 +1,47 @@
+/**
+ * Implement add and subtract using algorithm described in Knuth 4.5.1.
+ *
+ * @param fraction the fraction to subtract, must not be <code>null</code>
+ * @param isAdd true to add, false to subtract
+ * @return a <code>Fraction</code> instance with the resulting values
+ * @throws IllegalArgumentException if the fraction is <code>null</code>
+ * @throws ArithmeticException if the resulting numerator or denominator
+ *   cannot be represented in an <code>int</code>.
+ */
+private Fraction addSub(Fraction fraction, boolean isAdd) {
+    if (fraction == null) {
+        throw new IllegalArgumentException("The fraction must not be null");
+    }
+    // zero is identity for addition.
+    if (numerator == 0) {
+        return isAdd ? fraction : fraction.negate();
+    }
+    if (fraction.numerator == 0) {
+        return this;
+    }
+    // if denominators are randomly distributed, d1 will be 1 about 61%
+    // of the time.
+    int d1 = greatestCommonDivisor(denominator, fraction.denominator);
+    if (d1 == 1) {
+        // result is ( (u*v' +/- u'v) / u'v')
+        int uvp = mulAndCheck(numerator, fraction.denominator);
+        int upv = mulAndCheck(fraction.numerator, denominator);
+        return new Fraction(isAdd ? addAndCheck(uvp, upv) : subAndCheck(uvp, upv), mulPosAndCheck(denominator, fraction.denominator));
+    }
+    // the quantity 't' requires 65 bits of precision; see knuth 4.5.1
+    // exercise 7.  we're going to use a BigInteger.
+    // t = u(v'/d1) +/- v(u'/d1)
+    BigInteger uvp = BigInteger.valueOf(numerator).multiply(BigInteger.valueOf(fraction.denominator / d1));
+    BigInteger upv = BigInteger.valueOf(fraction.numerator).multiply(BigInteger.valueOf(denominator / d1));
+    BigInteger t = isAdd ? uvp.add(upv) : uvp.subtract(upv);
+    // but d2 doesn't need extra precision because
+    // d2 = gcd(t,d1) = gcd(t mod d1, d1)
+    int tmodd1 = t.mod(BigInteger.valueOf(d1)).intValue();
+    int d2 = tmodd1 == 0 ? d1 : greatestCommonDivisor(tmodd1, d1);
+    // result is (t/d2) / (u'/d1)(v'/d2)
+    BigInteger w = t.divide(BigInteger.valueOf(d2));
+    if (w.bitLength() > 31) {
+        throw new ArithmeticException("overflow: numerator too large after multiply");
+    }
+    return new Fraction(w.intValue(), mulPosAndCheck(denominator / d1, fraction.denominator / d2));
+}

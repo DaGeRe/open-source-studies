@@ -1,0 +1,22 @@
+/**
+ * <p>Validate that the specified argument character sequence is
+ * neither {@code null}, a length of zero (no characters), empty
+ * nor whitespace; otherwise throwing an exception.
+ *
+ * <pre>Validate.notBlank(myString);</pre>
+ *
+ * <p>The message in the exception is &quot;The validated character
+ * sequence is blank&quot;.</p>
+ *
+ * @param <T> the character sequence type
+ * @param chars  the character sequence to check, validated not null by this method
+ * @return the validated character sequence (never {@code null} method for chaining)
+ * @throws NullPointerException if the character sequence is {@code null}
+ * @throws IllegalArgumentException if the character sequence is blank
+ * @see #notBlank(CharSequence, String, Object...)
+ *
+ * @since 3.0
+ */
+public static <T extends CharSequence> T notBlank(T chars) {
+    return notBlank(chars, DEFAULT_NOT_BLANK_EX_MESSAGE);
+}

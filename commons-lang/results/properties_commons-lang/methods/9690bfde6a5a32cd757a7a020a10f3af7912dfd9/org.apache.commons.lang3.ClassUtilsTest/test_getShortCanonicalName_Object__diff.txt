@@ -1,0 +1,16 @@
+public void test_getShortCanonicalName_Object() {                                                      public void test_getShortCanonicalName_Object() {                                                   
+assertEquals("&lt;null&gt;", ClassUtils.getShortCanonicalName(null, "&lt;null&gt;"));                  assertEquals("&lt;null&gt;", ClassUtils.getShortCanonicalName(null, "&lt;null&gt;"));               
+assertEquals("ClassUtils", ClassUtils.getShortCanonicalName(new ClassUtils(), "&lt;null&gt;"));        assertEquals("ClassUtils", ClassUtils.getShortCanonicalName(new ClassUtils(), "&lt;null&gt;"));     
+assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName(new ClassUtils[0], "&lt;null&gt;"));     assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName(new ClassUtils[0], "&lt;null&gt;"));  
+assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName(new ClassUtils[0][0], "&lt;null&gt;"   assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName(new ClassUtils[0][0], "&lt;null&gt;"
+assertEquals("int[]", ClassUtils.getShortCanonicalName(new int[0], "&lt;null&gt;"));                   assertEquals("int[]", ClassUtils.getShortCanonicalName(new int[0], "&lt;null&gt;"));                
+assertEquals("int[][]", ClassUtils.getShortCanonicalName(new int[0][0], "&lt;null&gt;"));              assertEquals("int[][]", ClassUtils.getShortCanonicalName(new int[0][0], "&lt;null&gt;"));           
+// Inner types                                                                                         // Inner types                                                                                      
+class Named extends Object {                                                                           class Named extends Object {                                                                        
+}                                                                                                      }                                                                                                   
+;                                                                                                    |                                                                                                     
+assertEquals("ClassUtilsTest.6", ClassUtils.getShortCanonicalName(new Object() {                       assertEquals("ClassUtilsTest.6", ClassUtils.getShortCanonicalName(new Object() {                    
+}, "&lt;null&gt;"));                                                                                   }, "&lt;null&gt;"));                                                                                
+assertEquals("ClassUtilsTest.5Named", ClassUtils.getShortCanonicalName(new Named(), "&lt;null&gt;"))   assertEquals("ClassUtilsTest.5Named", ClassUtils.getShortCanonicalName(new Named(), "&lt;null&gt;"))
+assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortCanonicalName(new Inner(), "&lt;null&gt;"));   assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortCanonicalName(new Inner(), "&lt;null&gt;"));
+}                                                                                                      }                                                                                                   

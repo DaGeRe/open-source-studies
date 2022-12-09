@@ -1,0 +1,14 @@
+/**
+ * Adds information helpful to a developer in diagnosing and correcting
+ * the problem.
+ * @see ContextedException#addLabeledValue(String, Serializable)
+ * @param label  a textual label associated with information
+ * @param value  information needed to understand exception.  May be null.
+ * @return this
+ * @since 3.0
+ */
+public ExceptionContext addLabeledValue(String label, Serializable value) {
+    this.contextKeyList.add(label);
+    this.contextValueMap.put(label, value);
+    return this;
+}

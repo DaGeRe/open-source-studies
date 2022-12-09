@@ -1,0 +1,8 @@
+public void testStripToNull_String() {
+    assertEquals(null, StringUtils.stripToNull(null));
+    assertEquals(null, StringUtils.stripToNull(""));
+    assertEquals(null, StringUtils.stripToNull("        "));
+    assertEquals(null, StringUtils.stripToNull(StringUtilsTest.WHITESPACE));
+    assertEquals("ab c", StringUtils.stripToNull("  ab c  "));
+    assertEquals(StringUtilsTest.NON_WHITESPACE, StringUtils.stripToNull(StringUtilsTest.WHITESPACE + StringUtilsTest.NON_WHITESPACE + StringUtilsTest.WHITESPACE));
+}

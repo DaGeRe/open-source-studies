@@ -1,0 +1,10 @@
+public void testLessThanFour() {
+    UnicodeUnescaper uu = new UnicodeUnescaper();
+    String input = "\\0047\\u006";
+    try {
+        uu.translate(input);
+        fail("A lack of digits in a unicode escape sequence failed to throw an exception");
+    } catch (IllegalArgumentException iae) {
+        // expected
+    }
+}

@@ -1,0 +1,19 @@
+/**
+ * Writes a named static Field. Only the specified class will be considered.
+ * @param cls Class on which the Field is to be found
+ * @param fieldName to write
+ * @param value to set
+ * @param forceAccess  whether to break scope restrictions using the
+ *  <code>setAccessible</code> method. <code>False</code> will only
+ *  match public fields.
+ * @throws IllegalArgumentException if the field cannot be located or is not static
+ * @throws IllegalAccessException if the field is not made accessible or is final
+ */
+public static void writeDeclaredStaticField(Class<?> cls, String fieldName, Object value, boolean forceAccess) throws IllegalAccessException {
+    Field field = getDeclaredField(cls, fieldName, forceAccess);
+    if (field == null) {
+        throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName);
+    }
+    // already forced access above, don't repeat it here:
+    writeField(field, (Object) null, value);
+}

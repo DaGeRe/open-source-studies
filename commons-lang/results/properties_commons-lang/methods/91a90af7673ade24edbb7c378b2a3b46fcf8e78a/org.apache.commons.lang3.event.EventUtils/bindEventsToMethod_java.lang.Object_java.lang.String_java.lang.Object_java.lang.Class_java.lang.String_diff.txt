@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Binds an event listener to a specific method on a specific object.                                   * Binds an event listener to a specific method on a specific object.                                
+*                                                                                                      *                                                                                                   
+                                                                                                     | * @param &lt;L&gt;                                                                                  
+* @param target       the target object                                                                * @param target       the target object                                                             
+* @param methodName   the name of the method to be called                                              * @param methodName   the name of the method to be called                                           
+* @param eventSource  the object which is generating events (JButton, JList, etc.)                     * @param eventSource  the object which is generating events (JButton, JList, etc.)                  
+* @param listenerType the listener interface (ActionListener.class, SelectionListener.class, etc.)     * @param listenerType the listener interface (ActionListener.class, SelectionListener.class, etc.)  
+* @param eventTypes   the event types (method names) from the listener interface (if none specified,   * @param eventTypes   the event types (method names) from the listener interface (if none specified,
+*                     supported)                                                                       *                     supported)                                                                    
+*/                                                                                                     */                                                                                                  
+public static void bindEventsToMethod(Object target, String methodName, Object eventSource, Class li | public static &lt;L&gt; void bindEventsToMethod(Object target, String methodName, Object eventSource
+final Object listener = Proxy.newProxyInstance(target.getClass().getClassLoader(), new Class[] { lis | final L listener = listenerType.cast(Proxy.newProxyInstance(target.getClass().getClassLoader(), new 
+addEventListener(eventSource, listenerType, listener);                                                 addEventListener(eventSource, listenerType, listener);                                              
+}                                                                                                      }                                                                                                   

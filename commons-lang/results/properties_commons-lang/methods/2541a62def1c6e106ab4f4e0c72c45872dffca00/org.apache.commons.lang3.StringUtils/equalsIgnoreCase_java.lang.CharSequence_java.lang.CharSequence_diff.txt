@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Compares two CharSequences, returning {@code true} if they are equal ignoring               * &lt;p&gt;Compares two CharSequences, returning {@code true} if they are equal ignoring            
+* the case.&lt;/p&gt;                                                                                  * the case.&lt;/p&gt;                                                                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null}s are handled without exceptions. Two {@code null}                              * &lt;p&gt;{@code null}s are handled without exceptions. Two {@code null}                           
+* references are considered equal. Comparison is case insensitive.&lt;/p&gt;                           * references are considered equal. Comparison is case insensitive.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.equalsIgnoreCase(null, null)   = true                                                    * StringUtils.equalsIgnoreCase(null, null)   = true                                                 
+* StringUtils.equalsIgnoreCase(null, "abc")  = false                                                   * StringUtils.equalsIgnoreCase(null, "abc")  = false                                                
+* StringUtils.equalsIgnoreCase("abc", null)  = false                                                   * StringUtils.equalsIgnoreCase("abc", null)  = false                                                
+* StringUtils.equalsIgnoreCase("abc", "abc") = true                                                    * StringUtils.equalsIgnoreCase("abc", "abc") = true                                                 
+* StringUtils.equalsIgnoreCase("abc", "ABC") = true                                                    * StringUtils.equalsIgnoreCase("abc", "ABC") = true                                                 
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str1  the first CharSequence, may be null                                                     * @param str1  the first CharSequence, may be null                                                  
+* @param str2  the second CharSequence, may be null                                                    * @param str2  the second CharSequence, may be null                                                 
+* @return {@code true} if the CharSequence are equal, case insensitive, or                             * @return {@code true} if the CharSequence are equal, case insensitive, or                          
+*  both {@code null}                                                                                   *  both {@code null}                                                                                
+*/                                                                                                     */                                                                                                  
+public static boolean equalsIgnoreCase(CharSequence str1, CharSequence str2) {                         public static boolean equalsIgnoreCase(CharSequence str1, CharSequence str2) {                      
+if (str1 == null || str2 == null) {                                                                    if (str1 == null || str2 == null) {                                                                 
+return str1 == str2;                                                                                   return str1 == str2;                                                                                
+} else {                                                                                               } else {                                                                                            
+return regionMatchesSequence(str1, true, 0, str2, 0, Math.max(str1.length(), str2.length()));        | return CharSequenceUtils.regionMatches(str1, true, 0, str2, 0, Math.max(str1.length(), str2.length()
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

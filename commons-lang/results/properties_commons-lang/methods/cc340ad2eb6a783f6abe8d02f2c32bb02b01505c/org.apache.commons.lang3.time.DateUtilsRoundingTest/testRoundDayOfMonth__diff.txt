@@ -1,0 +1,21 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.DAY_OF_MONTH
+ * Includes rounding the extremes of one day
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundDayOfMonth() throws Exception {
+    final int calendarField = Calendar.DAY_OF_MONTH;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    roundedUpDate = dateTimeParser.parse("June 2, 2008 0:00:00.000");
+    roundedDownDate = targetDayOfMonthDate;
+    lastRoundedDownDate = dateTimeParser.parse("June 1, 2008 11:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 31, 2007 12:00:00.000");
+    maxDate = dateTimeParser.parse("January 1, 2008 11:59:59.999");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

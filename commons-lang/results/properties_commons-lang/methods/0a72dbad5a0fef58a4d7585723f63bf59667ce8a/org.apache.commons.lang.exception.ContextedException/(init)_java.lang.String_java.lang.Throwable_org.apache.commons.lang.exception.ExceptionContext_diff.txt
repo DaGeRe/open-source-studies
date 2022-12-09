@@ -1,0 +1,14 @@
+/**
+ * Instantiates ContextedException with cause, message, and ExceptionContext.
+ *
+ * @param message  the exception message, may be null
+ * @param cause  the underlying cause of the exception, may be null
+ * @param context  the context used to store the additional information, null uses default implementation
+ */
+public ContextedException(String message, Throwable cause, ExceptionContext context) {
+    super(message, cause);
+    if (context == null) {
+        context = new DefaultExceptionContext();
+    }
+    exceptionContext = context;
+}

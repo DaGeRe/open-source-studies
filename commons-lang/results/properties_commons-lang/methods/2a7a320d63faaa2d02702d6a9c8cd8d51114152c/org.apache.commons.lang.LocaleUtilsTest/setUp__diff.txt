@@ -1,0 +1,6 @@
+@Override
+public void setUp() throws Exception {
+    super.setUp();
+    // Testing #LANG-304. Must be called before availableLocaleSet is called.
+    LocaleUtils.isAvailableLocale(Locale.getDefault());
+}

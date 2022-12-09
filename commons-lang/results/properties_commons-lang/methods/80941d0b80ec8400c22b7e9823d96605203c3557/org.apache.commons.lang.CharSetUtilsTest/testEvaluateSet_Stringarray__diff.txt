@@ -1,0 +1,7 @@
+// -----------------------------------------------------------------------
+public void testEvaluateSet_Stringarray() {
+    assertEquals(null, CharSetUtils.evaluateSet((String[]) null));
+    assertEquals("[]", CharSetUtils.evaluateSet(new String[0]).toString());
+    assertEquals("[]", CharSetUtils.evaluateSet(new String[] { null }).toString());
+    assertEquals("[a-e]", CharSetUtils.evaluateSet(new String[] { "a-e" }).toString());
+}

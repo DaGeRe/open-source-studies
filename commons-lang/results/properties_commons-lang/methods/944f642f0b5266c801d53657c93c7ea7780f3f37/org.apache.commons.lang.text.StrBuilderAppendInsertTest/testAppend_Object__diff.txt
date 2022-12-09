@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testAppend_Object() {                                                                      public void testAppend_Object() {                                                                   
+StrBuilder sb = new StrBuilder();                                                                      StrBuilder sb = new StrBuilder();                                                                   
+sb.appendNull();                                                                                       sb.appendNull();                                                                                    
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.append((Object) null);                                                                              sb.append((Object) null);                                                                           
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.append(FOO);                                                                                        sb.append(FOO);                                                                                     
+assertEquals("foo", sb.toString());                                                                    assertEquals("foo", sb.toString());                                                                 
+sb.append((StringBuffer) null);                                                                        sb.append((StringBuffer) null);                                                                     
+assertEquals("foo", sb.toString());                                                                    assertEquals("foo", sb.toString());                                                                 
+sb.append(new StringBuffer("baz"));                                                                    sb.append(new StringBuffer("baz"));                                                                 
+assertEquals("foobaz", sb.toString());                                                                 assertEquals("foobaz", sb.toString());                                                              
+sb.append(new StrBuilder("yes"));                                                                      sb.append(new StrBuilder("yes"));                                                                   
+assertEquals("foobazyes", sb.toString());                                                              assertEquals("foobazyes", sb.toString());                                                           
+                                                                                                     | sb.append((CharSequence) "Seq");                                                                    
+                                                                                                     | assertEquals("foobazyesSeq", sb.toString());                                                        
+}                                                                                                      }                                                                                                   

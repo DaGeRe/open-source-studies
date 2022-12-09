@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Generate a hashcode for the given annotation; dynamically created                                    * Generate a hashcode for the given annotation; dynamically created                                 
+* {@link Annotation} instances are always proxy objects which cannot be                                * {@link Annotation} instances are always proxy objects which cannot be                             
+* depended upon to know how to implement {@link Annotation#hashCode()} per                             * depended upon to know how to implement {@link Annotation#hashCode()} per                          
+* spec.                                                                                                * spec.                                                                                             
+*                                                                                                      *                                                                                                   
+* @param a the Annotation for a hashcode calculation is desired                                        * @param a the Annotation for a hashcode calculation is desired                                     
+* @return the calculated hashcode                                                                      * @return the calculated hashcode                                                                   
+* @throws IllegalArgumentException                                                                     * @throws IllegalArgumentException                                                                  
+* @throws IllegalAccessException                                                                       * @throws IllegalAccessException                                                                    
+* @throws InvocationTargetException                                                                    * @throws InvocationTargetException                                                                 
+*/                                                                                                     */                                                                                                  
+public static int hashCode(Annotation a) throws IllegalArgumentException, IllegalAccessException, In   public static int hashCode(Annotation a) throws IllegalArgumentException, IllegalAccessException, In
+int result = 0;                                                                                        int result = 0;                                                                                     
+Class&lt;? extends Annotation&gt; type = a.annotationType();                                           Class&lt;? extends Annotation&gt; type = a.annotationType();                                        
+for (Method m : type.getDeclaredMethods()) {                                                           for (Method m : type.getDeclaredMethods()) {                                                        
+result += hashMember(m.getName(), m.invoke(a));                                                      | Object value = m.invoke(a);                                                                         
+                                                                                                     | if (value == null) {                                                                                
+                                                                                                     | throw new IllegalStateException(String.format("Annotation method %s returned null", m));            
+}                                                                                                      }                                                                                                   
+                                                                                                     | result += hashMember(m.getName(), value);                                                           
+                                                                                                     | }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

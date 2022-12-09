@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Registers the given object. Used by the reflection methods to avoid                                  * Registers the given object. Used by the reflection methods to avoid                               
+* infinite loops.                                                                                      * infinite loops.                                                                                   
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param value                                                                                         * @param value                                                                                      
+*                  The object to register.                                                             *                  The object to register.                                                          
+*/                                                                                                     */                                                                                                  
+static void register(Object value) {                                                                   static void register(Object value) {                                                                
+if (value != null) {                                                                                   if (value != null) {                                                                                
+WeakHashMap&lt;Object, Object&gt; m;                                                                 | WeakHashMap&lt;Object, Object&gt; m = REGISTRY.get();                                               
+synchronized (ToStringStyle.class) {                                                                 |                                                                                                     
+m = REGISTRY.get();                                                                                  |                                                                                                     
+if (m == null) {                                                                                       if (m == null) {                                                                                    
+m = new WeakHashMap&lt;Object, Object&gt;();                                                           m = new WeakHashMap&lt;Object, Object&gt;();                                                        
+REGISTRY.set(m);                                                                                       REGISTRY.set(m);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+m.put(value, null);                                                                                    m.put(value, null);                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

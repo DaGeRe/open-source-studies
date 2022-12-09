@@ -1,0 +1,27 @@
+/**
+ * Handles the common {@link Formattable} operations of truncate-pad-append.
+ *
+ * @param seq  the string to handle, not null
+ * @param formatter  the destination formatter, not null
+ * @param flags  the flags for formatting, see {@code Formattable}
+ * @param width  the width of the output, see {@code Formattable}
+ * @param precision  the precision of the output, see {@code Formattable}
+ * @param padChar  the pad character to use
+ * @param ellipsis  the ellipsis to use when precision dictates truncation, null or
+ *  empty causes a hard truncation
+ * @return the {@code formatter} instance, not null
+ */
+public static Formatter append(CharSequence seq, Formatter formatter, int flags, int width, int precision, char padChar, CharSequence ellipsis) {
+    Validate.isTrue(ellipsis == null || precision < 0 || ellipsis.length() <= precision, "Specified ellipsis '%1$s' exceeds precision of %2$s", ellipsis, precision);
+    StringBuilder buf = new StringBuilder(seq);
+    if (precision >= 0 && precision < seq.length()) {
+        CharSequence _ellipsis = ObjectUtils.defaultIfNull(ellipsis, StringUtils.EMPTY);
+        buf.replace(precision - _ellipsis.length(), seq.length(), _ellipsis.toString());
+    }
+    boolean leftJustify = (flags & LEFT_JUSTIFY) == LEFT_JUSTIFY;
+    for (int i = buf.length(); i < width; i++) {
+        buf.insert(leftJustify ? i : 0, padChar);
+    }
+    formatter.format(buf.toString());
+    return formatter;
+}

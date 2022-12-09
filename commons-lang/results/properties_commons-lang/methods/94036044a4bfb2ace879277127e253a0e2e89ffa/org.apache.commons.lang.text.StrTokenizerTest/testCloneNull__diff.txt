@@ -1,0 +1,12 @@
+public void testCloneNull() {
+    StrTokenizer tokenizer = new StrTokenizer((char[]) null);
+    // Start sanity check
+    assertEquals(null, tokenizer.nextToken());
+    tokenizer.reset();
+    assertEquals(null, tokenizer.nextToken());
+    // End sanity check
+    StrTokenizer clonedTokenizer = (StrTokenizer) tokenizer.clone();
+    tokenizer.reset();
+    assertEquals(null, tokenizer.nextToken());
+    assertEquals(null, clonedTokenizer.nextToken());
+}

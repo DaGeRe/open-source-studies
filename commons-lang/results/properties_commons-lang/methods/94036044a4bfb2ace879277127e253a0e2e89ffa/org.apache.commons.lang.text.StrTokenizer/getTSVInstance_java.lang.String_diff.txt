@@ -1,0 +1,12 @@
+/**
+ * Gets a new tokenizer instance which parses Tab Separated Value strings.
+ * The default for CSV processing will be trim whitespace from both ends
+ * (which can be overridden with the setTrimmer method).
+ * @param input  the string to parse
+ * @return a new tokenizer instance which parses Tab Separated Value strings.
+ */
+public static StrTokenizer getTSVInstance(String input) {
+    StrTokenizer tok = getTSVClone();
+    tok.reset(input);
+    return tok;
+}

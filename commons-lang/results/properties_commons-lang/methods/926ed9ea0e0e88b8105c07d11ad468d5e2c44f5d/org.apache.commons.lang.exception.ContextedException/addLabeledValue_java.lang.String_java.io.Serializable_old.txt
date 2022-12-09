@@ -1,0 +1,17 @@
+/**
+ * Adds information helpful to a developer in diagnosing and correcting
+ * the problem.  For the information to be meaningful, the value passed
+ * should have a reasonable toString() implementation.
+ *
+ * <p>Note:  If the value provided isn't Serializable, one solution would be
+ * to provide its toString() if it has a meaningful implementation or
+ * individual properties of the value object instead.</p>
+ * @param label  a textual label associated with information
+ * @param value  information needed to understand exception.  May be <code>null</code>.
+ * @return this
+ * @since 3.0
+ */
+public ContextedException addLabeledValue(String label, Serializable value) {
+    this.exceptionContext.addLabeledValue(label, value);
+    return this;
+}

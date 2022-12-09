@@ -1,0 +1,29 @@
+/**
+ * Extracts some characters from the middle of the string builder without
+ * throwing an exception.
+ * <p>
+ * This method extracts <code>length</code> characters from the builder
+ * at the specified index.
+ * If the index is negative it is treated as zero.
+ * If the index is greater than the builder size, it is treated as the builder size.
+ * If the length is negative, the empty string is returned.
+ * If insufficient characters are available in the builder, as much as possible is returned.
+ * Thus the returned string may be shorter than the length requested.
+ *
+ * @param index  the index to start at, negative means zero
+ * @param length  the number of characters to extract, negative returns empty string
+ * @return the new string
+ */
+public String midString(int index, int length) {
+    if (index < 0) {
+        index = 0;
+    }
+    if (length <= 0 || index >= size) {
+        return "";
+    }
+    if (size <= index + length) {
+        return new String(buffer, index, size - index);
+    } else {
+        return new String(buffer, index, length);
+    }
+}

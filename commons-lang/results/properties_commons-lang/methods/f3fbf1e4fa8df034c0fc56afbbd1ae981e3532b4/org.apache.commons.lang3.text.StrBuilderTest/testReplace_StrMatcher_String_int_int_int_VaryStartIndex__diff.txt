@@ -1,0 +1,49 @@
+public void testReplace_StrMatcher_String_int_int_int_VaryStartIndex() {
+    StrBuilder sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 0, sb.length(), -1);
+    assertEquals("-x--y-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 1, sb.length(), -1);
+    assertEquals("aax--y-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 2, sb.length(), -1);
+    assertEquals("aax--y-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 3, sb.length(), -1);
+    assertEquals("aax--y-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 4, sb.length(), -1);
+    assertEquals("aaxa-ay-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 5, sb.length(), -1);
+    assertEquals("aaxaa-y-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 6, sb.length(), -1);
+    assertEquals("aaxaaaay-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 7, sb.length(), -1);
+    assertEquals("aaxaaaay-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 8, sb.length(), -1);
+    assertEquals("aaxaaaay-", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 9, sb.length(), -1);
+    assertEquals("aaxaaaayaa", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    sb.replace(StrMatcher.stringMatcher("aa"), "-", 10, sb.length(), -1);
+    assertEquals("aaxaaaayaa", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    try {
+        sb.replace(StrMatcher.stringMatcher("aa"), "-", 11, sb.length(), -1);
+        fail();
+    } catch (IndexOutOfBoundsException ex) {
+    }
+    assertEquals("aaxaaaayaa", sb.toString());
+    sb = new StrBuilder("aaxaaaayaa");
+    try {
+        sb.replace(StrMatcher.stringMatcher("aa"), "-", -1, sb.length(), -1);
+        fail();
+    } catch (IndexOutOfBoundsException ex) {
+    }
+    assertEquals("aaxaaaayaa", sb.toString());
+}

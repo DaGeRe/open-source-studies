@@ -1,0 +1,18 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveElementCharArray() {                                                             public void testRemoveElementCharArray() {                                                          
+char[] array;                                                                                          char[] array;                                                                                       
+array = ArrayUtils.removeElement((char[]) null, 'a');                                                  array = ArrayUtils.removeElement((char[]) null, 'a');                                               
+assertNull(array);                                                                                     assertNull(array);                                                                                  
+array = ArrayUtils.removeElement(ArrayUtils.EMPTY_CHAR_ARRAY, 'a');                                    array = ArrayUtils.removeElement(ArrayUtils.EMPTY_CHAR_ARRAY, 'a');                                 
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_CHAR_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_CHAR_ARRAY, array));                                      
+assertEquals(Character.TYPE, array.getClass().getComponentType());                                     assertEquals(Character.TYPE, array.getClass().getComponentType());                                  
+array = ArrayUtils.removeElement(new char[] { 'a' }, 'a');                                             array = ArrayUtils.removeElement(new char[] { 'a' }, 'a');                                          
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_CHAR_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_CHAR_ARRAY, array));                                      
+assertEquals(Character.TYPE, array.getClass().getComponentType());                                     assertEquals(Character.TYPE, array.getClass().getComponentType());                                  
+array = ArrayUtils.removeElement(new char[] { 'a', 'b' }, 'a');                                        array = ArrayUtils.removeElement(new char[] { 'a', 'b' }, 'a');                                     
+assertTrue(Arrays.equals(new char[] { 'b' }, array));                                                  assertTrue(Arrays.equals(new char[] { 'b' }, array));                                               
+assertEquals(Character.TYPE, array.getClass().getComponentType());                                     assertEquals(Character.TYPE, array.getClass().getComponentType());                                  
+array = ArrayUtils.removeElement(new char[] { 'a', 'b', 'a' }, 'a');                                   array = ArrayUtils.removeElement(new char[] { 'a', 'b', 'a' }, 'a');                                
+assertTrue(Arrays.equals(new char[] { 'b', 'a' }, array));                                             assertTrue(Arrays.equals(new char[] { 'b', 'a' }, array));                                          
+assertEquals(Character.TYPE, array.getClass().getComponentType());                                     assertEquals(Character.TYPE, array.getClass().getComponentType());                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Test from http://issues.apache.org/bugzilla/show_bug.cgi?id=33067                                    * Test from http://issues.apache.org/bugzilla/show_bug.cgi?id=33067                                 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testNpeForNullElement() {                                                                  public void testNpeForNullElement() {                                                               
+Object[] x1 = new Object[] { Integer.valueOf(1), null, Integer.valueOf(3) };                           Object[] x1 = new Object[] { Integer.valueOf(1), null, Integer.valueOf(3) };                        
+Object[] x2 = new Object[] { Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3) };             Object[] x2 = new Object[] { Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3) };          
+// causes an NPE in 2.0 according to:                                                                  // causes an NPE in 2.0 according to:                                                               
+// http://issues.apache.org/bugzilla/show_bug.cgi?id=33067                                             // http://issues.apache.org/bugzilla/show_bug.cgi?id=33067                                          
+new EqualsBuilder().append(x1, x2);                                                                    new EqualsBuilder().append(x1, x2);                                                                 
+}                                                                                                      }                                                                                                   

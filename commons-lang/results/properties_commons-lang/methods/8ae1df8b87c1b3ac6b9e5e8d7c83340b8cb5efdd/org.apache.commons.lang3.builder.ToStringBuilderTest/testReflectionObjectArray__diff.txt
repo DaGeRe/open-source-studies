@@ -1,0 +1,8 @@
+public void testReflectionObjectArray() {
+    Object[] array = new Object[] { null, base, new int[] { 3, 6 } };
+    String baseStr = this.toBaseString(array);
+    assertEquals(baseStr + "[{<null>,5,{3,6}}]", ToStringBuilder.reflectionToString(array));
+    array = null;
+    assertReflectionArray("<null>", array);
+    this.validateNullToStringStyleRegistry();
+}

@@ -1,0 +1,25 @@
+public void test_getInstance_String_TimeZone_Locale() {                                                public void test_getInstance_String_TimeZone_Locale() {                                             
+Locale realDefaultLocale = Locale.getDefault();                                                        Locale realDefaultLocale = Locale.getDefault();                                                     
+TimeZone realDefaultZone = TimeZone.getDefault();                                                      TimeZone realDefaultZone = TimeZone.getDefault();                                                   
+try {                                                                                                  try {                                                                                               
+Locale.setDefault(Locale.US);                                                                          Locale.setDefault(Locale.US);                                                                       
+TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));                                         TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));                                      
+FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getTimeZone("Atlantic/Rey   FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getTimeZone("Atlantic/Rey
+FastDateFormat format2 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                     FastDateFormat format2 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                  
+FastDateFormat format3 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getDefault(), Locale.GERM   FastDateFormat format3 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getDefault(), Locale.GERM
+// -- junit 3.8 version -- assertNotSame(format1, format2);                                            // -- junit 3.8 version -- assertNotSame(format1, format2);                                         
+assertTrue(format1 != format2);                                                                        assertTrue(format1 != format2);                                                                     
+assertEquals(TimeZone.getTimeZone("Atlantic/Reykjavik"), format1.getTimeZone());                       assertEquals(TimeZone.getTimeZone("Atlantic/Reykjavik"), format1.getTimeZone());                    
+assertEquals(TimeZone.getDefault(), format2.getTimeZone());                                            assertEquals(TimeZone.getDefault(), format2.getTimeZone());                                         
+assertEquals(TimeZone.getDefault(), format3.getTimeZone());                                            assertEquals(TimeZone.getDefault(), format3.getTimeZone());                                         
+assertEquals(true, format1.getTimeZoneOverridesCalendar());                                          |                                                                                                     
+assertEquals(false, format2.getTimeZoneOverridesCalendar());                                         |                                                                                                     
+assertEquals(true, format3.getTimeZoneOverridesCalendar());                                          |                                                                                                     
+assertEquals(Locale.GERMANY, format1.getLocale());                                                     assertEquals(Locale.GERMANY, format1.getLocale());                                                  
+assertEquals(Locale.GERMANY, format2.getLocale());                                                     assertEquals(Locale.GERMANY, format2.getLocale());                                                  
+assertEquals(Locale.GERMANY, format3.getLocale());                                                     assertEquals(Locale.GERMANY, format3.getLocale());                                                  
+} finally {                                                                                            } finally {                                                                                         
+Locale.setDefault(realDefaultLocale);                                                                  Locale.setDefault(realDefaultLocale);                                                               
+TimeZone.setDefault(realDefaultZone);                                                                  TimeZone.setDefault(realDefaultZone);                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,44 @@
+/**
+ * Equivalence relationship tests inspired by "Effective Java":
+ * <ul>
+ * <li>reflection</li>
+ * <li>symmetry</li>
+ * <li>transitive</li>
+ * <li>consistency</li>
+ * <li>non-null reference</li>
+ * </ul>
+ * @param to a TestObject
+ * @param toBis a TestObject, equal to to and toTer
+ * @param toTer Left hand side, equal to to and toBis
+ * @param to2 a different TestObject
+ * @param oToChange a TestObject that will be changed
+ * @param testTransients whether to test transient instance variables
+ */
+public void testReflectionEqualsEquivalenceRelationship(TestObject to, TestObject toBis, TestObject toTer, TestObject to2, TestObject oToChange, boolean testTransients) {
+    // reflection test
+    assertTrue(EqualsBuilder.reflectionEquals(to, to, testTransients));
+    assertTrue(EqualsBuilder.reflectionEquals(to2, to2, testTransients));
+    // symmetry test
+    assertTrue(EqualsBuilder.reflectionEquals(to, toBis, testTransients) && EqualsBuilder.reflectionEquals(toBis, to, testTransients));
+    // transitive test
+    assertTrue(EqualsBuilder.reflectionEquals(to, toBis, testTransients) && EqualsBuilder.reflectionEquals(toBis, toTer, testTransients) && EqualsBuilder.reflectionEquals(to, toTer, testTransients));
+    // consistency test
+    oToChange.setA(to.getA());
+    if (oToChange instanceof TestSubObject) {
+        ((TestSubObject) oToChange).setB(((TestSubObject) to).getB());
+    }
+    assertTrue(EqualsBuilder.reflectionEquals(oToChange, to, testTransients));
+    assertTrue(EqualsBuilder.reflectionEquals(oToChange, to, testTransients));
+    oToChange.setA(to.getA() + 1);
+    if (oToChange instanceof TestSubObject) {
+        ((TestSubObject) oToChange).setB(((TestSubObject) to).getB() + 1);
+    }
+    assertTrue(!EqualsBuilder.reflectionEquals(oToChange, to, testTransients));
+    assertTrue(!EqualsBuilder.reflectionEquals(oToChange, to, testTransients));
+    // non-null reference test
+    assertTrue(!EqualsBuilder.reflectionEquals(to, null, testTransients));
+    assertTrue(!EqualsBuilder.reflectionEquals(to2, null, testTransients));
+    assertTrue(!EqualsBuilder.reflectionEquals(null, to, testTransients));
+    assertTrue(!EqualsBuilder.reflectionEquals(null, to2, testTransients));
+    assertTrue(EqualsBuilder.reflectionEquals((Object) null, (Object) null, testTransients));
+}

@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+public int translate(CharSequence input, int index, Writer out) throws IOException {                   public int translate(CharSequence input, int index, Writer out) throws IOException {                
+CharSequence subsequence = input.subSequence(index, input.length());                                 | int max = longest;                                                                                  
+for (CharSequence[] seq : lookup) {                                                                  | if (index + longest &gt; input.length()) {                                                          
+if (subsequence.toString().startsWith(seq[0].toString())) {                                          | max = input.length() - index;                                                                       
+out.write(seq[1].toString());                                                                        |                                                                                                     
+return seq[0].length();                                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | // descend so as to get a greedy algorithm                                                          
+                                                                                                     | for (int i = max; i &gt;= shortest; i--) {                                                          
+                                                                                                     | CharSequence subSeq = input.subSequence(index, index + i);                                          
+                                                                                                     | CharSequence result = lookupMap.get(subSeq);                                                        
+                                                                                                     | if (result != null) {                                                                               
+                                                                                                     | out.write(result.toString());                                                                       
+                                                                                                     | return i;                                                                                           
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   

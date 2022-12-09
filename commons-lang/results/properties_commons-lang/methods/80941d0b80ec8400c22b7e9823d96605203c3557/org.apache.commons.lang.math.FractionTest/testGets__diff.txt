@@ -1,0 +1,18 @@
+public void testGets() {
+    Fraction f = null;
+    f = Fraction.getFraction(3, 5, 6);
+    assertEquals(23, f.getNumerator());
+    assertEquals(3, f.getProperWhole());
+    assertEquals(5, f.getProperNumerator());
+    assertEquals(6, f.getDenominator());
+    f = Fraction.getFraction(-3, 5, 6);
+    assertEquals(-23, f.getNumerator());
+    assertEquals(-3, f.getProperWhole());
+    assertEquals(5, f.getProperNumerator());
+    assertEquals(6, f.getDenominator());
+    f = Fraction.getFraction(Integer.MIN_VALUE, 0, 1);
+    assertEquals(Integer.MIN_VALUE, f.getNumerator());
+    assertEquals(Integer.MIN_VALUE, f.getProperWhole());
+    assertEquals(0, f.getProperNumerator());
+    assertEquals(1, f.getDenominator());
+}

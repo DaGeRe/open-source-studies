@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean equals(Object obj) {
+    if (obj == this) {
+        return true;
+    }
+    if (obj instanceof Pair<?, ?> == false) {
+        return false;
+    }
+    Pair<?, ?> other = (Pair<?, ?>) obj;
+    return ObjectUtils.equals(left, other.left) && ObjectUtils.equals(right, other.right);
+}

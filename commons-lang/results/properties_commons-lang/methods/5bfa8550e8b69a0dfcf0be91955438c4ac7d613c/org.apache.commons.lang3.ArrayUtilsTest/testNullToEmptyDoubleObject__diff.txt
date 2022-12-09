@@ -1,0 +1,12 @@
+public void testNullToEmptyDoubleObject() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_DOUBLE_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Double[]) null));
+    // Test valid array handling
+    Double[] original = new Double[] { 1D, 2D };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    Double[] empty = new Double[] {};
+    Double[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_DOUBLE_OBJECT_ARRAY, result);
+    assertTrue(empty != result);
+}

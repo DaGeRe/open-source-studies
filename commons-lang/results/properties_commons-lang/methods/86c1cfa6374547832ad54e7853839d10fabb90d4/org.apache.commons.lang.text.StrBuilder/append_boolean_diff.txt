@@ -1,0 +1,23 @@
+/**
+ * Appends a boolean value to the string builder.
+ *
+ * @param value  the value to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(boolean value) {
+    if (value) {
+        ensureCapacity(size + 4);
+        buffer[size++] = 't';
+        buffer[size++] = 'r';
+        buffer[size++] = 'u';
+        buffer[size++] = 'e';
+    } else {
+        ensureCapacity(size + 5);
+        buffer[size++] = 'f';
+        buffer[size++] = 'a';
+        buffer[size++] = 'l';
+        buffer[size++] = 's';
+        buffer[size++] = 'e';
+    }
+    return this;
+}

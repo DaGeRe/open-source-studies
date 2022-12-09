@@ -1,0 +1,24 @@
+// StripAll                                                                                            // StripAll                                                                                         
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Strips whitespace from the start and end of every String in an array.                       * &lt;p&gt;Strips whitespace from the start and end of every String in an array.                    
+* Whitespace is defined by {@link Character#isWhitespace(char)}.&lt;/p&gt;                             * Whitespace is defined by {@link Character#isWhitespace(char)}.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A new array is returned each time, except for length zero.                                  * &lt;p&gt;A new array is returned each time, except for length zero.                               
+* A {@code null} array will return {@code null}.                                                       * A {@code null} array will return {@code null}.                                                    
+* An empty array will return itself.                                                                   * An empty array will return itself.                                                                
+* A {@code null} array entry will be ignored.&lt;/p&gt;                                                * A {@code null} array entry will be ignored.&lt;/p&gt;                                             
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.stripAll(null)             = null                                                        * StringUtils.stripAll(null)             = null                                                     
+* StringUtils.stripAll([])               = []                                                          * StringUtils.stripAll([])               = []                                                       
+* StringUtils.stripAll(["abc", "  abc"]) = ["abc", "abc"]                                              * StringUtils.stripAll(["abc", "  abc"]) = ["abc", "abc"]                                           
+* StringUtils.stripAll(["abc  ", null])  = ["abc", null]                                               * StringUtils.stripAll(["abc  ", null])  = ["abc", null]                                            
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param strs  the array to remove whitespace from, may be null                                        * @param strs  the array to remove whitespace from, may be null                                     
+* @return the stripped Strings, {@code null} if null array input                                       * @return the stripped Strings, {@code null} if null array input                                    
+*/                                                                                                     */                                                                                                  
+public static String[] stripAll(String[] strs) {                                                     | public static String[] stripAll(String... strs) {                                                   
+return stripAll(strs, null);                                                                           return stripAll(strs, null);                                                                        
+}                                                                                                      }                                                                                                   

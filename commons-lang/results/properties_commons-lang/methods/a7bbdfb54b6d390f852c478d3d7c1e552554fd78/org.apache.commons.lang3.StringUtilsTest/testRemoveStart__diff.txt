@@ -1,0 +1,15 @@
+public void testRemoveStart() {
+    // StringUtils.removeStart("", *)        = ""
+    assertNull(StringUtils.removeStart(null, null));
+    assertNull(StringUtils.removeStart(null, ""));
+    assertNull(StringUtils.removeStart(null, "a"));
+    // StringUtils.removeStart(*, null)      = *
+    assertEquals(StringUtils.removeStart("", null), "");
+    assertEquals(StringUtils.removeStart("", ""), "");
+    assertEquals(StringUtils.removeStart("", "a"), "");
+    // All others:
+    assertEquals(StringUtils.removeStart("www.domain.com", "www."), "domain.com");
+    assertEquals(StringUtils.removeStart("domain.com", "www."), "domain.com");
+    assertEquals(StringUtils.removeStart("domain.com", ""), "domain.com");
+    assertEquals(StringUtils.removeStart("domain.com", null), "domain.com");
+}

@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Test an Object pointing to itself, the simplest test.                                                * Test an Object pointing to itself, the simplest test.                                             
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testSimpleReflectionObjectCycle() throws Exception {                                       public void testSimpleReflectionObjectCycle() throws Exception {                                    
+SimpleReflectionTestFixture simple = new SimpleReflectionTestFixture();                                SimpleReflectionTestFixture simple = new SimpleReflectionTestFixture();                             
+simple.o = simple;                                                                                     simple.o = simple;                                                                                  
+assertEquals(this.toBaseString(simple) + "[o=" + this.toBaseString(simple) + "]", simple.toString())   assertEquals(this.toBaseString(simple) + "[o=" + this.toBaseString(simple) + "]", simple.toString())
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

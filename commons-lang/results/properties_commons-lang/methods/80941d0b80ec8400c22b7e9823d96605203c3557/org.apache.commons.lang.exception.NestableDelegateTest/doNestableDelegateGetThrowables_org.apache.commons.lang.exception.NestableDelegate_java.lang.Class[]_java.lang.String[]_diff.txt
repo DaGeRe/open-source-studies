@@ -1,0 +1,16 @@
+private void doNestableDelegateGetThrowables(NestableDelegate d, Class[] classes, String[] msgs) {
+    Throwable[] throwables = null;
+    String msg = null;
+    throwables = d.getThrowables();
+    assertEquals("throwables length", classes.length, throwables.length);
+    for (int i = 0; i < classes.length; i++) {
+        assertEquals("throwable class", classes[i], throwables[i].getClass());
+        Throwable t = throwables[i];
+        if (Nestable.class.isInstance(t)) {
+            msg = ((Nestable) t).getMessage(0);
+        } else {
+            msg = t.getMessage();
+        }
+        assertEquals("throwable message", msgs[i], msg);
+    }
+}

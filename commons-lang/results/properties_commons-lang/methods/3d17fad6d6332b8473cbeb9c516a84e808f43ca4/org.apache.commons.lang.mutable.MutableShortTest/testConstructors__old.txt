@@ -1,0 +1,12 @@
+// ----------------------------------------------------------------
+public void testConstructors() {
+    assertEquals((short) 0, new MutableShort().shortValue());
+    assertEquals((short) 1, new MutableShort((short) 1).shortValue());
+    assertEquals((short) 2, new MutableShort(new Short((short) 2)).shortValue());
+    assertEquals((short) 3, new MutableShort(new MutableShort((short) 3)).shortValue());
+    try {
+        new MutableShort(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

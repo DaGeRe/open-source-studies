@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Appends to the <code>builder</code> the comparison of
+ * two <code>Object</code>s.</p>
+ *
+ * <ol>
+ * <li>Check if <code>lhs == rhs</code></li>
+ * <li>Check if either <code>lhs</code> or <code>rhs</code> is <code>null</code>,
+ *     a <code>null</code> object is less than a non-<code>null</code> object</li>
+ * <li>Check the object contents</li>
+ * </ol>
+ *
+ * <p><code>lhs</code> must either be an array or implement {@link Comparable}.</p>
+ *
+ * @param lhs  left-hand object
+ * @param rhs  right-hand object
+ * @return this - used to chain append calls
+ * @throws ClassCastException  if <code>rhs</code> is not assignment-compatible
+ *  with <code>lhs</code>
+ */
+public CompareToBuilder append(Object lhs, Object rhs) {
+    return append(lhs, rhs, null);
+}

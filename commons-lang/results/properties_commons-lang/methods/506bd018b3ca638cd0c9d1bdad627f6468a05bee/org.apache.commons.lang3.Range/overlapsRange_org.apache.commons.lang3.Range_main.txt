@@ -1,0 +1,16 @@
+/**
+ * <p>Tests whether the specified range overlaps with this range.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * @param range  the range to test, may be <code>null</code>
+ * @return <code>true</code> if the specified range overlaps with this
+ *  range; otherwise, <code>false</code>
+ * @throws IllegalArgumentException if the <code>Range</code> cannot be compared
+ */
+public boolean overlapsRange(Range<T> range) {
+    if (range == null) {
+        return false;
+    }
+    return range.contains(this.minimum) || range.contains(this.maximum) || contains(range.getMinimum());
+}

@@ -1,0 +1,22 @@
+/**
+ * Checks if a concurrent map contains a key and creates a corresponding
+ * value if not, suppressing checked exceptions. This method calls
+ * {@code createIfAbsent()}. If a {@link ConcurrentException} is thrown, it
+ * is caught and re-thrown as a {@link ConcurrentRuntimeException}.
+ *
+ * @param <K> the type of the keys of the map
+ * @param <V> the type of the values of the map
+ * @param map the map to be modified
+ * @param key the key of the value to be added
+ * @param init the {@link ConcurrentInitializer} for creating the value
+ * @return the value stored in the map after this operation; this may or may
+ * not be the object created by the {@link ConcurrentInitializer}
+ * @throws ConcurrentRuntimeException if the initializer throws an exception
+ */
+public static <K, V> V createIfAbsentUnchecked(ConcurrentMap<K, V> map, K key, ConcurrentInitializer<V> init) {
+    try {
+        return createIfAbsent(map, key, init);
+    } catch (ConcurrentException cex) {
+        throw new ConcurrentRuntimeException(cex.getCause());
+    }
+}

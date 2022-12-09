@@ -1,0 +1,6 @@
+private void testFixture(boolean testTransients) {
+    assertEqualsAndHashCodeContract(new TestFixture(2, 'c', "Test", (short) 2), new TestFixture(2, 'c', "Test", (short) 2), testTransients);
+    assertEqualsAndHashCodeContract(new AllTransientFixture(2, 'c', "Test", (short) 2), new AllTransientFixture(2, 'c', "Test", (short) 2), testTransients);
+    assertEqualsAndHashCodeContract(new SubTestFixture(2, 'c', "Test", (short) 2, "Same"), new SubTestFixture(2, 'c', "Test", (short) 2, "Same"), testTransients);
+    assertEqualsAndHashCodeContract(new SubAllTransientFixture(2, 'c', "Test", (short) 2, "Same"), new SubAllTransientFixture(2, 'c', "Test", (short) 2, "Same"), testTransients);
+}

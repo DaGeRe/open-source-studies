@@ -1,0 +1,13 @@
+@SuppressWarnings("cast")
+public void testLastIndexOfDouble() {
+    double[] array = null;
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, (double) 0));
+    array = new double[0];
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, (double) 0));
+    array = new double[] { 0, 1, 2, 3, 0 };
+    assertEquals(4, ArrayUtils.lastIndexOf(array, (double) 0));
+    assertEquals(1, ArrayUtils.lastIndexOf(array, (double) 1));
+    assertEquals(2, ArrayUtils.lastIndexOf(array, (double) 2));
+    assertEquals(3, ArrayUtils.lastIndexOf(array, (double) 3));
+    assertEquals(-1, ArrayUtils.lastIndexOf(array, (double) 99));
+}

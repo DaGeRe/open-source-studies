@@ -1,0 +1,10 @@
+public void testIsAssignable() {
+    Validate.isAssignableFrom(CharSequence.class, String.class);
+    Validate.isAssignableFrom(AbstractList.class, ArrayList.class);
+    try {
+        Validate.isAssignableFrom(List.class, String.class);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        assertEquals("The validated class can not be converted to the java.util.List class", e.getMessage());
+    }
+}

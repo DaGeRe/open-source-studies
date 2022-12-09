@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns a String representation of this Pair as completed by                              | * &lt;p&gt;Returns a String representation of this pair using the format {@code ($left,$right)}.&lt;
+* {@link #formatTo(Formatter, int, int, int)}.&lt;/p&gt;                                             |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @return a string describing this object, not null                                                    * @return a string describing this object, not null                                                 
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+return FormattableUtils.toString(this);                                                              | return new StringBuilder().append('(').append(getLeft()).append(',').append(getRight()).append(')').
+}                                                                                                      }                                                                                                   

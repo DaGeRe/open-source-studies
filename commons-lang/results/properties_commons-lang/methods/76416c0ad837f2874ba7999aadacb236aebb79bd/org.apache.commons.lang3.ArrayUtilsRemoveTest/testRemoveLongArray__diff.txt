@@ -1,0 +1,31 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveLongArray() {                                                                    public void testRemoveLongArray() {                                                                 
+long[] array;                                                                                          long[] array;                                                                                       
+array = ArrayUtils.remove(new long[] { 1 }, 0);                                                        array = ArrayUtils.remove(new long[] { 1 }, 0);                                                     
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_LONG_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_LONG_ARRAY, array));                                      
+assertEquals(Long.TYPE, array.getClass().getComponentType());                                          assertEquals(Long.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new long[] { 1, 2 }, 0);                                                     array = ArrayUtils.remove(new long[] { 1, 2 }, 0);                                                  
+assertTrue(Arrays.equals(new long[] { 2 }, array));                                                    assertTrue(Arrays.equals(new long[] { 2 }, array));                                                 
+assertEquals(Long.TYPE, array.getClass().getComponentType());                                          assertEquals(Long.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new long[] { 1, 2 }, 1);                                                     array = ArrayUtils.remove(new long[] { 1, 2 }, 1);                                                  
+assertTrue(Arrays.equals(new long[] { 1 }, array));                                                    assertTrue(Arrays.equals(new long[] { 1 }, array));                                                 
+assertEquals(Long.TYPE, array.getClass().getComponentType());                                          assertEquals(Long.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new long[] { 1, 2, 1 }, 1);                                                  array = ArrayUtils.remove(new long[] { 1, 2, 1 }, 1);                                               
+assertTrue(Arrays.equals(new long[] { 1, 1 }, array));                                                 assertTrue(Arrays.equals(new long[] { 1, 1 }, array));                                              
+assertEquals(Long.TYPE, array.getClass().getComponentType());                                          assertEquals(Long.TYPE, array.getClass().getComponentType());                                       
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove(new long[] { 1, 2 }, -1);                                                            ArrayUtils.remove(new long[] { 1, 2 }, -1);                                                         
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove(new long[] { 1, 2 }, 2);                                                             ArrayUtils.remove(new long[] { 1, 2 }, 2);                                                          
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove((long[]) null, 0);                                                                   ArrayUtils.remove((long[]) null, 0);                                                                
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

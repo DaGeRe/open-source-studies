@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------                           | @Test                                                                                               
+public void testToUnicodeEscaped_char() {                                                              public void testToUnicodeEscaped_char() {                                                           
+assertEquals("\\u0041", CharUtils.unicodeEscaped('A'));                                                assertEquals("\\u0041", CharUtils.unicodeEscaped('A'));                                             
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+String str = CharUtils.unicodeEscaped((char) i);                                                       String str = CharUtils.unicodeEscaped((char) i);                                                    
+assertEquals(6, str.length());                                                                         assertEquals(6, str.length());                                                                      
+int val = Integer.parseInt(str.substring(2), 16);                                                      int val = Integer.parseInt(str.substring(2), 16);                                                   
+assertEquals(i, val);                                                                                  assertEquals(i, val);                                                                               
+}                                                                                                      }                                                                                                   
+assertEquals("\\u0999", CharUtils.unicodeEscaped((char) 0x999));                                       assertEquals("\\u0999", CharUtils.unicodeEscaped((char) 0x999));                                    
+assertEquals("\\u1001", CharUtils.unicodeEscaped((char) 0x1001));                                      assertEquals("\\u1001", CharUtils.unicodeEscaped((char) 0x1001));                                   
+}                                                                                                      }                                                                                                   

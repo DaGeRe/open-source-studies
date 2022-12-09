@@ -1,0 +1,11 @@
+@Test
+@SuppressWarnings("unchecked")
+public void testSerialization() throws Exception {
+    ImmutablePair<Integer, String> origPair = ImmutablePair.of(0, "foo");
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ObjectOutputStream out = new ObjectOutputStream(baos);
+    out.writeObject(origPair);
+    ImmutablePair<Integer, String> deserializedPair = (ImmutablePair<Integer, String>) new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray())).readObject();
+    assertEquals(origPair, deserializedPair);
+    assertEquals(origPair.hashCode(), deserializedPair.hashCode());
+}

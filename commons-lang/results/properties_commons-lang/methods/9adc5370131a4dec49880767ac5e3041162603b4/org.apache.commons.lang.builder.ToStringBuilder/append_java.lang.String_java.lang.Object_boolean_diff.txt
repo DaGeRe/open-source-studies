@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Append to the &lt;code&gt;toString&lt;/code&gt; an &lt;code&gt;Object&lt;/code&gt;          * &lt;p&gt;Append to the &lt;code&gt;toString&lt;/code&gt; an &lt;code&gt;Object&lt;/code&gt;       
+* value.&lt;/p&gt;                                                                                     * value.&lt;/p&gt;                                                                                  
+*                                                                                                      *                                                                                                   
+* @param fieldName  the field name                                                                     * @param fieldName  the field name                                                                  
+* @param obj  the value to add to the &lt;code&gt;toString&lt;/code&gt;                                * @param obj  the value to add to the &lt;code&gt;toString&lt;/code&gt;                             
+* @param fullDetail  &lt;code&gt;true&lt;/code&gt; for detail,                                         * @param fullDetail  &lt;code&gt;true&lt;/code&gt; for detail,                                      
+*  &lt;code&gt;false&lt;/code&gt; for summary info                                                     *  &lt;code&gt;false&lt;/code&gt; for summary info                                                  
+* @return this                                                                                         * @return this                                                                                      
+*/                                                                                                     */                                                                                                  
+public ToStringBuilder append(String fieldName, Object obj, boolean fullDetail) {                      public ToStringBuilder append(String fieldName, Object obj, boolean fullDetail) {                   
+style.append(buffer, fieldName, obj, BooleanUtils.toBooleanObject(fullDetail));                      | style.append(buffer, fieldName, obj, Boolean.valueOf(fullDetail));                                  
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

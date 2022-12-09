@@ -1,0 +1,12 @@
+public void testIndexOf_charInt() {                                                                    public void testIndexOf_charInt() {                                                                 
+assertEquals(-1, StringUtils.indexOf(null, ' ', 0));                                                   assertEquals(-1, StringUtils.indexOf(null, ' ', 0));                                                
+assertEquals(-1, StringUtils.indexOf(null, ' ', -1));                                                  assertEquals(-1, StringUtils.indexOf(null, ' ', -1));                                               
+assertEquals(-1, StringUtils.indexOf("", ' ', 0));                                                     assertEquals(-1, StringUtils.indexOf("", ' ', 0));                                                  
+assertEquals(-1, StringUtils.indexOf("", ' ', -1));                                                    assertEquals(-1, StringUtils.indexOf("", ' ', -1));                                                 
+assertEquals(0, StringUtils.indexOf("aabaabaa", 'a', 0));                                              assertEquals(0, StringUtils.indexOf("aabaabaa", 'a', 0));                                           
+assertEquals(2, StringUtils.indexOf("aabaabaa", 'b', 0));                                              assertEquals(2, StringUtils.indexOf("aabaabaa", 'b', 0));                                           
+assertEquals(5, StringUtils.indexOf("aabaabaa", 'b', 3));                                              assertEquals(5, StringUtils.indexOf("aabaabaa", 'b', 3));                                           
+assertEquals(-1, StringUtils.indexOf("aabaabaa", 'b', 9));                                             assertEquals(-1, StringUtils.indexOf("aabaabaa", 'b', 9));                                          
+assertEquals(2, StringUtils.indexOf("aabaabaa", 'b', -1));                                             assertEquals(2, StringUtils.indexOf("aabaabaa", 'b', -1));                                          
+                                                                                                     | assertEquals(5, StringUtils.indexOf(new StringBuilder("aabaabaa"), 'b', 3));                        
+}                                                                                                      }                                                                                                   

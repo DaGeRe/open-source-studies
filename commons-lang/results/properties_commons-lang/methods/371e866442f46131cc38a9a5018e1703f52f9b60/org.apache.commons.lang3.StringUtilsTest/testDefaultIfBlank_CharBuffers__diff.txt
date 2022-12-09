@@ -1,0 +1,10 @@
+@Test
+public void testDefaultIfBlank_CharBuffers() {
+    assertEquals("NULL", StringUtils.defaultIfBlank(CharBuffer.wrap(""), CharBuffer.wrap("NULL")).toString());
+    assertEquals("NULL", StringUtils.defaultIfBlank(CharBuffer.wrap(" "), CharBuffer.wrap("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfBlank(CharBuffer.wrap("abc"), CharBuffer.wrap("NULL")).toString());
+    assertNull(StringUtils.defaultIfBlank(CharBuffer.wrap(""), null));
+    // Tests compatibility for the API return type
+    CharBuffer s = StringUtils.defaultIfBlank(CharBuffer.wrap("abc"), CharBuffer.wrap("NULL"));
+    assertEquals("abc", s.toString());
+}

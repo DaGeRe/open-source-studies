@@ -1,0 +1,28 @@
+/**
+ * <p>Case in-sensitive find of the last index within a CharSequence.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A negative start position returns {@code -1}.
+ * An empty ("") search CharSequence always matches unless the start position is negative.
+ * A start position greater than the string length searches the whole string.</p>
+ *
+ * <pre>
+ * StringUtils.lastIndexOfIgnoreCase(null, *)          = -1
+ * StringUtils.lastIndexOfIgnoreCase(*, null)          = -1
+ * StringUtils.lastIndexOfIgnoreCase("aabaabaa", "A")  = 7
+ * StringUtils.lastIndexOfIgnoreCase("aabaabaa", "B")  = 5
+ * StringUtils.lastIndexOfIgnoreCase("aabaabaa", "AB") = 4
+ * </pre>
+ *
+ * @param str  the CharSequence to check, may be null
+ * @param searchStr  the CharSequence to find, may be null
+ * @return the first index of the search CharSequence,
+ *  -1 if no match or {@code null} string input
+ * @since 2.5
+ */
+public static int lastIndexOfIgnoreCase(CharSequence str, CharSequence searchStr) {
+    if (str == null || searchStr == null) {
+        return INDEX_NOT_FOUND;
+    }
+    return lastIndexOfIgnoreCase(str, searchStr, str.length());
+}

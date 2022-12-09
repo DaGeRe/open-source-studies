@@ -1,0 +1,14 @@
+/**
+ * Create a new ExtendedMessageFormat.
+ *
+ * @param pattern String
+ * @param locale Locale
+ * @param registry Registry of format factories:  Map<String, ? extends FormatFactory>
+ * @throws IllegalArgumentException in case of a bad pattern.
+ */
+public ExtendedMessageFormat(String pattern, Locale locale, Map<String, ? extends FormatFactory> registry) {
+    super(DUMMY_PATTERN);
+    setLocale(locale);
+    this.registry = registry;
+    applyPattern(pattern);
+}

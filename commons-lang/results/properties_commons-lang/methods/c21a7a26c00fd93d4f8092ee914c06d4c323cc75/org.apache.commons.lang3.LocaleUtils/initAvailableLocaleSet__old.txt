@@ -1,0 +1,10 @@
+/**
+ * Initializes the availableLocaleSet. It is separate from availableLocaleSet()
+ * to avoid the synchronized block affecting normal use, yet synchronized and
+ * lazy loading to avoid a static block affecting other methods in this class.
+ */
+private static synchronized void initAvailableLocaleSet() {
+    if (cAvailableLocaleSet == null) {
+        cAvailableLocaleSet = Collections.unmodifiableSet(new HashSet<Locale>(availableLocaleList()));
+    }
+}

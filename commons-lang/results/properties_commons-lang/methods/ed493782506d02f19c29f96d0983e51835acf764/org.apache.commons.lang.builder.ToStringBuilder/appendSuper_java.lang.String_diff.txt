@@ -1,0 +1,19 @@
+// ----------------------------------------------------------------------------                        // ----------------------------------------------------------------------------                     
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Append the &lt;code&gt;toString&lt;/code&gt; from the superclass.&lt;/p&gt;                 * &lt;p&gt;Append the &lt;code&gt;toString&lt;/code&gt; from the superclass.&lt;/p&gt;              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method assumes that the superclass uses the same &lt;code&gt;ToStringStyle&lt;/code&   * &lt;p&gt;This method assumes that the superclass uses the same &lt;code&gt;ToStringStyle&lt;/code&
+* as this one.&lt;/p&gt;                                                                               * as this one.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If &lt;code&gt;superToString&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, no change is    * &lt;p&gt;If &lt;code&gt;superToString&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt;, no change is 
+*                                                                                                      *                                                                                                   
+* @param superToString  the result of &lt;code&gt;super.toString()&lt;/code&gt;                        * @param superToString  the result of &lt;code&gt;super.toString()&lt;/code&gt;                     
+* @return this                                                                                         * @return this                                                                                      
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public ToStringBuilder appendSuper(String superToString) {                                           | public ToStringBuilder&lt;T&gt; appendSuper(String superToString) {                                 
+if (superToString != null) {                                                                           if (superToString != null) {                                                                        
+style.appendSuper(buffer, superToString);                                                              style.appendSuper(buffer, superToString);                                                           
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

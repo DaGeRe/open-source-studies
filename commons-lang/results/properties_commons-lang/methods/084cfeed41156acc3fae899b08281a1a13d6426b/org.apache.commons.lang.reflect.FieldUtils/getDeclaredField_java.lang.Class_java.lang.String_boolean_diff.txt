@@ -1,0 +1,33 @@
+/**
+ * Gets an accessible <code>Field</code> by name breaking scope
+ * if requested. Only the specified class will be considered.
+ *
+ * @param cls  the class to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @param forceAccess  whether to break scope restrictions using the
+ *  <code>setAccessible</code> method. False will only match public fields.
+ * @return the Field object
+ * @throws IllegalArgumentException if the class or field name is null
+ */
+public static Field getDeclaredField(Class cls, String fieldName, boolean forceAccess) {
+    if (cls == null) {
+        throw new IllegalArgumentException("The class must not be null");
+    }
+    if (fieldName == null) {
+        throw new IllegalArgumentException("The field name must not be null");
+    }
+    try {
+        // only consider the specified class by using getDeclaredField()
+        Field field = cls.getDeclaredField(fieldName);
+        if (!MemberUtils.isAccessible(field)) {
+            if (forceAccess) {
+                field.setAccessible(true);
+            } else {
+                return null;
+            }
+        }
+        return field;
+    } catch (NoSuchFieldException e) {
+    }
+    return null;
+}

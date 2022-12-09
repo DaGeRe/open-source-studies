@@ -1,0 +1,13 @@
+public void testDeleteFirst_StrMatcher() {
+    StrBuilder sb = new StrBuilder("A0xA1A2yA3");
+    sb.deleteFirst((StrMatcher) null);
+    assertEquals("A0xA1A2yA3", sb.toString());
+    sb.deleteFirst(A_NUMBER_MATCHER);
+    assertEquals("xA1A2yA3", sb.toString());
+    sb = new StrBuilder("Ax1");
+    sb.deleteFirst(A_NUMBER_MATCHER);
+    assertEquals("Ax1", sb.toString());
+    sb = new StrBuilder("");
+    sb.deleteFirst(A_NUMBER_MATCHER);
+    assertEquals("", sb.toString());
+}

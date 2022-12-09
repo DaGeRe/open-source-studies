@@ -1,0 +1,8 @@
+public void testReflectionFloatArray() {
+    float[] array = new float[] { 1.0f, 2.9876f, -3.00001f, 4.3f };
+    String baseStr = this.toBaseString(array);
+    assertEquals(baseStr + "[{1.0,2.9876,-3.00001,4.3}]", ToStringBuilder.reflectionToString(array));
+    array = null;
+    assertReflectionArray("<null>", array);
+    this.validateNullToStringStyleRegistry();
+}

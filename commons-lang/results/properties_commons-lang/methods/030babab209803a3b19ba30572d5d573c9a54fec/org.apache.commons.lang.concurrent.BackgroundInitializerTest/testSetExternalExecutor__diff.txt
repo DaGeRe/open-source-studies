@@ -1,0 +1,18 @@
+/**
+ * Tests whether an external executor can be set using the
+ * setExternalExecutor() method.
+ */
+public void testSetExternalExecutor() throws Exception {
+    ExecutorService exec = Executors.newCachedThreadPool();
+    try {
+        BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+        init.setExternalExecutor(exec);
+        assertEquals("Wrong executor service", exec, init.getExternalExecutor());
+        assertTrue("Wrong result of start()", init.start());
+        assertSame("Wrong active executor", exec, init.getActiveExecutor());
+        checkInitialize(init);
+        assertFalse("Executor was shutdown", exec.isShutdown());
+    } finally {
+        exec.shutdown();
+    }
+}

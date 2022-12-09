@@ -1,0 +1,12 @@
+public void testToClass_object() {                                                                     public void testToClass_object() {                                                                  
+assertEquals(null, ClassUtils.toClass(null));                                                        | assertNull(ClassUtils.toClass(null));                                                               
+assertSame(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.toClass(new Class[0]));                          | assertSame(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.toClass(ArrayUtils.EMPTY_OBJECT_ARRAY));        
+Object[] array = new Object[3];                                                                      | assertTrue(Arrays.equals(new Class[] { String.class, Integer.class, Double.class }, ClassUtils.toCla
+array[0] = new String("Test");                                                                       |                                                                                                     
+array[1] = new Integer(1);                                                                           |                                                                                                     
+array[2] = new Double(99);                                                                           |                                                                                                     
+Class&lt;?&gt;[] results = ClassUtils.toClass(array);                                                |                                                                                                     
+assertEquals("String", ClassUtils.getShortClassName(results[0]));                                    |                                                                                                     
+assertEquals("Integer", ClassUtils.getShortClassName(results[1]));                                   |                                                                                                     
+assertEquals("Double", ClassUtils.getShortClassName(results[2]));                                    |                                                                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+/**
+ * Test a class that defines an ivar pointing to itself.
+ *
+ * @throws Exception
+ */
+public void testSelfInstanceVarReflectionObjectCycle() throws Exception {
+    SelfInstanceVarReflectionTestFixture test = new SelfInstanceVarReflectionTestFixture();
+    assertTrue(ToStringStyle.getRegistry().isEmpty());
+    assertEquals(this.toBaseString(test) + "[typeIsSelf=" + this.toBaseString(test) + "]", test.toString());
+    this.validateEmptyToStringStyleRegistry();
+}

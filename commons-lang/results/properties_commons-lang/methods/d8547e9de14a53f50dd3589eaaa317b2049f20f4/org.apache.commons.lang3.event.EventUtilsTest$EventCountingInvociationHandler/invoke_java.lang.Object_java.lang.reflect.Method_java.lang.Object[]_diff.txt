@@ -1,0 +1,9 @@
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    Integer count = eventCounts.get(method.getName());
+    if (count == null) {
+        eventCounts.put(method.getName(), 1);
+    } else {
+        eventCounts.put(method.getName(), count + 1);
+    }
+    return null;
+}

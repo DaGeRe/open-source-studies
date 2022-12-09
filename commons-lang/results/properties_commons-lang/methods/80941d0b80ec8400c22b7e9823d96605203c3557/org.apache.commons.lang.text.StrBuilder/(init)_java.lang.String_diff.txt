@@ -1,0 +1,15 @@
+/**
+ * Constructor that creates a builder from the string, allocating
+ * 32 extra characters for growth.
+ *
+ * @param str  the string to copy, null treated as blank string
+ */
+public StrBuilder(String str) {
+    super();
+    if (str == null) {
+        buffer = new char[CAPACITY];
+    } else {
+        buffer = new char[str.length() + CAPACITY];
+        append(str);
+    }
+}

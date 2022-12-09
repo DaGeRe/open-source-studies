@@ -1,0 +1,10 @@
+public void testContainsLong() {
+    long[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, 1));
+    array = new long[] { 0, 1, 2, 3, 0 };
+    assertEquals(true, ArrayUtils.contains(array, 0));
+    assertEquals(true, ArrayUtils.contains(array, 1));
+    assertEquals(true, ArrayUtils.contains(array, 2));
+    assertEquals(true, ArrayUtils.contains(array, 3));
+    assertEquals(false, ArrayUtils.contains(array, 99));
+}

@@ -1,0 +1,11 @@
+public void test_getPackageCanonicalName_String() {
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang3.ClassUtils"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[Lorg.apache.commons.lang3.ClassUtils;"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[[Lorg.apache.commons.lang3.ClassUtils;"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang3.ClassUtils[]"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang3.ClassUtils[][]"));
+    assertEquals("", ClassUtils.getPackageCanonicalName("[I"));
+    assertEquals("", ClassUtils.getPackageCanonicalName("[[I"));
+    assertEquals("", ClassUtils.getPackageCanonicalName("int[]"));
+    assertEquals("", ClassUtils.getPackageCanonicalName("int[][]"));
+}

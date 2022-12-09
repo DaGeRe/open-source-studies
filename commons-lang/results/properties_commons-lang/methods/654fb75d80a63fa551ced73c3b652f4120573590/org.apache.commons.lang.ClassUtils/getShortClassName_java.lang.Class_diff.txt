@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the class name minus the package name from a &lt;code&gt;Class&lt;/code&gt;.&lt;/p&g   * &lt;p&gt;Gets the class name minus the package name from a &lt;code&gt;Class&lt;/code&gt;.&lt;/p&g
+*                                                                                                      *                                                                                                   
+* @param cls  the class to get the short name for.                                                     * @param cls  the class to get the short name for.                                                  
+* @return the class name without the package name or an empty string                                   * @return the class name without the package name or an empty string                                
+*/                                                                                                     */                                                                                                  
+public static String getShortClassName(Class cls) {                                                  | public static String getShortClassName(Class&lt;?&gt; cls) {                                        
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+return StringUtils.EMPTY;                                                                              return StringUtils.EMPTY;                                                                           
+}                                                                                                      }                                                                                                   
+return getShortClassName(cls.getName());                                                               return getShortClassName(cls.getName());                                                            
+}                                                                                                      }                                                                                                   

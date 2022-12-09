@@ -1,0 +1,34 @@
+// private helper functions
+// ---------------------------------------------------------------------------------
+/**
+ * private helper function to create an error message from the given Objects
+ * If the first object in msgObjects is of type {@code String} then
+ * {@code MessageFormat} will be used to format the output message.
+ *
+ * @param msgObjects
+ * @return concatenated String representation of all the objects
+ */
+private static String getMessage(Object... msgObjects) {
+    if (msgObjects.length > 0 && msgObjects[0] instanceof String) {
+        String message = (String) msgObjects[0];
+        if (msgObjects.length == 2 && !message.matches("[^\\{]*\\{\\d*\\}.*")) {
+            // if it doesn't contain {0}, {1} etc we simply use string concatenation
+            // no space between to act like original function!
+            return message + msgObjects[1];
+        }
+        MessageFormat form = new MessageFormat((String) msgObjects[0]);
+        Object[] params = new Object[msgObjects.length - 1];
+        System.arraycopy(msgObjects, 1, params, 0, msgObjects.length - 1);
+        return form.format(params);
+    } else {
+        StringBuffer sb = new StringBuffer("Validation failed: [");
+        for (int i = 0; i < msgObjects.length; i++) {
+            if (i > 0) {
+                sb.append(' ');
+            }
+            sb.append(msgObjects[i]);
+        }
+        sb.append(']');
+        return sb.toString();
+    }
+}

@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Unregisters the given object pair.                                                                   * Unregisters the given object pair.                                                                
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Used by the reflection methods to avoid infinite loops.                                              * Used by the reflection methods to avoid infinite loops.                                           
+*                                                                                                      *                                                                                                   
+* @param lhs &lt;code&gt;this&lt;/code&gt; object to unregister                                        * @param lhs &lt;code&gt;this&lt;/code&gt; object to unregister                                     
+* @param rhs the other object to unregister                                                            * @param rhs the other object to unregister                                                         
+* @since 3.0                                                                                           * @since 3.0                                                                                        
+*/                                                                                                     */                                                                                                  
+static void unregister(Object lhs, Object rhs) {                                                       static void unregister(Object lhs, Object rhs) {                                                    
+Set&lt;Pair&lt;IDKey, IDKey&gt;&gt; registry = getRegistry();                                          Set&lt;Pair&lt;IDKey, IDKey&gt;&gt; registry = getRegistry();                                       
+if (registry != null) {                                                                                if (registry != null) {                                                                             
+Pair&lt;IDKey, IDKey&gt; pair = getRegisterPair(lhs, rhs);                                             Pair&lt;IDKey, IDKey&gt; pair = getRegisterPair(lhs, rhs);                                          
+registry.remove(pair);                                                                                 registry.remove(pair);                                                                              
+synchronized (HashCodeBuilder.class) {                                                               | synchronized (EqualsBuilder.class) {                                                                
+// read again                                                                                          // read again                                                                                       
+registry = getRegistry();                                                                              registry = getRegistry();                                                                           
+if (registry != null && registry.isEmpty()) {                                                          if (registry != null && registry.isEmpty()) {                                                       
+REGISTRY.remove();                                                                                     REGISTRY.remove();                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

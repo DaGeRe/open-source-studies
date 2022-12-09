@@ -1,0 +1,19 @@
+public void testReflectionHierarchyCompare(boolean testTransients, String[] excludeFields) {
+    TestObject to1 = new TestObject(1);
+    TestObject to2 = new TestObject(2);
+    TestObject to3 = new TestObject(3);
+    TestSubObject tso1 = new TestSubObject(1, 1);
+    TestSubObject tso2 = new TestSubObject(2, 2);
+    TestSubObject tso3 = new TestSubObject(3, 3);
+    assertReflectionCompareContract(to1, to1, to1, false, excludeFields);
+    assertReflectionCompareContract(to1, to2, to3, false, excludeFields);
+    assertReflectionCompareContract(tso1, tso1, tso1, false, excludeFields);
+    assertReflectionCompareContract(tso1, tso2, tso3, false, excludeFields);
+    assertReflectionCompareContract("1", "2", "3", false, excludeFields);
+    assertTrue(0 != CompareToBuilder.reflectionCompare(tso1, new TestSubObject(1, 0), testTransients));
+    assertTrue(0 != CompareToBuilder.reflectionCompare(tso1, new TestSubObject(0, 1), testTransients));
+    // root class
+    assertXYZCompareOrder(to1, to2, to3, true, null);
+    // subclass
+    assertXYZCompareOrder(tso1, tso2, tso3, true, null);
+}

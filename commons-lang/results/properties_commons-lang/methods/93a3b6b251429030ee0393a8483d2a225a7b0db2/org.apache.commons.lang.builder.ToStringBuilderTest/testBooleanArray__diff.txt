@@ -1,0 +1,8 @@
+public void testBooleanArray() {
+    boolean[] array = new boolean[] { true, false, false };
+    assertEquals(baseStr + "[{true,false,false}]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[{true,false,false}]", new ToStringBuilder(base).append((Object) array).toString());
+    array = null;
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append((Object) array).toString());
+}

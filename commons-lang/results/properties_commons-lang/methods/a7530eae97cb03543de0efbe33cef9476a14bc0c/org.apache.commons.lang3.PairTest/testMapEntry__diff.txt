@@ -1,0 +1,9 @@
+@Test
+public void testMapEntry() throws Exception {
+    Pair<Integer, String> pair = ImmutablePair.of(0, "foo");
+    HashMap<Integer, String> map = new HashMap<Integer, String>();
+    map.put(0, "foo");
+    Entry<Integer, String> entry = map.entrySet().iterator().next();
+    assertEquals(pair, entry);
+    assertEquals(pair.hashCode(), entry.hashCode());
+}

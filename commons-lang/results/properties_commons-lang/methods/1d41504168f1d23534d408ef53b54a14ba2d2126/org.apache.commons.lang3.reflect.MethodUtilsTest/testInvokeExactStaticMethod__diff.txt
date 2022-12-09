@@ -1,0 +1,24 @@
+public void testInvokeExactStaticMethod() throws Exception {                                           public void testInvokeExactStaticMethod() throws Exception {                                        
+assertEquals("bar()", MethodUtils.invokeStaticMethod(TestBean.class, "bar", (Object[]) ArrayUtils.EM | assertEquals("bar()", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", (Object[]) ArrayUti
+assertEquals("bar()", MethodUtils.invokeStaticMethod(TestBean.class, "bar", (Object[]) null));       | assertEquals("bar()", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", (Object[]) null)); 
+                                                                                                     | assertEquals("bar()", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", (Object[]) null, (C
+assertEquals("bar(String)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", ""));           assertEquals("bar(String)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", ""));        
+assertEquals("bar(Object)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", new Object())   assertEquals("bar(Object)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", new Object())
+assertEquals("bar(Integer)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.   assertEquals("bar(Integer)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.
+assertEquals("bar(double)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", new Object[]    assertEquals("bar(double)", MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", new Object[] 
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.BYTE_ONE);                      MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.BYTE_ONE);                   
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.LONG_ONE);                      MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", NumberUtils.LONG_ONE);                   
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", Boolean.TRUE);                              MethodUtils.invokeExactStaticMethod(TestBean.class, "bar", Boolean.TRUE);                           
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

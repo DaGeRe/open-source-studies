@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns the list of &lt;code&gt;Throwable&lt;/code&gt; objects in the                       * &lt;p&gt;Returns the list of &lt;code&gt;Throwable&lt;/code&gt; objects in the                    
+* exception chain.&lt;/p&gt;                                                                           * exception chain.&lt;/p&gt;                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A throwable without cause will return a list containing                                     * &lt;p&gt;A throwable without cause will return a list containing                                  
+* one element - the input throwable.                                                                   * one element - the input throwable.                                                                
+* A throwable with one cause will return a list containing                                             * A throwable with one cause will return a list containing                                          
+* two elements. - the input throwable and the cause throwable.                                         * two elements. - the input throwable and the cause throwable.                                      
+* A &lt;code&gt;null&lt;/code&gt; throwable will return a list of size zero.&lt;/p&gt;                 * A &lt;code&gt;null&lt;/code&gt; throwable will return a list of size zero.&lt;/p&gt;              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method handles recursive cause structures that might                                   * &lt;p&gt;This method handles recursive cause structures that might                                
+* otherwise cause infinite loops. The cause chain is processed until                                   * otherwise cause infinite loops. The cause chain is processed until                                
+* the end is reached, or until the next item in the chain is already                                   * the end is reached, or until the next item in the chain is already                                
+* in the result set.&lt;/p&gt;                                                                         * in the result set.&lt;/p&gt;                                                                      
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to inspect, may be null                                              * @param throwable  the throwable to inspect, may be null                                           
+* @return the list of throwables, never null                                                           * @return the list of throwables, never null                                                        
+* @since Commons Lang 2.2                                                                              * @since Commons Lang 2.2                                                                           
+*/                                                                                                     */                                                                                                  
+public static List getThrowableList(Throwable throwable) {                                           | public static List&lt;Throwable&gt; getThrowableList(Throwable throwable) {                         
+List list = new ArrayList();                                                                         | List&lt;Throwable&gt; list = new ArrayList&lt;Throwable&gt;();                                      
+while (throwable != null && list.contains(throwable) == false) {                                       while (throwable != null && list.contains(throwable) == false) {                                    
+list.add(throwable);                                                                                   list.add(throwable);                                                                                
+throwable = ExceptionUtils.getCause(throwable);                                                        throwable = ExceptionUtils.getCause(throwable);                                                     
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

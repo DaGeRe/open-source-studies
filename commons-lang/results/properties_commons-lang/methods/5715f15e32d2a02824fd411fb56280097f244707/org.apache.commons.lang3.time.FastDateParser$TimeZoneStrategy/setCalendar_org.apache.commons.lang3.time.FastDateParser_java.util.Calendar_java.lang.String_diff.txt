@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+public void setCalendar(FastDateParser parser, Calendar cal, String value) {
+    TimeZone tz;
+    if (value.charAt(0) == '+' || value.charAt(0) == '-') {
+        tz = TimeZone.getTimeZone("GMT" + value);
+    } else if (value.startsWith("GMT")) {
+        tz = TimeZone.getTimeZone(value);
+    } else {
+        tz = tzNames.get(value);
+        if (tz == null) {
+            throw new IllegalArgumentException(value + " is not a supported timezone name");
+        }
+    }
+    cal.setTimeZone(tz);
+}

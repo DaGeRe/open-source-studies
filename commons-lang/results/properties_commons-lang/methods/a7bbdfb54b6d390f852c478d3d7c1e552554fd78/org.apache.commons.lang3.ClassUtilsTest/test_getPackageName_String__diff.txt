@@ -1,0 +1,6 @@
+public void test_getPackageName_String() {
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageName(ClassUtils.class.getName()));
+    assertEquals("java.util", ClassUtils.getPackageName(Map.Entry.class.getName()));
+    assertEquals("", ClassUtils.getPackageName((String) null));
+    assertEquals("", ClassUtils.getPackageName(""));
+}

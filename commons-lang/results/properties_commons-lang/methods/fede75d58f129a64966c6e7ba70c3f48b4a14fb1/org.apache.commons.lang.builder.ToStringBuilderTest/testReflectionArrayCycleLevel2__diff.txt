@@ -1,0 +1,12 @@
+/**
+ * Test an array element pointing to its container.
+ */
+public void testReflectionArrayCycleLevel2() throws Exception {
+    Object[] objects = new Object[1];
+    Object[] objectsLevel2 = new Object[1];
+    objects[0] = objectsLevel2;
+    objectsLevel2[0] = (Object) objects;
+    assertEquals(this.toBaseString(objects) + "[{{" + this.toBaseString(objects) + "}}]", ToStringBuilder.reflectionToString(objects));
+    assertEquals(this.toBaseString(objectsLevel2) + "[{{" + this.toBaseString(objectsLevel2) + "}}]", ToStringBuilder.reflectionToString(objectsLevel2));
+    this.validateEmptyToStringStyleRegistry();
+}

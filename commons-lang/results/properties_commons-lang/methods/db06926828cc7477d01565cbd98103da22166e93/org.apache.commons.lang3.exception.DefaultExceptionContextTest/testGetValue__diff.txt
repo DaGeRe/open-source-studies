@@ -1,0 +1,6 @@
+public void testGetValue() {
+    assertTrue(defaultExceptionContext.getValue("test1") == null);
+    assertTrue(defaultExceptionContext.getValue("test2").equals("some value"));
+    assertTrue(defaultExceptionContext.getValue("crap") == null);
+    assertTrue(defaultExceptionContext.getValue("test Poorly written obj") instanceof ObjectWithFaultyToString);
+}

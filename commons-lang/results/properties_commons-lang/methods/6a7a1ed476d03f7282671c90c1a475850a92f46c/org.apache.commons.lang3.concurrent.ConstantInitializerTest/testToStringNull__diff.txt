@@ -1,0 +1,8 @@
+/**
+ * Tests the string representation if the managed object is null.
+ */
+@Test
+public void testToStringNull() {
+    String s = new ConstantInitializer<Object>(null).toString();
+    assertTrue("Object not found: " + s, s.indexOf("object = null") > 0);
+}

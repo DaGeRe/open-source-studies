@@ -1,0 +1,18 @@
+// Arithmetic                                                                                          // Arithmetic                                                                                       
+// -------------------------------------------------------------------                                 // -------------------------------------------------------------------                              
+/**                                                                                                    /**                                                                                                 
+* Multiply two integers, checking for overflow.                                                        * Multiply two integers, checking for overflow.                                                     
+*                                                                                                      *                                                                                                   
+* @param x a factor                                                                                    * @param x a factor                                                                                 
+* @param y a factor                                                                                    * @param y a factor                                                                                 
+* @return the product &lt;code&gt;x*y&lt;/code&gt;                                                     * @return the product &lt;code&gt;x*y&lt;/code&gt;                                                  
+* @throws ArithmeticException if the result can not be represented as                                  * @throws ArithmeticException if the result can not be represented as                               
+*                             an int                                                                   *                             an int                                                                
+*/                                                                                                     */                                                                                                  
+private static int mulAndCheck(int x, int y) {                                                         private static int mulAndCheck(int x, int y) {                                                      
+long m = ((long) x) * ((long) y);                                                                    | long m = (long) x * (long) y;                                                                       
+if (m &lt; Integer.MIN_VALUE || m &gt; Integer.MAX_VALUE) {                                            if (m &lt; Integer.MIN_VALUE || m &gt; Integer.MAX_VALUE) {                                         
+throw new ArithmeticException("overflow: mul");                                                        throw new ArithmeticException("overflow: mul");                                                     
+}                                                                                                      }                                                                                                   
+return (int) m;                                                                                        return (int) m;                                                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+                                                                                                     | @Test                                                                                               
+@SuppressWarnings("cast")                                                                              @SuppressWarnings("cast")                                                                           
+public void testRemoveElementDoubleArray() {                                                           public void testRemoveElementDoubleArray() {                                                        
+double[] array;                                                                                        double[] array;                                                                                     
+array = ArrayUtils.removeElement((double[]) null, (double) 1);                                         array = ArrayUtils.removeElement((double[]) null, (double) 1);                                      
+assertNull(array);                                                                                     assertNull(array);                                                                                  
+array = ArrayUtils.removeElement(ArrayUtils.EMPTY_DOUBLE_ARRAY, (double) 1);                           array = ArrayUtils.removeElement(ArrayUtils.EMPTY_DOUBLE_ARRAY, (double) 1);                        
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));                                       assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));                                    
+assertEquals(Double.TYPE, array.getClass().getComponentType());                                        assertEquals(Double.TYPE, array.getClass().getComponentType());                                     
+array = ArrayUtils.removeElement(new double[] { 1 }, (double) 1);                                      array = ArrayUtils.removeElement(new double[] { 1 }, (double) 1);                                   
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));                                       assertTrue(Arrays.equals(ArrayUtils.EMPTY_DOUBLE_ARRAY, array));                                    
+assertEquals(Double.TYPE, array.getClass().getComponentType());                                        assertEquals(Double.TYPE, array.getClass().getComponentType());                                     
+array = ArrayUtils.removeElement(new double[] { 1, 2 }, (double) 1);                                   array = ArrayUtils.removeElement(new double[] { 1, 2 }, (double) 1);                                
+assertTrue(Arrays.equals(new double[] { 2 }, array));                                                  assertTrue(Arrays.equals(new double[] { 2 }, array));                                               
+assertEquals(Double.TYPE, array.getClass().getComponentType());                                        assertEquals(Double.TYPE, array.getClass().getComponentType());                                     
+array = ArrayUtils.removeElement(new double[] { 1, 2, 1 }, (double) 1);                                array = ArrayUtils.removeElement(new double[] { 1, 2, 1 }, (double) 1);                             
+assertTrue(Arrays.equals(new double[] { 2, 1 }, array));                                               assertTrue(Arrays.equals(new double[] { 2, 1 }, array));                                            
+assertEquals(Double.TYPE, array.getClass().getComponentType());                                        assertEquals(Double.TYPE, array.getClass().getComponentType());                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,39 @@
+/**
+ * <p>
+ * Appends the fields and values defined by the given object of the given Class.
+ * </p>
+ *
+ * <p>
+ * If a cycle is detected as an object is &quot;toString()'ed&quot;, such an object is rendered as if
+ * <code>Object.toString()</code> had been called and not implemented by the object.
+ * </p>
+ *
+ * @param clazz
+ *            The class of object parameter
+ */
+protected void appendFieldsIn(Class<?> clazz) {
+    if (clazz.isArray()) {
+        this.reflectionAppendArray(this.getObject());
+        return;
+    }
+    Field[] fields = clazz.getDeclaredFields();
+    AccessibleObject.setAccessible(fields, true);
+    for (int i = 0; i < fields.length; i++) {
+        Field field = fields[i];
+        String fieldName = field.getName();
+        if (this.accept(field)) {
+            try {
+                // Warning: Field.get(Object) creates wrappers objects
+                // for primitive types.
+                Object fieldValue = this.getValue(field);
+                this.append(fieldName, fieldValue);
+            } catch (IllegalAccessException ex) {
+                // this can't happen. Would get a Security exception
+                // instead
+                // throw a runtime exception in case the impossible
+                // happens.
+                throw new InternalError("Unexpected IllegalAccessException: " + ex.getMessage());
+            }
+        }
+    }
+}

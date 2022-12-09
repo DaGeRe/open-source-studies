@@ -1,0 +1,19 @@
+/**
+ * Returns the <code>Throwable</code> in the chain of
+ * <code>Throwable</code>s at the specified index, numbered from 0.
+ *
+ * @param index the index, numbered from 0, of the <code>Throwable</code> in
+ * the chain of <code>Throwable</code>s
+ * @return the <code>Throwable</code>
+ * @throws IndexOutOfBoundsException if the <code>index</code> argument is
+ * negative or not less than the count of <code>Throwable</code>s in the
+ * chain
+ * @since 2.0
+ */
+public Throwable getThrowable(int index) {
+    if (index == 0) {
+        return this.nestable;
+    }
+    Throwable[] throwables = this.getThrowables();
+    return throwables[index];
+}

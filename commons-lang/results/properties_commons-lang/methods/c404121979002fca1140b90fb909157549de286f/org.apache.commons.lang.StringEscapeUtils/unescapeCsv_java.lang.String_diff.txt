@@ -1,0 +1,35 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns a &lt;code&gt;String&lt;/code&gt; value for an unescaped CSV column. &lt;/p&gt;     * &lt;p&gt;Returns a &lt;code&gt;String&lt;/code&gt; value for an unescaped CSV column. &lt;/p&gt;  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the value is enclosed in double quotes, and contains a comma, newline                    * &lt;p&gt;If the value is enclosed in double quotes, and contains a comma, newline                 
+*    or double quote, then quotes are removed.                                                         *    or double quote, then quotes are removed.                                                      
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Any double quote escaped characters (a pair of double quotes) are unescaped                 * &lt;p&gt;Any double quote escaped characters (a pair of double quotes) are unescaped              
+*    to just one double quote. &lt;/p&gt;                                                              *    to just one double quote. &lt;/p&gt;                                                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the value is not enclosed in double quotes, or is and does not contain a                 * &lt;p&gt;If the value is not enclosed in double quotes, or is and does not contain a              
+*    comma, newline or double quote, then the String value is returned unchanged.&lt;/p&gt;            *    comma, newline or double quote, then the String value is returned unchanged.&lt;/p&gt;         
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* see &lt;a href="http://en.wikipedia.org/wiki/Comma-separated_values"&gt;Wikipedia&lt;/a&gt; and      * see &lt;a href="http://en.wikipedia.org/wiki/Comma-separated_values"&gt;Wikipedia&lt;/a&gt; and   
+* &lt;a href="http://tools.ietf.org/html/rfc4180"&gt;RFC 4180&lt;/a&gt;.                               * &lt;a href="http://tools.ietf.org/html/rfc4180"&gt;RFC 4180&lt;/a&gt;.                            
+*                                                                                                      *                                                                                                   
+* @param str the input CSV column String, may be null                                                  * @param str the input CSV column String, may be null                                               
+* @return the input String, with enclosing double quotes removed and embedded double                   * @return the input String, with enclosing double quotes removed and embedded double                
+* quotes unescaped, &lt;code&gt;null&lt;/code&gt; if null string input                                 * quotes unescaped, &lt;code&gt;null&lt;/code&gt; if null string input                              
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String unescapeCsv(String str) {                                                         public static String unescapeCsv(String str) {                                                      
+if (str == null) {                                                                                   | return UnescapeUtils.UNESCAPE_CSV.translate(str);                                                   
+return null;                                                                                         |                                                                                                     
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+StringWriter writer = new StringWriter();                                                            |                                                                                                     
+unescapeCsv(writer, str);                                                                            |                                                                                                     
+return writer.toString();                                                                            |                                                                                                     
+} catch (IOException ioe) {                                                                          |                                                                                                     
+// this should never ever happen while writing to a StringWriter                                     |                                                                                                     
+throw new UnhandledException(ioe);                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

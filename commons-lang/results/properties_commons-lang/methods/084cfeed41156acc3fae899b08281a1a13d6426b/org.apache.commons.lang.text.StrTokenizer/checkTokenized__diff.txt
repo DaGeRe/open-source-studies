@@ -1,0 +1,17 @@
+// Implementation
+// -----------------------------------------------------------------------
+/**
+ * Checks if tokenization has been done, and if not then do it.
+ */
+private void checkTokenized() {
+    if (tokens == null) {
+        if (chars == null) {
+            // still call tokenize as subclass may do some work
+            List split = tokenize(null, 0, 0);
+            tokens = (String[]) split.toArray(new String[split.size()]);
+        } else {
+            List split = tokenize(chars, 0, chars.length);
+            tokens = (String[]) split.toArray(new String[split.size()]);
+        }
+    }
+}

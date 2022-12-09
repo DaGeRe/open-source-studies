@@ -1,0 +1,30 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean translate(int codepoint, Writer out) throws IOException {
+    if (between) {
+        if (codepoint < below || codepoint > above) {
+            return false;
+        }
+    } else {
+        if (codepoint >= below && codepoint <= above) {
+            return false;
+        }
+    }
+    // TODO: Handle potential + sign per various unicode escape implementations
+    if (codepoint > 0xffff) {
+        // TODO: Figure out what to do. Output as two unicodes?
+        // Does this make this a Java-specific output class?
+        out.write("\\u" + hex(codepoint));
+    } else if (codepoint > 0xfff) {
+        out.write("\\u" + hex(codepoint));
+    } else if (codepoint > 0xff) {
+        out.write("\\u0" + hex(codepoint));
+    } else if (codepoint > 0xf) {
+        out.write("\\u00" + hex(codepoint));
+    } else {
+        out.write("\\u000" + hex(codepoint));
+    }
+    return true;
+}

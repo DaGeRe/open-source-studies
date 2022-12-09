@@ -1,0 +1,8 @@
+private void doNestableDelegateGetMessages(NestableDelegate d, String[] nMsgs) {
+    // Compare the messages
+    String[] dMsgs = d.getMessages();
+    assertEquals("messages length", nMsgs.length, dMsgs.length);
+    for (int i = 0; i < nMsgs.length; i++) {
+        assertEquals("message " + i, nMsgs[i], dMsgs[i]);
+    }
+}

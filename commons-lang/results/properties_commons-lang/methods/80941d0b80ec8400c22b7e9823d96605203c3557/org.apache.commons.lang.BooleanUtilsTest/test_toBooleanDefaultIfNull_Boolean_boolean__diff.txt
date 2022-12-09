@@ -1,0 +1,8 @@
+public void test_toBooleanDefaultIfNull_Boolean_boolean() {
+    assertEquals(true, BooleanUtils.toBooleanDefaultIfNull(Boolean.TRUE, true));
+    assertEquals(true, BooleanUtils.toBooleanDefaultIfNull(Boolean.TRUE, false));
+    assertEquals(false, BooleanUtils.toBooleanDefaultIfNull(Boolean.FALSE, true));
+    assertEquals(false, BooleanUtils.toBooleanDefaultIfNull(Boolean.FALSE, false));
+    assertEquals(true, BooleanUtils.toBooleanDefaultIfNull((Boolean) null, true));
+    assertEquals(false, BooleanUtils.toBooleanDefaultIfNull((Boolean) null, false));
+}

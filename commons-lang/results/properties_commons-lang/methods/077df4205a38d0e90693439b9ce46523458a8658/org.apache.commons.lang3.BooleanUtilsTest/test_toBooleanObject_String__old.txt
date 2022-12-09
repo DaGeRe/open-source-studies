@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void test_toBooleanObject_String() {
+    assertEquals(null, BooleanUtils.toBooleanObject((String) null));
+    assertEquals(null, BooleanUtils.toBooleanObject(""));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("false"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("no"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("off"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("FALSE"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("NO"));
+    assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject("OFF"));
+    assertEquals(null, BooleanUtils.toBooleanObject("oof"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("true"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("yes"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("on"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("TRUE"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("ON"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("YES"));
+    assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject("TruE"));
+    assertEquals(null, BooleanUtils.toBooleanObject("ab"));
+    assertEquals(null, BooleanUtils.toBooleanObject("yoo"));
+}

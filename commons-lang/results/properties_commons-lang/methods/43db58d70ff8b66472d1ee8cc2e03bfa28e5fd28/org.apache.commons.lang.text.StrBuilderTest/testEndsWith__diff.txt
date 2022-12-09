@@ -1,0 +1,15 @@
+public void testEndsWith() {
+    StrBuilder sb = new StrBuilder();
+    assertFalse(sb.endsWith("a"));
+    assertFalse(sb.endsWith("c"));
+    assertTrue(sb.endsWith(""));
+    assertFalse(sb.endsWith(null));
+    sb.append("abc");
+    assertTrue(sb.endsWith("c"));
+    assertTrue(sb.endsWith("bc"));
+    assertTrue(sb.endsWith("abc"));
+    assertFalse(sb.endsWith("cba"));
+    assertFalse(sb.endsWith("abcd"));
+    assertFalse(sb.endsWith(" abc"));
+    assertFalse(sb.endsWith("abc "));
+}

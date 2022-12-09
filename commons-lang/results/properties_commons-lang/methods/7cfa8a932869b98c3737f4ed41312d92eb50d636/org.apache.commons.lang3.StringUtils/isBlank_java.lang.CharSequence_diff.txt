@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if a String is whitespace, empty ("") or null.&lt;/p&gt;                           | * &lt;p&gt;Checks if a CharSequence is whitespace, empty ("") or null.&lt;/p&gt;                    
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.isBlank(null)      = true                                                                * StringUtils.isBlank(null)      = true                                                             
+* StringUtils.isBlank("")        = true                                                                * StringUtils.isBlank("")        = true                                                             
+* StringUtils.isBlank(" ")       = true                                                                * StringUtils.isBlank(" ")       = true                                                             
+* StringUtils.isBlank("bob")     = false                                                               * StringUtils.isBlank("bob")     = false                                                            
+* StringUtils.isBlank("  bob  ") = false                                                               * StringUtils.isBlank("  bob  ") = false                                                            
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check, may be null                                                       | * @param cs  the CharSequence to check, may be null                                                 
+* @return &lt;code&gt;true&lt;/code&gt; if the String is null, empty or whitespace                   | * @return &lt;code&gt;true&lt;/code&gt; if the CharSequence is null, empty or whitespace            
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static boolean isBlank(CharSequence str) {                                                    | public static boolean isBlank(CharSequence cs) {                                                    
+int strLen;                                                                                            int strLen;                                                                                         
+if (str == null || (strLen = str.length()) == 0) {                                                   | if (cs == null || (strLen = cs.length()) == 0) {                                                    
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+for (int i = 0; i &lt; strLen; i++) {                                                                  for (int i = 0; i &lt; strLen; i++) {                                                               
+if ((Character.isWhitespace(str.charAt(i)) == false)) {                                              | if ((Character.isWhitespace(cs.charAt(i)) == false)) {                                              
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

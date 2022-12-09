@@ -1,0 +1,28 @@
+// Tests                                                                                               // Tests                                                                                            
+// --------------------------------------------------------------------                                // --------------------------------------------------------------------                             
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Tests whether the specified &lt;code&gt;number&lt;/code&gt; occurs within                   * &lt;p&gt;Tests whether the specified &lt;code&gt;number&lt;/code&gt; occurs within                
+* this range.&lt;/p&gt;                                                                                * this range.&lt;/p&gt;                                                                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;&lt;code&gt;null&lt;/code&gt; is handled and returns &lt;code&gt;false&lt;/code&gt;.&lt;/   * &lt;p&gt;&lt;code&gt;null&lt;/code&gt; is handled and returns &lt;code&gt;false&lt;/code&gt;.&lt;/
+*                                                                                                      *                                                                                                   
+* @param number  the number to test, may be &lt;code&gt;null&lt;/code&gt;                              * @param number  the number to test, may be &lt;code&gt;null&lt;/code&gt;                           
+* @return &lt;code&gt;true&lt;/code&gt; if the specified number occurs within this range               * @return &lt;code&gt;true&lt;/code&gt; if the specified number occurs within this range            
+* @throws IllegalArgumentException if the number is of a different type to the range                   * @throws IllegalArgumentException if the number is of a different type to the range                
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean containsNumber(Number number) {                                                         public boolean containsNumber(Number number) {                                                      
+if (number == null) {                                                                                  if (number == null) {                                                                               
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (number.getClass() != min.getClass()) {                                                             if (number.getClass() != min.getClass()) {                                                          
+throw new IllegalArgumentException("The number must be of the same type as the range numbers");        throw new IllegalArgumentException("The number must be of the same type as the range numbers");     
+}                                                                                                      }                                                                                                   
+                                                                                                     | // this was checked in the ctor                                                                     
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+int compareMin = ((Comparable&lt;Number&gt;) min).compareTo(number);                                   int compareMin = ((Comparable&lt;Number&gt;) min).compareTo(number);                                
+                                                                                                     | // this was checked in the ctor                                                                     
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+int compareMax = ((Comparable&lt;Number&gt;) max).compareTo(number);                                   int compareMax = ((Comparable&lt;Number&gt;) max).compareTo(number);                                
+return compareMin &lt;= 0 && compareMax &gt;= 0;                                                       return compareMin &lt;= 0 && compareMax &gt;= 0;                                                    
+}                                                                                                      }                                                                                                   

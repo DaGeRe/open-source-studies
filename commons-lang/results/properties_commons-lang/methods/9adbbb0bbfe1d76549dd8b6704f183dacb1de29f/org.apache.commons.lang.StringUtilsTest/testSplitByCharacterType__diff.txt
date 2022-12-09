@@ -1,0 +1,11 @@
+public void testSplitByCharacterType() {
+    assertNull(StringUtils.splitByCharacterType(null));
+    assertEquals(0, StringUtils.splitByCharacterType("").length);
+    assertTrue(ArrayUtils.isEquals(new String[] { "ab", " ", "de", " ", "fg" }, StringUtils.splitByCharacterType("ab de fg")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "ab", "   ", "de", " ", "fg" }, StringUtils.splitByCharacterType("ab   de fg")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "ab", ":", "cd", ":", "ef" }, StringUtils.splitByCharacterType("ab:cd:ef")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "number", "5" }, StringUtils.splitByCharacterType("number5")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "foo", "B", "ar" }, StringUtils.splitByCharacterType("fooBar")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "foo", "200", "B", "ar" }, StringUtils.splitByCharacterType("foo200Bar")));
+    assertTrue(ArrayUtils.isEquals(new String[] { "ASFR", "ules" }, StringUtils.splitByCharacterType("ASFRules")));
+}

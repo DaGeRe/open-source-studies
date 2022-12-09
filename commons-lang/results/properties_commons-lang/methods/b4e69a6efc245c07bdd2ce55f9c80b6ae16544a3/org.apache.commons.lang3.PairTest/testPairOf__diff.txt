@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testPairOf() throws Exception {                                                            public void testPairOf() throws Exception {                                                         
+Pair&lt;Integer, String&gt; pair = Pair.of(0, "foo");                                                  Pair&lt;Integer, String&gt; pair = Pair.of(0, "foo");                                               
+assertEquals(0, pair.left.intValue());                                                               | assertTrue(pair instanceof ImmutablePair&lt;?, ?&gt;);                                              
+assertEquals("foo", pair.right);                                                                     | assertEquals(0, ((ImmutablePair&lt;Integer, String&gt;) pair).left.intValue());                     
+                                                                                                     | assertEquals("foo", ((ImmutablePair&lt;Integer, String&gt;) pair).right);                           
+Pair&lt;Object, String&gt; pair2 = Pair.of(null, "bar");                                               Pair&lt;Object, String&gt; pair2 = Pair.of(null, "bar");                                            
+assertNull(pair2.left);                                                                              | assertTrue(pair2 instanceof ImmutablePair&lt;?, ?&gt;);                                             
+assertEquals("bar", pair2.right);                                                                    | assertNull(((ImmutablePair&lt;Object, String&gt;) pair2).left);                                     
+                                                                                                     | assertEquals("bar", ((ImmutablePair&lt;Object, String&gt;) pair2).right);                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testAppend_Object() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendNull();
+    assertEquals("", sb.toString());
+    sb.append((Object) null);
+    assertEquals("", sb.toString());
+    sb.append(FOO);
+    assertEquals("foo", sb.toString());
+    sb.append((StringBuffer) null);
+    assertEquals("foo", sb.toString());
+    sb.append(new StringBuffer("baz"));
+    assertEquals("foobaz", sb.toString());
+    sb.append(new StrBuilder("yes"));
+    assertEquals("foobazyes", sb.toString());
+}

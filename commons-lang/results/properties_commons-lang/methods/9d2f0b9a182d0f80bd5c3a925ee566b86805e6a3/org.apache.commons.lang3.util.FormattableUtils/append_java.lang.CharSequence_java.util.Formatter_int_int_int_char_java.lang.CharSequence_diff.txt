@@ -1,0 +1,27 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Handles the common {@link Formattable} operations of truncate-pad-append.                         
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param seq to handle                                                                              
+                                                                                                     | * @param formatter destination                                                                      
+                                                                                                     | * @param flags for formatting                                                                       
+                                                                                                     | * @param width of output                                                                            
+                                                                                                     | * @param precision of output                                                                        
+                                                                                                     | * @param padChar to use                                                                             
+                                                                                                     | * @param ellipsis to use when precision dictates truncation; a {@code null}                         
+                                                                                                     | * or empty value causes a hard truncation                                                           
+                                                                                                     | * @return {@code formatter}                                                                         
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static Formatter append(CharSequence seq, Formatter formatter, int flags, int width, int prec
+                                                                                                     | Validate.isTrue(ellipsis == null || precision &lt; 0 || ellipsis.length() &lt;= precision, "Specifie
+                                                                                                     | StringBuilder buf = new StringBuilder(seq);                                                         
+                                                                                                     | if (precision &gt;= 0 && precision &lt; seq.length()) {                                             
+                                                                                                     | CharSequence _ellipsis = ObjectUtils.defaultIfNull(ellipsis, "");                                   
+                                                                                                     | buf.replace(precision - _ellipsis.length(), seq.length(), _ellipsis.toString());                    
+                                                                                                     | }                                                                                                   
+                                                                                                     | boolean leftJustify = (flags & LEFT_JUSTIFY) == LEFT_JUSTIFY;                                       
+                                                                                                     | for (int i = buf.length(); i &lt; width; i++) {                                                     
+                                                                                                     | buf.insert(leftJustify ? i : 0, padChar);                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | formatter.format(buf.toString());                                                                   
+                                                                                                     | return formatter;                                                                                   
+                                                                                                     | }                                                                                                   

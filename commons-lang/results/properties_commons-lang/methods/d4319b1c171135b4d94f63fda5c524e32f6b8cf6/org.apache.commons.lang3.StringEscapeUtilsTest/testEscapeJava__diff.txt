@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------                           | @Test                                                                                               
+public void testEscapeJava() throws IOException {                                                      public void testEscapeJava() throws IOException {                                                   
+assertEquals(null, StringEscapeUtils.escapeJava(null));                                                assertEquals(null, StringEscapeUtils.escapeJava(null));                                             
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_JAVA.translate(null, null);                                                   StringEscapeUtils.ESCAPE_JAVA.translate(null, null);                                                
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.ESCAPE_JAVA.translate("", null);                                                     StringEscapeUtils.ESCAPE_JAVA.translate("", null);                                                  
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+assertEscapeJava("empty string", "", "");                                                              assertEscapeJava("empty string", "", "");                                                           
+assertEscapeJava(FOO, FOO);                                                                            assertEscapeJava(FOO, FOO);                                                                         
+assertEscapeJava("tab", "\\t", "\t");                                                                  assertEscapeJava("tab", "\\t", "\t");                                                               
+assertEscapeJava("backslash", "\\\\", "\\");                                                           assertEscapeJava("backslash", "\\\\", "\\");                                                        
+assertEscapeJava("single quote should not be escaped", "'", "'");                                      assertEscapeJava("single quote should not be escaped", "'", "'");                                   
+assertEscapeJava("\\\\\\b\\t\\r", "\\\b\t\r");                                                         assertEscapeJava("\\\\\\b\\t\\r", "\\\b\t\r");                                                      
+assertEscapeJava("\\u1234", "\u1234");                                                                 assertEscapeJava("\\u1234", "\u1234");                                                              
+assertEscapeJava("\\u0234", "\u0234");                                                                 assertEscapeJava("\\u0234", "\u0234");                                                              
+assertEscapeJava("\\u00EF", "\u00ef");                                                                 assertEscapeJava("\\u00EF", "\u00ef");                                                              
+assertEscapeJava("\\u0001", "\u0001");                                                                 assertEscapeJava("\\u0001", "\u0001");                                                              
+assertEscapeJava("Should use capitalized unicode hex", "\\uABCD", "\uabcd");                           assertEscapeJava("Should use capitalized unicode hex", "\\uABCD", "\uabcd");                        
+assertEscapeJava("He didn't say, \\\"stop!\\\"", "He didn't say, \"stop!\"");                          assertEscapeJava("He didn't say, \\\"stop!\\\"", "He didn't say, \"stop!\"");                       
+assertEscapeJava("non-breaking space", "This space is non-breaking:" + "\\u00A0", "This space is non   assertEscapeJava("non-breaking space", "This space is non-breaking:" + "\\u00A0", "This space is non
+assertEscapeJava("\\uABCD\\u1234\\u012C", "\uABCD\u1234\u012C");                                       assertEscapeJava("\\uABCD\\u1234\\u012C", "\uABCD\u1234\u012C");                                    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,9 @@
+/**
+ * Tests constructor.
+ */
+public void testConstructorMapFull() {
+    Map map = new HashMap();
+    map.put("name", "commons");
+    StrSubstitutor sub = new StrSubstitutor(map, "<", ">", '!');
+    assertEquals("Hi < commons", sub.replace("Hi !< <name>"));
+}

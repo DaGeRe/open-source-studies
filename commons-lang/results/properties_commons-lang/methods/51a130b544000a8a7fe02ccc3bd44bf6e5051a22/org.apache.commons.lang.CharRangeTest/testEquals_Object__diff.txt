@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testEquals_Object() {                                                                      public void testEquals_Object() {                                                                   
+CharRange rangea = new CharRange('a');                                                               | CharRange rangea = CharRange.is('a');                                                               
+CharRange rangeae = new CharRange('a', 'e');                                                         | CharRange rangeae = CharRange.isIn('a', 'e');                                                       
+CharRange rangenotbf = new CharRange('b', 'f', false);                                               | CharRange rangenotbf = CharRange.isIn('b', 'f');                                                    
+assertEquals(false, rangea.equals(null));                                                              assertEquals(false, rangea.equals(null));                                                           
+assertEquals(true, rangea.equals(rangea));                                                             assertEquals(true, rangea.equals(rangea));                                                          
+assertEquals(true, rangea.equals(new CharRange('a')));                                               | assertEquals(true, rangea.equals(CharRange.is('a')));                                               
+assertEquals(true, rangeae.equals(rangeae));                                                           assertEquals(true, rangeae.equals(rangeae));                                                        
+assertEquals(true, rangeae.equals(new CharRange('a', 'e')));                                         | assertEquals(true, rangeae.equals(CharRange.isIn('a', 'e')));                                       
+assertEquals(true, rangenotbf.equals(rangenotbf));                                                     assertEquals(true, rangenotbf.equals(rangenotbf));                                                  
+assertEquals(true, rangenotbf.equals(new CharRange('b', 'f', false)));                               | assertEquals(true, rangenotbf.equals(CharRange.isIn('b', 'f')));                                    
+assertEquals(false, rangea.equals(rangeae));                                                           assertEquals(false, rangea.equals(rangeae));                                                        
+assertEquals(false, rangea.equals(rangenotbf));                                                        assertEquals(false, rangea.equals(rangenotbf));                                                     
+assertEquals(false, rangeae.equals(rangea));                                                           assertEquals(false, rangeae.equals(rangea));                                                        
+assertEquals(false, rangeae.equals(rangenotbf));                                                       assertEquals(false, rangeae.equals(rangenotbf));                                                    
+assertEquals(false, rangenotbf.equals(rangea));                                                        assertEquals(false, rangenotbf.equals(rangea));                                                     
+assertEquals(false, rangenotbf.equals(rangeae));                                                       assertEquals(false, rangenotbf.equals(rangeae));                                                    
+}                                                                                                      }                                                                                                   

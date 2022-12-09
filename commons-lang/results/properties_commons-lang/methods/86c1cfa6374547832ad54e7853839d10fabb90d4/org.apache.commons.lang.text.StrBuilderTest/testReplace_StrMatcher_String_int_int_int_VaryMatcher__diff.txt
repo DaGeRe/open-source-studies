@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testReplace_StrMatcher_String_int_int_int_VaryMatcher() {
+    StrBuilder sb = new StrBuilder("abcbccba");
+    sb.replace((StrMatcher) null, "x", 0, sb.length(), -1);
+    assertEquals("abcbccba", sb.toString());
+    sb.replace(StrMatcher.charMatcher('a'), "x", 0, sb.length(), -1);
+    assertEquals("xbcbccbx", sb.toString());
+    sb.replace(StrMatcher.stringMatcher("cb"), "x", 0, sb.length(), -1);
+    assertEquals("xbxcxx", sb.toString());
+    sb = new StrBuilder("A1-A2A3-A4");
+    sb.replace(A_NUMBER_MATCHER, "***", 0, sb.length(), -1);
+    assertEquals("***-******-***", sb.toString());
+    sb = new StrBuilder();
+    sb.replace(A_NUMBER_MATCHER, "***", 0, sb.length(), -1);
+    assertEquals("", sb.toString());
+}

@@ -1,0 +1,17 @@
+/**
+ * Gets the <code>enum</code> for the class, returning <code>null</code> if not found.
+ * <p>
+ * This method differs from {@link Enum#valueOf} in that it does not throw an exception
+ * for an invalid enum name.
+ *
+ * @param enumClass  the class of the <code>enum</code> to get, not null
+ * @param enumName   the enum name
+ * @return the enum or null if not found
+ */
+public static <E extends Enum<E>> E getEnum(Class<E> enumClass, String enumName) {
+    try {
+        return Enum.valueOf(enumClass, enumName);
+    } catch (IllegalArgumentException ex) {
+        return null;
+    }
+}

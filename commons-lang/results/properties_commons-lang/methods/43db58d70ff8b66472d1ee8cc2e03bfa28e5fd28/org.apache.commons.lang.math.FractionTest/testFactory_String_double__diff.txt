@@ -1,0 +1,31 @@
+public void testFactory_String_double() {
+    Fraction f = null;
+    f = Fraction.getFraction("0.0");
+    assertEquals(0, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction("0.2");
+    assertEquals(1, f.getNumerator());
+    assertEquals(5, f.getDenominator());
+    f = Fraction.getFraction("0.5");
+    assertEquals(1, f.getNumerator());
+    assertEquals(2, f.getDenominator());
+    f = Fraction.getFraction("0.66666");
+    assertEquals(2, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    try {
+        f = Fraction.getFraction("2.3R");
+        fail("Expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+    try {
+        // too big
+        f = Fraction.getFraction("2147483648");
+        fail("Expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+    try {
+        f = Fraction.getFraction(".");
+        fail("Expecting NumberFormatException");
+    } catch (NumberFormatException ex) {
+    }
+}

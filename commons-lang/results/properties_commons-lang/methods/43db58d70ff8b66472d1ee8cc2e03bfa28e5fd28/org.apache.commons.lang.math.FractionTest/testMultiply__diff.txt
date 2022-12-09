@@ -1,0 +1,61 @@
+public void testMultiply() {
+    Fraction f = null;
+    Fraction f1 = null;
+    Fraction f2 = null;
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(2, 5);
+    f = f1.multiplyBy(f2);
+    assertEquals(6, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f1 = Fraction.getFraction(6, 10);
+    f2 = Fraction.getFraction(6, 10);
+    f = f1.multiplyBy(f2);
+    assertEquals(9, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f = f.multiplyBy(f2);
+    assertEquals(27, f.getNumerator());
+    assertEquals(125, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(-2, 5);
+    f = f1.multiplyBy(f2);
+    assertEquals(-6, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f1 = Fraction.getFraction(-3, 5);
+    f2 = Fraction.getFraction(-2, 5);
+    f = f1.multiplyBy(f2);
+    assertEquals(6, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(2, 7);
+    f = f1.multiplyBy(f2);
+    assertSame(Fraction.ZERO, f);
+    f1 = Fraction.getFraction(2, 7);
+    f2 = Fraction.ONE;
+    f = f1.multiplyBy(f2);
+    assertEquals(2, f.getNumerator());
+    assertEquals(7, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MAX_VALUE, 1);
+    f2 = Fraction.getFraction(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    f = f1.multiplyBy(f2);
+    assertEquals(Integer.MIN_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    try {
+        f.multiplyBy(null);
+        fail("expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        f1 = Fraction.getFraction(1, Integer.MAX_VALUE);
+        // should overflow
+        f = f1.multiplyBy(f1);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f1 = Fraction.getFraction(1, -Integer.MAX_VALUE);
+        // should overflow
+        f = f1.multiplyBy(f1);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------
+/**
+ * Make sure the country by language is correct. It checks that
+ * the LocaleUtils.countryByLanguage(language) call contains the
+ * array of countries passed in. It may contain more due to JVM
+ * variations.
+ *
+ * @param language
+ * @param countries array of countries that should be returned
+ */
+private void assertCountriesByLanguage(String language, String[] countries) {
+    List list = LocaleUtils.countriesByLanguage(language);
+    List list2 = LocaleUtils.countriesByLanguage(language);
+    assertNotNull(list);
+    assertSame(list, list2);
+    // search through langauges
+    for (int i = 0; i < countries.length; i++) {
+        Iterator iterator = list.iterator();
+        boolean found = false;
+        // see if it was returned by the set
+        while (iterator.hasNext()) {
+            Locale locale = (Locale) iterator.next();
+            // should have an en empty variant
+            assertTrue(locale.getVariant() == null || locale.getVariant().length() == 0);
+            assertEquals(language, locale.getLanguage());
+            if (countries[i].equals(locale.getCountry())) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            fail("Cound not find language: " + countries[i] + " for country: " + language);
+        }
+    }
+    assertUnmodifiableCollection(list);
+}

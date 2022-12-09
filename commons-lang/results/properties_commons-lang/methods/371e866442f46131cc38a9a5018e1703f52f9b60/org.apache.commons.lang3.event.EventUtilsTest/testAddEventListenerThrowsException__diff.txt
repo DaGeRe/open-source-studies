@@ -1,0 +1,13 @@
+public void testAddEventListenerThrowsException() {
+    final ExceptionEventSource src = new ExceptionEventSource();
+    try {
+        EventUtils.addEventListener(src, PropertyChangeListener.class, new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent e) {
+                // Do nothing!
+            }
+        });
+        fail("Add method should have thrown an exception, so method should fail.");
+    } catch (RuntimeException e) {
+    }
+}

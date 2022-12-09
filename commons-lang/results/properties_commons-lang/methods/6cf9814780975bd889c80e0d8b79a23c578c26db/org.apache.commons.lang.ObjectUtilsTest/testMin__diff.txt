@@ -1,0 +1,15 @@
+public void testMin() {                                                                                public void testMin() {                                                                             
+Calendar calendar = Calendar.getInstance();                                                            Calendar calendar = Calendar.getInstance();                                                         
+Comparable nonNullComparable1 = calendar.getTime();                                                  | Date nonNullComparable1 = calendar.getTime();                                                       
+Comparable nonNullComparable2 = calendar.getTime();                                                  | Date nonNullComparable2 = calendar.getTime();                                                       
+calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - 1);                                          calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - 1);                                       
+Comparable minComparable = calendar.getTime();                                                       | Date minComparable = calendar.getTime();                                                            
+assertNotSame(nonNullComparable1, nonNullComparable2);                                                 assertNotSame(nonNullComparable1, nonNullComparable2);                                              
+assertSame(nonNullComparable1, ObjectUtils.min(null, nonNullComparable1));                             assertSame(nonNullComparable1, ObjectUtils.min(null, nonNullComparable1));                          
+assertSame(nonNullComparable1, ObjectUtils.min(nonNullComparable1, null));                             assertSame(nonNullComparable1, ObjectUtils.min(nonNullComparable1, null));                          
+assertSame(nonNullComparable1, ObjectUtils.min(nonNullComparable1, nonNullComparable2));               assertSame(nonNullComparable1, ObjectUtils.min(nonNullComparable1, nonNullComparable2));            
+assertSame(nonNullComparable2, ObjectUtils.min(nonNullComparable2, nonNullComparable1));               assertSame(nonNullComparable2, ObjectUtils.min(nonNullComparable2, nonNullComparable1));            
+assertSame(minComparable, ObjectUtils.min(nonNullComparable1, minComparable));                         assertSame(minComparable, ObjectUtils.min(nonNullComparable1, minComparable));                      
+assertSame(minComparable, ObjectUtils.min(minComparable, nonNullComparable1));                         assertSame(minComparable, ObjectUtils.min(minComparable, nonNullComparable1));                      
+assertNull(ObjectUtils.min(null, null));                                                             | assertNull(ObjectUtils.min((String) null, (String) null));                                          
+}                                                                                                      }                                                                                                   

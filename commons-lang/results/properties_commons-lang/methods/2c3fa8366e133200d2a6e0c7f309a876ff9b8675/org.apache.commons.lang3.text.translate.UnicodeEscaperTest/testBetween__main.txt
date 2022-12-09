@@ -1,0 +1,6 @@
+public void testBetween() {
+    UnicodeEscaper ue = UnicodeEscaper.between('F', 'L');
+    String input = "ADFGZ";
+    String result = ue.translate(input);
+    assertEquals("Failed to escape Unicode characters via the between method", "AD\\u0046\\u0047Z", result);
+}

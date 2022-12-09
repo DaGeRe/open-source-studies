@@ -1,0 +1,24 @@
+public void testContainsNone_Chararray() {
+    String str1 = "a";
+    String str2 = "b";
+    String str3 = "ab.";
+    char[] chars1 = { 'b' };
+    char[] chars2 = { '.' };
+    char[] chars3 = { 'c', 'd' };
+    char[] emptyChars = new char[0];
+    assertEquals(true, StringUtils.containsNone(null, (char[]) null));
+    assertEquals(true, StringUtils.containsNone("", (char[]) null));
+    assertEquals(true, StringUtils.containsNone(null, emptyChars));
+    assertEquals(true, StringUtils.containsNone(str1, emptyChars));
+    assertEquals(true, StringUtils.containsNone("", emptyChars));
+    assertEquals(true, StringUtils.containsNone("", chars1));
+    assertEquals(true, StringUtils.containsNone(str1, chars1));
+    assertEquals(true, StringUtils.containsNone(str1, chars2));
+    assertEquals(true, StringUtils.containsNone(str1, chars3));
+    assertEquals(false, StringUtils.containsNone(str2, chars1));
+    assertEquals(true, StringUtils.containsNone(str2, chars2));
+    assertEquals(true, StringUtils.containsNone(str2, chars3));
+    assertEquals(false, StringUtils.containsNone(str3, chars1));
+    assertEquals(false, StringUtils.containsNone(str3, chars2));
+    assertEquals(true, StringUtils.containsNone(str3, chars3));
+}

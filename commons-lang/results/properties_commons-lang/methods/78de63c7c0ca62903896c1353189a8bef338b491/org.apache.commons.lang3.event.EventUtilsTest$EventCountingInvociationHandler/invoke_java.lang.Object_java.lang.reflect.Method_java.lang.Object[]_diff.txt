@@ -1,0 +1,9 @@
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                 
+Integer count = eventCounts.get(method.getName());                                                     Integer count = eventCounts.get(method.getName());                                                  
+if (count == null) {                                                                                   if (count == null) {                                                                                
+eventCounts.put(method.getName(), 1);                                                                | eventCounts.put(method.getName(), Integer.valueOf(1));                                              
+} else {                                                                                               } else {                                                                                            
+eventCounts.put(method.getName(), count + 1);                                                        | eventCounts.put(method.getName(), Integer.valueOf(count.intValue() + 1));                           
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

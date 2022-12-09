@@ -1,0 +1,6 @@
+private void checkParse(Calendar cal, SimpleDateFormat sdf, DateParser fdf) throws ParseException {
+    String formattedDate = sdf.format(cal.getTime());
+    Date expectedTime = sdf.parse(formattedDate);
+    Date actualTime = fdf.parse(formattedDate);
+    assertEquals(expectedTime, actualTime);
+}

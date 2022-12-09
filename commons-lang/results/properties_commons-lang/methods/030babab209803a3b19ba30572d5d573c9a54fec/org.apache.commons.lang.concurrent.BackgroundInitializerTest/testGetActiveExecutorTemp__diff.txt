@@ -1,0 +1,9 @@
+/**
+ * Tests getActiveExecutor() for a temporary executor.
+ */
+public void testGetActiveExecutorTemp() {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    init.start();
+    assertNotNull("No active executor", init.getActiveExecutor());
+    checkInitialize(init);
+}

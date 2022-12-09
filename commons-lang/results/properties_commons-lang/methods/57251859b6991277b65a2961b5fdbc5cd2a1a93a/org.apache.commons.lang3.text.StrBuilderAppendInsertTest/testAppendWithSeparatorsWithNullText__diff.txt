@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testAppendWithSeparatorsWithNullText() {
+    StrBuilder sb = new StrBuilder();
+    sb.setNullText("null");
+    sb.appendWithSeparators(new Object[] { "foo", null, "baz" }, ",");
+    assertEquals("foo,null,baz", sb.toString());
+    sb.clear();
+    sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", null, "baz" }), ",");
+    assertEquals("foo,null,baz", sb.toString());
+}

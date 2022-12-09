@@ -1,0 +1,18 @@
+/**
+ * Checks if the specified name is a valid <code>enum</code> for the class.
+ * <p>
+ * This method differs from {@link Enum#valueOf} in that checks if the name is
+ * a valid enum without needing to catch the exception.
+ *
+ * @param enumClass  the class of the <code>enum</code> to get, not null
+ * @param enumName   the enum name
+ * @return true if the enum name is valid, otherwise false
+ */
+public static <E extends Enum<E>> boolean isValidEnum(Class<E> enumClass, String enumName) {
+    try {
+        Enum.valueOf(enumClass, enumName);
+        return true;
+    } catch (IllegalArgumentException ex) {
+        return false;
+    }
+}

@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testNotBlankBlankStringWithWhitespacesShouldThrow() {
+    // given
+    String string = "   ";
+    try {
+        // when
+        Validate.notBlank(string);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // then
+        assertEquals("The validated character sequence is blank", e.getMessage());
+    }
+}

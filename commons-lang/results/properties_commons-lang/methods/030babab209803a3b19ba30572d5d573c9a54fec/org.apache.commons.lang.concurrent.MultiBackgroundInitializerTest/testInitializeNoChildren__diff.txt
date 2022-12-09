@@ -1,0 +1,9 @@
+/**
+ * Tests the background processing if there are no child initializers.
+ */
+public void testInitializeNoChildren() throws ConcurrentException {
+    assertTrue("Wrong result of start()", initializer.start());
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res = initializer.get();
+    assertTrue("Got child initializers", res.initializerNames().isEmpty());
+    assertTrue("Executor not shutdown", initializer.getActiveExecutor().isShutdown());
+}

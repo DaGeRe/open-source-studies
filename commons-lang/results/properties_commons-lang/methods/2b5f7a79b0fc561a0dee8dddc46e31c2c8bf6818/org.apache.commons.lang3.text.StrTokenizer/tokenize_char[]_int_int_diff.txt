@@ -1,0 +1,38 @@
+/**
+ * Internal method to performs the tokenization.
+ * <p>
+ * Most users of this class do not need to call this method. This method
+ * will be called automatically by other (public) methods when required.
+ * <p>
+ * This method exists to allow subclasses to add code before or after the
+ * tokenization. For example, a subclass could alter the character array,
+ * offset or count to be parsed, or call the tokenizer multiple times on
+ * multiple strings. It is also be possible to filter the results.
+ * <p>
+ * <code>StrTokenizer</code> will always pass a zero offset and a count
+ * equal to the length of the array to this method, however a subclass
+ * may pass other values, or even an entirely different array.
+ *
+ * @param chars  the character array being tokenized, may be null
+ * @param offset  the start position within the character array, must be valid
+ * @param count  the number of characters to tokenize, must be valid
+ * @return the modifiable list of String tokens, unmodifiable if null array or zero count
+ */
+protected List<String> tokenize(char[] chars, int offset, int count) {
+    if (chars == null || count == 0) {
+        return Collections.emptyList();
+    }
+    StrBuilder buf = new StrBuilder();
+    List<String> tokens = new ArrayList<String>();
+    int pos = offset;
+    // loop around the entire buffer
+    while (pos >= 0 && pos < count) {
+        // find next token
+        pos = readNextToken(chars, pos, count, buf, tokens);
+        // handle case where end of string is a delimiter
+        if (pos >= count) {
+            addToken(tokens, "");
+        }
+    }
+    return tokens;
+}

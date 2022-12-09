@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testReset_charArray() {                                                                    public void testReset_charArray() {                                                                 
+StrTokenizer tok = new StrTokenizer("x x x");                                                          StrTokenizer tok = new StrTokenizer("x x x");                                                       
+char[] array = new char[] { 'a', ' ', 'c' };                                                         | char[] array = new char[] { 'a', 'b', 'c' };                                                        
+tok.reset(array);                                                                                      tok.reset(array);                                                                                   
+// test linked array                                                                                 |                                                                                                     
+array[1] = 'b';                                                                                      |                                                                                                     
+assertEquals("abc", tok.next());                                                                       assertEquals("abc", tok.next());                                                                    
+assertEquals(false, tok.hasNext());                                                                    assertEquals(false, tok.hasNext());                                                                 
+tok.reset((char[]) null);                                                                              tok.reset((char[]) null);                                                                           
+assertEquals(false, tok.hasNext());                                                                    assertEquals(false, tok.hasNext());                                                                 
+}                                                                                                      }                                                                                                   

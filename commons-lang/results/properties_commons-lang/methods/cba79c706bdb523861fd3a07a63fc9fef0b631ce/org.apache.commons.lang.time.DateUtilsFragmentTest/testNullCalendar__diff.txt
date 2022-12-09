@@ -1,0 +1,27 @@
+public void testNullCalendar() {
+    try {
+        DateUtils.getFragmentInMilliseconds((Calendar) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInSeconds((Calendar) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInMinutes((Calendar) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInHours((Calendar) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInDays((Calendar) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+}

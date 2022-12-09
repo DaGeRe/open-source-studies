@@ -1,0 +1,8 @@
+public void testToClass_object() {                                                                     public void testToClass_object() {                                                                  
+assertNull(ClassUtils.toClass(null));                                                                | // Test both types of varargs invocation                                                            
+                                                                                                     | assertNull(ClassUtils.toClass((Object[]) null));                                                    
+                                                                                                     | assertNull(ClassUtils.toClass((Object) null));                                                      
+assertSame(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.toClass(ArrayUtils.EMPTY_OBJECT_ARRAY));           assertSame(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.toClass(ArrayUtils.EMPTY_OBJECT_ARRAY));        
+assertTrue(Arrays.equals(new Class[] { String.class, Integer.class, Double.class }, ClassUtils.toCla | assertTrue(Arrays.equals(new Class[] { String.class, Integer.class, Double.class }, ClassUtils.toCla
+assertTrue(Arrays.equals(new Class[] { String.class, null, Double.class }, ClassUtils.toClass(new Ob | assertTrue(Arrays.equals(new Class[] { String.class, null, Double.class }, ClassUtils.toClass(new Ob
+}                                                                                                      }                                                                                                   

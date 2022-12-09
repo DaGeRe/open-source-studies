@@ -1,0 +1,15 @@
+/**
+ * Prints the stack trace of this exception to the specified
+ * stream.
+ *
+ * @param out <code>PrintStream</code> to use for output.
+ * @see #printStackTrace(PrintWriter)
+ */
+public void printStackTrace(PrintStream out) {
+    synchronized (out) {
+        PrintWriter pw = new PrintWriter(out, false);
+        printStackTrace(pw);
+        // Flush the PrintWriter before it's GC'ed.
+        pw.flush();
+    }
+}

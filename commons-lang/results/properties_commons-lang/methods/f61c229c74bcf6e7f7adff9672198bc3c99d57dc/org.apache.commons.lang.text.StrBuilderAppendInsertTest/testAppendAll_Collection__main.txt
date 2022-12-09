@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testAppendAll_Collection() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendAll((Collection<?>) null);
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendAll(Collections.EMPTY_LIST);
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendAll(Arrays.asList(new Object[] { "foo", "bar", "baz" }));
+    assertEquals("foobarbaz", sb.toString());
+}

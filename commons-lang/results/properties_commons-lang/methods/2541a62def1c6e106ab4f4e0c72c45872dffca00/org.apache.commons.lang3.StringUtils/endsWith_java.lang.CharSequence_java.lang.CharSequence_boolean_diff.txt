@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Check if a CharSequence ends with a specified suffix (optionally case insensitive).&lt;/p   * &lt;p&gt;Check if a CharSequence ends with a specified suffix (optionally case insensitive).&lt;/p
+*                                                                                                      *                                                                                                   
+* @see java.lang.String#endsWith(String)                                                               * @see java.lang.String#endsWith(String)                                                            
+* @param str  the CharSequence to check, may be null                                                   * @param str  the CharSequence to check, may be null                                                
+* @param suffix the suffix to find, may be null                                                        * @param suffix the suffix to find, may be null                                                     
+* @param ignoreCase inidicates whether the compare should ignore case                                  * @param ignoreCase inidicates whether the compare should ignore case                               
+*  (case insensitive) or not.                                                                          *  (case insensitive) or not.                                                                       
+* @return {@code true} if the CharSequence starts with the prefix or                                   * @return {@code true} if the CharSequence starts with the prefix or                                
+*  both {@code null}                                                                                   *  both {@code null}                                                                                
+*/                                                                                                     */                                                                                                  
+private static boolean endsWith(CharSequence str, CharSequence suffix, boolean ignoreCase) {           private static boolean endsWith(CharSequence str, CharSequence suffix, boolean ignoreCase) {        
+if (str == null || suffix == null) {                                                                   if (str == null || suffix == null) {                                                                
+return str == null && suffix == null;                                                                  return str == null && suffix == null;                                                               
+}                                                                                                      }                                                                                                   
+if (suffix.length() &gt; str.length()) {                                                               if (suffix.length() &gt; str.length()) {                                                            
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int strOffset = str.length() - suffix.length();                                                        int strOffset = str.length() - suffix.length();                                                     
+return regionMatchesSequence(str, ignoreCase, strOffset, suffix, 0, suffix.length());                | return CharSequenceUtils.regionMatches(str, ignoreCase, strOffset, suffix, 0, suffix.length());     
+}                                                                                                      }                                                                                                   

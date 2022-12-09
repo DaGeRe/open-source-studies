@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testContains_Char() {                                                                      public void testContains_Char() {                                                                   
+CharRange range = new CharRange('c');                                                                | CharRange range = CharRange.is('c');                                                                
+assertEquals(false, range.contains('b'));                                                              assertEquals(false, range.contains('b'));                                                           
+assertEquals(true, range.contains('c'));                                                               assertEquals(true, range.contains('c'));                                                            
+assertEquals(false, range.contains('d'));                                                              assertEquals(false, range.contains('d'));                                                           
+assertEquals(false, range.contains('e'));                                                              assertEquals(false, range.contains('e'));                                                           
+range = new CharRange('c', 'd');                                                                     | range = CharRange.isIn('c', 'd');                                                                   
+assertEquals(false, range.contains('b'));                                                              assertEquals(false, range.contains('b'));                                                           
+assertEquals(true, range.contains('c'));                                                               assertEquals(true, range.contains('c'));                                                            
+assertEquals(true, range.contains('d'));                                                               assertEquals(true, range.contains('d'));                                                            
+assertEquals(false, range.contains('e'));                                                              assertEquals(false, range.contains('e'));                                                           
+range = new CharRange('d', 'c');                                                                     | range = CharRange.isIn('d', 'c');                                                                   
+assertEquals(false, range.contains('b'));                                                              assertEquals(false, range.contains('b'));                                                           
+assertEquals(true, range.contains('c'));                                                               assertEquals(true, range.contains('c'));                                                            
+assertEquals(true, range.contains('d'));                                                               assertEquals(true, range.contains('d'));                                                            
+assertEquals(false, range.contains('e'));                                                              assertEquals(false, range.contains('e'));                                                           
+range = new CharRange('c', 'd', false);                                                              | range = CharRange.isNotIn('c', 'd');                                                                
+assertEquals(false, range.contains('b'));                                                            |                                                                                                     
+assertEquals(true, range.contains('c'));                                                             |                                                                                                     
+assertEquals(true, range.contains('d'));                                                             |                                                                                                     
+assertEquals(false, range.contains('e'));                                                            |                                                                                                     
+range = new CharRange('c', 'd', true);                                                               |                                                                                                     
+assertEquals(true, range.contains('b'));                                                               assertEquals(true, range.contains('b'));                                                            
+assertEquals(false, range.contains('c'));                                                              assertEquals(false, range.contains('c'));                                                           
+assertEquals(false, range.contains('d'));                                                              assertEquals(false, range.contains('d'));                                                           
+assertEquals(true, range.contains('e'));                                                               assertEquals(true, range.contains('e'));                                                            
+assertEquals(true, range.contains((char) 0));                                                          assertEquals(true, range.contains((char) 0));                                                       
+assertEquals(true, range.contains(Character.MAX_VALUE));                                               assertEquals(true, range.contains(Character.MAX_VALUE));                                            
+}                                                                                                      }                                                                                                   

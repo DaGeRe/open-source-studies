@@ -1,0 +1,14 @@
+// --------------------------------------------------------------------------                        | // -----------------------------------------------------------------------                          
+                                                                                                     | @SuppressWarnings({ "rawtypes", "unchecked" })                                                      
+public void testComparableConstructors() {                                                             public void testComparableConstructors() {                                                          
+Comparable c = new Comparable() {                                                                      Comparable c = new Comparable() {                                                                   
+                                                                                                                                                                                                           
+public int compareTo(Object other) {                                                                   public int compareTo(Object other) {                                                                
+return 1;                                                                                              return 1;                                                                                           
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+Range.is(c);                                                                                         | Range r1 = Range.is(c);                                                                             
+Range.between(c, c);                                                                                 | Range r2 = Range.between(c, c);                                                                     
+                                                                                                     | assertEquals(true, r1.isNaturalOrdering());                                                         
+                                                                                                     | assertEquals(true, r2.isNaturalOrdering());                                                         
+}                                                                                                      }                                                                                                   

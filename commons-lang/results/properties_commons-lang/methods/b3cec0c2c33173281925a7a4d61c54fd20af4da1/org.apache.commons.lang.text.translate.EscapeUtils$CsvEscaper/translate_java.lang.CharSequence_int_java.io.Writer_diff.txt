@@ -1,0 +1,15 @@
+// TODO: Replace with a RegexTranslator. That should consume the number of characters the regex uses   // TODO: Replace with a RegexTranslator. That should consume the number of characters the regex uses
+                                                                                                     | @Override                                                                                           
+public int translate(CharSequence input, int index, Writer out) throws IOException {                   public int translate(CharSequence input, int index, Writer out) throws IOException {                
+if (index != 0) {                                                                                      if (index != 0) {                                                                                   
+throw new IllegalStateException("CsvEscaper should never reach the [1] index");                        throw new IllegalStateException("CsvEscaper should never reach the [1] index");                     
+}                                                                                                      }                                                                                                   
+if (StringUtils.containsNone(input.toString(), CSV_SEARCH_CHARS)) {                                    if (StringUtils.containsNone(input.toString(), CSV_SEARCH_CHARS)) {                                 
+out.write(input.toString());                                                                           out.write(input.toString());                                                                        
+} else {                                                                                               } else {                                                                                            
+out.write(CSV_QUOTE);                                                                                  out.write(CSV_QUOTE);                                                                               
+out.write(StringUtils.replace(input.toString(), CSV_QUOTE_STR, CSV_QUOTE_STR + CSV_QUOTE_STR));        out.write(StringUtils.replace(input.toString(), CSV_QUOTE_STR, CSV_QUOTE_STR + CSV_QUOTE_STR));     
+out.write(CSV_QUOTE);                                                                                  out.write(CSV_QUOTE);                                                                               
+}                                                                                                      }                                                                                                   
+return input.length();                                                                                 return input.length();                                                                              
+}                                                                                                      }                                                                                                   

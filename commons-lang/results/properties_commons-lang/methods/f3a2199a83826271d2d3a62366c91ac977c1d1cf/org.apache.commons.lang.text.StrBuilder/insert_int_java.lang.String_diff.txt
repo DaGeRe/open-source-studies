@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Inserts the string into this builder.                                                                * Inserts the string into this builder.                                                             
+* Inserting null will use the stored null text value.                                                  * Inserting null will use the stored null text value.                                               
+*                                                                                                      *                                                                                                   
+* @param index  the index to add at, must be valid                                                     * @param index  the index to add at, must be valid                                                  
+* @param str  the string to insert                                                                     * @param str  the string to insert                                                                  
+* @return this, to enable chaining                                                                     * @return this, to enable chaining                                                                  
+* @throws IndexOutOfBoundsException if the index is invalid                                            * @throws IndexOutOfBoundsException if the index is invalid                                         
+*/                                                                                                     */                                                                                                  
+                                                                                                     | // str cannot be null                                                                               
+                                                                                                     | @SuppressWarnings("null")                                                                           
+public StrBuilder insert(int index, String str) {                                                      public StrBuilder insert(int index, String str) {                                                   
+validateIndex(index);                                                                                  validateIndex(index);                                                                               
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+str = nullText;                                                                                        str = nullText;                                                                                     
+}                                                                                                      }                                                                                                   
+int strLen = (str == null ? 0 : str.length());                                                         int strLen = (str == null ? 0 : str.length());                                                      
+if (strLen &gt; 0) {                                                                                   if (strLen &gt; 0) {                                                                                
+int newSize = size + strLen;                                                                           int newSize = size + strLen;                                                                        
+ensureCapacity(newSize);                                                                               ensureCapacity(newSize);                                                                            
+System.arraycopy(buffer, index, buffer, index + strLen, size - index);                                 System.arraycopy(buffer, index, buffer, index + strLen, size - index);                              
+size = newSize;                                                                                        size = newSize;                                                                                     
+                                                                                                     | // str cannot be null here                                                                          
+str.getChars(0, strLen, buffer, index);                                                                str.getChars(0, strLen, buffer, index);                                                             
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+/**
+ * <p>Constructs a new <code>Range</code> using the specified
+ * element as both the minimum and maximum in this range.</p>
+ * <p>The range uses the natural ordering of the elements to
+ * determine where values lie in the range.</p>
+ *
+ * @param element  the value to use for this range, must not be <code>null</code>
+ * @throws IllegalArgumentException if the value is <code>null</code>
+ * @throws ClassCastException if the value is not Comparable
+ */
+public static <T extends Comparable<T>> Range<T> is(T element) {
+    return new Range<T>(element, element, ComparableComparator.<T>getInstance());
+}

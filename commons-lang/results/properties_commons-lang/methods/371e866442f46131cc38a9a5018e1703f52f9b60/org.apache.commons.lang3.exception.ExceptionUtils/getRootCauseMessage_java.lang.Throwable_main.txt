@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+/**
+ * Gets a short message summarising the root cause exception.
+ * <p>
+ * The message returned is of the form
+ * {ClassNameWithoutPackage}: {ThrowableMessage}
+ *
+ * @param th  the throwable to get a message for, null returns empty string
+ * @return the message, non-null
+ * @since Commons Lang 2.2
+ */
+public static String getRootCauseMessage(Throwable th) {
+    Throwable root = ExceptionUtils.getRootCause(th);
+    root = root == null ? th : root;
+    return getMessage(root);
+}

@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the hash code of an object returning zero when the                                     * &lt;p&gt;Gets the hash code of an object returning zero when the                                  
+* object is {@code null}.&lt;/p&gt;                                                                    * object is {@code null}.&lt;/p&gt;                                                                 
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* ObjectUtils.hashCode(null)   = 0                                                                     * ObjectUtils.hashCode(null)   = 0                                                                  
+* ObjectUtils.hashCode(obj)    = obj.hashCode()                                                        * ObjectUtils.hashCode(obj)    = obj.hashCode()                                                     
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param obj  the object to obtain the hash code of, may be {@code null}                               * @param obj  the object to obtain the hash code of, may be {@code null}                            
+* @return the hash code of the object, or zero if null                                                 * @return the hash code of the object, or zero if null                                              
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static int hashCode(Object obj) {                                                               public static int hashCode(Object obj) {                                                            
+// hashCode(Object) retained for performance, as hash code is often critical                           // hashCode(Object) retained for performance, as hash code is often critical                        
+return (obj == null) ? 0 : obj.hashCode();                                                           | return obj == null ? 0 : obj.hashCode();                                                            
+}                                                                                                      }                                                                                                   

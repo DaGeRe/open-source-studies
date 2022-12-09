@@ -1,0 +1,27 @@
+// IndexOf                                                                                             // IndexOf                                                                                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Finds the first index within a String, handling &lt;code&gt;null&lt;/code&gt;.              * &lt;p&gt;Finds the first index within a String, handling &lt;code&gt;null&lt;/code&gt;.           
+* This method uses {@link String#indexOf(int)}.&lt;/p&gt;                                              * This method uses {@link String#indexOf(int)}.&lt;/p&gt;                                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; or empty ("") String will return &lt;code&gt;-1&lt;/code& | * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; or empty ("") String will return &lt;code&gt;INDEX_NOT_FO
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.indexOf(null, *)         = -1                                                            * StringUtils.indexOf(null, *)         = -1                                                         
+* StringUtils.indexOf("", *)           = -1                                                            * StringUtils.indexOf("", *)           = -1                                                         
+* StringUtils.indexOf("aabaabaa", 'a') = 0                                                             * StringUtils.indexOf("aabaabaa", 'a') = 0                                                          
+* StringUtils.indexOf("aabaabaa", 'b') = 2                                                             * StringUtils.indexOf("aabaabaa", 'b') = 2                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check, may be null                                                         * @param str  the String to check, may be null                                                      
+* @param searchChar  the character to find                                                             * @param searchChar  the character to find                                                          
+* @return the first index of the search character,                                                     * @return the first index of the search character,                                                  
+*  -1 if no match or &lt;code&gt;null&lt;/code&gt; string input                                        *  -1 if no match or &lt;code&gt;null&lt;/code&gt; string input                                     
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static int indexOf(String str, char searchChar) {                                               public static int indexOf(String str, char searchChar) {                                            
+if (isEmpty(str)) {                                                                                    if (isEmpty(str)) {                                                                                 
+return -1;                                                                                           | return INDEX_NOT_FOUND;                                                                             
+}                                                                                                      }                                                                                                   
+return str.indexOf(searchChar);                                                                        return str.indexOf(searchChar);                                                                     
+}                                                                                                      }                                                                                                   

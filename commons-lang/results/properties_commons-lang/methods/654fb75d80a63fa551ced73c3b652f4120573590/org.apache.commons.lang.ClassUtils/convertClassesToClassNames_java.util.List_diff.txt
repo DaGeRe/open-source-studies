@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Given a &lt;code&gt;List&lt;/code&gt; of &lt;code&gt;Class&lt;/code&gt; objects, this met   * &lt;p&gt;Given a &lt;code&gt;List&lt;/code&gt; of &lt;code&gt;Class&lt;/code&gt; objects, this met
+* them into class names.&lt;/p&gt;                                                                     * them into class names.&lt;/p&gt;                                                                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A new &lt;code&gt;List&lt;/code&gt; is returned. &lt;code&gt;null&lt;/code&gt; objects wi   * &lt;p&gt;A new &lt;code&gt;List&lt;/code&gt; is returned. &lt;code&gt;null&lt;/code&gt; objects wi
+* the returned list as &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                        * the returned list as &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                     
+*                                                                                                      *                                                                                                   
+* @param classes  the classes to change                                                                * @param classes  the classes to change                                                             
+* @return a &lt;code&gt;List&lt;/code&gt; of class names corresponding to the Class objects,           * @return a &lt;code&gt;List&lt;/code&gt; of class names corresponding to the Class objects,        
+*  &lt;code&gt;null&lt;/code&gt; if null input                                                         *  &lt;code&gt;null&lt;/code&gt; if null input                                                      
+* @throws ClassCastException if &lt;code&gt;classes&lt;/code&gt; contains a non-&lt;code&gt;Class&lt   * @throws ClassCastException if &lt;code&gt;classes&lt;/code&gt; contains a non-&lt;code&gt;Class&lt
+*/                                                                                                     */                                                                                                  
+public static List convertClassesToClassNames(List classes) {                                        | public static List&lt;String&gt; convertClassesToClassNames(List&lt;Class&lt;?&gt;&gt; classes) {   
+if (classes == null) {                                                                                 if (classes == null) {                                                                              
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+List classNames = new ArrayList(classes.size());                                                     | List&lt;String&gt; classNames = new ArrayList&lt;String&gt;(classes.size());                        
+for (Iterator it = classes.iterator(); it.hasNext(); ) {                                             | for (Iterator&lt;Class&lt;?&gt;&gt; it = classes.iterator(); it.hasNext(); ) {                      
+Class cls = (Class) it.next();                                                                       | Class&lt;?&gt; cls = it.next();                                                                     
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+classNames.add(null);                                                                                  classNames.add(null);                                                                               
+} else {                                                                                               } else {                                                                                            
+classNames.add(cls.getName());                                                                         classNames.add(cls.getName());                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return classNames;                                                                                     return classNames;                                                                                  
+}                                                                                                      }                                                                                                   

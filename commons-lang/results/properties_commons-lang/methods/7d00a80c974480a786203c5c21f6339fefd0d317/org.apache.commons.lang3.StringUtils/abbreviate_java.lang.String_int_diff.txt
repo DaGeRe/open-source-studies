@@ -1,0 +1,37 @@
+// Abbreviating
+// -----------------------------------------------------------------------
+/**
+ * <p>Abbreviates a String using ellipses. This will turn
+ * "Now is the time for all good men" into "Now is the time for..."</p>
+ *
+ * <p>Specifically:
+ * <ul>
+ *   <li>If {@code str} is less than {@code maxWidth} characters
+ *       long, return it.</li>
+ *   <li>Else abbreviate it to {@code (substring(str, 0, max-3) + "...")}.</li>
+ *   <li>If {@code maxWidth} is less than {@code 4}, throw an
+ *       {@code IllegalArgumentException}.</li>
+ *   <li>In no case will it return a String of length greater than
+ *       {@code maxWidth}.</li>
+ * </ul>
+ * </p>
+ *
+ * <pre>
+ * StringUtils.abbreviate(null, *)      = null
+ * StringUtils.abbreviate("", 4)        = ""
+ * StringUtils.abbreviate("abcdefg", 6) = "abc..."
+ * StringUtils.abbreviate("abcdefg", 7) = "abcdefg"
+ * StringUtils.abbreviate("abcdefg", 8) = "abcdefg"
+ * StringUtils.abbreviate("abcdefg", 4) = "a..."
+ * StringUtils.abbreviate("abcdefg", 3) = IllegalArgumentException
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param maxWidth  maximum length of result String, must be at least 4
+ * @return abbreviated String, {@code null} if null String input
+ * @throws IllegalArgumentException if the width is too small
+ * @since 2.0
+ */
+public static String abbreviate(String str, int maxWidth) {
+    return abbreviate(str, 0, maxWidth);
+}

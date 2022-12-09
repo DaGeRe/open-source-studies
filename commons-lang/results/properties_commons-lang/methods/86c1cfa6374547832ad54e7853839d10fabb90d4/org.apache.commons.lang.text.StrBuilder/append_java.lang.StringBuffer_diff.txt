@@ -1,0 +1,20 @@
+/**
+ * Appends a string buffer to this string builder.
+ * Appending null will call {@link #appendNull()}.
+ *
+ * @param str  the string buffer to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(StringBuffer str) {
+    if (str == null) {
+        return appendNull();
+    }
+    int strLen = str.length();
+    if (strLen > 0) {
+        int len = length();
+        ensureCapacity(len + strLen);
+        str.getChars(0, strLen, buffer, len);
+        size += strLen;
+    }
+    return this;
+}

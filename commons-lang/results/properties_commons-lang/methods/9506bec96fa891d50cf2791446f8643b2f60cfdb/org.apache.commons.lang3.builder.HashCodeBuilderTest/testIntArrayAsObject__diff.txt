@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testIntArrayAsObject() {                                                                   public void testIntArrayAsObject() {                                                                
+int[] obj = new int[2];                                                                                int[] obj = new int[2];                                                                             
+assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());           assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());        
+obj[0] = 5;                                                                                            obj[0] = 5;                                                                                         
+assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());       assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());    
+obj[1] = 6;                                                                                            obj[1] = 6;                                                                                         
+assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());   assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+// Constructor                                                                                         // Constructor                                                                                      
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new FastDateFormat.&lt;/p&gt;                                                  * &lt;p&gt;Constructs a new FastDateFormat.&lt;/p&gt;                                               
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible pattern                                * @param pattern  {@link java.text.SimpleDateFormat} compatible pattern                             
+* @param timeZone  non-null time zone to use                                                           * @param timeZone  non-null time zone to use                                                        
+* @param locale  non-null locale to use                                                                * @param locale  non-null locale to use                                                             
+* @throws NullPointerException if pattern, timeZone, or locale is null.                                * @throws NullPointerException if pattern, timeZone, or locale is null.                             
+*/                                                                                                     */                                                                                                  
+protected FastDateFormat(String pattern, TimeZone timeZone, Locale locale) {                           protected FastDateFormat(String pattern, TimeZone timeZone, Locale locale) {                        
+mPattern = pattern;                                                                                  | printer = new FastDatePrinter(pattern, timeZone, locale);                                           
+mTimeZone = timeZone;                                                                                | parser = new FastDateParser(pattern, timeZone, locale);                                             
+mLocale = locale;                                                                                    |                                                                                                     
+init();                                                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   

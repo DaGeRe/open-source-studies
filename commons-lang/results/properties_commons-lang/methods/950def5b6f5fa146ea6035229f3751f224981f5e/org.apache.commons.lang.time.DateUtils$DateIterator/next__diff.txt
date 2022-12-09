@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Return the next calendar in the iteration                                                            * Return the next calendar in the iteration                                                         
+*                                                                                                      *                                                                                                   
+* @return Object calendar for the next date                                                            * @return Object calendar for the next date                                                         
+*/                                                                                                     */                                                                                                  
+public Object next() {                                                                               | public Calendar next() {                                                                            
+if (spot.equals(endFinal)) {                                                                           if (spot.equals(endFinal)) {                                                                        
+throw new NoSuchElementException();                                                                    throw new NoSuchElementException();                                                                 
+}                                                                                                      }                                                                                                   
+spot.add(Calendar.DATE, 1);                                                                            spot.add(Calendar.DATE, 1);                                                                         
+return spot.clone();                                                                                 | return (Calendar) spot.clone();                                                                     
+}                                                                                                      }                                                                                                   

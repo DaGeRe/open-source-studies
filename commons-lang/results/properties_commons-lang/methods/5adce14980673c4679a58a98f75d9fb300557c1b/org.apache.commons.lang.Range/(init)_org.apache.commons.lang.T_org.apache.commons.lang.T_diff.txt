@@ -1,0 +1,18 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Constructs a new &lt;code&gt;Range&lt;/code&gt; with the specified                        |                                                                                                     
+* minimum and maximum values (both inclusive).&lt;/p&gt;                                             |                                                                                                     
+* &lt;p&gt;The range uses the natural ordering of the elements to                                    |                                                                                                     
+* determine where values lie in the range.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;The arguments may be passed in the order (min,max) or (max,min). The                      |                                                                                                     
+* getMinimum and getMaximum methods will return the correct values.&lt;/p&gt;                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param element1  first value that defines the edge of the range, inclusive                         |                                                                                                     
+* @param element2  second value that defines the edge of the range, inclusive                        |                                                                                                     
+* @throws IllegalArgumentException if either value is &lt;code&gt;null&lt;/code&gt;                  |                                                                                                     
+* @throws ClassCastException if either value is not Comparable                                       |                                                                                                     
+*/                                                                                                   |                                                                                                     
+// TODO: Ideally the ClassCastException would be compile-time via generics                           |                                                                                                     
+public Range(T element1, T element2) {                                                               |                                                                                                     
+this(element1, element2, ComparableComparator.INSTANCE);                                             |                                                                                                     
+}                                                                                                    |                                                                                                     

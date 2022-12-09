@@ -1,0 +1,35 @@
+@Test
+public void testReplaceChars_StringStringString() {
+    assertEquals(null, StringUtils.replaceChars(null, null, null));
+    assertEquals(null, StringUtils.replaceChars(null, "", null));
+    assertEquals(null, StringUtils.replaceChars(null, "a", null));
+    assertEquals(null, StringUtils.replaceChars(null, null, ""));
+    assertEquals(null, StringUtils.replaceChars(null, null, "x"));
+    assertEquals("", StringUtils.replaceChars("", null, null));
+    assertEquals("", StringUtils.replaceChars("", "", null));
+    assertEquals("", StringUtils.replaceChars("", "a", null));
+    assertEquals("", StringUtils.replaceChars("", null, ""));
+    assertEquals("", StringUtils.replaceChars("", null, "x"));
+    assertEquals("abc", StringUtils.replaceChars("abc", null, null));
+    assertEquals("abc", StringUtils.replaceChars("abc", null, ""));
+    assertEquals("abc", StringUtils.replaceChars("abc", null, "x"));
+    assertEquals("abc", StringUtils.replaceChars("abc", "", null));
+    assertEquals("abc", StringUtils.replaceChars("abc", "", ""));
+    assertEquals("abc", StringUtils.replaceChars("abc", "", "x"));
+    assertEquals("ac", StringUtils.replaceChars("abc", "b", null));
+    assertEquals("ac", StringUtils.replaceChars("abc", "b", ""));
+    assertEquals("axc", StringUtils.replaceChars("abc", "b", "x"));
+    assertEquals("ayzya", StringUtils.replaceChars("abcba", "bc", "yz"));
+    assertEquals("ayya", StringUtils.replaceChars("abcba", "bc", "y"));
+    assertEquals("ayzya", StringUtils.replaceChars("abcba", "bc", "yzx"));
+    assertEquals("abcba", StringUtils.replaceChars("abcba", "z", "w"));
+    assertSame("abcba", StringUtils.replaceChars("abcba", "z", "w"));
+    // Javadoc examples:
+    assertEquals("jelly", StringUtils.replaceChars("hello", "ho", "jy"));
+    assertEquals("ayzya", StringUtils.replaceChars("abcba", "bc", "yz"));
+    assertEquals("ayya", StringUtils.replaceChars("abcba", "bc", "y"));
+    assertEquals("ayzya", StringUtils.replaceChars("abcba", "bc", "yzx"));
+    // From http://issues.apache.org/bugzilla/show_bug.cgi?id=25454
+    assertEquals("bcc", StringUtils.replaceChars("abc", "ab", "bc"));
+    assertEquals("q651.506bera", StringUtils.replaceChars("d216.102oren", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789", "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM567891234"));
+}

@@ -1,0 +1,14 @@
+/**
+ * Records this invocation. Optionally throws an exception or sleeps a
+ * while.
+ */
+@Override
+protected Integer initialize() throws Exception {
+    if (ex != null) {
+        throw ex;
+    }
+    if (shouldSleep) {
+        Thread.sleep(60000L);
+    }
+    return ++initializeCalls;
+}

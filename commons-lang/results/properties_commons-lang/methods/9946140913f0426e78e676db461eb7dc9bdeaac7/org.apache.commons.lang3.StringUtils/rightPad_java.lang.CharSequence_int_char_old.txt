@@ -1,0 +1,35 @@
+/**
+ * <p>Right pad a String with a specified character.</p>
+ *
+ * <p>The String is padded to the size of {@code size}.</p>
+ *
+ * <pre>
+ * StringUtils.rightPad(null, *, *)     = null
+ * StringUtils.rightPad("", 3, 'z')     = "zzz"
+ * StringUtils.rightPad("bat", 3, 'z')  = "bat"
+ * StringUtils.rightPad("bat", 5, 'z')  = "batzz"
+ * StringUtils.rightPad("bat", 1, 'z')  = "bat"
+ * StringUtils.rightPad("bat", -1, 'z') = "bat"
+ * </pre>
+ *
+ * @param seq  the CharSequence to pad out, may be null
+ * @param size  the size to pad to
+ * @param padChar  the character to pad with
+ * @return right padded String or original String if no padding is necessary,
+ *  {@code null} if null String input
+ * @since 2.0
+ */
+public static String rightPad(CharSequence seq, int size, char padChar) {
+    if (seq == null) {
+        return null;
+    }
+    int pads = size - seq.length();
+    if (pads <= 0) {
+        // returns original String when possible
+        return seq.toString();
+    }
+    if (pads > PAD_LIMIT) {
+        return rightPad(seq, size, String.valueOf(padChar));
+    }
+    return seq.toString().concat(padding(pads, padChar));
+}

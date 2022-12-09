@@ -1,0 +1,6 @@
+public void testBetween() throws IOException {                                                       | public void testBetween() {                                                                         
+NumericEntityEscaper nee = NumericEntityEscaper.between('F', 'L');                                     NumericEntityEscaper nee = NumericEntityEscaper.between('F', 'L');                                  
+String input = "ADFGZ";                                                                                String input = "ADFGZ";                                                                             
+String result = nee.translate(input);                                                                  String result = nee.translate(input);                                                               
+assertEquals("Failed to escape numeric entities via the between method", "AD&#70;&#71;Z", result);     assertEquals("Failed to escape numeric entities via the between method", "AD&#70;&#71;Z", result);  
+}                                                                                                      }                                                                                                   

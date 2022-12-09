@@ -1,0 +1,16 @@
+/**
+ * Returns the result object produced by the {@code
+ * BackgroundInitializer} with the given name. This is the object
+ * returned by the initializer's {@code initialize()} method. If this
+ * {@code BackgroundInitializer} caused an exception, <b>null</b> is
+ * returned. If the name cannot be resolved, an exception is thrown.
+ *
+ * @param name the name of the {@code BackgroundInitializer}
+ * @return the result object produced by this {@code
+ * BackgroundInitializer}
+ * @throws NoSuchElementException if the name cannot be resolved
+ */
+public Object getResultObject(String name) {
+    checkName(name);
+    return resultObjects.get(name);
+}

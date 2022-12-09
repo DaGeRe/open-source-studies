@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a Boolean to a Integer using the convention that                                   * &lt;p&gt;Converts a Boolean to a Integer using the convention that                                
+* {@code zero} is {@code false}.&lt;/p&gt;                                                             * {@code zero} is {@code false}.&lt;/p&gt;                                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null} will be converted to {@code null}.&lt;/p&gt;                                   * &lt;p&gt;{@code null} will be converted to {@code null}.&lt;/p&gt;                                
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toIntegerObject(Boolean.TRUE)  = new Integer(1)                                     | *   BooleanUtils.toIntegerObject(Boolean.TRUE)  = Integer.valueOf(1)                                
+*   BooleanUtils.toIntegerObject(Boolean.FALSE) = new Integer(0)                                     | *   BooleanUtils.toIntegerObject(Boolean.FALSE) = Integer.valueOf(0)                                
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the Boolean to convert                                                                  * @param bool  the Boolean to convert                                                               
+* @return one if Boolean.TRUE, zero if Boolean.FALSE, {@code null} if {@code null}                     * @return one if Boolean.TRUE, zero if Boolean.FALSE, {@code null} if {@code null}                  
+*/                                                                                                     */                                                                                                  
+public static Integer toIntegerObject(Boolean bool) {                                                  public static Integer toIntegerObject(Boolean bool) {                                               
+if (bool == null) {                                                                                    if (bool == null) {                                                                                 
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return bool.booleanValue() ? NumberUtils.INTEGER_ONE : NumberUtils.INTEGER_ZERO;                       return bool.booleanValue() ? NumberUtils.INTEGER_ONE : NumberUtils.INTEGER_ZERO;                    
+}                                                                                                      }                                                                                                   

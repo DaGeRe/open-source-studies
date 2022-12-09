@@ -1,0 +1,23 @@
+@Test
+public void testLongArray() {
+    long[] obj1 = new long[2];
+    obj1[0] = 5L;
+    obj1[1] = 6L;
+    long[] obj2 = new long[2];
+    obj2[0] = 5L;
+    obj2[1] = 6L;
+    long[] obj3 = new long[3];
+    obj3[0] = 5L;
+    obj3[1] = 6L;
+    obj3[2] = 7L;
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    obj1[1] = 7;
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj1, null).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append((long[]) null, (long[]) null).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(null, obj1).toComparison() < 0);
+}

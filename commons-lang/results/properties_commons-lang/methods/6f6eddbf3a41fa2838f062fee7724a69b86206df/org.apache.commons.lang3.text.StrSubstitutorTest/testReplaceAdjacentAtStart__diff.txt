@@ -1,0 +1,9 @@
+/**
+ * Tests adjacent keys.
+ */
+public void testReplaceAdjacentAtStart() {
+    values.put("code", "GBP");
+    values.put("amount", "12.50");
+    StrSubstitutor sub = new StrSubstitutor(values);
+    assertEquals("GBP12.50 charged", sub.replace("${code}${amount} charged"));
+}

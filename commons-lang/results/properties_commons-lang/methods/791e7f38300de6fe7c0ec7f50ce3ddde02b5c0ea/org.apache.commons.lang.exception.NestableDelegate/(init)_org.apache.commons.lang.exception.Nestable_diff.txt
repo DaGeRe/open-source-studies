@@ -1,0 +1,15 @@
+/**                                                                                                  |                                                                                                     
+* Constructs a new &lt;code&gt;NestableDelegate&lt;/code&gt; instance to manage the                  |                                                                                                     
+* specified &lt;code&gt;Nestable&lt;/code&gt;.                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param nestable the Nestable implementation (&lt;i&gt;must&lt;/i&gt; extend                        |                                                                                                     
+* {@link java.lang.Throwable})                                                                       |                                                                                                     
+* @since 2.0                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public NestableDelegate(Nestable nestable) {                                                         |                                                                                                     
+if (nestable instanceof Throwable) {                                                                 |                                                                                                     
+this.nestable = (Throwable) nestable;                                                                |                                                                                                     
+} else {                                                                                             |                                                                                                     
+throw new IllegalArgumentException(MUST_BE_THROWABLE);                                               |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an EventListenerSupport object which supports the provided listener interface using the sp   * Creates an EventListenerSupport object which supports the provided listener interface using the sp
+* class loader to create the JDK dynamic proxy.                                                        * class loader to create the JDK dynamic proxy.                                                     
+*                                                                                                      *                                                                                                   
+* @param listenerInterface the listener interface                                                      * @param listenerInterface the listener interface                                                   
+* @param classLoader       the class loader                                                            * @param classLoader       the class loader                                                         
+*/                                                                                                     */                                                                                                  
+public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {               public EventListenerSupport(Class&lt;L&gt; listenerInterface, ClassLoader classLoader) {            
+                                                                                                     | Validate.notNull(listenerInterface, "Listener interface cannot be null.");                          
+                                                                                                     | Validate.notNull(classLoader, "ClassLoader cannot be null.");                                       
+                                                                                                     | Validate.isTrue(listenerInterface.isInterface(), "Class {0} is not an interface", listenerInterface.
+proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }   proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,9 @@
+public void testGetClassInvalidArguments() throws Exception {                                          public void testGetClassInvalidArguments() throws Exception {                                       
+assertGetClassThrowsIllegalArgument(null);                                                           | assertGetClassThrowsNullPointerException(null);                                                     
+assertGetClassThrowsClassNotFound("[][][]");                                                           assertGetClassThrowsClassNotFound("[][][]");                                                        
+assertGetClassThrowsClassNotFound("[[]");                                                              assertGetClassThrowsClassNotFound("[[]");                                                           
+assertGetClassThrowsClassNotFound("[");                                                                assertGetClassThrowsClassNotFound("[");                                                             
+assertGetClassThrowsClassNotFound("java.lang.String][");                                               assertGetClassThrowsClassNotFound("java.lang.String][");                                            
+assertGetClassThrowsClassNotFound(".hello.world");                                                     assertGetClassThrowsClassNotFound(".hello.world");                                                  
+assertGetClassThrowsClassNotFound("hello..world");                                                     assertGetClassThrowsClassNotFound("hello..world");                                                  
+}                                                                                                      }                                                                                                   

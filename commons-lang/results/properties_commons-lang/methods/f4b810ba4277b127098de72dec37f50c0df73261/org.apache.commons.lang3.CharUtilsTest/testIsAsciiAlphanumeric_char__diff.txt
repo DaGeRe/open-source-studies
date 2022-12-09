@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsAsciiAlphanumeric_char() {                                                           public void testIsAsciiAlphanumeric_char() {                                                        
+assertEquals(true, CharUtils.isAsciiAlphanumeric('a'));                                              | assertTrue(CharUtils.isAsciiAlphanumeric('a'));                                                     
+assertEquals(true, CharUtils.isAsciiAlphanumeric('A'));                                              | assertTrue(CharUtils.isAsciiAlphanumeric('A'));                                                     
+assertEquals(true, CharUtils.isAsciiAlphanumeric('3'));                                              | assertTrue(CharUtils.isAsciiAlphanumeric('3'));                                                     
+assertEquals(false, CharUtils.isAsciiAlphanumeric('-'));                                             | assertFalse(CharUtils.isAsciiAlphanumeric('-'));                                                    
+assertEquals(false, CharUtils.isAsciiAlphanumeric('\n'));                                            | assertFalse(CharUtils.isAsciiAlphanumeric('\n'));                                                   
+assertEquals(false, CharUtils.isAsciiAlphanumeric(CHAR_COPY));                                       | assertFalse(CharUtils.isAsciiAlphanumeric(CHAR_COPY));                                              
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+if ((i &gt;= 'A' && i &lt;= 'Z') || (i &gt;= 'a' && i &lt;= 'z') || (i &gt;= '0' && i &lt;= '9')) {    if ((i &gt;= 'A' && i &lt;= 'Z') || (i &gt;= 'a' && i &lt;= 'z') || (i &gt;= '0' && i &lt;= '9')) { 
+assertEquals(true, CharUtils.isAsciiAlphanumeric((char) i));                                         | assertTrue(CharUtils.isAsciiAlphanumeric((char) i));                                                
+} else {                                                                                               } else {                                                                                            
+assertEquals(false, CharUtils.isAsciiAlphanumeric((char) i));                                        | assertFalse(CharUtils.isAsciiAlphanumeric((char) i));                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

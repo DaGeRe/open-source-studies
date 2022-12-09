@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testAddYears() throws Exception {
+    Date base = new Date(MILLIS_TEST);
+    Date result = DateUtils.addYears(base, 0);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 6, 5, 4, 3, 2, 1);
+    result = DateUtils.addYears(base, 1);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2001, 6, 5, 4, 3, 2, 1);
+    result = DateUtils.addYears(base, -1);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 1999, 6, 5, 4, 3, 2, 1);
+}

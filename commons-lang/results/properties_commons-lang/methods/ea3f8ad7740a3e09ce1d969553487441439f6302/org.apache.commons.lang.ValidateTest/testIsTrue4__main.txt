@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testIsTrue4() {
+    Validate.isTrue(true, "MSG", 7);
+    try {
+        Validate.isTrue(false, "MSG", 7);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+}

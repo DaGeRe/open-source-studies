@@ -1,0 +1,29 @@
+public void testAddValue() {                                                                           public void testAddValue() {                                                                        
+contextedRuntimeException = new ContextedRuntimeException(new Exception(TEST_MESSAGE)).addValue("tes | contextedRuntimeException = new ContextedRuntimeException(new Exception(TEST_MESSAGE)).addValue("tes
+String message = contextedRuntimeException.getMessage();                                               String message = contextedRuntimeException.getMessage();                                            
+assertTrue(message.indexOf(TEST_MESSAGE) &gt;= 0);                                                     assertTrue(message.indexOf(TEST_MESSAGE) &gt;= 0);                                                  
+assertTrue(message.indexOf("test1") &gt;= 0);                                                          assertTrue(message.indexOf("test1") &gt;= 0);                                                       
+assertTrue(message.indexOf("test2") &gt;= 0);                                                          assertTrue(message.indexOf("test2") &gt;= 0);                                                       
+assertTrue(message.indexOf("test Date") &gt;= 0);                                                      assertTrue(message.indexOf("test Date") &gt;= 0);                                                   
+assertTrue(message.indexOf("test Nbr") &gt;= 0);                                                       assertTrue(message.indexOf("test Nbr") &gt;= 0);                                                    
+assertTrue(message.indexOf("test Poorly written obj") &gt;= 0);                                      |                                                                                                     
+assertTrue(message.indexOf("some value") &gt;= 0);                                                     assertTrue(message.indexOf("some value") &gt;= 0);                                                  
+assertTrue(message.indexOf("5") &gt;= 0);                                                              assertTrue(message.indexOf("5") &gt;= 0);                                                           
+assertTrue(message.indexOf("Crap") &gt;= 0);                                                         |                                                                                                     
+assertTrue(contextedRuntimeException.getValue("test1") == null);                                       assertTrue(contextedRuntimeException.getValue("test1") == null);                                    
+assertTrue(contextedRuntimeException.getValue("test2").equals("some value"));                          assertTrue(contextedRuntimeException.getValue("test2").equals("some value"));                       
+assertTrue(contextedRuntimeException.getValue("crap") == null);                                      | assertTrue(contextedRuntimeException.getLabelSet().size() == 4);                                    
+assertTrue(contextedRuntimeException.getValue("test Poorly written obj") instanceof ObjectWithFaulty |                                                                                                     
+assertTrue(contextedRuntimeException.getLabelSet().size() == 5);                                     |                                                                                                     
+assertTrue(contextedRuntimeException.getLabelSet().contains("test1"));                                 assertTrue(contextedRuntimeException.getLabelSet().contains("test1"));                              
+assertTrue(contextedRuntimeException.getLabelSet().contains("test2"));                                 assertTrue(contextedRuntimeException.getLabelSet().contains("test2"));                              
+assertTrue(contextedRuntimeException.getLabelSet().contains("test Date"));                             assertTrue(contextedRuntimeException.getLabelSet().contains("test Date"));                          
+assertTrue(contextedRuntimeException.getLabelSet().contains("test Nbr"));                              assertTrue(contextedRuntimeException.getLabelSet().contains("test Nbr"));                           
+assertTrue(contextedRuntimeException.getLabelSet().contains("test Poorly written obj"));             | contextedRuntimeException.addValue("test2", "different value");                                     
+assertTrue(!contextedRuntimeException.getLabelSet().contains("crap"));                               | assertTrue(contextedRuntimeException.getLabelSet().size() == 5);                                    
+contextedRuntimeException.addValue("test Poorly written obj", "replacement");                        | assertTrue(contextedRuntimeException.getLabelSet().contains("test2"));                              
+                                                                                                     | assertTrue(contextedRuntimeException.getLabelSet().contains("test2[1]"));                           
+String contextMessage = contextedRuntimeException.getFormattedExceptionMessage(null);                  String contextMessage = contextedRuntimeException.getFormattedExceptionMessage(null);               
+assertTrue(contextMessage.indexOf(TEST_MESSAGE) == -1);                                                assertTrue(contextMessage.indexOf(TEST_MESSAGE) == -1);                                             
+assertTrue(contextedRuntimeException.getMessage().endsWith(contextMessage));                           assertTrue(contextedRuntimeException.getMessage().endsWith(contextMessage));                        
+}                                                                                                      }                                                                                                   

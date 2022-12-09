@@ -1,0 +1,8 @@
+private void addDeregisterListener(final EventListenerSupport<VetoableChangeListener> listenerSupport) {
+    listenerSupport.addListener(new VetoableChangeListener() {
+
+        public void vetoableChange(PropertyChangeEvent e) {
+            listenerSupport.removeListener(this);
+        }
+    });
+}

@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts an array of &lt;code&gt;Object&lt;/code&gt; in to an array of &lt;code&gt;Class& | * &lt;p&gt;Converts an array of &lt;code&gt;Object&lt;/code&gt; in to an array of &lt;code&gt;Class&
+                                                                                                     | * If any of these objects is null, a null element will be inserted into the array.&lt;/p&gt;        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method returns &lt;code&gt;null&lt;/code&gt; for a &lt;code&gt;null&lt;/code&gt; inp   * &lt;p&gt;This method returns &lt;code&gt;null&lt;/code&gt; for a &lt;code&gt;null&lt;/code&gt; inp
+*                                                                                                      *                                                                                                   
+* @param array an &lt;code&gt;Object&lt;/code&gt; array                                                * @param array an &lt;code&gt;Object&lt;/code&gt; array                                             
+* @return a &lt;code&gt;Class&lt;/code&gt; array, &lt;code&gt;null&lt;/code&gt; if null array input    * @return a &lt;code&gt;Class&lt;/code&gt; array, &lt;code&gt;null&lt;/code&gt; if null array input 
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+*/                                                                                                     */                                                                                                  
+public static Class&lt;?&gt;[] toClass(Object[] array) {                                               public static Class&lt;?&gt;[] toClass(Object[] array) {                                            
+if (array == null) {                                                                                   if (array == null) {                                                                                
+return null;                                                                                           return null;                                                                                        
+} else if (array.length == 0) {                                                                        } else if (array.length == 0) {                                                                     
+return ArrayUtils.EMPTY_CLASS_ARRAY;                                                                   return ArrayUtils.EMPTY_CLASS_ARRAY;                                                                
+}                                                                                                      }                                                                                                   
+Class&lt;?&gt;[] classes = new Class[array.length];                                                    Class&lt;?&gt;[] classes = new Class[array.length];                                                 
+for (int i = 0; i &lt; array.length; i++) {                                                            for (int i = 0; i &lt; array.length; i++) {                                                         
+classes[i] = array[i].getClass();                                                                    | classes[i] = array[i] == null ? null : array[i].getClass();                                         
+}                                                                                                      }                                                                                                   
+return classes;                                                                                        return classes;                                                                                     
+}                                                                                                      }                                                                                                   

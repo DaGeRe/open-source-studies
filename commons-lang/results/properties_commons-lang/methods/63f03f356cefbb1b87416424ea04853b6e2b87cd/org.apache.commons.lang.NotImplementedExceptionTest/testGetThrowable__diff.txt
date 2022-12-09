@@ -1,0 +1,17 @@
+public void testGetThrowable() {
+    NotImplementedException ex = new NotImplementedException(new NestableException("nested 1", new NestableException("nested 2")));
+    assertEquals(3, ex.getThrowableCount());
+    assertEquals(NotImplementedException.class, ex.getThrowable(0).getClass());
+    assertEquals("Code is not implemented", ex.getThrowable(0).getMessage());
+    assertEquals(NestableException.class, ex.getThrowable(1).getClass());
+    assertEquals("nested 1", ex.getThrowable(1).getMessage());
+    assertEquals(NestableException.class, ex.getThrowable(2).getClass());
+    assertEquals("nested 2", ex.getThrowable(2).getMessage());
+    assertEquals(3, ex.getThrowables().length);
+    assertEquals(NotImplementedException.class, ex.getThrowables()[0].getClass());
+    assertEquals("Code is not implemented", ex.getThrowables()[0].getMessage());
+    assertEquals(NestableException.class, ex.getThrowables()[1].getClass());
+    assertEquals("nested 1", ex.getThrowables()[1].getMessage());
+    assertEquals(NestableException.class, ex.getThrowables()[2].getClass());
+    assertEquals("nested 2", ex.getThrowables()[2].getMessage());
+}

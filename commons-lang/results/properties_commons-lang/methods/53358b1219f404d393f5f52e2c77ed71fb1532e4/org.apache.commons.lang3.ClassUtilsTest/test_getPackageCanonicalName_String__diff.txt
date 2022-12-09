@@ -1,0 +1,15 @@
+public void test_getPackageCanonicalName_String() {                                                    public void test_getPackageCanonicalName_String() {                                                 
+assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang   assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[Lorg.apache.commons.la   assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[Lorg.apache.commons.la
+assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[[Lorg.apache.commons.l   assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("[[Lorg.apache.commons.l
+assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang   assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang   assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+assertEquals("", ClassUtils.getPackageCanonicalName("[I"));                                            assertEquals("", ClassUtils.getPackageCanonicalName("[I"));                                         
+assertEquals("", ClassUtils.getPackageCanonicalName("[[I"));                                           assertEquals("", ClassUtils.getPackageCanonicalName("[[I"));                                        
+assertEquals("", ClassUtils.getPackageCanonicalName("int[]"));                                         assertEquals("", ClassUtils.getPackageCanonicalName("int[]"));                                      
+assertEquals("", ClassUtils.getPackageCanonicalName("int[][]"));                                       assertEquals("", ClassUtils.getPackageCanonicalName("int[][]"));                                    
+                                                                                                     | // Inner types                                                                                      
+                                                                                                     | assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+                                                                                                     | assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+                                                                                                     | assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName("org.apache.commons.lang
+}                                                                                                      }                                                                                                   

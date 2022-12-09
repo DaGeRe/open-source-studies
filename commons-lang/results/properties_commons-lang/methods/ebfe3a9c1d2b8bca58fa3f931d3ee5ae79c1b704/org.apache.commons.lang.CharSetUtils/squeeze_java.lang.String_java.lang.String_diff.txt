@@ -1,0 +1,28 @@
+// Squeeze
+// -----------------------------------------------------------------------
+/**
+ * <p>Squeezes any repetitions of a character that is mentioned in the
+ * supplied set.</p>
+ *
+ * <pre>
+ * CharSetUtils.squeeze(null, *)        = null
+ * CharSetUtils.squeeze("", *)          = ""
+ * CharSetUtils.squeeze(*, null)        = *
+ * CharSetUtils.squeeze(*, "")          = *
+ * CharSetUtils.squeeze("hello", "k-p") = "helo"
+ * CharSetUtils.squeeze("hello", "a-e") = "hello"
+ * </pre>
+ *
+ * @see CharSet#getInstance(java.lang.String) for set-syntax.
+ * @param str  the string to squeeze, may be null
+ * @param set  the character set to use for manipulation, may be null
+ * @return modified String, <code>null</code> if null string input
+ */
+public static String squeeze(String str, String set) {
+    if (StringUtils.isEmpty(str) || StringUtils.isEmpty(set)) {
+        return str;
+    }
+    String[] strs = new String[1];
+    strs[0] = set;
+    return squeeze(str, strs);
+}

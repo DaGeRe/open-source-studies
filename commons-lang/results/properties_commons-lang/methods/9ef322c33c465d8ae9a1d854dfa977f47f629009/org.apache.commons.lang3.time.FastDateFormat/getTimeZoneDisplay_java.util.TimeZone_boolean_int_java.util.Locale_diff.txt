@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the time zone display name, using a cache for performance.&lt;/p&gt;                   * &lt;p&gt;Gets the time zone display name, using a cache for performance.&lt;/p&gt;                
+*                                                                                                      *                                                                                                   
+* @param tz  the zone to query                                                                         * @param tz  the zone to query                                                                      
+* @param daylight  true if daylight savings                                                            * @param daylight  true if daylight savings                                                         
+* @param style  the style to use &lt;code&gt;TimeZone.LONG&lt;/code&gt;                                * @param style  the style to use &lt;code&gt;TimeZone.LONG&lt;/code&gt;                             
+*  or &lt;code&gt;TimeZone.SHORT&lt;/code&gt;                                                          *  or &lt;code&gt;TimeZone.SHORT&lt;/code&gt;                                                       
+* @param locale  the locale to use                                                                     * @param locale  the locale to use                                                                  
+* @return the textual name of the time zone                                                            * @return the textual name of the time zone                                                         
+*/                                                                                                     */                                                                                                  
+static synchronized String getTimeZoneDisplay(TimeZone tz, boolean daylight, int style, Locale local | static String getTimeZoneDisplay(TimeZone tz, boolean daylight, int style, Locale locale) {         
+Object key = new TimeZoneDisplayKey(tz, daylight, style, locale);                                    | TimeZoneDisplayKey key = new TimeZoneDisplayKey(tz, daylight, style, locale);                       
+String value = cTimeZoneDisplayCache.get(key);                                                         String value = cTimeZoneDisplayCache.get(key);                                                      
+if (value == null) {                                                                                   if (value == null) {                                                                                
+// This is a very slow call, so cache the results.                                                     // This is a very slow call, so cache the results.                                                  
+value = tz.getDisplayName(daylight, style, locale);                                                    value = tz.getDisplayName(daylight, style, locale);                                                 
+cTimeZoneDisplayCache.put(key, value);                                                               | String prior = cTimeZoneDisplayCache.putIfAbsent(key, value);                                       
+                                                                                                     | if (prior != null) {                                                                                
+                                                                                                     | value = prior;                                                                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+return value;                                                                                          return value;                                                                                       
+}                                                                                                      }                                                                                                   

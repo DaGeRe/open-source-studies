@@ -1,0 +1,13 @@
+/**
+ * Test extended formats.
+ */
+public void testExtendedFormats() {
+    String pattern = "Lower: {0,lower} Upper: {1,upper}";
+    ExtendedMessageFormat emf = new ExtendedMessageFormat(pattern, registry);
+    assertPatternsEqual("TOPATTERN", pattern, emf.toPattern());
+    assertEquals("Lower: foo Upper: BAR", emf.format(new Object[] { "foo", "bar" }));
+    assertEquals("Lower: foo Upper: BAR", emf.format(new Object[] { "Foo", "Bar" }));
+    assertEquals("Lower: foo Upper: BAR", emf.format(new Object[] { "FOO", "BAR" }));
+    assertEquals("Lower: foo Upper: BAR", emf.format(new Object[] { "FOO", "bar" }));
+    assertEquals("Lower: foo Upper: BAR", emf.format(new Object[] { "foo", "BAR" }));
+}

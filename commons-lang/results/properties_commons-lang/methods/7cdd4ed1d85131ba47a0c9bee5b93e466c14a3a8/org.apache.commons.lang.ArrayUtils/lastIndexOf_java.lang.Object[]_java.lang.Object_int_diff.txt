@@ -1,0 +1,38 @@
+/**
+ * <p>Finds the last index of the given object in the array starting at the given index.</p>
+ *
+ * <p>This method returns {@link #INDEX_NOT_FOUND} (<code>-1</code>) for a <code>null</code> input array.</p>
+ *
+ * <p>A negative startIndex will return {@link #INDEX_NOT_FOUND} (<code>-1</code>). A startIndex larger than
+ * the array length will search from the end of the array.</p>
+ *
+ * @param array  the array to traverse for looking for the object, may be <code>null</code>
+ * @param objectToFind  the object to find, may be <code>null</code>
+ * @param startIndex  the start index to travers backwards from
+ * @return the last index of the object within the array,
+ *  {@link #INDEX_NOT_FOUND} (<code>-1</code>) if not found or <code>null</code> array input
+ */
+public static int lastIndexOf(Object[] array, Object objectToFind, int startIndex) {
+    if (array == null) {
+        return INDEX_NOT_FOUND;
+    }
+    if (startIndex < 0) {
+        return INDEX_NOT_FOUND;
+    } else if (startIndex >= array.length) {
+        startIndex = array.length - 1;
+    }
+    if (objectToFind == null) {
+        for (int i = startIndex; i >= 0; i--) {
+            if (array[i] == null) {
+                return i;
+            }
+        }
+    } else if (array.getClass().getComponentType().isInstance(objectToFind)) {
+        for (int i = startIndex; i >= 0; i--) {
+            if (objectToFind.equals(array[i])) {
+                return i;
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

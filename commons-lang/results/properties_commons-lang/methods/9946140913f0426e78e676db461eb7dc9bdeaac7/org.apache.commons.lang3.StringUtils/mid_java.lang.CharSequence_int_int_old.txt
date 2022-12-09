@@ -1,0 +1,40 @@
+/**
+ * <p>Gets {@code len} characters from the middle of a String.</p>
+ *
+ * <p>If {@code len} characters are not available, the remainder
+ * of the String will be returned without an exception. If the
+ * String is {@code null}, {@code null} will be returned.
+ * An empty String is returned if len is negative or exceeds the
+ * length of {@code seq}.</p>
+ *
+ * <pre>
+ * StringUtils.mid(null, *, *)    = null
+ * StringUtils.mid(*, *, -ve)     = ""
+ * StringUtils.mid("", 0, *)      = ""
+ * StringUtils.mid("abc", 0, 2)   = "ab"
+ * StringUtils.mid("abc", 0, 4)   = "abc"
+ * StringUtils.mid("abc", 2, 4)   = "c"
+ * StringUtils.mid("abc", 4, 2)   = ""
+ * StringUtils.mid("abc", -2, 2)  = "ab"
+ * </pre>
+ *
+ * @param seq  the CharSequence to get the characters from, may be null
+ * @param pos  the position to start from, negative treated as zero
+ * @param len  the length of the required String
+ * @return the middle characters, {@code null} if null String input
+ */
+public static String mid(CharSequence seq, int pos, int len) {
+    if (seq == null) {
+        return null;
+    }
+    if (len < 0 || pos > seq.length()) {
+        return EMPTY;
+    }
+    if (pos < 0) {
+        pos = 0;
+    }
+    if (seq.length() <= (pos + len)) {
+        return StringUtils.subSequence(seq, pos).toString();
+    }
+    return seq.subSequence(pos, pos + len).toString();
+}

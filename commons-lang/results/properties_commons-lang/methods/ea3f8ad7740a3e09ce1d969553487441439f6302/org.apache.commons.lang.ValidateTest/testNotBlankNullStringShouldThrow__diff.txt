@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotBlankNullStringShouldThrow() {                                                      public void testNotBlankNullStringShouldThrow() {                                                   
+// given                                                                                               // given                                                                                            
+String string = null;                                                                                  String string = null;                                                                               
+try {                                                                                                  try {                                                                                               
+// when                                                                                                // when                                                                                             
+Validate.notBlank(string);                                                                             Validate.notBlank(string);                                                                          
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting NullPointerException");                                                             
+} catch (IllegalArgumentException e) {                                                               | } catch (NullPointerException e) {                                                                  
+// then                                                                                                // then                                                                                             
+assertEquals("The validated string is blank", e.getMessage());                                       | assertEquals("The validated character sequence is blank", e.getMessage());                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

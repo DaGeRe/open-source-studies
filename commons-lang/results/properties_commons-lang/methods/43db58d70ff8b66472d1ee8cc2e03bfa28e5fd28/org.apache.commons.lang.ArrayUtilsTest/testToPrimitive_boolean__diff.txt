@@ -1,0 +1,13 @@
+// testToPrimitive/Object for boolean
+// -----------------------------------------------------------------------
+public void testToPrimitive_boolean() {
+    final Boolean[] b = null;
+    assertEquals(null, ArrayUtils.toPrimitive(b));
+    assertSame(ArrayUtils.EMPTY_BOOLEAN_ARRAY, ArrayUtils.toPrimitive(new Boolean[0]));
+    assertTrue(Arrays.equals(new boolean[] { true, false, true }, ArrayUtils.toPrimitive(new Boolean[] { Boolean.TRUE, Boolean.FALSE, Boolean.TRUE })));
+    try {
+        ArrayUtils.toPrimitive(new Boolean[] { Boolean.TRUE, null });
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

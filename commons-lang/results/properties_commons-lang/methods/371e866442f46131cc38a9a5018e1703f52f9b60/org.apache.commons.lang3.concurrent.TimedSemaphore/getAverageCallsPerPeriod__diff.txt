@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the average number of successful (i.e. non-blocking)                                         * Returns the average number of successful (i.e. non-blocking)                                      
+* {@link #acquire()} invocations for the entire life-time of this {@code                               * {@link #acquire()} invocations for the entire life-time of this {@code                            
+* TimedSemaphore}. This method can be used for instance for statistical                                * TimedSemaphore}. This method can be used for instance for statistical                             
+* calculations.                                                                                        * calculations.                                                                                     
+*                                                                                                      *                                                                                                   
+* @return the average number of {@link #acquire()} invocations per time                                * @return the average number of {@link #acquire()} invocations per time                             
+* unit                                                                                                 * unit                                                                                              
+*/                                                                                                     */                                                                                                  
+public synchronized double getAverageCallsPerPeriod() {                                                public synchronized double getAverageCallsPerPeriod() {                                             
+return (periodCount == 0) ? 0 : (double) totalAcquireCount / (double) periodCount;                   | return periodCount == 0 ? 0 : (double) totalAcquireCount / (double) periodCount;                    
+}                                                                                                      }                                                                                                   

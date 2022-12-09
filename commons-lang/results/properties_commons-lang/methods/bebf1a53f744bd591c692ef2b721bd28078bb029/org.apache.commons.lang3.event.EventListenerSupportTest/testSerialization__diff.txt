@@ -1,0 +1,31 @@
+public void testSerialization() throws IOException, ClassNotFoundException {                         | public void testSerialization() throws IOException, ClassNotFoundException, PropertyVetoException { 
+EventListenerSupport&lt;ActionListener&gt; listenerSupport = EventListenerSupport.create(ActionListe | EventListenerSupport&lt;VetoableChangeListener&gt; listenerSupport = EventListenerSupport.create(Vet
+listenerSupport.addListener(new ActionListener() {                                                   | listenerSupport.addListener(new VetoableChangeListener() {                                          
+                                                                                                                                                                                                           
+public void actionPerformed(ActionEvent e) {                                                         | public void vetoableChange(PropertyChangeEvent e) {                                                 
+}                                                                                                      }                                                                                                   
+});                                                                                                    });                                                                                                 
+listenerSupport.addListener(EasyMock.createNiceMock(ActionListener.class));                          | listenerSupport.addListener(EasyMock.createNiceMock(VetoableChangeListener.class));                 
+// serialize:                                                                                          // serialize:                                                                                       
+ByteArrayOutputStream outputStream = new ByteArrayOutputStream();                                      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();                                   
+ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);                          ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);                       
+objectOutputStream.writeObject(listenerSupport);                                                       objectOutputStream.writeObject(listenerSupport);                                                    
+objectOutputStream.close();                                                                            objectOutputStream.close();                                                                         
+// deserialize:                                                                                        // deserialize:                                                                                     
+@SuppressWarnings("unchecked")                                                                         @SuppressWarnings("unchecked")                                                                      
+EventListenerSupport&lt;ActionListener&gt; deserializedListenerSupport = (EventListenerSupport&lt;Ac | EventListenerSupport&lt;VetoableChangeListener&gt; deserializedListenerSupport = (EventListenerSuppo
+// make sure we get a listener array back, of the correct component type, and that it contains only    // make sure we get a listener array back, of the correct component type, and that it contains only 
+ActionListener[] listeners = deserializedListenerSupport.getListeners();                             | VetoableChangeListener[] listeners = deserializedListenerSupport.getListeners();                    
+assertEquals(ActionListener.class, listeners.getClass().getComponentType());                         | assertEquals(VetoableChangeListener.class, listeners.getClass().getComponentType());                
+assertEquals(1, listeners.length);                                                                     assertEquals(1, listeners.length);                                                                  
+// now verify that the mock still receives events; we can infer that the proxy was correctly reconst   // now verify that the mock still receives events; we can infer that the proxy was correctly reconst
+ActionListener listener = listeners[0];                                                              | VetoableChangeListener listener = listeners[0];                                                     
+ActionEvent evt = new ActionEvent(new Object(), 666, "sit");                                         | PropertyChangeEvent evt = new PropertyChangeEvent(new Date(), "Day", 7, 9);                         
+listener.actionPerformed(evt);                                                                       | listener.vetoableChange(evt);                                                                       
+EasyMock.replay(listener);                                                                             EasyMock.replay(listener);                                                                          
+deserializedListenerSupport.fire().actionPerformed(evt);                                             | deserializedListenerSupport.fire().vetoableChange(evt);                                             
+EasyMock.verify(listener);                                                                             EasyMock.verify(listener);                                                                          
+// remove listener and verify we get an empty array of listeners                                       // remove listener and verify we get an empty array of listeners                                    
+deserializedListenerSupport.removeListener(listener);                                                  deserializedListenerSupport.removeListener(listener);                                               
+assertEquals(0, deserializedListenerSupport.getListeners().length);                                    assertEquals(0, deserializedListenerSupport.getListeners().length);                                 
+}                                                                                                      }                                                                                                   

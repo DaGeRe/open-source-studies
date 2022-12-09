@@ -1,0 +1,5 @@
+public void testGetThrowableList_Throwable_jdkNoCause() {
+    List throwables = ExceptionUtils.getThrowableList(jdkNoCause);
+    assertEquals(1, throwables.size());
+    assertSame(jdkNoCause, throwables.get(0));
+}

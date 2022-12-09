@@ -1,0 +1,7 @@
+public void testToPrimitive_short_short() {
+    final Short[] s = null;
+    assertEquals(null, ArrayUtils.toPrimitive(s, Short.MIN_VALUE));
+    assertSame(ArrayUtils.EMPTY_SHORT_ARRAY, ArrayUtils.toPrimitive(new Short[0], Short.MIN_VALUE));
+    assertTrue(Arrays.equals(new short[] { Short.MIN_VALUE, Short.MAX_VALUE, (short) 9999999 }, ArrayUtils.toPrimitive(new Short[] { new Short(Short.MIN_VALUE), new Short(Short.MAX_VALUE), new Short((short) 9999999) }, Short.MIN_VALUE)));
+    assertTrue(Arrays.equals(new short[] { Short.MIN_VALUE, Short.MAX_VALUE, (short) 9999999 }, ArrayUtils.toPrimitive(new Short[] { new Short(Short.MIN_VALUE), null, new Short((short) 9999999) }, Short.MAX_VALUE)));
+}

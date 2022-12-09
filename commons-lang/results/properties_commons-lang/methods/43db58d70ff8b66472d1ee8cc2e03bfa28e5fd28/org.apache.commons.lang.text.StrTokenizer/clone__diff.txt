@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Creates a new instance of this Tokenizer. The new instance is reset so                               * Creates a new instance of this Tokenizer. The new instance is reset so                            
+* that it will be at the start of the token list.                                                      * that it will be at the start of the token list.                                                   
+* If a {@link CloneNotSupportedException} is caught, return &lt;code&gt;null&lt;/code&gt;.             * If a {@link CloneNotSupportedException} is caught, return &lt;code&gt;null&lt;/code&gt;.          
+*                                                                                                      *                                                                                                   
+* @return a new instance of this Tokenizer which has been reset.                                       * @return a new instance of this Tokenizer which has been reset.                                    
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public Object clone() {                                                                                public Object clone() {                                                                             
+try {                                                                                                  try {                                                                                               
+return cloneReset();                                                                                   return cloneReset();                                                                                
+} catch (CloneNotSupportedException ex) {                                                              } catch (CloneNotSupportedException ex) {                                                           
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

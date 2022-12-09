@@ -1,0 +1,14 @@
+public void testCloneReset() {                                                                         public void testCloneReset() {                                                                      
+char[] input = new char[] { 'a' };                                                                     char[] input = new char[] { 'a' };                                                                  
+StrTokenizer tokenizer = new StrTokenizer(input);                                                      StrTokenizer tokenizer = new StrTokenizer(input);                                                   
+// Start sanity check                                                                                  // Start sanity check                                                                               
+assertEquals("a", tokenizer.nextToken());                                                              assertEquals("a", tokenizer.nextToken());                                                           
+tokenizer.reset();                                                                                   | tokenizer.reset(input);                                                                             
+assertEquals("a", tokenizer.nextToken());                                                              assertEquals("a", tokenizer.nextToken());                                                           
+// End sanity check                                                                                    // End sanity check                                                                                 
+StrTokenizer clonedTokenizer = (StrTokenizer) tokenizer.clone();                                       StrTokenizer clonedTokenizer = (StrTokenizer) tokenizer.clone();                                    
+input[0] = 'b';                                                                                        input[0] = 'b';                                                                                     
+tokenizer.reset();                                                                                   | tokenizer.reset(input);                                                                             
+assertEquals("b", tokenizer.nextToken());                                                              assertEquals("b", tokenizer.nextToken());                                                           
+assertEquals("a", clonedTokenizer.nextToken());                                                        assertEquals("a", clonedTokenizer.nextToken());                                                     
+}                                                                                                      }                                                                                                   

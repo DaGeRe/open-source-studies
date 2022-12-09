@@ -1,0 +1,7 @@
+public void testConcatWith_StringObjects() {
+    assertEquals("a.b.c", StringUtils.concatWith(".", "a", "b", "c"));
+    assertEquals("a...b...c", StringUtils.concatWith("...", "a", "b", "c"));
+    assertEquals("a", StringUtils.concatWith("", null, "", "a"));
+    assertEquals("a", StringUtils.concatWith(null, null, "", "a"));
+    assertEquals(null, StringUtils.concatWith(null, (Object[]) null));
+}

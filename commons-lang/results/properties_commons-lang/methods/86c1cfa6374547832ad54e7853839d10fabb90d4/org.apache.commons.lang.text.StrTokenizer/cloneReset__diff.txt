@@ -1,0 +1,16 @@
+/**
+ * Creates a new instance of this Tokenizer. The new instance is reset so that
+ * it will be at the start of the token list.
+ *
+ * @return a new instance of this Tokenizer which has been reset.
+ * @throws CloneNotSupportedException if there is a problem cloning
+ */
+Object cloneReset() throws CloneNotSupportedException {
+    // this method exists to enable 100% test coverage
+    StrTokenizer cloned = (StrTokenizer) super.clone();
+    if (cloned.chars != null) {
+        cloned.chars = cloned.chars.clone();
+    }
+    cloned.reset();
+    return cloned;
+}

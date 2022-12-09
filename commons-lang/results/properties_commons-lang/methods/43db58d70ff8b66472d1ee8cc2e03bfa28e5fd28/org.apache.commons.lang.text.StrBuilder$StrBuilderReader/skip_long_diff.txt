@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public long skip(long n) {                                                                             public long skip(long n) {                                                                          
+if (pos + n &gt; StrBuilder.this.size()) {                                                             if (pos + n &gt; StrBuilder.this.size()) {                                                          
+n = StrBuilder.this.size() - pos;                                                                      n = StrBuilder.this.size() - pos;                                                                   
+}                                                                                                      }                                                                                                   
+if (n &lt; 0) {                                                                                        if (n &lt; 0) {                                                                                     
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+pos += n;                                                                                              pos += n;                                                                                           
+return n;                                                                                              return n;                                                                                           
+}                                                                                                      }                                                                                                   

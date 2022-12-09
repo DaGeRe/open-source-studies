@@ -1,0 +1,33 @@
+/**
+ * <p>Strips any of a set of characters from the start and end of a String.
+ * This is similar to {@link String#trim()} but allows the characters
+ * to be stripped to be controlled.</p>
+ *
+ * <p>A {@code null} input String returns {@code null}.
+ * An empty string ("") input returns the empty string.</p>
+ *
+ * <p>If the stripChars String is {@code null}, whitespace is
+ * stripped as defined by {@link Character#isWhitespace(char)}.
+ * Alternatively use {@link #strip(String)}.</p>
+ *
+ * <pre>
+ * StringUtils.strip(null, *)          = null
+ * StringUtils.strip("", *)            = ""
+ * StringUtils.strip("abc", null)      = "abc"
+ * StringUtils.strip("  abc", null)    = "abc"
+ * StringUtils.strip("abc  ", null)    = "abc"
+ * StringUtils.strip(" abc ", null)    = "abc"
+ * StringUtils.strip("  abcyx", "xyz") = "  abc"
+ * </pre>
+ *
+ * @param str  the String to remove characters from, may be null
+ * @param stripChars  the characters to remove, null treated as whitespace
+ * @return the stripped String, {@code null} if null String input
+ */
+public static String strip(String str, String stripChars) {
+    if (isEmpty(str)) {
+        return str;
+    }
+    str = stripStart(str, stripChars);
+    return stripEnd(str, stripChars);
+}

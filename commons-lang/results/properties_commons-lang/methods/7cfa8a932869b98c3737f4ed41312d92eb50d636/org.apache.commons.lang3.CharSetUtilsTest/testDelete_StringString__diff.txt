@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testDelete_StringString() {
+    assertEquals(null, CharSetUtils.delete(null, (String) null));
+    assertEquals(null, CharSetUtils.delete(null, ""));
+    assertEquals("", CharSetUtils.delete("", (String) null));
+    assertEquals("", CharSetUtils.delete("", ""));
+    assertEquals("", CharSetUtils.delete("", "a-e"));
+    assertEquals("hello", CharSetUtils.delete("hello", (String) null));
+    assertEquals("hello", CharSetUtils.delete("hello", ""));
+    assertEquals("hllo", CharSetUtils.delete("hello", "a-e"));
+    assertEquals("he", CharSetUtils.delete("hello", "l-p"));
+    assertEquals("hello", CharSetUtils.delete("hello", "z"));
+}

@@ -1,0 +1,29 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns new instance of &lt;code&gt;klazz&lt;/code&gt; created using the actual arguments   * &lt;p&gt;Returns new instance of &lt;code&gt;klazz&lt;/code&gt; created using the actual arguments
+* The formal parameter types are inferred from the actual values of &lt;code&gt;args&lt;/code&gt;.     * The formal parameter types are inferred from the actual values of &lt;code&gt;args&lt;/code&gt;.  
+* See {@link #invokeExactConstructor(Class, Object[], Class[])} for more details.&lt;/p&gt;            * See {@link #invokeExactConstructor(Class, Object[], Class[])} for more details.&lt;/p&gt;         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The signatures should match exactly.&lt;/p&gt;                                              * &lt;p&gt;The signatures should match exactly.&lt;/p&gt;                                           
+*                                                                                                      *                                                                                                   
+* @param cls the class to be constructed.                                                              * @param cls the class to be constructed.                                                           
+* @param args actual argument array                                                                    * @param args actual argument array                                                                 
+* @return new instance of &lt;code&gt;klazz&lt;/code&gt;                                               * @return new instance of &lt;code&gt;klazz&lt;/code&gt;                                            
+*                                                                                                      *                                                                                                   
+* @throws NoSuchMethodException If the constructor cannot be found                                     * @throws NoSuchMethodException If the constructor cannot be found                                  
+* @throws IllegalAccessException If an error occurs accessing the constructor                          * @throws IllegalAccessException If an error occurs accessing the constructor                       
+* @throws InvocationTargetException If an error occurs invoking the constructor                        * @throws InvocationTargetException If an error occurs invoking the constructor                     
+* @throws InstantiationException If an error occurs instantiating the class                            * @throws InstantiationException If an error occurs instantiating the class                         
+*                                                                                                      *                                                                                                   
+* @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])                 * @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])              
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T invokeExactConstructor(Class&lt;T&gt; cls, Object[] args) throws NoSuchMet | public static &lt;T&gt; T invokeExactConstructor(Class&lt;T&gt; cls, Object... args) throws NoSuchMe
+if (null == args) {                                                                                    if (null == args) {                                                                                 
+args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                                  args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                               
+}                                                                                                      }                                                                                                   
+int arguments = args.length;                                                                           int arguments = args.length;                                                                        
+Class&lt;?&gt;[] parameterTypes = new Class[arguments];                                                Class&lt;?&gt;[] parameterTypes = new Class[arguments];                                             
+for (int i = 0; i &lt; arguments; i++) {                                                               for (int i = 0; i &lt; arguments; i++) {                                                            
+parameterTypes[i] = args[i].getClass();                                                                parameterTypes[i] = args[i].getClass();                                                             
+}                                                                                                      }                                                                                                   
+return invokeExactConstructor(cls, args, parameterTypes);                                              return invokeExactConstructor(cls, args, parameterTypes);                                           
+}                                                                                                      }                                                                                                   

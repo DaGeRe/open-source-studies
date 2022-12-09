@@ -1,0 +1,26 @@
+/**
+ * <p>Replaces all occurrences of a String within another String.</p>
+ *
+ * <p>A {@code null} reference passed to this method is a no-op.</p>
+ *
+ * <pre>
+ * StringUtils.replace(null, *, *)        = null
+ * StringUtils.replace("", *, *)          = ""
+ * StringUtils.replace("any", null, *)    = "any"
+ * StringUtils.replace("any", *, null)    = "any"
+ * StringUtils.replace("any", "", *)      = "any"
+ * StringUtils.replace("aba", "a", null)  = "aba"
+ * StringUtils.replace("aba", "a", "")    = "b"
+ * StringUtils.replace("aba", "a", "z")   = "zbz"
+ * </pre>
+ *
+ * @see #replace(String text, String searchString, String replacement, int max)
+ * @param text  text to search and replace in, may be null
+ * @param searchString  the String to search for, may be null
+ * @param replacement  the String to replace it with, may be null
+ * @return the text with any replacements processed,
+ *  {@code null} if null String input
+ */
+public static String replace(String text, String searchString, String replacement) {
+    return replace(text, searchString, replacement, -1);
+}

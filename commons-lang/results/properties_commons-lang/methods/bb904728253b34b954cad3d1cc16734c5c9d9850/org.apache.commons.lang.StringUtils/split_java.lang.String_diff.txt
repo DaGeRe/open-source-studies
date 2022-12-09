@@ -1,0 +1,29 @@
+                                                                                                     | // Nested extraction                                                                                
+                                                                                                     | // -----------------------------------------------------------------------                          
+// Splitting                                                                                           // Splitting                                                                                        
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Splits the provided text into an array, using whitespace as the                             * &lt;p&gt;Splits the provided text into an array, using whitespace as the                          
+* separator.                                                                                           * separator.                                                                                        
+* Whitespace is defined by {@link Character#isWhitespace(char)}.&lt;/p&gt;                             * Whitespace is defined by {@link Character#isWhitespace(char)}.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The separator is not included in the returned String array.                                 * &lt;p&gt;The separator is not included in the returned String array.                              
+* Adjacent separators are treated as one separator.                                                    * Adjacent separators are treated as one separator.                                                 
+* For more control over the split use the StrTokenizer class.&lt;/p&gt;                                * For more control over the split use the StrTokenizer class.&lt;/p&gt;                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; input String returns &lt;code&gt;null&lt;/code&gt;.&lt;/p   * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; input String returns &lt;code&gt;null&lt;/code&gt;.&lt;/p
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.split(null)       = null                                                                 * StringUtils.split(null)       = null                                                              
+* StringUtils.split("")         = []                                                                   * StringUtils.split("")         = []                                                                
+* StringUtils.split("abc def")  = ["abc", "def"]                                                       * StringUtils.split("abc def")  = ["abc", "def"]                                                    
+* StringUtils.split("abc  def") = ["abc", "def"]                                                       * StringUtils.split("abc  def") = ["abc", "def"]                                                    
+* StringUtils.split(" abc ")    = ["abc"]                                                              * StringUtils.split(" abc ")    = ["abc"]                                                           
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to parse, may be null                                                         * @param str  the String to parse, may be null                                                      
+* @return an array of parsed Strings, &lt;code&gt;null&lt;/code&gt; if null String input               * @return an array of parsed Strings, &lt;code&gt;null&lt;/code&gt; if null String input            
+*/                                                                                                     */                                                                                                  
+public static String[] split(String str) {                                                             public static String[] split(String str) {                                                          
+return split(str, null, -1);                                                                           return split(str, null, -1);                                                                        
+}                                                                                                      }                                                                                                   

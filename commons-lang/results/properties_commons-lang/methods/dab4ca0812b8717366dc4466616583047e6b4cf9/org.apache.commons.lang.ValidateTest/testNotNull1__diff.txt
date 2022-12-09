@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+public void testNotNull1() {                                                                           public void testNotNull1() {                                                                        
+Validate.notNull(new Object());                                                                        Validate.notNull(new Object());                                                                     
+try {                                                                                                  try {                                                                                               
+Validate.notNull(null);                                                                                Validate.notNull(null);                                                                             
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated object is null", ex.getMessage());                                         assertEquals("The validated object is null", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | String str = "Hi";                                                                                  
+                                                                                                     | String testStr = Validate.notNull(str);                                                             
+                                                                                                     | assertSame(str, testStr);                                                                           
+}                                                                                                      }                                                                                                   

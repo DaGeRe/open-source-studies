@@ -1,0 +1,15 @@
+public void test_getPackageCanonicalName_Object() {
+    assertEquals("<null>", ClassUtils.getPackageCanonicalName(null, "<null>"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new ClassUtils(), "<null>"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new ClassUtils[0], "<null>"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new ClassUtils[0][0], "<null>"));
+    assertEquals("", ClassUtils.getPackageCanonicalName(new int[0], "<null>"));
+    assertEquals("", ClassUtils.getPackageCanonicalName(new int[0][0], "<null>"));
+    // Inner types
+    class Named extends Object {
+    }
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new Object() {
+    }, "<null>"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new Named(), "<null>"));
+    assertEquals("org.apache.commons.lang3", ClassUtils.getPackageCanonicalName(new Inner(), "<null>"));
+}

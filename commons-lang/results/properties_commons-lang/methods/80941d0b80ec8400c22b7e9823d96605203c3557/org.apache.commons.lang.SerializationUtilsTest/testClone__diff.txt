@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testClone() throws Exception {
+    Object test = SerializationUtils.clone(iMap);
+    assertNotNull(test);
+    assertTrue(test instanceof HashMap);
+    assertTrue(test != iMap);
+    HashMap testMap = (HashMap) test;
+    assertEquals(iString, testMap.get("FOO"));
+    assertTrue(iString != testMap.get("FOO"));
+    assertEquals(iInteger, testMap.get("BAR"));
+    assertTrue(iInteger != testMap.get("BAR"));
+    assertEquals(iMap, testMap);
+}

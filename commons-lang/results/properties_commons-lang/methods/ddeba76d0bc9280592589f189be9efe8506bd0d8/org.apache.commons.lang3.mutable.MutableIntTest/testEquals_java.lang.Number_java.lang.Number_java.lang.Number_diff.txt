@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* @param numA must not be a 0 Integer; must not equal numC.                                            * @param numA must not be a 0 Integer; must not equal numC.                                         
+* @param numB must equal numA; must not equal numC.                                                    * @param numB must equal numA; must not equal numC.                                                 
+* @param numC must not equal numA; must not equal numC.                                                * @param numC must not equal numA; must not equal numC.                                             
+*/                                                                                                     */                                                                                                  
+void testEquals(final Number numA, final Number numB, final Number numC) {                             void testEquals(final Number numA, final Number numB, final Number numC) {                          
+assertEquals(true, numA.equals(numA));                                                                 assertEquals(true, numA.equals(numA));                                                              
+assertEquals(true, numA.equals(numB));                                                                 assertEquals(true, numA.equals(numB));                                                              
+assertEquals(true, numB.equals(numA));                                                                 assertEquals(true, numB.equals(numA));                                                              
+assertEquals(true, numB.equals(numB));                                                                 assertEquals(true, numB.equals(numB));                                                              
+assertEquals(false, numA.equals(numC));                                                                assertEquals(false, numA.equals(numC));                                                             
+assertEquals(false, numB.equals(numC));                                                                assertEquals(false, numB.equals(numC));                                                             
+assertEquals(true, numC.equals(numC));                                                                 assertEquals(true, numC.equals(numC));                                                              
+assertEquals(false, numA.equals(null));                                                                assertEquals(false, numA.equals(null));                                                             
+assertEquals(false, numA.equals(new Integer(0)));                                                    | assertEquals(false, numA.equals(Integer.valueOf(0)));                                               
+assertEquals(false, numA.equals("0"));                                                                 assertEquals(false, numA.equals("0"));                                                              
+}                                                                                                      }                                                                                                   

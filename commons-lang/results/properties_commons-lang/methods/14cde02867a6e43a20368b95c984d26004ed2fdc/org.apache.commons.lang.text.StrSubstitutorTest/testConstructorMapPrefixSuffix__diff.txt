@@ -1,0 +1,9 @@
+/**                                                                                                    /**                                                                                                 
+* Tests constructor.                                                                                   * Tests constructor.                                                                                
+*/                                                                                                     */                                                                                                  
+public void testConstructorMapPrefixSuffix() {                                                         public void testConstructorMapPrefixSuffix() {                                                      
+Map map = new HashMap();                                                                             | Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();                                
+map.put("name", "commons");                                                                            map.put("name", "commons");                                                                         
+StrSubstitutor sub = new StrSubstitutor(map, "&lt;", "&gt;");                                          StrSubstitutor sub = new StrSubstitutor(map, "&lt;", "&gt;");                                       
+assertEquals("Hi &lt; commons", sub.replace("Hi $&lt; &lt;name&gt;"));                                 assertEquals("Hi &lt; commons", sub.replace("Hi $&lt; &lt;name&gt;"));                              
+}                                                                                                      }                                                                                                   

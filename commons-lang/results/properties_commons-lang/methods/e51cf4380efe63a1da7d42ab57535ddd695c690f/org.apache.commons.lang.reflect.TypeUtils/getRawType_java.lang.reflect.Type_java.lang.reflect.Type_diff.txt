@@ -1,0 +1,34 @@
+/**
+ * Get the raw type of a Java type, given its context. Primarily for use
+ * with {@link TypeVariable}s and {@link GenericArrayType}s, or when you do
+ * not know the runtime type of <code>type</code>: if you know you have a
+ * {@link Class} instance, it is already raw; if you know you have a
+ * {@link ParameterizedType}, its raw type is only a method call away.
+ * @param enclosingType context
+ * @param type to read
+ * @return Class<?>
+ */
+// original code stolen from commons [proxy]'s 2.0 branch, then kneaded until firm
+public static Class<?> getRawType(Type enclosingType, Type type) {
+    if (type instanceof Class<?>) {
+        // it is raw, no problem
+        return (Class<?>) type;
+    }
+    if (type instanceof ParameterizedType) {
+        // simple enough to get the raw type of a ParameterizedType
+        return (Class<?>) ((ParameterizedType) type).getRawType();
+    }
+    if (type instanceof TypeVariable<?>) {
+        Validate.notNull(enclosingType, "Cannot get raw type of TypeVariable without enclosing type");
+        // resolve the variable against the enclosing type, hope for the best (casting)
+        return (Class<?>) resolveVariable(enclosingType, (TypeVariable<?>) type);
+    }
+    if (type instanceof GenericArrayType) {
+        Validate.notNull(enclosingType, "Cannot get raw type of GenericArrayType without enclosing type");
+        // not included in original code, but not too difficult:  just have to get raw component type...
+        Class<?> rawComponentType = getRawType(enclosingType, ((GenericArrayType) type).getGenericComponentType());
+        // ...and know how to reflectively create array types, uncommon but not unheard of:
+        return Array.newInstance(rawComponentType, 0).getClass();
+    }
+    throw new IllegalArgumentException(String.valueOf(type));
+}

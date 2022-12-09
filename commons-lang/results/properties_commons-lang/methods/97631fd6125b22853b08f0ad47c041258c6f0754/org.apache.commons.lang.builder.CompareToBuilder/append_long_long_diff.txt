@@ -1,0 +1,16 @@
+// -------------------------------------------------------------------------
+/**
+ * Appends to the <code>builder</code> the comparison of
+ * two <code>long</code>s.
+ *
+ * @param lhs  left-hand value
+ * @param rhs  right-hand value
+ * @return this - used to chain append calls
+ */
+public CompareToBuilder append(long lhs, long rhs) {
+    if (comparison != 0) {
+        return this;
+    }
+    comparison = ((lhs < rhs) ? -1 : ((lhs > rhs) ? 1 : 0));
+    return this;
+}

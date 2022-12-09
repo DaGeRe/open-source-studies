@@ -1,0 +1,31 @@
+public void testSerialization() throws IOException, ClassNotFoundException {
+    EventListenerSupport<ActionListener> listenerSupport = EventListenerSupport.create(ActionListener.class);
+    listenerSupport.addListener(new ActionListener() {
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    });
+    listenerSupport.addListener(EasyMock.createNiceMock(ActionListener.class));
+    // serialize:
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+    objectOutputStream.writeObject(listenerSupport);
+    objectOutputStream.close();
+    // deserialize:
+    @SuppressWarnings("unchecked")
+    EventListenerSupport<ActionListener> deserializedListenerSupport = (EventListenerSupport<ActionListener>) new ObjectInputStream(new ByteArrayInputStream(outputStream.toByteArray())).readObject();
+    // make sure we get a listener array back, of the correct component type, and that it contains only the serializable mock
+    ActionListener[] listeners = deserializedListenerSupport.getListeners();
+    assertEquals(ActionListener.class, listeners.getClass().getComponentType());
+    assertEquals(1, listeners.length);
+    // now verify that the mock still receives events; we can infer that the proxy was correctly reconstituted
+    ActionListener listener = listeners[0];
+    ActionEvent evt = new ActionEvent(new Object(), 666, "sit");
+    listener.actionPerformed(evt);
+    EasyMock.replay(listener);
+    deserializedListenerSupport.fire().actionPerformed(evt);
+    EasyMock.verify(listener);
+    // remove listener and verify we get an empty array of listeners
+    deserializedListenerSupport.removeListener(listener);
+    assertEquals(0, deserializedListenerSupport.getListeners().length);
+}

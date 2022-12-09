@@ -1,0 +1,12 @@
+public void testIndexOfByteWithStartIndex() {
+    byte[] array = null;
+    assertEquals(-1, ArrayUtils.indexOf(array, (byte) 0, 2));
+    array = new byte[] { 0, 1, 2, 3, 0 };
+    assertEquals(4, ArrayUtils.indexOf(array, (byte) 0, 2));
+    assertEquals(-1, ArrayUtils.indexOf(array, (byte) 1, 2));
+    assertEquals(2, ArrayUtils.indexOf(array, (byte) 2, 2));
+    assertEquals(3, ArrayUtils.indexOf(array, (byte) 3, 2));
+    assertEquals(3, ArrayUtils.indexOf(array, (byte) 3, -1));
+    assertEquals(-1, ArrayUtils.indexOf(array, (byte) 99, 0));
+    assertEquals(-1, ArrayUtils.indexOf(array, (byte) 0, 6));
+}

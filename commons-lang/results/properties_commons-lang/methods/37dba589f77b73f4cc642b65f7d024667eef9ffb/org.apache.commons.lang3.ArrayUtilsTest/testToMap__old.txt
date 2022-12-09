@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------
+public void testToMap() {
+    Map<String, String> map = ArrayUtils.toMap(new String[][] { { "foo", "bar" }, { "hello", "world" } });
+    assertEquals("bar", map.get("foo"));
+    assertEquals("world", map.get("hello"));
+    assertEquals(null, ArrayUtils.toMap(null));
+    try {
+        ArrayUtils.toMap(new String[][] { { "foo", "bar" }, { "short" } });
+        fail("exception expected");
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        ArrayUtils.toMap(new Object[] { new Object[] { "foo", "bar" }, "illegal type" });
+        fail("exception expected");
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        ArrayUtils.toMap(new Object[] { new Object[] { "foo", "bar" }, null });
+        fail("exception expected");
+    } catch (IllegalArgumentException ex) {
+    }
+    map = ArrayUtils.toMap(new Object[] { new Map.Entry<Object, Object>() {
+
+        public Object getKey() {
+            return "foo";
+        }
+
+        public Object getValue() {
+            return "bar";
+        }
+
+        public Object setValue(Object value) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public int hashCode() {
+            throw new UnsupportedOperationException();
+        }
+    } });
+    assertEquals("bar", map.get("foo"));
+}

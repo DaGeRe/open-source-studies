@@ -1,0 +1,29 @@
+/**
+ * <p>Reverses a String that is delimited by a specific character.</p>
+ *
+ * <p>The Strings between the delimiters are not reversed.
+ * Thus java.lang.String becomes String.lang.java (if the delimiter
+ * is <code>'.'</code>).</p>
+ *
+ * <pre>
+ * StringUtils.reverseDelimited(null, *)      = null
+ * StringUtils.reverseDelimited("", *)        = ""
+ * StringUtils.reverseDelimited("a.b.c", 'x') = "a.b.c"
+ * StringUtils.reverseDelimited("a.b.c", ".") = "c.b.a"
+ * </pre>
+ *
+ * @param str  the String to reverse, may be null
+ * @param separatorChar  the separator character to use
+ * @return the reversed String, <code>null</code> if null String input
+ * @since 2.0
+ */
+public static String reverseDelimited(String str, char separatorChar) {
+    if (str == null) {
+        return null;
+    }
+    // could implement manually, but simple way is to reuse other,
+    // probably slower, methods.
+    String[] strs = split(str, separatorChar);
+    ArrayUtils.reverse(strs);
+    return join(strs, separatorChar);
+}

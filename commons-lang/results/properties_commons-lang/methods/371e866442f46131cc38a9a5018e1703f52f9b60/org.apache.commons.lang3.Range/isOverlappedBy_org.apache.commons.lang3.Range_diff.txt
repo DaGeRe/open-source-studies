@@ -1,0 +1,18 @@
+/**
+ * <p>Checks whether this range is overlapped by the specified range.</p>
+ *
+ * <p>Two ranges overlap if there is at least one element in common.</p>
+ *
+ * <p>This method may fail if the ranges have two different comparators or element types.</p>
+ *
+ * @param otherRange  the range to test, null returns false
+ * @return true if the specified range overlaps with this
+ *  range; otherwise, {@code false}
+ * @throws RuntimeException if ranges cannot be compared
+ */
+public boolean isOverlappedBy(Range<T> otherRange) {
+    if (otherRange == null) {
+        return false;
+    }
+    return otherRange.contains(minimum) || otherRange.contains(maximum) || contains(otherRange.minimum);
+}

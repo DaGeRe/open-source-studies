@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Counts the number of <code>Throwable</code> objects in the
+ * exception chain.</p>
+ *
+ * <p>A throwable without cause will return <code>1</code>.
+ * A throwable with one cause will return <code>2</code> and so on.
+ * A <code>null</code> throwable will return <code>0</code>.</p>
+ *
+ * <p>From version 2.2, this method handles recursive cause structures
+ * that might otherwise cause infinite loops. The cause chain is
+ * processed until the end is reached, or until the next item in the
+ * chain is already in the result set.</p>
+ *
+ * @param throwable  the throwable to inspect, may be null
+ * @return the count of throwables, zero if null input
+ */
+public static int getThrowableCount(Throwable throwable) {
+    return getThrowableList(throwable).size();
+}

@@ -1,0 +1,37 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.MONTH
+ * Includes rounding months with 28, 29, 30 and 31 days
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundMonth() throws Exception {
+    final int calendarField = Calendar.MONTH;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    // month with 28 days
+    roundedUpDate = dateTimeParser.parse("March 1, 2007 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 1, 2007 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 14, 2007 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 29 days
+    roundedUpDate = dateTimeParser.parse("March 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 15, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 30 days
+    roundedUpDate = dateTimeParser.parse("May 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("April 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("April 15, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 31 days
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("May 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("May 16, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 17, 2007 00:00:00.000");
+    maxDate = dateTimeParser.parse("January 16, 2008 23:59:59.999");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

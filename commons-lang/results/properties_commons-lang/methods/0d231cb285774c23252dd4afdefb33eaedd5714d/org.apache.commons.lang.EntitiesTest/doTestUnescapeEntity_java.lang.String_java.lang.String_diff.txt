@@ -1,0 +1,6 @@
+private void doTestUnescapeEntity(final String expected, final String entity) throws Exception {
+    assertEquals(expected, entities.unescape(entity));
+    StringWriter writer = new StringWriter();
+    entities.unescape(writer, entity);
+    assertEquals(expected, writer.toString());
+}

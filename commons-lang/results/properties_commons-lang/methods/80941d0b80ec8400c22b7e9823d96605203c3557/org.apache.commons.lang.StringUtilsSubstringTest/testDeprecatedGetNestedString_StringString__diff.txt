@@ -1,0 +1,12 @@
+public void testDeprecatedGetNestedString_StringString() {
+    assertEquals(null, StringUtils.getNestedString(null, "tag"));
+    assertEquals("", StringUtils.getNestedString("", ""));
+    assertEquals(null, StringUtils.getNestedString("", "abc"));
+    assertEquals("", StringUtils.getNestedString("    ", " "));
+    assertEquals(null, StringUtils.getNestedString("abc", null));
+    assertEquals("", StringUtils.getNestedString("abc", ""));
+    assertEquals(null, StringUtils.getNestedString("abc", "a"));
+    assertEquals("bc", StringUtils.getNestedString("abca", "a"));
+    assertEquals("bc", StringUtils.getNestedString("abcabca", "a"));
+    assertEquals("bar", StringUtils.getNestedString("\nbar\n", "\n"));
+}

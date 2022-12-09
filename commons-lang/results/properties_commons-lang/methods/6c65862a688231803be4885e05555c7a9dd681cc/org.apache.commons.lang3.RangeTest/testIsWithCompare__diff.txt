@@ -1,0 +1,18 @@
+                                                                                                     | @Test                                                                                               
+public void testIsWithCompare() {                                                                      public void testIsWithCompare() {                                                                   
+Comparator&lt;Integer&gt; c = new Comparator&lt;Integer&gt;() {                                        Comparator&lt;Integer&gt; c = new Comparator&lt;Integer&gt;() {                                     
+                                                                                                                                                                                                           
+public int compare(Integer o1, Integer o2) {                                                           public int compare(Integer o1, Integer o2) {                                                        
+// all integers are equal                                                                              // all integers are equal                                                                           
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+Range&lt;Integer&gt; ri = Range.is(10);                                                                Range&lt;Integer&gt; ri = Range.is(10);                                                             
+assertFalse("should not contain null", ri.contains(null));                                             assertFalse("should not contain null", ri.contains(null));                                          
+assertTrue("should contain 10", ri.contains(10));                                                      assertTrue("should contain 10", ri.contains(10));                                                   
+assertFalse("should not contain 11", ri.contains(11));                                                 assertFalse("should not contain 11", ri.contains(11));                                              
+ri = Range.is(10, c);                                                                                  ri = Range.is(10, c);                                                                               
+assertFalse("should not contain null", ri.contains(null));                                             assertFalse("should not contain null", ri.contains(null));                                          
+assertTrue("should contain 10", ri.contains(10));                                                      assertTrue("should contain 10", ri.contains(10));                                                   
+assertTrue("should contain 11", ri.contains(11));                                                      assertTrue("should contain 11", ri.contains(11));                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Appends each item in a iterable to the builder without any separators.                            
+                                                                                                     | * Appending a null iterable will have no effect.                                                    
+                                                                                                     | * Each object is appended using {@link #append(Object)}.                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param iterable  the iterable to append                                                           
+                                                                                                     | * @return this, to enable chaining                                                                  
+                                                                                                     | * @since 2.3                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public StrBuilder appendAll(Iterable&lt;?&gt; iterable) {                                           
+                                                                                                     | if (iterable != null) {                                                                             
+                                                                                                     | Iterator&lt;?&gt; it = iterable.iterator();                                                         
+                                                                                                     | while (it.hasNext()) {                                                                              
+                                                                                                     | append(it.next());                                                                                  
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return this;                                                                                        
+                                                                                                     | }                                                                                                   

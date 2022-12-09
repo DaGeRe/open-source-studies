@@ -1,0 +1,9 @@
+public void testCreateLong() {
+    assertEquals("createLong(String) failed", new Long("12345"), NumberUtils.createLong("12345"));
+    assertEquals("createLong(null) failed", null, NumberUtils.createLong(null));
+    this.testCreateLongFailure("");
+    this.testCreateLongFailure(" ");
+    this.testCreateLongFailure("\b\t\n\f\r");
+    // Funky whitespaces
+    this.testCreateLongFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");
+}

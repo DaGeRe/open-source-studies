@@ -1,0 +1,26 @@
+/**
+ * Searches the string builder using the matcher to find the last
+ * match searching from the given index.
+ * <p>
+ * Matchers can be used to perform advanced searching behaviour.
+ * For example you could write a matcher to find the character 'a'
+ * followed by a number.
+ *
+ * @param matcher  the matcher to use, null returns -1
+ * @param startIndex  the index to start at, invalid index rounded to edge
+ * @return the last index matched, or -1 if not found
+ */
+public int lastIndexOf(StrMatcher matcher, int startIndex) {
+    startIndex = (startIndex >= size ? size - 1 : startIndex);
+    if (matcher == null || startIndex < 0) {
+        return -1;
+    }
+    char[] buf = buffer;
+    int endIndex = startIndex + 1;
+    for (int i = startIndex; i >= 0; i--) {
+        if (matcher.isMatch(buf, i, 0, endIndex) > 0) {
+            return i;
+        }
+    }
+    return -1;
+}

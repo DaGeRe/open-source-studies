@@ -1,0 +1,42 @@
+/**
+ * <p>
+ * Replaces all occurrences of Strings within another String.
+ * </p>
+ *
+ * <p>
+ * A <code>null</code> reference passed to this method is a no-op, or if
+ * any "search string" or "string to replace" is null, that replace will be
+ * ignored. This will not repeat. For repeating replaces, call the
+ * overloaded method.
+ * </p>
+ *
+ * <pre>
+ *  StringUtils.replaceEach(null, *, *)        = null
+ *  StringUtils.replaceEach("", *, *)          = ""
+ *  StringUtils.replaceEach("aba", null, null) = "aba"
+ *  StringUtils.replaceEach("aba", new String[0], null) = "aba"
+ *  StringUtils.replaceEach("aba", null, new String[0]) = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, null)  = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, new String[]{""})  = "b"
+ *  StringUtils.replaceEach("aba", new String[]{null}, new String[]{"a"})  = "aba"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"w", "t"})  = "wcte"
+ *  (example of how it does not repeat)
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"})  = "dcte"
+ * </pre>
+ *
+ * @param text
+ *            text to search and replace in, no-op if null
+ * @param searchList
+ *            the Strings to search for, no-op if null
+ * @param replacementList
+ *            the Strings to replace them with, no-op if null
+ * @return the text with any replacements processed, <code>null</code> if
+ *         null String input
+ * @throws IndexOutOfBoundsException
+ *             if the lengths of the arrays are not the same (null is ok,
+ *             and/or size 0)
+ * @since 2.4
+ */
+public static String replaceEach(String text, String[] searchList, String[] replacementList) {
+    return replaceEach(text, searchList, replacementList, false, 0);
+}

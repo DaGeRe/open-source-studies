@@ -1,0 +1,12 @@
+/**
+ * Constructor that creates a matcher from a string.
+ *
+ * @param str  the string to match, null or empty matches nothing
+ * @return a new Matcher for the given String
+ */
+public static StrMatcher stringMatcher(String str) {
+    if (str == null || str.length() == 0) {
+        return NONE_MATCHER;
+    }
+    return new StringMatcher(str);
+}

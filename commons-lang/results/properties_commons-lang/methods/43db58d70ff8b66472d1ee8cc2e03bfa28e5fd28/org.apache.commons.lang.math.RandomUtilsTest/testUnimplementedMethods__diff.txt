@@ -1,0 +1,23 @@
+/**
+ * make sure that unimplemented methods fail
+ */
+public void testUnimplementedMethods() {
+    try {
+        RandomUtils.JVM_RANDOM.setSeed(1000);
+        fail("expecting UnsupportedOperationException");
+    } catch (UnsupportedOperationException ex) {
+        // empty
+    }
+    try {
+        RandomUtils.JVM_RANDOM.nextGaussian();
+        fail("expecting UnsupportedOperationException");
+    } catch (UnsupportedOperationException ex) {
+        // empty
+    }
+    try {
+        RandomUtils.JVM_RANDOM.nextBytes(null);
+        fail("expecting UnsupportedOperationException");
+    } catch (UnsupportedOperationException ex) {
+        // empty
+    }
+}

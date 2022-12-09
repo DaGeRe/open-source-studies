@@ -1,0 +1,8 @@
+// SQL
+// see http://www.jguru.com/faq/view.jsp?EID=8881
+// --------------------
+public void testEscapeSql() throws Exception {
+    assertEquals("don''t stop", StringEscapeUtils.escapeSql("don't stop"));
+    assertEquals("", StringEscapeUtils.escapeSql(""));
+    assertEquals(null, StringEscapeUtils.escapeSql(null));
+}

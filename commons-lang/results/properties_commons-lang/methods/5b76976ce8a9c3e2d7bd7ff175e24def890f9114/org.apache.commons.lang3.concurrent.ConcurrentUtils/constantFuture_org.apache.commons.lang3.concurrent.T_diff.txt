@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>
+ * Gets an implementation of <code>Future</code> that is immediately done
+ * and returns the specified constant value.
+ * </p>
+ * <p>
+ * This can be useful to return a simple constant immediately from the
+ * concurrent processing, perhaps as part of avoiding nulls.
+ * A constant future can also be useful in testing.
+ * </p>
+ *
+ * @param value  the constant value to return, may be null
+ * @return an instance of Future that will return the value, never null
+ */
+public static <T> Future<T> constantFuture(T value) {
+    return new ConstantFuture<T>(value);
+}

@@ -1,0 +1,20 @@
+/**
+ * <p>Checks if the specified type is permitted as an annotation member.</p>
+ *
+ * <p>The Java language specification only permits certain types to be used
+ * in annotations. These include {@link String}, {@link Class}, primitive
+ * types, {@link Annotation}, {@link Enum}, and single-dimensional arrays of
+ * these types.</p>
+ *
+ * @param type the type to check, {@code null}
+ * @return {@code true} if the type is a valid type to use in an annotation
+ */
+public static boolean isValidAnnotationMemberType(Class<?> type) {
+    if (type == null) {
+        return false;
+    }
+    if (type.isArray()) {
+        type = type.getComponentType();
+    }
+    return type.isPrimitive() || type.isEnum() || type.isAnnotation() || String.class.equals(type) || Class.class.equals(type);
+}

@@ -1,0 +1,22 @@
+public void testPrimitivesToWrappers() {                                                               public void testPrimitivesToWrappers() {                                                            
+// test null                                                                                           // test null                                                                                        
+assertNull("null -&gt; null", ClassUtils.primitivesToWrappers(null));                                | // test both types of ...                                                                           
+                                                                                                     | assertNull("null -&gt; null", ClassUtils.primitivesToWrappers((Class&lt;?&gt;[]) null));            
+                                                                                                     | // ... varargs invocation                                                                           
+                                                                                                     | assertNull("null -&gt; null", ClassUtils.primitivesToWrappers((Class&lt;?&gt;) null));              
+// test empty array                                                                                    // test empty array                                                                                 
+assertEquals("empty -&gt; empty", ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.primitivesToWrappers(Arra   assertEquals("empty -&gt; empty", ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.primitivesToWrappers(Arra
+// test an array of various classes                                                                    // test an array of various classes                                                                 
+final Class&lt;?&gt;[] primitives = new Class[] { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYP   final Class&lt;?&gt;[] primitives = new Class[] { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYP
+Class&lt;?&gt;[] wrappers = ClassUtils.primitivesToWrappers(primitives);                               Class&lt;?&gt;[] wrappers = ClassUtils.primitivesToWrappers(primitives);                            
+for (int i = 0; i &lt; primitives.length; i++) {                                                       for (int i = 0; i &lt; primitives.length; i++) {                                                    
+// test each returned wrapper                                                                          // test each returned wrapper                                                                       
+Class&lt;?&gt; primitive = primitives[i];                                                              Class&lt;?&gt; primitive = primitives[i];                                                           
+Class&lt;?&gt; expectedWrapper = ClassUtils.primitiveToWrapper(primitive);                             Class&lt;?&gt; expectedWrapper = ClassUtils.primitiveToWrapper(primitive);                          
+assertEquals(primitive + " -&gt; " + expectedWrapper, expectedWrapper, wrappers[i]);                   assertEquals(primitive + " -&gt; " + expectedWrapper, expectedWrapper, wrappers[i]);                
+}                                                                                                      }                                                                                                   
+// test an array of no primitive classes                                                               // test an array of no primitive classes                                                            
+final Class&lt;?&gt;[] noPrimitives = new Class[] { String.class, ClassUtils.class, Void.TYPE };       final Class&lt;?&gt;[] noPrimitives = new Class[] { String.class, ClassUtils.class, Void.TYPE };    
+// This used to return the exact same array, but no longer does.                                       // This used to return the exact same array, but no longer does.                                    
+assertNotSame("unmodified", noPrimitives, ClassUtils.primitivesToWrappers(noPrimitives));              assertNotSame("unmodified", noPrimitives, ClassUtils.primitivesToWrappers(noPrimitives));           
+}                                                                                                      }                                                                                                   

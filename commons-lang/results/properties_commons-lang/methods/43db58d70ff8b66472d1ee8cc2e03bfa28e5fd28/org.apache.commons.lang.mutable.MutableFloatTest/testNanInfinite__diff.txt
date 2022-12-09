@@ -1,0 +1,8 @@
+public void testNanInfinite() {
+    MutableFloat mutNum = new MutableFloat(Float.NaN);
+    assertEquals(true, mutNum.isNaN());
+    mutNum = new MutableFloat(Float.POSITIVE_INFINITY);
+    assertEquals(true, mutNum.isInfinite());
+    mutNum = new MutableFloat(Float.NEGATIVE_INFINITY);
+    assertEquals(true, mutNum.isInfinite());
+}

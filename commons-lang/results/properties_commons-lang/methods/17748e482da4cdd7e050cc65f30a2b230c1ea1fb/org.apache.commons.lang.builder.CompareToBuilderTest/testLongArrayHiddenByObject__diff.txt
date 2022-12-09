@@ -1,0 +1,22 @@
+public void testLongArrayHiddenByObject() {
+    long[] array1 = new long[2];
+    array1[0] = 5L;
+    array1[1] = 6L;
+    long[] array2 = new long[2];
+    array2[0] = 5L;
+    array2[1] = 6L;
+    long[] array3 = new long[3];
+    array3[0] = 5L;
+    array3[1] = 6L;
+    array3[2] = 7L;
+    Object obj1 = array1;
+    Object obj2 = array2;
+    Object obj3 = array3;
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    array1[1] = 7;
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+}

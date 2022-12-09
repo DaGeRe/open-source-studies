@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* testLowYearPadding showed that the date was buggy                                                    * testLowYearPadding showed that the date was buggy                                                 
+* This test confirms it, getting 366 back as a date                                                    * This test confirms it, getting 366 back as a date                                                 
+*/                                                                                                     */                                                                                                  
+// TODO: Fix this problem                                                                            |                                                                                                     
+public void testSimpleDate() {                                                                         public void testSimpleDate() {                                                                      
+Calendar cal = Calendar.getInstance();                                                                 Calendar cal = Calendar.getInstance();                                                              
+FastDateFormat format = FastDateFormat.getInstance("yyyy/MM/dd");                                      FastDateFormat format = FastDateFormat.getInstance("yyyy/MM/dd");                                   
+cal.set(2004, 11, 31);                                                                                 cal.set(2004, 11, 31);                                                                              
+assertEquals("2004/12/31", format.format(cal));                                                        assertEquals("2004/12/31", format.format(cal));                                                     
+cal.set(999, 11, 31);                                                                                  cal.set(999, 11, 31);                                                                               
+assertEquals("0999/12/31", format.format(cal));                                                        assertEquals("0999/12/31", format.format(cal));                                                     
+cal.set(1, 2, 2);                                                                                      cal.set(1, 2, 2);                                                                                   
+assertEquals("0001/03/02", format.format(cal));                                                        assertEquals("0001/03/02", format.format(cal));                                                     
+}                                                                                                      }                                                                                                   

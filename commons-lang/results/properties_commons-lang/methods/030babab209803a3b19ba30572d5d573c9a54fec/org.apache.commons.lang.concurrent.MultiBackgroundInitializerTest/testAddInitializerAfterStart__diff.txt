@@ -1,0 +1,13 @@
+/**
+ * Tries to add another child initializer after the start() method has been
+ * called. This should not be allowed.
+ */
+public void testAddInitializerAfterStart() throws ConcurrentException {
+    initializer.start();
+    try {
+        initializer.addInitializer(CHILD_INIT, new ChildBackgroundInitializer());
+        fail("Could add initializer after start()!");
+    } catch (IllegalStateException istex) {
+        initializer.get();
+    }
+}

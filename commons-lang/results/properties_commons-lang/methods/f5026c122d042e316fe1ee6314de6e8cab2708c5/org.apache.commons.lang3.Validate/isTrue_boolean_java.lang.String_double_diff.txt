@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the argument condition is {@code true}; otherwise                             * &lt;p&gt;Validate that the argument condition is {@code true}; otherwise                          
+* throwing an exception with the specified message. This method is useful when                         * throwing an exception with the specified message. This method is useful when                      
+* validating according to an arbitrary boolean expression, such as validating a                        * validating according to an arbitrary boolean expression, such as validating a                     
+* primitive number or using your own custom validation expression.&lt;/p&gt;                           * primitive number or using your own custom validation expression.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;Validate.isTrue(d &gt; 0.0, "The value must be greater than zero: %s", d);&lt;/pre&gt;    * &lt;pre&gt;Validate.isTrue(d &gt; 0.0, "The value must be greater than zero: %s", d);&lt;/pre&gt; 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For performance reasons, the double value is passed as a separate parameter and             * &lt;p&gt;For performance reasons, the double value is passed as a separate parameter and          
+* appended to the exception message only in the case of an error.&lt;/p&gt;                            * appended to the exception message only in the case of an error.&lt;/p&gt;                         
+*                                                                                                      *                                                                                                   
+* @param expression  the boolean expression to check                                                   * @param expression  the boolean expression to check                                                
+* @param message  the {@link String#format(String, Object...)} exception message if invalid, not nul   * @param message  the {@link String#format(String, Object...)} exception message if invalid, not nul
+* @param value  the value to append to the message when invalid                                        * @param value  the value to append to the message when invalid                                     
+* @throws IllegalArgumentException if expression is {@code false}                                      * @throws IllegalArgumentException if expression is {@code false}                                   
+* @see #isTrue(boolean)                                                                                * @see #isTrue(boolean)                                                                             
+* @see #isTrue(boolean, String, long)                                                                  * @see #isTrue(boolean, String, long)                                                               
+* @see #isTrue(boolean, String, Object...)                                                             * @see #isTrue(boolean, String, Object...)                                                          
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression, String message, double value) {                          public static void isTrue(boolean expression, String message, double value) {                       
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException(String.format(message, new Double(value)));                       | throw new IllegalArgumentException(String.format(message, Double.valueOf(value)));                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

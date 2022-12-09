@@ -1,0 +1,12 @@
+public void testBasicIgnoreTrimmed1() {
+    String input = "a: bIGNOREc : ";
+    StrTokenizer tok = new StrTokenizer(input, ':');
+    tok.setIgnoredMatcher(StrMatcher.stringMatcher("IGNORE"));
+    tok.setTrimmerMatcher(StrMatcher.trimMatcher());
+    tok.setIgnoreEmptyTokens(false);
+    tok.setEmptyTokenAsNull(true);
+    assertEquals("a", tok.next());
+    assertEquals("bc", tok.next());
+    assertEquals(null, tok.next());
+    assertEquals(false, tok.hasNext());
+}

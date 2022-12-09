@@ -1,0 +1,36 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Finds the n-th index within a String, handling {@code null}.                              |                                                                                                     
+* This method uses {@link String#indexOf(String)}.&lt;/p&gt;                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;A {@code null} String will return {@code -1}.&lt;/p&gt;                                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str  the String to check, may be null                                                       |                                                                                                     
+* @param searchStr  the String to find, may be null                                                  |                                                                                                     
+* @param ordinal  the n-th {@code searchStr} to find                                                 |                                                                                                     
+* @param lastIndex true if lastOrdinalIndexOf() otherwise false if ordinalIndexOf()                  |                                                                                                     
+* @return the n-th index of the search String,                                                       |                                                                                                     
+*  {@code -1} ({@code INDEX_NOT_FOUND}) if no match or {@code null} string input                     |                                                                                                     
+*/                                                                                                   |                                                                                                     
+// Shared code between ordinalIndexOf(String,String,int) and lastOrdinalIndexOf(String,String,int)   |                                                                                                     
+private static int ordinalIndexOf(String str, String searchStr, int ordinal, boolean lastIndex) {    |                                                                                                     
+if (str == null || searchStr == null || ordinal &lt;= 0) {                                           |                                                                                                     
+return INDEX_NOT_FOUND;                                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (searchStr.length() == 0) {                                                                       |                                                                                                     
+return lastIndex ? str.length() : 0;                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+int found = 0;                                                                                       |                                                                                                     
+int index = lastIndex ? str.length() : INDEX_NOT_FOUND;                                              |                                                                                                     
+do {                                                                                                 |                                                                                                     
+if (lastIndex) {                                                                                     |                                                                                                     
+index = str.lastIndexOf(searchStr, index - 1);                                                       |                                                                                                     
+} else {                                                                                             |                                                                                                     
+index = str.indexOf(searchStr, index + 1);                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (index &lt; 0) {                                                                                  |                                                                                                     
+return index;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+found++;                                                                                             |                                                                                                     
+} while (found &lt; ordinal);                                                                        |                                                                                                     
+return index;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

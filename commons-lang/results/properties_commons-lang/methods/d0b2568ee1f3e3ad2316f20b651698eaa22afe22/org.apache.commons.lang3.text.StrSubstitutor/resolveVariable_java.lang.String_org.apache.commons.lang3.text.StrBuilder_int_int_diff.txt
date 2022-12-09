@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Internal method that resolves the value of a variable.                                               * Internal method that resolves the value of a variable.                                            
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Most users of this class do not need to call this method. This method is                             * Most users of this class do not need to call this method. This method is                          
+* called automatically by the substitution process.                                                    * called automatically by the substitution process.                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Writers of subclasses can override this method if they need to alter                                 * Writers of subclasses can override this method if they need to alter                              
+* how each substitution occurs. The method is passed the variable's name                               * how each substitution occurs. The method is passed the variable's name                            
+* and must return the corresponding value. This implementation uses the                                * and must return the corresponding value. This implementation uses the                             
+* {@link #getVariableResolver()} with the variable's name as the key.                                  * {@link #getVariableResolver()} with the variable's name as the key.                               
+*                                                                                                      *                                                                                                   
+* @param variableName  the name of the variable, not null                                              * @param variableName  the name of the variable, not null                                           
+* @param buf  the buffer where the substitution is occurring, not null                                 * @param buf  the buffer where the substitution is occurring, not null                              
+* @param startPos  the start position of the variable including the prefix, valid                      * @param startPos  the start position of the variable including the prefix, valid                   
+* @param endPos  the end position of the variable including the suffix, valid                          * @param endPos  the end position of the variable including the suffix, valid                       
+* @return the variable's value or &lt;b&gt;null&lt;/b&gt; if the variable is unknown                   * @return the variable's value or &lt;b&gt;null&lt;/b&gt; if the variable is unknown                
+*/                                                                                                     */                                                                                                  
+protected String resolveVariable(String variableName, StrBuilder buf, int startPos, int endPos) {      protected String resolveVariable(String variableName, StrBuilder buf, int startPos, int endPos) {   
+StrLookup resolver = getVariableResolver();                                                          | StrLookup&lt;?&gt; resolver = getVariableResolver();                                                
+if (resolver == null) {                                                                                if (resolver == null) {                                                                             
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return resolver.lookup(variableName);                                                                  return resolver.lookup(variableName);                                                               
+}                                                                                                      }                                                                                                   

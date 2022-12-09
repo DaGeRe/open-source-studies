@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testSqueeze_StringString() {
+    assertEquals(null, CharSetUtils.squeeze(null, (String) null));
+    assertEquals(null, CharSetUtils.squeeze(null, ""));
+    assertEquals("", CharSetUtils.squeeze("", (String) null));
+    assertEquals("", CharSetUtils.squeeze("", ""));
+    assertEquals("", CharSetUtils.squeeze("", "a-e"));
+    assertEquals("hello", CharSetUtils.squeeze("hello", (String) null));
+    assertEquals("hello", CharSetUtils.squeeze("hello", ""));
+    assertEquals("hello", CharSetUtils.squeeze("hello", "a-e"));
+    assertEquals("helo", CharSetUtils.squeeze("hello", "l-p"));
+    assertEquals("heloo", CharSetUtils.squeeze("helloo", "l"));
+    assertEquals("hello", CharSetUtils.squeeze("helloo", "^l"));
+}

@@ -1,0 +1,23 @@
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Returns a new &lt;code&gt;CharSequence&lt;/code&gt; that is a subsequence of this                  | * &lt;p&gt;Returns a new {@code CharSequence} that is a subsequence of this                         
+* sequence starting with the &lt;code&gt;char&lt;/code&gt; value at the specified                    | * sequence starting with the {@code char} value at the specified index.&lt;/p&gt;                   
+* index. The length (in &lt;code&gt;char&lt;/code&gt;s) of the returned sequence is                  |                                                                                                     
+* &lt;code&gt;length() - start&lt;/code&gt;, so if &lt;code&gt;start == end&lt;/code&gt; then an     |                                                                                                     
+* empty sequence is returned. &lt;/p&gt;                                                             |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param cs                                                                                          | * &lt;p&gt;This provides the {@code CharSequence} equivalent to {@link String#substring(int)}.      
+*            the specified subsequence, may be null                                                  | * The length (in {@code char}) of the returned sequence is {@code length() - start},                
+* @param start                                                                                       | * so if {@start == end} then an empty sequence is returned.&lt;/p&gt;                               
+*            the start index, inclusive                                                              |                                                                                                     
+* @return a new subsequence or null                                                                  |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @throws IndexOutOfBoundsException                                                                  | * @param cs  the specified subsequence, null returns null                                           
+*             if &lt;code&gt;start&lt;/code&gt; is negative or if &lt;code&gt;start&lt;/code&gt; is  | * @param start  the start index, inclusive, valid                                                   
+*             greater than &lt;code&gt;length()&lt;/code&gt;                                         | * @return a new subsequence, may be null                                                            
+* @since 3.0                                                                                         | * @throws IndexOutOfBoundsException if {@code start} is negative or if                              
+                                                                                                     | *  {@code start} is greater than {@code length()}                                                   
+*/                                                                                                     */                                                                                                  
+public static CharSequence subSequence(CharSequence cs, int start) {                                   public static CharSequence subSequence(CharSequence cs, int start) {                                
+return cs == null ? null : cs.subSequence(start, cs.length());                                         return cs == null ? null : cs.subSequence(start, cs.length());                                      
+}                                                                                                      }                                                                                                   

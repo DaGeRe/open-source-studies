@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Append to the &lt;code&gt;toString&lt;/code&gt; an &lt;code&gt;Object&lt;/code&gt;          * &lt;p&gt;Append to the &lt;code&gt;toString&lt;/code&gt; an &lt;code&gt;Object&lt;/code&gt;       
+* value that has been detected to participate in a cycle. This                                         * value that has been detected to participate in a cycle. This                                      
+* implementation will print the standard string value of the value.&lt;/p&gt;                          * implementation will print the standard string value of the value.&lt;/p&gt;                       
+*                                                                                                      *                                                                                                   
+* @param buffer  the &lt;code&gt;StringBuffer&lt;/code&gt; to populate                                 * @param buffer  the &lt;code&gt;StringBuffer&lt;/code&gt; to populate                              
+* @param fieldName  the field name, typically not used as already appended                             * @param fieldName  the field name, typically not used as already appended                          
+* @param value  the value to add to the &lt;code&gt;toString&lt;/code&gt;,                             * @param value  the value to add to the &lt;code&gt;toString&lt;/code&gt;,                          
+*  not &lt;code&gt;null&lt;/code&gt;                                                                   *  not &lt;code&gt;null&lt;/code&gt;                                                                
+*                                                                                                      *                                                                                                   
+* @since 2.2                                                                                           * @since 2.2                                                                                        
+*/                                                                                                     */                                                                                                  
+protected void appendCyclicObject(StringBuffer buffer, String fieldName, Object value) {               protected void appendCyclicObject(StringBuffer buffer, String fieldName, Object value) {            
+ObjectUtils.appendIdentityToString(buffer, value);                                                   | ObjectUtils.identityToString(buffer, value);                                                        
+}                                                                                                      }                                                                                                   

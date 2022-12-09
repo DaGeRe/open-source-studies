@@ -1,0 +1,11 @@
+@Test
+public void testIsValidAnnotationMemberType() {
+    for (Class<?> type : new Class[] { byte.class, short.class, int.class, char.class, long.class, float.class, double.class, boolean.class, String.class, Class.class, NestAnnotation.class, TestAnnotation.class, Stooge.class, ElementType.class }) {
+        assertTrue(AnnotationUtils.isValidAnnotationMemberType(type));
+        assertTrue(AnnotationUtils.isValidAnnotationMemberType(Array.newInstance(type, 0).getClass()));
+    }
+    for (Class<?> type : new Class[] { Object.class, Map.class, Collection.class }) {
+        assertFalse(AnnotationUtils.isValidAnnotationMemberType(type));
+        assertFalse(AnnotationUtils.isValidAnnotationMemberType(Array.newInstance(type, 0).getClass()));
+    }
+}

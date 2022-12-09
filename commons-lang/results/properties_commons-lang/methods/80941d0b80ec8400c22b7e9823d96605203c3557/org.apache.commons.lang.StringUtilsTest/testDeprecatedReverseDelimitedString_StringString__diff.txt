@@ -1,0 +1,8 @@
+public void testDeprecatedReverseDelimitedString_StringString() {
+    assertEquals(null, StringUtils.reverseDelimitedString(null, null));
+    assertEquals("", StringUtils.reverseDelimitedString("", null));
+    assertEquals("", StringUtils.reverseDelimitedString("", "."));
+    assertEquals("a.b.c", StringUtils.reverseDelimitedString("a.b.c", null));
+    assertEquals("c b a", StringUtils.reverseDelimitedString("a b c", null));
+    assertEquals("c.b.a", StringUtils.reverseDelimitedString("a.b.c", "."));
+}

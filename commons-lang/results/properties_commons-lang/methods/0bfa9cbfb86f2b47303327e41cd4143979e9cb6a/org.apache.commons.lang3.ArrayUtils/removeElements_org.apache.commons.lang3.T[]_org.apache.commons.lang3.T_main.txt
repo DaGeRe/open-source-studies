@@ -1,0 +1,54 @@
+/**
+ * <p>Removes occurrences of specified elements, in specified quantities,
+ * from the specified array. All subsequent elements are shifted left.
+ * For any element-to-be-removed specified in greater quantities than
+ * contained in the original array, no change occurs beyond the
+ * removal of the existing matching items.</p>
+ *
+ * <p>This method returns a new array with the same elements of the input
+ * array except for the earliest-encountered occurrences of the specified
+ * elements. The component type of the returned array is always the same
+ * as that of the input array.</p>
+ *
+ * <pre>
+ * ArrayUtils.removeElements(null, "a", "b")            = null
+ * ArrayUtils.removeElements([], "a", "b")              = []
+ * ArrayUtils.removeElements(["a"], "b", "c")           = ["a"]
+ * ArrayUtils.removeElements(["a", "b"], "a", "c")      = ["b"]
+ * ArrayUtils.removeElements(["a", "b", "a"], "a")      = ["b", "a"]
+ * ArrayUtils.removeElements(["a", "b", "a"], "a", "a") = ["b"]
+ * </pre>
+ *
+ * @param array  the array to remove the element from, may be {@code null}
+ * @param elements  the elements to be removed
+ * @return A new array containing the existing elements except the
+ *         earliest-encountered occurrences of the specified elements.
+ * @since 3.0.1
+ */
+public static <T> T[] removeElements(T[] array, T... values) {
+    if (isEmpty(array) || isEmpty(values)) {
+        return clone(array);
+    }
+    HashMap<T, MutableInt> occurrences = new HashMap<T, MutableInt>(values.length);
+    for (T v : values) {
+        MutableInt count = occurrences.get(v);
+        if (count == null) {
+            occurrences.put(v, new MutableInt(1));
+        } else {
+            count.increment();
+        }
+    }
+    HashSet<Integer> toRemove = new HashSet<Integer>();
+    for (Map.Entry<T, MutableInt> e : occurrences.entrySet()) {
+        T v = e.getKey();
+        int found = 0;
+        for (int i = 0, ct = e.getValue().intValue(); i < ct; i++) {
+            found = indexOf(array, v, found);
+            if (found < 0) {
+                break;
+            }
+            toRemove.add(found++);
+        }
+    }
+    return removeAll(array, extractIndices(toRemove));
+}

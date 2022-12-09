@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testConstructor() {
+    assertNotNull(new Validate());
+    Constructor<?>[] cons = Validate.class.getDeclaredConstructors();
+    assertEquals(1, cons.length);
+    assertEquals(true, Modifier.isPublic(cons[0].getModifiers()));
+    assertEquals(true, Modifier.isPublic(Validate.class.getModifiers()));
+    assertEquals(false, Modifier.isFinal(Validate.class.getModifiers()));
+}

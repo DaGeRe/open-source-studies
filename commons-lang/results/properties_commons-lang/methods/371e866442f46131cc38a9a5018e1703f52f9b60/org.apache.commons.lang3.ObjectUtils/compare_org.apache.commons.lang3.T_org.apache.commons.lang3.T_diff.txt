@@ -1,0 +1,13 @@
+/**
+ * <p>Null safe comparison of Comparables.
+ * {@code null} is assumed to be less than a non-{@code null} value.</p>
+ *
+ * @param <T> type of the values processed by this method
+ * @param c1  the first comparable, may be null
+ * @param c2  the second comparable, may be null
+ * @return a negative value if c1 < c2, zero if c1 = c2
+ *  and a positive value if c1 > c2
+ */
+public static <T extends Comparable<? super T>> int compare(T c1, T c2) {
+    return compare(c1, c2, false);
+}

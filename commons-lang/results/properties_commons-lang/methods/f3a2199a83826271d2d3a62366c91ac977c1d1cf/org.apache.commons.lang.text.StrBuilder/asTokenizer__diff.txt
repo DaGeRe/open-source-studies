@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------
+/**
+ * Creates a tokenizer that can tokenize the contents of this builder.
+ * <p>
+ * This method allows the contents of this builder to be tokenized.
+ * The tokenizer will be setup by default to tokenize on space, tab,
+ * newline and formfeed (as per StringTokenizer). These values can be
+ * changed on the tokenizer class, before retrieving the tokens.
+ * <p>
+ * The returned tokenizer is linked to this builder. You may intermix
+ * calls to the buider and tokenizer within certain limits, however
+ * there is no synchronization. Once the tokenizer has been used once,
+ * it must be {@link StrTokenizer#reset() reset} to pickup the latest
+ * changes in the builder. For example:
+ * <pre>
+ * StrBuilder b = new StrBuilder();
+ * b.append("a b ");
+ * StrTokenizer t = b.asTokenizer();
+ * String[] tokens1 = t.getTokenArray();  // returns a,b
+ * b.append("c d ");
+ * String[] tokens2 = t.getTokenArray();  // returns a,b (c and d ignored)
+ * t.reset();              // reset causes builder changes to be picked up
+ * String[] tokens3 = t.getTokenArray();  // returns a,b,c,d
+ * </pre>
+ * In addition to simply intermixing appends and tokenization, you can also
+ * call the set methods on the tokenizer to alter how it tokenizes. Just
+ * remember to call reset when you want to pickup builder changes.
+ * <p>
+ * Calling {@link StrTokenizer#reset(String)} or {@link StrTokenizer#reset(char[])}
+ * with a non-null value will break the link with the builder.
+ *
+ * @return a tokenizer that is linked to this builder
+ */
+public StrTokenizer asTokenizer() {
+    return new StrBuilderTokenizer();
+}

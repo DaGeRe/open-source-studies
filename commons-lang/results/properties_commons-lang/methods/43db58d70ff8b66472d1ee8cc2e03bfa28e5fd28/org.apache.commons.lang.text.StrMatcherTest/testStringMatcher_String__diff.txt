@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testStringMatcher_String() {
+    StrMatcher matcher = StrMatcher.stringMatcher("bc");
+    assertEquals(0, matcher.isMatch(BUFFER2, 0));
+    assertEquals(2, matcher.isMatch(BUFFER2, 1));
+    assertEquals(0, matcher.isMatch(BUFFER2, 2));
+    assertEquals(0, matcher.isMatch(BUFFER2, 3));
+    assertEquals(0, matcher.isMatch(BUFFER2, 4));
+    assertEquals(0, matcher.isMatch(BUFFER2, 5));
+    assertSame(StrMatcher.noneMatcher(), StrMatcher.stringMatcher(""));
+    assertSame(StrMatcher.noneMatcher(), StrMatcher.stringMatcher((String) null));
+}

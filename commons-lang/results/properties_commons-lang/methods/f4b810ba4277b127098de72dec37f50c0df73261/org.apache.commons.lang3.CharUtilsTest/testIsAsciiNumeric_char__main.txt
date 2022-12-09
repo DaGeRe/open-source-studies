@@ -1,0 +1,16 @@
+@Test
+public void testIsAsciiNumeric_char() {
+    assertFalse(CharUtils.isAsciiNumeric('a'));
+    assertFalse(CharUtils.isAsciiNumeric('A'));
+    assertTrue(CharUtils.isAsciiNumeric('3'));
+    assertFalse(CharUtils.isAsciiNumeric('-'));
+    assertFalse(CharUtils.isAsciiNumeric('\n'));
+    assertFalse(CharUtils.isAsciiNumeric(CHAR_COPY));
+    for (int i = 0; i < 196; i++) {
+        if (i >= '0' && i <= '9') {
+            assertTrue(CharUtils.isAsciiNumeric((char) i));
+        } else {
+            assertFalse(CharUtils.isAsciiNumeric((char) i));
+        }
+    }
+}

@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+/**
+ * Replaces the search character with the replace character
+ * throughout the builder.
+ *
+ * @param search  the search character
+ * @param replace  the replace character
+ * @return this, to enable chaining
+ */
+public StrBuilder replaceAll(char search, char replace) {
+    if (search != replace) {
+        for (int i = 0; i < size; i++) {
+            if (buffer[i] == search) {
+                buffer[i] = replace;
+            }
+        }
+    }
+    return this;
+}

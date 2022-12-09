@@ -1,0 +1,27 @@
+/**
+ * Checks whether this builder ends with the specified string.
+ * <p>
+ * Note that this method handles null input quietly, unlike String.
+ *
+ * @param str  the string to search for, null returns false
+ * @return true if the builder ends with the string
+ */
+public boolean endsWith(String str) {
+    if (str == null) {
+        return false;
+    }
+    int len = str.length();
+    if (len == 0) {
+        return true;
+    }
+    if (len > size) {
+        return false;
+    }
+    int pos = size - len;
+    for (int i = 0; i < len; i++, pos++) {
+        if (buffer[pos] != str.charAt(i)) {
+            return false;
+        }
+    }
+    return true;
+}

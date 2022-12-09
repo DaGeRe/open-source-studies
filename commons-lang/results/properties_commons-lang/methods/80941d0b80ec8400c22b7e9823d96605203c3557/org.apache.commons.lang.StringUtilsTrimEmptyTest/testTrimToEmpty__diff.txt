@@ -1,0 +1,11 @@
+public void testTrimToEmpty() {
+    assertEquals(FOO, StringUtils.trimToEmpty(FOO + "  "));
+    assertEquals(FOO, StringUtils.trimToEmpty(" " + FOO + "  "));
+    assertEquals(FOO, StringUtils.trimToEmpty(" " + FOO));
+    assertEquals(FOO, StringUtils.trimToEmpty(FOO + ""));
+    assertEquals("", StringUtils.trimToEmpty(" \t\r\n\b "));
+    assertEquals("", StringUtils.trimToEmpty(StringUtilsTest.TRIMMABLE));
+    assertEquals(StringUtilsTest.NON_TRIMMABLE, StringUtils.trimToEmpty(StringUtilsTest.NON_TRIMMABLE));
+    assertEquals("", StringUtils.trimToEmpty(""));
+    assertEquals("", StringUtils.trimToEmpty(null));
+}

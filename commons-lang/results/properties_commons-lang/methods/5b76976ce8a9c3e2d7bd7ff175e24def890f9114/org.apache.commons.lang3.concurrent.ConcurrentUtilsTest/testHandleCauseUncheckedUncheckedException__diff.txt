@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Tests handleCauseUnchecked() if the cause is an unchecked exception.                                 * Tests handleCauseUnchecked() if the cause is an unchecked exception.                              
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testHandleCauseUncheckedUncheckedException() throws ConcurrentException {                | public void testHandleCauseUncheckedUncheckedException() {                                          
+RuntimeException rex = new RuntimeException("Test");                                                   RuntimeException rex = new RuntimeException("Test");                                                
+try {                                                                                                  try {                                                                                               
+ConcurrentUtils.handleCauseUnchecked(new ExecutionException(rex));                                     ConcurrentUtils.handleCauseUnchecked(new ExecutionException(rex));                                  
+fail("Runtime exception not thrown!");                                                                 fail("Runtime exception not thrown!");                                                              
+} catch (RuntimeException r) {                                                                         } catch (RuntimeException r) {                                                                      
+assertEquals("Wrong exception", rex, r);                                                               assertEquals("Wrong exception", rex, r);                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testReflectionHashCodeExcludeFields() throws Exception {                                   public void testReflectionHashCodeExcludeFields() throws Exception {                                
+TestObjectWithMultipleFields x = new TestObjectWithMultipleFields(1, 2, 3);                            TestObjectWithMultipleFields x = new TestObjectWithMultipleFields(1, 2, 3);                         
+assertEquals((((17 * 37 + 1) * 37 + 2) * 37 + 3), HashCodeBuilder.reflectionHashCode(x));            | assertEquals(((17 * 37 + 1) * 37 + 2) * 37 + 3, HashCodeBuilder.reflectionHashCode(x));             
+assertEquals((((17 * 37 + 1) * 37 + 2) * 37 + 3), HashCodeBuilder.reflectionHashCode(x, (String[]) n | assertEquals(((17 * 37 + 1) * 37 + 2) * 37 + 3, HashCodeBuilder.reflectionHashCode(x, (String[]) nul
+assertEquals((((17 * 37 + 1) * 37 + 2) * 37 + 3), HashCodeBuilder.reflectionHashCode(x, new String[] | assertEquals(((17 * 37 + 1) * 37 + 2) * 37 + 3, HashCodeBuilder.reflectionHashCode(x, new String[] {
+assertEquals((((17 * 37 + 1) * 37 + 2) * 37 + 3), HashCodeBuilder.reflectionHashCode(x, new String[] | assertEquals(((17 * 37 + 1) * 37 + 2) * 37 + 3, HashCodeBuilder.reflectionHashCode(x, new String[] {
+assertEquals(((17 * 37 + 1) * 37 + 3), HashCodeBuilder.reflectionHashCode(x, new String[] { "two" }) | assertEquals((17 * 37 + 1) * 37 + 3, HashCodeBuilder.reflectionHashCode(x, new String[] { "two" }));
+assertEquals(((17 * 37 + 1) * 37 + 2), HashCodeBuilder.reflectionHashCode(x, new String[] { "three"  | assertEquals((17 * 37 + 1) * 37 + 2, HashCodeBuilder.reflectionHashCode(x, new String[] { "three" })
+assertEquals((17 * 37 + 1), HashCodeBuilder.reflectionHashCode(x, new String[] { "two", "three" })); | assertEquals(17 * 37 + 1, HashCodeBuilder.reflectionHashCode(x, new String[] { "two", "three" }));  
+assertEquals(17, HashCodeBuilder.reflectionHashCode(x, new String[] { "one", "two", "three" }));       assertEquals(17, HashCodeBuilder.reflectionHashCode(x, new String[] { "one", "two", "three" }));    
+assertEquals(17, HashCodeBuilder.reflectionHashCode(x, new String[] { "one", "two", "three", "xxx" }   assertEquals(17, HashCodeBuilder.reflectionHashCode(x, new String[] { "one", "two", "three", "xxx" }
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,47 @@
+/**
+ * <p>Appends to the <code>builder</code> the deep comparison of
+ * two <code>Object</code> arrays.</p>
+ *
+ * <ol>
+ *  <li>Check if arrays are the same using <code>==</code></li>
+ *  <li>Check if for <code>null</code>, <code>null</code> is less than non-<code>null</code></li>
+ *  <li>Check array length, a short length array is less than a long length array</li>
+ *  <li>Check array contents element by element using {@link #append(Object, Object, Comparator)}</li>
+ * </ol>
+ *
+ * <p>This method will also will be called for the top level of multi-dimensional,
+ * ragged, and multi-typed arrays.</p>
+ *
+ * @param lhs  left-hand array
+ * @param rhs  right-hand array
+ * @param comparator  <code>Comparator</code> to use to compare the array elements,
+ *  <code>null</code> means to treat <code>lhs</code> elements as <code>Comparable</code>.
+ * @return this - used to chain append calls
+ * @throws ClassCastException  if <code>rhs</code> is not assignment-compatible
+ *  with <code>lhs</code>
+ * @since 2.0
+ */
+public CompareToBuilder append(Object[] lhs, Object[] rhs, Comparator comparator) {
+    if (comparison != 0) {
+        return this;
+    }
+    if (lhs == rhs) {
+        return this;
+    }
+    if (lhs == null) {
+        comparison = -1;
+        return this;
+    }
+    if (rhs == null) {
+        comparison = +1;
+        return this;
+    }
+    if (lhs.length != rhs.length) {
+        comparison = (lhs.length < rhs.length) ? -1 : +1;
+        return this;
+    }
+    for (int i = 0; i < lhs.length && comparison == 0; i++) {
+        append(lhs[i], rhs[i], comparator);
+    }
+    return this;
+}

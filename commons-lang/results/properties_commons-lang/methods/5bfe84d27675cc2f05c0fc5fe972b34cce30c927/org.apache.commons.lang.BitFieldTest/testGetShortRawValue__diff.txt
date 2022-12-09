@@ -1,0 +1,11 @@
+/**
+ * test the getShortRawValue() method
+ */
+public void testGetShortRawValue() {
+    assertEquals(bf_multi.getShortRawValue((short) -1), (short) 0x3F80);
+    assertEquals(bf_multi.getShortRawValue((short) 0), (short) 0);
+    assertEquals(bf_single.getShortRawValue((short) -1), (short) 0x4000);
+    assertEquals(bf_single.getShortRawValue((short) 0), (short) 0);
+    assertEquals(bf_zero.getShortRawValue((short) -1), (short) 0);
+    assertEquals(bf_zero.getShortRawValue((short) 0), (short) 0);
+}

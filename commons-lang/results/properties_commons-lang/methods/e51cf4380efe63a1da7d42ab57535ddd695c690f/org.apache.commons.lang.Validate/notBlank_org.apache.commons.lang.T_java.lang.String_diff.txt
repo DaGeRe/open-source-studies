@@ -1,0 +1,29 @@
+// notBlank string                                                                                     // notBlank string                                                                                  
+// ---------------------------------------------------------------------------------                   // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument character sequence is                               
+* if the argument String is blank (&lt;code&gt;null&lt;/code&gt;, empty or whitespace).&lt;/p&gt;    | * neither &lt;code&gt;null&lt;/code&gt;, a length of zero (no characters), empty                    
+                                                                                                     | * nor whitespace; otherwise throwing an exception with the specified                                
+                                                                                                     | * message.                                                                                          
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.notBlank(myString, "The string must not be blank");&lt;/pre&gt;               
+* Validate.notBlank(myString, "The string must not be blank");                                       |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param string  the string to check is not blank                                                    | * @param &lt;T&gt; the character sequence type                                                      
+* @param message  the exception message you would like to see if the string is blank                 | * @param chars the character sequence to check                                                      
+* @return the input string, never &lt;code&gt;null&lt;/code&gt; or blank, for chaining               | * @param message the exception message if invalid                                                   
+* @throws IllegalArgumentException if the string is blank                                            | * @return the validated character sequence (never &lt;code&gt;null&lt;/code&gt; method for chaining)
+* @see StringUtils#isBlank(CharSequence)                                                             | * @throws NullPointerException if the character sequence is &lt;code&gt;null&lt;/code&gt;           
+                                                                                                     | * @throws IllegalArgumentException if the character sequence is blank                               
+                                                                                                     | * @see #notBlank(CharSequence)                                                                      
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends CharSequence&gt; T notBlank(T string, String message) {                  | public static &lt;T extends CharSequence&gt; T notBlank(T chars, String message, Object... values) {
+if (StringUtils.isBlank(string)) {                                                                   | if (chars == null) {                                                                                
+throw new IllegalArgumentException(message);                                                         | throw new NullPointerException(String.format(message, values));                                     
+}                                                                                                      }                                                                                                   
+return string;                                                                                       | if (StringUtils.isBlank(chars)) {                                                                   
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values));                                 
+}                                                                                                      }                                                                                                   
+                                                                                                     | return chars;                                                                                       
+                                                                                                     | }                                                                                                   

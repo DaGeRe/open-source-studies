@@ -1,0 +1,13 @@
+public void testIndexOfAny_StringString() {
+    assertEquals(-1, StringUtils.indexOfAny(null, (String) null));
+    assertEquals(-1, StringUtils.indexOfAny(null, ""));
+    assertEquals(-1, StringUtils.indexOfAny(null, "ab"));
+    assertEquals(-1, StringUtils.indexOfAny("", (String) null));
+    assertEquals(-1, StringUtils.indexOfAny("", ""));
+    assertEquals(-1, StringUtils.indexOfAny("", "ab"));
+    assertEquals(-1, StringUtils.indexOfAny("zzabyycdxx", (String) null));
+    assertEquals(-1, StringUtils.indexOfAny("zzabyycdxx", ""));
+    assertEquals(0, StringUtils.indexOfAny("zzabyycdxx", "za"));
+    assertEquals(3, StringUtils.indexOfAny("zzabyycdxx", "by"));
+    assertEquals(-1, StringUtils.indexOfAny("ab", "z"));
+}

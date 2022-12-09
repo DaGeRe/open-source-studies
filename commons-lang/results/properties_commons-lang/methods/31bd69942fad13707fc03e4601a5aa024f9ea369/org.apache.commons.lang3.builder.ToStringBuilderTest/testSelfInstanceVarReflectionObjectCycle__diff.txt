@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Test a class that defines an ivar pointing to itself.                                                * Test a class that defines an ivar pointing to itself.                                             
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testSelfInstanceVarReflectionObjectCycle() throws Exception {                              public void testSelfInstanceVarReflectionObjectCycle() throws Exception {                           
+SelfInstanceVarReflectionTestFixture test = new SelfInstanceVarReflectionTestFixture();                SelfInstanceVarReflectionTestFixture test = new SelfInstanceVarReflectionTestFixture();             
+assertEquals(this.toBaseString(test) + "[typeIsSelf=" + this.toBaseString(test) + "]", test.toString   assertEquals(this.toBaseString(test) + "[typeIsSelf=" + this.toBaseString(test) + "]", test.toString
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

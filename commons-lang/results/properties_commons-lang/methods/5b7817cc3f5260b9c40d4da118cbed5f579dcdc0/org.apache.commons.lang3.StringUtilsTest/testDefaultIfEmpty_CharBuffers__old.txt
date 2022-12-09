@@ -1,0 +1,5 @@
+public void testDefaultIfEmpty_CharBuffers() {
+    assertEquals("NULL", StringUtils.defaultIfEmpty(CharBuffer.wrap(""), CharBuffer.wrap("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfEmpty(CharBuffer.wrap("abc"), CharBuffer.wrap("NULL")).toString());
+    assertNull(StringUtils.defaultIfEmpty(CharBuffer.wrap(""), null));
+}

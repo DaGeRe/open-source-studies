@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Validate that {@code enumClass} is compatible with representation in a {@code long}.              
+                                                                                                     | * @param &lt;E&gt; the type of the enumeration                                                      
+                                                                                                     | * @param enumClass to check                                                                         
+                                                                                                     | * @return {@code enumClass}                                                                         
+                                                                                                     | * @throws NullPointerException if {@code enumClass} is {@code null}                                 
+                                                                                                     | * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 val
+                                                                                                     | * @since 3.0.1                                                                                      
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static &lt;E extends Enum&lt;E&gt;&gt; Class&lt;E&gt; checkBitVectorable(Class&lt;E&gt; enum
+                                                                                                     | Validate.notNull(enumClass, "EnumClass must be defined.");                                          
+                                                                                                     | final E[] constants = enumClass.getEnumConstants();                                                 
+                                                                                                     | Validate.isTrue(constants != null, "%s does not seem to be an Enum type", enumClass);               
+                                                                                                     | Validate.isTrue(constants.length &lt;= Long.SIZE, "Cannot store %s %s values in %s bits", constants.
+                                                                                                     | return enumClass;                                                                                   
+                                                                                                     | }                                                                                                   

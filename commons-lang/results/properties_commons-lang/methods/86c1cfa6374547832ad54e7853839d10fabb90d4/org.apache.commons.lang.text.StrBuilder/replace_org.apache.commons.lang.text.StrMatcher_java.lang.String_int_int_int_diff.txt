@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------
+/**
+ * Advanced search and replaces within the builder using a matcher.
+ * <p>
+ * Matchers can be used to perform advanced behaviour.
+ * For example you could write a matcher to delete all occurances
+ * where the character 'a' is followed by a number.
+ *
+ * @param matcher  the matcher to use to find the deletion, null causes no action
+ * @param replaceStr  the string to replace the match with, null is a delete
+ * @param startIndex  the start index, inclusive, must be valid
+ * @param endIndex  the end index, exclusive, must be valid except
+ *  that if too large it is treated as end of string
+ * @param replaceCount  the number of times to replace, -1 for replace all
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if start index is invalid
+ */
+public StrBuilder replace(StrMatcher matcher, String replaceStr, int startIndex, int endIndex, int replaceCount) {
+    endIndex = validateRange(startIndex, endIndex);
+    return replaceImpl(matcher, replaceStr, startIndex, endIndex, replaceCount);
+}

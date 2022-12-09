@@ -1,0 +1,26 @@
+// isInstanceOf                                                                                        // isInstanceOf                                                                                     
+// ---------------------------------------------------------------------------------                   // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the argument is an instance of the specified class; otherwise               | * Validates that the argument is an instance of the specified class, if not throws an exception.    
+* throwing an exception. This method is useful when validating according to an arbitrary             |                                                                                                     
+* class&lt;/p&gt;                                                                                    |                                                                                                     
+*                                                                                                      *                                                                                                   
+                                                                                                     | * &lt;p&gt;This method is useful when validating according to an arbitrary class&lt;/p&gt;          
+                                                                                                     | *                                                                                                   
+* &lt;pre&gt;Validate.isInstanceOf(OkClass.class, object);&lt;/pre&gt;                                 * &lt;pre&gt;Validate.isInstanceOf(OkClass.class, object);&lt;/pre&gt;                              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message of the exception is &quot;The validated object is not an instance of&quot;    | * &lt;p&gt;The message of the exception is &quot;Expected type: {type}, actual: {obj_type}&quot;&lt;
+* followed by the name of the class&lt;/p&gt;                                                        |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param type  the class the object must be validated against, not null                                * @param type  the class the object must be validated against, not null                             
+* @param obj  the object to check, null throws an exception                                            * @param obj  the object to check, null throws an exception                                         
+* @throws IllegalArgumentException if argument is not of specified class                               * @throws IllegalArgumentException if argument is not of specified class                            
+* @see #isInstanceOf(Class, Object, String, Object...)                                                 * @see #isInstanceOf(Class, Object, String, Object...)                                              
+*                                                                                                      *                                                                                                   
+* @since 3.0                                                                                           * @since 3.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void isInstanceOf(Class&lt;?&gt; type, Object obj) {                                     public static void isInstanceOf(Class&lt;?&gt; type, Object obj) {                                  
+if (type.isInstance(obj) == false) {                                                                   if (type.isInstance(obj) == false) {                                                                
+throw new IllegalArgumentException(String.format(DEFAULT_IS_INSTANCE_OF_EX_MESSAGE, type.getName())) | throw new IllegalArgumentException(String.format(DEFAULT_IS_INSTANCE_OF_EX_MESSAGE, type.getName(), 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

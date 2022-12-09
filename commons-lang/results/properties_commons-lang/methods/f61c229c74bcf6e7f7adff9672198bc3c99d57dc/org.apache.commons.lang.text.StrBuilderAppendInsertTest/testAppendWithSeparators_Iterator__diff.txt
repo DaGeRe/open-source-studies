@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testAppendWithSeparators_Iterator() {                                                      public void testAppendWithSeparators_Iterator() {                                                   
+StrBuilder sb = new StrBuilder();                                                                      StrBuilder sb = new StrBuilder();                                                                   
+sb.appendWithSeparators((Iterator) null, ",");                                                       | sb.appendWithSeparators((Iterator&lt;?&gt;) null, ",");                                             
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendWithSeparators(Collections.EMPTY_LIST.iterator(), ",");                                       sb.appendWithSeparators(Collections.EMPTY_LIST.iterator(), ",");                                    
+assertEquals("", sb.toString());                                                                       assertEquals("", sb.toString());                                                                    
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", "bar", "baz" }).iterator(), ",");          sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", "bar", "baz" }).iterator(), ",");       
+assertEquals("foo,bar,baz", sb.toString());                                                            assertEquals("foo,bar,baz", sb.toString());                                                         
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", "bar", "baz" }).iterator(), null);         sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", "bar", "baz" }).iterator(), null);      
+assertEquals("foobarbaz", sb.toString());                                                              assertEquals("foobarbaz", sb.toString());                                                           
+sb.clear();                                                                                            sb.clear();                                                                                         
+sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", null, "baz" }).iterator(), ",");           sb.appendWithSeparators(Arrays.asList(new Object[] { "foo", null, "baz" }).iterator(), ",");        
+assertEquals("foo,,baz", sb.toString());                                                               assertEquals("foo,,baz", sb.toString());                                                            
+}                                                                                                      }                                                                                                   

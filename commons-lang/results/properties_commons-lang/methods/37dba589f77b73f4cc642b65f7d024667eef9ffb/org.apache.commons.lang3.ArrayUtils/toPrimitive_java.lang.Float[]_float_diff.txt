@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an array of object Floats to primitives handling <code>null</code>.</p>
+ *
+ * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+ *
+ * @param array  a <code>Float</code> array, may be <code>null</code>
+ * @param valueForNull  the value to insert if <code>null</code> found
+ * @return a <code>float</code> array, <code>null</code> if null array input
+ */
+public static float[] toPrimitive(Float[] array, float valueForNull) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_FLOAT_ARRAY;
+    }
+    final float[] result = new float[array.length];
+    for (int i = 0; i < array.length; i++) {
+        Float b = array[i];
+        result[i] = (b == null ? valueForNull : b.floatValue());
+    }
+    return result;
+}

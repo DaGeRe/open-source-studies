@@ -1,0 +1,10 @@
+/**
+ * @param coll  the collection to check
+ */
+private static void assertUnmodifiableCollection(Collection<?> coll) {
+    try {
+        coll.add(null);
+        fail();
+    } catch (UnsupportedOperationException ex) {
+    }
+}

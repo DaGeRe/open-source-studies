@@ -1,0 +1,9 @@
+@Test
+public void testEquals() throws Exception {
+    assertEquals(MutablePair.of(null, "foo"), MutablePair.of(null, "foo"));
+    assertFalse(MutablePair.of("foo", 0).equals(MutablePair.of("foo", null)));
+    assertFalse(MutablePair.of("foo", "bar").equals(MutablePair.of("xyz", "bar")));
+    MutablePair<String, String> p = MutablePair.of("foo", "bar");
+    assertTrue(p.equals(p));
+    assertFalse(p.equals(new Object()));
+}

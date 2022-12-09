@@ -1,0 +1,52 @@
+/**
+ * <p>Find an accessible constructor with compatible parameters. Compatible
+ * parameters mean that every method parameter is assignable from the given
+ * parameters. In other words, it finds constructor that will take the
+ * parameters given.</p>
+ *
+ * <p>First it checks if there is constructor matching the exact signature.
+ * If no such, all the constructors of the class are tested if their
+ * signatures are assignment compatible with the parameter types. The first
+ * matching constructor is returned.</p>
+ *
+ * @param <T> the type to be constructed
+ * @param cls find constructor for this class
+ * @param parameterTypes find method with compatible parameters
+ * @return a valid Constructor object. If there's no matching constructor,
+ * returns <code>null</code>.
+ */
+public static <T> Constructor<T> getMatchingAccessibleConstructor(Class<T> cls, Class<?>... parameterTypes) {
+    // see if we can find the constructor directly
+    // most of the time this works and it's much faster
+    try {
+        Constructor<T> ctor = cls.getConstructor(parameterTypes);
+        MemberUtils.setAccessibleWorkaround(ctor);
+        return ctor;
+    } catch (NoSuchMethodException e) {
+        // NOPMD - Swallow
+    }
+    Constructor<T> result = null;
+    /*
+         * (1) Class.getConstructors() is documented to return Constructor<T> so as
+         * long as the array is not subsequently modified, everything's fine.
+         */
+    Constructor<?>[] ctors = cls.getConstructors();
+    // return best match:
+    for (Constructor<?> ctor : ctors) {
+        // compare parameters
+        if (ClassUtils.isAssignable(parameterTypes, ctor.getParameterTypes(), true)) {
+            // get accessible version of constructor
+            ctor = getAccessibleConstructor(ctor);
+            if (ctor != null) {
+                MemberUtils.setAccessibleWorkaround(ctor);
+                if (result == null || MemberUtils.compareParameterTypes(ctor.getParameterTypes(), result.getParameterTypes(), parameterTypes) < 0) {
+                    // temporary variable for annotation, see comment above (1)
+                    @SuppressWarnings("unchecked")
+                    Constructor<T> constructor = (Constructor<T>) ctor;
+                    result = constructor;
+                }
+            }
+        }
+    }
+    return result;
+}

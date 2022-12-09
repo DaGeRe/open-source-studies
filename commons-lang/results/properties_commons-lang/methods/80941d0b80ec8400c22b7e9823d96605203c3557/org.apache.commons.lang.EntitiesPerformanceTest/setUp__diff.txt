@@ -1,0 +1,13 @@
+                                                                                                     | @Override                                                                                           
+public void setUp() {                                                                                  public void setUp() {                                                                               
+if (stringWithUnicode == null) {                                                                       if (stringWithUnicode == null) {                                                                    
+StringBuffer buf = new StringBuffer(STRING_LENGTH);                                                    StringBuffer buf = new StringBuffer(STRING_LENGTH);                                                 
+for (int i = 0; i &lt; STRING_LENGTH / 5; ++i) {                                                       for (int i = 0; i &lt; STRING_LENGTH / 5; ++i) {                                                    
+buf.append("xxxx");                                                                                    buf.append("xxxx");                                                                                 
+char ch = isovalue(i);                                                                                 char ch = isovalue(i);                                                                              
+buf.append(ch);                                                                                        buf.append(ch);                                                                                     
+}                                                                                                      }                                                                                                   
+stringWithUnicode = buf.toString();                                                                    stringWithUnicode = buf.toString();                                                                 
+stringWithEntities = Entities.HTML40.unescape(stringWithUnicode);                                      stringWithEntities = Entities.HTML40.unescape(stringWithUnicode);                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

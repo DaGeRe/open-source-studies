@@ -1,0 +1,20 @@
+/**
+ * <p>Converts a Boolean to a Integer using the convention that
+ * {@code zero} is {@code false}.</p>
+ *
+ * <p>{@code null} will be converted to {@code null}.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toIntegerObject(Boolean.TRUE)  = new Integer(1)
+ *   BooleanUtils.toIntegerObject(Boolean.FALSE) = new Integer(0)
+ * </pre>
+ *
+ * @param bool  the Boolean to convert
+ * @return one if Boolean.TRUE, zero if Boolean.FALSE, {@code null} if {@code null}
+ */
+public static Integer toIntegerObject(Boolean bool) {
+    if (bool == null) {
+        return null;
+    }
+    return bool.booleanValue() ? NumberUtils.INTEGER_ONE : NumberUtils.INTEGER_ZERO;
+}

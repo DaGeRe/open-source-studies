@@ -1,0 +1,35 @@
+/**
+ * <p>Right pad a String with a specified character.</p>
+ *
+ * <p>The String is padded to the size of {@code size}.</p>
+ *
+ * <pre>
+ * StringUtils.rightPad(null, *, *)     = null
+ * StringUtils.rightPad("", 3, 'z')     = "zzz"
+ * StringUtils.rightPad("bat", 3, 'z')  = "bat"
+ * StringUtils.rightPad("bat", 5, 'z')  = "batzz"
+ * StringUtils.rightPad("bat", 1, 'z')  = "bat"
+ * StringUtils.rightPad("bat", -1, 'z') = "bat"
+ * </pre>
+ *
+ * @param str  the String to pad out, may be null
+ * @param size  the size to pad to
+ * @param padChar  the character to pad with
+ * @return right padded String or original String if no padding is necessary,
+ *  {@code null} if null String input
+ * @since 2.0
+ */
+public static String rightPad(String str, int size, char padChar) {
+    if (str == null) {
+        return null;
+    }
+    int pads = size - str.length();
+    if (pads <= 0) {
+        // returns original String when possible
+        return str;
+    }
+    if (pads > PAD_LIMIT) {
+        return rightPad(str, size, String.valueOf(padChar));
+    }
+    return str.concat(pad(pads, padChar));
+}

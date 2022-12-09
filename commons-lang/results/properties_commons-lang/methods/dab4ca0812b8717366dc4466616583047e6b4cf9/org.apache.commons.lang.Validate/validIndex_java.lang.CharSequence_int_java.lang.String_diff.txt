@@ -1,0 +1,23 @@
+// validIndex string                                                                                 |                                                                                                     
+// ---------------------------------------------------------------------------------                 |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt; if the   |                                                                                                     
+* index for the argument character sequence (including String and StringBuffer)                      |                                                                                                     
+* is invalid or if the string is &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                            |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* Validate.validIndex(myStr, 2, "The string index is invalid: ");                                    |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;If the string is null then the message in the exception is 'The validated object is null' |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str  the string to check, not null                                                          |                                                                                                     
+* @param message  the exception message if the string index is invalid                               |                                                                                                     
+* @throws IllegalArgumentException if the string index is invalid or null                            |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static void validIndex(CharSequence str, int index, String message) {                         |                                                                                                     
+Validate.notNull(str);                                                                               |                                                                                                     
+if (index &lt; 0 || index &gt;= str.length()) {                                                      |                                                                                                     
+throw new IllegalArgumentException(message + index);                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

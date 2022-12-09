@@ -1,0 +1,8 @@
+public void testBasic5() {
+    String input = "a:b':c";
+    StrTokenizer tok = new StrTokenizer(input, ':', '\'');
+    assertEquals("a", tok.next());
+    assertEquals("b'", tok.next());
+    assertEquals("c", tok.next());
+    assertEquals(false, tok.hasNext());
+}

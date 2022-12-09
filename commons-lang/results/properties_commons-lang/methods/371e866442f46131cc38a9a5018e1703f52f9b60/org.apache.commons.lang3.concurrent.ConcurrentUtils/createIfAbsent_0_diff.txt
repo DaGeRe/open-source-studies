@@ -1,0 +1,30 @@
+/**
+ * Checks if a concurrent map contains a key and creates a corresponding
+ * value if not. This method first checks the presence of the key in the
+ * given map. If it is already contained, its value is returned. Otherwise
+ * the {@code get()} method of the passed in {@link ConcurrentInitializer}
+ * is called. With the resulting object
+ * {@link #putIfAbsent(ConcurrentMap, Object, Object)} is called. This
+ * handles the case that in the meantime another thread has added the key to
+ * the map. Both the map and the initializer can be <b>null</b>; in this
+ * case this method simply returns <b>null</b>.
+ *
+ * @param <K> the type of the keys of the map
+ * @param <V> the type of the values of the map
+ * @param map the map to be modified
+ * @param key the key of the value to be added
+ * @param init the {@link ConcurrentInitializer} for creating the value
+ * @return the value stored in the map after this operation; this may or may
+ * not be the object created by the {@link ConcurrentInitializer}
+ * @throws ConcurrentException if the initializer throws an exception
+ */
+public static <K, V> V createIfAbsent(ConcurrentMap<K, V> map, K key, ConcurrentInitializer<V> init) throws ConcurrentException {
+    if (map == null || init == null) {
+        return null;
+    }
+    V value = map.get(key);
+    if (value == null) {
+        return putIfAbsent(map, key, init.get());
+    }
+    return value;
+}

@@ -1,0 +1,15 @@
+/**
+ * test the isSet() method
+ */
+public void testIsSet() {
+    assertTrue(!bf_multi.isSet(0));
+    assertTrue(!bf_zero.isSet(0));
+    for (int j = 0x80; j <= 0x3F80; j += 0x80) {
+        assertTrue(bf_multi.isSet(j));
+    }
+    for (int j = 0x80; j <= 0x3F80; j += 0x80) {
+        assertTrue(!bf_zero.isSet(j));
+    }
+    assertTrue(!bf_single.isSet(0));
+    assertTrue(bf_single.isSet(0x4000));
+}

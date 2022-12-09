@@ -1,0 +1,27 @@
+/**
+ * Generate 1000 values for nextFloat and check that
+ * p(value < 0.5) ~ 0.5. Use chi-square test
+ * with df = 2-1 = 1
+ * @param rnd Random to use if not null
+ */
+private void tstNextDouble(Random rnd) {
+    int[] expected = new int[] { 500, 500 };
+    int[] observed = new int[] { 0, 0 };
+    double result = 0;
+    for (int i = 0; i < 1000; i++) {
+        if (rnd == null) {
+            result = RandomUtils.nextDouble();
+        } else {
+            result = RandomUtils.nextDouble(rnd);
+        }
+        if (result < 0.5) {
+            observed[0]++;
+        } else {
+            observed[1]++;
+        }
+    }
+    /* Use ChiSquare dist with df = 2-1 = 1, alpha = .001
+         * Change to 6.64 for alpha = .01 
+         */
+    assertTrue("chi-square test -- will fail about 1 in 1000 times", chiSquare(expected, observed) < 10.83);
+}

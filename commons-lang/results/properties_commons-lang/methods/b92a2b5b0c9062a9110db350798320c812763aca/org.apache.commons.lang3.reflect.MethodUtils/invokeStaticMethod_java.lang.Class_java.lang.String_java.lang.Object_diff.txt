@@ -1,0 +1,27 @@
+/**
+ * <p>Invoke a named static method whose parameter type matches the object type.</p>
+ *
+ * <p>This method delegates the method search to {@link #getMatchingAccessibleMethod(Class, String, Class[])}.</p>
+ *
+ * <p>This method supports calls to methods taking primitive parameters
+ * via passing in wrapping classes. So, for example, a <code>Boolean</code> class
+ * would match a <code>boolean</code> primitive.</p>
+ *
+ * <p> This is a convenient wrapper for
+ * {@link #invokeStaticMethod(Class objectClass,String methodName,Object [] args)}.
+ * </p>
+ *
+ * @param cls invoke static method on this class
+ * @param methodName get method with this name
+ * @param arg use this argument
+ * @return The value returned by the invoked method
+ *
+ * @throws NoSuchMethodException if there is no such accessible method
+ * @throws InvocationTargetException wraps an exception thrown by the
+ *  method invoked
+ * @throws IllegalAccessException if the requested method is not accessible
+ *  via reflection
+ */
+public static Object invokeStaticMethod(Class<?> cls, String methodName, Object arg) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    return invokeStaticMethod(cls, methodName, new Object[] { arg });
+}

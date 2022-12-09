@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Gets an accessible &lt;code&gt;Field&lt;/code&gt; by name repecting scope.                           * Gets an accessible &lt;code&gt;Field&lt;/code&gt; by name repecting scope.                        
+* Superclasses/interfaces will be considered.                                                          * Superclasses/interfaces will be considered.                                                       
+*                                                                                                      *                                                                                                   
+* @param cls  the class to reflect, must not be null                                                   * @param cls  the class to reflect, must not be null                                                
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @return the Field object                                                                             * @return the Field object                                                                          
+* @throws IllegalArgumentException if the class or field name is null                                  * @throws IllegalArgumentException if the class or field name is null                               
+*/                                                                                                     */                                                                                                  
+public static Field getField(Class cls, String fieldName) {                                          | public static Field getField(Class&lt;?&gt; cls, String fieldName) {                                
+Field field = getField(cls, fieldName, false);                                                         Field field = getField(cls, fieldName, false);                                                      
+MemberUtils.setAccessibleWorkaround(field);                                                            MemberUtils.setAccessibleWorkaround(field);                                                         
+return field;                                                                                          return field;                                                                                       
+}                                                                                                      }                                                                                                   

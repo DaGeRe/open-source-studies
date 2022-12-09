@@ -1,0 +1,8 @@
+public void testDefaultIfEmpty_StringBuilders() {                                                      public void testDefaultIfEmpty_StringBuilders() {                                                   
+assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuilder(""), new StringBuilder("NULL")).to   assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuilder(""), new StringBuilder("NULL")).to
+assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuilder("abc"), new StringBuilder("NULL")).   assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuilder("abc"), new StringBuilder("NULL")).
+assertNull(StringUtils.defaultIfEmpty(new StringBuilder(""), null));                                   assertNull(StringUtils.defaultIfEmpty(new StringBuilder(""), null));                                
+                                                                                                     | // Tests compatibility for the API return type                                                      
+                                                                                                     | StringBuilder s = StringUtils.defaultIfEmpty(new StringBuilder("abc"), new StringBuilder("NULL"));  
+                                                                                                     | assertEquals("abc", s.toString());                                                                  
+}                                                                                                      }                                                                                                   

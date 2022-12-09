@@ -1,0 +1,27 @@
+@Test
+public void test_getInstance_String_TimeZone() {
+    Locale realDefaultLocale = Locale.getDefault();
+    TimeZone realDefaultZone = TimeZone.getDefault();
+    try {
+        Locale.setDefault(Locale.US);
+        TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
+        FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getTimeZone("Atlantic/Reykjavik"));
+        FastDateFormat format2 = FastDateFormat.getInstance("MM/DD/yyyy");
+        FastDateFormat format3 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getDefault());
+        FastDateFormat format4 = FastDateFormat.getInstance("MM/DD/yyyy", TimeZone.getDefault());
+        FastDateFormat format5 = FastDateFormat.getInstance("MM-DD-yyyy", TimeZone.getDefault());
+        FastDateFormat format6 = FastDateFormat.getInstance("MM-DD-yyyy");
+        // -- junit 3.8 version -- assertFalse(format1 == format2);
+        assertTrue(format1 != format2);
+        assertEquals(TimeZone.getTimeZone("Atlantic/Reykjavik"), format1.getTimeZone());
+        assertEquals(TimeZone.getDefault(), format2.getTimeZone());
+        assertSame(format3, format4);
+        // -- junit 3.8 version -- assertFalse(format3 == format5);
+        assertTrue(format3 != format5);
+        // -- junit 3.8 version -- assertFalse(format3 == format5);
+        assertTrue(format4 != format6);
+    } finally {
+        Locale.setDefault(realDefaultLocale);
+        TimeZone.setDefault(realDefaultZone);
+    }
+}

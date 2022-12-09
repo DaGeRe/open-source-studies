@@ -1,0 +1,4 @@
+public void testMinutesOfYearWithCalendar() {
+    long testResult = DateUtils.getFragmentInMinutes(aCalendar, Calendar.YEAR);
+    assertEquals(minutes + ((hours * DateUtils.MILLIS_PER_HOUR) + (aCalendar.get(Calendar.DAY_OF_YEAR) * DateUtils.MILLIS_PER_DAY)) / DateUtils.MILLIS_PER_MINUTE, testResult);
+}

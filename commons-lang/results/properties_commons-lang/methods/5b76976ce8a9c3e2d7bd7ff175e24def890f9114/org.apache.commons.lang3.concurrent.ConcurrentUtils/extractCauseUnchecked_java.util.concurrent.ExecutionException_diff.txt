@@ -1,0 +1,19 @@
+/**
+ * Inspects the cause of the specified {@code ExecutionException} and
+ * creates a {@code ConcurrentRuntimeException} with the checked cause if
+ * necessary. This method works exactly like
+ * {@link #extractCause(ExecutionException)}. The only difference is that
+ * the cause of the specified {@code ExecutionException} is extracted as a
+ * runtime exception. This is an alternative for client code that does not
+ * want to deal with checked exceptions.
+ *
+ * @param ex the exception to be processed
+ * @return a {@code ConcurrentRuntimeException} with the checked cause
+ */
+public static ConcurrentRuntimeException extractCauseUnchecked(ExecutionException ex) {
+    if (ex == null || ex.getCause() == null) {
+        return null;
+    }
+    throwCause(ex);
+    return new ConcurrentRuntimeException(ex.getMessage(), ex.getCause());
+}

@@ -1,0 +1,17 @@
+/**
+ * Sets the character at the specified index.
+ *
+ * @see #charAt(int)
+ * @see #deleteCharAt(int)
+ * @param index  the index to set
+ * @param ch  the new character
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+public StrBuilder setCharAt(int index, char ch) {
+    if (index < 0 || index >= length()) {
+        throw new StringIndexOutOfBoundsException(index);
+    }
+    buffer[index] = ch;
+    return this;
+}

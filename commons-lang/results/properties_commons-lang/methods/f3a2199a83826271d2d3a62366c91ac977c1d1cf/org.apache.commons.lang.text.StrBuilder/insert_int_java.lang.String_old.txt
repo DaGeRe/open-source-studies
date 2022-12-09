@@ -1,0 +1,24 @@
+/**
+ * Inserts the string into this builder.
+ * Inserting null will use the stored null text value.
+ *
+ * @param index  the index to add at, must be valid
+ * @param str  the string to insert
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+public StrBuilder insert(int index, String str) {
+    validateIndex(index);
+    if (str == null) {
+        str = nullText;
+    }
+    int strLen = (str == null ? 0 : str.length());
+    if (strLen > 0) {
+        int newSize = size + strLen;
+        ensureCapacity(newSize);
+        System.arraycopy(buffer, index, buffer, index + strLen, size - index);
+        size = newSize;
+        str.getChars(0, strLen, buffer, index);
+    }
+    return this;
+}

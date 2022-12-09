@@ -1,0 +1,13 @@
+/**
+ * Appends an object to the builder padding on the right to a fixed length.
+ * The <code>String.valueOf</code> of the <code>int</code> value is used.
+ * If the object is larger than the length, the right hand side is lost.
+ *
+ * @param value  the value to append
+ * @param width  the fixed field width, zero or negative has no effect
+ * @param padChar  the pad character to use
+ * @return this, to enable chaining
+ */
+public StrBuilder appendFixedWidthPadRight(int value, int width, char padChar) {
+    return appendFixedWidthPadRight(String.valueOf(value), width, padChar);
+}

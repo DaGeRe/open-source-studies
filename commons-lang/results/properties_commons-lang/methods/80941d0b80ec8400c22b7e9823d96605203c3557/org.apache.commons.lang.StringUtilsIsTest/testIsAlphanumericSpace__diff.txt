@@ -1,0 +1,13 @@
+public void testIsAlphanumericSpace() {
+    assertEquals(false, StringUtils.isAlphanumericSpace(null));
+    assertEquals(true, StringUtils.isAlphanumericSpace(""));
+    assertEquals(true, StringUtils.isAlphanumericSpace(" "));
+    assertEquals(true, StringUtils.isAlphanumericSpace("a"));
+    assertEquals(true, StringUtils.isAlphanumericSpace("A"));
+    assertEquals(true, StringUtils.isAlphanumericSpace("kgKgKgKgkgkGkjkjlJlOKLgHdGdHgl"));
+    assertEquals(true, StringUtils.isAlphanumericSpace("ham kso"));
+    assertEquals(true, StringUtils.isAlphanumericSpace("1"));
+    assertEquals(true, StringUtils.isAlphanumericSpace("hkHKHik6iUGHKJgU7tUJgKJGI87GIkug"));
+    assertEquals(false, StringUtils.isAlphanumericSpace("_"));
+    assertEquals(false, StringUtils.isAlphanumericSpace("hkHKHik*khbkuh"));
+}

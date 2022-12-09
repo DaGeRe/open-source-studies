@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Tests whether the specified element occurs before this range.&lt;/p&gt;                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;{@code null} is handled and returns {@code false}.&lt;/p&gt;                              |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param element  the element to test, may be {@code null}                                           |                                                                                                     
+* @return {@code true} if the specified element occurs before this range                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public boolean elementBefore(T element) {                                                            |                                                                                                     
+if (element == null) {                                                                               |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+return this.comparator.compare(element, this.minimum) &lt; 0;                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

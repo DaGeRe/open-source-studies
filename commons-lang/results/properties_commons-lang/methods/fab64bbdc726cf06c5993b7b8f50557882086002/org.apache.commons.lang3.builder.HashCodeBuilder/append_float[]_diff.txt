@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Append a &lt;code&gt;hashCode&lt;/code&gt; for a &lt;code&gt;float&lt;/code&gt; array.               * Append a &lt;code&gt;hashCode&lt;/code&gt; for a &lt;code&gt;float&lt;/code&gt; array.            
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param array                                                                                         * @param array                                                                                      
+*            the array to add to the &lt;code&gt;hashCode&lt;/code&gt;                                 *            the array to add to the &lt;code&gt;hashCode&lt;/code&gt;                              
+* @return this                                                                                         * @return this                                                                                      
+*/                                                                                                     */                                                                                                  
+public HashCodeBuilder append(float[] array) {                                                         public HashCodeBuilder append(float[] array) {                                                      
+if (array == null) {                                                                                   if (array == null) {                                                                                
+iTotal = iTotal * iConstant;                                                                           iTotal = iTotal * iConstant;                                                                        
+} else {                                                                                               } else {                                                                                            
+for (int i = 0; i &lt; array.length; i++) {                                                          | for (float element : array) {                                                                       
+append(array[i]);                                                                                    | append(element);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

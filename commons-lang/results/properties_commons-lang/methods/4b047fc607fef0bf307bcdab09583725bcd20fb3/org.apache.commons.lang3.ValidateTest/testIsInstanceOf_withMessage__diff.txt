@@ -1,0 +1,10 @@
+public void testIsInstanceOf_withMessage() {
+    Validate.isInstanceOf(String.class, "hi", "Error");
+    Validate.isInstanceOf(Integer.class, 1, "Error");
+    try {
+        Validate.isInstanceOf(List.class, "hi", "Error");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        assertEquals("Error", e.getMessage());
+    }
+}

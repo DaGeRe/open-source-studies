@@ -1,0 +1,23 @@
+public void testGetSet() {                                                                             public void testGetSet() {                                                                          
+assertEquals(false, new MutableBoolean().booleanValue());                                              assertEquals(false, new MutableBoolean().booleanValue());                                           
+assertEquals(Boolean.FALSE, new MutableBoolean().getValue());                                          assertEquals(Boolean.FALSE, new MutableBoolean().getValue());                                       
+final MutableBoolean mutBool = new MutableBoolean(false);                                              final MutableBoolean mutBool = new MutableBoolean(false);                                           
+assertEquals(Boolean.FALSE, mutBool.toBoolean());                                                      assertEquals(Boolean.FALSE, mutBool.toBoolean());                                                   
+assertEquals(false, mutBool.booleanValue());                                                           assertEquals(false, mutBool.booleanValue());                                                        
+                                                                                                     | assertEquals(true, mutBool.isFalse());                                                              
+                                                                                                     | assertEquals(false, mutBool.isTrue());                                                              
+mutBool.setValue(Boolean.TRUE);                                                                        mutBool.setValue(Boolean.TRUE);                                                                     
+assertEquals(Boolean.TRUE, mutBool.toBoolean());                                                       assertEquals(Boolean.TRUE, mutBool.toBoolean());                                                    
+assertEquals(true, mutBool.booleanValue());                                                            assertEquals(true, mutBool.booleanValue());                                                         
+                                                                                                     | assertEquals(false, mutBool.isFalse());                                                             
+                                                                                                     | assertEquals(true, mutBool.isTrue());                                                               
+mutBool.setValue(false);                                                                               mutBool.setValue(false);                                                                            
+assertEquals(false, mutBool.booleanValue());                                                           assertEquals(false, mutBool.booleanValue());                                                        
+mutBool.setValue(true);                                                                                mutBool.setValue(true);                                                                             
+assertEquals(true, mutBool.booleanValue());                                                            assertEquals(true, mutBool.booleanValue());                                                         
+try {                                                                                                  try {                                                                                               
+mutBool.setValue(null);                                                                                mutBool.setValue(null);                                                                             
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

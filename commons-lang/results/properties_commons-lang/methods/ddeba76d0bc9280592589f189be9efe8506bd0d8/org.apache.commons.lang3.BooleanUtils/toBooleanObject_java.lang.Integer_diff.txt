@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts an Integer to a Boolean using the convention that {@code zero}                     * &lt;p&gt;Converts an Integer to a Boolean using the convention that {@code zero}                  
+* is {@code false}.&lt;/p&gt;                                                                          * is {@code false}.&lt;/p&gt;                                                                       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null} will be converted to {@code null}.&lt;/p&gt;                                   * &lt;p&gt;{@code null} will be converted to {@code null}.&lt;/p&gt;                                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;NOTE: This returns null and will throw a NullPointerException if autoboxed to a boolean.    * &lt;p&gt;NOTE: This returns null and will throw a NullPointerException if autoboxed to a boolean. 
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toBoolean(new Integer(0))    = Boolean.FALSE                                        | *   BooleanUtils.toBoolean(Integer.valueOf(0))    = Boolean.FALSE                                   
+*   BooleanUtils.toBoolean(new Integer(1))    = Boolean.TRUE                                         | *   BooleanUtils.toBoolean(Integer.valueOf(1))    = Boolean.TRUE                                    
+*   BooleanUtils.toBoolean(new Integer(null)) = null                                                 | *   BooleanUtils.toBoolean(Integer.valueOf(null)) = null                                            
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param value  the Integer to convert                                                                 * @param value  the Integer to convert                                                              
+* @return Boolean.TRUE if non-zero, Boolean.FALSE if zero,                                             * @return Boolean.TRUE if non-zero, Boolean.FALSE if zero,                                          
+*  {@code null} if {@code null} input                                                                  *  {@code null} if {@code null} input                                                               
+*/                                                                                                     */                                                                                                  
+public static Boolean toBooleanObject(Integer value) {                                                 public static Boolean toBooleanObject(Integer value) {                                              
+if (value == null) {                                                                                   if (value == null) {                                                                                
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return value.intValue() == 0 ? Boolean.FALSE : Boolean.TRUE;                                           return value.intValue() == 0 ? Boolean.FALSE : Boolean.TRUE;                                        
+}                                                                                                      }                                                                                                   

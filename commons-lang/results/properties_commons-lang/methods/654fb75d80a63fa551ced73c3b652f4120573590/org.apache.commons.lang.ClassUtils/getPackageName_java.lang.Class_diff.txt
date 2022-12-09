@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the package name of a &lt;code&gt;Class&lt;/code&gt;.&lt;/p&gt;                        * &lt;p&gt;Gets the package name of a &lt;code&gt;Class&lt;/code&gt;.&lt;/p&gt;                     
+*                                                                                                      *                                                                                                   
+* @param cls  the class to get the package name for, may be &lt;code&gt;null&lt;/code&gt;.             * @param cls  the class to get the package name for, may be &lt;code&gt;null&lt;/code&gt;.          
+* @return the package name or an empty string                                                          * @return the package name or an empty string                                                       
+*/                                                                                                     */                                                                                                  
+public static String getPackageName(Class cls) {                                                     | public static String getPackageName(Class&lt;?&gt; cls) {                                           
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+return StringUtils.EMPTY;                                                                              return StringUtils.EMPTY;                                                                           
+}                                                                                                      }                                                                                                   
+return getPackageName(cls.getName());                                                                  return getPackageName(cls.getName());                                                               
+}                                                                                                      }                                                                                                   

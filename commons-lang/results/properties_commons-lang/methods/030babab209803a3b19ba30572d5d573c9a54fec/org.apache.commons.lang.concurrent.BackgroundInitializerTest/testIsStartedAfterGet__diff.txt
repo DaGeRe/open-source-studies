@@ -1,0 +1,9 @@
+/**
+ * Tests isStarted() after the background task has finished.
+ */
+public void testIsStartedAfterGet() {
+    BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl();
+    init.start();
+    checkInitialize(init);
+    assertTrue("Not started", init.isStarted());
+}

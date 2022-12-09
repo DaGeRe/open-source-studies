@@ -1,0 +1,23 @@
+// validIndex string
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code> if the
+ * index for the argument character sequence (including String and StringBuffer)
+ * is invalid or if the string is <code>null</code>.</p>
+ *
+ * <pre>
+ * Validate.validIndex(myStr, 2, "The string index is invalid: ");
+ * </pre>
+ *
+ * <p>If the string is null then the message in the exception is 'The validated object is null'.</p>
+ *
+ * @param str  the string to check, not null
+ * @param message  the exception message if the string index is invalid
+ * @throws IllegalArgumentException if the string index is invalid or null
+ */
+public static void validIndex(CharSequence str, int index, String message) {
+    Validate.notNull(str);
+    if (index < 0 || index >= str.length()) {
+        throw new IllegalArgumentException(message + index);
+    }
+}

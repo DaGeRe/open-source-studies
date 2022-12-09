@@ -1,0 +1,11 @@
+/**                                                                                                  |                                                                                                     
+* Returns a comparator for the specified {@code Comparable} type.                                    |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param &lt;E&gt; the {@code Comparable} type                                                       |                                                                                                     
+* @return the comparator for this type                                                               |                                                                                                     
+*/                                                                                                   |                                                                                                     
+// OK to cast, because comparator works for all types                                                |                                                                                                     
+@SuppressWarnings("unchecked")                                                                       |                                                                                                     
+public static &lt;E extends Comparable&lt;? super E&gt;&gt; ComparableComparator&lt;E&gt; getInstanc |                                                                                                     
+return (ComparableComparator&lt;E&gt;) INSTANCE;                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     

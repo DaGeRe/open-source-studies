@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument array is neither &lt;code&gt;null&lt;/code&gt;      
+* if the argument array is empty (&lt;code&gt;null&lt;/code&gt; or no elements).&lt;/p&gt;           | * nor a length of zero (no elements); otherwise throwing an exception.                              
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.notEmpty(myArray);&lt;/pre&gt;                                                
+* Validate.notEmpty(myArray);                                                                        |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is 'The validated array is empty'.                           | * &lt;p&gt;The message in the exception is &quot;The validated array is                             
+                                                                                                     | * empty&quot;.                                                                                      
+*                                                                                                      *                                                                                                   
+* @param array  the array to check is not empty                                                      | * @param &lt;T&gt; the array type                                                                   
+* @return the input array, never &lt;code&gt;null&lt;/code&gt; or empty, for chaining                | * @param array the array to check                                                                   
+                                                                                                     | * @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)             
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+* @throws IllegalArgumentException if the array is empty                                               * @throws IllegalArgumentException if the array is empty                                            
+                                                                                                     | * @see #notEmpty(Object[], String, Object...)                                                       
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T[] notEmpty(T[] array) {                                                      public static &lt;T&gt; T[] notEmpty(T[] array) {                                                   
+return notEmpty(array, "The validated array is empty");                                              | return notEmpty(array, DEFAULT_NOT_EMPTY_ARRAY_EXCEPTION_MESSAGE);                                  
+}                                                                                                      }                                                                                                   

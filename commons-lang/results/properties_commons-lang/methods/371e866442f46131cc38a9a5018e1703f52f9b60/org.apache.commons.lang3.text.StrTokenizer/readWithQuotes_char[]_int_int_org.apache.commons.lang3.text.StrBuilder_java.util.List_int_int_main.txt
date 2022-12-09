@@ -1,0 +1,86 @@
+/**
+ * Reads a possibly quoted string token.
+ *
+ * @param chars  the character array being tokenized
+ * @param start  the first character of field
+ * @param len  the length of the character array being tokenized
+ * @param workArea  a temporary work area
+ * @param tokens  the list of parsed tokens
+ * @param quoteStart  the start position of the matched quote, 0 if no quoting
+ * @param quoteLen  the length of the matched quote, 0 if no quoting
+ * @return the starting position of the next field (the character
+ *  immediately after the delimiter, or if end of string found,
+ *  then the length of string
+ */
+private int readWithQuotes(char[] chars, int start, int len, StrBuilder workArea, List<String> tokens, int quoteStart, int quoteLen) {
+    // Loop until we've found the end of the quoted
+    // string or the end of the input
+    workArea.clear();
+    int pos = start;
+    boolean quoting = quoteLen > 0;
+    int trimStart = 0;
+    while (pos < len) {
+        // quoting mode can occur several times throughout a string
+        // we must switch between quoting and non-quoting until we
+        // encounter a non-quoted delimiter, or end of string
+        if (quoting) {
+            // In quoting mode
+            // If we've found a quote character, see if it's
+            // followed by a second quote.  If so, then we need
+            // to actually put the quote character into the token
+            // rather than end the token.
+            if (isQuote(chars, pos, len, quoteStart, quoteLen)) {
+                if (isQuote(chars, pos + quoteLen, len, quoteStart, quoteLen)) {
+                    // matched pair of quotes, thus an escaped quote
+                    workArea.append(chars, pos, quoteLen);
+                    pos += quoteLen * 2;
+                    trimStart = workArea.size();
+                    continue;
+                }
+                // end of quoting
+                quoting = false;
+                pos += quoteLen;
+                continue;
+            }
+            // copy regular character from inside quotes
+            workArea.append(chars[pos++]);
+            trimStart = workArea.size();
+        } else {
+            // Not in quoting mode
+            // check for delimiter, and thus end of token
+            int delimLen = getDelimiterMatcher().isMatch(chars, pos, start, len);
+            if (delimLen > 0) {
+                // return condition when end of token found
+                addToken(tokens, workArea.substring(0, trimStart));
+                return pos + delimLen;
+            }
+            // check for quote, and thus back into quoting mode
+            if (quoteLen > 0 && isQuote(chars, pos, len, quoteStart, quoteLen)) {
+                quoting = true;
+                pos += quoteLen;
+                continue;
+            }
+            // check for ignored (outside quotes), and ignore
+            int ignoredLen = getIgnoredMatcher().isMatch(chars, pos, start, len);
+            if (ignoredLen > 0) {
+                pos += ignoredLen;
+                continue;
+            }
+            // check for trimmed character
+            // don't yet know if its at the end, so copy to workArea
+            // use trimStart to keep track of trim at the end
+            int trimmedLen = getTrimmerMatcher().isMatch(chars, pos, start, len);
+            if (trimmedLen > 0) {
+                workArea.append(chars, pos, trimmedLen);
+                pos += trimmedLen;
+                continue;
+            }
+            // copy regular character from outside quotes
+            workArea.append(chars[pos++]);
+            trimStart = workArea.size();
+        }
+    }
+    // return condition when end of string found
+    addToken(tokens, workArea.substring(0, trimStart));
+    return -1;
+}

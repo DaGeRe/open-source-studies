@@ -1,0 +1,13 @@
+/**
+ * Return the next character in the iteration
+ *
+ * @return <code>Character</code> for the next character
+ */
+public Character next() {
+    if (hasNext == false) {
+        throw new NoSuchElementException();
+    }
+    char cur = current;
+    prepareNext();
+    return Character.valueOf(cur);
+}

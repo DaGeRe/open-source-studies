@@ -1,0 +1,20 @@
+// TODO: Replace with a RegexTranslator. That should consume the number of characters the regex uses   // TODO: Replace with a RegexTranslator. That should consume the number of characters the regex uses
+                                                                                                     | @Override                                                                                           
+public int translate(CharSequence input, int index, Writer out) throws IOException {                   public int translate(CharSequence input, int index, Writer out) throws IOException {                
+if (index != 0) {                                                                                      if (index != 0) {                                                                                   
+throw new IllegalStateException("CsvUnescaper should never reach the [1] index");                      throw new IllegalStateException("CsvUnescaper should never reach the [1] index");                   
+}                                                                                                      }                                                                                                   
+if (input.charAt(0) != CSV_QUOTE || input.charAt(input.length() - 1) != CSV_QUOTE) {                   if (input.charAt(0) != CSV_QUOTE || input.charAt(input.length() - 1) != CSV_QUOTE) {                
+out.write(input.toString());                                                                           out.write(input.toString());                                                                        
+return input.length();                                                                                 return input.length();                                                                              
+}                                                                                                      }                                                                                                   
+// strip quotes                                                                                        // strip quotes                                                                                     
+String quoteless = input.subSequence(1, input.length() - 1).toString();                                String quoteless = input.subSequence(1, input.length() - 1).toString();                             
+if (StringUtils.containsAny(quoteless, CSV_SEARCH_CHARS)) {                                            if (StringUtils.containsAny(quoteless, CSV_SEARCH_CHARS)) {                                         
+// deal with escaped quotes; ie) ""                                                                    // deal with escaped quotes; ie) ""                                                                 
+out.write(StringUtils.replace(quoteless, CSV_QUOTE_STR + CSV_QUOTE_STR, CSV_QUOTE_STR));               out.write(StringUtils.replace(quoteless, CSV_QUOTE_STR + CSV_QUOTE_STR, CSV_QUOTE_STR));            
+} else {                                                                                               } else {                                                                                            
+out.write(input.toString());                                                                           out.write(input.toString());                                                                        
+}                                                                                                      }                                                                                                   
+return input.length();                                                                                 return input.length();                                                                              
+}                                                                                                      }                                                                                                   

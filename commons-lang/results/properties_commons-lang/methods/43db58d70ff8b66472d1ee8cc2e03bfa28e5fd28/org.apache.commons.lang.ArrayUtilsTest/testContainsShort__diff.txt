@@ -1,0 +1,10 @@
+public void testContainsShort() {
+    short[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, (short) 1));
+    array = new short[] { 0, 1, 2, 3, 0 };
+    assertEquals(true, ArrayUtils.contains(array, (short) 0));
+    assertEquals(true, ArrayUtils.contains(array, (short) 1));
+    assertEquals(true, ArrayUtils.contains(array, (short) 2));
+    assertEquals(true, ArrayUtils.contains(array, (short) 3));
+    assertEquals(false, ArrayUtils.contains(array, (short) 99));
+}

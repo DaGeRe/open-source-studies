@@ -1,0 +1,20 @@
+                                                                                                     | @Test                                                                                               
+public void testDifferenceAt_StringArray() {                                                           public void testDifferenceAt_StringArray() {                                                        
+assertEquals(-1, StringUtils.indexOfDifference((String[]) null));                                      assertEquals(-1, StringUtils.indexOfDifference((String[]) null));                                   
+assertEquals(-1, StringUtils.indexOfDifference(new String[] {}));                                      assertEquals(-1, StringUtils.indexOfDifference(new String[] {}));                                   
+assertEquals(-1, StringUtils.indexOfDifference(new String[] { "abc" }));                               assertEquals(-1, StringUtils.indexOfDifference(new String[] { "abc" }));                            
+assertEquals(-1, StringUtils.indexOfDifference(new String[] { null, null }));                          assertEquals(-1, StringUtils.indexOfDifference(new String[] { null, null }));                       
+assertEquals(-1, StringUtils.indexOfDifference(new String[] { "", "" }));                              assertEquals(-1, StringUtils.indexOfDifference(new String[] { "", "" }));                           
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "", null }));                             assertEquals(0, StringUtils.indexOfDifference(new String[] { "", null }));                          
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "abc", null, null }));                    assertEquals(0, StringUtils.indexOfDifference(new String[] { "abc", null, null }));                 
+assertEquals(0, StringUtils.indexOfDifference(new String[] { null, null, "abc" }));                    assertEquals(0, StringUtils.indexOfDifference(new String[] { null, null, "abc" }));                 
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "", "abc" }));                            assertEquals(0, StringUtils.indexOfDifference(new String[] { "", "abc" }));                         
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "abc", "" }));                            assertEquals(0, StringUtils.indexOfDifference(new String[] { "abc", "" }));                         
+assertEquals(-1, StringUtils.indexOfDifference(new String[] { "abc", "abc" }));                        assertEquals(-1, StringUtils.indexOfDifference(new String[] { "abc", "abc" }));                     
+assertEquals(1, StringUtils.indexOfDifference(new String[] { "abc", "a" }));                           assertEquals(1, StringUtils.indexOfDifference(new String[] { "abc", "a" }));                        
+assertEquals(2, StringUtils.indexOfDifference(new String[] { "ab", "abxyz" }));                        assertEquals(2, StringUtils.indexOfDifference(new String[] { "ab", "abxyz" }));                     
+assertEquals(2, StringUtils.indexOfDifference(new String[] { "abcde", "abxyz" }));                     assertEquals(2, StringUtils.indexOfDifference(new String[] { "abcde", "abxyz" }));                  
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "abcde", "xyz" }));                       assertEquals(0, StringUtils.indexOfDifference(new String[] { "abcde", "xyz" }));                    
+assertEquals(0, StringUtils.indexOfDifference(new String[] { "xyz", "abcde" }));                       assertEquals(0, StringUtils.indexOfDifference(new String[] { "xyz", "abcde" }));                    
+assertEquals(7, StringUtils.indexOfDifference(new String[] { "i am a machine", "i am a robot" }));     assertEquals(7, StringUtils.indexOfDifference(new String[] { "i am a machine", "i am a robot" }));  
+}                                                                                                      }                                                                                                   

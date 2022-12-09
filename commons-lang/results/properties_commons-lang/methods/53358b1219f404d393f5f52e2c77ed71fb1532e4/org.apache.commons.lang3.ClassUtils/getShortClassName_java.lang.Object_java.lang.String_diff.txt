@@ -1,0 +1,15 @@
+// Short class name
+// ----------------------------------------------------------------------
+/**
+ * <p>Gets the class name minus the package name for an {@code Object}.</p>
+ *
+ * @param object  the class to get the short name for, may be null
+ * @param valueIfNull  the value to return if null
+ * @return the class name of the object without the package name, or the null value
+ */
+public static String getShortClassName(Object object, String valueIfNull) {
+    if (object == null) {
+        return valueIfNull;
+    }
+    return getShortClassName(object.getClass());
+}

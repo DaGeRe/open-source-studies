@@ -1,0 +1,33 @@
+public void testSerialization() throws java.io.IOException, ClassNotFoundException {
+    RuntimeException nestedEx = new RuntimeException("nested exception message");
+    NestableExceptionTester1 ex = new NestableExceptionTester1("serialization test", nestedEx);
+    assertTrue("implements java.io.Serializable", nestedEx instanceof java.io.Serializable);
+    assertTrue("implements java.io.Serializable", ex instanceof java.io.Serializable);
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ByteArrayInputStream bais = null;
+    ObjectOutputStream oos = null;
+    ObjectInputStream ois = null;
+    try {
+        oos = new ObjectOutputStream(baos);
+        oos.writeObject(ex);
+        oos.flush();
+        bais = new ByteArrayInputStream(baos.toByteArray());
+        ois = new ObjectInputStream(bais);
+        NestableExceptionTester1 deserializedEx = (NestableExceptionTester1) ois.readObject();
+        assertEquals("getThrowableCount() return value", ex.getThrowableCount(), deserializedEx.getThrowableCount());
+        for (int i = 0; i < ex.getThrowableCount(); i++) {
+            Throwable t = ex.getThrowable(i);
+            Throwable deserializedThrowable = deserializedEx.getThrowable(i);
+            assertEquals(t.getClass(), deserializedThrowable.getClass());
+            assertEquals(t.getMessage(), deserializedThrowable.getMessage());
+        }
+    } finally {
+        if (null != oos) {
+            try {
+                oos.close();
+            } catch (Exception ignored) {
+                // intentionally empty
+            }
+        }
+    }
+}

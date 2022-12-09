@@ -1,0 +1,27 @@
+/**
+ * <p>Return an accessible method (that is, one that can be invoked via
+ * reflection) that implements the specified Method.  If no such method
+ * can be found, return <code>null</code>.</p>
+ *
+ * @param method The method that we wish to call
+ * @return The accessible method
+ */
+public static Method getAccessibleMethod(Method method) {
+    if (!MemberUtils.isAccessible(method)) {
+        return null;
+    }
+    // If the declaring class is public, we are done
+    Class cls = method.getDeclaringClass();
+    if (Modifier.isPublic(cls.getModifiers())) {
+        return method;
+    }
+    String methodName = method.getName();
+    Class[] parameterTypes = method.getParameterTypes();
+    // Check the implemented interfaces and subinterfaces
+    method = getAccessibleMethodFromInterfaceNest(cls, methodName, parameterTypes);
+    // Check the superclass chain
+    if (method == null) {
+        method = getAccessibleMethodFromSuperclass(cls, methodName, parameterTypes);
+    }
+    return method;
+}

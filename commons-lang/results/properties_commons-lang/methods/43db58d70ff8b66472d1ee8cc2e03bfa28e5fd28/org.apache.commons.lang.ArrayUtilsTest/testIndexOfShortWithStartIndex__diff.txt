@@ -1,0 +1,12 @@
+public void testIndexOfShortWithStartIndex() {
+    short[] array = null;
+    assertEquals(-1, ArrayUtils.indexOf(array, (short) 0, 2));
+    array = new short[] { 0, 1, 2, 3, 0 };
+    assertEquals(4, ArrayUtils.indexOf(array, (short) 0, 2));
+    assertEquals(-1, ArrayUtils.indexOf(array, (short) 1, 2));
+    assertEquals(2, ArrayUtils.indexOf(array, (short) 2, 2));
+    assertEquals(3, ArrayUtils.indexOf(array, (short) 3, 2));
+    assertEquals(3, ArrayUtils.indexOf(array, (short) 3, -1));
+    assertEquals(-1, ArrayUtils.indexOf(array, (short) 99, 0));
+    assertEquals(-1, ArrayUtils.indexOf(array, (short) 0, 6));
+}

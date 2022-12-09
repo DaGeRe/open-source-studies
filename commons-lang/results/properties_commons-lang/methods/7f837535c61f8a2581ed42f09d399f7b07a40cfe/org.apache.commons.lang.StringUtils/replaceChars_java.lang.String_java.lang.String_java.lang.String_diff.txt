@@ -1,0 +1,64 @@
+/**
+ * <p>Replaces multiple characters in a String in one go.
+ * This method can also be used to delete characters.</p>
+ *
+ * <p>For example:<br />
+ * <code>replaceChars(&quot;hello&quot;, &quot;ho&quot;, &quot;jy&quot;) = jelly</code>.</p>
+ *
+ * <p>A <code>null</code> string input returns <code>null</code>.
+ * An empty ("") string input returns an empty string.
+ * A null or empty set of search characters returns the input string.</p>
+ *
+ * <p>The length of the search characters should normally equal the length
+ * of the replace characters.
+ * If the search characters is longer, then the extra search characters
+ * are deleted.
+ * If the search characters is shorter, then the extra replace characters
+ * are ignored.</p>
+ *
+ * <pre>
+ * StringUtils.replaceChars(null, *, *)           = null
+ * StringUtils.replaceChars("", *, *)             = ""
+ * StringUtils.replaceChars("abc", null, *)       = "abc"
+ * StringUtils.replaceChars("abc", "", *)         = "abc"
+ * StringUtils.replaceChars("abc", "b", null)     = "ac"
+ * StringUtils.replaceChars("abc", "b", "")       = "ac"
+ * StringUtils.replaceChars("abcba", "bc", "yz")  = "ayzya"
+ * StringUtils.replaceChars("abcba", "bc", "y")   = "ayya"
+ * StringUtils.replaceChars("abcba", "bc", "yzx") = "ayzya"
+ * </pre>
+ *
+ * @param str  String to replace characters in, may be null
+ * @param searchChars  a set of characters to search for, may be null
+ * @param replaceChars  a set of characters to replace, may be null
+ * @return modified String, <code>null</code> if null string input
+ * @since 2.0
+ */
+public static String replaceChars(String str, String searchChars, String replaceChars) {
+    if (isEmpty(str) || isEmpty(searchChars)) {
+        return str;
+    }
+    if (replaceChars == null) {
+        replaceChars = EMPTY;
+    }
+    boolean modified = false;
+    int replaceCharsLength = replaceChars.length();
+    int strLength = str.length();
+    StringBuffer buf = new StringBuffer(strLength);
+    for (int i = 0; i < strLength; i++) {
+        char ch = str.charAt(i);
+        int index = searchChars.indexOf(ch);
+        if (index >= 0) {
+            modified = true;
+            if (index < replaceCharsLength) {
+                buf.append(replaceChars.charAt(index));
+            }
+        } else {
+            buf.append(ch);
+        }
+    }
+    if (modified) {
+        return buf.toString();
+    }
+    return str;
+}

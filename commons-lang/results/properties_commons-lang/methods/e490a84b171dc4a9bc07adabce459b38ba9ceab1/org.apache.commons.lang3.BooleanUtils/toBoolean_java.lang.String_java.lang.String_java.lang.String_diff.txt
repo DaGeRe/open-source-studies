@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a String to a Boolean throwing an exception if no match found.&lt;/p&gt;           * &lt;p&gt;Converts a String to a Boolean throwing an exception if no match found.&lt;/p&gt;        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;null is returned if there is no match.&lt;/p&gt;                                            * &lt;p&gt;null is returned if there is no match.&lt;/p&gt;                                         
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toBoolean("true", "true", "false")  = true                                            *   BooleanUtils.toBoolean("true", "true", "false")  = true                                         
+*   BooleanUtils.toBoolean("false", "true", "false") = false                                           *   BooleanUtils.toBoolean("false", "true", "false") = false                                        
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check                                                                      * @param str  the String to check                                                                   
+* @param trueString  the String to match for {@code true} (case sensitive), may be {@code null}        * @param trueString  the String to match for {@code true} (case sensitive), may be {@code null}     
+* @param falseString  the String to match for {@code false} (case sensitive), may be {@code null}      * @param falseString  the String to match for {@code false} (case sensitive), may be {@code null}   
+* @return the boolean value of the string                                                              * @return the boolean value of the string                                                           
+* @throws IllegalArgumentException if the String doesn't match                                         * @throws IllegalArgumentException if the String doesn't match                                      
+*/                                                                                                     */                                                                                                  
+public static boolean toBoolean(String str, String trueString, String falseString) {                   public static boolean toBoolean(String str, String trueString, String falseString) {                
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+if (trueString == null) {                                                                              if (trueString == null) {                                                                           
+return true;                                                                                           return true;                                                                                        
+} else if (falseString == null) {                                                                    | }                                                                                                   
+                                                                                                     | if (falseString == null) {                                                                          
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+} else if (str.equals(trueString)) {                                                                   } else if (str.equals(trueString)) {                                                                
+return true;                                                                                           return true;                                                                                        
+} else if (str.equals(falseString)) {                                                                  } else if (str.equals(falseString)) {                                                               
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+// no match                                                                                            // no match                                                                                         
+throw new IllegalArgumentException("The String did not match either specified value");                 throw new IllegalArgumentException("The String did not match either specified value");              
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,13 @@
+// Show the Java bug: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4071957
+// We may have to delete this if a JDK fixes the bug.
+public void testShowJavaBug() throws Exception {
+    // Tests with Collections$UnmodifiableSet
+    Set<?> set = Collections.unmodifiableSet(new HashSet<Object>());
+    Method isEmptyMethod = set.getClass().getMethod("isEmpty", new Class[0]);
+    try {
+        isEmptyMethod.invoke(set, new Object[0]);
+        fail("Failed to throw IllegalAccessException as expected");
+    } catch (IllegalAccessException iae) {
+        // expected
+    }
+}

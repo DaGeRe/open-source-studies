@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Performs an xor on an array of Booleans.&lt;/p&gt;                                          * &lt;p&gt;Performs an xor on an array of Booleans.&lt;/p&gt;                                       
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE                   *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE                
+*   BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE                   *   BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE                
+*   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE                    *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE                 
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param array  an array of {@code Boolean}s                                                           * @param array  an array of {@code Boolean}s                                                        
+* @return {@code true} if the xor is successful.                                                       * @return {@code true} if the xor is successful.                                                    
+* @throws IllegalArgumentException if {@code array} is {@code null}                                    * @throws IllegalArgumentException if {@code array} is {@code null}                                 
+* @throws IllegalArgumentException if {@code array} is empty.                                          * @throws IllegalArgumentException if {@code array} is empty.                                       
+* @throws IllegalArgumentException if {@code array} contains a {@code null}                            * @throws IllegalArgumentException if {@code array} contains a {@code null}                         
+*/                                                                                                     */                                                                                                  
+public static Boolean xor(Boolean... array) {                                                          public static Boolean xor(Boolean... array) {                                                       
+if (array == null) {                                                                                   if (array == null) {                                                                                
+throw new IllegalArgumentException("The Array must not be null");                                      throw new IllegalArgumentException("The Array must not be null");                                   
+}                                                                                                      }                                                                                                   
+if (array.length == 0) {                                                                               if (array.length == 0) {                                                                            
+throw new IllegalArgumentException("Array is empty");                                                  throw new IllegalArgumentException("Array is empty");                                               
+}                                                                                                      }                                                                                                   
+boolean[] primitive = null;                                                                          |                                                                                                     
+try {                                                                                                  try {                                                                                               
+primitive = ArrayUtils.toPrimitive(array);                                                           | boolean[] primitive = ArrayUtils.toPrimitive(array);                                                
+                                                                                                     | return xor(primitive) ? Boolean.TRUE : Boolean.FALSE;                                               
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+throw new IllegalArgumentException("The array must not contain any null elements");                    throw new IllegalArgumentException("The array must not contain any null elements");                 
+}                                                                                                      }                                                                                                   
+return xor(primitive) ? Boolean.TRUE : Boolean.FALSE;                                                |                                                                                                     
+}                                                                                                      }                                                                                                   

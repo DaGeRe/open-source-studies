@@ -1,0 +1,6 @@
+public void testDeprecatedGetNestedString_StringStringString() {
+    assertEquals(null, StringUtils.getNestedString(null, "", ""));
+    assertEquals("", StringUtils.getNestedString("", "", ""));
+    assertEquals("", StringUtils.getNestedString("    ", " ", "  "));
+    assertEquals("bar", StringUtils.getNestedString("<foo>bar</foo>", "<foo>", "</foo>"));
+}

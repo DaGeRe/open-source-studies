@@ -1,0 +1,19 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.MILLISECOND
+ * Includes rounding the extremes of one second
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundMilliSecond() throws Exception {
+    final int calendarField = Calendar.MILLISECOND;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    roundedDownDate = lastRoundedDownDate = targetMilliSecondDate;
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 8:15:14.232");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = maxDate = januaryOneDate;
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

@@ -1,0 +1,21 @@
+/**
+ * <p>Appends the toString that would be produced by <code>Object</code>
+ * if a class did not override toString itself. <code>null</code>
+ * will throw a NullPointerException for either of the two parameters. </p>
+ *
+ * <pre>
+ * ObjectUtils.identityToString(buf, "")            = buf.append("java.lang.String@1e23"
+ * ObjectUtils.identityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa"
+ * ObjectUtils.identityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa")
+ * </pre>
+ *
+ * @param buffer  the buffer to append to
+ * @param object  the object to create a toString for
+ * @since 2.4
+ */
+public static void identityToString(StringBuffer buffer, Object object) {
+    if (object == null) {
+        throw new NullPointerException("Cannot get the toString of a null identity");
+    }
+    buffer.append(object.getClass().getName()).append('@').append(Integer.toHexString(System.identityHashCode(object)));
+}

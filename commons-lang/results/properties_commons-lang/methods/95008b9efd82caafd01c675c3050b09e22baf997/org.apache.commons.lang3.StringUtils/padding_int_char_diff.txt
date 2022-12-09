@@ -1,0 +1,33 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Returns padding using the specified delimiter repeated                                    |                                                                                                     
+* to a given length.&lt;/p&gt;                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* StringUtils.padding(0, 'e')  = ""                                                                  |                                                                                                     
+* StringUtils.padding(3, 'e')  = "eee"                                                               |                                                                                                     
+* StringUtils.padding(-2, 'e') = IndexOutOfBoundsException                                           |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;Note: this method doesn't not support padding with                                        |                                                                                                     
+* &lt;a href="http://www.unicode.org/glossary/#supplementary_character"&gt;Unicode Supplementary Cha |                                                                                                     
+* as they require a pair of {@code char}s to be represented.                                         |                                                                                                     
+* If you are needing to support full I18N of your applications                                       |                                                                                                     
+* consider using {@link #repeat(String, int)} instead.                                               |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param repeat  number of times to repeat delim                                                     |                                                                                                     
+* @param padChar  character to repeat                                                                |                                                                                                     
+* @return String with repeated character                                                             |                                                                                                     
+* @throws IndexOutOfBoundsException if &lt;code&gt;repeat &lt; 0&lt;/code&gt;                        |                                                                                                     
+* @see #repeat(String, int)                                                                          |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private static String padding(int repeat, char padChar) throws IndexOutOfBoundsException {           |                                                                                                     
+if (repeat &lt; 0) {                                                                                 |                                                                                                     
+throw new IndexOutOfBoundsException("Cannot pad a negative amount: " + repeat);                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+final char[] buf = new char[repeat];                                                                 |                                                                                                     
+for (int i = 0; i &lt; buf.length; i++) {                                                            |                                                                                                     
+buf[i] = padChar;                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return new String(buf);                                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     

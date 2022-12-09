@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using XML entities.&lt;/p&gt;   * &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using XML entities.&lt;/p&gt;
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For example: &lt;tt&gt;"bread" & "butter"&lt;/tt&gt; =&gt;                                  * &lt;p&gt;For example: &lt;tt&gt;"bread" & "butter"&lt;/tt&gt; =&gt;                               
+* &lt;tt&gt;&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;&lt;/tt&gt;.                 * &lt;tt&gt;&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;&lt;/tt&gt;.              
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                        * &lt;p&gt;Supports only the five basic XML entities (gt, lt, quot, amp, apos).                     
+* Does not support DTDs or external entities.&lt;/p&gt;                                                * Does not support DTDs or external entities.&lt;/p&gt;                                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Note that unicode characters greater than 0x7f are currently escaped to                     * &lt;p&gt;Note that unicode characters greater than 0x7f are currently escaped to                  
+*    their numerical \\u equivalent. This may change in future releases. &lt;/p&gt;                    *    their numerical \\u equivalent. This may change in future releases. &lt;/p&gt;                 
+*                                                                                                      *                                                                                                   
+* @param str  the &lt;code&gt;String&lt;/code&gt; to escape, may be null                               * @param str  the &lt;code&gt;String&lt;/code&gt; to escape, may be null                            
+* @return a new escaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null strin   * @return a new escaped &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt; if null strin
+* @see #unescapeXml(java.lang.String)                                                                  * @see #unescapeXml(java.lang.String)                                                               
+*/                                                                                                     */                                                                                                  
+public static String escapeXml(String str) {                                                           public static String escapeXml(String str) {                                                        
+return EscapeUtils.ESCAPE_XML.translate(str);                                                        | return EscapeUtils.escapeXml(str);                                                                  
+}                                                                                                      }                                                                                                   

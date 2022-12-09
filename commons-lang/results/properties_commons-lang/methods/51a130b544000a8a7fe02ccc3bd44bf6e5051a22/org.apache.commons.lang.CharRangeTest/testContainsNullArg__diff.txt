@@ -1,0 +1,9 @@
+public void testContainsNullArg() {                                                                    public void testContainsNullArg() {                                                                 
+CharRange range = new CharRange('a');                                                                | CharRange range = CharRange.is('a');                                                                
+try {                                                                                                  try {                                                                                               
+@SuppressWarnings("unused")                                                                            @SuppressWarnings("unused")                                                                         
+boolean contains = range.contains(null);                                                               boolean contains = range.contains(null);                                                            
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+assertEquals("The Range must not be null", e.getMessage());                                            assertEquals("The Range must not be null", e.getMessage());                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

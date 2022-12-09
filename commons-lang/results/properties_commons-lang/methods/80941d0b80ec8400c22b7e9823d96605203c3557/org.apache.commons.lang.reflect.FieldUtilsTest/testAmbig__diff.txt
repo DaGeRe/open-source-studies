@@ -1,0 +1,8 @@
+public void testAmbig() {
+    try {
+        FieldUtils.getField(Ambig.class, "VALUE");
+        fail("should have failed on interface field ambiguity");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

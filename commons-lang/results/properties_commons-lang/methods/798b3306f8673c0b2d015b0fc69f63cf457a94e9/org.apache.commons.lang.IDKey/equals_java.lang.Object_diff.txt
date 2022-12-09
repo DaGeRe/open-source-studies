@@ -1,0 +1,16 @@
+/**                                                                                                  |                                                                                                     
+* checks if instances are equal                                                                      |                                                                                                     
+* @param other                                                                                       |                                                                                                     
+* @return if the instances are for the same object                                                   |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public boolean equals(Object other) {                                                                |                                                                                                     
+if (!(other instanceof IDKey)) {                                                                     |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+IDKey idKey = (IDKey) other;                                                                         |                                                                                                     
+if (id != idKey.id) {                                                                                |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+// Note that identity equals is used.                                                                |                                                                                                     
+return value == idKey.value;                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

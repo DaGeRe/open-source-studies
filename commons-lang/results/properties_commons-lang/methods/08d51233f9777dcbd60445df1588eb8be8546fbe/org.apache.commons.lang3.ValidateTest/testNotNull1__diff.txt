@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testNotNull1() {
+    Validate.notNull(new Object());
+    try {
+        Validate.notNull(null);
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+        assertEquals("The validated object is null", ex.getMessage());
+    }
+    String str = "Hi";
+    String testStr = Validate.notNull(str);
+    assertSame(str, testStr);
+}

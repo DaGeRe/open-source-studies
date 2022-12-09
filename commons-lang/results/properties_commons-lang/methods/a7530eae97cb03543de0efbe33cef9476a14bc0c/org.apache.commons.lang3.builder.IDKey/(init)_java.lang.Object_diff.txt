@@ -1,0 +1,12 @@
+/**
+ * Constructor for IDKey
+ * @param _value The value
+ */
+public IDKey(Object _value) {
+    // This is the Object hashcode
+    id = System.identityHashCode(_value);
+    // There have been some cases (LANG-459) that return the
+    // same identity hash code for different objects.  So
+    // the value is also added to disambiguate these cases.
+    value = _value;
+}

@@ -1,0 +1,10 @@
+public void testWrappersToPrimitivesNull() {                                                           public void testWrappersToPrimitivesNull() {                                                        
+// assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives(null));                 | // assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives(null)); // generates wa
+// explicit cast                                                                                     | // equivalent cast                                                                                  
+assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives((Class&lt;?&gt;[]) null));   assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives((Class&lt;?&gt;[]) null));
+                                                                                                     | // Other possible casts for null                                                                    
+                                                                                                     | assertTrue("empty -&gt; empty", Arrays.equals(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.wrappersToPri
+                                                                                                     | // == new Class&lt;?&gt;[]{null}                                                                    
+                                                                                                     | Class&lt;?&gt;[] castNull = ClassUtils.wrappersToPrimitives((Class&lt;?&gt;) null);                 
+                                                                                                     | assertTrue("(Class&lt;?&gt;)null -&gt; [null]", Arrays.equals(new Class&lt;?&gt;[] { null }, castNul
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+public void test_getInstance_String_Locale() {                                                         public void test_getInstance_String_Locale() {                                                      
+Locale realDefaultLocale = Locale.getDefault();                                                        Locale realDefaultLocale = Locale.getDefault();                                                     
+try {                                                                                                  try {                                                                                               
+Locale.setDefault(Locale.US);                                                                          Locale.setDefault(Locale.US);                                                                       
+FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                     FastDateFormat format1 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                  
+FastDateFormat format2 = FastDateFormat.getInstance("MM/DD/yyyy");                                     FastDateFormat format2 = FastDateFormat.getInstance("MM/DD/yyyy");                                  
+FastDateFormat format3 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                     FastDateFormat format3 = FastDateFormat.getInstance("MM/DD/yyyy", Locale.GERMANY);                  
+// -- junit 3.8 version -- assertFalse(format1 == format2);                                            // -- junit 3.8 version -- assertFalse(format1 == format2);                                         
+assertTrue(format1 != format2);                                                                        assertTrue(format1 != format2);                                                                     
+assertSame(format1, format3);                                                                          assertSame(format1, format3);                                                                       
+assertSame(Locale.GERMANY, format1.getLocale());                                                     | assertEquals(Locale.GERMANY, format1.getLocale());                                                  
+} finally {                                                                                            } finally {                                                                                         
+Locale.setDefault(realDefaultLocale);                                                                  Locale.setDefault(realDefaultLocale);                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

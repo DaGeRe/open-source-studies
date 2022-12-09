@@ -1,0 +1,11 @@
+/**
+ * Read the named public field. Only the class of the specified object will be considered.
+ * @param target  the object to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @return the value of the field
+ * @throws IllegalArgumentException if the class or field name is null
+ * @throws IllegalAccessException if the named field is not public
+ */
+public static Object readDeclaredField(Object target, String fieldName) throws IllegalAccessException {
+    return readDeclaredField(target, fieldName, false);
+}

@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if String contains a search String irrespective of case,                             * &lt;p&gt;Checks if String contains a search String irrespective of case,                          
+* handling &lt;code&gt;null&lt;/code&gt;. This method uses                                           | * handling &lt;code&gt;null&lt;/code&gt;. Case-insensitivity is defined as by                       
+* {@link #contains(String, String)}.&lt;/p&gt;                                                       | * {@link String#equalsIgnoreCase(String)}.                                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; String will return &lt;code&gt;false&lt;/code&gt;.&lt;/p&   * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; String will return &lt;code&gt;false&lt;/code&gt;.&lt;/p&
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.contains(null, *) = false                                                                * StringUtils.contains(null, *) = false                                                             
+* StringUtils.contains(*, null) = false                                                                * StringUtils.contains(*, null) = false                                                             
+* StringUtils.contains("", "") = true                                                                  * StringUtils.contains("", "") = true                                                               
+* StringUtils.contains("abc", "") = true                                                               * StringUtils.contains("abc", "") = true                                                            
+* StringUtils.contains("abc", "a") = true                                                              * StringUtils.contains("abc", "a") = true                                                           
+* StringUtils.contains("abc", "z") = false                                                             * StringUtils.contains("abc", "z") = false                                                          
+* StringUtils.contains("abc", "A") = true                                                              * StringUtils.contains("abc", "A") = true                                                           
+* StringUtils.contains("abc", "Z") = false                                                             * StringUtils.contains("abc", "Z") = false                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check, may be null                                                         * @param str  the String to check, may be null                                                      
+* @param searchStr  the String to find, may be null                                                    * @param searchStr  the String to find, may be null                                                 
+* @return true if the String contains the search String irrespective of                                * @return true if the String contains the search String irrespective of                             
+* case or false if not or &lt;code&gt;null&lt;/code&gt; string input                                   * case or false if not or &lt;code&gt;null&lt;/code&gt; string input                                
+*/                                                                                                     */                                                                                                  
+public static boolean containsIgnoreCase(String str, String searchStr) {                               public static boolean containsIgnoreCase(String str, String searchStr) {                            
+if (str == null || searchStr == null) {                                                                if (str == null || searchStr == null) {                                                             
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return contains(str.toUpperCase(), searchStr.toUpperCase());                                         | int len = searchStr.length();                                                                       
+                                                                                                     | int max = str.length() - len;                                                                       
+                                                                                                     | for (int i = 0; i &lt;= max; i++) {                                                                 
+                                                                                                     | if (str.regionMatches(true, i, searchStr, 0, len)) {                                                
+                                                                                                     | return true;                                                                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   

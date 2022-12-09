@@ -1,0 +1,10 @@
+public void testWrappersToPrimitivesNull() {
+    // assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives(null)); // generates warning
+    // equivalent cast
+    assertNull("Wrong result for null input", ClassUtils.wrappersToPrimitives((Class<?>[]) null));
+    // Other possible casts for null
+    assertTrue("empty -> empty", Arrays.equals(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.wrappersToPrimitives()));
+    // == new Class<?>[]{null}
+    Class<?>[] castNull = ClassUtils.wrappersToPrimitives((Class<?>) null);
+    assertTrue("(Class<?>)null -> [null]", Arrays.equals(new Class<?>[] { null }, castNull));
+}

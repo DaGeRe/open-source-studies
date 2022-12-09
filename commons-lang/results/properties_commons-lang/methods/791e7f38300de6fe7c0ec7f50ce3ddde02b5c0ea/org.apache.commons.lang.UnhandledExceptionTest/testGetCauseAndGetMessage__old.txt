@@ -1,0 +1,7 @@
+public void testGetCauseAndGetMessage() {
+    final Throwable t = new NullPointerException();
+    final String msg = "nullArg";
+    final Nestable n = new UnhandledException(msg, t);
+    assertEquals(t, n.getCause());
+    assertEquals(msg, n.getMessage());
+}

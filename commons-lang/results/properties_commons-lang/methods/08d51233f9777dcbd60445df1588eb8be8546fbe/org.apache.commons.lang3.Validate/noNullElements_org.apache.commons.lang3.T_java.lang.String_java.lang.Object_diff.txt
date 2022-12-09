@@ -1,0 +1,34 @@
+// notNullElements collection
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate that the specified argument iterable is neither
+ * <code>null</code> nor contains any elements that are <code>null</code>;
+ * otherwise throwing an exception with the specified message.
+ *
+ * <pre>Validate.noNullElements(myCollection, "The collection contains null at position %d");</pre>
+ *
+ * <p>If the iterable is <code>null</code>, then the message in the exception
+ * is &quot;The validated object is null&quot;.</p>
+ *
+ * <p>If the iterable has a <code>null</code> element, then the iteration
+ * index of the invalid element is appended to the <code>values</code>
+ * argument.</p>
+ *
+ * @param <T> the iterable type
+ * @param iterable the iterable to check
+ * @return the validated iterable (never <code>null</code> method for chaining)
+ * @throws NullPointerException if the array is <code>null</code>
+ * @throws IllegalArgumentException if an element is <code>null</code>
+ * @see #noNullElements(Iterable)
+ */
+public static <T extends Iterable<?>> T noNullElements(T iterable, String message, Object... values) {
+    Validate.notNull(iterable);
+    int i = 0;
+    for (Iterator<?> it = iterable.iterator(); it.hasNext(); i++) {
+        if (it.next() == null) {
+            Object[] values2 = ArrayUtils.addAll(values, Integer.valueOf(i));
+            throw new IllegalArgumentException(String.format(message, values2));
+        }
+    }
+    return iterable;
+}

@@ -1,0 +1,30 @@
+/**
+ * Inserts the value into this builder.
+ *
+ * @param index  the index to add at, must be valid
+ * @param value  the value to insert
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+public StrBuilder insert(int index, boolean value) {
+    validateIndex(index);
+    if (value) {
+        ensureCapacity(size + 4);
+        System.arraycopy(buffer, index, buffer, index + 4, size - index);
+        buffer[index++] = 't';
+        buffer[index++] = 'r';
+        buffer[index++] = 'u';
+        buffer[index] = 'e';
+        size += 4;
+    } else {
+        ensureCapacity(size + 5);
+        System.arraycopy(buffer, index, buffer, index + 5, size - index);
+        buffer[index++] = 'f';
+        buffer[index++] = 'a';
+        buffer[index++] = 'l';
+        buffer[index++] = 's';
+        buffer[index] = 'e';
+        size += 5;
+    }
+    return this;
+}

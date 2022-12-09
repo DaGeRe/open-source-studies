@@ -1,0 +1,28 @@
+/**
+ * <p>Appends the fields and values defined by the given object of the
+ * given Class.</p>
+ *
+ * @param lhs  the left hand object
+ * @param rhs  the right hand object
+ * @param clazz  the class to append details of
+ * @param builder  the builder to append to
+ * @param useTransients  whether to test transient fields
+ * @param excludeFields  array of field names to exclude from testing
+ */
+private static void reflectionAppend(Object lhs, Object rhs, Class clazz, EqualsBuilder builder, boolean useTransients, String[] excludeFields) {
+    Field[] fields = clazz.getDeclaredFields();
+    List excludedFieldList = excludeFields != null ? Arrays.asList(excludeFields) : Collections.EMPTY_LIST;
+    AccessibleObject.setAccessible(fields, true);
+    for (int i = 0; i < fields.length && builder.isEquals; i++) {
+        Field f = fields[i];
+        if (!excludedFieldList.contains(f.getName()) && (f.getName().indexOf('$') == -1) && (useTransients || !Modifier.isTransient(f.getModifiers())) && (!Modifier.isStatic(f.getModifiers()))) {
+            try {
+                builder.append(f.get(lhs), f.get(rhs));
+            } catch (IllegalAccessException e) {
+                // this can't happen. Would get a Security exception instead
+                // throw a runtime exception in case the impossible happens.
+                throw new InternalError("Unexpected IllegalAccessException");
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+public void testValidIndex_collection() {
+    Collection<String> coll = new ArrayList<String>();
+    coll.add(null);
+    coll.add(null);
+    Validate.validIndex(coll, 0);
+    Validate.validIndex(coll, 1);
+    try {
+        Validate.validIndex(coll, -1);
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("The validated collection index is invalid: -1", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(coll, 2);
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("The validated collection index is invalid: 2", ex.getMessage());
+    }
+    List<String> strColl = Arrays.asList(new String[] { "Hi" });
+    List<String> test = Validate.validIndex(strColl, 0);
+    assertSame(strColl, test);
+}

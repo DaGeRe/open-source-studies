@@ -1,0 +1,15 @@
+/**
+ * <p>Formats a calendar into a specific pattern in a time zone  and locale.</p>
+ *
+ * @param calendar  the calendar to format
+ * @param pattern  the pattern to use to format the calendar
+ * @param timeZone  the time zone  to use, may be <code>null</code>
+ * @param locale  the locale to use, may be <code>null</code>
+ * @return the formatted calendar
+ * @see FastDateFormat#format(Calendar)
+ * @since 2.4
+ */
+public static String format(Calendar calendar, String pattern, TimeZone timeZone, Locale locale) {
+    FastDateFormat df = FastDateFormat.getInstance(pattern, timeZone, locale);
+    return df.format(calendar);
+}

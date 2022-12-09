@@ -1,0 +1,16 @@
+/**
+ * <p>Gets the {@code Map} of enums by name.</p>
+ *
+ * <p>This method is useful when you need a map of enums by name.</p>
+ *
+ * @param <E> the type of the enumeration
+ * @param enumClass  the class of the enum to query, not null
+ * @return the modifiable map of enum names to enums, never null
+ */
+public static <E extends Enum<E>> Map<String, E> getEnumMap(Class<E> enumClass) {
+    Map<String, E> map = new LinkedHashMap<String, E>();
+    for (E e : enumClass.getEnumConstants()) {
+        map.put(e.name(), e);
+    }
+    return map;
+}

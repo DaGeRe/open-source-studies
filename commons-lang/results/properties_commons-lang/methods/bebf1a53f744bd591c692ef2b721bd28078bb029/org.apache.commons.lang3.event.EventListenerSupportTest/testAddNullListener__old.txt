@@ -1,0 +1,8 @@
+public void testAddNullListener() {
+    EventListenerSupport<ActionListener> listenerSupport = EventListenerSupport.create(ActionListener.class);
+    try {
+        listenerSupport.addListener(null);
+        fail("Should not be able to add a null listener.");
+    } catch (NullPointerException e) {
+    }
+}

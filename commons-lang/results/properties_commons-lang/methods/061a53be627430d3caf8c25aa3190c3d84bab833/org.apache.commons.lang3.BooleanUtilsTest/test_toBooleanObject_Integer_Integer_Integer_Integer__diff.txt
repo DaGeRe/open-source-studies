@@ -1,0 +1,22 @@
+@Test                                                                                                  @Test                                                                                               
+public void test_toBooleanObject_Integer_Integer_Integer_Integer() {                                   public void test_toBooleanObject_Integer_Integer_Integer_Integer() {                                
+Integer six = new Integer(6);                                                                          Integer six = new Integer(6);                                                                       
+Integer seven = new Integer(7);                                                                        Integer seven = new Integer(7);                                                                     
+Integer eight = new Integer(8);                                                                        Integer eight = new Integer(8);                                                                     
+assertSame(Boolean.TRUE, BooleanUtils.toBooleanObject((Integer) null, null, seven, eight));            assertSame(Boolean.TRUE, BooleanUtils.toBooleanObject((Integer) null, null, seven, eight));         
+assertSame(Boolean.FALSE, BooleanUtils.toBooleanObject((Integer) null, six, null, eight));             assertSame(Boolean.FALSE, BooleanUtils.toBooleanObject((Integer) null, six, null, eight));          
+assertSame(null, BooleanUtils.toBooleanObject((Integer) null, six, seven, null));                      assertSame(null, BooleanUtils.toBooleanObject((Integer) null, six, seven, null));                   
+try {                                                                                                |                                                                                                     
+BooleanUtils.toBooleanObject(null, six, seven, eight);                                               |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject(new Integer(6), six, seven, eight));           assertEquals(Boolean.TRUE, BooleanUtils.toBooleanObject(new Integer(6), six, seven, eight));        
+assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject(new Integer(7), six, seven, eight));          assertEquals(Boolean.FALSE, BooleanUtils.toBooleanObject(new Integer(7), six, seven, eight));       
+assertEquals(null, BooleanUtils.toBooleanObject(new Integer(8), six, seven, eight));                   assertEquals(null, BooleanUtils.toBooleanObject(new Integer(8), six, seven, eight));                
+try {                                                                                                |                                                                                                     
+BooleanUtils.toBooleanObject(new Integer(9), six, seven, eight);                                     |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

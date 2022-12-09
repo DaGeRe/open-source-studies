@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testEquals() {
+    assertEquals(true, StringUtils.equals(null, null));
+    assertEquals(true, StringUtils.equals(FOO, FOO));
+    assertEquals(true, StringUtils.equals(FOO, new String(new char[] { 'f', 'o', 'o' })));
+    assertEquals(false, StringUtils.equals(FOO, new String(new char[] { 'f', 'O', 'O' })));
+    assertEquals(false, StringUtils.equals(FOO, BAR));
+    assertEquals(false, StringUtils.equals(FOO, null));
+    assertEquals(false, StringUtils.equals(null, FOO));
+}

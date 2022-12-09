@@ -1,0 +1,18 @@
+// Tests
+// --------------------------------------------------------------------
+/**
+ * <p>Tests whether the specified <code>number</code> occurs within
+ * this range using <code>double</code> comparison.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * @param number  the number to test, may be <code>null</code>
+ * @return <code>true</code> if the specified number occurs within this range
+ */
+@Override
+public boolean containsNumber(Number number) {
+    if (number == null) {
+        return false;
+    }
+    return containsDouble(number.doubleValue());
+}

@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------
+public void testCharAt() {
+    StrBuilder sb = new StrBuilder();
+    try {
+        sb.charAt(0);
+        fail("charAt(0) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    try {
+        sb.charAt(-1);
+        fail("charAt(-1) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    sb.append("foo");
+    assertEquals('f', sb.charAt(0));
+    assertEquals('o', sb.charAt(1));
+    assertEquals('o', sb.charAt(2));
+    try {
+        sb.charAt(-1);
+        fail("charAt(-1) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    try {
+        sb.charAt(3);
+        fail("charAt(3) expected IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+}

@@ -1,0 +1,32 @@
+/**
+ * Returns the number of millis of a datefield, if this is a constant value
+ *
+ * @param unit A Calendar field which is a valid unit for a fragment
+ * @return number of millis
+ * @throws IllegalArgumentException if date can't be represented in millisenconds
+ * @since 2.4
+ */
+private static long getMillisPerUnit(int unit) {
+    long result = Long.MAX_VALUE;
+    switch(unit) {
+        case Calendar.DAY_OF_YEAR:
+        case Calendar.DATE:
+            result = MILLIS_PER_DAY;
+            break;
+        case Calendar.HOUR_OF_DAY:
+            result = MILLIS_PER_HOUR;
+            break;
+        case Calendar.MINUTE:
+            result = MILLIS_PER_MINUTE;
+            break;
+        case Calendar.SECOND:
+            result = MILLIS_PER_SECOND;
+            break;
+        case Calendar.MILLISECOND:
+            result = 1;
+            break;
+        default:
+            throw new IllegalArgumentException("The unit " + unit + " cannot be represented is milleseconds");
+    }
+    return result;
+}

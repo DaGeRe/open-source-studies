@@ -1,0 +1,21 @@
+/**
+ * Replaces all the occurrences of variables with their matching values
+ * from the resolver using the given source buffer as a template.
+ * The buffer is not altered by this method.
+ * <p>
+ * Only the specified portion of the buffer will be processed.
+ * The rest of the buffer is not processed, and is not returned.
+ *
+ * @param source  the buffer to use as a template, not changed, null returns null
+ * @param offset  the start offset within the array, must be valid
+ * @param length  the length within the array to be processed, must be valid
+ * @return the result of the replace operation
+ */
+public String replace(StringBuffer source, int offset, int length) {
+    if (source == null) {
+        return null;
+    }
+    StrBuilder buf = new StrBuilder(length).append(source, offset, length);
+    substitute(buf, 0, length);
+    return buf.toString();
+}

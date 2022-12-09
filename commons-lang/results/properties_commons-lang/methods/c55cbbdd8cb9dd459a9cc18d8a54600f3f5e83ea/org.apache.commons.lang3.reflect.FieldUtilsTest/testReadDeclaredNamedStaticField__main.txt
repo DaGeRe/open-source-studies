@@ -1,0 +1,22 @@
+@Test
+public void testReadDeclaredNamedStaticField() throws Exception {
+    assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(Foo.class, "VALUE"));
+    try {
+        assertEquals("child", FieldUtils.readDeclaredStaticField(PublicChild.class, "VALUE"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PubliclyShadowedChild.class, "VALUE"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(Foo.VALUE, FieldUtils.readDeclaredStaticField(PrivatelyShadowedChild.class, "VALUE"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

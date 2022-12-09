@@ -1,0 +1,36 @@
+public void testConstructor2b() {
+    IntRange nr = new IntRange(five, ten);
+    assertSame(five, nr.getMinimumNumber());
+    assertSame(ten, nr.getMaximumNumber());
+    nr = new IntRange(ten, five);
+    assertSame(five, nr.getMinimumNumber());
+    assertSame(ten, nr.getMaximumNumber());
+    nr = new IntRange(five, long10);
+    assertSame(five, nr.getMinimumNumber());
+    assertEquals(ten, nr.getMaximumNumber());
+    // test non Integer, for full coverage
+    Long fiveL = new Long(5L);
+    Long tenL = new Long(10L);
+    nr = new IntRange(fiveL, tenL);
+    assertEquals(five, nr.getMinimumNumber());
+    assertEquals(ten, nr.getMaximumNumber());
+    nr = new IntRange(tenL, fiveL);
+    assertEquals(five, nr.getMinimumNumber());
+    assertEquals(ten, nr.getMaximumNumber());
+    // not null
+    try {
+        new IntRange(five, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new IntRange(null, five);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new IntRange(null, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

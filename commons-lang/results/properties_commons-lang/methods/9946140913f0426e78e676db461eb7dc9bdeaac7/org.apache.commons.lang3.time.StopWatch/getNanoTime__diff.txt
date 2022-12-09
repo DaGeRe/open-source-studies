@@ -1,0 +1,23 @@
+/**
+ * <p>
+ * Get the time on the stopwatch in nanoseconds.
+ * </p>
+ *
+ * <p>
+ * This is either the time between the start and the moment this method is called, or the amount of time between
+ * start and stop.
+ * </p>
+ *
+ * @return the time in nanoseconds
+ * @since 3.0
+ */
+public long getNanoTime() {
+    if (this.runningState == STATE_STOPPED || this.runningState == STATE_SUSPENDED) {
+        return this.stopTime - this.startTime;
+    } else if (this.runningState == STATE_UNSTARTED) {
+        return 0;
+    } else if (this.runningState == STATE_RUNNING) {
+        return System.nanoTime() - this.startTime;
+    }
+    throw new RuntimeException("Illegal running state has occured. ");
+}

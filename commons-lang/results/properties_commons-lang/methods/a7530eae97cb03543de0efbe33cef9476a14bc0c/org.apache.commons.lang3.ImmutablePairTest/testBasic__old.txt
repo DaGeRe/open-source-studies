@@ -1,0 +1,13 @@
+@Test
+public void testBasic() throws Exception {
+    ImmutablePair<Integer, String> pair = new ImmutablePair<Integer, String>(0, "foo");
+    assertEquals(0, pair.left.intValue());
+    assertEquals(0, pair.getLeftElement().intValue());
+    assertEquals("foo", pair.right);
+    assertEquals("foo", pair.getRightElement());
+    ImmutablePair<Object, String> pair2 = new ImmutablePair<Object, String>(null, "bar");
+    assertNull(pair2.left);
+    assertNull(pair2.getLeftElement());
+    assertEquals("bar", pair2.right);
+    assertEquals("bar", pair2.getRightElement());
+}

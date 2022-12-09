@@ -1,0 +1,95 @@
+/**
+ * <p>This constructs an <code>Iterator</code> over each day in a date
+ * range defined by a focus date and range style.</p>
+ *
+ * <p>For instance, passing Thursday, July 4, 2002 and a
+ * <code>RANGE_MONTH_SUNDAY</code> will return an <code>Iterator</code>
+ * that starts with Sunday, June 30, 2002 and ends with Saturday, August 3,
+ * 2002, returning a Calendar instance for each intermediate day.</p>
+ *
+ * <p>This method provides an iterator that returns Calendar objects.
+ * The days are progressed using {@link Calendar#add(int, int)}.</p>
+ *
+ * @param focus  the date to work with
+ * @param rangeStyle  the style constant to use. Must be one of
+ * {@link DateUtils#RANGE_MONTH_SUNDAY},
+ * {@link DateUtils#RANGE_MONTH_MONDAY},
+ * {@link DateUtils#RANGE_WEEK_SUNDAY},
+ * {@link DateUtils#RANGE_WEEK_MONDAY},
+ * {@link DateUtils#RANGE_WEEK_RELATIVE},
+ * {@link DateUtils#RANGE_WEEK_CENTER}
+ * @return the date iterator
+ * @throws IllegalArgumentException if the date is <code>null</code>
+ * @throws IllegalArgumentException if the rangeStyle is invalid
+ */
+public static Iterator<Calendar> iterator(Calendar focus, int rangeStyle) {
+    if (focus == null) {
+        throw new IllegalArgumentException("The date must not be null");
+    }
+    Calendar start = null;
+    Calendar end = null;
+    int startCutoff = Calendar.SUNDAY;
+    int endCutoff = Calendar.SATURDAY;
+    switch(rangeStyle) {
+        case RANGE_MONTH_SUNDAY:
+        case RANGE_MONTH_MONDAY:
+            // Set start to the first of the month
+            start = truncate(focus, Calendar.MONTH);
+            // Set end to the last of the month
+            end = (Calendar) start.clone();
+            end.add(Calendar.MONTH, 1);
+            end.add(Calendar.DATE, -1);
+            // Loop start back to the previous sunday or monday
+            if (rangeStyle == RANGE_MONTH_MONDAY) {
+                startCutoff = Calendar.MONDAY;
+                endCutoff = Calendar.SUNDAY;
+            }
+            break;
+        case RANGE_WEEK_SUNDAY:
+        case RANGE_WEEK_MONDAY:
+        case RANGE_WEEK_RELATIVE:
+        case RANGE_WEEK_CENTER:
+            // Set start and end to the current date
+            start = truncate(focus, Calendar.DATE);
+            end = truncate(focus, Calendar.DATE);
+            switch(rangeStyle) {
+                case RANGE_WEEK_SUNDAY:
+                    // already set by default
+                    break;
+                case RANGE_WEEK_MONDAY:
+                    startCutoff = Calendar.MONDAY;
+                    endCutoff = Calendar.SUNDAY;
+                    break;
+                case RANGE_WEEK_RELATIVE:
+                    startCutoff = focus.get(Calendar.DAY_OF_WEEK);
+                    endCutoff = startCutoff - 1;
+                    break;
+                case RANGE_WEEK_CENTER:
+                    startCutoff = focus.get(Calendar.DAY_OF_WEEK) - 3;
+                    endCutoff = focus.get(Calendar.DAY_OF_WEEK) + 3;
+                    break;
+            }
+            break;
+        default:
+            throw new IllegalArgumentException("The range style " + rangeStyle + " is not valid.");
+    }
+    if (startCutoff < Calendar.SUNDAY) {
+        startCutoff += 7;
+    }
+    if (startCutoff > Calendar.SATURDAY) {
+        startCutoff -= 7;
+    }
+    if (endCutoff < Calendar.SUNDAY) {
+        endCutoff += 7;
+    }
+    if (endCutoff > Calendar.SATURDAY) {
+        endCutoff -= 7;
+    }
+    while (start.get(Calendar.DAY_OF_WEEK) != startCutoff) {
+        start.add(Calendar.DATE, -1);
+    }
+    while (end.get(Calendar.DAY_OF_WEEK) != endCutoff) {
+        end.add(Calendar.DATE, 1);
+    }
+    return new DateIterator(start, end);
+}

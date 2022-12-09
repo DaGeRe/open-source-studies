@@ -1,0 +1,13 @@
+// ----------------------------------------------------------------
+public void testConstructors() {
+    assertEquals(0, new MutableLong().longValue());
+    assertEquals(1, new MutableLong(1).longValue());
+    assertEquals(2, new MutableLong(Long.valueOf(2)).longValue());
+    assertEquals(3, new MutableLong(new MutableLong(3)).longValue());
+    assertEquals(2, new MutableLong("2").longValue());
+    try {
+        new MutableLong((Number) null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

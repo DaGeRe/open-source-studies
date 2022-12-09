@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns the first value in the array which is not &lt;code&gt;null&lt;/code&gt;.            * &lt;p&gt;Returns the first value in the array which is not &lt;code&gt;null&lt;/code&gt;.         
+* If all the values are &lt;code&gt;null&lt;/code&gt; or the array is &lt;code&gt;null&lt;/code&gt;    * If all the values are &lt;code&gt;null&lt;/code&gt; or the array is &lt;code&gt;null&lt;/code&gt; 
+* or empty then &lt;code&gt;null&lt;/code&gt; is returned.&lt;/p&gt;                                   * or empty then &lt;code&gt;null&lt;/code&gt; is returned.&lt;/p&gt;                                
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* ObjectUtils.firstNonNull(null, null)      = null                                                     * ObjectUtils.firstNonNull(null, null)      = null                                                  
+* ObjectUtils.firstNonNull(null, "")        = ""                                                       * ObjectUtils.firstNonNull(null, "")        = ""                                                    
+* ObjectUtils.firstNonNull(null, null, "")  = ""                                                       * ObjectUtils.firstNonNull(null, null, "")  = ""                                                    
+* ObjectUtils.firstNonNull(null, "zz")      = "zz"                                                     * ObjectUtils.firstNonNull(null, "zz")      = "zz"                                                  
+* ObjectUtils.firstNonNull("abc", *)        = "abc"                                                    * ObjectUtils.firstNonNull("abc", *)        = "abc"                                                 
+* ObjectUtils.firstNonNull(null, "xyz", *)  = "xyz"                                                    * ObjectUtils.firstNonNull(null, "xyz", *)  = "xyz"                                                 
+* ObjectUtils.firstNonNull(Boolean.TRUE, *) = Boolean.TRUE                                             * ObjectUtils.firstNonNull(Boolean.TRUE, *) = Boolean.TRUE                                          
+* ObjectUtils.firstNonNull()                = null                                                     * ObjectUtils.firstNonNull()                = null                                                  
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param values  the values to test, may be &lt;code&gt;null&lt;/code&gt; or empty                     * @param values  the values to test, may be &lt;code&gt;null&lt;/code&gt; or empty                  
+* @return the first value from &lt;code&gt;values&lt;/code&gt; which is not &lt;code&gt;null&lt;/cod   * @return the first value from &lt;code&gt;values&lt;/code&gt; which is not &lt;code&gt;null&lt;/cod
+*  or &lt;code&gt;null&lt;/code&gt; if there are no non-null values                                    *  or &lt;code&gt;null&lt;/code&gt; if there are no non-null values                                 
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T firstNonNull(T... values) {                                                  public static &lt;T&gt; T firstNonNull(T... values) {                                               
+                                                                                                     | if (values != null) {                                                                               
+for (T val : values) {                                                                                 for (T val : values) {                                                                              
+if (val != null && val != ObjectUtils.NULL) {                                                        | if (val != null) {                                                                                  
+return val;                                                                                            return val;                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,18 @@
+@Test
+public void testRemoveElementShortArray() {
+    short[] array;
+    array = ArrayUtils.removeElement((short[]) null, (short) 1);
+    assertNull(array);
+    array = ArrayUtils.removeElement(ArrayUtils.EMPTY_SHORT_ARRAY, (short) 1);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_SHORT_ARRAY, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new short[] { 1 }, (short) 1);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_SHORT_ARRAY, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new short[] { 1, 2 }, (short) 1);
+    assertTrue(Arrays.equals(new short[] { 2 }, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new short[] { 1, 2, 1 }, (short) 1);
+    assertTrue(Arrays.equals(new short[] { 2, 1 }, array));
+    assertEquals(Short.TYPE, array.getClass().getComponentType());
+}

@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testIndexOfAny_StringChararray() {
+    assertEquals(-1, StringUtils.indexOfAny(null, (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAny(null, new char[0]));
+    assertEquals(-1, StringUtils.indexOfAny(null, new char[] { 'a', 'b' }));
+    assertEquals(-1, StringUtils.indexOfAny("", (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAny("", new char[0]));
+    assertEquals(-1, StringUtils.indexOfAny("", new char[] { 'a', 'b' }));
+    assertEquals(-1, StringUtils.indexOfAny("zzabyycdxx", (char[]) null));
+    assertEquals(-1, StringUtils.indexOfAny("zzabyycdxx", new char[0]));
+    assertEquals(0, StringUtils.indexOfAny("zzabyycdxx", new char[] { 'z', 'a' }));
+    assertEquals(3, StringUtils.indexOfAny("zzabyycdxx", new char[] { 'b', 'y' }));
+    assertEquals(-1, StringUtils.indexOfAny("ab", new char[] { 'z' }));
+}

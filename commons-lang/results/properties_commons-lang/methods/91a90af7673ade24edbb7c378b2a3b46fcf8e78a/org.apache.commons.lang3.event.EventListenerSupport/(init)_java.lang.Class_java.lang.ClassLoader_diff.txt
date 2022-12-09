@@ -1,0 +1,10 @@
+/**
+ * Creates an EventListenerSupport object which supports the provided listener interface using the specified
+ * class loader to create the JDK dynamic proxy.
+ *
+ * @param listenerInterface the listener interface
+ * @param classLoader       the class loader
+ */
+public EventListenerSupport(Class<L> listenerInterface, ClassLoader classLoader) {
+    proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader, new Class[] { listenerInterface }, new ProxyInvocationHandler()));
+}

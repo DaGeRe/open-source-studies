@@ -1,0 +1,13 @@
+// testToPrimitive/Object for int
+// -----------------------------------------------------------------------
+public void testToPrimitive_int() {
+    final Integer[] b = null;
+    assertEquals(null, ArrayUtils.toPrimitive(b));
+    assertSame(ArrayUtils.EMPTY_INT_ARRAY, ArrayUtils.toPrimitive(new Integer[0]));
+    assertTrue(Arrays.equals(new int[] { Integer.MIN_VALUE, Integer.MAX_VALUE, 9999999 }, ArrayUtils.toPrimitive(new Integer[] { new Integer(Integer.MIN_VALUE), new Integer(Integer.MAX_VALUE), new Integer(9999999) })));
+    try {
+        ArrayUtils.toPrimitive(new Integer[] { new Integer(Integer.MIN_VALUE), null });
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

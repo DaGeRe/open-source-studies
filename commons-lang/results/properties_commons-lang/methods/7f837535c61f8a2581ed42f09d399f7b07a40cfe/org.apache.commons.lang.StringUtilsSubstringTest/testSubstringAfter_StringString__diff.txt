@@ -1,0 +1,16 @@
+public void testSubstringAfter_StringString() {
+    assertEquals("barXXbaz", StringUtils.substringAfter("fooXXbarXXbaz", "XX"));
+    assertEquals(null, StringUtils.substringAfter(null, null));
+    assertEquals(null, StringUtils.substringAfter(null, ""));
+    assertEquals(null, StringUtils.substringAfter(null, "XX"));
+    assertEquals("", StringUtils.substringAfter("", null));
+    assertEquals("", StringUtils.substringAfter("", ""));
+    assertEquals("", StringUtils.substringAfter("", "XX"));
+    assertEquals("", StringUtils.substringAfter("foo", null));
+    assertEquals("ot", StringUtils.substringAfter("foot", "o"));
+    assertEquals("bc", StringUtils.substringAfter("abc", "a"));
+    assertEquals("cba", StringUtils.substringAfter("abcba", "b"));
+    assertEquals("", StringUtils.substringAfter("abc", "c"));
+    assertEquals("abc", StringUtils.substringAfter("abc", ""));
+    assertEquals("", StringUtils.substringAfter("abc", "d"));
+}

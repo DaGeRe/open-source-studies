@@ -1,0 +1,19 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | public boolean translate(int codepoint, Writer out) throws IOException {                            
+                                                                                                     | if (between) {                                                                                      
+                                                                                                     | if (codepoint &lt; below || codepoint &gt; above) {                                                 
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | } else {                                                                                            
+                                                                                                     | if (codepoint &gt;= below && codepoint &lt;= above) {                                               
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | // TODO: if (codepoint &gt; 0xffff) ?                                                               
+                                                                                                     | out.write("&#");                                                                                    
+                                                                                                     | out.write(Integer.toString(codepoint, 10));                                                         
+                                                                                                     | out.write(';');                                                                                     
+                                                                                                     | return true;                                                                                        
+                                                                                                     | }                                                                                                   

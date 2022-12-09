@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+/**
+ * Replaces all the occurrences of variables in the given source object with
+ * their matching values from the map.
+ *
+ * @param source  the source text containing the variables to substitute, null returns null
+ * @param valueMap  the map with the values, may be null
+ * @return the result of the replace operation
+ */
+public static <V> String replace(Object source, Map<String, V> valueMap) {
+    return new StrSubstitutor(valueMap).replace(source);
+}

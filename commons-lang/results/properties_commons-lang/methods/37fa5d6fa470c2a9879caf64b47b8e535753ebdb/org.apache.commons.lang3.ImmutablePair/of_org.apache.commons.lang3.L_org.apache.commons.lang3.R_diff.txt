@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Static fluent creation method for an {@link ImmutablePair}&lt;L, R&gt;:                            | * &lt;p&gt;Obtains an immutable pair of from two objects inferring the generic types.&lt;/p&gt;     
+* &lt;code&gt;ImmutablePair.of(left, right)&lt;/code&gt;                                             |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param &lt;L&gt; the left generic type                                                             | * &lt;p&gt;This factory allows the pair to be created using inference to                            
+* @param &lt;R&gt; the right generic type                                                            | * obtain the generic types.&lt;/p&gt;                                                               
+* @param left the let value                                                                          | *                                                                                                   
+* @param right the right value                                                                       | * @param &lt;L&gt; the left element type                                                            
+* @return ImmutablePair&lt;L, R&gt;(left, right)                                                     | * @param &lt;R&gt; the right element type                                                           
+                                                                                                     | * @param left  the left element, may be null                                                        
+                                                                                                     | * @param right  the right element, may be null                                                      
+                                                                                                     | * @return a pair formed from the two parameters, not null                                           
+*/                                                                                                     */                                                                                                  
+public static &lt;L, R&gt; ImmutablePair&lt;L, R&gt; of(L left, R right) {                             public static &lt;L, R&gt; ImmutablePair&lt;L, R&gt; of(L left, R right) {                          
+return new ImmutablePair&lt;L, R&gt;(left, right);                                                     return new ImmutablePair&lt;L, R&gt;(left, right);                                                  
+}                                                                                                      }                                                                                                   

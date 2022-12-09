@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+public void testNoNullElementsArray1() {                                                               public void testNoNullElementsArray1() {                                                            
+String[] array = new String[] { "a", "b" };                                                            String[] array = new String[] { "a", "b" };                                                         
+Validate.noNullElements(array);                                                                        Validate.noNullElements(array);                                                                     
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements((Object[]) null);                                                              Validate.noNullElements((Object[]) null);                                                           
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated object is null", ex.getMessage());                                         assertEquals("The validated object is null", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+array[1] = null;                                                                                       array[1] = null;                                                                                    
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements(array);                                                                        Validate.noNullElements(array);                                                                     
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated array contains null element at index: 1", ex.getMessage());                assertEquals("The validated array contains null element at index: 1", ex.getMessage());             
+}                                                                                                      }                                                                                                   
+                                                                                                     | array = new String[] { "a", "b" };                                                                  
+                                                                                                     | String[] test = Validate.noNullElements(array);                                                     
+                                                                                                     | assertSame(array, test);                                                                            
+}                                                                                                      }                                                                                                   

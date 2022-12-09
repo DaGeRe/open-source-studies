@@ -1,0 +1,34 @@
+public void testWriteDeclaredNamedStaticFieldForceAccess() throws Exception {
+    FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutablePublic", "new", true);
+    assertEquals("new", StaticContainer.mutablePublic);
+    FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutableProtected", "new", true);
+    assertEquals("new", StaticContainer.getMutableProtected());
+    FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutablePackage", "new", true);
+    assertEquals("new", StaticContainer.getMutablePackage());
+    FieldUtils.writeDeclaredStaticField(StaticContainer.class, "mutablePrivate", "new", true);
+    assertEquals("new", StaticContainer.getMutablePrivate());
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PUBLIC", "new", true);
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PROTECTED", "new", true);
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PACKAGE", "new", true);
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredStaticField(StaticContainer.class, "IMMUTABLE_PRIVATE", "new", true);
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+}

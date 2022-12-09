@@ -1,0 +1,30 @@
+/**
+ * <p>Checks if one <code>Class</code> can be assigned to a variable of
+ * another <code>Class</code>.</p>
+ *
+ * <p>Unlike the {@link Class#isAssignableFrom(java.lang.Class)} method,
+ * this method takes into account widenings of primitive classes and
+ * <code>null</code>s.</p>
+ *
+ * <p>Primitive widenings allow an int to be assigned to a long, float or
+ * double. This method returns the correct result for these cases.</p>
+ *
+ * <p><code>Null</code> may be assigned to any reference type. This method
+ * will return <code>true</code> if <code>null</code> is passed in and the
+ * toClass is non-primitive.</p>
+ *
+ * <p>Specifically, this method tests whether the type represented by the
+ * specified <code>Class</code> parameter can be converted to the type
+ * represented by this <code>Class</code> object via an identity conversion
+ * widening primitive or widening reference conversion. See
+ * <em><a href="http://java.sun.com/docs/books/jls/">The Java Language Specification</a></em>,
+ * sections 5.1.1, 5.1.2 and 5.1.4 for details.</p>
+ *
+ * @param cls  the Class to check, may be null
+ * @param toClass  the Class to try to assign into, returns false if null
+ * @return <code>true</code> if assignment possible
+ */
+// TODO when we bump the major version we should default autoboxing to true on platforms >= 1.5
+public static boolean isAssignable(Class<?> cls, Class<?> toClass) {
+    return isAssignable(cls, toClass, false);
+}

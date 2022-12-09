@@ -1,0 +1,26 @@
+// isAssignableFrom                                                                                    // isAssignableFrom                                                                                 
+// ---------------------------------------------------------------------------------                   // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the argument can be converted to the specified class; otherwise             | * Validates that the argument can be converted to the specified class, if not, throws an exception. 
+* throwing an exception with the specified message. This method is useful when                       |                                                                                                     
+* validating if there will be no casting errors.&lt;/p&gt;                                           |                                                                                                     
+*                                                                                                      *                                                                                                   
+                                                                                                     | * &lt;p&gt;This method is useful when validating that there will be no casting errors.&lt;/p&gt;    
+                                                                                                     | *                                                                                                   
+* &lt;pre&gt;Validate.isAssignableFrom(SuperClass.class, object.getClass());&lt;/pre&gt;               * &lt;pre&gt;Validate.isAssignableFrom(SuperClass.class, object.getClass());&lt;/pre&gt;            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message of the exception is &quot;The validated object can not be converted to the&qu | * &lt;p&gt;The message format of the exception is &quot;Cannot assign {type} to {superType}&quot;&lt
+* followed by the name of the class and &quot;class&quot;&lt;/p&gt;                                  |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param superType  the class the class must be validated against, not null                            * @param superType  the class the class must be validated against, not null                         
+* @param type  the class to check, not null                                                            * @param type  the class to check, not null                                                         
+* @throws IllegalArgumentException if argument can not be converted to the specified class           | * @throws IllegalArgumentException if type argument is not assignable to the specified superType    
+* @see #isAssignableFrom(Class, Class, String, Object...)                                              * @see #isAssignableFrom(Class, Class, String, Object...)                                           
+*                                                                                                      *                                                                                                   
+* @since 3.0                                                                                           * @since 3.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void isAssignableFrom(Class&lt;?&gt; superType, Class&lt;?&gt; type) {                   public static void isAssignableFrom(Class&lt;?&gt; superType, Class&lt;?&gt; type) {                
+if (superType.isAssignableFrom(type) == false) {                                                       if (superType.isAssignableFrom(type) == false) {                                                    
+throw new IllegalArgumentException(String.format(DEFAULT_IS_ASSIGNABLE_EX_MESSAGE, superType.getName | throw new IllegalArgumentException(String.format(DEFAULT_IS_ASSIGNABLE_EX_MESSAGE, type == null ? "n
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

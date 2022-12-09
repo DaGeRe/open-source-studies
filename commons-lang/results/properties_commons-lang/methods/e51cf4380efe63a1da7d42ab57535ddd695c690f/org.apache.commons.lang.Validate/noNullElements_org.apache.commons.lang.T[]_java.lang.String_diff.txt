@@ -1,0 +1,35 @@
+// notNullElements array                                                                               // notNullElements array                                                                            
+// ---------------------------------------------------------------------------------                   // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument array is neither                                    
+* if the argument array has &lt;code&gt;null&lt;/code&gt; elements or is                             | * &lt;code&gt;null&lt;/code&gt; nor contains any elements that are &lt;code&gt;null&lt;/code&gt;;   
+* &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                                           | * otherwise throwing an exception with the specified message.                                       
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.noNullElements(myArray, "The array contain null at position %d");&lt;/pre&gt; 
+* Validate.noNullElements(myArray, "The array must not contain null elements");                      |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the array is null then the message in the exception is 'The validated object is null'. | * &lt;p&gt;If the array is &lt;code&gt;null&lt;/code&gt;, then the message in the exception         
+                                                                                                     | * is &quot;The validated object is null&quot;.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* @param array  the array to check                                                                   | * &lt;p&gt;If the array has a &lt;code&gt;null&lt;/code&gt; element, then the iteration             
+* @param message  the exception message if the array has                                             | * index of the invalid element is appended to the &lt;code&gt;values&lt;/code&gt;                   
+*  &lt;code&gt;null&lt;/code&gt; elements                                                            | * argument.&lt;/p&gt;                                                                               
+* @return the validated input array, never &lt;code&gt;null&lt;/code&gt;, for chaining               | *                                                                                                   
+* @throws IllegalArgumentException if the array has &lt;code&gt;null&lt;/code&gt;                    | * @param &lt;T&gt; the array type                                                                   
+*  elements or is &lt;code&gt;null&lt;/code&gt;                                                      | * @param array the array to check                                                                   
+                                                                                                     | * @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)             
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+                                                                                                     | * @throws IllegalArgumentException if an element is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | * @see #noNullElements(Object[])                                                                    
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T[] noNullElements(T[] array, String message) {                              | public static &lt;T&gt; T[] noNullElements(T[] array, String message, Object... values) {           
+Validate.notNull(array);                                                                               Validate.notNull(array);                                                                            
+for (int i = 0; i &lt; array.length; i++) {                                                            for (int i = 0; i &lt; array.length; i++) {                                                         
+if (array[i] == null) {                                                                                if (array[i] == null) {                                                                             
+throw new IllegalArgumentException(message);                                                         | Object[] values2 = ArrayUtils.add(values, i);                                                       
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values2));                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return array;                                                                                          return array;                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,28 @@
+public void testReadFieldForceAccess() throws Exception {
+    Field parentS = FieldUtils.getDeclaredField(parentClass, "s");
+    parentS.setAccessible(false);
+    assertEquals("s", FieldUtils.readField(parentS, publicChild, true));
+    assertEquals("s", FieldUtils.readField(parentS, publiclyShadowedChild, true));
+    assertEquals("s", FieldUtils.readField(parentS, privatelyShadowedChild, true));
+    Field parentB = FieldUtils.getDeclaredField(parentClass, "b", true);
+    parentB.setAccessible(false);
+    assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publicChild, true));
+    assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publiclyShadowedChild, true));
+    assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, privatelyShadowedChild, true));
+    Field parentI = FieldUtils.getDeclaredField(parentClass, "i", true);
+    parentI.setAccessible(false);
+    assertEquals(I0, FieldUtils.readField(parentI, publicChild, true));
+    assertEquals(I0, FieldUtils.readField(parentI, publiclyShadowedChild, true));
+    assertEquals(I0, FieldUtils.readField(parentI, privatelyShadowedChild, true));
+    Field parentD = FieldUtils.getDeclaredField(parentClass, "d", true);
+    parentD.setAccessible(false);
+    assertEquals(D0, FieldUtils.readField(parentD, publicChild, true));
+    assertEquals(D0, FieldUtils.readField(parentD, publiclyShadowedChild, true));
+    assertEquals(D0, FieldUtils.readField(parentD, privatelyShadowedChild, true));
+    try {
+        FieldUtils.readField((Field) null, publicChild, true);
+        fail("a null field should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+}

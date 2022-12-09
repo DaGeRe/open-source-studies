@@ -1,0 +1,19 @@
+/**
+ * Handles the specified {@code ExecutionException} and transforms it into a
+ * runtime exception. This method works exactly like
+ * {@link #handleCause(ExecutionException)}, but instead of a
+ * {@link ConcurrentException} it throws a
+ * {@link ConcurrentRuntimeException}. This is an alternative for client
+ * code that does not want to deal with checked exceptions.
+ *
+ * @param ex the exception to be handled
+ * @throws ConcurrentRuntimeException if the cause of the {@code
+ * ExecutionException} is a checked exception; this exception is then
+ * wrapped in the thrown runtime exception
+ */
+public static void handleCauseUnchecked(ExecutionException ex) {
+    ConcurrentRuntimeException crex = extractCauseUnchecked(ex);
+    if (crex != null) {
+        throw crex;
+    }
+}

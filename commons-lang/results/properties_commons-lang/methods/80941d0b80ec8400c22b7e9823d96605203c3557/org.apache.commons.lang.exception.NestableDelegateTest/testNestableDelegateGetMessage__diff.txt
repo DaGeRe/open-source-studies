@@ -1,0 +1,9 @@
+public void testNestableDelegateGetMessage() {
+    Nestable ne1 = new ThrowableNestable();
+    assertTrue("ThrowableNestable ne1 getMessage() == ThrowableNestable exception", ne1.getMessage().equals("ThrowableNestable exception"));
+    NestableDelegate nd1 = new NestableDelegate(ne1);
+    assertTrue("nd1 getMessage() == " + ne1.getCause().getMessage(), nd1.getMessage("base").equals("base: " + ne1.getCause().getMessage()));
+    Nestable ne2 = new ThrowableNestedNestable(new Exception("nested exception 2"));
+    NestableDelegate nd2 = new NestableDelegate(ne2);
+    assertTrue("nd2 getMessage() == base: " + ne2.getCause().getMessage(), nd2.getMessage("base").equals("base: " + ne2.getCause().getMessage()));
+}

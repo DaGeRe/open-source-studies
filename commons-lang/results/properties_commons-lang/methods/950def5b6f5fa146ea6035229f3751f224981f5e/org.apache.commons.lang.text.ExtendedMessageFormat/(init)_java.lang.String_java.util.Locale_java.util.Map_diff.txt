@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Create a new ExtendedMessageFormat.                                                                  * Create a new ExtendedMessageFormat.                                                               
+*                                                                                                      *                                                                                                   
+* @param pattern String                                                                                * @param pattern String                                                                             
+* @param locale Locale                                                                                 * @param locale Locale                                                                              
+* @param registry Registry of format factories:  Map&lt;String, FormatFactory&gt;                      * @param registry Registry of format factories:  Map&lt;String, FormatFactory&gt;                   
+* @throws IllegalArgumentException in case of a bad pattern.                                           * @throws IllegalArgumentException in case of a bad pattern.                                        
+*/                                                                                                     */                                                                                                  
+public ExtendedMessageFormat(String pattern, Locale locale, Map registry) {                          | public ExtendedMessageFormat(String pattern, Locale locale, Map&lt;String, FormatFactory&gt; registr
+super(DUMMY_PATTERN);                                                                                  super(DUMMY_PATTERN);                                                                               
+setLocale(locale);                                                                                     setLocale(locale);                                                                                  
+this.registry = registry;                                                                              this.registry = registry;                                                                           
+applyPattern(pattern);                                                                                 applyPattern(pattern);                                                                              
+}                                                                                                      }                                                                                                   

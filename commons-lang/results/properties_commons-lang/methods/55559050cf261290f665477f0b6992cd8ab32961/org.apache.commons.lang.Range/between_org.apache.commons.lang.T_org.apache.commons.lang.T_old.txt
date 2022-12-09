@@ -1,0 +1,17 @@
+/**
+ * <p>Constructs a new <code>Range</code> with the specified
+ * minimum and maximum values (both inclusive).</p>
+ * <p>The range uses the natural ordering of the elements to
+ * determine where values lie in the range.</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min). The
+ * getMinimum and getMaximum methods will return the correct values.</p>
+ *
+ * @param element1  first value that defines the edge of the range, inclusive
+ * @param element2  second value that defines the edge of the range, inclusive
+ * @throws IllegalArgumentException if either value is <code>null</code>
+ * @throws ClassCastException if either value is not Comparable
+ */
+public static <T extends Comparable> Range between(T element1, T element2) {
+    return new Range(element1, element2, ComparableComparator.INSTANCE);
+}

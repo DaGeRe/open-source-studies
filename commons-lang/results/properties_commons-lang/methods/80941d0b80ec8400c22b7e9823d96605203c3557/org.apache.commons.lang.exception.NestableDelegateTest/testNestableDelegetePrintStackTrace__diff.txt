@@ -1,0 +1,30 @@
+public void testNestableDelegetePrintStackTrace() {
+    int lineSepLen = lineSeparator.length();
+    int partialStackTraceLen = PARTIAL_STACK_TRACE.length();
+    Nestable ne3 = new ThrowableNestedNestable(new Exception("nested exception 3"));
+    NestableDelegate nd3 = new NestableDelegate(ne3);
+    ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+    PrintStream ps1 = new PrintStream(baos1);
+    nd3.printStackTrace(ps1);
+    String stack1 = baos1.toString();
+    assertTrue("stack trace startsWith", stack1.startsWith(PARTIAL_STACK_TRACE));
+    Nestable n = new NestableDelegateTester1("level 1", new NestableDelegateTester2("level 2", new NestableDelegateTester1(new NestableDelegateTester2("level 4", new Exception("level 5")))));
+    NestableDelegate d = new NestableDelegate(n);
+    // Only testing the flags for jdk1.3 and below
+    if (!ExceptionUtils.isThrowableNested()) {
+        NestableDelegate.topDown = true;
+        NestableDelegate.trimStackFrames = true;
+        checkStackTrace(d, true, true, NestableDelegateTester1.class.getName() + ": level 1", 24);
+        NestableDelegate.topDown = true;
+        NestableDelegate.trimStackFrames = false;
+        checkStackTrace(d, true, false, NestableDelegateTester1.class.getName() + ": level 1", 80);
+        NestableDelegate.topDown = false;
+        NestableDelegate.trimStackFrames = true;
+        checkStackTrace(d, false, true, "java.lang.Exception: level 5", 24);
+        NestableDelegate.topDown = false;
+        NestableDelegate.trimStackFrames = false;
+        checkStackTrace(d, false, false, "java.lang.Exception: level 5", 80);
+        NestableDelegate.topDown = true;
+        NestableDelegate.trimStackFrames = true;
+    }
+}

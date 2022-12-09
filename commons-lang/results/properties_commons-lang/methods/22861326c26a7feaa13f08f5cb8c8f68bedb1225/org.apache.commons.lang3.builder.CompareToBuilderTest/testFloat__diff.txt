@@ -1,0 +1,20 @@
+                                                                                                     | @Test                                                                                               
+public void testFloat() {                                                                              public void testFloat() {                                                                           
+float o1 = 1;                                                                                          float o1 = 1;                                                                                       
+float o2 = 2;                                                                                          float o2 = 2;                                                                                       
+assertTrue(new CompareToBuilder().append(o1, o1).toComparison() == 0);                                 assertTrue(new CompareToBuilder().append(o1, o1).toComparison() == 0);                              
+assertTrue(new CompareToBuilder().append(o1, o2).toComparison() &lt; 0);                               assertTrue(new CompareToBuilder().append(o1, o2).toComparison() &lt; 0);                            
+assertTrue(new CompareToBuilder().append(o2, o1).toComparison() &gt; 0);                               assertTrue(new CompareToBuilder().append(o2, o1).toComparison() &gt; 0);                            
+assertTrue(new CompareToBuilder().append(o1, Float.MAX_VALUE).toComparison() &lt; 0);                  assertTrue(new CompareToBuilder().append(o1, Float.MAX_VALUE).toComparison() &lt; 0);               
+assertTrue(new CompareToBuilder().append(Float.MAX_VALUE, o1).toComparison() &gt; 0);                  assertTrue(new CompareToBuilder().append(Float.MAX_VALUE, o1).toComparison() &gt; 0);               
+assertTrue(new CompareToBuilder().append(o1, Float.MIN_VALUE).toComparison() &gt; 0);                  assertTrue(new CompareToBuilder().append(o1, Float.MIN_VALUE).toComparison() &gt; 0);               
+assertTrue(new CompareToBuilder().append(Float.MIN_VALUE, o1).toComparison() &lt; 0);                  assertTrue(new CompareToBuilder().append(Float.MIN_VALUE, o1).toComparison() &lt; 0);               
+assertTrue(new CompareToBuilder().append(Float.NaN, Float.NaN).toComparison() == 0);                   assertTrue(new CompareToBuilder().append(Float.NaN, Float.NaN).toComparison() == 0);                
+assertTrue(new CompareToBuilder().append(Float.NaN, Float.MAX_VALUE).toComparison() &gt; 0);           assertTrue(new CompareToBuilder().append(Float.NaN, Float.MAX_VALUE).toComparison() &gt; 0);        
+assertTrue(new CompareToBuilder().append(Float.POSITIVE_INFINITY, Float.MAX_VALUE).toComparison() &g   assertTrue(new CompareToBuilder().append(Float.POSITIVE_INFINITY, Float.MAX_VALUE).toComparison() &g
+assertTrue(new CompareToBuilder().append(Float.NEGATIVE_INFINITY, Float.MIN_VALUE).toComparison() &l   assertTrue(new CompareToBuilder().append(Float.NEGATIVE_INFINITY, Float.MIN_VALUE).toComparison() &l
+assertTrue(new CompareToBuilder().append(o1, Float.NaN).toComparison() &lt; 0);                        assertTrue(new CompareToBuilder().append(o1, Float.NaN).toComparison() &lt; 0);                     
+assertTrue(new CompareToBuilder().append(Float.NaN, o1).toComparison() &gt; 0);                        assertTrue(new CompareToBuilder().append(Float.NaN, o1).toComparison() &gt; 0);                     
+assertTrue(new CompareToBuilder().append(-0.0, 0.0).toComparison() &lt; 0);                            assertTrue(new CompareToBuilder().append(-0.0, 0.0).toComparison() &lt; 0);                         
+assertTrue(new CompareToBuilder().append(0.0, -0.0).toComparison() &gt; 0);                            assertTrue(new CompareToBuilder().append(0.0, -0.0).toComparison() &gt; 0);                         
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testTokenizeSubclassOutputChange() {
+    StrTokenizer tkn = new StrTokenizer("a b c") {
+
+        protected List tokenize(char[] chars, int offset, int count) {
+            List list = super.tokenize(chars, offset, count);
+            Collections.reverse(list);
+            return list;
+        }
+    };
+    assertEquals("c", tkn.next());
+    assertEquals("b", tkn.next());
+    assertEquals("a", tkn.next());
+}

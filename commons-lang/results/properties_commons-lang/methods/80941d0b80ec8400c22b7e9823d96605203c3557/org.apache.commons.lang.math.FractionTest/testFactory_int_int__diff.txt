@@ -1,0 +1,61 @@
+public void testFactory_int_int() {
+    Fraction f = null;
+    // zero
+    f = Fraction.getFraction(0, 1);
+    assertEquals(0, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction(0, 2);
+    assertEquals(0, f.getNumerator());
+    assertEquals(2, f.getDenominator());
+    // normal
+    f = Fraction.getFraction(1, 1);
+    assertEquals(1, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction(2, 1);
+    assertEquals(2, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction(23, 345);
+    assertEquals(23, f.getNumerator());
+    assertEquals(345, f.getDenominator());
+    // improper
+    f = Fraction.getFraction(22, 7);
+    assertEquals(22, f.getNumerator());
+    assertEquals(7, f.getDenominator());
+    // negatives
+    f = Fraction.getFraction(-6, 10);
+    assertEquals(-6, f.getNumerator());
+    assertEquals(10, f.getDenominator());
+    f = Fraction.getFraction(6, -10);
+    assertEquals(-6, f.getNumerator());
+    assertEquals(10, f.getDenominator());
+    f = Fraction.getFraction(-6, -10);
+    assertEquals(6, f.getNumerator());
+    assertEquals(10, f.getDenominator());
+    // zero denominator
+    try {
+        f = Fraction.getFraction(1, 0);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(2, 0);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(-3, 0);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    // very large: can't represent as unsimplified fraction, although
+    try {
+        f = Fraction.getFraction(4, Integer.MIN_VALUE);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = Fraction.getFraction(1, Integer.MIN_VALUE);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

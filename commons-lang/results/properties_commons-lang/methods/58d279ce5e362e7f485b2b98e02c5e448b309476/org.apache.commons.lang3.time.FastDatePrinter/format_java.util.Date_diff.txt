@@ -1,0 +1,10 @@
+/* (non-Javadoc)                                                                                       /* (non-Javadoc)                                                                                    
+* @see org.apache.commons.lang3.time.DatePrinter#format(java.util.Date)                                * @see org.apache.commons.lang3.time.DatePrinter#format(java.util.Date)                             
+*/                                                                                                     */                                                                                                  
+@Override                                                                                            |                                                                                                     
+public String format(Date date) {                                                                      public String format(Date date) {                                                                   
+// hard code GregorianCalendar                                                                         // hard code GregorianCalendar                                                                      
+Calendar c = new GregorianCalendar(mTimeZone, mLocale);                                                Calendar c = new GregorianCalendar(mTimeZone, mLocale);                                             
+c.setTime(date);                                                                                       c.setTime(date);                                                                                    
+return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();                                 return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();                              
+}                                                                                                      }                                                                                                   

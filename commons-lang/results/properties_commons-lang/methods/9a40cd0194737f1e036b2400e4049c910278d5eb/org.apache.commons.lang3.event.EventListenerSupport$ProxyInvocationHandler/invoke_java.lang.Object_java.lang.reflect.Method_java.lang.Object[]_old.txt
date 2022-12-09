@@ -1,0 +1,6 @@
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    for (L listener : listeners) {
+        method.invoke(listener, args);
+    }
+    return null;
+}

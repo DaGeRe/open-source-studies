@@ -1,0 +1,26 @@
+// Clone                                                                                               // Clone                                                                                            
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Deep clone an &lt;code&gt;Object&lt;/code&gt; using serialization.&lt;/p&gt;                * &lt;p&gt;Deep clone an &lt;code&gt;Object&lt;/code&gt; using serialization.&lt;/p&gt;             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This is many times slower than writing clone methods by hand                                * &lt;p&gt;This is many times slower than writing clone methods by hand                             
+* on all objects in your object graph. However, for complex object                                     * on all objects in your object graph. However, for complex object                                  
+* graphs, or for those that don't support deep cloning this can                                        * graphs, or for those that don't support deep cloning this can                                     
+* be a simple alternative implementation. Of course all the objects                                    * be a simple alternative implementation. Of course all the objects                                 
+* must be &lt;code&gt;Serializable&lt;/code&gt;.&lt;/p&gt;                                             * must be &lt;code&gt;Serializable&lt;/code&gt;.&lt;/p&gt;                                          
+*                                                                                                      *                                                                                                   
+* @param object  the &lt;code&gt;Serializable&lt;/code&gt; object to clone                             * @param object  the &lt;code&gt;Serializable&lt;/code&gt; object to clone                          
+* @return the cloned object                                                                            * @return the cloned object                                                                         
+* @throws SerializationException (runtime) if the serialization fails                                  * @throws SerializationException (runtime) if the serialization fails                               
+*/                                                                                                     */                                                                                                  
+@SuppressWarnings("unchecked")                                                                       |                                                                                                     
+public static &lt;T extends Serializable&gt; T clone(T object) {                                       public static &lt;T extends Serializable&gt; T clone(T object) {                                    
+return (T) deserialize(serialize(object));                                                           | /*                                                                                                  
+                                                                                                     | * when we serialize and deserialize an object,                                                      
+                                                                                                     | * it is reasonable to assume the deserialized object                                                
+                                                                                                     | * is of the same type as the original serialized object                                             
+                                                                                                     | */                                                                                                  
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | final T result = (T) deserialize(serialize(object));                                                
+                                                                                                     | return result;                                                                                      
+}                                                                                                      }                                                                                                   

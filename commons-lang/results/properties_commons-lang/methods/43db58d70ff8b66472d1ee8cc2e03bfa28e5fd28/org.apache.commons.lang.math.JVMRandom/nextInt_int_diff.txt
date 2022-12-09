@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns a pseudorandom, uniformly distributed int value between                             * &lt;p&gt;Returns a pseudorandom, uniformly distributed int value between                          
+* &lt;code&gt;0&lt;/code&gt; (inclusive) and the specified value (exclusive), from                     * &lt;code&gt;0&lt;/code&gt; (inclusive) and the specified value (exclusive), from                  
+* the Math.random() sequence.&lt;/p&gt;                                                                * the Math.random() sequence.&lt;/p&gt;                                                             
+*                                                                                                      *                                                                                                   
+* @param n  the specified exclusive max-value                                                          * @param n  the specified exclusive max-value                                                       
+* @return the random int                                                                               * @return the random int                                                                            
+* @throws IllegalArgumentException when &lt;code&gt;n &lt;= 0&lt;/code&gt;                             * @throws IllegalArgumentException when &lt;code&gt;n &lt;= 0&lt;/code&gt;                          
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public int nextInt(int n) {                                                                            public int nextInt(int n) {                                                                         
+if (n &lt;= 0) {                                                                                       if (n &lt;= 0) {                                                                                    
+throw new IllegalArgumentException("Upper bound for nextInt must be positive");                        throw new IllegalArgumentException("Upper bound for nextInt must be positive");                     
+}                                                                                                      }                                                                                                   
+// TODO: check this cannot return 'n'                                                                  // TODO: check this cannot return 'n'                                                               
+return (int) (Math.random() * n);                                                                      return (int) (Math.random() * n);                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,25 @@
+                                                                                                     | @Test                                                                                               
+public void testInvokeExactMethod() throws Exception {                                                 public void testInvokeExactMethod() throws Exception {                                              
+assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) ArrayUtils.EMPTY_CLA   assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) ArrayUtils.EMPTY_CLA
+assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) null));                assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) null));             
+assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) null, (Class&lt;?&gt   assertEquals("foo()", MethodUtils.invokeExactMethod(testBean, "foo", (Object[]) null, (Class&lt;?&gt
+assertEquals("foo(String)", MethodUtils.invokeExactMethod(testBean, "foo", ""));                       assertEquals("foo(String)", MethodUtils.invokeExactMethod(testBean, "foo", ""));                    
+assertEquals("foo(Object)", MethodUtils.invokeExactMethod(testBean, "foo", new Object()));             assertEquals("foo(Object)", MethodUtils.invokeExactMethod(testBean, "foo", new Object()));          
+assertEquals("foo(Integer)", MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.INTEGER_ONE)   assertEquals("foo(Integer)", MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.INTEGER_ONE)
+assertEquals("foo(double)", MethodUtils.invokeExactMethod(testBean, "foo", new Object[] { NumberUtil   assertEquals("foo(double)", MethodUtils.invokeExactMethod(testBean, "foo", new Object[] { NumberUtil
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.BYTE_ONE);                                  MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.BYTE_ONE);                               
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.LONG_ONE);                                  MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.LONG_ONE);                               
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeExactMethod(testBean, "foo", Boolean.TRUE);                                          MethodUtils.invokeExactMethod(testBean, "foo", Boolean.TRUE);                                       
+fail("should throw NoSuchMethodException");                                                            fail("should throw NoSuchMethodException");                                                         
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,18 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveElementIntArray() {                                                              public void testRemoveElementIntArray() {                                                           
+int[] array;                                                                                           int[] array;                                                                                        
+array = ArrayUtils.removeElement((int[]) null, 1);                                                     array = ArrayUtils.removeElement((int[]) null, 1);                                                  
+assertNull(array);                                                                                     assertNull(array);                                                                                  
+array = ArrayUtils.removeElement(ArrayUtils.EMPTY_INT_ARRAY, 1);                                       array = ArrayUtils.removeElement(ArrayUtils.EMPTY_INT_ARRAY, 1);                                    
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_INT_ARRAY, array));                                          assertTrue(Arrays.equals(ArrayUtils.EMPTY_INT_ARRAY, array));                                       
+assertEquals(Integer.TYPE, array.getClass().getComponentType());                                       assertEquals(Integer.TYPE, array.getClass().getComponentType());                                    
+array = ArrayUtils.removeElement(new int[] { 1 }, 1);                                                  array = ArrayUtils.removeElement(new int[] { 1 }, 1);                                               
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_INT_ARRAY, array));                                          assertTrue(Arrays.equals(ArrayUtils.EMPTY_INT_ARRAY, array));                                       
+assertEquals(Integer.TYPE, array.getClass().getComponentType());                                       assertEquals(Integer.TYPE, array.getClass().getComponentType());                                    
+array = ArrayUtils.removeElement(new int[] { 1, 2 }, 1);                                               array = ArrayUtils.removeElement(new int[] { 1, 2 }, 1);                                            
+assertTrue(Arrays.equals(new int[] { 2 }, array));                                                     assertTrue(Arrays.equals(new int[] { 2 }, array));                                                  
+assertEquals(Integer.TYPE, array.getClass().getComponentType());                                       assertEquals(Integer.TYPE, array.getClass().getComponentType());                                    
+array = ArrayUtils.removeElement(new int[] { 1, 2, 1 }, 1);                                            array = ArrayUtils.removeElement(new int[] { 1, 2, 1 }, 1);                                         
+assertTrue(Arrays.equals(new int[] { 2, 1 }, array));                                                  assertTrue(Arrays.equals(new int[] { 2, 1 }, array));                                               
+assertEquals(Integer.TYPE, array.getClass().getComponentType());                                       assertEquals(Integer.TYPE, array.getClass().getComponentType());                                    
+}                                                                                                      }                                                                                                   

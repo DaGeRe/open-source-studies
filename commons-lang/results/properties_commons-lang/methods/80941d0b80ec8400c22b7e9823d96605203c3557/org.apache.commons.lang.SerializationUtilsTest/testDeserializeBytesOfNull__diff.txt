@@ -1,0 +1,9 @@
+public void testDeserializeBytesOfNull() throws Exception {
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(null);
+    oos.flush();
+    oos.close();
+    Object test = SerializationUtils.deserialize(streamReal.toByteArray());
+    assertNull(test);
+}

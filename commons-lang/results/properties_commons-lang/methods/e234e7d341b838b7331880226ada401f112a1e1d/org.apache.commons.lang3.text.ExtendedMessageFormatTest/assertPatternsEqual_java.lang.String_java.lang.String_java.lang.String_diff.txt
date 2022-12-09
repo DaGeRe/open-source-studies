@@ -1,0 +1,6 @@
+// can't trust what MessageFormat does with toPattern() pre 1.4:
+private void assertPatternsEqual(String message, String expected, String actual) {
+    if (SystemUtils.isJavaVersionAtLeast(JAVA_1_4)) {
+        assertEquals(message, expected, actual);
+    }
+}

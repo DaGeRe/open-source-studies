@@ -1,0 +1,23 @@
+/**
+ * <p>Returns the list of <code>Throwable</code> objects in the
+ * exception chain.</p>
+ *
+ * <p>A throwable without cause will return an array containing
+ * one element - the input throwable.
+ * A throwable with one cause will return an array containing
+ * two elements. - the input throwable and the cause throwable.
+ * A <code>null</code> throwable will return an array of size zero.</p>
+ *
+ * <p>From version 2.2, this method handles recursive cause structures
+ * that might otherwise cause infinite loops. The cause chain is
+ * processed until the end is reached, or until the next item in the
+ * chain is already in the result set.</p>
+ *
+ * @see #getThrowableList(Throwable)
+ * @param throwable  the throwable to inspect, may be null
+ * @return the array of throwables, never null
+ */
+public static Throwable[] getThrowables(Throwable throwable) {
+    List<Throwable> list = getThrowableList(throwable);
+    return list.toArray(new Throwable[list.size()]);
+}

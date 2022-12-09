@@ -1,0 +1,39 @@
+/**
+ * Reads character by character through the String to get the next token.
+ *
+ * @param chars  the character array being tokenized
+ * @param start  the first character of field
+ * @param len  the length of the character array being tokenized
+ * @param workArea  a temporary work area
+ * @param tokens  the list of parsed tokens
+ * @return the starting position of the next field (the character
+ *  immediately after the delimiter), or -1 if end of string found
+ */
+private int readNextToken(char[] chars, int start, int len, StrBuilder workArea, List<String> tokens) {
+    // skip all leading whitespace, unless it is the
+    // field delimiter or the quote character
+    while (start < len) {
+        int removeLen = Math.max(getIgnoredMatcher().isMatch(chars, start, start, len), getTrimmerMatcher().isMatch(chars, start, start, len));
+        if (removeLen == 0 || getDelimiterMatcher().isMatch(chars, start, start, len) > 0 || getQuoteMatcher().isMatch(chars, start, start, len) > 0) {
+            break;
+        }
+        start += removeLen;
+    }
+    // handle reaching end
+    if (start >= len) {
+        addToken(tokens, "");
+        return -1;
+    }
+    // handle empty token
+    int delimLen = getDelimiterMatcher().isMatch(chars, start, start, len);
+    if (delimLen > 0) {
+        addToken(tokens, "");
+        return start + delimLen;
+    }
+    // handle found token
+    int quoteLen = getQuoteMatcher().isMatch(chars, start, start, len);
+    if (quoteLen > 0) {
+        return readWithQuotes(chars, start + quoteLen, len, workArea, tokens, start, quoteLen);
+    }
+    return readWithQuotes(chars, start, len, workArea, tokens, 0, 0);
+}

@@ -1,0 +1,21 @@
+/**
+ * <p>Converts the String to a char using the first character, defaulting
+ * the value on empty Strings.</p>
+ *
+ * <pre>
+ *   CharUtils.toChar(null, 'X') = 'X'
+ *   CharUtils.toChar("", 'X')   = 'X'
+ *   CharUtils.toChar("A", 'X')  = 'A'
+ *   CharUtils.toChar("BA", 'X') = 'B'
+ * </pre>
+ *
+ * @param str  the character to convert
+ * @param defaultValue  the value to use if the  Character is null
+ * @return the char value of the first letter of the String or the default if null
+ */
+public static char toChar(String str, char defaultValue) {
+    if (StringUtils.isEmpty(str)) {
+        return defaultValue;
+    }
+    return str.charAt(0);
+}

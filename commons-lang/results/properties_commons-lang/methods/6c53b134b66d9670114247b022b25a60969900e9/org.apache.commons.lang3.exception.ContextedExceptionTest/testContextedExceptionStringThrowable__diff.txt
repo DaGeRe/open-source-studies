@@ -1,0 +1,9 @@
+public void testContextedExceptionStringThrowable() {
+    contextedException = new ContextedException(TEST_MESSAGE_2, new Exception(TEST_MESSAGE));
+    String message = contextedException.getMessage();
+    String trace = ExceptionUtils.getStackTrace(contextedException);
+    assertTrue(trace.indexOf("ContextedException") >= 0);
+    assertTrue(trace.indexOf(TEST_MESSAGE) >= 0);
+    assertTrue(trace.indexOf(TEST_MESSAGE_2) >= 0);
+    assertTrue(message.indexOf(TEST_MESSAGE_2) >= 0);
+}

@@ -1,0 +1,8 @@
+public void testNanInfinite() {
+    MutableDouble mutNum = new MutableDouble(Double.NaN);
+    assertEquals(true, mutNum.isNaN());
+    mutNum = new MutableDouble(Double.POSITIVE_INFINITY);
+    assertEquals(true, mutNum.isInfinite());
+    mutNum = new MutableDouble(Double.NEGATIVE_INFINITY);
+    assertEquals(true, mutNum.isInfinite());
+}

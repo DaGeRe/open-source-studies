@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testValidIndex_withMessage_charSequence() {
+    CharSequence str = "Hi";
+    Validate.validIndex(str, 0, "Broken: ");
+    Validate.validIndex(str, 1, "Broken: ");
+    try {
+        Validate.validIndex(str, -1, "Broken: ");
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("Broken: ", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(str, 2, "Broken: ");
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("Broken: ", ex.getMessage());
+    }
+    String input = "Hi";
+    String test = Validate.validIndex(input, 0, "Message");
+    assertSame(input, test);
+}

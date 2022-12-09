@@ -1,0 +1,12 @@
+/**
+ * Set the character to ignore.
+ * <p>
+ * This character is ignored when parsing the String, unless it is
+ * within a quoted region.
+ *
+ * @param ignored  the ignored character to use
+ * @return this, to enable chaining
+ */
+public StrTokenizer setIgnoredChar(char ignored) {
+    return setIgnoredMatcher(StrMatcher.charMatcher(ignored));
+}

@@ -1,0 +1,11 @@
+/**
+ * Gets the token previous to the last returned token.
+ *
+ * @return the previous token
+ */
+public Object previous() {
+    if (hasPrevious()) {
+        return tokens[--tokenPos];
+    }
+    throw new NoSuchElementException();
+}

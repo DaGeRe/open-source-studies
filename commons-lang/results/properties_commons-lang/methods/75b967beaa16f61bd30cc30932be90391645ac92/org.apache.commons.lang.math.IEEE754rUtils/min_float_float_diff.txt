@@ -1,0 +1,18 @@
+/**
+ * <p>Gets the minimum of two <code>float</code> values.</p>
+ *
+ * <p>NaN is only returned if all numbers are NaN as per IEEE-754r. </p>
+ *
+ * @param a  value 1
+ * @param b  value 2
+ * @return  the smallest of the values
+ */
+public static float min(float a, float b) {
+    if (Float.isNaN(a)) {
+        return b;
+    } else if (Float.isNaN(b)) {
+        return a;
+    } else {
+        return Math.min(a, b);
+    }
+}

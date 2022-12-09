@@ -1,0 +1,16 @@
+@Test
+public void testEscapeHtml() {
+    for (int i = 0; i < HTML_ESCAPES.length; ++i) {
+        String message = HTML_ESCAPES[i][0];
+        String expected = HTML_ESCAPES[i][1];
+        String original = HTML_ESCAPES[i][2];
+        assertEquals(message, expected, StringEscapeUtils.escapeHtml4(original));
+        StringWriter sw = new StringWriter();
+        try {
+            StringEscapeUtils.ESCAPE_HTML4.translate(original, sw);
+        } catch (IOException e) {
+        }
+        String actual = original == null ? null : sw.toString();
+        assertEquals(message, expected, actual);
+    }
+}

@@ -1,0 +1,14 @@
+public void testLastIndexOf_StrMatcher() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(-1, sb.lastIndexOf((StrMatcher) null));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('a')));
+    sb.append("ab bd");
+    assertEquals(0, sb.lastIndexOf(StrMatcher.charMatcher('a')));
+    assertEquals(3, sb.lastIndexOf(StrMatcher.charMatcher('b')));
+    assertEquals(2, sb.lastIndexOf(StrMatcher.spaceMatcher()));
+    assertEquals(4, sb.lastIndexOf(StrMatcher.charMatcher('d')));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.noneMatcher()));
+    assertEquals(-1, sb.lastIndexOf((StrMatcher) null));
+    sb.append(" A1 junction");
+    assertEquals(6, sb.lastIndexOf(A_NUMBER_MATCHER));
+}

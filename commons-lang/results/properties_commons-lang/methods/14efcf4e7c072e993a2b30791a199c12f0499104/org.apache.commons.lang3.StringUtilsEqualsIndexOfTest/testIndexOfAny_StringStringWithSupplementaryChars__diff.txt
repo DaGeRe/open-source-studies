@@ -1,0 +1,9 @@
+/**
+ * See http://java.sun.com/developer/technicalArticles/Intl/Supplementary/
+ */
+public void testIndexOfAny_StringStringWithSupplementaryChars() {
+    assertEquals(0, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20000));
+    assertEquals(2, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20001));
+    assertEquals(0, StringUtils.indexOfAny(CharU20000, CharU20000));
+    assertEquals(-1, StringUtils.indexOfAny(CharU20000, CharU20001));
+}

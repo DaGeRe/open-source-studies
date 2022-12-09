@@ -1,0 +1,8 @@
+public void testJavaVersionAtLeastFloat() {
+    float version = SystemUtils.JAVA_VERSION_FLOAT;
+    assertEquals(true, SystemUtils.isJavaVersionAtLeast(version));
+    version -= 0.1f;
+    assertEquals(true, SystemUtils.isJavaVersionAtLeast(version));
+    version += 0.2f;
+    assertEquals(false, SystemUtils.isJavaVersionAtLeast(version));
+}

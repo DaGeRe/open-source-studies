@@ -1,0 +1,9 @@
+/**                                                                                                    /**                                                                                                 
+* Tests {@link ObjectUtils#clone(Object)} with a cloneable object.                                     * Tests {@link ObjectUtils#clone(Object)} with a cloneable object.                                  
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testCloneOfCloneable() {                                                                   public void testCloneOfCloneable() {                                                                
+final CloneableString string = new CloneableString("apache");                                          final CloneableString string = new CloneableString("apache");                                       
+final CloneableString stringClone = ObjectUtils.clone(string);                                         final CloneableString stringClone = ObjectUtils.clone(string);                                      
+assertEquals("apache", stringClone.getValue());                                                        assertEquals("apache", stringClone.getValue());                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+// --------------------------------------------------------------------------                          // --------------------------------------------------------------------------                       
+public void testComparableConstructors() {                                                             public void testComparableConstructors() {                                                          
+try {                                                                                                | Comparable c = new Comparable() {                                                                   
+Range range = new Range(new Object());                                                               |                                                                                                     
+fail("IllegalArgumentException expected");                                                           | public int compareTo(Object other) {                                                                
+} catch (ClassCastException cce) {                                                                   | return 1;                                                                                           
+// expected                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+try {                                                                                                | };                                                                                                  
+Range range = new Range(new Object(), new Object());                                                 | Range.is(c);                                                                                        
+fail("ClassCastException expected");                                                                 | Range.between(c, c);                                                                                
+} catch (ClassCastException cce) {                                                                   |                                                                                                     
+// expected                                                                                          |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,11 @@
+public void testConstructor1b() {
+    LongRange nr = new LongRange(long8);
+    assertSame(long8, nr.getMinimumNumber());
+    assertSame(long8, nr.getMaximumNumber());
+    Range r = new LongRange(nonComparableNumber);
+    try {
+        new LongRange(null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

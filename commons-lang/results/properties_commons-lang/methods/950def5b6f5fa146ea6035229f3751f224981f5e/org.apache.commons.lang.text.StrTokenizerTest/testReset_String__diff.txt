@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testReset_String() {
+    StrTokenizer tok = new StrTokenizer("x x x");
+    tok.reset("d e");
+    assertEquals("d", tok.next());
+    assertEquals("e", tok.next());
+    assertEquals(false, tok.hasNext());
+    tok.reset((String) null);
+    assertEquals(false, tok.hasNext());
+}

@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Obtains the list of languages supported for a given country.</p>
+ *
+ * <p>This method takes a country code and searches to find the
+ * languages available for that country. Variant locales are removed.</p>
+ *
+ * @param countryCode  the 2 letter country code, null returns empty
+ * @return an unmodifiable List of Locale objects, never null
+ */
+public static List languagesByCountry(String countryCode) {
+    // syncd
+    List langs = (List) cLanguagesByCountry.get(countryCode);
+    if (langs == null) {
+        if (countryCode != null) {
+            langs = new ArrayList();
+            List locales = availableLocaleList();
+            for (int i = 0; i < locales.size(); i++) {
+                Locale locale = (Locale) locales.get(i);
+                if (countryCode.equals(locale.getCountry()) && locale.getVariant().length() == 0) {
+                    langs.add(locale);
+                }
+            }
+            langs = Collections.unmodifiableList(langs);
+        } else {
+            langs = Collections.EMPTY_LIST;
+        }
+        // syncd
+        cLanguagesByCountry.put(countryCode, langs);
+    }
+    return langs;
+}

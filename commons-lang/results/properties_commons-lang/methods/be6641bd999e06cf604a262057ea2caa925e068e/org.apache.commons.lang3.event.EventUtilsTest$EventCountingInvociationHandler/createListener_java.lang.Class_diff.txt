@@ -1,0 +1,3 @@
+public <L> L createListener(Class<L> listenerType) {
+    return listenerType.cast(Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[] { listenerType }, this));
+}

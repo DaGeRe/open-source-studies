@@ -1,0 +1,15 @@
+@Test
+public void testWriteFieldForceAccess() throws Exception {
+    Field field = parentClass.getDeclaredField("s");
+    FieldUtils.writeField(field, publicChild, "S", true);
+    assertEquals("S", field.get(publicChild));
+    field = parentClass.getDeclaredField("b");
+    FieldUtils.writeField(field, publicChild, Boolean.TRUE, true);
+    assertEquals(Boolean.TRUE, field.get(publicChild));
+    field = parentClass.getDeclaredField("i");
+    FieldUtils.writeField(field, publicChild, new Integer(Integer.MAX_VALUE), true);
+    assertEquals(new Integer(Integer.MAX_VALUE), field.get(publicChild));
+    field = parentClass.getDeclaredField("d");
+    FieldUtils.writeField(field, publicChild, new Double(Double.MAX_VALUE), true);
+    assertEquals(new Double(Double.MAX_VALUE), field.get(publicChild));
+}

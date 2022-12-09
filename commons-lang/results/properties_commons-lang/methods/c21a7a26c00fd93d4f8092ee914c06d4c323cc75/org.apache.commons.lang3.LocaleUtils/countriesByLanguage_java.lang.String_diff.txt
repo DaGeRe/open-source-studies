@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Obtains the list of countries supported for a given language.&lt;/p&gt;                     * &lt;p&gt;Obtains the list of countries supported for a given language.&lt;/p&gt;                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method takes a language code and searches to find the                                  * &lt;p&gt;This method takes a language code and searches to find the                               
+* countries available for that language. Variant locales are removed.&lt;/p&gt;                        * countries available for that language. Variant locales are removed.&lt;/p&gt;                     
+*                                                                                                      *                                                                                                   
+* @param languageCode  the 2 letter language code, null returns empty                                  * @param languageCode  the 2 letter language code, null returns empty                               
+* @return an unmodifiable List of Locale objects, never null                                         | * @return an unmodifiable List of Locale objects, not null                                          
+*/                                                                                                     */                                                                                                  
+public static List&lt;Locale&gt; countriesByLanguage(String languageCode) {                            public static List&lt;Locale&gt; countriesByLanguage(String languageCode) {                         
+// syncd                                                                                             | if (languageCode == null) {                                                                         
+                                                                                                     | return Collections.emptyList();                                                                     
+                                                                                                     | }                                                                                                   
+List&lt;Locale&gt; countries = cCountriesByLanguage.get(languageCode);                                 List&lt;Locale&gt; countries = cCountriesByLanguage.get(languageCode);                              
+if (countries == null) {                                                                               if (countries == null) {                                                                            
+if (languageCode != null) {                                                                          |                                                                                                     
+countries = new ArrayList&lt;Locale&gt;();                                                             countries = new ArrayList&lt;Locale&gt;();                                                          
+List&lt;Locale&gt; locales = availableLocaleList();                                                    List&lt;Locale&gt; locales = availableLocaleList();                                                 
+for (int i = 0; i &lt; locales.size(); i++) {                                                          for (int i = 0; i &lt; locales.size(); i++) {                                                       
+Locale locale = locales.get(i);                                                                        Locale locale = locales.get(i);                                                                     
+if (languageCode.equals(locale.getLanguage()) && locale.getCountry().length() != 0 && locale.getVari   if (languageCode.equals(locale.getLanguage()) && locale.getCountry().length() != 0 && locale.getVari
+countries.add(locale);                                                                                 countries.add(locale);                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+countries = Collections.unmodifiableList(countries);                                                   countries = Collections.unmodifiableList(countries);                                                
+} else {                                                                                             | cCountriesByLanguage.putIfAbsent(languageCode, countries);                                          
+countries = Collections.emptyList();                                                                 | countries = cCountriesByLanguage.get(languageCode);                                                 
+}                                                                                                      }                                                                                                   
+// syncd                                                                                             |                                                                                                     
+cCountriesByLanguage.put(languageCode, countries);                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+return countries;                                                                                      return countries;                                                                                   
+}                                                                                                      }                                                                                                   

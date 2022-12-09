@@ -1,0 +1,16 @@
+/**
+ * Reset this tokenizer, giving it a new input string to parse.
+ * In this manner you can re-use a tokenizer with the same settings
+ * on multiple input lines.
+ * <p>
+ * The input character array is not cloned, and must not be altered after
+ * passing in to this method.
+ *
+ * @param input  the new character array to tokenize, not cloned, null sets no text to parse
+ * @return this, to enable chaining
+ */
+public StrTokenizer reset(char[] input) {
+    reset();
+    this.chars = input;
+    return this;
+}

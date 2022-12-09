@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+public boolean translate(int codepoint, Writer out) throws IOException {
+    // TODO: if (codepoint > 0xffff) {
+    if (codepoint > 0x7f) {
+        out.write("&#");
+        out.write(Integer.toString(codepoint, 10));
+        out.write(';');
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -1,0 +1,18 @@
+/**
+ * Define the lookup table to be used in translation
+ *
+ * @param CharSequence[][] Lookup table of size [*][2]
+ */
+public LookupTranslator(CharSequence[][] lookup) {
+    lookupMap = new HashMap<CharSequence, CharSequence>();
+    for (CharSequence[] seq : lookup) {
+        this.lookupMap.put(seq[0], seq[1]);
+        int sz = seq[0].length();
+        if (sz < shortest) {
+            shortest = sz;
+        }
+        if (sz > longest) {
+            longest = sz;
+        }
+    }
+}

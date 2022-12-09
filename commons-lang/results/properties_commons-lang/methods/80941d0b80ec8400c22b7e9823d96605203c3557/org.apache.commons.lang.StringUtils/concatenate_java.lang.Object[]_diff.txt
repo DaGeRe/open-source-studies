@@ -1,0 +1,23 @@
+// Joining
+// -----------------------------------------------------------------------
+/**
+ * <p>Concatenates elements of an array into a single String.
+ * Null objects or empty strings within the array are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.concatenate(null)            = null
+ * StringUtils.concatenate([])              = ""
+ * StringUtils.concatenate([null])          = ""
+ * StringUtils.concatenate(["a", "b", "c"]) = "abc"
+ * StringUtils.concatenate([null, "", "a"]) = "a"
+ * </pre>
+ *
+ * @param array  the array of values to concatenate, may be null
+ * @return the concatenated String, <code>null</code> if null array input
+ * @deprecated Use the better named {@link #join(Object[])} instead.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String concatenate(Object[] array) {
+    return join(array, null);
+}

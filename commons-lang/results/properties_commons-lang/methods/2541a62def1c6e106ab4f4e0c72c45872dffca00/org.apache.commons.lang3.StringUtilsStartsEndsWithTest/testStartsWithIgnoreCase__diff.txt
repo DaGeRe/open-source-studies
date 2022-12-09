@@ -1,0 +1,19 @@
+/**
+ * Test StringUtils.testStartsWithIgnoreCase()
+ */
+public void testStartsWithIgnoreCase() {
+    assertTrue("startsWithIgnoreCase(null, null)", StringUtils.startsWithIgnoreCase(null, (String) null));
+    assertFalse("startsWithIgnoreCase(FOOBAR, null)", StringUtils.startsWithIgnoreCase(FOOBAR, (String) null));
+    assertFalse("startsWithIgnoreCase(null, FOO)", StringUtils.startsWithIgnoreCase(null, FOO));
+    assertTrue("startsWithIgnoreCase(FOOBAR, \"\")", StringUtils.startsWithIgnoreCase(FOOBAR, ""));
+    assertTrue("startsWithIgnoreCase(foobar, foo)", StringUtils.startsWithIgnoreCase(foobar, foo));
+    assertTrue("startsWithIgnoreCase(FOOBAR, FOO)", StringUtils.startsWithIgnoreCase(FOOBAR, FOO));
+    assertTrue("startsWithIgnoreCase(foobar, FOO)", StringUtils.startsWithIgnoreCase(foobar, FOO));
+    assertTrue("startsWithIgnoreCase(FOOBAR, foo)", StringUtils.startsWithIgnoreCase(FOOBAR, foo));
+    assertFalse("startsWithIgnoreCase(foo, foobar)", StringUtils.startsWithIgnoreCase(foo, foobar));
+    assertFalse("startsWithIgnoreCase(foo, foobar)", StringUtils.startsWithIgnoreCase(bar, foobar));
+    assertFalse("startsWithIgnoreCase(foobar, bar)", StringUtils.startsWithIgnoreCase(foobar, bar));
+    assertFalse("startsWithIgnoreCase(FOOBAR, BAR)", StringUtils.startsWithIgnoreCase(FOOBAR, BAR));
+    assertFalse("startsWithIgnoreCase(foobar, BAR)", StringUtils.startsWithIgnoreCase(foobar, BAR));
+    assertFalse("startsWithIgnoreCase(FOOBAR, bar)", StringUtils.startsWithIgnoreCase(FOOBAR, bar));
+}

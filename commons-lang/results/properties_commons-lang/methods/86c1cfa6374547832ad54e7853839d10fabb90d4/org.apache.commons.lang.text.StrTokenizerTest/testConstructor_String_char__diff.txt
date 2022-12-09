@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testConstructor_String_char() {
+    StrTokenizer tok = new StrTokenizer("a b", ' ');
+    assertEquals(1, tok.getDelimiterMatcher().isMatch(" ".toCharArray(), 0, 0, 1));
+    assertEquals("a", tok.next());
+    assertEquals("b", tok.next());
+    assertEquals(false, tok.hasNext());
+    tok = new StrTokenizer("", ' ');
+    assertEquals(false, tok.hasNext());
+    tok = new StrTokenizer((String) null, ' ');
+    assertEquals(false, tok.hasNext());
+}

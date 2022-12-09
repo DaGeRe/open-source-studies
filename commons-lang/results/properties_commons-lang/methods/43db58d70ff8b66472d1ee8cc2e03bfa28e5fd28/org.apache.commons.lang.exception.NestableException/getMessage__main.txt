@@ -1,0 +1,17 @@
+/**
+ * Returns the detail message string of this throwable. If it was
+ * created with a null message, returns the following:
+ * (cause==null ? null : cause.toString()).
+ *
+ * @return String message string of the throwable
+ */
+@Override
+public String getMessage() {
+    if (super.getMessage() != null) {
+        return super.getMessage();
+    } else if (cause != null) {
+        return cause.toString();
+    } else {
+        return null;
+    }
+}

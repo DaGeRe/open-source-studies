@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------
+public void testGetThrowableCount_Throwable() {
+    assertEquals(0, ExceptionUtils.getThrowableCount(null));
+    assertEquals(1, ExceptionUtils.getThrowableCount(withoutCause));
+    assertEquals(2, ExceptionUtils.getThrowableCount(nested));
+    assertEquals(3, ExceptionUtils.getThrowableCount(withCause));
+    assertEquals(1, ExceptionUtils.getThrowableCount(jdkNoCause));
+    assertEquals(3, ExceptionUtils.getThrowableCount(cyclicCause));
+}

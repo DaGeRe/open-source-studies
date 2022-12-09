@@ -1,0 +1,9 @@
+public void testCreateInteger() {
+    assertEquals("createInteger(String) failed", new Integer("12345"), NumberUtils.createInteger("12345"));
+    assertEquals("createInteger(null) failed", null, NumberUtils.createInteger(null));
+    this.testCreateIntegerFailure("");
+    this.testCreateIntegerFailure(" ");
+    this.testCreateIntegerFailure("\b\t\n\f\r");
+    // Funky whitespaces
+    this.testCreateIntegerFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");
+}

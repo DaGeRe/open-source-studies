@@ -1,0 +1,30 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;                                                                                          |                                                                                                     
+* Unescapes the entities in a &lt;code&gt;String&lt;/code&gt;.                                       |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;                                                                                          |                                                                                                     
+* For example, if you have called addEntity(&quot;foo&quot;, 0xA1), unescape(&quot;&amp;foo;&quot;)  |                                                                                                     
+* &quot;\u00A1&quot;                                                                                 |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str                                                                                         |                                                                                                     
+*            The &lt;code&gt;String&lt;/code&gt; to escape.                                          |                                                                                                     
+* @return A new escaped &lt;code&gt;String&lt;/code&gt;.                                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public String unescape(String str) {                                                                 |                                                                                                     
+int firstAmp = str.indexOf('&');                                                                     |                                                                                                     
+if (firstAmp &lt; 0) {                                                                               |                                                                                                     
+return str;                                                                                          |                                                                                                     
+} else {                                                                                             |                                                                                                     
+StringWriter stringWriter = createStringWriter(str);                                                 |                                                                                                     
+try {                                                                                                |                                                                                                     
+this.doUnescape(stringWriter, str, firstAmp);                                                        |                                                                                                     
+} catch (IOException e) {                                                                            |                                                                                                     
+// This should never happen because ALL the StringWriter methods called by #escape(Writer, String)   |                                                                                                     
+// do not throw IOExceptions.                                                                        |                                                                                                     
+throw new UnhandledException(e);                                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     
+return stringWriter.toString();                                                                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

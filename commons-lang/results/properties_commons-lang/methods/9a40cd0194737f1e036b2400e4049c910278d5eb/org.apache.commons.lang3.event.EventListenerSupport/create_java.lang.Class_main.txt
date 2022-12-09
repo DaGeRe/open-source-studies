@@ -1,0 +1,18 @@
+/**
+ * Creates an EventListenerSupport object which supports the specified
+ * listener type.
+ *
+ * @param listenerInterface the type of listener interface that will receive
+ *        events posted using this class.
+ *
+ * @return an EventListenerSupport object which supports the specified
+ *         listener type.
+ *
+ * @throws NullPointerException if <code>listenerInterface</code> is
+ *         <code>null</code>.
+ * @throws IllegalArgumentException if <code>listenerInterface</code> is
+ *         not an interface.
+ */
+public static <T> EventListenerSupport<T> create(Class<T> listenerInterface) {
+    return new EventListenerSupport<T>(listenerInterface);
+}

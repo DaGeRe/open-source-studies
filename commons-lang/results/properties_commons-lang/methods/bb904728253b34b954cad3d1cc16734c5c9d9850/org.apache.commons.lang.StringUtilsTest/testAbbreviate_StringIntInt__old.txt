@@ -1,0 +1,40 @@
+public void testAbbreviate_StringIntInt() {
+    assertEquals(null, StringUtils.abbreviate(null, 10, 12));
+    assertEquals("", StringUtils.abbreviate("", 0, 10));
+    assertEquals("", StringUtils.abbreviate("", 2, 10));
+    try {
+        String res = StringUtils.abbreviate("abcdefghij", 0, 3);
+        fail("StringUtils.abbreviate expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        // empty
+    }
+    try {
+        String res = StringUtils.abbreviate("abcdefghij", 5, 6);
+        fail("StringUtils.abbreviate expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        // empty
+    }
+    String raspberry = "raspberry peach";
+    assertEquals("raspberry peach", StringUtils.abbreviate(raspberry, 11, 15));
+    assertEquals(null, StringUtils.abbreviate(null, 7, 14));
+    assertAbbreviateWithOffset("abcdefg...", -1, 10);
+    assertAbbreviateWithOffset("abcdefg...", 0, 10);
+    assertAbbreviateWithOffset("abcdefg...", 1, 10);
+    assertAbbreviateWithOffset("abcdefg...", 2, 10);
+    assertAbbreviateWithOffset("abcdefg...", 3, 10);
+    assertAbbreviateWithOffset("abcdefg...", 4, 10);
+    assertAbbreviateWithOffset("...fghi...", 5, 10);
+    assertAbbreviateWithOffset("...ghij...", 6, 10);
+    assertAbbreviateWithOffset("...hijk...", 7, 10);
+    assertAbbreviateWithOffset("...ijklmno", 8, 10);
+    assertAbbreviateWithOffset("...ijklmno", 9, 10);
+    assertAbbreviateWithOffset("...ijklmno", 10, 10);
+    assertAbbreviateWithOffset("...ijklmno", 10, 10);
+    assertAbbreviateWithOffset("...ijklmno", 11, 10);
+    assertAbbreviateWithOffset("...ijklmno", 12, 10);
+    assertAbbreviateWithOffset("...ijklmno", 13, 10);
+    assertAbbreviateWithOffset("...ijklmno", 14, 10);
+    assertAbbreviateWithOffset("...ijklmno", 15, 10);
+    assertAbbreviateWithOffset("...ijklmno", 16, 10);
+    assertAbbreviateWithOffset("...ijklmno", Integer.MAX_VALUE, 10);
+}

@@ -1,0 +1,24 @@
+public void testGetSet() {                                                                             public void testGetSet() {                                                                          
+final MutableFloat mutNum = new MutableFloat(0f);                                                      final MutableFloat mutNum = new MutableFloat(0f);                                                   
+assertEquals(0f, new MutableFloat().floatValue(), 0.0001f);                                            assertEquals(0f, new MutableFloat().floatValue(), 0.0001f);                                         
+assertEquals(new Float(0), new MutableFloat().getValue());                                             assertEquals(new Float(0), new MutableFloat().getValue());                                          
+mutNum.setValue(1);                                                                                    mutNum.setValue(1);                                                                                 
+assertEquals(1f, mutNum.floatValue(), 0.0001f);                                                        assertEquals(1f, mutNum.floatValue(), 0.0001f);                                                     
+assertEquals(new Float(1f), mutNum.getValue());                                                        assertEquals(new Float(1f), mutNum.getValue());                                                     
+mutNum.setValue(new Float(2f));                                                                        mutNum.setValue(new Float(2f));                                                                     
+assertEquals(2f, mutNum.floatValue(), 0.0001f);                                                        assertEquals(2f, mutNum.floatValue(), 0.0001f);                                                     
+assertEquals(new Float(2f), mutNum.getValue());                                                        assertEquals(new Float(2f), mutNum.getValue());                                                     
+mutNum.setValue(new MutableFloat(3f));                                                                 mutNum.setValue(new MutableFloat(3f));                                                              
+assertEquals(3f, mutNum.floatValue(), 0.0001f);                                                        assertEquals(3f, mutNum.floatValue(), 0.0001f);                                                     
+assertEquals(new Float(3f), mutNum.getValue());                                                        assertEquals(new Float(3f), mutNum.getValue());                                                     
+try {                                                                                                  try {                                                                                               
+mutNum.setValue(null);                                                                                 mutNum.setValue(null);                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                |                                                                                                     
+mutNum.setValue("0");                                                                                |                                                                                                     
+fail();                                                                                              |                                                                                                     
+} catch (ClassCastException ex) {                                                                    |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

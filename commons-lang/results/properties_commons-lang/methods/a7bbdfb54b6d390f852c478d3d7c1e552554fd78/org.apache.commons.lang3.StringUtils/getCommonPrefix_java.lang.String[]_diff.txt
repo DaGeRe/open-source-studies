@@ -1,0 +1,52 @@
+/**
+ * <p>Compares all Strings in an array and returns the initial sequence of
+ * characters that is common to all of them.</p>
+ *
+ * <p>For example,
+ * <code>getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) -> "i am a "</code></p>
+ *
+ * <pre>
+ * StringUtils.getCommonPrefix(null) = ""
+ * StringUtils.getCommonPrefix(new String[] {}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {null, null, "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", "abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {"abc", "a"}) = "a"
+ * StringUtils.getCommonPrefix(new String[] {"ab", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "xyz"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"xyz", "abcde"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) = "i am a "
+ * </pre>
+ *
+ * @param strs  array of String objects, entries may be null
+ * @return the initial sequence of characters that are common to all Strings
+ * in the array; empty String if the array is null, the elements are all null
+ * or if there is no common prefix.
+ * @since 2.4
+ */
+public static String getCommonPrefix(String[] strs) {
+    if (strs == null || strs.length == 0) {
+        return EMPTY;
+    }
+    int smallestIndexOfDiff = indexOfDifference(strs);
+    if (smallestIndexOfDiff == -1) {
+        // all strings were identical
+        if (strs[0] == null) {
+            return EMPTY;
+        }
+        return strs[0];
+    } else if (smallestIndexOfDiff == 0) {
+        // there were no common initial characters
+        return EMPTY;
+    } else {
+        // we found a common initial character sequence
+        return strs[0].substring(0, smallestIndexOfDiff);
+    }
+}

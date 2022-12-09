@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+@Test
+public void testConstructor() {
+    assertNotNull(new BooleanUtils());
+    Constructor<?>[] cons = BooleanUtils.class.getDeclaredConstructors();
+    assertEquals(1, cons.length);
+    assertTrue(Modifier.isPublic(cons[0].getModifiers()));
+    assertTrue(Modifier.isPublic(BooleanUtils.class.getModifiers()));
+    assertFalse(Modifier.isFinal(BooleanUtils.class.getModifiers()));
+}

@@ -1,0 +1,7 @@
+public void testGetThrowableList_Throwable_withCause() {
+    List<?> throwables = ExceptionUtils.getThrowableList(withCause);
+    assertEquals(3, throwables.size());
+    assertSame(withCause, throwables.get(0));
+    assertSame(nested, throwables.get(1));
+    assertSame(withoutCause, throwables.get(2));
+}

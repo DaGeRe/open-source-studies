@@ -1,0 +1,35 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | public boolean translate(int ch, Writer out) throws IOException {                                   
+                                                                                                     | if (ch &lt; 32) {                                                                                   
+                                                                                                     | switch(ch) {                                                                                        
+                                                                                                     | case '\b':                                                                                          
+                                                                                                     | out.write('\\');                                                                                    
+                                                                                                     | out.write('b');                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | case '\n':                                                                                          
+                                                                                                     | out.write('\\');                                                                                    
+                                                                                                     | out.write('n');                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | case '\t':                                                                                          
+                                                                                                     | out.write('\\');                                                                                    
+                                                                                                     | out.write('t');                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | case '\f':                                                                                          
+                                                                                                     | out.write('\\');                                                                                    
+                                                                                                     | out.write('f');                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | case '\r':                                                                                          
+                                                                                                     | out.write('\\');                                                                                    
+                                                                                                     | out.write('r');                                                                                     
+                                                                                                     | break;                                                                                              
+                                                                                                     | default:                                                                                            
+                                                                                                     | super.translate(ch, out);                                                                           
+                                                                                                     | break;                                                                                              
+                                                                                                     | }                                                                                                   
+                                                                                                     | return true;                                                                                        
+                                                                                                     | } else {                                                                                            
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,20 @@
+/**
+ * <p>Gets the range as a <code>String</code>.</p>
+ *
+ * <p>The format of the String is 'Range[<i>min</i>,<i>max</i>]'.</p>
+ *
+ * <p>This implementation uses the {@link #getMinimumNumber()} and
+ * {@link #getMaximumNumber()} methods.
+ * Subclasses may be able to optimise this.</p>
+ *
+ * @return the <code>String</code> representation of this range
+ */
+public String toString() {
+    StringBuffer buf = new StringBuffer(32);
+    buf.append("Range[");
+    buf.append(getMinimumNumber());
+    buf.append(',');
+    buf.append(getMaximumNumber());
+    buf.append(']');
+    return buf.toString();
+}

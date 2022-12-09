@@ -1,0 +1,26 @@
+/**
+ * Supports equality of this Token to another Token.
+ *
+ * @param obj2 Object to consider equality of
+ * @return boolean <code>true</code> if equal
+ */
+@Override
+public boolean equals(Object obj2) {
+    if (obj2 instanceof Token) {
+        Token tok2 = (Token) obj2;
+        if (this.value.getClass() != tok2.value.getClass()) {
+            return false;
+        }
+        if (this.count != tok2.count) {
+            return false;
+        }
+        if (this.value instanceof StringBuffer) {
+            return this.value.toString().equals(tok2.value.toString());
+        } else if (this.value instanceof Number) {
+            return this.value.equals(tok2.value);
+        } else {
+            return this.value == tok2.value;
+        }
+    }
+    return false;
+}

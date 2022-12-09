@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void test_toBoolean_String_String_String() {                                                    public void test_toBoolean_String_String_String() {                                                 
+assertEquals(true, BooleanUtils.toBoolean((String) null, null, "N"));                                | assertTrue(BooleanUtils.toBoolean((String) null, null, "N"));                                       
+assertEquals(false, BooleanUtils.toBoolean((String) null, "Y", null));                               | assertFalse(BooleanUtils.toBoolean((String) null, "Y", null));                                      
+assertEquals(true, BooleanUtils.toBoolean("Y", "Y", "N"));                                           | assertTrue(BooleanUtils.toBoolean("Y", "Y", "N"));                                                  
+assertEquals(true, BooleanUtils.toBoolean("Y", new String("Y"), new String("N")));                   | assertTrue(BooleanUtils.toBoolean("Y", new String("Y"), new String("N")));                          
+assertEquals(false, BooleanUtils.toBoolean("N", "Y", "N"));                                          | assertFalse(BooleanUtils.toBoolean("N", "Y", "N"));                                                 
+assertEquals(false, BooleanUtils.toBoolean("N", new String("Y"), new String("N")));                  | assertFalse(BooleanUtils.toBoolean("N", new String("Y"), new String("N")));                         
+assertEquals(true, BooleanUtils.toBoolean((String) null, null, null));                               | assertTrue(BooleanUtils.toBoolean((String) null, null, null));                                      
+assertEquals(true, BooleanUtils.toBoolean("Y", "Y", "Y"));                                           | assertTrue(BooleanUtils.toBoolean("Y", "Y", "Y"));                                                  
+assertEquals(true, BooleanUtils.toBoolean("Y", new String("Y"), new String("Y")));                   | assertTrue(BooleanUtils.toBoolean("Y", new String("Y"), new String("Y")));                          
+}                                                                                                      }                                                                                                   

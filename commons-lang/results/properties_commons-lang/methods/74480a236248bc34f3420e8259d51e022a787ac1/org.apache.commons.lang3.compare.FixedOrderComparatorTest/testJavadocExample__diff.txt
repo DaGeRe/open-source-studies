@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+@Test
+public void testJavadocExample() {
+    String[] planets = { "Mercury", "Venus", "Earth", "Mars" };
+    String[] modified = { "Mercury", "Venus", "Earth", "Mars" };
+    Comparator distanceFromSun = new FixedOrderComparator(planets);
+    // Sort to alphabetical order
+    Arrays.sort(modified);
+    // Back to original order
+    Arrays.sort(modified, distanceFromSun);
+    assertArrayEquals("Did not sort to fixed order", planets, modified);
+}

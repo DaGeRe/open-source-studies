@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the cause.&lt;/p&gt;           * &lt;p&gt;Introspects the &lt;code&gt;Throwable&lt;/code&gt; to obtain the cause.&lt;/p&gt;        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The method searches for methods with specific names that return a                           * &lt;p&gt;The method searches for methods with specific names that return a                        
+* &lt;code&gt;Throwable&lt;/code&gt; object. This will pick up most wrapping exceptions,               * &lt;code&gt;Throwable&lt;/code&gt; object. This will pick up most wrapping exceptions,            
+* including those from JDK 1.4.                                                                        * including those from JDK 1.4.                                                                     
+* The method names can be added to using {@link #addCauseMethodName(String)}.&lt;/p&gt;                * The method names can be added to using {@link #addCauseMethodName(String)}.&lt;/p&gt;             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The default list searched for are:&lt;/p&gt;                                                * &lt;p&gt;The default list searched for are:&lt;/p&gt;                                             
+* &lt;ul&gt;                                                                                           * &lt;ul&gt;                                                                                        
+*  &lt;li&gt;&lt;code&gt;getCause()&lt;/code&gt;&lt;/li&gt;                                            *  &lt;li&gt;&lt;code&gt;getCause()&lt;/code&gt;&lt;/li&gt;                                         
+*  &lt;li&gt;&lt;code&gt;getNextException()&lt;/code&gt;&lt;/li&gt;                                    *  &lt;li&gt;&lt;code&gt;getNextException()&lt;/code&gt;&lt;/li&gt;                                 
+*  &lt;li&gt;&lt;code&gt;getTargetException()&lt;/code&gt;&lt;/li&gt;                                  *  &lt;li&gt;&lt;code&gt;getTargetException()&lt;/code&gt;&lt;/li&gt;                               
+*  &lt;li&gt;&lt;code&gt;getException()&lt;/code&gt;&lt;/li&gt;                                        *  &lt;li&gt;&lt;code&gt;getException()&lt;/code&gt;&lt;/li&gt;                                     
+*  &lt;li&gt;&lt;code&gt;getSourceException()&lt;/code&gt;&lt;/li&gt;                                  *  &lt;li&gt;&lt;code&gt;getSourceException()&lt;/code&gt;&lt;/li&gt;                               
+*  &lt;li&gt;&lt;code&gt;getRootCause()&lt;/code&gt;&lt;/li&gt;                                        *  &lt;li&gt;&lt;code&gt;getRootCause()&lt;/code&gt;&lt;/li&gt;                                     
+*  &lt;li&gt;&lt;code&gt;getCausedByException()&lt;/code&gt;&lt;/li&gt;                                *  &lt;li&gt;&lt;code&gt;getCausedByException()&lt;/code&gt;&lt;/li&gt;                             
+*  &lt;li&gt;&lt;code&gt;getNested()&lt;/code&gt;&lt;/li&gt;                                           *  &lt;li&gt;&lt;code&gt;getNested()&lt;/code&gt;&lt;/li&gt;                                        
+* &lt;/ul&gt;                                                                                          * &lt;/ul&gt;                                                                                       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;In the absence of any such method, the object is inspected for a                            * &lt;p&gt;In the absence of any such method, the object is inspected for a                         
+* &lt;code&gt;detail&lt;/code&gt; field assignable to a &lt;code&gt;Throwable&lt;/code&gt;.&lt;/p&gt   * &lt;code&gt;detail&lt;/code&gt; field assignable to a &lt;code&gt;Throwable&lt;/code&gt;.&lt;/p&gt
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If none of the above is found, returns &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;             * &lt;p&gt;If none of the above is found, returns &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to introspect for a cause, may be null                               * @param throwable  the throwable to introspect for a cause, may be null                            
+* @return the cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                         * @return the cause of the &lt;code&gt;Throwable&lt;/code&gt;,                                      
+*  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                                 *  &lt;code&gt;null&lt;/code&gt; if none found or null throwable input                              
+* @since 1.0                                                                                           * @since 1.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static Throwable getCause(Throwable throwable) {                                                public static Throwable getCause(Throwable throwable) {                                             
+synchronized (CAUSE_METHOD_NAMES) {                                                                  | synchronized (CAUSE_METHOD_NAMES_LOCK) {                                                            
+return getCause(throwable, CAUSE_METHOD_NAMES);                                                        return getCause(throwable, CAUSE_METHOD_NAMES);                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

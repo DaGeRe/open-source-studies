@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Removes common frames from the cause trace given the two stack traces.&lt;/p&gt;            * &lt;p&gt;Removes common frames from the cause trace given the two stack traces.&lt;/p&gt;         
+*                                                                                                      *                                                                                                   
+* @param causeFrames  stack trace of a cause throwable                                                 * @param causeFrames  stack trace of a cause throwable                                              
+* @param wrapperFrames  stack trace of a wrapper throwable                                             * @param wrapperFrames  stack trace of a wrapper throwable                                          
+* @throws IllegalArgumentException if either argument is null                                          * @throws IllegalArgumentException if either argument is null                                       
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void removeCommonFrames(List causeFrames, List wrapperFrames) {                        | public static void removeCommonFrames(List&lt;String&gt; causeFrames, List&lt;String&gt; wrapperFram
+if (causeFrames == null || wrapperFrames == null) {                                                    if (causeFrames == null || wrapperFrames == null) {                                                 
+throw new IllegalArgumentException("The List must not be null");                                       throw new IllegalArgumentException("The List must not be null");                                    
+}                                                                                                      }                                                                                                   
+int causeFrameIndex = causeFrames.size() - 1;                                                          int causeFrameIndex = causeFrames.size() - 1;                                                       
+int wrapperFrameIndex = wrapperFrames.size() - 1;                                                      int wrapperFrameIndex = wrapperFrames.size() - 1;                                                   
+while (causeFrameIndex &gt;= 0 && wrapperFrameIndex &gt;= 0) {                                         while (causeFrameIndex &gt;= 0 && wrapperFrameIndex &gt;= 0) {                                      
+// Remove the frame from the cause trace if it is the same                                             // Remove the frame from the cause trace if it is the same                                          
+// as in the wrapper trace                                                                             // as in the wrapper trace                                                                          
+String causeFrame = (String) causeFrames.get(causeFrameIndex);                                       | String causeFrame = causeFrames.get(causeFrameIndex);                                               
+String wrapperFrame = (String) wrapperFrames.get(wrapperFrameIndex);                                 | String wrapperFrame = wrapperFrames.get(wrapperFrameIndex);                                         
+if (causeFrame.equals(wrapperFrame)) {                                                                 if (causeFrame.equals(wrapperFrame)) {                                                              
+causeFrames.remove(causeFrameIndex);                                                                   causeFrames.remove(causeFrameIndex);                                                                
+}                                                                                                      }                                                                                                   
+causeFrameIndex--;                                                                                     causeFrameIndex--;                                                                                  
+wrapperFrameIndex--;                                                                                   wrapperFrameIndex--;                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

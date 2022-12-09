@@ -1,0 +1,24 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public final void appendTo(StringBuffer buffer, int value) {                                         |                                                                                                     
+if (value &lt; 100) {                                                                                |                                                                                                     
+for (int i = mSize; --i &gt;= 2; ) {                                                                 |                                                                                                     
+buffer.append('0');                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+buffer.append((char) (value / 10 + '0'));                                                            |                                                                                                     
+buffer.append((char) (value % 10 + '0'));                                                            |                                                                                                     
+} else {                                                                                             |                                                                                                     
+int digits;                                                                                          |                                                                                                     
+if (value &lt; 1000) {                                                                               |                                                                                                     
+digits = 3;                                                                                          |                                                                                                     
+} else {                                                                                             |                                                                                                     
+Validate.isTrue(value &gt; -1, "Negative values should not be possible", value);                     |                                                                                                     
+digits = Integer.toString(value).length();                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+for (int i = mSize; --i &gt;= digits; ) {                                                            |                                                                                                     
+buffer.append('0');                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+buffer.append(Integer.toString(value));                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testByteArray() {                                                                          public void testByteArray() {                                                                       
+byte[] array = new byte[] { 1, 2, -3, 4 };                                                             byte[] array = new byte[] { 1, 2, -3, 4 };                                                          
+assertEquals(baseStr + "[{1,2,-3,4}]", new ToStringBuilder(base).append(array).toString());            assertEquals(baseStr + "[{1,2,-3,4}]", new ToStringBuilder(base).append(array).toString());         
+assertEquals(baseStr + "[{1,2,-3,4}]", new ToStringBuilder(base).append((Object) array).toString());   assertEquals(baseStr + "[{1,2,-3,4}]", new ToStringBuilder(base).append((Object) array).toString());
+array = null;                                                                                          array = null;                                                                                       
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append(array).toString());          assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append(array).toString());       
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) array).toString()   assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) array).toString()
+}                                                                                                      }                                                                                                   

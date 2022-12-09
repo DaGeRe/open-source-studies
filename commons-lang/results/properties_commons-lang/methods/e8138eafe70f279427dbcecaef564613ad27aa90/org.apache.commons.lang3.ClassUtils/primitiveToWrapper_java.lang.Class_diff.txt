@@ -1,0 +1,19 @@
+/**
+ * <p>Converts the specified primitive Class object to its corresponding
+ * wrapper Class object.</p>
+ *
+ * <p>NOTE: From v2.2, this method handles <code>Void.TYPE</code>,
+ * returning <code>Void.TYPE</code>.</p>
+ *
+ * @param cls  the class to convert, may be null
+ * @return the wrapper class for <code>cls</code> or <code>cls</code> if
+ * <code>cls</code> is not a primitive. <code>null</code> if null input.
+ * @since 2.1
+ */
+public static Class<?> primitiveToWrapper(Class<?> cls) {
+    Class<?> convertedClass = cls;
+    if (cls != null && cls.isPrimitive()) {
+        convertedClass = primitiveWrapperMap.get(cls);
+    }
+    return convertedClass;
+}

@@ -1,0 +1,21 @@
+/**
+ * <p>Finds a <code>Throwable</code> for known types.</p>
+ *
+ * <p>Uses <code>instanceof</code> checks to examine the exception,
+ * looking for well known types which could contain chained or
+ * wrapped exceptions.</p>
+ *
+ * @param throwable  the exception to examine
+ * @return the wrapped exception, or <code>null</code> if not found
+ */
+private static Throwable getCauseUsingWellKnownTypes(Throwable throwable) {
+    if (throwable instanceof Nestable) {
+        return ((Nestable) throwable).getCause();
+    } else if (throwable instanceof SQLException) {
+        return ((SQLException) throwable).getNextException();
+    } else if (throwable instanceof InvocationTargetException) {
+        return ((InvocationTargetException) throwable).getTargetException();
+    } else {
+        return null;
+    }
+}

@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testCharArray() {                                                                          public void testCharArray() {                                                                       
+assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((char[]) null).toHashCode());                 assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((char[]) null).toHashCode());              
+char[] obj = new char[2];                                                                              char[] obj = new char[2];                                                                           
+assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());                    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());                 
+obj[0] = (char) 5;                                                                                     obj[0] = (char) 5;                                                                                  
+assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());                assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append(obj).toHashCode());             
+obj[1] = (char) 6;                                                                                     obj[1] = (char) 6;                                                                                  
+assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append(obj).toHashCode());            assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append(obj).toHashCode());         
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,22 @@
+public void testTranslateNullPointerException() {
+    try {
+        CharSetUtils.translate("hello", null, null);
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+    }
+    try {
+        CharSetUtils.translate("hello", "h", null);
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+    }
+    try {
+        CharSetUtils.translate("hello", null, "a");
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+    }
+    try {
+        CharSetUtils.translate("hello", "h", "");
+        fail("Expecting ArrayIndexOutOfBoundsException");
+    } catch (ArrayIndexOutOfBoundsException ex) {
+    }
+}

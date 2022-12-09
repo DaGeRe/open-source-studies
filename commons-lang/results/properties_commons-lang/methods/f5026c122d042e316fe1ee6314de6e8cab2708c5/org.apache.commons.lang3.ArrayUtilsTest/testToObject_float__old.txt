@@ -1,0 +1,6 @@
+public void testToObject_float() {
+    final float[] b = null;
+    assertEquals(null, ArrayUtils.toObject(b));
+    assertSame(ArrayUtils.EMPTY_FLOAT_OBJECT_ARRAY, ArrayUtils.toObject(new float[0]));
+    assertTrue(Arrays.equals(new Float[] { new Float(Float.MIN_VALUE), new Float(Float.MAX_VALUE), new Float(9999999) }, ArrayUtils.toObject(new float[] { Float.MIN_VALUE, Float.MAX_VALUE, 9999999 })));
+}

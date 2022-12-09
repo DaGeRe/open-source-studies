@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------
+public void testConstructor() {
+    assertNotNull(new ArrayUtils());
+    Constructor[] cons = ArrayUtils.class.getDeclaredConstructors();
+    assertEquals(1, cons.length);
+    assertEquals(true, Modifier.isPublic(cons[0].getModifiers()));
+    assertEquals(true, Modifier.isPublic(ArrayUtils.class.getModifiers()));
+    assertEquals(false, Modifier.isFinal(ArrayUtils.class.getModifiers()));
+}

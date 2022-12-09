@@ -1,0 +1,14 @@
+/**
+ * Returns the number of background tasks to be created for this
+ * initializer. This information is evaluated when a temporary {@code
+ * ExecutorService} is created. This base implementation returns 1. Derived
+ * classes that do more complex background processing can override it. This
+ * method is called from a synchronized block by the {@link #start()}
+ * method. Therefore overriding methods should be careful with obtaining
+ * other locks and return as fast as possible.
+ *
+ * @return the number of background tasks required by this initializer
+ */
+protected int getTaskCount() {
+    return 1;
+}

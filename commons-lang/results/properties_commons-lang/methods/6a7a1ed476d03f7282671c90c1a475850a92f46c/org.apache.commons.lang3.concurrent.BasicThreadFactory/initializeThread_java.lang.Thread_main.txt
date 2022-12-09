@@ -1,0 +1,23 @@
+/**
+ * Initializes the specified thread. This method is called by
+ * {@link #newThread(Runnable)} after a new thread has been obtained from
+ * the wrapped thread factory. It initializes the thread according to the
+ * options set for this factory.
+ *
+ * @param t the thread to be initialized
+ */
+private void initializeThread(Thread t) {
+    if (getNamingPattern() != null) {
+        Long count = Long.valueOf(threadCounter.incrementAndGet());
+        t.setName(String.format(getNamingPattern(), count));
+    }
+    if (getUncaughtExceptionHandler() != null) {
+        t.setUncaughtExceptionHandler(getUncaughtExceptionHandler());
+    }
+    if (getPriority() != null) {
+        t.setPriority(getPriority().intValue());
+    }
+    if (getDaemonFlag() != null) {
+        t.setDaemon(getDaemonFlag().booleanValue());
+    }
+}

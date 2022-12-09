@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------
+private void doTestReplace(String expectedResult, String replaceTemplate, boolean substring) {
+    String expectedShortResult = expectedResult.substring(1, expectedResult.length() - 1);
+    StrSubstitutor sub = new StrSubstitutor(values);
+    // replace using String
+    assertEquals(expectedResult, sub.replace(replaceTemplate));
+    if (substring) {
+        assertEquals(expectedShortResult, sub.replace(replaceTemplate, 1, replaceTemplate.length() - 2));
+    }
+    // replace using char[]
+    char[] chars = replaceTemplate.toCharArray();
+    assertEquals(expectedResult, sub.replace(chars));
+    if (substring) {
+        assertEquals(expectedShortResult, sub.replace(chars, 1, chars.length - 2));
+    }
+    // replace using StringBuffer
+    StringBuffer buf = new StringBuffer(replaceTemplate);
+    assertEquals(expectedResult, sub.replace(buf));
+    if (substring) {
+        assertEquals(expectedShortResult, sub.replace(buf, 1, buf.length() - 2));
+    }
+    // replace using StrBuilder
+    StrBuilder bld = new StrBuilder(replaceTemplate);
+    assertEquals(expectedResult, sub.replace(bld));
+    if (substring) {
+        assertEquals(expectedShortResult, sub.replace(bld, 1, bld.length() - 2));
+    }
+    // replace using object
+    // toString returns template
+    MutableObject<String> obj = new MutableObject<String>(replaceTemplate);
+    assertEquals(expectedResult, sub.replace(obj));
+    // replace in StringBuffer
+    buf = new StringBuffer(replaceTemplate);
+    assertEquals(true, sub.replaceIn(buf));
+    assertEquals(expectedResult, buf.toString());
+    if (substring) {
+        buf = new StringBuffer(replaceTemplate);
+        assertEquals(true, sub.replaceIn(buf, 1, buf.length() - 2));
+        // expect full result as remainder is untouched
+        assertEquals(expectedResult, buf.toString());
+    }
+    // replace in StrBuilder
+    bld = new StrBuilder(replaceTemplate);
+    assertEquals(true, sub.replaceIn(bld));
+    assertEquals(expectedResult, bld.toString());
+    if (substring) {
+        bld = new StrBuilder(replaceTemplate);
+        assertEquals(true, sub.replaceIn(bld, 1, bld.length() - 2));
+        // expect full result as remainder is untouched
+        assertEquals(expectedResult, bld.toString());
+    }
+}

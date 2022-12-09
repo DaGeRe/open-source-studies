@@ -1,0 +1,32 @@
+public void testConstructor2b() {
+    FloatRange nr = new FloatRange(float8, float10);
+    assertSame(float8, nr.getMinimumNumber());
+    assertSame(float10, nr.getMaximumNumber());
+    nr = new FloatRange(float10, float8);
+    assertSame(float8, nr.getMinimumNumber());
+    assertSame(float10, nr.getMaximumNumber());
+    nr = new FloatRange(float8, float10);
+    assertSame(float8, nr.getMinimumNumber());
+    assertEquals(float10, nr.getMaximumNumber());
+    // not null
+    try {
+        new FloatRange(float8, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new FloatRange(null, float8);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new FloatRange(null, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new FloatRange(new Double(Double.NaN), float10);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

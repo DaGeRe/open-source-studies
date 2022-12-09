@@ -1,0 +1,4 @@
+public void testIndexOfThrowable_Index() {
+    NotImplementedException ex = new NotImplementedException(new NestableException("nested 1", new NestableException("nested 2")));
+    assertEquals(1, ex.indexOfThrowable(NestableException.class, 1));
+}

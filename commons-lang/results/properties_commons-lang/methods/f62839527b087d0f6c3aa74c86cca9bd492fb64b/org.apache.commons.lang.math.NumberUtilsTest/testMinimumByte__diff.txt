@@ -1,0 +1,9 @@
+public void testMinimumByte() {
+    byte low = 123;
+    byte mid = 123 + 1;
+    byte high = 123 + 2;
+    assertEquals("minimum(byte,byte,byte) 1 failed", low, NumberUtils.min(low, mid, high));
+    assertEquals("minimum(byte,byte,byte) 1 failed", low, NumberUtils.min(mid, low, high));
+    assertEquals("minimum(byte,byte,byte) 1 failed", low, NumberUtils.min(mid, high, low));
+    assertEquals("minimum(byte,byte,byte) 1 failed", low, NumberUtils.min(low, mid, low));
+}

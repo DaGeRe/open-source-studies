@@ -1,0 +1,9 @@
+@Test
+public void testConstructor() {
+    assertNotNull(new StringEscapeUtils());
+    Constructor<?>[] cons = StringEscapeUtils.class.getDeclaredConstructors();
+    assertEquals(1, cons.length);
+    assertTrue(Modifier.isPublic(cons[0].getModifiers()));
+    assertTrue(Modifier.isPublic(StringEscapeUtils.class.getModifiers()));
+    assertFalse(Modifier.isFinal(StringEscapeUtils.class.getModifiers()));
+}

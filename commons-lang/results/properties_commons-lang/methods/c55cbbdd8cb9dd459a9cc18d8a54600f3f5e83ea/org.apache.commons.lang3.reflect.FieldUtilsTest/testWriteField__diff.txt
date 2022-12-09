@@ -1,0 +1,25 @@
+                                                                                                     | @Test                                                                                               
+public void testWriteField() throws Exception {                                                        public void testWriteField() throws Exception {                                                     
+Field field = parentClass.getDeclaredField("s");                                                       Field field = parentClass.getDeclaredField("s");                                                    
+FieldUtils.writeField(field, publicChild, "S");                                                        FieldUtils.writeField(field, publicChild, "S");                                                     
+assertEquals("S", field.get(publicChild));                                                             assertEquals("S", field.get(publicChild));                                                          
+field = parentClass.getDeclaredField("b");                                                             field = parentClass.getDeclaredField("b");                                                          
+try {                                                                                                  try {                                                                                               
+FieldUtils.writeField(field, publicChild, Boolean.TRUE);                                               FieldUtils.writeField(field, publicChild, Boolean.TRUE);                                            
+fail("Expected IllegalAccessException");                                                               fail("Expected IllegalAccessException");                                                            
+} catch (IllegalAccessException e) {                                                                   } catch (IllegalAccessException e) {                                                                
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+field = parentClass.getDeclaredField("i");                                                             field = parentClass.getDeclaredField("i");                                                          
+try {                                                                                                  try {                                                                                               
+FieldUtils.writeField(field, publicChild, new Integer(Integer.MAX_VALUE));                             FieldUtils.writeField(field, publicChild, new Integer(Integer.MAX_VALUE));                          
+} catch (IllegalAccessException e) {                                                                   } catch (IllegalAccessException e) {                                                                
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+field = parentClass.getDeclaredField("d");                                                             field = parentClass.getDeclaredField("d");                                                          
+try {                                                                                                  try {                                                                                               
+FieldUtils.writeField(field, publicChild, new Double(Double.MAX_VALUE));                               FieldUtils.writeField(field, publicChild, new Double(Double.MAX_VALUE));                            
+} catch (IllegalAccessException e) {                                                                   } catch (IllegalAccessException e) {                                                                
+// pass                                                                                                // pass                                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

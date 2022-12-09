@@ -1,0 +1,9 @@
+public void testBasicQuoted3() {
+    String input = "a:'b''c'";
+    StrTokenizer tok = new StrTokenizer(input, ':', '\'');
+    tok.setIgnoreEmptyTokens(false);
+    tok.setEmptyTokenAsNull(true);
+    assertEquals("a", tok.next());
+    assertEquals("b'c", tok.next());
+    assertEquals(false, tok.hasNext());
+}

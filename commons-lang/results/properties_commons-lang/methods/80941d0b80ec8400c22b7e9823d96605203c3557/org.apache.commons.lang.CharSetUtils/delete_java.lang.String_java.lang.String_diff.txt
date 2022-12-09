@@ -1,0 +1,28 @@
+// Delete
+// -----------------------------------------------------------------------
+/**
+ * <p>Takes an argument in set-syntax, see evaluateSet,
+ * and deletes any of characters present in the specified string.</p>
+ *
+ * <pre>
+ * CharSetUtils.delete(null, *)        = null
+ * CharSetUtils.delete("", *)          = ""
+ * CharSetUtils.delete(*, null)        = *
+ * CharSetUtils.delete(*, "")          = *
+ * CharSetUtils.delete("hello", "hl")  = "eo"
+ * CharSetUtils.delete("hello", "le")  = "ho"
+ * </pre>
+ *
+ * @see #evaluateSet(java.lang.String[]) for set-syntax.
+ * @param str  String to delete characters from, may be null
+ * @param set  String set of characters to delete, may be null
+ * @return modified String, <code>null</code> if null string input
+ */
+public static String delete(String str, String set) {
+    if (StringUtils.isEmpty(str) || StringUtils.isEmpty(set)) {
+        return str;
+    }
+    String[] strs = new String[1];
+    strs[0] = set;
+    return delete(str, strs);
+}

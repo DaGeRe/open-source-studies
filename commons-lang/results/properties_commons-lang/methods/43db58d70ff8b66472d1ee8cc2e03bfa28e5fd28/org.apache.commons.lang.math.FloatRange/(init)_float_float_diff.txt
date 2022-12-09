@@ -1,0 +1,24 @@
+/**
+ * <p>Constructs a new <code>FloatRange</code> with the specified
+ * minimum and maximum numbers (both inclusive).</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min). The
+ * getMinimum and getMaximum methods will return the correct values.</p>
+ *
+ * @param number1  first number that defines the edge of the range, inclusive
+ * @param number2  second number that defines the edge of the range, inclusive
+ * @throws IllegalArgumentException if either number is <code>NaN</code>
+ */
+public FloatRange(float number1, float number2) {
+    super();
+    if (Float.isNaN(number1) || Float.isNaN(number2)) {
+        throw new IllegalArgumentException("The numbers must not be NaN");
+    }
+    if (number2 < number1) {
+        this.min = number2;
+        this.max = number1;
+    } else {
+        this.min = number1;
+        this.max = number2;
+    }
+}

@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testNotEmptyCollection2() {
+    Collection<Integer> coll = new ArrayList<Integer>();
+    try {
+        Validate.notEmpty((Collection<?>) null, "MSG");
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(coll, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    coll.add(Integer.valueOf(8));
+    Validate.notEmpty(coll, "MSG");
+    Collection<Integer> test = Validate.notEmpty(coll, "Message");
+    assertSame(coll, test);
+}

@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testCreateBigDecimal() {                                                                   public void testCreateBigDecimal() {                                                                
+assertEquals("createBigDecimal(String) failed", new BigDecimal("1234.5"), NumberUtils.createBigDecim   assertEquals("createBigDecimal(String) failed", new BigDecimal("1234.5"), NumberUtils.createBigDecim
+assertEquals("createBigDecimal(null) failed", null, NumberUtils.createBigDecimal(null));               assertEquals("createBigDecimal(null) failed", null, NumberUtils.createBigDecimal(null));            
+this.testCreateBigDecimalFailure("");                                                                  this.testCreateBigDecimalFailure("");                                                               
+this.testCreateBigDecimalFailure(" ");                                                                 this.testCreateBigDecimalFailure(" ");                                                              
+this.testCreateBigDecimalFailure("\b\t\n\f\r");                                                        this.testCreateBigDecimalFailure("\b\t\n\f\r");                                                     
+// Funky whitespaces                                                                                   // Funky whitespaces                                                                                
+this.testCreateBigDecimalFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");                  this.testCreateBigDecimalFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");               
+}                                                                                                      }                                                                                                   

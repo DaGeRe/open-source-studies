@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testValidIndex_withMessage_array() {
+    Object[] array = new Object[2];
+    Validate.validIndex(array, 0, "Broken: ");
+    Validate.validIndex(array, 1, "Broken: ");
+    try {
+        Validate.validIndex(array, -1, "Broken: ");
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("Broken: ", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(array, 2, "Broken: ");
+        fail("Expecting IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException ex) {
+        assertEquals("Broken: ", ex.getMessage());
+    }
+    String[] strArray = new String[] { "Hi" };
+    String[] test = Validate.noNullElements(strArray, "Message");
+    assertSame(strArray, test);
+}

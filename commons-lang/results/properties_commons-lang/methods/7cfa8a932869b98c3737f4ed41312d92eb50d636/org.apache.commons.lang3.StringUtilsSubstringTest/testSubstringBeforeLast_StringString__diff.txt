@@ -1,0 +1,20 @@
+public void testSubstringBeforeLast_StringString() {
+    assertEquals("fooXXbar", StringUtils.substringBeforeLast("fooXXbarXXbaz", "XX"));
+    assertEquals(null, StringUtils.substringBeforeLast(null, null));
+    assertEquals(null, StringUtils.substringBeforeLast(null, ""));
+    assertEquals(null, StringUtils.substringBeforeLast(null, "XX"));
+    assertEquals("", StringUtils.substringBeforeLast("", null));
+    assertEquals("", StringUtils.substringBeforeLast("", ""));
+    assertEquals("", StringUtils.substringBeforeLast("", "XX"));
+    assertEquals("foo", StringUtils.substringBeforeLast("foo", null));
+    assertEquals("foo", StringUtils.substringBeforeLast("foo", "b"));
+    assertEquals("fo", StringUtils.substringBeforeLast("foo", "o"));
+    assertEquals("abc\r\n", StringUtils.substringBeforeLast("abc\r\n", "d"));
+    assertEquals("abc", StringUtils.substringBeforeLast("abcdabc", "d"));
+    assertEquals("abcdabc", StringUtils.substringBeforeLast("abcdabcd", "d"));
+    assertEquals("a", StringUtils.substringBeforeLast("abc", "b"));
+    assertEquals("abc ", StringUtils.substringBeforeLast("abc \n", "\n"));
+    assertEquals("a", StringUtils.substringBeforeLast("a", null));
+    assertEquals("a", StringUtils.substringBeforeLast("a", ""));
+    assertEquals("", StringUtils.substringBeforeLast("a", "a"));
+}

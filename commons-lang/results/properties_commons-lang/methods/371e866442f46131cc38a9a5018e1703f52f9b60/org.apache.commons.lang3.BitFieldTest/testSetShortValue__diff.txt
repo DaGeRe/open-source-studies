@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* test the setShortValue() method                                                                      * test the setShortValue() method                                                                   
+*/                                                                                                     */                                                                                                  
+public void testSetShortValue() {                                                                      public void testSetShortValue() {                                                                   
+for (int j = 0; j &lt; 128; j++) {                                                                     for (int j = 0; j &lt; 128; j++) {                                                                  
+assertEquals(bf_multi.getShortValue(bf_multi.setShortValue((short) 0, (short) j)), (short) j);         assertEquals(bf_multi.getShortValue(bf_multi.setShortValue((short) 0, (short) j)), (short) j);      
+assertEquals(bf_multi.setShortValue((short) 0, (short) j), (short) (j &lt;&lt; 7));                    assertEquals(bf_multi.setShortValue((short) 0, (short) j), (short) (j &lt;&lt; 7));                 
+}                                                                                                      }                                                                                                   
+for (int j = 0; j &lt; 128; j++) {                                                                     for (int j = 0; j &lt; 128; j++) {                                                                  
+assertEquals(bf_zero.getShortValue(bf_zero.setShortValue((short) 0, (short) j)), (short) 0);           assertEquals(bf_zero.getShortValue(bf_zero.setShortValue((short) 0, (short) j)), (short) 0);        
+assertEquals(bf_zero.setShortValue((short) 0, (short) j), (short) (0));                              | assertEquals(bf_zero.setShortValue((short) 0, (short) j), (short) 0);                               
+}                                                                                                      }                                                                                                   
+// verify that excess bits are stripped off                                                            // verify that excess bits are stripped off                                                         
+assertEquals(bf_multi.setShortValue((short) 0x3f80, (short) 128), (short) 0);                          assertEquals(bf_multi.setShortValue((short) 0x3f80, (short) 128), (short) 0);                       
+for (int j = 0; j &lt; 2; j++) {                                                                       for (int j = 0; j &lt; 2; j++) {                                                                    
+assertEquals(bf_single.getShortValue(bf_single.setShortValue((short) 0, (short) j)), (short) j);       assertEquals(bf_single.getShortValue(bf_single.setShortValue((short) 0, (short) j)), (short) j);    
+assertEquals(bf_single.setShortValue((short) 0, (short) j), (short) (j &lt;&lt; 14));                  assertEquals(bf_single.setShortValue((short) 0, (short) j), (short) (j &lt;&lt; 14));               
+}                                                                                                      }                                                                                                   
+// verify that excess bits are stripped off                                                            // verify that excess bits are stripped off                                                         
+assertEquals(bf_single.setShortValue((short) 0x4000, (short) 2), (short) 0);                           assertEquals(bf_single.setShortValue((short) 0x4000, (short) 2), (short) 0);                        
+}                                                                                                      }                                                                                                   

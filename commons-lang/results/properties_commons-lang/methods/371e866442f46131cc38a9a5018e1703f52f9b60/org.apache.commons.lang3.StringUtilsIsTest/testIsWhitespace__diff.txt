@@ -1,0 +1,14 @@
+public void testIsWhitespace() {
+    assertEquals(false, StringUtils.isWhitespace(null));
+    assertEquals(true, StringUtils.isWhitespace(""));
+    assertEquals(true, StringUtils.isWhitespace(" "));
+    assertEquals(true, StringUtils.isWhitespace("\t \n \t"));
+    assertEquals(false, StringUtils.isWhitespace("\t aa\n \t"));
+    assertEquals(true, StringUtils.isWhitespace(" "));
+    assertEquals(false, StringUtils.isWhitespace(" a "));
+    assertEquals(false, StringUtils.isWhitespace("a  "));
+    assertEquals(false, StringUtils.isWhitespace("  a"));
+    assertEquals(false, StringUtils.isWhitespace("aba"));
+    assertEquals(true, StringUtils.isWhitespace(StringUtilsTest.WHITESPACE));
+    assertEquals(false, StringUtils.isWhitespace(StringUtilsTest.NON_WHITESPACE));
+}

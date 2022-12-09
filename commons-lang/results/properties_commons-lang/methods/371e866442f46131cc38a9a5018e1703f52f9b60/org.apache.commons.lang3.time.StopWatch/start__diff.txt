@@ -1,0 +1,23 @@
+/**
+ * <p>
+ * Start the stopwatch.
+ * </p>
+ *
+ * <p>
+ * This method starts a new timing session, clearing any previous values.
+ * </p>
+ *
+ * @throws IllegalStateException
+ *             if the StopWatch is already running.
+ */
+public void start() {
+    if (this.runningState == STATE_STOPPED) {
+        throw new IllegalStateException("Stopwatch must be reset before being restarted. ");
+    }
+    if (this.runningState != STATE_UNSTARTED) {
+        throw new IllegalStateException("Stopwatch already started. ");
+    }
+    this.startTime = System.nanoTime();
+    this.startTimeMillis = System.currentTimeMillis();
+    this.runningState = STATE_RUNNING;
+}

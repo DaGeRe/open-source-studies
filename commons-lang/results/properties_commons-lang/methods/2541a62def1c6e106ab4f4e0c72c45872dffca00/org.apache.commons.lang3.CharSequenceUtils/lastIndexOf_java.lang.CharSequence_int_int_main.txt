@@ -1,0 +1,27 @@
+/**
+ * Used by the lastIndexOf(CharSequence methods) as a green implementation of lastIndexOf
+ *
+ * @param cs the {@code CharSequence} to be processed
+ * @param searchChar the char to be searched for
+ * @param start the start index
+ * @return the index where the search char was found
+ */
+static int lastIndexOf(CharSequence cs, int searchChar, int start) {
+    if (cs instanceof String) {
+        return ((String) cs).lastIndexOf(searchChar, start);
+    } else {
+        int sz = cs.length();
+        if (start < 0) {
+            return -1;
+        }
+        if (start >= sz) {
+            start = sz - 1;
+        }
+        for (int i = start; i >= 0; --i) {
+            if (cs.charAt(i) == searchChar) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}

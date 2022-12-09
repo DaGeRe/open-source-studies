@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts an array of primitive bytes to objects.&lt;/p&gt;                                  * &lt;p&gt;Converts an array of primitive bytes to objects.&lt;/p&gt;                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method returns &lt;code&gt;null&lt;/code&gt; for a &lt;code&gt;null&lt;/code&gt; inp   * &lt;p&gt;This method returns &lt;code&gt;null&lt;/code&gt; for a &lt;code&gt;null&lt;/code&gt; inp
+*                                                                                                      *                                                                                                   
+* @param array  a &lt;code&gt;byte&lt;/code&gt; array                                                  * @param array  a &lt;code&gt;byte&lt;/code&gt; array                                               
+* @return a &lt;code&gt;Byte&lt;/code&gt; array, &lt;code&gt;null&lt;/code&gt; if null array input     * @return a &lt;code&gt;Byte&lt;/code&gt; array, &lt;code&gt;null&lt;/code&gt; if null array input  
+*/                                                                                                     */                                                                                                  
+public static Byte[] toObject(byte[] array) {                                                          public static Byte[] toObject(byte[] array) {                                                       
+if (array == null) {                                                                                   if (array == null) {                                                                                
+return null;                                                                                           return null;                                                                                        
+} else if (array.length == 0) {                                                                        } else if (array.length == 0) {                                                                     
+return EMPTY_BYTE_OBJECT_ARRAY;                                                                        return EMPTY_BYTE_OBJECT_ARRAY;                                                                     
+}                                                                                                      }                                                                                                   
+final Byte[] result = new Byte[array.length];                                                          final Byte[] result = new Byte[array.length];                                                       
+for (int i = 0; i &lt; array.length; i++) {                                                            for (int i = 0; i &lt; array.length; i++) {                                                         
+result[i] = new Byte(array[i]);                                                                      | result[i] = Byte.valueOf(array[i]);                                                                 
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

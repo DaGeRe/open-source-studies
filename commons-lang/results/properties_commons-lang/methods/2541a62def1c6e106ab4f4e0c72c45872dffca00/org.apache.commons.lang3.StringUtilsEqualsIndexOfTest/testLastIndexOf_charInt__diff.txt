@@ -1,0 +1,13 @@
+public void testLastIndexOf_charInt() {
+    assertEquals(-1, StringUtils.lastIndexOf(null, ' ', 0));
+    assertEquals(-1, StringUtils.lastIndexOf(null, ' ', -1));
+    assertEquals(-1, StringUtils.lastIndexOf("", ' ', 0));
+    assertEquals(-1, StringUtils.lastIndexOf("", ' ', -1));
+    assertEquals(7, StringUtils.lastIndexOf("aabaabaa", 'a', 8));
+    assertEquals(5, StringUtils.lastIndexOf("aabaabaa", 'b', 8));
+    assertEquals(2, StringUtils.lastIndexOf("aabaabaa", 'b', 3));
+    assertEquals(5, StringUtils.lastIndexOf("aabaabaa", 'b', 9));
+    assertEquals(-1, StringUtils.lastIndexOf("aabaabaa", 'b', -1));
+    assertEquals(0, StringUtils.lastIndexOf("aabaabaa", 'a', 0));
+    assertEquals(2, StringUtils.lastIndexOf(new StringBuilder("aabaabaa"), 'b', 2));
+}

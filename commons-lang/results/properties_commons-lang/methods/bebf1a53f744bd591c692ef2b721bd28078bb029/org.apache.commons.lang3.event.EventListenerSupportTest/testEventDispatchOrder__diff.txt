@@ -1,0 +1,12 @@
+public void testEventDispatchOrder() {                                                               | public void testEventDispatchOrder() throws PropertyVetoException {                                 
+EventListenerSupport&lt;ActionListener&gt; listenerSupport = EventListenerSupport.create(ActionListe | EventListenerSupport&lt;VetoableChangeListener&gt; listenerSupport = EventListenerSupport.create(Vet
+final List&lt;ActionListener&gt; calledListeners = new ArrayList&lt;ActionListener&gt;();            | final List&lt;VetoableChangeListener&gt; calledListeners = new ArrayList&lt;VetoableChangeListener&g
+final ActionListener listener1 = createListener(calledListeners);                                    | final VetoableChangeListener listener1 = createListener(calledListeners);                           
+final ActionListener listener2 = createListener(calledListeners);                                    | final VetoableChangeListener listener2 = createListener(calledListeners);                           
+listenerSupport.addListener(listener1);                                                                listenerSupport.addListener(listener1);                                                             
+listenerSupport.addListener(listener2);                                                                listenerSupport.addListener(listener2);                                                             
+listenerSupport.fire().actionPerformed(new ActionEvent("Hello", 0, "Hello"));                        | listenerSupport.fire().vetoableChange(new PropertyChangeEvent(new Date(), "Day", 4, 5));            
+assertEquals(calledListeners.size(), 2);                                                               assertEquals(calledListeners.size(), 2);                                                            
+assertSame(calledListeners.get(0), listener1);                                                         assertSame(calledListeners.get(0), listener1);                                                      
+assertSame(calledListeners.get(1), listener2);                                                         assertSame(calledListeners.get(1), listener2);                                                      
+}                                                                                                      }                                                                                                   

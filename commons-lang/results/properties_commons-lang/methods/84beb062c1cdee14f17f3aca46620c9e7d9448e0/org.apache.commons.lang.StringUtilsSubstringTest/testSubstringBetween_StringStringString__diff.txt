@@ -1,0 +1,11 @@
+public void testSubstringBetween_StringStringString() {                                                public void testSubstringBetween_StringStringString() {                                             
+assertEquals(null, StringUtils.substringBetween(null, "", ""));                                        assertEquals(null, StringUtils.substringBetween(null, "", ""));                                     
+                                                                                                     | assertEquals(null, StringUtils.substringBetween("", null, ""));                                     
+                                                                                                     | assertEquals(null, StringUtils.substringBetween("", "", null));                                     
+assertEquals("", StringUtils.substringBetween("", "", ""));                                            assertEquals("", StringUtils.substringBetween("", "", ""));                                         
+assertEquals("", StringUtils.substringBetween("foo", "", ""));                                         assertEquals("", StringUtils.substringBetween("foo", "", ""));                                      
+assertEquals(null, StringUtils.substringBetween("foo", "", "]"));                                      assertEquals(null, StringUtils.substringBetween("foo", "", "]"));                                   
+assertEquals(null, StringUtils.substringBetween("foo", "[", "]"));                                     assertEquals(null, StringUtils.substringBetween("foo", "[", "]"));                                  
+assertEquals("", StringUtils.substringBetween("    ", " ", "  "));                                     assertEquals("", StringUtils.substringBetween("    ", " ", "  "));                                  
+assertEquals("bar", StringUtils.substringBetween("&lt;foo&gt;bar&lt;/foo&gt;", "&lt;foo&gt;", "&lt;/   assertEquals("bar", StringUtils.substringBetween("&lt;foo&gt;bar&lt;/foo&gt;", "&lt;foo&gt;", "&lt;/
+}                                                                                                      }                                                                                                   

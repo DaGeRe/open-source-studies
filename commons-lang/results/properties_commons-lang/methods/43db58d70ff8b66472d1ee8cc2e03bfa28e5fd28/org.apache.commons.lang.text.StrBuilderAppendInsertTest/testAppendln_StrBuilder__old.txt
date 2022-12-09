@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testAppendln_StrBuilder() {
+    final int[] count = new int[2];
+    StrBuilder sb = new StrBuilder() {
+
+        public StrBuilder append(StrBuilder str) {
+            count[0]++;
+            return super.append(str);
+        }
+
+        public StrBuilder appendNewLine() {
+            count[1]++;
+            return super.appendNewLine();
+        }
+    };
+    sb.appendln(new StrBuilder("foo"));
+    assertEquals("foo" + SEP, sb.toString());
+    assertEquals(1, count[0]);
+    assertEquals(1, count[1]);
+}

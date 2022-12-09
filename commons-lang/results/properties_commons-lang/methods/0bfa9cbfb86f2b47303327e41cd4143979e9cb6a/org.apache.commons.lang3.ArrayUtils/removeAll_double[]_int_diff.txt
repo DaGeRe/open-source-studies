@@ -1,0 +1,33 @@
+/**
+ * <p>Removes the elements at the specified positions from the specified array.
+ * All remaining elements are shifted to the left.</p>
+ *
+ * <p>This method returns a new array with the same elements of the input
+ * array except those at the specified positions. The component
+ * type of the returned array is always the same as that of the input
+ * array.</p>
+ *
+ * <p>If the input array is {@code null}, an IndexOutOfBoundsException
+ * will be thrown, because in that case no valid index can be specified.</p>
+ *
+ * <pre>
+ * ArrayUtils.removeAll([1], 0)             = []
+ * ArrayUtils.removeAll([2, 6], 0)          = [6]
+ * ArrayUtils.removeAll([2, 6], 0, 1)       = []
+ * ArrayUtils.removeAll([2, 6, 3], 1, 2)    = [2]
+ * ArrayUtils.removeAll([2, 6, 3], 0, 2)    = [6]
+ * ArrayUtils.removeAll([2, 6, 3], 0, 1, 2) = []
+ * </pre>
+ *
+ * @param <T> the component type of the array
+ * @param array   the array to remove the element from, may not be {@code null}
+ * @param indices the positions of the elements to be removed
+ * @return A new array containing the existing elements except those
+ *         at the specified positions.
+ * @throws IndexOutOfBoundsException if any index is out of range
+ * (index < 0 || index >= array.length), or if the array is {@code null}.
+ * @since 3.0.1
+ */
+public static double[] removeAll(double[] array, int... indices) {
+    return (double[]) removeAll((Object) array, clone(indices));
+}

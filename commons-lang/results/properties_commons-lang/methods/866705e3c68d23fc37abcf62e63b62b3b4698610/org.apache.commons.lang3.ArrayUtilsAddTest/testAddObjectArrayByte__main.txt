@@ -1,0 +1,17 @@
+@Test
+public void testAddObjectArrayByte() {
+    byte[] newArray;
+    newArray = ArrayUtils.add((byte[]) null, (byte) 0);
+    assertTrue(Arrays.equals(new byte[] { 0 }, newArray));
+    assertEquals(Byte.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add((byte[]) null, (byte) 1);
+    assertTrue(Arrays.equals(new byte[] { 1 }, newArray));
+    assertEquals(Byte.TYPE, newArray.getClass().getComponentType());
+    byte[] array1 = new byte[] { 1, 2, 3 };
+    newArray = ArrayUtils.add(array1, (byte) 0);
+    assertTrue(Arrays.equals(new byte[] { 1, 2, 3, 0 }, newArray));
+    assertEquals(Byte.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add(array1, (byte) 4);
+    assertTrue(Arrays.equals(new byte[] { 1, 2, 3, 4 }, newArray));
+    assertEquals(Byte.TYPE, newArray.getClass().getComponentType());
+}

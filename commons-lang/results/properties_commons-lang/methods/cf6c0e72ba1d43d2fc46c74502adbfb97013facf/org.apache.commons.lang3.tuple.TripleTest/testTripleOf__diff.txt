@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testTripleOf() throws Exception {                                                          public void testTripleOf() throws Exception {                                                       
+Triple&lt;Integer, String, Boolean&gt; triple = Triple.of(0, "foo", Boolean.TRUE);                     Triple&lt;Integer, String, Boolean&gt; triple = Triple.of(0, "foo", Boolean.TRUE);                  
+assertTrue(triple instanceof ImmutableTriple&lt;?, ?, ?&gt;);                                          assertTrue(triple instanceof ImmutableTriple&lt;?, ?, ?&gt;);                                       
+assertEquals(0, ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).left.intValue());           assertEquals(0, ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).left.intValue());        
+assertEquals("foo", ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).middle);                assertEquals("foo", ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).middle);             
+assertEquals(Boolean.TRUE, ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).right);          assertEquals(Boolean.TRUE, ((ImmutableTriple&lt;Integer, String, Boolean&gt;) triple).right);       
+Triple&lt;Object, String, Long&gt; triple2 = Triple.of(null, "bar", 200L);                           | Triple&lt;Object, String, Long&gt; triple2 = Triple.of(null, "bar", Long.valueOf(200L));            
+assertTrue(triple2 instanceof ImmutableTriple&lt;?, ?, ?&gt;);                                         assertTrue(triple2 instanceof ImmutableTriple&lt;?, ?, ?&gt;);                                      
+assertNull(((ImmutableTriple&lt;Object, String, Long&gt;) triple2).left);                              assertNull(((ImmutableTriple&lt;Object, String, Long&gt;) triple2).left);                           
+assertEquals("bar", ((ImmutableTriple&lt;Object, String, Long&gt;) triple2).middle);                   assertEquals("bar", ((ImmutableTriple&lt;Object, String, Long&gt;) triple2).middle);                
+assertEquals(new Long(200L), ((ImmutableTriple&lt;Object, String, Long&gt;) triple2).right);           assertEquals(new Long(200L), ((ImmutableTriple&lt;Object, String, Long&gt;) triple2).right);        
+}                                                                                                      }                                                                                                   

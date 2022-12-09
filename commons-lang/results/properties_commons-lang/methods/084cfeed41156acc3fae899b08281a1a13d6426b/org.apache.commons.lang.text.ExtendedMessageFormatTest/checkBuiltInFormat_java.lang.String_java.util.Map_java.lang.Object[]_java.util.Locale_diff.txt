@@ -1,0 +1,26 @@
+/**
+ * Create an ExtendedMessageFormat for the specified pattern and locale and check the
+ * formated output matches the expected result for the parameters.
+ * @param pattern string
+ * @param registry map
+ * @param args Object[]
+ * @param locale Locale
+ */
+private void checkBuiltInFormat(String pattern, Map registry, Object[] args, Locale locale) {
+    StringBuffer buffer = new StringBuffer();
+    buffer.append("Pattern=[");
+    buffer.append(pattern);
+    buffer.append("], locale=[");
+    buffer.append(locale);
+    buffer.append("]");
+    MessageFormat mf = createMessageFormat(pattern, locale);
+    // System.out.println(buffer + ", result=[" + mf.format(args) +"]");
+    ExtendedMessageFormat emf = null;
+    if (locale == null) {
+        emf = new ExtendedMessageFormat(pattern);
+    } else {
+        emf = new ExtendedMessageFormat(pattern, locale);
+    }
+    assertEquals("format " + buffer.toString(), mf.format(args), emf.format(args));
+    assertPatternsEqual("toPattern " + buffer.toString(), mf.toPattern(), emf.toPattern());
+}

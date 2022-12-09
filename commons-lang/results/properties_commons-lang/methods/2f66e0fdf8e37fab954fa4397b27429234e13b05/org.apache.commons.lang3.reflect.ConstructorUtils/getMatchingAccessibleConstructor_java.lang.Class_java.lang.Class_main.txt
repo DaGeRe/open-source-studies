@@ -1,0 +1,45 @@
+/**
+ * <p>Find an accessible constructor with compatible parameters.
+ * Compatible parameters mean that every method parameter is assignable from
+ * the given parameters. In other words, it finds constructor that will take
+ * the parameters given.</p>
+ *
+ * <p>First it checks if there is constructor matching the exact signature.
+ * If no such, all the constructors of the class are tested if their signatures
+ * are assignment compatible with the parameter types.
+ * The first matching constructor is returned.</p>
+ *
+ * @param cls find constructor for this class
+ * @param parameterTypes find method with compatible parameters
+ * @return a valid Constructor object. If there's no matching constructor, returns <code>null</code>.
+ */
+public static <T> Constructor<T> getMatchingAccessibleConstructor(Class<T> cls, Class<?>... parameterTypes) {
+    // see if we can find the constructor directly
+    // most of the time this works and it's much faster
+    try {
+        Constructor<T> ctor = cls.getConstructor(parameterTypes);
+        MemberUtils.setAccessibleWorkaround(ctor);
+        return ctor;
+    } catch (NoSuchMethodException e) {
+        /* SWALLOW */
+    }
+    Constructor<T> result = null;
+    // search through all constructors
+    Constructor<?>[] ctors = cls.getConstructors();
+    for (int i = 0; i < ctors.length; i++) {
+        // compare parameters
+        if (ClassUtils.isAssignable(parameterTypes, ctors[i].getParameterTypes(), true)) {
+            // get accessible version of method
+            // TODO is this OK? If so, why?
+            @SuppressWarnings("unchecked")
+            Constructor<T> ctor = getAccessibleConstructor((Constructor<T>) ctors[i]);
+            if (ctor != null) {
+                MemberUtils.setAccessibleWorkaround(ctor);
+                if (result == null || MemberUtils.compareParameterTypes(ctor.getParameterTypes(), result.getParameterTypes(), parameterTypes) < 0) {
+                    result = ctor;
+                }
+            }
+        }
+    }
+    return result;
+}

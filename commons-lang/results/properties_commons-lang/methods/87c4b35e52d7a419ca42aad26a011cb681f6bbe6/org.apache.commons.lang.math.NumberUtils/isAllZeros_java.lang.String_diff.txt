@@ -1,0 +1,19 @@
+/**
+ * <p>Utility method for {@link #createNumber(java.lang.String)}.</p>
+ *
+ * <p>Returns <code>true</code> if s is <code>null</code>.</p>
+ *
+ * @param str  the String to check
+ * @return if it is all zeros or <code>null</code>
+ */
+private static boolean isAllZeros(String str) {
+    if (str == null) {
+        return true;
+    }
+    for (int i = str.length() - 1; i >= 0; i--) {
+        if (str.charAt(i) != '0') {
+            return false;
+        }
+    }
+    return str.length() > 0;
+}

@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* Returns whether or not to append the given &lt;code&gt;Field&lt;/code&gt;.                           * Returns whether or not to append the given &lt;code&gt;Field&lt;/code&gt;.                        
+* &lt;ul&gt;                                                                                           * &lt;ul&gt;                                                                                        
+* &lt;li&gt;Transient fields are appended only if {@link #isAppendTransients()} returns &lt;code&gt;   * &lt;li&gt;Transient fields are appended only if {@link #isAppendTransients()} returns &lt;code&gt;
+* &lt;li&gt;Static fields are appended only if {@link #isAppendStatics()} returns &lt;code&gt;true&l   * &lt;li&gt;Static fields are appended only if {@link #isAppendStatics()} returns &lt;code&gt;true&l
+* &lt;li&gt;Inner class fields are not appened.&lt;/li&gt;                                             * &lt;li&gt;Inner class fields are not appened.&lt;/li&gt;                                          
+* &lt;/ul&gt;                                                                                          * &lt;/ul&gt;                                                                                       
+*                                                                                                      *                                                                                                   
+* @param field                                                                                         * @param field                                                                                      
+*            The Field to test.                                                                        *            The Field to test.                                                                     
+* @return Whether or not to append the given &lt;code&gt;Field&lt;/code&gt;.                           * @return Whether or not to append the given &lt;code&gt;Field&lt;/code&gt;.                        
+*/                                                                                                     */                                                                                                  
+protected boolean accept(Field field) {                                                                protected boolean accept(Field field) {                                                             
+if (field.getName().indexOf(ClassUtils.INNER_CLASS_SEPARATOR_CHAR) != -1) {                            if (field.getName().indexOf(ClassUtils.INNER_CLASS_SEPARATOR_CHAR) != -1) {                         
+// Reject field from inner class.                                                                      // Reject field from inner class.                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (Modifier.isTransient(field.getModifiers()) && !this.isAppendTransients()) {                        if (Modifier.isTransient(field.getModifiers()) && !this.isAppendTransients()) {                     
+// Reject transient fields.                                                                            // Reject transient fields.                                                                         
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (Modifier.isStatic(field.getModifiers()) && !this.isAppendStatics()) {                              if (Modifier.isStatic(field.getModifiers()) && !this.isAppendStatics()) {                           
+// Rject static fields.                                                                              | // Reject static fields.                                                                            
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+if (this.getExcludeFieldNames() != null && Arrays.binarySearch(this.getExcludeFieldNames(), field.ge | if (this.excludeFieldNames != null && Arrays.binarySearch(this.excludeFieldNames, field.getName()) &
+// Reject fields from the getExcludeFieldNames list.                                                   // Reject fields from the getExcludeFieldNames list.                                                
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,43 @@
+// String to Boolean methods
+// -----------------------------------------------------------------------
+/**
+ * <p>Converts a String to a Boolean.</p>
+ *
+ * <p><code>'true'</code>, <code>'on'</code> or <code>'yes'</code>
+ * (case insensitive) will return <code>true</code>.
+ * <code>'false'</code>, <code>'off'</code> or <code>'no'</code>
+ * (case insensitive) will return <code>false</code>.
+ * Otherwise, <code>null</code> is returned.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBooleanObject(null)    = null
+ *   BooleanUtils.toBooleanObject("true")  = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject("false") = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject("on")    = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject("ON")    = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject("off")   = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject("oFf")   = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject("blue")  = null
+ * </pre>
+ *
+ * @param str  the String to check
+ * @return the Boolean value of the string,
+ *  <code>null</code> if no match or <code>null</code> input
+ */
+public static Boolean toBooleanObject(String str) {
+    if ("true".equalsIgnoreCase(str)) {
+        return Boolean.TRUE;
+    } else if ("false".equalsIgnoreCase(str)) {
+        return Boolean.FALSE;
+    } else if ("on".equalsIgnoreCase(str)) {
+        return Boolean.TRUE;
+    } else if ("off".equalsIgnoreCase(str)) {
+        return Boolean.FALSE;
+    } else if ("yes".equalsIgnoreCase(str)) {
+        return Boolean.TRUE;
+    } else if ("no".equalsIgnoreCase(str)) {
+        return Boolean.FALSE;
+    }
+    // no match
+    return null;
+}

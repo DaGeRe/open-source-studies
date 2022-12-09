@@ -1,0 +1,45 @@
+/**
+ * Removes multiple array elements specified by index.
+ * @param array source
+ * @param indices to remove, WILL BE SORTED--so only clones of user-owned arrays!
+ * @return new array of same type minus elements specified by unique values of {@code indices}
+ * @since 3.0.1
+ */
+private static Object removeAll(Object array, int... indices) {
+    int length = getLength(array);
+    int diff = 0;
+    if (isNotEmpty(indices)) {
+        Arrays.sort(indices);
+        int i = indices.length;
+        int prevIndex = length;
+        while (--i >= 0) {
+            int index = indices[i];
+            if (index < 0 || index >= length) {
+                throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
+            }
+            if (index >= prevIndex) {
+                continue;
+            }
+            diff++;
+            prevIndex = index;
+        }
+    }
+    Object result = Array.newInstance(array.getClass().getComponentType(), length - diff);
+    if (diff < length) {
+        int end = length;
+        int dest = length - diff;
+        for (int i = indices.length - 1; i >= 0; i--) {
+            int index = indices[i];
+            if (end - index > 1) {
+                int cp = end - index - 1;
+                dest -= cp;
+                System.arraycopy(array, index + 1, result, dest, cp);
+            }
+            end = index;
+        }
+        if (end > 0) {
+            System.arraycopy(array, 0, result, 0, end);
+        }
+    }
+    return result;
+}

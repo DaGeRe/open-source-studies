@@ -1,0 +1,11 @@
+public void testInvokeMethod() throws Exception {
+    assertEquals("foo()", MethodUtils.invokeMethod(testBean, "foo", ArrayUtils.EMPTY_CLASS_ARRAY));
+    assertEquals("foo()", MethodUtils.invokeMethod(testBean, "foo", (Class[]) null));
+    assertEquals("foo(String)", MethodUtils.invokeMethod(testBean, "foo", ""));
+    assertEquals("foo(Object)", MethodUtils.invokeMethod(testBean, "foo", new Object()));
+    assertEquals("foo(Object)", MethodUtils.invokeMethod(testBean, "foo", Boolean.TRUE));
+    assertEquals("foo(Integer)", MethodUtils.invokeMethod(testBean, "foo", NumberUtils.INTEGER_ONE));
+    assertEquals("foo(int)", MethodUtils.invokeMethod(testBean, "foo", NumberUtils.BYTE_ONE));
+    assertEquals("foo(double)", MethodUtils.invokeMethod(testBean, "foo", NumberUtils.LONG_ONE));
+    assertEquals("foo(double)", MethodUtils.invokeMethod(testBean, "foo", NumberUtils.DOUBLE_ONE));
+}

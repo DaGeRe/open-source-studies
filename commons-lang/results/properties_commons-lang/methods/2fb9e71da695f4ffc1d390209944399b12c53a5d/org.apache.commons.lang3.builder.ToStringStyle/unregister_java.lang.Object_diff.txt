@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Unregisters the given object.                                                                        * Unregisters the given object.                                                                     
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Used by the reflection methods to avoid infinite loops.                                              * Used by the reflection methods to avoid infinite loops.                                           
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param value                                                                                         * @param value                                                                                      
+*                  The object to unregister.                                                           *                  The object to unregister.                                                        
+*/                                                                                                     */                                                                                                  
+static void unregister(Object value) {                                                                 static void unregister(Object value) {                                                              
+if (value != null) {                                                                                   if (value != null) {                                                                                
+WeakHashMap&lt;Object, Object&gt; m = REGISTRY.get();                                                | Map&lt;Object, Object&gt; m = getRegistry();                                                        
+if (m != null) {                                                                                       if (m != null) {                                                                                    
+m.remove(value);                                                                                       m.remove(value);                                                                                    
+if (m.isEmpty()) {                                                                                     if (m.isEmpty()) {                                                                                  
+REGISTRY.remove();                                                                                     REGISTRY.remove();                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

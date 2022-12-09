@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Constructor that creates a matcher from a character array.                                           * Constructor that creates a matcher from a character array.                                        
+*                                                                                                      *                                                                                                   
+* @param chars  the characters to match, must not be null                                              * @param chars  the characters to match, must not be null                                           
+*/                                                                                                     */                                                                                                  
+CharSetMatcher(char[] chars) {                                                                         CharSetMatcher(char[] chars) {                                                                      
+super();                                                                                               super();                                                                                            
+this.chars = (char[]) chars.clone();                                                                 | this.chars = chars.clone();                                                                         
+Arrays.sort(this.chars);                                                                               Arrays.sort(this.chars);                                                                            
+}                                                                                                      }                                                                                                   

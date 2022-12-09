@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Does the &lt;code&gt;CharSet&lt;/code&gt; contain the specified                             * &lt;p&gt;Does the &lt;code&gt;CharSet&lt;/code&gt; contain the specified                          
+* character &lt;code&gt;ch&lt;/code&gt;.&lt;/p&gt;                                                     * character &lt;code&gt;ch&lt;/code&gt;.&lt;/p&gt;                                                  
+*                                                                                                      *                                                                                                   
+* @param ch  the character to check for                                                                * @param ch  the character to check for                                                             
+* @return &lt;code&gt;true&lt;/code&gt; if the set contains the characters                             * @return &lt;code&gt;true&lt;/code&gt; if the set contains the characters                          
+*/                                                                                                     */                                                                                                  
+public boolean contains(char ch) {                                                                     public boolean contains(char ch) {                                                                  
+for (Iterator it = set.iterator(); it.hasNext(); ) {                                                 | for (Iterator&lt;CharRange&gt; it = set.iterator(); it.hasNext(); ) {                               
+CharRange range = (CharRange) it.next();                                                             | CharRange range = it.next();                                                                        
+if (range.contains(ch)) {                                                                              if (range.contains(ch)) {                                                                           
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

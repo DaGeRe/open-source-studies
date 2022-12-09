@@ -1,0 +1,9 @@
+public void testRemoveListenerDuringEvent() {                                                        | public void testRemoveListenerDuringEvent() throws PropertyVetoException {                          
+final EventListenerSupport&lt;ActionListener&gt; listenerSupport = EventListenerSupport.create(Actio | final EventListenerSupport&lt;VetoableChangeListener&gt; listenerSupport = EventListenerSupport.crea
+for (int i = 0; i &lt; 10; ++i) {                                                                      for (int i = 0; i &lt; 10; ++i) {                                                                   
+addDeregisterListener(listenerSupport);                                                                addDeregisterListener(listenerSupport);                                                             
+}                                                                                                      }                                                                                                   
+assertEquals(listenerSupport.getListenerCount(), 10);                                                  assertEquals(listenerSupport.getListenerCount(), 10);                                               
+listenerSupport.fire().actionPerformed(new ActionEvent("Hello", 0, "Hello"));                        | listenerSupport.fire().vetoableChange(new PropertyChangeEvent(new Date(), "Day", 4, 5));            
+assertEquals(listenerSupport.getListenerCount(), 0);                                                   assertEquals(listenerSupport.getListenerCount(), 0);                                                
+}                                                                                                      }                                                                                                   

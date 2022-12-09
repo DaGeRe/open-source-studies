@@ -1,0 +1,24 @@
+/**
+ * <p>Converts a Boolean to an Integer specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toIntegerObject(Boolean.TRUE, new Integer(1), new Integer(0), new Integer(2))  = new Integer(1)
+ *   BooleanUtils.toIntegerObject(Boolean.FALSE, new Integer(1), new Integer(0), new Integer(2)) = new Integer(0)
+ *   BooleanUtils.toIntegerObject(null, new Integer(1), new Integer(0), new Integer(2))          = new Integer(2)
+ * </pre>
+ *
+ * @param bool  the Boolean to convert
+ * @param trueValue  the value to return if <code>true</code>,
+ *  may be <code>null</code>
+ * @param falseValue  the value to return if <code>false</code>,
+ *  may be <code>null</code>
+ * @param nullValue  the value to return if <code>null</code>,
+ *  may be <code>null</code>
+ * @return the appropriate value
+ */
+public static Integer toIntegerObject(Boolean bool, Integer trueValue, Integer falseValue, Integer nullValue) {
+    if (bool == null) {
+        return nullValue;
+    }
+    return bool.booleanValue() ? trueValue : falseValue;
+}

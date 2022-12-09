@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Creates a long bit vector representation of the given subset of an Enum.&lt;/p&gt;          * &lt;p&gt;Creates a long bit vector representation of the given subset of an Enum.&lt;/p&gt;       
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This generates a value that is usable by {@link EnumUtils#processBitVector}.&lt;/p&gt;      * &lt;p&gt;This generates a value that is usable by {@link EnumUtils#processBitVector}.&lt;/p&gt;   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Do not use this method if you have more than 64 values in your Enum, as this                * &lt;p&gt;Do not use this method if you have more than 64 values in your Enum, as this             
+* would create a value greater than a long can hold.&lt;/p&gt;                                         * would create a value greater than a long can hold.&lt;/p&gt;                                      
+*                                                                                                      *                                                                                                   
+* @param enumClass the class of the enum we are working with, not {@code null}                         * @param enumClass the class of the enum we are working with, not {@code null}                      
+* @param values    the values we want to convert, not {@code null}                                     * @param values    the values we want to convert, not {@code null}                                  
+* @param &lt;E&gt;       the type of the enumeration                                                   * @param &lt;E&gt;       the type of the enumeration                                                
+* @return a long whose binary value represents the given set of enum values.                           * @return a long whose binary value represents the given set of enum values.                        
+* @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}                  * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}               
+* @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 val   * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 val
+* @since 3.0.1                                                                                         * @since 3.0.1                                                                                      
+*/                                                                                                     */                                                                                                  
+public static &lt;E extends Enum&lt;E&gt;&gt; long generateBitVector(Class&lt;E&gt; enumClass, Itera   public static &lt;E extends Enum&lt;E&gt;&gt; long generateBitVector(Class&lt;E&gt; enumClass, Itera
+checkBitVectorable(enumClass);                                                                         checkBitVectorable(enumClass);                                                                      
+Validate.notNull(values);                                                                              Validate.notNull(values);                                                                           
+long total = 0;                                                                                        long total = 0;                                                                                     
+for (E constant : values) {                                                                            for (E constant : values) {                                                                         
+total |= (1 &lt;&lt; constant.ordinal());                                                            | total |= 1 &lt;&lt; constant.ordinal();                                                             
+}                                                                                                      }                                                                                                   
+return total;                                                                                          return total;                                                                                       
+}                                                                                                      }                                                                                                   

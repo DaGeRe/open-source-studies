@@ -1,0 +1,7 @@
+@Test(timeout = 666)                                                                                 | @Test(timeout = 666000)                                                                             
+public void testHashCode() throws Exception {                                                          public void testHashCode() throws Exception {                                                       
+final Test testAnno = getClass().getDeclaredMethod("testHashCode").getAnnotation(Test.class);        | final Test test = getClass().getDeclaredMethod("testHashCode").getAnnotation(Test.class);           
+assertEquals(testAnno.hashCode(), AnnotationUtils.hashCode(testAnno));                               | assertEquals(test.hashCode(), AnnotationUtils.hashCode(test));                                      
+                                                                                                     | final TestAnnotation testAnnotation = field1.getAnnotation(TestAnnotation.class);                   
+                                                                                                     | assertEquals(testAnnotation.hashCode(), AnnotationUtils.hashCode(testAnnotation));                  
+}                                                                                                      }                                                                                                   

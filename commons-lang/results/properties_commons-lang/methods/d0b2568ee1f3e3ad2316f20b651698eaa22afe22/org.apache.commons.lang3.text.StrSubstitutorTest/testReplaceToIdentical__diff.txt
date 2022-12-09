@@ -1,0 +1,8 @@
+/**
+ * Tests replace creates output same as input.
+ */
+public void testReplaceToIdentical() {
+    values.put("animal", "$${${thing}}");
+    values.put("thing", "animal");
+    doTestReplace("The ${animal} jumps.", "The ${animal} jumps.", true);
+}

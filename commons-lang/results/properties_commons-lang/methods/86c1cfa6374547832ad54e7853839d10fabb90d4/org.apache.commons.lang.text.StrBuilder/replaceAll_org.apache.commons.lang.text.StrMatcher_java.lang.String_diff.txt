@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------
+/**
+ * Replaces all matches within the builder with the replace string.
+ * <p>
+ * Matchers can be used to perform advanced replace behaviour.
+ * For example you could write a matcher to replace all occurances
+ * where the character 'a' is followed by a number.
+ *
+ * @param matcher  the matcher to use to find the deletion, null causes no action
+ * @param replaceStr  the replace string, null is equivalent to an empty string
+ * @return this, to enable chaining
+ */
+public StrBuilder replaceAll(StrMatcher matcher, String replaceStr) {
+    return replace(matcher, replaceStr, 0, size, -1);
+}

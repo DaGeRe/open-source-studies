@@ -1,0 +1,26 @@
+                                                                                                     | // Joining                                                                                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Joins the elements of the provided array into a single String                               * &lt;p&gt;Joins the elements of the provided array into a single String                            
+* containing the provided list of elements.&lt;/p&gt;                                                  * containing the provided list of elements.&lt;/p&gt;                                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;No separator is added to the joined String.                                                 * &lt;p&gt;No separator is added to the joined String.                                              
+* Null objects or empty strings within the array are represented by                                    * Null objects or empty strings within the array are represented by                                 
+* empty strings.&lt;/p&gt;                                                                             * empty strings.&lt;/p&gt;                                                                          
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.join(null)            = null                                                             * StringUtils.join(null)            = null                                                          
+* StringUtils.join([])              = ""                                                               * StringUtils.join([])              = ""                                                            
+* StringUtils.join([null])          = ""                                                               * StringUtils.join([null])          = ""                                                            
+* StringUtils.join(["a", "b", "c"]) = "abc"                                                            * StringUtils.join(["a", "b", "c"]) = "abc"                                                         
+* StringUtils.join([null, "", "a"]) = "a"                                                              * StringUtils.join([null, "", "a"]) = "a"                                                           
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param array  the array of values to join together, may be null                                      * @param array  the array of values to join together, may be null                                   
+* @return the joined String, {@code null} if null array input                                          * @return the joined String, {@code null} if null array input                                       
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+                                                                                                     | * @since 3.0 Changed signature to use varargs                                                       
+*/                                                                                                     */                                                                                                  
+public static String join(Object[] array) {                                                          | public static String join(Object... elements) {                                                     
+return join(array, null);                                                                            | return join(elements, null);                                                                        
+}                                                                                                      }                                                                                                   

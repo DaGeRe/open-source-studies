@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* Checks if the string got by {@link RandomStringUtils#random(int)}                                    * Checks if the string got by {@link RandomStringUtils#random(int)}                                 
+* can be converted to UTF-8 and back without loss.                                                     * can be converted to UTF-8 and back without loss.                                                  
+*                                                                                                      *                                                                                                   
+* @see &lt;a href="http://issues.apache.org/jira/browse/LANG-100"&gt;LANG-100&lt;/a&gt;                * @see &lt;a href="http://issues.apache.org/jira/browse/LANG-100"&gt;LANG-100&lt;/a&gt;             
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+public void testLang100() throws Exception {                                                           public void testLang100() throws Exception {                                                        
+int size = 5000;                                                                                       int size = 5000;                                                                                    
+String encoding = "UTF-8";                                                                             String encoding = "UTF-8";                                                                          
+String orig = RandomStringUtils.random(size);                                                          String orig = RandomStringUtils.random(size);                                                       
+byte[] bytes = orig.getBytes(encoding);                                                                byte[] bytes = orig.getBytes(encoding);                                                             
+String copy = new String(bytes, encoding);                                                             String copy = new String(bytes, encoding);                                                          
+// for a verbose compare:                                                                              // for a verbose compare:                                                                           
+for (int i = 0; i &lt; orig.length() && i &lt; copy.length(); i++) {                                   for (int i = 0; i &lt; orig.length() && i &lt; copy.length(); i++) {                                
+char o = orig.charAt(i);                                                                               char o = orig.charAt(i);                                                                            
+char c = copy.charAt(i);                                                                               char c = copy.charAt(i);                                                                            
+assertEquals("differs at " + i + "(" + Integer.toHexString((new Character(o)).hashCode()) + "," + In | assertEquals("differs at " + i + "(" + Integer.toHexString(new Character(o).hashCode()) + "," + Inte
+}                                                                                                      }                                                                                                   
+// compare length also                                                                                 // compare length also                                                                              
+assertEquals(orig.length(), copy.length());                                                            assertEquals(orig.length(), copy.length());                                                         
+// just to be complete                                                                                 // just to be complete                                                                              
+assertEquals(orig, copy);                                                                              assertEquals(orig, copy);                                                                           
+}                                                                                                      }                                                                                                   

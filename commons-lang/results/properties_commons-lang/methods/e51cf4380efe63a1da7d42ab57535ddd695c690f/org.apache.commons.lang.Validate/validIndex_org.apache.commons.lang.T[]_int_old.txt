@@ -1,0 +1,20 @@
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code> if the
+ * index for the argument array is invalid or if the array is <code>null</code>.</p>
+ *
+ * <pre>
+ * Validate.validIndex(myArray, 2);
+ * </pre>
+ *
+ * <p>If the array index is invalid the message in the exception is
+ * 'The validated array index is invalid: ' followed by the index.</p>
+ *
+ * <p>If the array is null then the message in the exception is 'The validated object is null'.</p>
+ *
+ * @param array  the array to check, not null
+ * @return the validated input array, never <code>null</code>, for chaining
+ * @throws IllegalArgumentException if the array index is invalid or null
+ */
+public static <T> T[] validIndex(T[] array, int index) {
+    return validIndex(array, index, "The validated array index is invalid: ");
+}

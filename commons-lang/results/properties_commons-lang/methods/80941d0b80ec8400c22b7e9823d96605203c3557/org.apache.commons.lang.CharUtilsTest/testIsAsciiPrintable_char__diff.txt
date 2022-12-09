@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testIsAsciiPrintable_char() {
+    assertEquals(true, CharUtils.isAsciiPrintable('a'));
+    assertEquals(true, CharUtils.isAsciiPrintable('A'));
+    assertEquals(true, CharUtils.isAsciiPrintable('3'));
+    assertEquals(true, CharUtils.isAsciiPrintable('-'));
+    assertEquals(false, CharUtils.isAsciiPrintable('\n'));
+    assertEquals(false, CharUtils.isAscii(CHAR_COPY));
+    for (int i = 0; i < 196; i++) {
+        if (i >= 32 && i <= 126) {
+            assertEquals(true, CharUtils.isAsciiPrintable((char) i));
+        } else {
+            assertEquals(false, CharUtils.isAsciiPrintable((char) i));
+        }
+    }
+}

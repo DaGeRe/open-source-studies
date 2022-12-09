@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testIsAlpha() {
+    assertEquals(false, StringUtils.isAlpha(null));
+    assertEquals(true, StringUtils.isAlpha(""));
+    assertEquals(false, StringUtils.isAlpha(" "));
+    assertEquals(true, StringUtils.isAlpha("a"));
+    assertEquals(true, StringUtils.isAlpha("A"));
+    assertEquals(true, StringUtils.isAlpha("kgKgKgKgkgkGkjkjlJlOKLgHdGdHgl"));
+    assertEquals(false, StringUtils.isAlpha("ham kso"));
+    assertEquals(false, StringUtils.isAlpha("1"));
+    assertEquals(false, StringUtils.isAlpha("hkHKHik6iUGHKJgU7tUJgKJGI87GIkug"));
+    assertEquals(false, StringUtils.isAlpha("_"));
+    assertEquals(false, StringUtils.isAlpha("hkHKHik*khbkuh"));
+}

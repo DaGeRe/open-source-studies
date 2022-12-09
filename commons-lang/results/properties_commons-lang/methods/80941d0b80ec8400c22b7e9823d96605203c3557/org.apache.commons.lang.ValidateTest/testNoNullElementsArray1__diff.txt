@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testNoNullElementsArray1() {
+    String[] array = new String[] { "a", "b" };
+    Validate.noNullElements(array);
+    try {
+        Validate.noNullElements((Object[]) null);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("The validated object is null", ex.getMessage());
+    }
+    array[1] = null;
+    try {
+        Validate.noNullElements(array);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("The validated array contains null element at index: 1", ex.getMessage());
+    }
+}

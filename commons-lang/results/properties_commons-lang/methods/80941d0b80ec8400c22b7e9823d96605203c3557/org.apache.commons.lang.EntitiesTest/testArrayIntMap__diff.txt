@@ -1,0 +1,8 @@
+public void testArrayIntMap() throws Exception {
+    Entities.ArrayEntityMap map = new Entities.ArrayEntityMap(2);
+    checkSomeEntityMap(map);
+    Entities.ArrayEntityMap map1 = new Entities.ArrayEntityMap();
+    checkSomeEntityMap(map1);
+    assertEquals(-1, map.value("null"));
+    assertNull(map.name(-1));
+}

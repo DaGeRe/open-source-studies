@@ -1,0 +1,11 @@
+@SuppressWarnings("cast")
+public void testContainsDouble() {
+    double[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, (double) 1));
+    array = new double[] { 0, 1, 2, 3, 0 };
+    assertEquals(true, ArrayUtils.contains(array, (double) 0));
+    assertEquals(true, ArrayUtils.contains(array, (double) 1));
+    assertEquals(true, ArrayUtils.contains(array, (double) 2));
+    assertEquals(true, ArrayUtils.contains(array, (double) 3));
+    assertEquals(false, ArrayUtils.contains(array, (double) 99));
+}

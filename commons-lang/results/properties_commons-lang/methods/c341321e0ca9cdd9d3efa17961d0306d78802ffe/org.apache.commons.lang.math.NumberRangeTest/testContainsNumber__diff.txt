@@ -1,0 +1,13 @@
+public void testContainsNumber() {
+    assertEquals(false, tenToTwenty.containsNumber(null));
+    assertEquals(false, tenToTwenty.containsNumber(five));
+    assertEquals(true, tenToTwenty.containsNumber(ten));
+    assertEquals(true, tenToTwenty.containsNumber(fifteen));
+    assertEquals(true, tenToTwenty.containsNumber(twenty));
+    assertEquals(false, tenToTwenty.containsNumber(twentyFive));
+    try {
+        tenToTwenty.containsNumber(long21);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

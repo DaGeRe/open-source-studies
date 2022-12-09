@@ -1,0 +1,24 @@
+/**
+ * <p>Tests whether the specified range overlaps with this range.</p>
+ *
+ * <p>The exact comparison implementation varies by subclass. It is
+ * intended that an <code>int</code> specific subclass will compare using
+ * <code>int</code> comparison.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * <p>This implementation uses the {@link #containsNumber(Number)} and
+ * {@link #containsRange(Range)} methods.
+ * Subclasses may be able to optimise this.</p>
+ *
+ * @param range  the range to test, may be <code>null</code>
+ * @return <code>true</code> if the specified range overlaps with this
+ *  range; otherwise, <code>false</code>
+ * @throws IllegalArgumentException if the <code>Range</code> cannot be compared
+ */
+public boolean overlapsRange(Range<T> range) {
+    if (range == null) {
+        return false;
+    }
+    return range.contains(getMinimum()) || range.contains(getMaximum()) || contains(range.getMinimum());
+}

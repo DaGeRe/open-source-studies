@@ -1,0 +1,21 @@
+/**
+ * Tests the behavior of initialize() if a child initializer has a specific
+ * executor service. Then this service should not be overridden.
+ */
+public void testInitializeChildWithExecutor() throws ConcurrentException {
+    final String initExec = "childInitializerWithExecutor";
+    ExecutorService exec = Executors.newSingleThreadExecutor();
+    try {
+        ChildBackgroundInitializer c1 = new ChildBackgroundInitializer();
+        ChildBackgroundInitializer c2 = new ChildBackgroundInitializer();
+        c2.setExternalExecutor(exec);
+        initializer.addInitializer(CHILD_INIT, c1);
+        initializer.addInitializer(initExec, c2);
+        initializer.start();
+        initializer.get();
+        checkChild(c1, initializer.getActiveExecutor());
+        checkChild(c2, exec);
+    } finally {
+        exec.shutdown();
+    }
+}

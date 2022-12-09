@@ -1,0 +1,12 @@
+public void test_getEnumMap() {
+    Map<String, Traffic> test = EnumUtils.getEnumMap(Traffic.class);
+    assertEquals("getEnumMap not created correctly", "{RED=RED, AMBER=AMBER, GREEN=GREEN}", test.toString());
+    assertEquals(3, test.size());
+    assertEquals(true, test.containsKey("RED"));
+    assertEquals(Traffic.RED, test.get("RED"));
+    assertEquals(true, test.containsKey("AMBER"));
+    assertEquals(Traffic.AMBER, test.get("AMBER"));
+    assertEquals(true, test.containsKey("GREEN"));
+    assertEquals(Traffic.GREEN, test.get("GREEN"));
+    assertEquals(false, test.containsKey("PURPLE"));
+}

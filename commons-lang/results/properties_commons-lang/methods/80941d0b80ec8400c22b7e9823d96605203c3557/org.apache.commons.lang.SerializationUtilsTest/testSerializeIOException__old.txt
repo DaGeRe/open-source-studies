@@ -1,0 +1,15 @@
+public void testSerializeIOException() throws Exception {
+    // forces an IOException when the ObjectOutputStream is created, to test not closing the stream
+    // in the finally block
+    OutputStream streamTest = new OutputStream() {
+
+        public void write(int arg0) throws IOException {
+            throw new IOException(SERIALIZE_IO_EXCEPTION_MESSAGE);
+        }
+    };
+    try {
+        SerializationUtils.serialize(iMap, streamTest);
+    } catch (SerializationException e) {
+        assertEquals("java.io.IOException: " + SERIALIZE_IO_EXCEPTION_MESSAGE, e.getMessage());
+    }
+}

@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------
+public void testInitials_String() {
+    assertEquals(null, WordUtils.initials(null));
+    assertEquals("", WordUtils.initials(""));
+    assertEquals("", WordUtils.initials("  "));
+    assertEquals("I", WordUtils.initials("I"));
+    assertEquals("i", WordUtils.initials("i"));
+    assertEquals("BJL", WordUtils.initials("Ben John Lee"));
+    assertEquals("BJ", WordUtils.initials("Ben J.Lee"));
+    assertEquals("BJ.L", WordUtils.initials(" Ben   John  . Lee"));
+    assertEquals("iah1", WordUtils.initials("i am here 123"));
+}

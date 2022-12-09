@@ -1,0 +1,36 @@
+public void testLastIndexOf_StrMatcher_int() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(-1, sb.lastIndexOf((StrMatcher) null, 2));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('a'), 2));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('a'), 0));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('a'), -1));
+    sb.append("ab bd");
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('a'), -2));
+    assertEquals(0, sb.lastIndexOf(StrMatcher.charMatcher('a'), 0));
+    assertEquals(0, sb.lastIndexOf(StrMatcher.charMatcher('a'), 2));
+    assertEquals(0, sb.lastIndexOf(StrMatcher.charMatcher('a'), 20));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('b'), -1));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.charMatcher('b'), 0));
+    assertEquals(1, sb.lastIndexOf(StrMatcher.charMatcher('b'), 1));
+    assertEquals(1, sb.lastIndexOf(StrMatcher.charMatcher('b'), 2));
+    assertEquals(3, sb.lastIndexOf(StrMatcher.charMatcher('b'), 3));
+    assertEquals(3, sb.lastIndexOf(StrMatcher.charMatcher('b'), 4));
+    assertEquals(3, sb.lastIndexOf(StrMatcher.charMatcher('b'), 5));
+    assertEquals(3, sb.lastIndexOf(StrMatcher.charMatcher('b'), 6));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.spaceMatcher(), -2));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.spaceMatcher(), 0));
+    assertEquals(2, sb.lastIndexOf(StrMatcher.spaceMatcher(), 2));
+    assertEquals(2, sb.lastIndexOf(StrMatcher.spaceMatcher(), 4));
+    assertEquals(2, sb.lastIndexOf(StrMatcher.spaceMatcher(), 20));
+    assertEquals(-1, sb.lastIndexOf(StrMatcher.noneMatcher(), 0));
+    assertEquals(-1, sb.lastIndexOf((StrMatcher) null, 0));
+    sb.append(" A1 junction with A2");
+    assertEquals(-1, sb.lastIndexOf(A_NUMBER_MATCHER, 5));
+    // A matches, 1 is outside bounds
+    assertEquals(-1, sb.lastIndexOf(A_NUMBER_MATCHER, 6));
+    assertEquals(6, sb.lastIndexOf(A_NUMBER_MATCHER, 7));
+    assertEquals(6, sb.lastIndexOf(A_NUMBER_MATCHER, 22));
+    // A matches, 2 is outside bounds
+    assertEquals(6, sb.lastIndexOf(A_NUMBER_MATCHER, 23));
+    assertEquals(23, sb.lastIndexOf(A_NUMBER_MATCHER, 24));
+}

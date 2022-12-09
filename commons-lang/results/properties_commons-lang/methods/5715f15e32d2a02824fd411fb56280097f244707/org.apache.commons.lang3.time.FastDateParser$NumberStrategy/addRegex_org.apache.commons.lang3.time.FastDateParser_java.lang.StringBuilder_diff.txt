@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+public boolean addRegex(FastDateParser parser, StringBuilder regex) {
+    if (parser.isNextNumber()) {
+        regex.append("(\\d{").append(parser.getFieldWidth()).append("}+)");
+    } else {
+        regex.append("(\\d++)");
+    }
+    return true;
+}

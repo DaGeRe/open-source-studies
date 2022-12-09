@@ -1,0 +1,33 @@
+// Constructor                                                                                         // Constructor                                                                                      
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new FastDateFormat.&lt;/p&gt;                                                  * &lt;p&gt;Constructs a new FastDateFormat.&lt;/p&gt;                                               
+*                                                                                                      *                                                                                                   
+* @param pattern  {@link java.text.SimpleDateFormat} compatible                                      | * @param pattern  {@link java.text.SimpleDateFormat} compatible pattern                             
+*  pattern                                                                                           | * @param timeZone  non-null time zone to use                                                        
+* @param timeZone  time zone to use, &lt;code&gt;null&lt;/code&gt; means use                         | * @param locale  non-null locale to use                                                             
+*  default for &lt;code&gt;Date&lt;/code&gt; and value within for                                    | * @throws NullPointerException if pattern, timeZone, or locale is null.                             
+*  &lt;code&gt;Calendar&lt;/code&gt;                                                                 |                                                                                                     
+* @param locale  locale, &lt;code&gt;null&lt;/code&gt; means use system                              |                                                                                                     
+*  default                                                                                           |                                                                                                     
+* @throws IllegalArgumentException if pattern is invalid or                                          |                                                                                                     
+*  &lt;code&gt;null&lt;/code&gt;                                                                     |                                                                                                     
+*/                                                                                                     */                                                                                                  
+protected FastDateFormat(String pattern, TimeZone timeZone, Locale locale) {                           protected FastDateFormat(String pattern, TimeZone timeZone, Locale locale) {                        
+super();                                                                                             |                                                                                                     
+if (pattern == null) {                                                                               |                                                                                                     
+throw new IllegalArgumentException("The pattern must not be null");                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+mPattern = pattern;                                                                                    mPattern = pattern;                                                                                 
+mTimeZoneForced = (timeZone != null);                                                                |                                                                                                     
+if (timeZone == null) {                                                                              |                                                                                                     
+timeZone = TimeZone.getDefault();                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+mTimeZone = timeZone;                                                                                  mTimeZone = timeZone;                                                                               
+mLocaleForced = (locale != null);                                                                    |                                                                                                     
+if (locale == null) {                                                                                |                                                                                                     
+locale = Locale.getDefault();                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+mLocale = locale;                                                                                      mLocale = locale;                                                                                   
+                                                                                                     | init();                                                                                             
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+/**
+ * Replaces the first instance of the search character with the
+ * replace character in the builder.
+ *
+ * @param search  the search character
+ * @param replace  the replace character
+ * @return this, to enable chaining
+ */
+public StrBuilder replaceFirst(char search, char replace) {
+    if (search != replace) {
+        for (int i = 0; i < size; i++) {
+            if (buffer[i] == search) {
+                buffer[i] = replace;
+                break;
+            }
+        }
+    }
+    return this;
+}

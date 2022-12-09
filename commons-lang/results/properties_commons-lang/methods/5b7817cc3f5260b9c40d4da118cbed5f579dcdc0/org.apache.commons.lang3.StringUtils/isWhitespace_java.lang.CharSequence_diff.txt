@@ -1,0 +1,31 @@
+/**
+ * <p>Checks if the CharSequence contains only whitespace.</p>
+ *
+ * <p><code>null</code> will return <code>false</code>.
+ * An empty CharSequence (length()=0) will return <code>true</code>.</p>
+ *
+ * <pre>
+ * StringUtils.isWhitespace(null)   = false
+ * StringUtils.isWhitespace("")     = true
+ * StringUtils.isWhitespace("  ")   = true
+ * StringUtils.isWhitespace("abc")  = false
+ * StringUtils.isWhitespace("ab2c") = false
+ * StringUtils.isWhitespace("ab-c") = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @return <code>true</code> if only contains whitespace, and is non-null
+ * @since 2.0
+ */
+public static boolean isWhitespace(CharSequence cs) {
+    if (cs == null) {
+        return false;
+    }
+    int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if ((Character.isWhitespace(cs.charAt(i)) == false)) {
+            return false;
+        }
+    }
+    return true;
+}

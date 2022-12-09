@@ -1,0 +1,14 @@
+/**
+ * Tests whether an external executor is correctly detected.
+ */
+public void testGetActiveExecutorExternal() {
+    ExecutorService exec = Executors.newSingleThreadExecutor();
+    try {
+        BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl(exec);
+        init.start();
+        assertSame("Wrong executor", exec, init.getActiveExecutor());
+        checkInitialize(init);
+    } finally {
+        exec.shutdown();
+    }
+}

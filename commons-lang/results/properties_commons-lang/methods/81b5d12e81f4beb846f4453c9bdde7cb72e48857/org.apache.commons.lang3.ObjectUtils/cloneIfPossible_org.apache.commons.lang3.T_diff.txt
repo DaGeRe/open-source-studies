@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* Clone an object if possible. This method is similar to {@link #clone(Object)}, but will            | * &lt;p&gt;Clone an object if possible.&lt;/p&gt;                                                   
+* return the provided instance as the return value instead of &lt;code&gt;null&lt;/code&gt; if the i | *                                                                                                   
+                                                                                                     | * &lt;p&gt;This method is similar to {@link #clone(Object)}, but will return the provided           
+                                                                                                     | * instance as the return value instead of {@code null} if the instance                              
+* is not cloneable. This is more convenient if the caller uses different                               * is not cloneable. This is more convenient if the caller uses different                            
+* implementations (e.g. of a service) and some of the implementations do not allow concurrent          * implementations (e.g. of a service) and some of the implementations do not allow concurrent       
+* processing or have state. In such cases the implementation can simply provide a proper               * processing or have state. In such cases the implementation can simply provide a proper            
+* clone implementation and the caller's code does not have to change.                                | * clone implementation and the caller's code does not have to change.&lt;/p&gt;                     
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the type of the object                                                              * @param &lt;T&gt; the type of the object                                                           
+* @param o the object to clone                                                                       | * @param obj  the object to clone, null returns null                                                
+* @return the clone if the object implements {@link Cloneable} otherwise the object itself             * @return the clone if the object implements {@link Cloneable} otherwise the object itself          
+* @throws CloneFailedException if the object is cloneable and the clone operation fails                * @throws CloneFailedException if the object is cloneable and the clone operation fails             
+* @since 3.0                                                                                           * @since 3.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T cloneIfPossible(final T o) {                                               | public static &lt;T&gt; T cloneIfPossible(final T obj) {                                            
+final T clone = clone(o);                                                                            | final T clone = clone(obj);                                                                         
+return clone == null ? o : clone;                                                                    | return clone == null ? obj : clone;                                                                 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,19 @@
+public void testGetSet() {                                                                             public void testGetSet() {                                                                          
+final MutableShort mutNum = new MutableShort((short) 0);                                               final MutableShort mutNum = new MutableShort((short) 0);                                            
+assertEquals((short) 0, new MutableShort().shortValue());                                              assertEquals((short) 0, new MutableShort().shortValue());                                           
+assertEquals(new Short((short) 0), new MutableShort().getValue());                                   | assertEquals(Short.valueOf((short) 0), new MutableShort().getValue());                              
+mutNum.setValue((short) 1);                                                                            mutNum.setValue((short) 1);                                                                         
+assertEquals((short) 1, mutNum.shortValue());                                                          assertEquals((short) 1, mutNum.shortValue());                                                       
+assertEquals(new Short((short) 1), mutNum.getValue());                                               | assertEquals(Short.valueOf((short) 1), mutNum.getValue());                                          
+mutNum.setValue(new Short((short) 2));                                                               | mutNum.setValue(Short.valueOf((short) 2));                                                          
+assertEquals((short) 2, mutNum.shortValue());                                                          assertEquals((short) 2, mutNum.shortValue());                                                       
+assertEquals(new Short((short) 2), mutNum.getValue());                                               | assertEquals(Short.valueOf((short) 2), mutNum.getValue());                                          
+mutNum.setValue(new MutableShort((short) 3));                                                          mutNum.setValue(new MutableShort((short) 3));                                                       
+assertEquals((short) 3, mutNum.shortValue());                                                          assertEquals((short) 3, mutNum.shortValue());                                                       
+assertEquals(new Short((short) 3), mutNum.getValue());                                               | assertEquals(Short.valueOf((short) 3), mutNum.getValue());                                          
+try {                                                                                                  try {                                                                                               
+mutNum.setValue(null);                                                                                 mutNum.setValue(null);                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

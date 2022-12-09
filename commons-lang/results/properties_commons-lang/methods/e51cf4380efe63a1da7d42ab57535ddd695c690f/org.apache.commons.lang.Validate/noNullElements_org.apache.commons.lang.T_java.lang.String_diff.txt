@@ -1,0 +1,36 @@
+// notNullElements collection                                                                          // notNullElements collection                                                                       
+// ---------------------------------------------------------------------------------                   // ---------------------------------------------------------------------------------                
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument collection is neither                               
+* if the argument Collection has &lt;code&gt;null&lt;/code&gt; elements or is                        | * &lt;code&gt;null&lt;/code&gt; nor contains any elements that are &lt;code&gt;null&lt;/code&gt;;   
+* &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                                           | * otherwise throwing an exception with the specified message.                                       
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.noNullElements(myCollection, "The collection contains null at position %d");&l
+* Validate.noNullElements(myCollection, "The collection must not contain null elements");            |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the collection is null then the message in the exception is 'The validated object is n | * &lt;p&gt;If the collection is &lt;code&gt;null&lt;/code&gt;, then the message in the exception    
+                                                                                                     | * is &quot;The validated object is null&quot;.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* @param collection  the collection to check                                                         | * &lt;p&gt;If the collection has a &lt;code&gt;null&lt;/code&gt; element, then the iteration        
+* @param message  the exception message if the collection has                                        | * index of the invalid element is appended to the &lt;code&gt;values&lt;/code&gt;                   
+*  &lt;code&gt;null&lt;/code&gt; elements                                                            | * argument.&lt;/p&gt;                                                                               
+* @return the validated input collection, never &lt;code&gt;null&lt;/code&gt;, for chaining          | *                                                                                                   
+* @throws IllegalArgumentException if the collection has                                             | * @param &lt;T&gt; the collection type                                                              
+*  &lt;code&gt;null&lt;/code&gt; elements or is &lt;code&gt;null&lt;/code&gt;                        | * @param collection the collection to check                                                         
+                                                                                                     | * @return the validated collection (never &lt;code&gt;null&lt;/code&gt; method for chaining)        
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+                                                                                                     | * @throws IllegalArgumentException if an element is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | * @see #noNullElements(Collection, String, Object...)                                               
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Collection&lt;?&gt;&gt; T noNullElements(T collection, String message) { | public static &lt;T extends Collection&lt;?&gt;&gt; T noNullElements(T collection, String message, O
+Validate.notNull(collection);                                                                          Validate.notNull(collection);                                                                       
+for (Iterator&lt;?&gt; it = collection.iterator(); it.hasNext(); ) {                                 | int i = 0;                                                                                          
+                                                                                                     | for (Iterator&lt;?&gt; it = collection.iterator(); it.hasNext(); i++) {                             
+if (it.next() == null) {                                                                               if (it.next() == null) {                                                                            
+throw new IllegalArgumentException(message);                                                         | Object[] values2 = ArrayUtils.addAll(values, i);                                                    
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values2));                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return collection;                                                                                     return collection;                                                                                  
+}                                                                                                      }                                                                                                   

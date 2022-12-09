@@ -1,0 +1,21 @@
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a Boolean to a boolean handling &lt;code&gt;null&lt;/code&gt;                      * &lt;p&gt;Converts a Boolean to a boolean handling &lt;code&gt;null&lt;/code&gt;                   
+* by returning &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                               * by returning &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toBoolean(Boolean.TRUE)  = true                                                       *   BooleanUtils.toBoolean(Boolean.TRUE)  = true                                                    
+*   BooleanUtils.toBoolean(Boolean.FALSE) = false                                                      *   BooleanUtils.toBoolean(Boolean.FALSE) = false                                                   
+*   BooleanUtils.toBoolean(null)          = false                                                      *   BooleanUtils.toBoolean(null)          = false                                                   
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the boolean to convert                                                                  * @param bool  the boolean to convert                                                               
+* @return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;,                             * @return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;,                          
+*  &lt;code&gt;null&lt;/code&gt; returns &lt;code&gt;false&lt;/code&gt;                                *  &lt;code&gt;null&lt;/code&gt; returns &lt;code&gt;false&lt;/code&gt;                             
+*/                                                                                                     */                                                                                                  
+public static boolean toBoolean(Boolean bool) {                                                        public static boolean toBoolean(Boolean bool) {                                                     
+if (bool == null) {                                                                                    if (bool == null) {                                                                                 
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return bool.booleanValue() ? true : false;                                                             return bool.booleanValue() ? true : false;                                                          
+}                                                                                                      }                                                                                                   

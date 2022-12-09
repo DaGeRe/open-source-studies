@@ -1,0 +1,17 @@
+/**
+ * Adds a token to a list, paying attention to the parameters we've set.
+ *
+ * @param list  the list to add to
+ * @param tok  the token to add
+ */
+private void addToken(List<String> list, String tok) {
+    if (tok == null || tok.length() == 0) {
+        if (isIgnoreEmptyTokens()) {
+            return;
+        }
+        if (isEmptyTokenAsNull()) {
+            tok = null;
+        }
+    }
+    list.add(tok);
+}

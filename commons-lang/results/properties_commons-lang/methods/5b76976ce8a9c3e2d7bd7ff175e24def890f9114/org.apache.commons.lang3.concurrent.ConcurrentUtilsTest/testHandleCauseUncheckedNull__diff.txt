@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Tests handleCauseUnchecked() for a null parameter or a null cause. In                                * Tests handleCauseUnchecked() for a null parameter or a null cause. In                             
+* this case the method should do nothing. We can only test that no                                     * this case the method should do nothing. We can only test that no                                  
+* exception is thrown.                                                                                 * exception is thrown.                                                                              
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testHandleCauseUncheckedNull() throws ConcurrentException {                              | public void testHandleCauseUncheckedNull() {                                                        
+ConcurrentUtils.handleCauseUnchecked(null);                                                            ConcurrentUtils.handleCauseUnchecked(null);                                                         
+ConcurrentUtils.handleCauseUnchecked(new ExecutionException("Test", null));                            ConcurrentUtils.handleCauseUnchecked(new ExecutionException("Test", null));                         
+}                                                                                                      }                                                                                                   

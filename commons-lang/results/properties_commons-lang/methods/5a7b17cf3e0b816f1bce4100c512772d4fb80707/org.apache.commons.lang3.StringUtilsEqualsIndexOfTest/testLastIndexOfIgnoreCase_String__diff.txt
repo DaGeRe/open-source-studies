@@ -1,0 +1,16 @@
+public void testLastIndexOfIgnoreCase_String() {
+    assertEquals(-1, StringUtils.lastIndexOfIgnoreCase(null, null));
+    assertEquals(-1, StringUtils.lastIndexOfIgnoreCase("", null));
+    assertEquals(-1, StringUtils.lastIndexOfIgnoreCase(null, ""));
+    assertEquals(-1, StringUtils.lastIndexOfIgnoreCase("", "a"));
+    assertEquals(0, StringUtils.lastIndexOfIgnoreCase("", ""));
+    assertEquals(8, StringUtils.lastIndexOfIgnoreCase("aabaabaa", ""));
+    assertEquals(7, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "a"));
+    assertEquals(7, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "A"));
+    assertEquals(5, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "b"));
+    assertEquals(5, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "B"));
+    assertEquals(4, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "ab"));
+    assertEquals(4, StringUtils.lastIndexOfIgnoreCase("aabaabaa", "AB"));
+    assertEquals(-1, StringUtils.lastIndexOfIgnoreCase("ab", "AAB"));
+    assertEquals(0, StringUtils.lastIndexOfIgnoreCase("aab", "AAB"));
+}

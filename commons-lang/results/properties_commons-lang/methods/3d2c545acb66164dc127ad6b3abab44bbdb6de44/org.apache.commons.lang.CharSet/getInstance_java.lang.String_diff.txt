@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Factory method to create a new CharSet using a special syntax.</p>
+ *
+ * <ul>
+ *  <li><code>null</code> or empty string ("")
+ * - set containing no characters</li>
+ *  <li>Single character, such as "a"
+ *  - set containing just that character</li>
+ *  <li>Multi character, such as "a-e"
+ *  - set containing characters from one character to the other</li>
+ *  <li>Negated, such as "^a" or "^a-e"
+ *  - set containing all characters except those defined</li>
+ *  <li>Combinations, such as "abe-g"
+ *  - set containing all the characters from the individual sets</li>
+ * </ul>
+ *
+ * <p>The matching order is:</p>
+ * <ol>
+ *  <li>Negated multi character range, such as "^a-e"
+ *  <li>Ordinary multi character range, such as "a-e"
+ *  <li>Negated single character, such as "^a"
+ *  <li>Ordinary single character, such as "a"
+ * </ol>
+ * <p>Matching works left to right. Once a match is found the
+ * search starts again from the next character.</p>
+ *
+ * <p>If the same range is defined twice using the same syntax, only
+ * one range will be kept.
+ * Thus, "a-ca-c" creates only one range of "a-c".</p>
+ *
+ * <p>If the start and end of a range are in the wrong order,
+ * they are reversed. Thus "a-e" is the same as "e-a".
+ * As a result, "a-ee-a" would create only one range,
+ * as the "a-e" and "e-a" are the same.</p>
+ *
+ * <p>The set of characters represented is the union of the specified ranges.</p>
+ *
+ * <p>All CharSet objects returned by this method will be immutable.</p>
+ *
+ * @param setStr  the String describing the set, may be null
+ * @return a CharSet instance
+ * @since 2.0
+ */
+public static CharSet getInstance(String setStr) {
+    Object set = COMMON.get(setStr);
+    if (set != null) {
+        return (CharSet) set;
+    }
+    return new CharSet(setStr);
+}

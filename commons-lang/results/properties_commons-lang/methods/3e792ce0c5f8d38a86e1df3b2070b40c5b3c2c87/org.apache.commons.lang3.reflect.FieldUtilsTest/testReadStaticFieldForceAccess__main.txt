@@ -1,0 +1,18 @@
+public void testReadStaticFieldForceAccess() throws Exception {
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(Foo.class, "VALUE")));
+    assertEquals(Foo.VALUE, FieldUtils.readStaticField(FieldUtils.getField(PublicChild.class, "VALUE")));
+    try {
+        FieldUtils.readStaticField(null, true);
+        fail("null field should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        Field nonStaticField = FieldUtils.getField(PublicChild.class, "s", true);
+        assumeNotNull(nonStaticField);
+        FieldUtils.readStaticField(nonStaticField);
+        fail("non-static field should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+}

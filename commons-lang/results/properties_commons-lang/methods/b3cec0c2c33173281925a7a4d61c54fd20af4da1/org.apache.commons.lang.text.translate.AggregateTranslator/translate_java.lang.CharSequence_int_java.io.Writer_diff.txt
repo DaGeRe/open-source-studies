@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* The first translator to consume codepoints from the input is the 'winner'.                           * The first translator to consume codepoints from the input is the 'winner'.                        
+* Execution stops with the number of consumed codepoints being returned.                               * Execution stops with the number of consumed codepoints being returned.                            
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public int translate(CharSequence input, int index, Writer out) throws IOException {                   public int translate(CharSequence input, int index, Writer out) throws IOException {                
+for (CharSequenceTranslator translator : translators) {                                                for (CharSequenceTranslator translator : translators) {                                             
+int consumed = translator.translate(input, index, out);                                                int consumed = translator.translate(input, index, out);                                             
+if (consumed != 0) {                                                                                   if (consumed != 0) {                                                                                
+return consumed;                                                                                       return consumed;                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   

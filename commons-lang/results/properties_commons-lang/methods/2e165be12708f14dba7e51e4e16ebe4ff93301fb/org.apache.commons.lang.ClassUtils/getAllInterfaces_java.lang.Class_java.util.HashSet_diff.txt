@@ -1,0 +1,11 @@
+                                                                                                     | private static void getAllInterfaces(Class&lt;?&gt; cls, HashSet&lt;Class&lt;?&gt;&gt; interfacesFou
+                                                                                                     | while (cls != null) {                                                                               
+                                                                                                     | Class&lt;?&gt;[] interfaces = cls.getInterfaces();                                                  
+                                                                                                     | for (Class&lt;?&gt; i : interfaces) {                                                               
+                                                                                                     | if (interfacesFound.add(i)) {                                                                       
+                                                                                                     | getAllInterfaces(i, interfacesFound);                                                               
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | cls = cls.getSuperclass();                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,18 @@
+/**
+ * Tests whether the original exception hander is not touched if none is
+ * specified.
+ */
+@Test
+public void testNewThreadNoExHandler() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r = EasyMock.createMock(Runnable.class);
+    Thread.UncaughtExceptionHandler handler = EasyMock.createMock(Thread.UncaughtExceptionHandler.class);
+    Thread t = new Thread();
+    t.setUncaughtExceptionHandler(handler);
+    EasyMock.expect(wrapped.newThread(r)).andReturn(t);
+    EasyMock.replay(wrapped, r, handler);
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).build();
+    assertSame("Wrong thread", t, factory.newThread(r));
+    assertEquals("Wrong exception handler", handler, t.getUncaughtExceptionHandler());
+    EasyMock.verify(wrapped, r, handler);
+}

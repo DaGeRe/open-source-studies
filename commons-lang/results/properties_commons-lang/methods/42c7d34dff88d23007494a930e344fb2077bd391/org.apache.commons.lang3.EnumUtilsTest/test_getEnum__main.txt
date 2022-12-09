@@ -1,0 +1,8 @@
+@Test
+public void test_getEnum() {
+    assertEquals(Traffic.RED, EnumUtils.getEnum(Traffic.class, "RED"));
+    assertEquals(Traffic.AMBER, EnumUtils.getEnum(Traffic.class, "AMBER"));
+    assertEquals(Traffic.GREEN, EnumUtils.getEnum(Traffic.class, "GREEN"));
+    assertEquals(null, EnumUtils.getEnum(Traffic.class, "PURPLE"));
+    assertEquals(null, EnumUtils.getEnum(Traffic.class, null));
+}

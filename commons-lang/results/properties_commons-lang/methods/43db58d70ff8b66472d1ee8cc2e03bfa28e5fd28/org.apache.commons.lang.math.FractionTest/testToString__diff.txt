@@ -1,0 +1,19 @@
+public void testToString() {
+    Fraction f = null;
+    f = Fraction.getFraction(3, 5);
+    String str = f.toString();
+    assertEquals("3/5", str);
+    assertSame(str, f.toString());
+    f = Fraction.getFraction(7, 5);
+    assertEquals("7/5", f.toString());
+    f = Fraction.getFraction(4, 2);
+    assertEquals("4/2", f.toString());
+    f = Fraction.getFraction(0, 2);
+    assertEquals("0/2", f.toString());
+    f = Fraction.getFraction(2, 2);
+    assertEquals("2/2", f.toString());
+    f = Fraction.getFraction(Integer.MIN_VALUE, 0, 1);
+    assertEquals("-2147483648/1", f.toString());
+    f = Fraction.getFraction(-1, 1, Integer.MAX_VALUE);
+    assertEquals("-2147483648/2147483647", f.toString());
+}

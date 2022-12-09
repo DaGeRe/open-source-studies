@@ -1,0 +1,15 @@
+/**
+ * <p>Constructs a new <code>FloatRange</code> using the specified
+ * number as both the minimum and maximum in this range.</p>
+ *
+ * @param number  the number to use for this range
+ * @throws IllegalArgumentException if the number is <code>NaN</code>
+ */
+public FloatRange(float number) {
+    super();
+    if (Float.isNaN(number)) {
+        throw new IllegalArgumentException("The number must not be NaN");
+    }
+    this.min = number;
+    this.max = number;
+}

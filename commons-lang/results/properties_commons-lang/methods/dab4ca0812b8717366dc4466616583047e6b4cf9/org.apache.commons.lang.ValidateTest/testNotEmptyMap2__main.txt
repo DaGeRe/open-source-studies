@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------
+public void testNotEmptyMap2() {
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    try {
+        Validate.notEmpty((Map<?, ?>) null, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(map, "MSG");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("MSG", ex.getMessage());
+    }
+    map.put("ll", new Integer(8));
+    Validate.notEmpty(map, "MSG");
+    Map<String, Integer> test = Validate.notEmpty(map, "Message");
+    assertSame(map, test);
+}

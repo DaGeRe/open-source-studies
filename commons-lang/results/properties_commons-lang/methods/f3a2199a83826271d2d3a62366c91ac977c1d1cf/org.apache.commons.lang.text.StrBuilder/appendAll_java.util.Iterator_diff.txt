@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Appends each item in an iterator to the builder without any separators.                              * Appends each item in an iterator to the builder without any separators.                           
+* Appending a null iterator will have no effect.                                                       * Appending a null iterator will have no effect.                                                    
+* Each object is appended using {@link #append(Object)}.                                               * Each object is appended using {@link #append(Object)}.                                            
+*                                                                                                      *                                                                                                   
+* @param it  the iterator to append                                                                    * @param it  the iterator to append                                                                 
+* @return this, to enable chaining                                                                     * @return this, to enable chaining                                                                  
+* @since 2.3                                                                                           * @since 2.3                                                                                        
+*/                                                                                                     */                                                                                                  
+public StrBuilder appendAll(Iterator it) {                                                           | public StrBuilder appendAll(Iterator&lt;?&gt; it) {                                                 
+if (it != null) {                                                                                      if (it != null) {                                                                                   
+while (it.hasNext()) {                                                                                 while (it.hasNext()) {                                                                              
+append(it.next());                                                                                     append(it.next());                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

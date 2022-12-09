@@ -1,0 +1,16 @@
+/**
+ * <p>Returns a pseudorandom, uniformly distributed long value between
+ * <code>0</code> (inclusive) and the specified value (exclusive), from
+ * the Math.random() sequence.</p>
+ *
+ * @param n  the specified exclusive max-value
+ * @return the random long
+ * @throws IllegalArgumentException when <code>n &lt;= 0</code>
+ */
+public static long nextLong(long n) {
+    if (n <= 0) {
+        throw new IllegalArgumentException("Upper bound for nextInt must be positive");
+    }
+    // TODO: check this cannot return 'n'
+    return (long) (Math.random() * n);
+}

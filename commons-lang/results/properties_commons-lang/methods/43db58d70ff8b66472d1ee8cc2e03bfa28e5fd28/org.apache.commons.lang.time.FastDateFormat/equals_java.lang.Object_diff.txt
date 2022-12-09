@@ -1,0 +1,19 @@
+// Basics                                                                                              // Basics                                                                                           
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Compares two objects for equality.&lt;/p&gt;                                                * &lt;p&gt;Compares two objects for equality.&lt;/p&gt;                                             
+*                                                                                                      *                                                                                                   
+* @param obj  the object to compare to                                                                 * @param obj  the object to compare to                                                              
+* @return &lt;code&gt;true&lt;/code&gt; if equal                                                       * @return &lt;code&gt;true&lt;/code&gt; if equal                                                    
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+if (obj instanceof FastDateFormat == false) {                                                          if (obj instanceof FastDateFormat == false) {                                                       
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+FastDateFormat other = (FastDateFormat) obj;                                                           FastDateFormat other = (FastDateFormat) obj;                                                        
+if ((mPattern == other.mPattern || mPattern.equals(other.mPattern)) && (mTimeZone == other.mTimeZone   if ((mPattern == other.mPattern || mPattern.equals(other.mPattern)) && (mTimeZone == other.mTimeZone
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

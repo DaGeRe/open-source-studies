@@ -1,0 +1,28 @@
+// Tests
+// --------------------------------------------------------------------
+/**
+ * <p>Tests whether the specified <code>number</code> occurs within
+ * this range.</p>
+ *
+ * <p><code>null</code> is handled and returns <code>false</code>.</p>
+ *
+ * @param number  the number to test, may be <code>null</code>
+ * @return <code>true</code> if the specified number occurs within this range
+ * @throws IllegalArgumentException if the number is of a different type to the range
+ */
+@Override
+public boolean containsNumber(Number number) {
+    if (number == null) {
+        return false;
+    }
+    if (number.getClass() != min.getClass()) {
+        throw new IllegalArgumentException("The number must be of the same type as the range numbers");
+    }
+    // this was checked in the ctor
+    @SuppressWarnings("unchecked")
+    int compareMin = ((Comparable<Number>) min).compareTo(number);
+    // this was checked in the ctor
+    @SuppressWarnings("unchecked")
+    int compareMax = ((Comparable<Number>) max).compareTo(number);
+    return compareMin <= 0 && compareMax >= 0;
+}

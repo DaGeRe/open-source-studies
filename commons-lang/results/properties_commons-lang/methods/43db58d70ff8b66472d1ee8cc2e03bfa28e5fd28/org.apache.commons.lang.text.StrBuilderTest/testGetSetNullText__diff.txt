@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testGetSetNullText() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(null, sb.getNullText());
+    sb.setNullText("null");
+    assertEquals("null", sb.getNullText());
+    sb.setNullText("");
+    assertEquals(null, sb.getNullText());
+    sb.setNullText("NULL");
+    assertEquals("NULL", sb.getNullText());
+    sb.setNullText((String) null);
+    assertEquals(null, sb.getNullText());
+}

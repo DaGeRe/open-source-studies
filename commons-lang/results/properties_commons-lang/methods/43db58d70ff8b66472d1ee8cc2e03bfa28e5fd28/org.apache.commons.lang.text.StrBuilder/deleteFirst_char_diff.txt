@@ -1,0 +1,15 @@
+/**
+ * Deletes the character wherever it occurs in the builder.
+ *
+ * @param ch  the character to delete
+ * @return this, to enable chaining
+ */
+public StrBuilder deleteFirst(char ch) {
+    for (int i = 0; i < size; i++) {
+        if (buffer[i] == ch) {
+            deleteImpl(i, i + 1, 1);
+            break;
+        }
+    }
+    return this;
+}

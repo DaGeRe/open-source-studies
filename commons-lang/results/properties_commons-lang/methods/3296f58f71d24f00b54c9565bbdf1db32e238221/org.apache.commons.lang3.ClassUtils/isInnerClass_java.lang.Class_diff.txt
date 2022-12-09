@@ -1,0 +1,15 @@
+// Inner class                                                                                         // Inner class                                                                                      
+// ----------------------------------------------------------------------                              // ----------------------------------------------------------------------                           
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Is the specified class an inner class or static nested class.&lt;/p&gt;                     * &lt;p&gt;Is the specified class an inner class or static nested class.&lt;/p&gt;                  
+*                                                                                                      *                                                                                                   
+* @param cls  the class to check, may be null                                                          * @param cls  the class to check, may be null                                                       
+* @return &lt;code&gt;true&lt;/code&gt; if the class is an inner or static nested class,               * @return &lt;code&gt;true&lt;/code&gt; if the class is an inner or static nested class,            
+*  false if not or &lt;code&gt;null&lt;/code&gt;                                                       *  false if not or &lt;code&gt;null&lt;/code&gt;                                                    
+*/                                                                                                     */                                                                                                  
+public static boolean isInnerClass(Class&lt;?&gt; cls) {                                               public static boolean isInnerClass(Class&lt;?&gt; cls) {                                            
+if (cls == null) {                                                                                   | return cls != null && cls.getEnclosingClass() != null;                                              
+return false;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+return cls.getName().indexOf(INNER_CLASS_SEPARATOR_CHAR) &gt;= 0;                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

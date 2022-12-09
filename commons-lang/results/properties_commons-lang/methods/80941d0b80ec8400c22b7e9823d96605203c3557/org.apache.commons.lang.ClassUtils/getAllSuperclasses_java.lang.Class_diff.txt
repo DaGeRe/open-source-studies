@@ -1,0 +1,21 @@
+// Superclasses/Superinterfaces
+// ----------------------------------------------------------------------
+/**
+ * <p>Gets a <code>List</code> of superclasses for the given class.</p>
+ *
+ * @param cls  the class to look up, may be <code>null</code>
+ * @return the <code>List</code> of superclasses in order going up from this one
+ *  <code>null</code> if null input
+ */
+public static List getAllSuperclasses(Class cls) {
+    if (cls == null) {
+        return null;
+    }
+    List classes = new ArrayList();
+    Class superclass = cls.getSuperclass();
+    while (superclass != null) {
+        classes.add(superclass);
+        superclass = superclass.getSuperclass();
+    }
+    return classes;
+}

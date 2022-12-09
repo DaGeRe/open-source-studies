@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean translate(int codepoint, Writer out) throws IOException {                               public boolean translate(int codepoint, Writer out) throws IOException {                            
+if (between) {                                                                                       | if (!range.contains(codepoint)) {                                                                   
+if (codepoint &lt; below || codepoint &gt; above) {                                                  |                                                                                                     
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+} else {                                                                                             |                                                                                                     
+if (codepoint &gt;= below && codepoint &lt;= above) {                                                |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+out.write("&#");                                                                                       out.write("&#");                                                                                    
+out.write(Integer.toString(codepoint, 10));                                                            out.write(Integer.toString(codepoint, 10));                                                         
+out.write(';');                                                                                        out.write(';');                                                                                     
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

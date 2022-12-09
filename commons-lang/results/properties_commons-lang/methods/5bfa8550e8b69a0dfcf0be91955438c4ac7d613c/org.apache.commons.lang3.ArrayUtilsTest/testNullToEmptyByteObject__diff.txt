@@ -1,0 +1,12 @@
+public void testNullToEmptyByteObject() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_BYTE_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Byte[]) null));
+    // Test valid array handling
+    Byte[] original = new Byte[] { 0x0F, 0x0E };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    Byte[] empty = new Byte[] {};
+    Byte[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_BYTE_OBJECT_ARRAY, result);
+    assertTrue(empty != result);
+}

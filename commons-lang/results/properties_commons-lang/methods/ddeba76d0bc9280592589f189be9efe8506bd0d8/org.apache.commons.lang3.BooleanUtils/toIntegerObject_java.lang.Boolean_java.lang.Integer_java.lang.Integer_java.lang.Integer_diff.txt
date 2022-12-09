@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts a Boolean to an Integer specifying the conversion values.&lt;/p&gt;                * &lt;p&gt;Converts a Boolean to an Integer specifying the conversion values.&lt;/p&gt;             
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.toIntegerObject(Boolean.TRUE, new Integer(1), new Integer(0), new Integer(2))  = ne | *   BooleanUtils.toIntegerObject(Boolean.TRUE, Integer.valueOf(1), Integer.valueOf(0), Integer.value
+*   BooleanUtils.toIntegerObject(Boolean.FALSE, new Integer(1), new Integer(0), new Integer(2)) = ne | *   BooleanUtils.toIntegerObject(Boolean.FALSE, Integer.valueOf(1), Integer.valueOf(0), Integer.valu
+*   BooleanUtils.toIntegerObject(null, new Integer(1), new Integer(0), new Integer(2))          = ne | *   BooleanUtils.toIntegerObject(null, Integer.valueOf(1), Integer.valueOf(0), Integer.valueOf(2))  
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the Boolean to convert                                                                  * @param bool  the Boolean to convert                                                               
+* @param trueValue  the value to return if {@code true}, may be {@code null}                           * @param trueValue  the value to return if {@code true}, may be {@code null}                        
+* @param falseValue  the value to return if {@code false}, may be {@code null}                         * @param falseValue  the value to return if {@code false}, may be {@code null}                      
+* @param nullValue  the value to return if {@code null}, may be {@code null}                           * @param nullValue  the value to return if {@code null}, may be {@code null}                        
+* @return the appropriate value                                                                        * @return the appropriate value                                                                     
+*/                                                                                                     */                                                                                                  
+public static Integer toIntegerObject(Boolean bool, Integer trueValue, Integer falseValue, Integer n   public static Integer toIntegerObject(Boolean bool, Integer trueValue, Integer falseValue, Integer n
+if (bool == null) {                                                                                    if (bool == null) {                                                                                 
+return nullValue;                                                                                      return nullValue;                                                                                   
+}                                                                                                      }                                                                                                   
+return bool.booleanValue() ? trueValue : falseValue;                                                   return bool.booleanValue() ? trueValue : falseValue;                                                
+}                                                                                                      }                                                                                                   

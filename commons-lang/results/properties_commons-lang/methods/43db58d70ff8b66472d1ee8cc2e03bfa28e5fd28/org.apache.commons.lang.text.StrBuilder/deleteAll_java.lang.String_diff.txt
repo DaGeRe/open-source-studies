@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+/**
+ * Deletes the string wherever it occurs in the builder.
+ *
+ * @param str  the string to delete, null causes no action
+ * @return this, to enable chaining
+ */
+public StrBuilder deleteAll(String str) {
+    int len = (str == null ? 0 : str.length());
+    if (len > 0) {
+        int index = indexOf(str, 0);
+        while (index >= 0) {
+            deleteImpl(index, index + len, len);
+            index = indexOf(str, index);
+        }
+    }
+    return this;
+}

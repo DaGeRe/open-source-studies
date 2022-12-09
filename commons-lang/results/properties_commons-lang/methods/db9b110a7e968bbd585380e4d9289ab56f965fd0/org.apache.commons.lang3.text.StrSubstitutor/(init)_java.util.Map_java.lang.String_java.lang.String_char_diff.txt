@@ -1,0 +1,12 @@
+/**
+ * Creates a new instance and initializes it.
+ *
+ * @param valueMap  the map with the variables' values, may be null
+ * @param prefix  the prefix for variables, not null
+ * @param suffix  the suffix for variables, not null
+ * @param escape  the escape character
+ * @throws IllegalArgumentException if the prefix or suffix is null
+ */
+public <V> StrSubstitutor(Map<String, V> valueMap, String prefix, String suffix, char escape) {
+    this(StrLookup.mapLookup(valueMap), prefix, suffix, escape);
+}

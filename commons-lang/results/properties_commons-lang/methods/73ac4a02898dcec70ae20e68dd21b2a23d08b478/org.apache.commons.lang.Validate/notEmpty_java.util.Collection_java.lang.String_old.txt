@@ -1,0 +1,19 @@
+// notEmpty collection
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument Collection is empty (<code>null</code> or no elements).</p>
+ *
+ * <pre>
+ * Validate.notEmpty(myCollection, "The collection must not be empty");
+ * </pre>
+ *
+ * @param collection  the collection to check is not empty
+ * @param message  the exception message you would like to see if the collection is empty
+ * @throws IllegalArgumentException if the collection is empty
+ */
+public static void notEmpty(Collection collection, String message) {
+    if (collection == null || collection.size() == 0) {
+        throw new IllegalArgumentException(message);
+    }
+}

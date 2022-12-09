@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Returns a new array of Strings without null elements. Internal method used to normalize exclude li   * Returns a new array of Strings without null elements. Internal method used to normalize exclude li
+* (arrays and collections). Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointer   * (arrays and collections). Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointer
+* if an array element is &lt;code&gt;null&lt;/code&gt;.                                                * if an array element is &lt;code&gt;null&lt;/code&gt;.                                             
+*                                                                                                      *                                                                                                   
+* @param array                                                                                         * @param array                                                                                      
+*            The array to check                                                                        *            The array to check                                                                     
+* @return The given array or a new array without null.                                                 * @return The given array or a new array without null.                                              
+*/                                                                                                     */                                                                                                  
+static String[] toNoNullStringArray(Object[] array) {                                                  static String[] toNoNullStringArray(Object[] array) {                                               
+ArrayList list = new ArrayList(array.length);                                                        | ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;(array.length);                           
+for (int i = 0; i &lt; array.length; i++) {                                                            for (int i = 0; i &lt; array.length; i++) {                                                         
+Object e = array[i];                                                                                   Object e = array[i];                                                                                
+if (e != null) {                                                                                       if (e != null) {                                                                                    
+list.add(e.toString());                                                                                list.add(e.toString());                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return (String[]) list.toArray(ArrayUtils.EMPTY_STRING_ARRAY);                                       | return list.toArray(ArrayUtils.EMPTY_STRING_ARRAY);                                                 
+}                                                                                                      }                                                                                                   

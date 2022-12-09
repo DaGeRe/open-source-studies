@@ -1,0 +1,26 @@
+/**
+ * <p>Case insensitive check if a CharSequence ends with a specified suffix.</p>
+ *
+ * <p>{@code null}s are handled without exceptions. Two {@code null}
+ * references are considered to be equal. The comparison is case insensitive.</p>
+ *
+ * <pre>
+ * StringUtils.endsWithIgnoreCase(null, null)      = true
+ * StringUtils.endsWithIgnoreCase(null, "def")     = false
+ * StringUtils.endsWithIgnoreCase("abcdef", null)  = false
+ * StringUtils.endsWithIgnoreCase("abcdef", "def") = true
+ * StringUtils.endsWithIgnoreCase("ABCDEF", "def") = true
+ * StringUtils.endsWithIgnoreCase("ABCDEF", "cde") = false
+ * </pre>
+ *
+ * @see java.lang.String#endsWith(String)
+ * @param str  the CharSequence to check, may be null
+ * @param suffix the suffix to find, may be null
+ * @return {@code true} if the CharSequence ends with the suffix, case insensitive, or
+ *  both {@code null}
+ * @since 2.4
+ * @since 3.0 Changed signature from endsWithIgnoreCase(String, String) to endsWithIgnoreCase(CharSequence, CharSequence)
+ */
+public static boolean endsWithIgnoreCase(CharSequence str, CharSequence suffix) {
+    return endsWith(str, suffix, true);
+}

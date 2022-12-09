@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Invokes a method whose parameter types match exactly the object                           | * &lt;p&gt;Invokes a method without parameters.&lt;/p&gt;                                           
+* types.&lt;/p&gt;                                                                                   |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This uses reflection to invoke the method obtained from a call to                           * &lt;p&gt;This uses reflection to invoke the method obtained from a call to                        
+* &lt;code&gt;getAccessibleMethod()&lt;/code&gt;.&lt;/p&gt;                                            * &lt;code&gt;getAccessibleMethod()&lt;/code&gt;.&lt;/p&gt;                                         
+*                                                                                                      *                                                                                                   
+* @param object invoke method on this object                                                           * @param object invoke method on this object                                                        
+* @param methodName get method with this name                                                          * @param methodName get method with this name                                                       
+* @param args use these arguments - treat null as empty array                                        |                                                                                                     
+* @return The value returned by the invoked method                                                     * @return The value returned by the invoked method                                                  
+*                                                                                                      *                                                                                                   
+* @throws NoSuchMethodException if there is no such accessible method                                  * @throws NoSuchMethodException if there is no such accessible method                               
+* @throws InvocationTargetException wraps an exception thrown by the                                   * @throws InvocationTargetException wraps an exception thrown by the                                
+*  method invoked                                                                                      *  method invoked                                                                                   
+* @throws IllegalAccessException if the requested method is not accessible                             * @throws IllegalAccessException if the requested method is not accessible                          
+*  via reflection                                                                                      *  via reflection                                                                                   
+                                                                                                     | * @since 3.0.2                                                                                      
+*/                                                                                                     */                                                                                                  
+public static Object invokeExactMethod(Object object, String methodName, Object... args) throws NoSu | public static Object invokeExactMethod(Object object, String methodName) throws NoSuchMethodExceptio
+if (args == null) {                                                                                  | return invokeExactMethod(object, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY);                        
+args = ArrayUtils.EMPTY_OBJECT_ARRAY;                                                                |                                                                                                     
+}                                                                                                      }                                                                                                   
+int arguments = args.length;                                                                         |                                                                                                     
+Class&lt;?&gt;[] parameterTypes = new Class[arguments];                                              |                                                                                                     
+for (int i = 0; i &lt; arguments; i++) {                                                             |                                                                                                     
+parameterTypes[i] = args[i].getClass();                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     
+return invokeExactMethod(object, methodName, args, parameterTypes);                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

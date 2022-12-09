@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+/**
+ * Internal method that substitutes the variables.
+ * <p>
+ * Most users of this class do not need to call this method. This method will
+ * be called automatically by another (public) method.
+ * <p>
+ * Writers of subclasses can override this method if they need access to
+ * the substitution process at the start or end.
+ *
+ * @param buf  the string builder to substitute into, not null
+ * @param offset  the start offset within the builder, must be valid
+ * @param length  the length within the builder to be processed, must be valid
+ * @return true if altered
+ */
+protected boolean substitute(StrBuilder buf, int offset, int length) {
+    return substitute(buf, offset, length, null) > 0;
+}

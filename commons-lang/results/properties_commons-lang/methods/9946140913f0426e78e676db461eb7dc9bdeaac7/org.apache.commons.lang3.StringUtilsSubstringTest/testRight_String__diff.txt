@@ -1,0 +1,12 @@
+public void testRight_String() {
+    assertSame(null, StringUtils.right(null, -1));
+    assertSame(null, StringUtils.right(null, 0));
+    assertSame(null, StringUtils.right(null, 2));
+    assertEquals("", StringUtils.right("", -1));
+    assertEquals("", StringUtils.right("", 0));
+    assertEquals("", StringUtils.right("", 2));
+    assertEquals("", StringUtils.right(FOOBAR, -1));
+    assertEquals("", StringUtils.right(FOOBAR, 0));
+    assertEquals(BAR, StringUtils.right(FOOBAR, 3));
+    assertSame(FOOBAR, StringUtils.right(FOOBAR, 80));
+}

@@ -1,0 +1,49 @@
+/**
+ * <p>Constructs a new <code>NumberRange</code> with the specified
+ * minimum and maximum numbers (both inclusive).</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min). The
+ * {@link #getMinimumNumber()} and {@link #getMaximumNumber()} methods will return the
+ * correct value.</p>
+ *
+ * <p>This constructor is designed to be used with two <code>Number</code>
+ * objects of the same type. If two objects of different types are passed in,
+ * an exception is thrown.</p>
+ *
+ * @param num1  first number that defines the edge of the range, inclusive
+ * @param num2  second number that defines the edge of the range, inclusive
+ * @throws IllegalArgumentException if either number is <code>null</code>
+ * @throws IllegalArgumentException if the numbers are of different types
+ * @throws IllegalArgumentException if the numbers don't implement <code>Comparable</code>
+ */
+public NumberRange(Number num1, Number num2) {
+    if (num1 == null || num2 == null) {
+        throw new IllegalArgumentException("The numbers must not be null");
+    }
+    if (num1.getClass() != num2.getClass()) {
+        throw new IllegalArgumentException("The numbers must be of the same type");
+    }
+    if (num1 instanceof Comparable<?> == false) {
+        throw new IllegalArgumentException("The numbers must implement Comparable");
+    }
+    if (num1 instanceof Double) {
+        if (((Double) num1).isNaN() || ((Double) num2).isNaN()) {
+            throw new IllegalArgumentException("The number must not be NaN");
+        }
+    } else if (num1 instanceof Float) {
+        if (((Float) num1).isNaN() || ((Float) num2).isNaN()) {
+            throw new IllegalArgumentException("The number must not be NaN");
+        }
+    }
+    int compare = ((Comparable<Number>) num1).compareTo(num2);
+    if (compare == 0) {
+        this.min = num1;
+        this.max = num1;
+    } else if (compare > 0) {
+        this.min = num2;
+        this.max = num1;
+    } else {
+        this.min = num1;
+        this.max = num2;
+    }
+}

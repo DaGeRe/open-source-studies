@@ -1,0 +1,9 @@
+public void testMaximumByte() {
+    byte low = 123;
+    byte mid = 123 + 1;
+    byte high = 123 + 2;
+    assertEquals("maximum(byte,byte,byte) 1 failed", high, NumberUtils.max(low, mid, high));
+    assertEquals("maximum(byte,byte,byte) 1 failed", high, NumberUtils.max(mid, low, high));
+    assertEquals("maximum(byte,byte,byte) 1 failed", high, NumberUtils.max(mid, high, low));
+    assertEquals("maximum(byte,byte,byte) 1 failed", high, NumberUtils.max(high, mid, high));
+}

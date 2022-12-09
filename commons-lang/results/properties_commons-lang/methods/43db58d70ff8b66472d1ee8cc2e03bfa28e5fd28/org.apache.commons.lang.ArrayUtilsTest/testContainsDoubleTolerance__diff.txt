@@ -1,0 +1,9 @@
+public void testContainsDoubleTolerance() {
+    double[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, (double) 1, (double) 0));
+    array = new double[] { 0, 1, 2, 3, 0 };
+    assertEquals(false, ArrayUtils.contains(array, (double) 4.0, (double) 0.33));
+    assertEquals(false, ArrayUtils.contains(array, (double) 2.5, (double) 0.49));
+    assertEquals(true, ArrayUtils.contains(array, (double) 2.5, (double) 0.50));
+    assertEquals(true, ArrayUtils.contains(array, (double) 2.5, (double) 0.51));
+}

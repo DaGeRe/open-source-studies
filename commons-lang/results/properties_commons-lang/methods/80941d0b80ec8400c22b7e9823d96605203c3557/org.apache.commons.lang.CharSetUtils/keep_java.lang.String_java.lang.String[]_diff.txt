@@ -1,0 +1,25 @@
+/**
+ * <p>Takes an argument in set-syntax, see evaluateSet,
+ * and keeps any of characters present in the specified string.</p>
+ *
+ * <p>An example would be:</p>
+ * <ul>
+ *  <li>keep(&quot;hello&quot;, {&quot;c-f&quot;, &quot;o&quot;})
+ *   returns &quot;eo&quot;</li>
+ * </ul>
+ *
+ * @see #evaluateSet(java.lang.String[]) for set-syntax.
+ * @param str  String to keep characters from, may be null
+ * @param set  String[] set of characters to keep, may be null
+ * @return modified String, <code>null</code> if null string input
+ * @since 2.0
+ */
+public static String keep(String str, String[] set) {
+    if (str == null) {
+        return null;
+    }
+    if (str.length() == 0 || ArrayUtils.isEmpty(set)) {
+        return "";
+    }
+    return modify(str, set, true);
+}

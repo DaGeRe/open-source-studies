@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void test_toBoolean_Integer_Integer_Integer() {                                                 public void test_toBoolean_Integer_Integer_Integer() {                                              
+Integer six = Integer.valueOf(6);                                                                      Integer six = Integer.valueOf(6);                                                                   
+Integer seven = Integer.valueOf(7);                                                                    Integer seven = Integer.valueOf(7);                                                                 
+assertEquals(true, BooleanUtils.toBoolean((Integer) null, null, seven));                             | assertTrue(BooleanUtils.toBoolean((Integer) null, null, seven));                                    
+assertEquals(false, BooleanUtils.toBoolean((Integer) null, six, null));                              | assertFalse(BooleanUtils.toBoolean((Integer) null, six, null));                                     
+assertEquals(true, BooleanUtils.toBoolean(Integer.valueOf(6), six, seven));                          | assertTrue(BooleanUtils.toBoolean(Integer.valueOf(6), six, seven));                                 
+assertEquals(false, BooleanUtils.toBoolean(Integer.valueOf(7), six, seven));                         | assertFalse(BooleanUtils.toBoolean(Integer.valueOf(7), six, seven));                                
+}                                                                                                      }                                                                                                   

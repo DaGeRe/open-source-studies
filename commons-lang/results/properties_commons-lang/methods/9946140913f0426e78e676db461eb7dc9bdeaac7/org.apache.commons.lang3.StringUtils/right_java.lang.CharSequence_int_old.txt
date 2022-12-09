@@ -1,0 +1,32 @@
+/**
+ * <p>Gets the rightmost {@code len} characters of a String.</p>
+ *
+ * <p>If {@code len} characters are not available, or the String
+ * is {@code null}, the String will be returned without an
+ * an exception. An empty String is returned if len is negative.</p>
+ *
+ * <pre>
+ * StringUtils.right(null, *)    = null
+ * StringUtils.right(*, -ve)     = ""
+ * StringUtils.right("", *)      = ""
+ * StringUtils.right("abc", 0)   = ""
+ * StringUtils.right("abc", 2)   = "bc"
+ * StringUtils.right("abc", 4)   = "abc"
+ * </pre>
+ *
+ * @param seq  the CharSequence to get the rightmost characters from, may be null
+ * @param len  the length of the required String
+ * @return the rightmost characters, {@code null} if null String input
+ */
+public static String right(CharSequence seq, int len) {
+    if (seq == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (seq.length() <= len) {
+        return seq.toString();
+    }
+    return StringUtils.subSequence(seq, seq.length() - len).toString();
+}

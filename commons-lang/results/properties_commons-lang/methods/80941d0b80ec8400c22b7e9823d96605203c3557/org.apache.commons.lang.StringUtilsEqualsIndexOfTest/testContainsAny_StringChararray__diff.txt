@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testContainsAny_StringChararray() {
+    assertFalse(StringUtils.containsAny(null, (char[]) null));
+    assertFalse(StringUtils.containsAny(null, new char[0]));
+    assertFalse(StringUtils.containsAny(null, new char[] { 'a', 'b' }));
+    assertFalse(StringUtils.containsAny("", (char[]) null));
+    assertFalse(StringUtils.containsAny("", new char[0]));
+    assertFalse(StringUtils.containsAny("", new char[] { 'a', 'b' }));
+    assertFalse(StringUtils.containsAny("zzabyycdxx", (char[]) null));
+    assertFalse(StringUtils.containsAny("zzabyycdxx", new char[0]));
+    assertTrue(StringUtils.containsAny("zzabyycdxx", new char[] { 'z', 'a' }));
+    assertTrue(StringUtils.containsAny("zzabyycdxx", new char[] { 'b', 'y' }));
+    assertFalse(StringUtils.containsAny("ab", new char[] { 'z' }));
+}

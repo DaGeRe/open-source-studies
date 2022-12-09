@@ -1,0 +1,22 @@
+/**
+ * <p>Converts a String to lower case as per {@link String#toLowerCase(Locale)}.</p>
+ *
+ * <p>A <code>null</code> input String returns <code>null</code>.</p>
+ *
+ * <pre>
+ * StringUtils.lowerCase(null, Locale.ENGLISH)  = null
+ * StringUtils.lowerCase("", Locale.ENGLISH)    = ""
+ * StringUtils.lowerCase("aBc", Locale.ENGLISH) = "abc"
+ * </pre>
+ *
+ * @param str  the String to lower case, may be null
+ * @param locale  the locale that defines the case transformation rules, must not be null
+ * @return the lower cased String, <code>null</code> if null String input
+ * @since 2.5
+ */
+public static String lowerCase(String str, Locale locale) {
+    if (str == null) {
+        return null;
+    }
+    return str.toLowerCase(locale);
+}

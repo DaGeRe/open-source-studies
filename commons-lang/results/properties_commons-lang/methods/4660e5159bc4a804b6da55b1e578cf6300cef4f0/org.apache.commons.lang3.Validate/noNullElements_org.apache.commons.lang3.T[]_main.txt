@@ -1,0 +1,24 @@
+/**
+ * <p>Validate that the specified argument array is neither
+ * {@code null} nor contains any elements that are {@code null};
+ * otherwise throwing an exception.
+ *
+ * <pre>Validate.noNullElements(myArray);</pre>
+ *
+ * <p>If the array is {@code null}, then the message in the exception
+ * is &quot;The validated object is null&quot;.</p>
+ *
+ * <p>If the array has a {@code null} element, then the message in the
+ * exception is &quot;The validated array contains null element at index:
+ * &quot followed by the index.</p>
+ *
+ * @param <T> the array type
+ * @param array  the array to check, validated not null by this method
+ * @return the validated array (never {@code null} method for chaining)
+ * @throws NullPointerException if the array is {@code null}
+ * @throws IllegalArgumentException if an element is {@code null}
+ * @see #noNullElements(Object[], String, Object...)
+ */
+public static <T> T[] noNullElements(T... array) {
+    return Validate.<T>noNullElements((T[]) array, DEFAULT_NO_NULL_ELEMENTS_ARRAY_EX_MESSAGE);
+}

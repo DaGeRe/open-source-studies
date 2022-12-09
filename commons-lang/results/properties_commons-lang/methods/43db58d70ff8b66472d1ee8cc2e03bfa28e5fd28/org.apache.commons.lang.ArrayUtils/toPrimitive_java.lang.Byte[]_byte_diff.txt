@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an array of object Bytes to primitives handling <code>null</code>.</p>
+ *
+ * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+ *
+ * @param array  a <code>Byte</code> array, may be <code>null</code>
+ * @param valueForNull  the value to insert if <code>null</code> found
+ * @return a <code>byte</code> array, <code>null</code> if null array input
+ */
+public static byte[] toPrimitive(Byte[] array, byte valueForNull) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_BYTE_ARRAY;
+    }
+    final byte[] result = new byte[array.length];
+    for (int i = 0; i < array.length; i++) {
+        Byte b = array[i];
+        result[i] = (b == null ? valueForNull : b.byteValue());
+    }
+    return result;
+}

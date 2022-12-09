@@ -1,0 +1,22 @@
+public void testObjectArrayHiddenByObject() {
+    TestObject[] array1 = new TestObject[2];
+    array1[0] = new TestObject(4);
+    array1[1] = new TestObject(5);
+    TestObject[] array2 = new TestObject[2];
+    array2[0] = new TestObject(4);
+    array2[1] = new TestObject(5);
+    TestObject[] array3 = new TestObject[3];
+    array3[0] = new TestObject(4);
+    array3[1] = new TestObject(5);
+    array3[2] = new TestObject(6);
+    Object obj1 = array1;
+    Object obj2 = array2;
+    Object obj3 = array3;
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    array1[1] = new TestObject(7);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+}

@@ -1,0 +1,8 @@
+protected void testCreateBigIntegerFailure(String str) {
+    try {
+        BigInteger value = NumberUtils.createBigInteger(str);
+        fail("createBigInteger(blank) failed: " + value);
+    } catch (NumberFormatException ex) {
+        // empty
+    }
+}

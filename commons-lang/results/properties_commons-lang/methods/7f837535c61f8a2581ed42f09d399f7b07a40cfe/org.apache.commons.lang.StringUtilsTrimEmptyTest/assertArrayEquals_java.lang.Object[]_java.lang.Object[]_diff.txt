@@ -1,0 +1,16 @@
+private void assertArrayEquals(Object[] o1, Object[] o2) {
+    if (o1 == null) {
+        assertEquals(o1, o2);
+        return;
+    }
+    assertEquals("Length not equal. ", o1.length, o2.length);
+    int sz = o1.length;
+    for (int i = 0; i < sz; i++) {
+        if (o1[i] instanceof Object[]) {
+            // do an assert equals on type....
+            assertArrayEquals((Object[]) o1[i], (Object[]) o2[i]);
+        } else {
+            assertEquals(o1[i], o2[i]);
+        }
+    }
+}

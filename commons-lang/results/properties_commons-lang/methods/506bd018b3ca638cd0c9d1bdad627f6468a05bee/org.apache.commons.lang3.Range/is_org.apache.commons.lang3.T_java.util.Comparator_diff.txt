@@ -1,0 +1,13 @@
+/**
+ * <p>Constructs a new <code>Range</code> using the specified
+ * element as both the minimum and maximum in this range.</p>
+ * <p>The range uses the passed in <code>Comparator</code> to
+ * determine where values lie in the range.</p>
+ *
+ * @param element  the value to use for this range, must not be <code>null</code>
+ * @param c comparator to be used
+ * @throws IllegalArgumentException if the value is <code>null</code>
+ */
+public static <T> Range<T> is(T element, Comparator<T> c) {
+    return new Range<T>(element, element, c);
+}

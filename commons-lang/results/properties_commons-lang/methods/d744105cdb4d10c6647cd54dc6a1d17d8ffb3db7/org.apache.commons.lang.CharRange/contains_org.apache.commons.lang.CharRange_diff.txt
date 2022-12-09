@@ -1,0 +1,23 @@
+/**
+ * <p>Are all the characters of the passed in range contained in
+ * this range.</p>
+ *
+ * @param range  the range to check against
+ * @return <code>true</code> if this range entirely contains the input range
+ * @throws IllegalArgumentException if <code>null</code> input
+ */
+public boolean contains(CharRange range) {
+    if (range == null) {
+        throw new IllegalArgumentException("The Range must not be null");
+    }
+    if (negated) {
+        if (range.negated) {
+            return start >= range.start && end <= range.end;
+        }
+        return range.end < start || range.start > end;
+    }
+    if (range.negated) {
+        return start == 0 && end == Character.MAX_VALUE;
+    }
+    return start <= range.start && end >= range.end;
+}

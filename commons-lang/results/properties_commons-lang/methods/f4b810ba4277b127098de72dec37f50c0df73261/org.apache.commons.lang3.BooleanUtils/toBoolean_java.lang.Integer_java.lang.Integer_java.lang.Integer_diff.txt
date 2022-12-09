@@ -1,0 +1,33 @@
+/**
+ * <p>Converts an Integer to a boolean specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBoolean(Integer.valueOf(0), Integer.valueOf(1), Integer.valueOf(0)) = false
+ *   BooleanUtils.toBoolean(Integer.valueOf(1), Integer.valueOf(1), Integer.valueOf(0)) = true
+ *   BooleanUtils.toBoolean(Integer.valueOf(2), Integer.valueOf(1), Integer.valueOf(2)) = false
+ *   BooleanUtils.toBoolean(Integer.valueOf(2), Integer.valueOf(2), Integer.valueOf(0)) = true
+ *   BooleanUtils.toBoolean(null, null, Integer.valueOf(0))                     = true
+ * </pre>
+ *
+ * @param value  the Integer to convert
+ * @param trueValue  the value to match for {@code true}, may be {@code null}
+ * @param falseValue  the value to match for {@code false}, may be {@code null}
+ * @return {@code true} or {@code false}
+ * @throws IllegalArgumentException if no match
+ */
+public static boolean toBoolean(Integer value, Integer trueValue, Integer falseValue) {
+    if (value == null) {
+        if (trueValue == null) {
+            return true;
+        }
+        if (falseValue == null) {
+            return false;
+        }
+    } else if (value.equals(trueValue)) {
+        return true;
+    } else if (value.equals(falseValue)) {
+        return false;
+    }
+    // no match
+    throw new IllegalArgumentException("The Integer did not match either specified value");
+}

@@ -1,0 +1,18 @@
+/**                                                                                                  |                                                                                                     
+* Appends each item in a collection to the builder without any separators.                           |                                                                                                     
+* Appending a null collection will have no effect.                                                   |                                                                                                     
+* Each object is appended using {@link #append(Object)}.                                             |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param coll  the collection to append                                                              |                                                                                                     
+* @return this, to enable chaining                                                                   |                                                                                                     
+* @since 2.3                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public StrBuilder appendAll(Collection&lt;?&gt; coll) {                                              |                                                                                                     
+if (coll != null && coll.size() &gt; 0) {                                                            |                                                                                                     
+Iterator&lt;?&gt; it = coll.iterator();                                                              |                                                                                                     
+while (it.hasNext()) {                                                                               |                                                                                                     
+append(it.next());                                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return this;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

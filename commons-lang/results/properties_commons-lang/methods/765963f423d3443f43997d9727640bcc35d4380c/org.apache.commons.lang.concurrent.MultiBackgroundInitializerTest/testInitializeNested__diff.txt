@@ -1,0 +1,24 @@
+/**
+ * Tests whether MultiBackgroundInitializers can be combined in a nested
+ * way.
+ */
+public void testInitializeNested() throws ConcurrentException {
+    final String nameMulti = "multiChildInitializer";
+    initializer.addInitializer(CHILD_INIT, new ChildBackgroundInitializer());
+    MultiBackgroundInitializer mi2 = new MultiBackgroundInitializer();
+    final int count = 3;
+    for (int i = 0; i < count; i++) {
+        mi2.addInitializer(CHILD_INIT + i, new ChildBackgroundInitializer());
+    }
+    initializer.addInitializer(nameMulti, mi2);
+    initializer.start();
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res = initializer.get();
+    ExecutorService exec = initializer.getActiveExecutor();
+    checkChild(res.getInitializer(CHILD_INIT), exec);
+    MultiBackgroundInitializer.MultiBackgroundInitializerResults res2 = (MultiBackgroundInitializer.MultiBackgroundInitializerResults) res.getResultObject(nameMulti);
+    assertEquals("Wrong number of initializers", count, res2.initializerNames().size());
+    for (int i = 0; i < count; i++) {
+        checkChild(res2.getInitializer(CHILD_INIT + i), exec);
+    }
+    assertTrue("Executor not shutdown", exec.isShutdown());
+}

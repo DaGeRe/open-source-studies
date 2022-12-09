@@ -1,0 +1,8 @@
+public void testCharArrayAsObject() {
+    char[] obj = new char[2];
+    assertEquals((17 * 37) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+    obj[0] = (char) 5;
+    assertEquals((17 * 37 + 5) * 37, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+    obj[1] = (char) 6;
+    assertEquals((17 * 37 + 5) * 37 + 6, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+}

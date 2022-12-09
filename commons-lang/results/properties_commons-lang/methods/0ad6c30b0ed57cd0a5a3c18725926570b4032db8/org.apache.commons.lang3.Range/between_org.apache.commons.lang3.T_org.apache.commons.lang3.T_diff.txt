@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Constructs a new {@code Range} with the specified                                         | * &lt;p&gt;Obtains a range with the specified minimum and maximum values (both inclusive).&lt;/p&gt;
+* minimum and maximum values (both inclusive).&lt;/p&gt;                                             |                                                                                                     
+* &lt;p&gt;The range uses the natural ordering of the elements to                                    |                                                                                                     
+* determine where values lie in the range.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The arguments may be passed in the order (min,max) or (max,min). The                      | * &lt;p&gt;The range uses the natural ordering of the elements to determine where                   
+* getMinimum and getMaximum methods will return the correct values.&lt;/p&gt;                        | * values lie in the range.&lt;/p&gt;                                                                
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the type of this {@code Range}                                                    | * &lt;p&gt;The arguments may be passed in the order (min,max) or (max,min).                         
+* @param element1  first value that defines the edge of the range, inclusive                         | * The getMinimum and getMaximum methods will return the correct values.&lt;/p&gt;                   
+* @param element2  second value that defines the edge of the range, inclusive                        | *                                                                                                   
+* @return the new range object                                                                       | * @param &lt;T&gt; the type of the elements in this range                                           
+* @throws IllegalArgumentException if either value is {@code null}                                   | * @param fromInclusive  the first value that defines the edge of the range, inclusive               
+* @throws ClassCastException if either value is not Comparable                                       | * @param toInclusive  the second value that defines the edge of the range, inclusive                
+                                                                                                     | * @return the range object, not null                                                                
+                                                                                                     | * @throws IllegalArgumentException if either element is null                                        
+                                                                                                     | * @throws ClassCastException if the elements are not {@code Comparable}                             
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Comparable&lt;T&gt;&gt; Range&lt;T&gt; between(T element1, T element2) { | public static &lt;T extends Comparable&lt;T&gt;&gt; Range&lt;T&gt; between(T fromInclusive, T toIncl
+return new Range&lt;T&gt;(element1, element2, ComparableComparator.&lt;T&gt;getInstance());          | return between(fromInclusive, toInclusive, null);                                                   
+}                                                                                                      }                                                                                                   

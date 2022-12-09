@@ -1,0 +1,20 @@
+/**
+ * <p>Converts an array of primitive bytes to objects.</p>
+ *
+ * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+ *
+ * @param array  a <code>byte</code> array
+ * @return a <code>Byte</code> array, <code>null</code> if null array input
+ */
+public static Byte[] toObject(byte[] array) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_BYTE_OBJECT_ARRAY;
+    }
+    final Byte[] result = new Byte[array.length];
+    for (int i = 0; i < array.length; i++) {
+        result[i] = new Byte(array[i]);
+    }
+    return result;
+}

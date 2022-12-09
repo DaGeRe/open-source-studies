@@ -1,0 +1,19 @@
+public void testGetSet() {                                                                             public void testGetSet() {                                                                          
+final MutableInt mutNum = new MutableInt(0);                                                           final MutableInt mutNum = new MutableInt(0);                                                        
+assertEquals(0, new MutableInt().intValue());                                                          assertEquals(0, new MutableInt().intValue());                                                       
+assertEquals(new Integer(0), new MutableInt().getValue());                                           | assertEquals(Integer.valueOf(0), new MutableInt().getValue());                                      
+mutNum.setValue(1);                                                                                    mutNum.setValue(1);                                                                                 
+assertEquals(1, mutNum.intValue());                                                                    assertEquals(1, mutNum.intValue());                                                                 
+assertEquals(new Integer(1), mutNum.getValue());                                                     | assertEquals(Integer.valueOf(1), mutNum.getValue());                                                
+mutNum.setValue(new Integer(2));                                                                     | mutNum.setValue(Integer.valueOf(2));                                                                
+assertEquals(2, mutNum.intValue());                                                                    assertEquals(2, mutNum.intValue());                                                                 
+assertEquals(new Integer(2), mutNum.getValue());                                                     | assertEquals(Integer.valueOf(2), mutNum.getValue());                                                
+mutNum.setValue(new MutableLong(3));                                                                   mutNum.setValue(new MutableLong(3));                                                                
+assertEquals(3, mutNum.intValue());                                                                    assertEquals(3, mutNum.intValue());                                                                 
+assertEquals(new Integer(3), mutNum.getValue());                                                     | assertEquals(Integer.valueOf(3), mutNum.getValue());                                                
+try {                                                                                                  try {                                                                                               
+mutNum.setValue(null);                                                                                 mutNum.setValue(null);                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

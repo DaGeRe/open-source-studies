@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------
+/**
+ * Gets this builder as a Writer that can be written to.
+ * <p>
+ * This method allows you to populate the contents of the builder
+ * using any standard method that takes a Writer.
+ * <p>
+ * To use, simply create a <code>StrBuilder</code>,
+ * call <code>asWriter</code>, and populate away. The data is available
+ * at any time using the methods of the <code>StrBuilder</code>.
+ * <p>
+ * The internal character array is shared between the builder and the writer.
+ * This allows you to intermix calls that append to the builder and
+ * write using the writer and the changes will be occur correctly.
+ * Note however, that no synchronization occurs, so you must perform
+ * all operations with the builder and the writer in one thread.
+ * <p>
+ * The returned writer ignores the close and flush methods.
+ *
+ * @return a writer that populates this builder
+ */
+public Writer asWriter() {
+    return new StrBuilderWriter();
+}

@@ -1,0 +1,27 @@
+                                                                                                     | // IndexOf                                                                                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Finds the first index within a CharSequence, handling {@code null}.                      
+                                                                                                     | * This method uses {@link String#indexOf(int, int)} if possible.&lt;/p&gt;                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;A {@code null} or empty ("") CharSequence will return {@code INDEX_NOT_FOUND (-1)}.&lt;/p
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.indexOf(null, *)         = -1                                                         
+                                                                                                     | * StringUtils.indexOf("", *)           = -1                                                         
+                                                                                                     | * StringUtils.indexOf("aabaabaa", 'a') = 0                                                          
+                                                                                                     | * StringUtils.indexOf("aabaabaa", 'b') = 2                                                          
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param seq  the CharSequence to check, may be null                                                
+                                                                                                     | * @param searchChar  the character to find                                                          
+                                                                                                     | * @return the first index of the search character,                                                  
+                                                                                                     | *  -1 if no match or {@code null} string input                                                      
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static int indexOf(CharSequence seq, int searchChar) {                                       
+                                                                                                     | if (isEmpty(seq)) {                                                                                 
+                                                                                                     | return INDEX_NOT_FOUND;                                                                             
+                                                                                                     | }                                                                                                   
+                                                                                                     | return StringUtils.indexOfSequence(seq, searchChar, 0);                                             
+                                                                                                     | }                                                                                                   

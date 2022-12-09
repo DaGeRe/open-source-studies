@@ -1,0 +1,9 @@
+public void testDefaultIfEmpty_StringString() {                                                        public void testDefaultIfEmpty_StringString() {                                                     
+assertEquals("NULL", StringUtils.defaultIfEmpty(null, "NULL"));                                        assertEquals("NULL", StringUtils.defaultIfEmpty(null, "NULL"));                                     
+assertEquals("NULL", StringUtils.defaultIfEmpty("", "NULL"));                                          assertEquals("NULL", StringUtils.defaultIfEmpty("", "NULL"));                                       
+assertEquals("abc", StringUtils.defaultIfEmpty("abc", "NULL"));                                        assertEquals("abc", StringUtils.defaultIfEmpty("abc", "NULL"));                                     
+assertNull(StringUtils.defaultIfEmpty("", null));                                                      assertNull(StringUtils.defaultIfEmpty("", null));                                                   
+                                                                                                     | // Tests compatibility for the API return type                                                      
+                                                                                                     | String s = StringUtils.defaultIfEmpty("abc", "NULL");                                               
+                                                                                                     | assertEquals("abc", s);                                                                             
+}                                                                                                      }                                                                                                   

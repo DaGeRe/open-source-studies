@@ -1,0 +1,9 @@
+public void testGetSetDefault() {
+    try {
+        ToStringBuilder.setDefaultStyle(ToStringStyle.NO_FIELD_NAMES_STYLE);
+        assertSame(ToStringStyle.NO_FIELD_NAMES_STYLE, ToStringBuilder.getDefaultStyle());
+    } finally {
+        // reset for other tests
+        ToStringBuilder.setDefaultStyle(ToStringStyle.DEFAULT_STYLE);
+    }
+}

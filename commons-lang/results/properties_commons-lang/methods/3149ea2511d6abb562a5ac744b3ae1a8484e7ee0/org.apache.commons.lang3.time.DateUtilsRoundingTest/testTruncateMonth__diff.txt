@@ -1,0 +1,12 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.MONTH
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateMonth() throws Exception {
+    final int calendarField = Calendar.MONTH;
+    Date truncatedDate = dateTimeParser.parse("March 1, 2008 0:00:00.000");
+    Date lastTruncateDate = dateTimeParser.parse("March 31, 2008 23:59:59.999");
+    baseTruncateTest(truncatedDate, lastTruncateDate, calendarField);
+}

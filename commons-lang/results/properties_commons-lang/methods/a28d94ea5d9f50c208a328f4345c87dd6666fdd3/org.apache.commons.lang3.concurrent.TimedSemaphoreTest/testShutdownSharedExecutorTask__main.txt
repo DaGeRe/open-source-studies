@@ -1,0 +1,17 @@
+/**
+ * Tests the shutdown() method for a shared executor after the task was
+ * started. In this case the task must be canceled.
+ */
+@Test
+public void testShutdownSharedExecutorTask() throws InterruptedException {
+    ScheduledExecutorService service = EasyMock.createMock(ScheduledExecutorService.class);
+    ScheduledFuture<?> future = EasyMock.createMock(ScheduledFuture.class);
+    prepareStartTimer(service, future);
+    EasyMock.expect(Boolean.valueOf(future.cancel(false))).andReturn(Boolean.TRUE);
+    EasyMock.replay(service, future);
+    TimedSemaphoreTestImpl semaphore = new TimedSemaphoreTestImpl(service, PERIOD, UNIT, LIMIT);
+    semaphore.acquire();
+    semaphore.shutdown();
+    assertTrue("Not shutdown", semaphore.isShutdown());
+    EasyMock.verify(service, future);
+}

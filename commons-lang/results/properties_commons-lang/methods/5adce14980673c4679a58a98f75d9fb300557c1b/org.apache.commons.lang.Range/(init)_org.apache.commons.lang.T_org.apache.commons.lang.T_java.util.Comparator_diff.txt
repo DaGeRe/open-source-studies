@@ -1,0 +1,30 @@
+/**                                                                                                  | private Range(T element1, T element2, Comparator c) {                                               
+* &lt;p&gt;Constructs a new &lt;code&gt;Range&lt;/code&gt; with the specified                        |                                                                                                     
+* minimum and maximum values (both inclusive).&lt;/p&gt;                                             |                                                                                                     
+* &lt;p&gt;The range uses the passed in &lt;code&gt;Comparator&lt;/code&gt; to                       |                                                                                                     
+* determine where values lie in the range.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;The arguments may be passed in the order (min,max) or (max,min). The                      |                                                                                                     
+* getMinimum and getMaximum methods will return the correct values.&lt;/p&gt;                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param element1  first value that defines the edge of the range, inclusive                         |                                                                                                     
+* @param element2  second value that defines the edge of the range, inclusive                        |                                                                                                     
+* @param c comparator to be used                                                                     |                                                                                                     
+* @throws IllegalArgumentException if either value is &lt;code&gt;null&lt;/code&gt;                  |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public Range(T element1, T element2, Comparator c) {                                                 |                                                                                                     
+if (element1 == null || element2 == null) {                                                            if (element1 == null || element2 == null) {                                                         
+throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ",   throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ",
+}                                                                                                      }                                                                                                   
+if (c == null) {                                                                                       if (c == null) {                                                                                    
+throw new IllegalArgumentException("Comparator must not be null");                                     throw new IllegalArgumentException("Comparator must not be null");                                  
+}                                                                                                      }                                                                                                   
+if (c.compare(element1, element2) &lt; 1) {                                                            if (c.compare(element1, element2) &lt; 1) {                                                         
+this.minimum = element1;                                                                               this.minimum = element1;                                                                            
+this.maximum = element2;                                                                               this.maximum = element2;                                                                            
+} else {                                                                                               } else {                                                                                            
+this.minimum = element2;                                                                               this.minimum = element2;                                                                            
+this.maximum = element1;                                                                               this.maximum = element1;                                                                            
+}                                                                                                      }                                                                                                   
+this.comparator = c;                                                                                   this.comparator = c;                                                                                
+}                                                                                                      }                                                                                                   

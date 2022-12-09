@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* Get the short and long values displayed for a field                                                  * Get the short and long values displayed for a field                                               
+* @param field The field of interest                                                                   * @param field The field of interest                                                                
+* @return A sorted array of the field key / value pairs                                                * @return A sorted array of the field key / value pairs                                             
+*/                                                                                                     */                                                                                                  
+KeyValue[] getDisplayNames(int field) {                                                                KeyValue[] getDisplayNames(int field) {                                                             
+KeyValue[] fieldKeyValues = nameValues.get(field);                                                     KeyValue[] fieldKeyValues = nameValues.get(field);                                                  
+if (fieldKeyValues == null) {                                                                          if (fieldKeyValues == null) {                                                                       
+DateFormatSymbols symbols = DateFormatSymbols.getInstance(locale);                                   | DateFormatSymbols symbols = new DateFormatSymbols(locale);                                          
+switch(field) {                                                                                        switch(field) {                                                                                     
+case Calendar.ERA:                                                                                     case Calendar.ERA:                                                                                  
+fieldKeyValues = createKeyValues(symbols.getEras(), null);                                             fieldKeyValues = createKeyValues(symbols.getEras(), null);                                          
+break;                                                                                                 break;                                                                                              
+case Calendar.DAY_OF_WEEK:                                                                             case Calendar.DAY_OF_WEEK:                                                                          
+fieldKeyValues = createKeyValues(symbols.getWeekdays(), symbols.getShortWeekdays());                   fieldKeyValues = createKeyValues(symbols.getWeekdays(), symbols.getShortWeekdays());                
+break;                                                                                                 break;                                                                                              
+case Calendar.AM_PM:                                                                                   case Calendar.AM_PM:                                                                                
+fieldKeyValues = createKeyValues(symbols.getAmPmStrings(), null);                                      fieldKeyValues = createKeyValues(symbols.getAmPmStrings(), null);                                   
+break;                                                                                                 break;                                                                                              
+case Calendar.MONTH:                                                                                   case Calendar.MONTH:                                                                                
+fieldKeyValues = createKeyValues(symbols.getMonths(), symbols.getShortMonths());                       fieldKeyValues = createKeyValues(symbols.getMonths(), symbols.getShortMonths());                    
+break;                                                                                                 break;                                                                                              
+default:                                                                                               default:                                                                                            
+throw new IllegalArgumentException("Invalid field value " + field);                                    throw new IllegalArgumentException("Invalid field value " + field);                                 
+}                                                                                                      }                                                                                                   
+KeyValue[] prior = nameValues.putIfAbsent(field, fieldKeyValues);                                      KeyValue[] prior = nameValues.putIfAbsent(field, fieldKeyValues);                                   
+if (prior != null) {                                                                                   if (prior != null) {                                                                                
+fieldKeyValues = prior;                                                                                fieldKeyValues = prior;                                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return fieldKeyValues;                                                                                 return fieldKeyValues;                                                                              
+}                                                                                                      }                                                                                                   

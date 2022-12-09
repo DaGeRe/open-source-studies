@@ -1,0 +1,29 @@
+/**
+ * <p>Returns a new instance of the specified class inferring the right constructor
+ * from the types of the arguments.</p>
+ *
+ * <p>This locates and calls a constructor.
+ * The constructor signature must match the argument types exactly.</p>
+ *
+ * @param <T> the type to be constructed
+ * @param cls  the class to be constructed, not null
+ * @param args  the array of arguments, null treated as empty
+ * @return new instance of <code>cls</code>, not null
+ *
+ * @throws NoSuchMethodException if a matching constructor cannot be found
+ * @throws IllegalAccessException if invocation is not permitted by security
+ * @throws InvocationTargetException if an error occurs on invocation
+ * @throws InstantiationException if an error occurs on instantiation
+ * @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])
+ */
+public static <T> T invokeExactConstructor(Class<T> cls, Object... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    if (args == null) {
+        args = ArrayUtils.EMPTY_OBJECT_ARRAY;
+    }
+    int arguments = args.length;
+    Class<?>[] parameterTypes = new Class[arguments];
+    for (int i = 0; i < arguments; i++) {
+        parameterTypes[i] = args[i].getClass();
+    }
+    return invokeExactConstructor(cls, args, parameterTypes);
+}

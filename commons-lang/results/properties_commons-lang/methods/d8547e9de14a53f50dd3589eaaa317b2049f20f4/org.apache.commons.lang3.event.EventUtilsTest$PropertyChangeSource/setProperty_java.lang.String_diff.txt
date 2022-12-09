@@ -1,0 +1,5 @@
+public void setProperty(String property) {                                                             public void setProperty(String property) {                                                          
+String oldValue = this.property;                                                                       String oldValue = this.property;                                                                    
+this.property = property;                                                                              this.property = property;                                                                           
+listeners.fire().propertyChange(new PropertyChangeEvent(this, "property", "oldValue", property));    | listeners.fire().propertyChange(new PropertyChangeEvent(this, "property", oldValue, property));     
+}                                                                                                      }                                                                                                   

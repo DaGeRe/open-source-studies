@@ -1,0 +1,27 @@
+/**
+ * <p>Splits a String by Character type as returned by
+ * <code>java.lang.Character.getType(char)</code>. Groups of contiguous
+ * characters of the same type are returned as complete tokens, with the
+ * following exception: the character of type
+ * <code>Character.UPPERCASE_LETTER</code>, if any, immediately
+ * preceding a token of type <code>Character.LOWERCASE_LETTER</code>
+ * will belong to the following token rather than to the preceding, if any,
+ * <code>Character.UPPERCASE_LETTER</code> token.
+ * <pre>
+ * StringUtils.splitByCharacterTypeCamelCase(null)         = null
+ * StringUtils.splitByCharacterTypeCamelCase("")           = []
+ * StringUtils.splitByCharacterTypeCamelCase("ab de fg")   = ["ab", " ", "de", " ", "fg"]
+ * StringUtils.splitByCharacterTypeCamelCase("ab   de fg") = ["ab", "   ", "de", " ", "fg"]
+ * StringUtils.splitByCharacterTypeCamelCase("ab:cd:ef")   = ["ab", ":", "cd", ":", "ef"]
+ * StringUtils.splitByCharacterTypeCamelCase("number5")    = ["number", "5"]
+ * StringUtils.splitByCharacterTypeCamelCase("fooBar")     = ["foo", "Bar"]
+ * StringUtils.splitByCharacterTypeCamelCase("foo200Bar")  = ["foo", "200", "Bar"]
+ * StringUtils.splitByCharacterTypeCamelCase("ASFRules")   = ["ASF", "Rules"]
+ * </pre>
+ * @param str the String to split, may be <code>null</code>
+ * @return an array of parsed Strings, <code>null</code> if null String input
+ * @since 2.4
+ */
+public static String[] splitByCharacterTypeCamelCase(String str) {
+    return splitByCharacterType(str, true);
+}

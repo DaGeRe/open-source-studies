@@ -1,0 +1,29 @@
+/**
+ * <p>Invoke a static method whose parameter types match exactly the object
+ * types.</p>
+ *
+ * <p> This uses reflection to invoke the method obtained from a call to
+ * {@link #getAccessibleMethod(Class, String, Class[])}.</p>
+ *
+ * @param cls invoke static method on this class
+ * @param methodName get method with this name
+ * @param args use these arguments - treat null as empty array
+ * @return The value returned by the invoked method
+ *
+ * @throws NoSuchMethodException if there is no such accessible method
+ * @throws InvocationTargetException wraps an exception thrown by the
+ *  method invoked
+ * @throws IllegalAccessException if the requested method is not accessible
+ *  via reflection
+ */
+public static Object invokeExactStaticMethod(Class cls, String methodName, Object[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    if (args == null) {
+        args = ArrayUtils.EMPTY_OBJECT_ARRAY;
+    }
+    int arguments = args.length;
+    Class[] parameterTypes = new Class[arguments];
+    for (int i = 0; i < arguments; i++) {
+        parameterTypes[i] = args[i].getClass();
+    }
+    return invokeExactStaticMethod(cls, methodName, args, parameterTypes);
+}

@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the specified argument collection is neither &lt;code&gt;null&lt;/code&gt; 
+* if the argument Collection is empty (&lt;code&gt;null&lt;/code&gt; or no elements).&lt;/p&gt;      | * nor a size of zero (no elements); otherwise throwing an exception.                                
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                        | * &lt;pre&gt;Validate.notEmpty(myCollection);&lt;/pre&gt;                                           
+* Validate.notEmpty(myCollection);                                                                   |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is 'The validated collection is empty'.&lt;/p&gt;            | * &lt;p&gt;The message in the exception is &quot;The validated collection is                        
+                                                                                                     | * empty&quot;.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* @param collection  the collection to check is not empty                                            | * @param &lt;T&gt; the collection type                                                              
+* @return the input collection, never &lt;code&gt;null&lt;/code&gt; or empty, for chaining           | * @param collection the collection to check                                                         
+                                                                                                     | * @return the validated collection (never &lt;code&gt;null&lt;/code&gt; method for chaining)        
+                                                                                                     | * @throws NullPointerException if the collection is &lt;code&gt;null&lt;/code&gt;                   
+* @throws IllegalArgumentException if the collection is empty                                          * @throws IllegalArgumentException if the collection is empty                                       
+                                                                                                     | * @see #notEmpty(Collection, String, Object...)                                                     
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Collection&lt;?&gt;&gt; T notEmpty(T collection) {                         public static &lt;T extends Collection&lt;?&gt;&gt; T notEmpty(T collection) {                      
+return notEmpty(collection, "The validated collection is empty");                                    | return notEmpty(collection, DEFAULT_NOT_EMPTY_COLLECTION_EXCEPTION_MESSAGE);                        
+}                                                                                                      }                                                                                                   

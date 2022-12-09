@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Adds an event listener to the specified source.  This looks for an "add" method corresponding to t   * Adds an event listener to the specified source.  This looks for an "add" method corresponding to t
+* type (addActionListener, for example).                                                               * type (addActionListener, for example).                                                            
+* @param eventSource the event source                                                                  * @param eventSource the event source                                                               
+* @param listenerType the event listener type                                                          * @param listenerType the event listener type                                                       
+* @param listener the listener                                                                         * @param listener the listener                                                                      
+* @param &lt;L&gt; the event listener type                                                             * @param &lt;L&gt; the event listener type                                                          
+*                                                                                                      *                                                                                                   
+* @throws IllegalArgumentException if the object doesn't support the listener type                     * @throws IllegalArgumentException if the object doesn't support the listener type                  
+*/                                                                                                     */                                                                                                  
+public static &lt;L&gt; void addEventListener(Object eventSource, Class&lt;L&gt; listenerType, L lis   public static &lt;L&gt; void addEventListener(Object eventSource, Class&lt;L&gt; listenerType, L lis
+try {                                                                                                  try {                                                                                               
+MethodUtils.invokeMethod(eventSource, "add" + listenerType.getSimpleName(), listener);                 MethodUtils.invokeMethod(eventSource, "add" + listenerType.getSimpleName(), listener);              
+} catch (NoSuchMethodException e) {                                                                    } catch (NoSuchMethodException e) {                                                                 
+throw new IllegalArgumentException("Class " + eventSource.getClass().getName() + " does not have a p   throw new IllegalArgumentException("Class " + eventSource.getClass().getName() + " does not have a p
+} catch (IllegalAccessException e) {                                                                   } catch (IllegalAccessException e) {                                                                
+throw new IllegalArgumentException("Class " + eventSource.getClass().getName() + " does not have an  | throw new IllegalArgumentException("Class " + eventSource.getClass().getName() + " does not have an 
+} catch (InvocationTargetException e) {                                                                } catch (InvocationTargetException e) {                                                             
+throw new RuntimeException("Unable to add listener.", e.getCause());                                   throw new RuntimeException("Unable to add listener.", e.getCause());                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

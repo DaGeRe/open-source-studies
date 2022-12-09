@@ -1,0 +1,22 @@
+public void testBooleanArray() {
+    boolean[] obj1 = new boolean[2];
+    obj1[0] = true;
+    obj1[1] = false;
+    boolean[] obj2 = new boolean[2];
+    obj2[0] = true;
+    obj2[1] = false;
+    boolean[] obj3 = new boolean[3];
+    obj3[0] = true;
+    obj3[1] = false;
+    obj3[2] = true;
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    obj1[1] = true;
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj1, null).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append((boolean[]) null, (boolean[]) null).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(null, obj1).toComparison() < 0);
+}

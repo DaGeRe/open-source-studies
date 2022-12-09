@@ -1,0 +1,9 @@
+public void testHashCode() {
+    final MutableByte mutNumA = new MutableByte((byte) 0);
+    final MutableByte mutNumB = new MutableByte((byte) 0);
+    final MutableByte mutNumC = new MutableByte((byte) 1);
+    assertEquals(true, mutNumA.hashCode() == mutNumA.hashCode());
+    assertEquals(true, mutNumA.hashCode() == mutNumB.hashCode());
+    assertEquals(false, mutNumA.hashCode() == mutNumC.hashCode());
+    assertEquals(true, mutNumA.hashCode() == new Byte((byte) 0).hashCode());
+}

@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testIndexOf_char() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(0, sb.indexOf('a'));
+    // should work like String#indexOf
+    assertEquals("abab".indexOf('a'), sb.indexOf('a'));
+    assertEquals(1, sb.indexOf('b'));
+    assertEquals("abab".indexOf('b'), sb.indexOf('b'));
+    assertEquals(-1, sb.indexOf('z'));
+}

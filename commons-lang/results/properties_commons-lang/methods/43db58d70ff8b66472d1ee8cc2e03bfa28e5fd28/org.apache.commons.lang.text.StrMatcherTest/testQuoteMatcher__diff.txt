@@ -1,0 +1,8 @@
+// -----------------------------------------------------------------------
+public void testQuoteMatcher() {
+    StrMatcher matcher = StrMatcher.quoteMatcher();
+    assertSame(matcher, StrMatcher.quoteMatcher());
+    assertEquals(0, matcher.isMatch(BUFFER1, 10));
+    assertEquals(1, matcher.isMatch(BUFFER1, 11));
+    assertEquals(1, matcher.isMatch(BUFFER1, 12));
+}

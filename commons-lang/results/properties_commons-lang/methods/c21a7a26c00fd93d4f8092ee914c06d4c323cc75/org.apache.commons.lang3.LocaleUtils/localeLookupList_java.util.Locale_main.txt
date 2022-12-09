@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Obtains the list of locales to search through when performing
+ * a locale search.</p>
+ *
+ * <pre>
+ * localeLookupList(Locale("fr","CA","xxx"))
+ *   = [Locale("fr","CA","xxx"), Locale("fr","CA"), Locale("fr")]
+ * </pre>
+ *
+ * @param locale  the locale to start from
+ * @return the unmodifiable list of Locale objects, 0 being locale, not null
+ */
+public static List<Locale> localeLookupList(Locale locale) {
+    return localeLookupList(locale, locale);
+}

@@ -1,0 +1,17 @@
+public void testGetDeclaredField() {
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "VALUE"));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "s"));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "b"));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "i"));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "d"));
+    assertNull(FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "VALUE"));
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "s").getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "b").getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "i").getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "d").getDeclaringClass());
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "VALUE"));
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "s"));
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "b"));
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "i"));
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "d"));
+}

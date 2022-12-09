@@ -1,0 +1,10 @@
+public void testIsInstanceOf() {                                                                       public void testIsInstanceOf() {                                                                    
+Validate.isInstanceOf(String.class, "hi");                                                             Validate.isInstanceOf(String.class, "hi");                                                          
+Validate.isInstanceOf(Integer.class, 1);                                                               Validate.isInstanceOf(Integer.class, 1);                                                            
+try {                                                                                                |                                                                                                     
+Validate.isInstanceOf(List.class, "hi");                                                             |                                                                                                     
+fail("Expecting IllegalArgumentException");                                                          |                                                                                                     
+} catch (IllegalArgumentException e) {                                                               |                                                                                                     
+assertEquals("The validated object is not an instance of java.util.List", e.getMessage());           |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

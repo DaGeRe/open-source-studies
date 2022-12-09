@@ -1,0 +1,18 @@
+/**
+ * Tests that pre-1000AD years get padded with yyyy
+ * @throws ParseException
+ */
+@Test
+public void testLowYearPadding() throws ParseException {
+    DateParser parser = getInstance(YMD_SLASH);
+    Calendar cal = Calendar.getInstance();
+    cal.clear();
+    cal.set(1, 0, 1);
+    assertEquals(cal.getTime(), parser.parse("0001/01/01"));
+    cal.set(10, 0, 1);
+    assertEquals(cal.getTime(), parser.parse("0010/01/01"));
+    cal.set(100, 0, 1);
+    assertEquals(cal.getTime(), parser.parse("0100/01/01"));
+    cal.set(999, 0, 1);
+    assertEquals(cal.getTime(), parser.parse("0999/01/01"));
+}

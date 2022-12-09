@@ -1,0 +1,9 @@
+public void testEqualsIgnoreCase() {
+    assertEquals(true, StringUtils.equalsIgnoreCase(null, null));
+    assertEquals(true, StringUtils.equalsIgnoreCase(FOO, FOO));
+    assertEquals(true, StringUtils.equalsIgnoreCase(FOO, new String(new char[] { 'f', 'o', 'o' })));
+    assertEquals(true, StringUtils.equalsIgnoreCase(FOO, new String(new char[] { 'f', 'O', 'O' })));
+    assertEquals(false, StringUtils.equalsIgnoreCase(FOO, BAR));
+    assertEquals(false, StringUtils.equalsIgnoreCase(FOO, null));
+    assertEquals(false, StringUtils.equalsIgnoreCase(null, FOO));
+}

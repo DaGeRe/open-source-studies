@@ -1,0 +1,13 @@
+/**
+ * Returns the (initialized) class represented by <code>className</code>
+ * using the current thread's context class loader. This implementation
+ * supports names like "<code>java.lang.String[]</code>" as well as
+ * "<code>[Ljava.lang.String;</code>".
+ *
+ * @param className  the class name
+ * @return the class represented by <code>className</code> using the current thread's context class loader
+ * @throws ClassNotFoundException if the class is not found
+ */
+public static Class getClass(String className) throws ClassNotFoundException {
+    return getClass(className, true);
+}

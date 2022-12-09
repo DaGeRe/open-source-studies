@@ -1,0 +1,14 @@
+/**
+ * Tests whether the cause of the specified {@code ExecutionException}
+ * should be thrown and does it if necessary.
+ *
+ * @param ex the exception in question
+ */
+private static void throwCause(ExecutionException ex) {
+    if (ex.getCause() instanceof RuntimeException) {
+        throw (RuntimeException) ex.getCause();
+    }
+    if (ex.getCause() instanceof Error) {
+        throw (Error) ex.getCause();
+    }
+}

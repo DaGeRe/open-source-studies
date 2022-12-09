@@ -1,0 +1,21 @@
+/**
+ * Gets a static Field value by name. Only the specified class will
+ * be considered.
+ *
+ * @param cls  the class to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @param forceAccess  whether to break scope restrictions using the
+ *  <code>setAccessible</code> method. <code>False</code> will only
+ *  match public fields.
+ * @return the Field object
+ * @throws IllegalArgumentException if the class or field name is null
+ * @throws IllegalAccessException if the field is not made accessible
+ */
+public static Object readDeclaredStaticField(Class cls, String fieldName, boolean forceAccess) throws IllegalAccessException {
+    Field field = getDeclaredField(cls, fieldName, forceAccess);
+    if (field == null) {
+        throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName);
+    }
+    // already forced access above, don't repeat it here:
+    return readStaticField(field, false);
+}

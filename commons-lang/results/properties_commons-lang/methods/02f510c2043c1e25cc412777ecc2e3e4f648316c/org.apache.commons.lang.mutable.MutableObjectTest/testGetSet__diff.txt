@@ -1,0 +1,8 @@
+public void testGetSet() {                                                                             public void testGetSet() {                                                                          
+final MutableObject mutNum = new MutableObject();                                                    | final MutableObject&lt;String&gt; mutNum = new MutableObject&lt;String&gt;();                       
+assertEquals(null, new MutableObject().getValue());                                                  | assertEquals(null, new MutableObject&lt;Object&gt;().getValue());                                   
+mutNum.setValue("HELLO");                                                                              mutNum.setValue("HELLO");                                                                           
+assertSame("HELLO", mutNum.getValue());                                                                assertSame("HELLO", mutNum.getValue());                                                             
+mutNum.setValue(null);                                                                                 mutNum.setValue(null);                                                                              
+assertSame(null, mutNum.getValue());                                                                   assertSame(null, mutNum.getValue());                                                                
+}                                                                                                      }                                                                                                   

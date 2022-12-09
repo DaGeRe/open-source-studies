@@ -1,0 +1,19 @@
+/**
+ * <p>
+ * Append a <code>hashCode</code> for a <code>char</code> array.
+ * </p>
+ *
+ * @param array
+ *            the array to add to the <code>hashCode</code>
+ * @return this
+ */
+public HashCodeBuilder append(char[] array) {
+    if (array == null) {
+        iTotal = iTotal * iConstant;
+    } else {
+        for (char element : array) {
+            append(element);
+        }
+    }
+    return this;
+}

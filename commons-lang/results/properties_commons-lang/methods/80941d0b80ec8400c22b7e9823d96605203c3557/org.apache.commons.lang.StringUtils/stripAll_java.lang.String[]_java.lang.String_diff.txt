@@ -1,0 +1,36 @@
+/**
+ * <p>Strips any of a set of characters from the start and end of every
+ * String in an array.</p>
+ * Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+ *
+ * <p>A new array is returned each time, except for length zero.
+ * A <code>null</code> array will return <code>null</code>.
+ * An empty array will return itself.
+ * A <code>null</code> array entry will be ignored.
+ * A <code>null</code> stripChars will strip whitespace as defined by
+ * {@link Character#isWhitespace(char)}.</p>
+ *
+ * <pre>
+ * StringUtils.stripAll(null, *)                = null
+ * StringUtils.stripAll([], *)                  = []
+ * StringUtils.stripAll(["abc", "  abc"], null) = ["abc", "abc"]
+ * StringUtils.stripAll(["abc  ", null], null)  = ["abc", null]
+ * StringUtils.stripAll(["abc  ", null], "yz")  = ["abc  ", null]
+ * StringUtils.stripAll(["yabcz", null], "yz")  = ["abc", null]
+ * </pre>
+ *
+ * @param strs  the array to remove characters from, may be null
+ * @param stripChars  the characters to remove, null treated as whitespace
+ * @return the stripped Strings, <code>null</code> if null array input
+ */
+public static String[] stripAll(String[] strs, String stripChars) {
+    int strsLen;
+    if (strs == null || (strsLen = strs.length) == 0) {
+        return strs;
+    }
+    String[] newArr = new String[strsLen];
+    for (int i = 0; i < strsLen; i++) {
+        newArr[i] = strip(strs[i], stripChars);
+    }
+    return newArr;
+}

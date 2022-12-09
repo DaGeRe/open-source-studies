@@ -1,0 +1,15 @@
+public void test_getShortCanonicalName_Object() {
+    assertEquals("<null>", ClassUtils.getShortCanonicalName(null, "<null>"));
+    assertEquals("ClassUtils", ClassUtils.getShortCanonicalName(new ClassUtils(), "<null>"));
+    assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName(new ClassUtils[0], "<null>"));
+    assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName(new ClassUtils[0][0], "<null>"));
+    assertEquals("int[]", ClassUtils.getShortCanonicalName(new int[0], "<null>"));
+    assertEquals("int[][]", ClassUtils.getShortCanonicalName(new int[0][0], "<null>"));
+    // Inner types
+    class Named extends Object {
+    }
+    assertEquals("ClassUtilsTest.6", ClassUtils.getShortCanonicalName(new Object() {
+    }, "<null>"));
+    assertEquals("ClassUtilsTest.5Named", ClassUtils.getShortCanonicalName(new Named(), "<null>"));
+    assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortCanonicalName(new Inner(), "<null>"));
+}

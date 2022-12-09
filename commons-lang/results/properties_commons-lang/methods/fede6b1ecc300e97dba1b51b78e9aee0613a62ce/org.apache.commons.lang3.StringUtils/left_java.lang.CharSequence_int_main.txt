@@ -1,0 +1,34 @@
+// Left/Right/Mid
+// -----------------------------------------------------------------------
+/**
+ * <p>Gets the leftmost {@code len} characters of a String.</p>
+ *
+ * <p>If {@code len} characters are not available, or the
+ * String is {@code null}, the String will be returned without
+ * an exception. An empty String is returned if len is negative.</p>
+ *
+ * <pre>
+ * StringUtils.left(null, *)    = null
+ * StringUtils.left(*, -ve)     = ""
+ * StringUtils.left("", *)      = ""
+ * StringUtils.left("abc", 0)   = ""
+ * StringUtils.left("abc", 2)   = "ab"
+ * StringUtils.left("abc", 4)   = "abc"
+ * </pre>
+ *
+ * @param seq  the CharSequence to get the leftmost characters from, may be null
+ * @param len  the length of the required String
+ * @return the leftmost characters, {@code null} if null String input
+ */
+public static String left(CharSequence seq, int len) {
+    if (seq == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (seq.length() <= len) {
+        return seq.toString();
+    }
+    return seq.subSequence(0, len).toString();
+}

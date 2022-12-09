@@ -1,0 +1,9 @@
+/**
+ * Make the StringWriter 10% larger than the source String to avoid growing the writer
+ *
+ * @param str The source string
+ * @return A newly created StringWriter
+ */
+private StringWriter createStringWriter(String str) {
+    return new StringWriter((int) (str.length() + (str.length() * 0.1)));
+}

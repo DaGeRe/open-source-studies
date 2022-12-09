@@ -1,0 +1,10 @@
+@Test
+public void testReflectionCompareEx2() {
+    TestObject o1 = new TestObject(4);
+    Object o2 = new Object();
+    try {
+        CompareToBuilder.reflectionCompare(o1, o2);
+        fail();
+    } catch (ClassCastException ex) {
+    }
+}

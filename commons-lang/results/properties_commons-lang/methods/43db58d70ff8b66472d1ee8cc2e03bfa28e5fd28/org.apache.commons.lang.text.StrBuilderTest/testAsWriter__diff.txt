@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------
+public void testAsWriter() throws Exception {
+    StrBuilder sb = new StrBuilder("base");
+    Writer writer = sb.asWriter();
+    writer.write('l');
+    assertEquals("basel", sb.toString());
+    writer.write(new char[] { 'i', 'n' });
+    assertEquals("baselin", sb.toString());
+    writer.write(new char[] { 'n', 'e', 'r' }, 1, 2);
+    assertEquals("baseliner", sb.toString());
+    writer.write(" rout");
+    assertEquals("baseliner rout", sb.toString());
+    writer.write("ping that server", 1, 3);
+    assertEquals("baseliner routing", sb.toString());
+    // no effect
+    writer.flush();
+    assertEquals("baseliner routing", sb.toString());
+    // no effect
+    writer.close();
+    assertEquals("baseliner routing", sb.toString());
+    // works after close
+    writer.write(" hi");
+    assertEquals("baseliner routing hi", sb.toString());
+    // mix and match
+    sb.setLength(4);
+    writer.write('d');
+    assertEquals("based", sb.toString());
+}

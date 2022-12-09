@@ -1,0 +1,12 @@
+/**
+ * Adjust dates to be within 80 years before and 20 years after instantiation
+ * @param twoDigitYear The year to adjust
+ * @return A value within -80 and +20 years from instantiation of this instance
+ */
+protected int adjustYear(int twoDigitYear) {
+    int trial = twoDigitYear + thisYear - thisYear % 100;
+    if (trial < thisYear + 20) {
+        return trial;
+    }
+    return trial - 100;
+}

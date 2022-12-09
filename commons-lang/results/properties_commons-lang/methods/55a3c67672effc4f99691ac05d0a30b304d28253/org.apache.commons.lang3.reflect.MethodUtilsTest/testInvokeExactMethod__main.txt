@@ -1,0 +1,23 @@
+public void testInvokeExactMethod() throws Exception {
+    assertEquals("foo()", MethodUtils.invokeMethod(testBean, "foo", (Object[]) ArrayUtils.EMPTY_CLASS_ARRAY));
+    assertEquals("foo()", MethodUtils.invokeMethod(testBean, "foo", (Object[]) null));
+    assertEquals("foo(String)", MethodUtils.invokeExactMethod(testBean, "foo", ""));
+    assertEquals("foo(Object)", MethodUtils.invokeExactMethod(testBean, "foo", new Object()));
+    assertEquals("foo(Integer)", MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.INTEGER_ONE));
+    assertEquals("foo(double)", MethodUtils.invokeExactMethod(testBean, "foo", new Object[] { NumberUtils.DOUBLE_ONE }, new Class[] { Double.TYPE }));
+    try {
+        MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.BYTE_ONE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+    try {
+        MethodUtils.invokeExactMethod(testBean, "foo", NumberUtils.LONG_ONE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+    try {
+        MethodUtils.invokeExactMethod(testBean, "foo", Boolean.TRUE);
+        fail("should throw NoSuchMethodException");
+    } catch (NoSuchMethodException e) {
+    }
+}

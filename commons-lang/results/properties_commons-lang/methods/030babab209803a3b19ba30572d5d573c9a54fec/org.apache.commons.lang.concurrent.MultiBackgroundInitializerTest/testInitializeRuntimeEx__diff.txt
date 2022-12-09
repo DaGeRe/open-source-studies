@@ -1,0 +1,16 @@
+/**
+ * Tests the behavior of the initializer if one of the child initializers
+ * throws a runtime exception.
+ */
+public void testInitializeRuntimeEx() {
+    ChildBackgroundInitializer child = new ChildBackgroundInitializer();
+    child.ex = new RuntimeException();
+    initializer.addInitializer(CHILD_INIT, child);
+    initializer.start();
+    try {
+        initializer.get();
+        fail("Runtime exception not thrown!");
+    } catch (Exception ex) {
+        assertEquals("Wrong exception", child.ex, ex);
+    }
+}

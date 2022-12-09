@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+/**
+ * Replaces all the occurrences of variables within the given source
+ * builder with their matching values from the resolver.
+ *
+ * @param source  the builder to replace in, updated, null returns zero
+ * @return true if altered
+ */
+public boolean replaceIn(StrBuilder source) {
+    if (source == null) {
+        return false;
+    }
+    return substitute(source, 0, source.length());
+}

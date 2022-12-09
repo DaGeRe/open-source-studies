@@ -1,0 +1,28 @@
+/**
+ * <p>Search a CharSequence to find the first index of any
+ * character in the given set of characters.</p>
+ *
+ * <p>A <code>null</code> String will return <code>-1</code>.
+ * A <code>null</code> search string will return <code>-1</code>.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAny(null, *)            = -1
+ * StringUtils.indexOfAny("", *)              = -1
+ * StringUtils.indexOfAny(*, null)            = -1
+ * StringUtils.indexOfAny(*, "")              = -1
+ * StringUtils.indexOfAny("zzabyycdxx", "za") = 0
+ * StringUtils.indexOfAny("zzabyycdxx", "by") = 3
+ * StringUtils.indexOfAny("aba","z")          = -1
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @param searchChars  the chars to search for, may be null
+ * @return the index of any of the chars, -1 if no match or null input
+ * @since 2.0
+ */
+public static int indexOfAny(CharSequence cs, String searchChars) {
+    if (isEmpty(cs) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    return indexOfAny(cs, searchChars.toCharArray());
+}

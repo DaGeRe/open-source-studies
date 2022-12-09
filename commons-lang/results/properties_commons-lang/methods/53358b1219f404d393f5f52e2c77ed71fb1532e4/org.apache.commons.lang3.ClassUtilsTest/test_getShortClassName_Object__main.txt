@@ -1,0 +1,15 @@
+// -------------------------------------------------------------------------
+public void test_getShortClassName_Object() {
+    assertEquals("ClassUtils", ClassUtils.getShortClassName(new ClassUtils(), "<null>"));
+    assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortClassName(new Inner(), "<null>"));
+    assertEquals("String", ClassUtils.getShortClassName("hello", "<null>"));
+    assertEquals("<null>", ClassUtils.getShortClassName(null, "<null>"));
+    // Inner types
+    class Named extends Object {
+    }
+    ;
+    assertEquals("ClassUtilsTest.1", ClassUtils.getShortClassName(new Object() {
+    }, "<null>"));
+    assertEquals("ClassUtilsTest.1Named", ClassUtils.getShortClassName(new Named(), "<null>"));
+    assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortClassName(new Inner(), "<null>"));
+}

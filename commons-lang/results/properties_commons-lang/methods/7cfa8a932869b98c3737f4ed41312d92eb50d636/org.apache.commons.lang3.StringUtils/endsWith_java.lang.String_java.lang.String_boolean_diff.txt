@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Check if a String ends with a specified suffix (optionally case insensitive).&lt;/p&gt;     * &lt;p&gt;Check if a String ends with a specified suffix (optionally case insensitive).&lt;/p&gt;  
+*                                                                                                      *                                                                                                   
+* @see java.lang.String#endsWith(String)                                                               * @see java.lang.String#endsWith(String)                                                            
+* @param str  the String to check, may be null                                                         * @param str  the String to check, may be null                                                      
+* @param suffix the suffix to find, may be null                                                        * @param suffix the suffix to find, may be null                                                     
+* @param ignoreCase inidicates whether the compare should ignore case                                  * @param ignoreCase inidicates whether the compare should ignore case                               
+*  (case insensitive) or not.                                                                          *  (case insensitive) or not.                                                                       
+* @return &lt;code&gt;true&lt;/code&gt; if the String starts with the prefix or                        * @return &lt;code&gt;true&lt;/code&gt; if the String starts with the prefix or                     
+*  both &lt;code&gt;null&lt;/code&gt;                                                                  *  both &lt;code&gt;null&lt;/code&gt;                                                               
+*/                                                                                                     */                                                                                                  
+private static boolean endsWith(String str, String suffix, boolean ignoreCase) {                       private static boolean endsWith(String str, String suffix, boolean ignoreCase) {                    
+if (str == null || suffix == null) {                                                                   if (str == null || suffix == null) {                                                                
+return (str == null && suffix == null);                                                              | return str == null && suffix == null;                                                               
+}                                                                                                      }                                                                                                   
+if (suffix.length() &gt; str.length()) {                                                               if (suffix.length() &gt; str.length()) {                                                            
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int strOffset = str.length() - suffix.length();                                                        int strOffset = str.length() - suffix.length();                                                     
+return str.regionMatches(ignoreCase, strOffset, suffix, 0, suffix.length());                           return str.regionMatches(ignoreCase, strOffset, suffix, 0, suffix.length());                        
+}                                                                                                      }                                                                                                   

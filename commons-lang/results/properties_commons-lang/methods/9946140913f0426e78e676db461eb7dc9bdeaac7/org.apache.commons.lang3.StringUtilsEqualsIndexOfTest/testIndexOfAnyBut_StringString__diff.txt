@@ -1,0 +1,13 @@
+public void testIndexOfAnyBut_StringString() {
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, (String) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, ""));
+    assertEquals(-1, StringUtils.indexOfAnyBut(null, "ab"));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", (String) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", ""));
+    assertEquals(-1, StringUtils.indexOfAnyBut("", "ab"));
+    assertEquals(-1, StringUtils.indexOfAnyBut("zzabyycdxx", (String) null));
+    assertEquals(-1, StringUtils.indexOfAnyBut("zzabyycdxx", ""));
+    assertEquals(3, StringUtils.indexOfAnyBut("zzabyycdxx", "za"));
+    assertEquals(0, StringUtils.indexOfAnyBut("zzabyycdxx", "by"));
+    assertEquals(0, StringUtils.indexOfAnyBut("ab", "z"));
+}

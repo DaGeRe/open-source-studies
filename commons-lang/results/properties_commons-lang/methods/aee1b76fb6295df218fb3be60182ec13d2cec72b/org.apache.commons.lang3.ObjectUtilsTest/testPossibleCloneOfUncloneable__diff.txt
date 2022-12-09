@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Tests {@link ObjectUtils#cloneIfPossible(Object)} with an uncloneable object.                        * Tests {@link ObjectUtils#cloneIfPossible(Object)} with an uncloneable object.                     
+*/                                                                                                     */                                                                                                  
+public void testPossibleCloneOfUncloneable() {                                                       | @Test(expected = NoSuchMethodException.class)                                                       
+                                                                                                     | public void testPossibleCloneOfUncloneable() throws Throwable {                                     
+final UncloneableString string = new UncloneableString("apache");                                      final UncloneableString string = new UncloneableString("apache");                                   
+try {                                                                                                  try {                                                                                               
+ObjectUtils.cloneIfPossible(string);                                                                   ObjectUtils.cloneIfPossible(string);                                                                
+fail("Thrown " + CloneFailedException.class.getName() + " expected");                                  fail("Thrown " + CloneFailedException.class.getName() + " expected");                               
+} catch (final CloneFailedException e) {                                                               } catch (final CloneFailedException e) {                                                            
+assertEquals(NoSuchMethodException.class, e.getCause().getClass());                                  | throw e.getCause();                                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

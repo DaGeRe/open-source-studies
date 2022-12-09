@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+/**
+ * Deletes all parts of the builder that the matcher matches.
+ * <p>
+ * Matchers can be used to perform advanced deletion behaviour.
+ * For example you could write a matcher to delete all occurances
+ * where the character 'a' is followed by a number.
+ *
+ * @param matcher  the matcher to use to find the deletion, null causes no action
+ * @return this, to enable chaining
+ */
+public StrBuilder deleteAll(StrMatcher matcher) {
+    return replace(matcher, null, 0, size, -1);
+}

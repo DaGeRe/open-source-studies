@@ -1,0 +1,33 @@
+// Count matches                                                                                       // Count matches                                                                                    
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Counts how many times the substring appears in the larger String.&lt;/p&gt;                 * &lt;p&gt;Counts how many times the substring appears in the larger String.&lt;/p&gt;              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; or empty ("") String input returns &lt;code&gt;0&lt;/code   * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; or empty ("") String input returns &lt;code&gt;0&lt;/code
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.countMatches(null, *)       = 0                                                          * StringUtils.countMatches(null, *)       = 0                                                       
+* StringUtils.countMatches("", *)         = 0                                                          * StringUtils.countMatches("", *)         = 0                                                       
+* StringUtils.countMatches("abba", null)  = 0                                                          * StringUtils.countMatches("abba", null)  = 0                                                       
+* StringUtils.countMatches("abba", "")    = 0                                                          * StringUtils.countMatches("abba", "")    = 0                                                       
+* StringUtils.countMatches("abba", "a")   = 2                                                          * StringUtils.countMatches("abba", "a")   = 2                                                       
+* StringUtils.countMatches("abba", "ab")  = 1                                                          * StringUtils.countMatches("abba", "ab")  = 1                                                       
+* StringUtils.countMatches("abba", "xxx") = 0                                                          * StringUtils.countMatches("abba", "xxx") = 0                                                       
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the String to check, may be null                                                         * @param str  the String to check, may be null                                                      
+* @param sub  the substring to count, may be null                                                      * @param sub  the substring to count, may be null                                                   
+* @return the number of occurrences, 0 if either String is &lt;code&gt;null&lt;/code&gt;               * @return the number of occurrences, 0 if either String is &lt;code&gt;null&lt;/code&gt;            
+*/                                                                                                     */                                                                                                  
+public static int countMatches(String str, String sub) {                                               public static int countMatches(String str, String sub) {                                            
+if (isEmpty(str) || isEmpty(sub)) {                                                                    if (isEmpty(str) || isEmpty(sub)) {                                                                 
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+int count = 0;                                                                                         int count = 0;                                                                                      
+int idx = 0;                                                                                           int idx = 0;                                                                                        
+while ((idx = str.indexOf(sub, idx)) != -1) {                                                        | while ((idx = str.indexOf(sub, idx)) != INDEX_NOT_FOUND) {                                          
+count++;                                                                                               count++;                                                                                            
+idx += sub.length();                                                                                   idx += sub.length();                                                                                
+}                                                                                                      }                                                                                                   
+return count;                                                                                          return count;                                                                                       
+}                                                                                                      }                                                                                                   

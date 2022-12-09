@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an array of object Integer to primitives handling {@code null}.</p>
+ *
+ * <p>This method returns {@code null} for a {@code null} input array.</p>
+ *
+ * @param array  a {@code Integer} array, may be {@code null}
+ * @param valueForNull  the value to insert if {@code null} found
+ * @return an {@code int} array, {@code null} if null array input
+ */
+public static int[] toPrimitive(Integer[] array, int valueForNull) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_INT_ARRAY;
+    }
+    final int[] result = new int[array.length];
+    for (int i = 0; i < array.length; i++) {
+        Integer b = array[i];
+        result[i] = (b == null ? valueForNull : b.intValue());
+    }
+    return result;
+}

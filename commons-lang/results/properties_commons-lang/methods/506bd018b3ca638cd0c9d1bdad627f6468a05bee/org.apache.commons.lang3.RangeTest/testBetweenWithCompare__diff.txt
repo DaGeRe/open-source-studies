@@ -1,0 +1,22 @@
+public void testBetweenWithCompare() {
+    // TODO add tests with a better comparator
+    Comparator<Integer> c = new Comparator<Integer>() {
+
+        public int compare(Integer o1, Integer o2) {
+            // all integers are equal
+            return 0;
+        }
+    };
+    Range<Integer> rb = Range.between(-10, 20);
+    assertFalse("should not contain null", rb.contains(null));
+    assertTrue("should contain 10", rb.contains(10));
+    assertTrue("should contain -10", rb.contains(-10));
+    assertFalse("should not contain 21", rb.contains(21));
+    assertFalse("should not contain -11", rb.contains(-11));
+    rb = Range.between(-10, 20, c);
+    assertFalse("should not contain null", rb.contains(null));
+    assertTrue("should contain 10", rb.contains(10));
+    assertTrue("should contain -10", rb.contains(-10));
+    assertTrue("should contain 21", rb.contains(21));
+    assertTrue("should contain -11", rb.contains(-11));
+}

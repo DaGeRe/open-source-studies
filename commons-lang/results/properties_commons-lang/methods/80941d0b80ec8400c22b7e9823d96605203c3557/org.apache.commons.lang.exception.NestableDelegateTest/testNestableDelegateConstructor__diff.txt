@@ -1,0 +1,22 @@
+/**
+ * Test the implementation
+ */
+public void testNestableDelegateConstructor() {
+    String msg = null;
+    boolean constructorFailed = false;
+    try {
+        NestableDelegate nonThrowableCause = new NestableDelegate(new NonThrowableNestable());
+    } catch (IllegalArgumentException iae) {
+        constructorFailed = true;
+        msg = iae.getMessage();
+    }
+    assertTrue("nestable delegate constructor with non-throwable cause failed == true", constructorFailed);
+    assertTrue("constructor failed exception msg == " + CONSTRUCTOR_FAILED_MSG, msg.equals(CONSTRUCTOR_FAILED_MSG));
+    constructorFailed = false;
+    try {
+        NestableDelegate nd1 = new NestableDelegate(new ThrowableNestable());
+    } catch (IllegalArgumentException iae) {
+        constructorFailed = true;
+    }
+    assertTrue("nestable delegate constructor with throwable cause failed == false", !constructorFailed);
+}

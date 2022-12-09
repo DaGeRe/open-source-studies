@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testSubstringBetween_StringString() {
+    assertEquals(null, StringUtils.substringBetween(null, "tag"));
+    assertEquals("", StringUtils.substringBetween("", ""));
+    assertEquals(null, StringUtils.substringBetween("", "abc"));
+    assertEquals("", StringUtils.substringBetween("    ", " "));
+    assertEquals(null, StringUtils.substringBetween("abc", null));
+    assertEquals("", StringUtils.substringBetween("abc", ""));
+    assertEquals(null, StringUtils.substringBetween("abc", "a"));
+    assertEquals("bc", StringUtils.substringBetween("abca", "a"));
+    assertEquals("bc", StringUtils.substringBetween("abcabca", "a"));
+    assertEquals("bar", StringUtils.substringBetween("\nbar\n", "\n"));
+}

@@ -1,0 +1,27 @@
+                                                                                                     | @Test                                                                                               
+public void testAbbreviateMiddle() {                                                                   public void testAbbreviateMiddle() {                                                                
+// javadoc examples                                                                                    // javadoc examples                                                                                 
+assertNull(StringUtils.abbreviateMiddle(null, null, 0));                                               assertNull(StringUtils.abbreviateMiddle(null, null, 0));                                            
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", null, 0));                                     assertEquals("abc", StringUtils.abbreviateMiddle("abc", null, 0));                                  
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 0));                                      assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 0));                                   
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 3));                                      assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 3));                                   
+assertEquals("ab.f", StringUtils.abbreviateMiddle("abcdef", ".", 4));                                  assertEquals("ab.f", StringUtils.abbreviateMiddle("abcdef", ".", 4));                               
+// JIRA issue (LANG-405) example (slightly different than actual expected result)                      // JIRA issue (LANG-405) example (slightly different than actual expected result)                   
+assertEquals("A very long text with un...f the text is complete.", StringUtils.abbreviateMiddle("A v   assertEquals("A very long text with un...f the text is complete.", StringUtils.abbreviateMiddle("A v
+// Test a much longer text :)                                                                          // Test a much longer text :)                                                                       
+String longText = "Start text" + StringUtils.repeat("x", 10000) + "Close text";                        String longText = "Start text" + StringUtils.repeat("x", 10000) + "Close text";                     
+assertEquals("Start text-&gt;Close text", StringUtils.abbreviateMiddle(longText, "-&gt;", 22));        assertEquals("Start text-&gt;Close text", StringUtils.abbreviateMiddle(longText, "-&gt;", 22));     
+// Test negative length                                                                                // Test negative length                                                                             
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", -1));                                     assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", -1));                                  
+// Test boundaries                                                                                     // Test boundaries                                                                                  
+// Fails to change anything as method ensures first and last char are kept                             // Fails to change anything as method ensures first and last char are kept                          
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 1));                                      assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 1));                                   
+assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 2));                                      assertEquals("abc", StringUtils.abbreviateMiddle("abc", ".", 2));                                   
+// Test length of n=1                                                                                  // Test length of n=1                                                                               
+assertEquals("a", StringUtils.abbreviateMiddle("a", ".", 1));                                          assertEquals("a", StringUtils.abbreviateMiddle("a", ".", 1));                                       
+// Test smallest length that can lead to success                                                       // Test smallest length that can lead to success                                                    
+assertEquals("a.d", StringUtils.abbreviateMiddle("abcd", ".", 3));                                     assertEquals("a.d", StringUtils.abbreviateMiddle("abcd", ".", 3));                                  
+// More from LANG-405                                                                                  // More from LANG-405                                                                               
+assertEquals("a..f", StringUtils.abbreviateMiddle("abcdef", "..", 4));                                 assertEquals("a..f", StringUtils.abbreviateMiddle("abcdef", "..", 4));                              
+assertEquals("ab.ef", StringUtils.abbreviateMiddle("abcdef", ".", 5));                                 assertEquals("ab.ef", StringUtils.abbreviateMiddle("abcdef", ".", 5));                              
+}                                                                                                      }                                                                                                   

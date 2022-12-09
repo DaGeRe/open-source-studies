@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testNotBlankBlankStringWithNewlinesShouldThrow() {
+    // given
+    String string = " \n \t \r \n ";
+    try {
+        // when
+        Validate.notBlank(string);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // then
+        assertEquals("The validated string is blank", e.getMessage());
+    }
+}

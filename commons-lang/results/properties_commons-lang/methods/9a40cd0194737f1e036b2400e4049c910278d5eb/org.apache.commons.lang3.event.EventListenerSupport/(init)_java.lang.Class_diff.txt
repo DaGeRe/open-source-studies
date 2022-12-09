@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an EventListenerSupport object which supports the provided listener interface.             | * Creates an EventListenerSupport object which supports the provided                                
+                                                                                                     | * listener interface.                                                                               
+*                                                                                                      *                                                                                                   
+* @param listenerInterface the listener interface                                                    | * @param listenerInterface the type of listener interface that will receive                         
+                                                                                                     | *        events posted using this class.                                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @throws NullPointerException if &lt;code&gt;listenerInterface&lt;/code&gt; is                     
+                                                                                                     | *         &lt;code&gt;null&lt;/code&gt;.                                                            
+                                                                                                     | * @throws IllegalArgumentException if &lt;code&gt;listenerInterface&lt;/code&gt; is                 
+                                                                                                     | *         not an interface.                                                                         
+*/                                                                                                     */                                                                                                  
+public EventListenerSupport(Class&lt;L&gt; listenerInterface) {                                        public EventListenerSupport(Class&lt;L&gt; listenerInterface) {                                     
+this(listenerInterface, Thread.currentThread().getContextClassLoader());                               this(listenerInterface, Thread.currentThread().getContextClassLoader());                            
+}                                                                                                      }                                                                                                   

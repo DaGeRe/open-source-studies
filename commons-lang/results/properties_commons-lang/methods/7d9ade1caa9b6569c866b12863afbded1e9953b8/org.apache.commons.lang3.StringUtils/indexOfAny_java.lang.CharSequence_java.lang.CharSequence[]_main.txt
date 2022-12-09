@@ -1,0 +1,52 @@
+// IndexOfAny strings
+// -----------------------------------------------------------------------
+/**
+ * <p>Find the first index of any of a set of potential substrings.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A {@code null} or zero length search array will return {@code -1}.
+ * A {@code null} search array entry will be ignored, but a search
+ * array containing "" will return {@code 0} if {@code str} is not
+ * null. This method uses {@link String#indexOf(String)} if possible.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAny(null, *)                     = -1
+ * StringUtils.indexOfAny(*, null)                     = -1
+ * StringUtils.indexOfAny(*, [])                       = -1
+ * StringUtils.indexOfAny("zzabyycdxx", ["ab","cd"])   = 2
+ * StringUtils.indexOfAny("zzabyycdxx", ["cd","ab"])   = 2
+ * StringUtils.indexOfAny("zzabyycdxx", ["mn","op"])   = -1
+ * StringUtils.indexOfAny("zzabyycdxx", ["zab","aby"]) = 1
+ * StringUtils.indexOfAny("zzabyycdxx", [""])          = 0
+ * StringUtils.indexOfAny("", [""])                    = 0
+ * StringUtils.indexOfAny("", ["a"])                   = -1
+ * </pre>
+ *
+ * @param str  the CharSequence to check, may be null
+ * @param searchStrs  the CharSequences to search for, may be null
+ * @return the first index of any of the searchStrs in str, -1 if no match
+ * @since 3.0 Changed signature from indexOfAny(String, String[]) to indexOfAny(CharSequence, CharSequence...)
+ */
+public static int indexOfAny(CharSequence str, CharSequence... searchStrs) {
+    if (str == null || searchStrs == null) {
+        return INDEX_NOT_FOUND;
+    }
+    int sz = searchStrs.length;
+    // String's can't have a MAX_VALUEth index.
+    int ret = Integer.MAX_VALUE;
+    int tmp = 0;
+    for (int i = 0; i < sz; i++) {
+        CharSequence search = searchStrs[i];
+        if (search == null) {
+            continue;
+        }
+        tmp = CharSequenceUtils.indexOf(str, search, 0);
+        if (tmp == INDEX_NOT_FOUND) {
+            continue;
+        }
+        if (tmp < ret) {
+            ret = tmp;
+        }
+    }
+    return (ret == Integer.MAX_VALUE) ? INDEX_NOT_FOUND : ret;
+}

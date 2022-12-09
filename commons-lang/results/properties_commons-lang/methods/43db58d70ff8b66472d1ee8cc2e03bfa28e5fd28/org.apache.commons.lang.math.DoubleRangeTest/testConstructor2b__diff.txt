@@ -1,0 +1,32 @@
+public void testConstructor2b() {
+    DoubleRange nr = new DoubleRange(double8, double10);
+    assertSame(double8, nr.getMinimumNumber());
+    assertSame(double10, nr.getMaximumNumber());
+    nr = new DoubleRange(double10, double8);
+    assertSame(double8, nr.getMinimumNumber());
+    assertSame(double10, nr.getMaximumNumber());
+    nr = new DoubleRange(double8, double10);
+    assertSame(double8, nr.getMinimumNumber());
+    assertEquals(double10, nr.getMaximumNumber());
+    // not null
+    try {
+        new DoubleRange(double8, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new DoubleRange(null, double8);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new DoubleRange(null, null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        new DoubleRange(new Double(Double.NaN), double10);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

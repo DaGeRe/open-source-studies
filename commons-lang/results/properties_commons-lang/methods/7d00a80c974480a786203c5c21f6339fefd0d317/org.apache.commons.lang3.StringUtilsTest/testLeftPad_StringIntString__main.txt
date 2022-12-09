@@ -1,0 +1,13 @@
+@Test
+public void testLeftPad_StringIntString() {
+    assertEquals(null, StringUtils.leftPad(null, 5, "-+"));
+    assertEquals(null, StringUtils.leftPad(null, 5, null));
+    assertEquals("     ", StringUtils.leftPad("", 5, " "));
+    assertEquals("-+-+abc", StringUtils.leftPad("abc", 7, "-+"));
+    assertEquals("-+~abc", StringUtils.leftPad("abc", 6, "-+~"));
+    assertEquals("-+abc", StringUtils.leftPad("abc", 5, "-+~"));
+    assertEquals("abc", StringUtils.leftPad("abc", 2, " "));
+    assertEquals("abc", StringUtils.leftPad("abc", -1, " "));
+    assertEquals("  abc", StringUtils.leftPad("abc", 5, null));
+    assertEquals("  abc", StringUtils.leftPad("abc", 5, ""));
+}

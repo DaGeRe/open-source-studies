@@ -1,0 +1,19 @@
+/**
+ * <p>Converts the specified wrapper class to its corresponding primitive
+ * class.</p>
+ *
+ * <p>This method is the counter part of <code>primitiveToWrapper()</code>.
+ * If the passed in class is a wrapper class for a primitive type, this
+ * primitive type will be returned (e.g. <code>Integer.TYPE</code> for
+ * <code>Integer.class</code>). For other classes, or if the parameter is
+ * <b>null</b>, the return value is <b>null</b>.</p>
+ *
+ * @param cls the class to convert, may be <b>null</b>
+ * @return the corresponding primitive type if <code>cls</code> is a
+ * wrapper class, <b>null</b> otherwise
+ * @see #primitiveToWrapper(Class)
+ * @since 2.4
+ */
+public static Class wrapperToPrimitive(Class cls) {
+    return (Class) wrapperPrimitiveMap.get(cls);
+}

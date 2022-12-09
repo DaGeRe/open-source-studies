@@ -1,0 +1,13 @@
+/**
+ * Gets the next token from the String.
+ * Equivalent to {@link #next()} except it returns null rather than
+ * throwing {@link NoSuchElementException} when no tokens remain.
+ *
+ * @return the next sequential token, or null when no more tokens are found
+ */
+public String nextToken() {
+    if (hasNext()) {
+        return tokens[tokenPos++];
+    }
+    return null;
+}

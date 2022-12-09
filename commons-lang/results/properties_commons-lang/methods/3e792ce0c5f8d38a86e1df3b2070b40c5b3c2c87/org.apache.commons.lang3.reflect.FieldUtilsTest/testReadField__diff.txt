@@ -1,0 +1,24 @@
+public void testReadField() throws Exception {                                                         public void testReadField() throws Exception {                                                      
+Field parentS = FieldUtils.getDeclaredField(parentClass, "s");                                         Field parentS = FieldUtils.getDeclaredField(parentClass, "s");                                      
+assertEquals("s", FieldUtils.readField(parentS, publicChild));                                         assertEquals("s", FieldUtils.readField(parentS, publicChild));                                      
+assertEquals("s", FieldUtils.readField(parentS, publiclyShadowedChild));                               assertEquals("s", FieldUtils.readField(parentS, publiclyShadowedChild));                            
+assertEquals("s", FieldUtils.readField(parentS, privatelyShadowedChild));                              assertEquals("s", FieldUtils.readField(parentS, privatelyShadowedChild));                           
+Field parentB = FieldUtils.getDeclaredField(parentClass, "b", true);                                   Field parentB = FieldUtils.getDeclaredField(parentClass, "b", true);                                
+assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publicChild));                               assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publicChild));                            
+assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publiclyShadowedChild));                     assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, publiclyShadowedChild));                  
+assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, privatelyShadowedChild));                    assertEquals(Boolean.FALSE, FieldUtils.readField(parentB, privatelyShadowedChild));                 
+Field parentI = FieldUtils.getDeclaredField(parentClass, "i", true);                                   Field parentI = FieldUtils.getDeclaredField(parentClass, "i", true);                                
+assertEquals(I0, FieldUtils.readField(parentI, publicChild));                                          assertEquals(I0, FieldUtils.readField(parentI, publicChild));                                       
+assertEquals(I0, FieldUtils.readField(parentI, publiclyShadowedChild));                                assertEquals(I0, FieldUtils.readField(parentI, publiclyShadowedChild));                             
+assertEquals(I0, FieldUtils.readField(parentI, privatelyShadowedChild));                               assertEquals(I0, FieldUtils.readField(parentI, privatelyShadowedChild));                            
+Field parentD = FieldUtils.getDeclaredField(parentClass, "d", true);                                   Field parentD = FieldUtils.getDeclaredField(parentClass, "d", true);                                
+assertEquals(D0, FieldUtils.readField(parentD, publicChild));                                          assertEquals(D0, FieldUtils.readField(parentD, publicChild));                                       
+assertEquals(D0, FieldUtils.readField(parentD, publiclyShadowedChild));                                assertEquals(D0, FieldUtils.readField(parentD, publiclyShadowedChild));                             
+assertEquals(D0, FieldUtils.readField(parentD, privatelyShadowedChild));                               assertEquals(D0, FieldUtils.readField(parentD, privatelyShadowedChild));                            
+                                                                                                     | try {                                                                                               
+                                                                                                     | FieldUtils.readField((Field) null, publicChild);                                                    
+                                                                                                     | fail("a null field should cause an IllegalArgumentException");                                      
+                                                                                                     | } catch (IllegalArgumentException e) {                                                              
+                                                                                                     | // expected                                                                                         
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

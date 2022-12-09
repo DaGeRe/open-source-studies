@@ -1,0 +1,11 @@
+/**
+ * Tests putIfAbsent() if the map does not contain the key in question.
+ */
+@Test
+public void testPutIfAbsentKeyNotPresent() {
+    final String key = "testKey";
+    final Integer value = 42;
+    ConcurrentMap<String, Integer> map = new ConcurrentHashMap<String, Integer>();
+    assertEquals("Wrong result", value, ConcurrentUtils.putIfAbsent(map, key, value));
+    assertEquals("Wrong value in map", value, map.get(key));
+}

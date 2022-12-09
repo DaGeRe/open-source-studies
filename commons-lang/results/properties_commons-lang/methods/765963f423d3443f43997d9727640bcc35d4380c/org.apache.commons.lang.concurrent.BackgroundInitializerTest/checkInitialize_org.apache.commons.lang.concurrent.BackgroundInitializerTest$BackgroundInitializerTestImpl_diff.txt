@@ -1,0 +1,16 @@
+/**
+ * Helper method for checking whether the initialize() method was correctly
+ * called. start() must already have been invoked.
+ *
+ * @param init the initializer to test
+ */
+private void checkInitialize(BackgroundInitializerTestImpl init) {
+    try {
+        Integer result = init.get();
+        assertEquals("Wrong result", 1, result.intValue());
+        assertEquals("Wrong number of invocations", 1, init.initializeCalls);
+        assertNotNull("No future", init.getFuture());
+    } catch (ConcurrentException cex) {
+        fail("Unexpected exception: " + cex);
+    }
+}

@@ -1,0 +1,15 @@
+// -------------------------------------------------------------------------                           // -------------------------------------------------------------------------                        
+public void test_getShortClassName_Object() {                                                          public void test_getShortClassName_Object() {                                                       
+assertEquals("ClassUtils", ClassUtils.getShortClassName(new ClassUtils(), "&lt;null&gt;"));            assertEquals("ClassUtils", ClassUtils.getShortClassName(new ClassUtils(), "&lt;null&gt;"));         
+assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortClassName(new Inner(), "&lt;null&gt;"));       assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortClassName(new Inner(), "&lt;null&gt;"));    
+assertEquals("String", ClassUtils.getShortClassName("hello", "&lt;null&gt;"));                         assertEquals("String", ClassUtils.getShortClassName("hello", "&lt;null&gt;"));                      
+assertEquals("&lt;null&gt;", ClassUtils.getShortClassName(null, "&lt;null&gt;"));                      assertEquals("&lt;null&gt;", ClassUtils.getShortClassName(null, "&lt;null&gt;"));                   
+                                                                                                     | // Inner types                                                                                      
+                                                                                                     | class Named extends Object {                                                                        
+}                                                                                                      }                                                                                                   
+                                                                                                     | ;                                                                                                   
+                                                                                                     | assertEquals("ClassUtilsTest.1", ClassUtils.getShortClassName(new Object() {                        
+                                                                                                     | }, "&lt;null&gt;"));                                                                                
+                                                                                                     | assertEquals("ClassUtilsTest.1Named", ClassUtils.getShortClassName(new Named(), "&lt;null&gt;"));   
+                                                                                                     | assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortClassName(new Inner(), "&lt;null&gt;"));    
+                                                                                                     | }                                                                                                   

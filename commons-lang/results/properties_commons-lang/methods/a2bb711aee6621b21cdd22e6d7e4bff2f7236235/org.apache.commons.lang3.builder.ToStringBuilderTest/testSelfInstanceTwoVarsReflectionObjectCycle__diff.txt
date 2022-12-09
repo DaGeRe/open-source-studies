@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Test a class that defines an ivar pointing to itself.  This test was                                 * Test a class that defines an ivar pointing to itself.  This test was                              
+* created to show that handling cyclical object resulted in a missing endFieldSeparator call.          * created to show that handling cyclical object resulted in a missing endFieldSeparator call.       
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+public void testSelfInstanceTwoVarsReflectionObjectCycle() throws Exception {                          public void testSelfInstanceTwoVarsReflectionObjectCycle() throws Exception {                       
+SelfInstanceTwoVarsReflectionTestFixture test = new SelfInstanceTwoVarsReflectionTestFixture();        SelfInstanceTwoVarsReflectionTestFixture test = new SelfInstanceTwoVarsReflectionTestFixture();     
+assertTrue(ToStringStyle.getRegistry().isEmpty());                                                   |                                                                                                     
+assertEquals(this.toBaseString(test) + "[typeIsSelf=" + this.toBaseString(test) + ",otherType=" + te   assertEquals(this.toBaseString(test) + "[typeIsSelf=" + this.toBaseString(test) + ",otherType=" + te
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

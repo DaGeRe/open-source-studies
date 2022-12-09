@@ -1,0 +1,34 @@
+public void testConstructor_String_comboNegated() {
+    CharSet set;
+    CharRange[] array;
+    set = CharSet.getInstance("^abc");
+    array = set.getCharRanges();
+    assertEquals(3, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('a')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('b')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('c')));
+    set = CharSet.getInstance("b^ac");
+    array = set.getCharRanges();
+    assertEquals(3, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('b')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('a')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('c')));
+    set = CharSet.getInstance("db^ac");
+    array = set.getCharRanges();
+    assertEquals(4, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('d')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('b')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('a')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('c')));
+    set = CharSet.getInstance("^b^a");
+    array = set.getCharRanges();
+    assertEquals(2, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('b')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('a')));
+    set = CharSet.getInstance("b^a-c^z");
+    array = set.getCharRanges();
+    assertEquals(3, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNotIn('a', 'c')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isNot('z')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('b')));
+}

@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------
+public void testTokenizeSubclassInputChange() {
+    StrTokenizer tkn = new StrTokenizer("a b c d e") {
+
+        protected List tokenize(char[] chars, int offset, int count) {
+            return super.tokenize("w x y z".toCharArray(), 2, 5);
+        }
+    };
+    assertEquals("x", tkn.next());
+    assertEquals("y", tkn.next());
+}

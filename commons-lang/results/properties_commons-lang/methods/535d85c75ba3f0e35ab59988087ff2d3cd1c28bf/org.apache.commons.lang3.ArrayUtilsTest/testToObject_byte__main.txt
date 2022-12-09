@@ -1,0 +1,6 @@
+public void testToObject_byte() {
+    final byte[] b = null;
+    assertEquals(null, ArrayUtils.toObject(b));
+    assertSame(ArrayUtils.EMPTY_BYTE_OBJECT_ARRAY, ArrayUtils.toObject(new byte[0]));
+    assertTrue(Arrays.equals(new Byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.toObject(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 })));
+}

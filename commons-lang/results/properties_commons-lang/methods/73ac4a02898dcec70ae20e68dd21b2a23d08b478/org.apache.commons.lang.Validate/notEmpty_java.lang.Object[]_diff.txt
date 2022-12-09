@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;            * &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;         
+* if the argument array is empty (&lt;code&gt;null&lt;/code&gt; or no elements).&lt;/p&gt;             * if the argument array is empty (&lt;code&gt;null&lt;/code&gt; or no elements).&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* Validate.notEmpty(myArray);                                                                          * Validate.notEmpty(myArray);                                                                       
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is 'The validated array is empty'.                             * &lt;p&gt;The message in the exception is 'The validated array is empty'.                          
+*                                                                                                      *                                                                                                   
+* @param array  the array to check is not empty                                                        * @param array  the array to check is not empty                                                     
+* @throws IllegalArgumentException if the array is empty                                               * @throws IllegalArgumentException if the array is empty                                            
+*/                                                                                                     */                                                                                                  
+public static void notEmpty(Object[] array) {                                                          public static void notEmpty(Object[] array) {                                                       
+if (array == null || array.length == 0) {                                                            | notEmpty(array, "The validated array is empty");                                                    
+throw new IllegalArgumentException("The validated array is empty");                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+public void testDeleteAll_String() {
+    StrBuilder sb = new StrBuilder("abcbccba");
+    sb.deleteAll((String) null);
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteAll("");
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteAll("X");
+    assertEquals("abcbccba", sb.toString());
+    sb.deleteAll("a");
+    assertEquals("bcbccb", sb.toString());
+    sb.deleteAll("c");
+    assertEquals("bbb", sb.toString());
+    sb.deleteAll("b");
+    assertEquals("", sb.toString());
+    sb = new StrBuilder("abcbccba");
+    sb.deleteAll("bc");
+    assertEquals("acba", sb.toString());
+    sb = new StrBuilder("");
+    sb.deleteAll("bc");
+    assertEquals("", sb.toString());
+}

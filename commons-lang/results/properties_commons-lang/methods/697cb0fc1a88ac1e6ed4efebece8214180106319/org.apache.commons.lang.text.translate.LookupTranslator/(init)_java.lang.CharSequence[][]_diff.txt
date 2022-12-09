@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Define the lookup table to be used in translation                                                    * Define the lookup table to be used in translation                                                 
+*                                                                                                      *                                                                                                   
+* @param CharSequence[][] Lookup table of size [*][2]                                                  * @param CharSequence[][] Lookup table of size [*][2]                                               
+*/                                                                                                     */                                                                                                  
+public LookupTranslator(CharSequence[][] lookup) {                                                     public LookupTranslator(CharSequence[][] lookup) {                                                  
+this.lookup = lookup;                                                                                | lookupMap = new HashMap&lt;CharSequence, CharSequence&gt;();                                        
+                                                                                                     | for (CharSequence[] seq : lookup) {                                                                 
+                                                                                                     | this.lookupMap.put(seq[0], seq[1]);                                                                 
+                                                                                                     | int sz = seq[0].length();                                                                           
+                                                                                                     | if (sz &lt; shortest) {                                                                             
+                                                                                                     | shortest = sz;                                                                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (sz &gt; longest) {                                                                              
+                                                                                                     | longest = sz;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

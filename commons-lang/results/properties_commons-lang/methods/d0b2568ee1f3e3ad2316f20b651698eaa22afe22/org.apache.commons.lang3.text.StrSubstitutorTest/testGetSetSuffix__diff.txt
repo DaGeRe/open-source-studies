@@ -1,0 +1,28 @@
+/**
+ * Tests get set.
+ */
+public void testGetSetSuffix() {
+    StrSubstitutor sub = new StrSubstitutor();
+    assertEquals(true, sub.getVariableSuffixMatcher() instanceof StrMatcher.StringMatcher);
+    sub.setVariableSuffix('<');
+    assertEquals(true, sub.getVariableSuffixMatcher() instanceof StrMatcher.CharMatcher);
+    sub.setVariableSuffix("<<");
+    assertEquals(true, sub.getVariableSuffixMatcher() instanceof StrMatcher.StringMatcher);
+    try {
+        sub.setVariableSuffix((String) null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+        // expected
+    }
+    assertEquals(true, sub.getVariableSuffixMatcher() instanceof StrMatcher.StringMatcher);
+    StrMatcher matcher = StrMatcher.commaMatcher();
+    sub.setVariableSuffixMatcher(matcher);
+    assertSame(matcher, sub.getVariableSuffixMatcher());
+    try {
+        sub.setVariableSuffixMatcher((StrMatcher) null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+        // expected
+    }
+    assertSame(matcher, sub.getVariableSuffixMatcher());
+}

@@ -1,0 +1,21 @@
+public void testIndexOfType_ThrowableClassInt() {
+    assertEquals(-1, ExceptionUtils.indexOfType(null, null, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(null, NestableException.class, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, null));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, ExceptionWithCause.class, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, NestableException.class, 0));
+    assertEquals(0, ExceptionUtils.indexOfType(withoutCause, ExceptionWithoutCause.class, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(nested, null, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(nested, ExceptionWithCause.class, 0));
+    assertEquals(0, ExceptionUtils.indexOfType(nested, NestableException.class, 0));
+    assertEquals(1, ExceptionUtils.indexOfType(nested, ExceptionWithoutCause.class, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(withCause, null));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class, 0));
+    assertEquals(1, ExceptionUtils.indexOfType(withCause, NestableException.class, 0));
+    assertEquals(2, ExceptionUtils.indexOfType(withCause, ExceptionWithoutCause.class, 0));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class, -1));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class, 0));
+    assertEquals(-1, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class, 1));
+    assertEquals(-1, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class, 9));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, Exception.class, 0));
+}

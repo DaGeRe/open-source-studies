@@ -1,0 +1,12 @@
+/**
+ * Return the next calendar in the iteration
+ *
+ * @return Object calendar for the next date
+ */
+public Object next() {
+    if (spot.equals(endFinal)) {
+        throw new NoSuchElementException();
+    }
+    spot.add(Calendar.DATE, 1);
+    return spot.clone();
+}

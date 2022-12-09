@@ -1,0 +1,15 @@
+public void testSerializeStreamNullObj() throws Exception {
+    ByteArrayOutputStream streamTest = new ByteArrayOutputStream();
+    SerializationUtils.serialize(null, streamTest);
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(null);
+    oos.flush();
+    oos.close();
+    byte[] testBytes = streamTest.toByteArray();
+    byte[] realBytes = streamReal.toByteArray();
+    assertEquals(testBytes.length, realBytes.length);
+    for (int i = 0; i < realBytes.length; i++) {
+        assertEquals(realBytes[i], testBytes[i]);
+    }
+}

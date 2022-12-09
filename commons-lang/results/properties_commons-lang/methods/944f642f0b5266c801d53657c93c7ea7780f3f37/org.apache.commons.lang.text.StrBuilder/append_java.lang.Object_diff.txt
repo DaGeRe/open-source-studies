@@ -1,0 +1,13 @@
+/**
+ * Appends an object to this string builder.
+ * Appending null will call {@link #appendNull()}.
+ *
+ * @param obj  the object to append
+ * @return this, to enable chaining
+ */
+public StrBuilder append(Object obj) {
+    if (obj == null) {
+        return appendNull();
+    }
+    return append(obj.toString());
+}

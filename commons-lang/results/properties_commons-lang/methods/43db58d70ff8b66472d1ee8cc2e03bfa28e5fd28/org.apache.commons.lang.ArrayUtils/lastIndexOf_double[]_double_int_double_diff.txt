@@ -1,0 +1,35 @@
+/**
+ * <p>Finds the last index of the given value in the array starting at the given index.
+ * This method will return the index of the last value which falls between the region
+ * defined by valueToFind - tolerance and valueToFind + tolerance.</p>
+ *
+ * <p>This method returns {@link #INDEX_NOT_FOUND} (<code>-1</code>) for a <code>null</code> input array.</p>
+ *
+ * <p>A negative startIndex will return {@link #INDEX_NOT_FOUND} (<code>-1</code>). A startIndex larger than the
+ * array length will search from the end of the array.</p>
+ *
+ * @param array  the array to traverse for looking for the object, may be <code>null</code>
+ * @param valueToFind  the value to find
+ * @param startIndex  the start index to travers backwards from
+ * @param tolerance  search for value within plus/minus this amount
+ * @return the last index of the value within the array,
+ *  {@link #INDEX_NOT_FOUND} (<code>-1</code>) if not found or <code>null</code> array input
+ */
+public static int lastIndexOf(double[] array, double valueToFind, int startIndex, double tolerance) {
+    if (ArrayUtils.isEmpty(array)) {
+        return INDEX_NOT_FOUND;
+    }
+    if (startIndex < 0) {
+        return INDEX_NOT_FOUND;
+    } else if (startIndex >= array.length) {
+        startIndex = array.length - 1;
+    }
+    double min = valueToFind - tolerance;
+    double max = valueToFind + tolerance;
+    for (int i = startIndex; i >= 0; i--) {
+        if (array[i] >= min && array[i] <= max) {
+            return i;
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

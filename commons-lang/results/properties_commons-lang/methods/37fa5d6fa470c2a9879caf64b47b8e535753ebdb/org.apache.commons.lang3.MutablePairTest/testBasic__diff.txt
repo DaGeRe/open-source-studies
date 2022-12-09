@@ -1,0 +1,9 @@
+@Test
+public void testBasic() throws Exception {
+    MutablePair<Integer, String> pair = new MutablePair<Integer, String>(0, "foo");
+    assertEquals(0, pair.getLeftElement().intValue());
+    assertEquals("foo", pair.getRightElement());
+    MutablePair<Object, String> pair2 = new MutablePair<Object, String>(null, "bar");
+    assertNull(pair2.getLeftElement());
+    assertEquals("bar", pair2.getRightElement());
+}

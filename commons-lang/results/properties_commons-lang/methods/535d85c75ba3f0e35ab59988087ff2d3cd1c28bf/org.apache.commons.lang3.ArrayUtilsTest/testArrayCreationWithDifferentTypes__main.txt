@@ -1,0 +1,9 @@
+/**
+ * Tests generic array creation with parameters of common base type.
+ */
+public void testArrayCreationWithDifferentTypes() {
+    final Number[] array = ArrayUtils.<Number>toArray(42, Math.PI);
+    assertEquals(2, array.length);
+    assertEquals(42, array[0]);
+    assertEquals(Math.PI, array[1]);
+}

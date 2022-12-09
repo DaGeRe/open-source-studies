@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+                                                                                                     | // -----------------------------------------------------------------------                          
+public void testNotEmptyArray1() {                                                                     public void testNotEmptyArray1() {                                                                  
+Validate.notEmpty(new Object[] { null });                                                              Validate.notEmpty(new Object[] { null });                                                           
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((Object[]) null);                                                                    Validate.notEmpty((Object[]) null);                                                                 
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated array is empty", ex.getMessage());                                         assertEquals("The validated array is empty", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty(new Object[0]);                                                                      Validate.notEmpty(new Object[0]);                                                                   
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated array is empty", ex.getMessage());                                         assertEquals("The validated array is empty", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | String[] array = new String[] { "hi" };                                                             
+                                                                                                     | String[] test = Validate.notEmpty(array);                                                           
+                                                                                                     | assertSame(array, test);                                                                            
+}                                                                                                      }                                                                                                   

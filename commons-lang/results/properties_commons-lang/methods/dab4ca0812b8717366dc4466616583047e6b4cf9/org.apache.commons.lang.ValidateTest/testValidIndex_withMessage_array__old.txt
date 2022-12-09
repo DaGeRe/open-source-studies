@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testValidIndex_withMessage_array() {
+    Object[] array = new Object[2];
+    Validate.validIndex(array, 0, "Broken: ");
+    Validate.validIndex(array, 1, "Broken: ");
+    try {
+        Validate.validIndex(array, -1, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: -1", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(array, 2, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: 2", ex.getMessage());
+    }
+}

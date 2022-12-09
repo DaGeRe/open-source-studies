@@ -1,0 +1,19 @@
+/**
+ * <p>Converts a Boolean to a boolean handling {@code null}.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBooleanDefaultIfNull(Boolean.TRUE, false) = true
+ *   BooleanUtils.toBooleanDefaultIfNull(Boolean.FALSE, true) = false
+ *   BooleanUtils.toBooleanDefaultIfNull(null, true)          = true
+ * </pre>
+ *
+ * @param bool  the boolean to convert
+ * @param valueIfNull  the boolean value to return if {@code null}
+ * @return {@code true} or {@code false}
+ */
+public static boolean toBooleanDefaultIfNull(Boolean bool, boolean valueIfNull) {
+    if (bool == null) {
+        return valueIfNull;
+    }
+    return bool.booleanValue() ? true : false;
+}

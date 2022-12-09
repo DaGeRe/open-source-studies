@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Convert a &lt;code&gt;String&lt;/code&gt; to a &lt;code&gt;Long&lt;/code&gt;.&lt;/p&gt;   | * &lt;p&gt;Convert a &lt;code&gt;String&lt;/code&gt; to a &lt;code&gt;Long&lt;/code&gt;;            
+                                                                                                     | * since 3.0.2 it handles hex and octal notations.&lt;/p&gt;                                         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Returns &lt;code&gt;null&lt;/code&gt; if the string is &lt;code&gt;null&lt;/code&gt;.&lt;   * &lt;p&gt;Returns &lt;code&gt;null&lt;/code&gt; if the string is &lt;code&gt;null&lt;/code&gt;.&lt;
+*                                                                                                      *                                                                                                   
+* @param str  a &lt;code&gt;String&lt;/code&gt; to convert, may be null                                * @param str  a &lt;code&gt;String&lt;/code&gt; to convert, may be null                             
+* @return converted &lt;code&gt;Long&lt;/code&gt;                                                      * @return converted &lt;code&gt;Long&lt;/code&gt;                                                   
+* @throws NumberFormatException if the value cannot be converted                                       * @throws NumberFormatException if the value cannot be converted                                    
+*/                                                                                                     */                                                                                                  
+public static Long createLong(String str) {                                                            public static Long createLong(String str) {                                                         
+if (str == null) {                                                                                     if (str == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return Long.valueOf(str);                                                                            | return Long.decode(str);                                                                            
+}                                                                                                      }                                                                                                   

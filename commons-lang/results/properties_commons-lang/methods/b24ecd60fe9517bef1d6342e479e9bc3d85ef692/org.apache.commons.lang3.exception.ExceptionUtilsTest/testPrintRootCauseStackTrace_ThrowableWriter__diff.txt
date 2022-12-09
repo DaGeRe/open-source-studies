@@ -1,0 +1,21 @@
+public void testPrintRootCauseStackTrace_ThrowableWriter() throws Exception {
+    StringWriter writer = new StringWriter(1024);
+    ExceptionUtils.printRootCauseStackTrace(null, (PrintWriter) null);
+    ExceptionUtils.printRootCauseStackTrace(null, new PrintWriter(writer));
+    assertEquals(0, writer.getBuffer().length());
+    writer = new StringWriter(1024);
+    try {
+        ExceptionUtils.printRootCauseStackTrace(withCause, (PrintWriter) null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    writer = new StringWriter(1024);
+    Throwable withCause = createExceptionWithCause();
+    ExceptionUtils.printRootCauseStackTrace(withCause, new PrintWriter(writer));
+    String stackTrace = writer.toString();
+    assertTrue(stackTrace.indexOf(ExceptionUtils.WRAPPED_MARKER) != -1);
+    writer = new StringWriter(1024);
+    ExceptionUtils.printRootCauseStackTrace(withoutCause, new PrintWriter(writer));
+    stackTrace = writer.toString();
+    assertTrue(stackTrace.indexOf(ExceptionUtils.WRAPPED_MARKER) == -1);
+}

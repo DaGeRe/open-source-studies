@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testPerson() {                                                                             public void testPerson() {                                                                          
+Person p = new Person();                                                                               Person p = new Person();                                                                            
+p.name = "Ron Paul";                                                                                   p.name = "Ron Paul";                                                                                
+p.age = 72;                                                                                            p.age = 72;                                                                                         
+p.smoker = false;                                                                                      p.smoker = false;                                                                                   
+String pBaseStr = p.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(p));      String pBaseStr = p.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(p));   
+assertEquals(pBaseStr + "[Ron Paul,72,false]", new ToStringBuilder(p).append("name", p.name).append(   assertEquals(pBaseStr + "[Ron Paul,72,false]", new ToStringBuilder(p).append("name", p.name).append(
+}                                                                                                      }                                                                                                   

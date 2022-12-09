@@ -1,0 +1,19 @@
+// notEmpty map
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument Map is empty (<code>null</code> or no elements).</p>
+ *
+ * <pre>
+ * Validate.notEmpty(myMap, "The map must not be empty");
+ * </pre>
+ *
+ * @param map  the map to check is not empty
+ * @param message  the exception message you would like to see if the map is empty
+ * @throws IllegalArgumentException if the map is empty
+ */
+public static void notEmpty(Map map, String message) {
+    if (map == null || map.size() == 0) {
+        throw new IllegalArgumentException(message);
+    }
+}

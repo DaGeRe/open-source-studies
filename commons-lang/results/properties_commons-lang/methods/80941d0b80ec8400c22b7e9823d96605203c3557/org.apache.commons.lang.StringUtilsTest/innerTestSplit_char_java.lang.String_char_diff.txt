@@ -1,0 +1,32 @@
+private void innerTestSplit(char separator, String sepStr, char noMatch) {
+    String msg = "Failed on separator hex(" + Integer.toHexString(separator) + "), noMatch hex(" + Integer.toHexString(noMatch) + "), sepStr(" + sepStr + ")";
+    final String str = "a" + separator + "b" + separator + separator + noMatch + "c";
+    String[] res;
+    // (str, sepStr)
+    res = StringUtils.split(str, sepStr);
+    assertEquals(msg, 3, res.length);
+    assertEquals(msg, "a", res[0]);
+    assertEquals(msg, "b", res[1]);
+    assertEquals(msg, noMatch + "c", res[2]);
+    final String str2 = separator + "a" + separator;
+    res = StringUtils.split(str2, sepStr);
+    assertEquals(msg, 1, res.length);
+    assertEquals(msg, "a", res[0]);
+    res = StringUtils.split(str, sepStr, -1);
+    assertEquals(msg, 3, res.length);
+    assertEquals(msg, "a", res[0]);
+    assertEquals(msg, "b", res[1]);
+    assertEquals(msg, noMatch + "c", res[2]);
+    res = StringUtils.split(str, sepStr, 0);
+    assertEquals(msg, 3, res.length);
+    assertEquals(msg, "a", res[0]);
+    assertEquals(msg, "b", res[1]);
+    assertEquals(msg, noMatch + "c", res[2]);
+    res = StringUtils.split(str, sepStr, 1);
+    assertEquals(msg, 1, res.length);
+    assertEquals(msg, str, res[0]);
+    res = StringUtils.split(str, sepStr, 2);
+    assertEquals(msg, 2, res.length);
+    assertEquals(msg, "a", res[0]);
+    assertEquals(msg, str.substring(2), res[1]);
+}

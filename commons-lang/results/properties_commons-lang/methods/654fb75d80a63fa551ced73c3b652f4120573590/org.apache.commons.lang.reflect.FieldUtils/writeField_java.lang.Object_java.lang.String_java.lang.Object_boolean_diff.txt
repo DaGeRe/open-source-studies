@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Write a field. Superclasses will be considered.                                                      * Write a field. Superclasses will be considered.                                                   
+* @param target  the object to reflect, must not be null                                               * @param target  the object to reflect, must not be null                                            
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @param value to set                                                                                  * @param value to set                                                                               
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only             *  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only          
+*  match public fields.                                                                                *  match public fields.                                                                             
+* @throws IllegalArgumentException if &lt;code&gt;target&lt;/code&gt; or &lt;code&gt;fieldName&lt;/c   * @throws IllegalArgumentException if &lt;code&gt;target&lt;/code&gt; or &lt;code&gt;fieldName&lt;/c
+* @throws IllegalAccessException if the field is not made accessible                                   * @throws IllegalAccessException if the field is not made accessible                                
+*/                                                                                                     */                                                                                                  
+public static void writeField(Object target, String fieldName, Object value, boolean forceAccess) th   public static void writeField(Object target, String fieldName, Object value, boolean forceAccess) th
+if (target == null) {                                                                                  if (target == null) {                                                                               
+throw new IllegalArgumentException("target object must not be null");                                  throw new IllegalArgumentException("target object must not be null");                               
+}                                                                                                      }                                                                                                   
+Class cls = target.getClass();                                                                       | Class&lt;?&gt; cls = target.getClass();                                                             
+Field field = getField(cls, fieldName, forceAccess);                                                   Field field = getField(cls, fieldName, forceAccess);                                                
+if (field == null) {                                                                                   if (field == null) {                                                                                
+throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName   throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName
+}                                                                                                      }                                                                                                   
+// already forced access above, don't repeat it here:                                                  // already forced access above, don't repeat it here:                                               
+writeField(field, target, value);                                                                      writeField(field, target, value);                                                                   
+}                                                                                                      }                                                                                                   

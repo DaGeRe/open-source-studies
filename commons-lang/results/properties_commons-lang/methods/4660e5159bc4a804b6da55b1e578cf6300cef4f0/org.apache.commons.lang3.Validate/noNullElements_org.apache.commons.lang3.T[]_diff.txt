@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the specified argument array is neither                                       * &lt;p&gt;Validate that the specified argument array is neither                                    
+* {@code null} nor contains any elements that are {@code null};                                        * {@code null} nor contains any elements that are {@code null};                                     
+* otherwise throwing an exception.                                                                     * otherwise throwing an exception.                                                                  
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;Validate.noNullElements(myArray);&lt;/pre&gt;                                             * &lt;pre&gt;Validate.noNullElements(myArray);&lt;/pre&gt;                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the array is {@code null}, then the message in the exception                             * &lt;p&gt;If the array is {@code null}, then the message in the exception                          
+* is &quot;The validated object is null&quot;.&lt;/p&gt;                                               * is &quot;The validated object is null&quot;.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the array has a {@code null} element, then the message in the                            * &lt;p&gt;If the array has a {@code null} element, then the message in the                         
+* exception is &quot;The validated array contains null element at index:                               * exception is &quot;The validated array contains null element at index:                            
+* &quot followed by the index.&lt;/p&gt;                                                               * &quot followed by the index.&lt;/p&gt;                                                            
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the array type                                                                      * @param &lt;T&gt; the array type                                                                   
+* @param array  the array to check, validated not null by this method                                  * @param array  the array to check, validated not null by this method                               
+* @return the validated array (never {@code null} method for chaining)                                 * @return the validated array (never {@code null} method for chaining)                              
+* @throws NullPointerException if the array is {@code null}                                            * @throws NullPointerException if the array is {@code null}                                         
+* @throws IllegalArgumentException if an element is {@code null}                                       * @throws IllegalArgumentException if an element is {@code null}                                    
+* @see #noNullElements(Object[], String, Object...)                                                    * @see #noNullElements(Object[], String, Object...)                                                 
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T[] noNullElements(T[] array) {                                              | public static &lt;T&gt; T[] noNullElements(T... array) {                                            
+return noNullElements(array, DEFAULT_NO_NULL_ELEMENTS_ARRAY_EX_MESSAGE);                             | return Validate.&lt;T&gt;noNullElements((T[]) array, DEFAULT_NO_NULL_ELEMENTS_ARRAY_EX_MESSAGE);    
+}                                                                                                      }                                                                                                   

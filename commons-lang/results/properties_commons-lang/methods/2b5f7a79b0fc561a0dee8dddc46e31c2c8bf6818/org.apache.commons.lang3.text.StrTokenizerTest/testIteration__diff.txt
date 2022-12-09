@@ -1,0 +1,41 @@
+public void testIteration() {
+    StrTokenizer tkn = new StrTokenizer("a b c");
+    assertEquals(false, tkn.hasPrevious());
+    try {
+        tkn.previous();
+        fail();
+    } catch (NoSuchElementException ex) {
+    }
+    assertEquals(true, tkn.hasNext());
+    assertEquals("a", tkn.next());
+    try {
+        tkn.remove();
+        fail();
+    } catch (UnsupportedOperationException ex) {
+    }
+    try {
+        tkn.set("x");
+        fail();
+    } catch (UnsupportedOperationException ex) {
+    }
+    try {
+        tkn.add("y");
+        fail();
+    } catch (UnsupportedOperationException ex) {
+    }
+    assertEquals(true, tkn.hasPrevious());
+    assertEquals(true, tkn.hasNext());
+    assertEquals("b", tkn.next());
+    assertEquals(true, tkn.hasPrevious());
+    assertEquals(true, tkn.hasNext());
+    assertEquals("c", tkn.next());
+    assertEquals(true, tkn.hasPrevious());
+    assertEquals(false, tkn.hasNext());
+    try {
+        tkn.next();
+        fail();
+    } catch (NoSuchElementException ex) {
+    }
+    assertEquals(true, tkn.hasPrevious());
+    assertEquals(false, tkn.hasNext());
+}

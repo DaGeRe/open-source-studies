@@ -1,0 +1,19 @@
+public void testEscapeEcmaScript() {
+    assertEquals(null, StringEscapeUtils.escapeEcmaScript(null));
+    try {
+        StringEscapeUtils.ESCAPE_ECMASCRIPT.translate(null, null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        StringEscapeUtils.ESCAPE_ECMASCRIPT.translate("", null);
+        fail();
+    } catch (IOException ex) {
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    assertEquals("He didn\\'t say, \\\"stop!\\\"", StringEscapeUtils.escapeEcmaScript("He didn't say, \"stop!\""));
+    assertEquals("document.getElementById(\\\"test\\\").value = \\'<script>alert(\\'aaa\\');<\\/script>\\';", StringEscapeUtils.escapeEcmaScript("document.getElementById(\"test\").value = '<script>alert('aaa');</script>';"));
+}

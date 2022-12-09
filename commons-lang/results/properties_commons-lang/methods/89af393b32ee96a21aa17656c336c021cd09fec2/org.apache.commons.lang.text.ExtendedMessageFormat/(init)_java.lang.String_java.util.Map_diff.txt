@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Create a new ExtendedMessageFormat for the default locale.                                           * Create a new ExtendedMessageFormat for the default locale.                                        
+*                                                                                                      *                                                                                                   
+* @param pattern String                                                                                * @param pattern String                                                                             
+* @param registry Registry of format factories:  Map&lt;String, FormatFactory&gt;                    | * @param registry Registry of format factories:  Map&lt;String, ? extends FormatFactory&gt;         
+* @throws IllegalArgumentException in case of a bad pattern.                                           * @throws IllegalArgumentException in case of a bad pattern.                                        
+*/                                                                                                     */                                                                                                  
+public ExtendedMessageFormat(String pattern, Map&lt;String, FormatFactory&gt; registry) {            | public ExtendedMessageFormat(String pattern, Map&lt;String, ? extends FormatFactory&gt; registry) { 
+this(pattern, Locale.getDefault(), registry);                                                          this(pattern, Locale.getDefault(), registry);                                                       
+}                                                                                                      }                                                                                                   

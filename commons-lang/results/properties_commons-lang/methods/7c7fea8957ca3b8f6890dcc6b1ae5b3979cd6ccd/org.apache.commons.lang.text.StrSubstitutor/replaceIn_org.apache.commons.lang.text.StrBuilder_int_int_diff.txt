@@ -1,0 +1,18 @@
+/**
+ * Replaces all the occurrences of variables within the given source
+ * builder with their matching values from the resolver.
+ * <p>
+ * Only the specified portion of the builder will be processed.
+ * The rest of the builder is not processed, but it is not deleted.
+ *
+ * @param source  the builder to replace in, null returns zero
+ * @param offset  the start offset within the array, must be valid
+ * @param length  the length within the builder to be processed, must be valid
+ * @return true if altered
+ */
+public boolean replaceIn(StrBuilder source, int offset, int length) {
+    if (source == null) {
+        return false;
+    }
+    return substitute(source, offset, length);
+}

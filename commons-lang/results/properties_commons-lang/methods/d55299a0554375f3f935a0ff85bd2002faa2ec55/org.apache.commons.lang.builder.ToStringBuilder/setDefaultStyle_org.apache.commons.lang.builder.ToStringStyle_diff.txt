@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Sets the default &lt;code&gt;ToStringStyle&lt;/code&gt; to use.&lt;/p&gt;                   * &lt;p&gt;Sets the default &lt;code&gt;ToStringStyle&lt;/code&gt; to use.&lt;/p&gt;                
+*                                                                                                      *                                                                                                   
+                                                                                                     | * &lt;p&gt;This method sets a singleton default value, typically for the whole JVM.                 
+                                                                                                     | * Changing this default should generally only be done during application startup.                   
+                                                                                                     | * It is recommended to pass a &lt;code&gt;ToStringStyle&lt;/code&gt; to the constructor instead     
+                                                                                                     | * of changing this global default.&lt;/p&gt;                                                        
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;This method is thread-safe, as a &lt;code&gt;volatile&lt;/code variable is used internall
+                                                                                                     | *                                                                                                   
+* @param style  the default &lt;code&gt;ToStringStyle&lt;/code&gt;                                     * @param style  the default &lt;code&gt;ToStringStyle&lt;/code&gt;                                  
+* @throws IllegalArgumentException if the style is &lt;code&gt;null&lt;/code&gt;                       * @throws IllegalArgumentException if the style is &lt;code&gt;null&lt;/code&gt;                    
+*/                                                                                                     */                                                                                                  
+public static void setDefaultStyle(ToStringStyle style) {                                              public static void setDefaultStyle(ToStringStyle style) {                                           
+if (style == null) {                                                                                   if (style == null) {                                                                                
+throw new IllegalArgumentException("The style must not be null");                                      throw new IllegalArgumentException("The style must not be null");                                   
+}                                                                                                      }                                                                                                   
+defaultStyle = style;                                                                                  defaultStyle = style;                                                                               
+}                                                                                                      }                                                                                                   

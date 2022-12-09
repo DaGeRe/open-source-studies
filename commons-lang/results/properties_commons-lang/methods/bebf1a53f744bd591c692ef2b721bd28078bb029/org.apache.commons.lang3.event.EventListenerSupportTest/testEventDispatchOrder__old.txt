@@ -1,0 +1,12 @@
+public void testEventDispatchOrder() {
+    EventListenerSupport<ActionListener> listenerSupport = EventListenerSupport.create(ActionListener.class);
+    final List<ActionListener> calledListeners = new ArrayList<ActionListener>();
+    final ActionListener listener1 = createListener(calledListeners);
+    final ActionListener listener2 = createListener(calledListeners);
+    listenerSupport.addListener(listener1);
+    listenerSupport.addListener(listener2);
+    listenerSupport.fire().actionPerformed(new ActionEvent("Hello", 0, "Hello"));
+    assertEquals(calledListeners.size(), 2);
+    assertSame(calledListeners.get(0), listener1);
+    assertSame(calledListeners.get(1), listener2);
+}

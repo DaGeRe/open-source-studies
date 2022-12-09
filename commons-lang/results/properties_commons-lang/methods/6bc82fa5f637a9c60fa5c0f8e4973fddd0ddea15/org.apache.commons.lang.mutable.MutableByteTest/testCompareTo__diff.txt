@@ -1,0 +1,11 @@
+public void testCompareTo() {
+    final MutableByte mutNum = new MutableByte((byte) 0);
+    assertEquals((byte) 0, mutNum.compareTo(new MutableByte((byte) 0)));
+    assertEquals((byte) +1, mutNum.compareTo(new MutableByte((byte) -1)));
+    assertEquals((byte) -1, mutNum.compareTo(new MutableByte((byte) 1)));
+    try {
+        mutNum.compareTo(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

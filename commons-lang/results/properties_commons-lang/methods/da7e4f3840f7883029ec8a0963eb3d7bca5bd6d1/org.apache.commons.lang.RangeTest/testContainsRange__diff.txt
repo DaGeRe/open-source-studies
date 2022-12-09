@@ -1,0 +1,23 @@
+                                                                                                     | // --------------------------------------------------------------------------                       
+public void testContainsRange() {                                                                      public void testContainsRange() {                                                                   
+// null handling                                                                                       // null handling                                                                                    
+assertFalse(intRange.containsRange(null));                                                             assertFalse(intRange.containsRange(null));                                                          
+// easy inside range                                                                                   // easy inside range                                                                                
+assertTrue(intRange.containsRange(new Range(12, 18)));                                                 assertTrue(intRange.containsRange(new Range(12, 18)));                                              
+// outside range on each side                                                                          // outside range on each side                                                                       
+assertFalse(intRange.containsRange(new Range(32, 45)));                                                assertFalse(intRange.containsRange(new Range(32, 45)));                                             
+assertFalse(intRange.containsRange(new Range(2, 8)));                                                  assertFalse(intRange.containsRange(new Range(2, 8)));                                               
+// equals range                                                                                        // equals range                                                                                     
+assertTrue(intRange.containsRange(new Range(10, 20)));                                                 assertTrue(intRange.containsRange(new Range(10, 20)));                                              
+// overlaps                                                                                            // overlaps                                                                                         
+assertFalse(intRange.containsRange(new Range(9, 14)));                                                 assertFalse(intRange.containsRange(new Range(9, 14)));                                              
+assertFalse(intRange.containsRange(new Range(16, 21)));                                                assertFalse(intRange.containsRange(new Range(16, 21)));                                             
+// touches lower boundary                                                                              // touches lower boundary                                                                           
+assertTrue(intRange.containsRange(new Range(10, 19)));                                                 assertTrue(intRange.containsRange(new Range(10, 19)));                                              
+assertFalse(intRange.containsRange(new Range(10, 21)));                                                assertFalse(intRange.containsRange(new Range(10, 21)));                                             
+// touches upper boundary                                                                              // touches upper boundary                                                                           
+assertTrue(intRange.containsRange(new Range(11, 20)));                                                 assertTrue(intRange.containsRange(new Range(11, 20)));                                              
+assertFalse(intRange.containsRange(new Range(9, 20)));                                                 assertFalse(intRange.containsRange(new Range(9, 20)));                                              
+// negative                                                                                            // negative                                                                                         
+assertFalse(intRange.containsRange(new Range(-11, -18)));                                              assertFalse(intRange.containsRange(new Range(-11, -18)));                                           
+}                                                                                                      }                                                                                                   

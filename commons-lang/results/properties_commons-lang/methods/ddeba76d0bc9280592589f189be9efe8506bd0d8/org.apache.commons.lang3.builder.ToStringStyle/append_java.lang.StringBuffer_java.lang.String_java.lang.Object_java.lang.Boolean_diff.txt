@@ -1,0 +1,21 @@
+// ----------------------------------------------------------------------------
+/**
+ * <p>Append to the <code>toString</code> an <code>Object</code>
+ * value, printing the full <code>toString</code> of the
+ * <code>Object</code> passed in.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param fieldName  the field name
+ * @param value  the value to add to the <code>toString</code>
+ * @param fullDetail  <code>true</code> for detail, <code>false</code>
+ *  for summary info, <code>null</code> for style decides
+ */
+public void append(StringBuffer buffer, String fieldName, Object value, Boolean fullDetail) {
+    appendFieldStart(buffer, fieldName);
+    if (value == null) {
+        appendNullText(buffer, fieldName);
+    } else {
+        appendInternal(buffer, fieldName, value, isFullDetail(fullDetail));
+    }
+    appendFieldEnd(buffer, fieldName);
+}

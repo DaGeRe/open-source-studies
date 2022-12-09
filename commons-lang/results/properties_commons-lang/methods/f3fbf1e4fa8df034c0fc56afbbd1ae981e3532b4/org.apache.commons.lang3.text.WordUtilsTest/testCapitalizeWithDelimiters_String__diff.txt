@@ -1,0 +1,15 @@
+public void testCapitalizeWithDelimiters_String() {
+    assertEquals(null, WordUtils.capitalize(null, null));
+    assertEquals("", WordUtils.capitalize("", new char[0]));
+    assertEquals("  ", WordUtils.capitalize("  ", new char[0]));
+    char[] chars = new char[] { '-', '+', ' ', '@' };
+    assertEquals("I", WordUtils.capitalize("I", chars));
+    assertEquals("I", WordUtils.capitalize("i", chars));
+    assertEquals("I-Am Here+123", WordUtils.capitalize("i-am here+123", chars));
+    assertEquals("I Am+Here-123", WordUtils.capitalize("I Am+Here-123", chars));
+    assertEquals("I+Am-HERE 123", WordUtils.capitalize("i+am-HERE 123", chars));
+    assertEquals("I-AM HERE+123", WordUtils.capitalize("I-AM HERE+123", chars));
+    chars = new char[] { '.' };
+    assertEquals("I aM.Fine", WordUtils.capitalize("i aM.fine", chars));
+    assertEquals("I Am.fine", WordUtils.capitalize("i am.fine", null));
+}

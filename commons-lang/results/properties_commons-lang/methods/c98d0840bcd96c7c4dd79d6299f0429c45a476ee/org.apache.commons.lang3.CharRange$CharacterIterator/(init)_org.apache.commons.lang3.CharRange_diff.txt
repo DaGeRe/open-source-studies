@@ -1,0 +1,23 @@
+public CharacterIterator(CharRange r) {                                                              | /**                                                                                                 
+                                                                                                     | * Construct a new iterator for the character range.                                                 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param r The character range                                                                      
+                                                                                                     | */                                                                                                  
+                                                                                                     | private CharacterIterator(CharRange r) {                                                            
+range = r;                                                                                             range = r;                                                                                          
+hasNext = true;                                                                                        hasNext = true;                                                                                     
+if (range.negated) {                                                                                   if (range.negated) {                                                                                
+if (range.start == 0) {                                                                                if (range.start == 0) {                                                                             
+if (range.end == Character.MAX_VALUE) {                                                                if (range.end == Character.MAX_VALUE) {                                                             
+// This range is an empty set                                                                          // This range is an empty set                                                                       
+hasNext = false;                                                                                       hasNext = false;                                                                                    
+} else {                                                                                               } else {                                                                                            
+current = (char) (range.end + 1);                                                                      current = (char) (range.end + 1);                                                                   
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+current = 0;                                                                                           current = 0;                                                                                        
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+current = range.start;                                                                                 current = range.start;                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

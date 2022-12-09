@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------
+/**
+ * Appends a separator if the builder is currently non-empty.
+ * Appending a null separator will have no effect.
+ * The separator is appended using {@link #append(String)}.
+ * <p>
+ * This method is useful for adding a separator each time around the
+ * loop except the first.
+ * <pre>
+ * for (Iterator it = list.iterator(); it.hasNext(); ) {
+ *   appendSeparator(",");
+ *   append(it.next());
+ * }
+ * </pre>
+ * Note that for this simple example, you should use
+ * {@link #appendWithSeparators(Collection, String)}.
+ *
+ * @param separator  the separator to use, null means no separator
+ * @return this, to enable chaining
+ * @since 2.3
+ */
+public StrBuilder appendSeparator(String separator) {
+    if (separator != null && size() > 0) {
+        append(separator);
+    }
+    return this;
+}

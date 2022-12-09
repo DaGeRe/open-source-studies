@@ -1,0 +1,13 @@
+/**
+ * Test a built in format for the specified Locales, plus <code>null</code> Locale.
+ * @param pattern MessageFormat pattern
+ * @param registry FormatFactory registry to use
+ * @param args MessageFormat arguments
+ * @param locales to test
+ */
+private void checkBuiltInFormat(String pattern, Map registry, Object[] args, Locale[] locales) {
+    checkBuiltInFormat(pattern, registry, args, (Locale) null);
+    for (int i = 0; i < locales.length; i++) {
+        checkBuiltInFormat(pattern, registry, args, locales[i]);
+    }
+}

@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+@Test                                                                                                  @Test                                                                                               
+public void testConstructor() {                                                                        public void testConstructor() {                                                                     
+assertNotNull(new NumberUtils());                                                                      assertNotNull(new NumberUtils());                                                                   
+Constructor&lt;?&gt;[] cons = NumberUtils.class.getDeclaredConstructors();                             Constructor&lt;?&gt;[] cons = NumberUtils.class.getDeclaredConstructors();                          
+assertEquals(1, cons.length);                                                                          assertEquals(1, cons.length);                                                                       
+assertEquals(true, Modifier.isPublic(cons[0].getModifiers()));                                       | assertTrue(Modifier.isPublic(cons[0].getModifiers()));                                              
+assertEquals(true, Modifier.isPublic(NumberUtils.class.getModifiers()));                             | assertTrue(Modifier.isPublic(NumberUtils.class.getModifiers()));                                    
+assertEquals(false, Modifier.isFinal(NumberUtils.class.getModifiers()));                             | assertFalse(Modifier.isFinal(NumberUtils.class.getModifiers()));                                    
+}                                                                                                      }                                                                                                   

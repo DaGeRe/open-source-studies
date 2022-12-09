@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Finds a &lt;code&gt;Throwable&lt;/code&gt; for known types.&lt;/p&gt;                       * &lt;p&gt;Finds a &lt;code&gt;Throwable&lt;/code&gt; for known types.&lt;/p&gt;                    
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Uses &lt;code&gt;instanceof&lt;/code&gt; checks to examine the exception,                   * &lt;p&gt;Uses &lt;code&gt;instanceof&lt;/code&gt; checks to examine the exception,                
+* looking for well known types which could contain chained or                                          * looking for well known types which could contain chained or                                       
+* wrapped exceptions.&lt;/p&gt;                                                                        * wrapped exceptions.&lt;/p&gt;                                                                     
+*                                                                                                      *                                                                                                   
+* @param throwable  the exception to examine                                                           * @param throwable  the exception to examine                                                        
+* @return the wrapped exception, or &lt;code&gt;null&lt;/code&gt; if not found                         * @return the wrapped exception, or &lt;code&gt;null&lt;/code&gt; if not found                      
+*/                                                                                                     */                                                                                                  
+private static Throwable getCauseUsingWellKnownTypes(Throwable throwable) {                            private static Throwable getCauseUsingWellKnownTypes(Throwable throwable) {                         
+if (throwable instanceof Nestable) {                                                                 | if (throwable instanceof SQLException) {                                                            
+return ((Nestable) throwable).getCause();                                                            |                                                                                                     
+} else if (throwable instanceof SQLException) {                                                      |                                                                                                     
+return ((SQLException) throwable).getNextException();                                                  return ((SQLException) throwable).getNextException();                                               
+} else if (throwable instanceof InvocationTargetException) {                                           } else if (throwable instanceof InvocationTargetException) {                                        
+return ((InvocationTargetException) throwable).getTargetException();                                   return ((InvocationTargetException) throwable).getTargetException();                                
+} else {                                                                                               } else {                                                                                            
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

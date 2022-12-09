@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Converts the specified wrapper class to its corresponding primitive                         * &lt;p&gt;Converts the specified wrapper class to its corresponding primitive                      
+* class.&lt;/p&gt;                                                                                     * class.&lt;/p&gt;                                                                                  
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method is the counter part of &lt;code&gt;primitiveToWrapper()&lt;/code&gt;.           * &lt;p&gt;This method is the counter part of &lt;code&gt;primitiveToWrapper()&lt;/code&gt;.        
+* If the passed in class is a wrapper class for a primitive type, this                                 * If the passed in class is a wrapper class for a primitive type, this                              
+* primitive type will be returned (e.g. &lt;code&gt;Integer.TYPE&lt;/code&gt; for                      * primitive type will be returned (e.g. &lt;code&gt;Integer.TYPE&lt;/code&gt; for                   
+* &lt;code&gt;Integer.class&lt;/code&gt;). For other classes, or if the parameter is                   * &lt;code&gt;Integer.class&lt;/code&gt;). For other classes, or if the parameter is                
+* &lt;b&gt;null&lt;/b&gt;, the return value is &lt;b&gt;null&lt;/b&gt;.&lt;/p&gt;                      * &lt;b&gt;null&lt;/b&gt;, the return value is &lt;b&gt;null&lt;/b&gt;.&lt;/p&gt;                   
+*                                                                                                      *                                                                                                   
+* @param cls the class to convert, may be &lt;b&gt;null&lt;/b&gt;                                      * @param cls the class to convert, may be &lt;b&gt;null&lt;/b&gt;                                   
+* @return the corresponding primitive type if &lt;code&gt;cls&lt;/code&gt; is a                        * @return the corresponding primitive type if &lt;code&gt;cls&lt;/code&gt; is a                     
+* wrapper class, &lt;b&gt;null&lt;/b&gt; otherwise                                                     * wrapper class, &lt;b&gt;null&lt;/b&gt; otherwise                                                  
+* @see #primitiveToWrapper(Class)                                                                      * @see #primitiveToWrapper(Class)                                                                   
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+*/                                                                                                     */                                                                                                  
+public static Class wrapperToPrimitive(Class cls) {                                                  | public static Class&lt;?&gt; wrapperToPrimitive(Class&lt;?&gt; cls) {                               
+return (Class) wrapperPrimitiveMap.get(cls);                                                         | return wrapperPrimitiveMap.get(cls);                                                                
+}                                                                                                      }                                                                                                   

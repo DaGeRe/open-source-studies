@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+// cast is not really needed, keep for consistency                                                     // cast is not really needed, keep for consistency                                                  
+@SuppressWarnings("cast")                                                                              @SuppressWarnings("cast")                                                                           
+public void testDouble() {                                                                             public void testDouble() {                                                                          
+assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((double) 0d).toHashCode());                   assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((double) 0d).toHashCode());                
+double d = 1234567.89;                                                                                 double d = 1234567.89;                                                                              
+long l = Double.doubleToLongBits(d);                                                                   long l = Double.doubleToLongBits(d);                                                                
+assertEquals(17 * 37 + (int) (l ^ (l &gt;&gt; 32)), new HashCodeBuilder(17, 37).append(d).toHashCode | assertEquals(17 * 37 + (int) (l ^ l &gt;&gt; 32), new HashCodeBuilder(17, 37).append(d).toHashCode()
+}                                                                                                      }                                                                                                   

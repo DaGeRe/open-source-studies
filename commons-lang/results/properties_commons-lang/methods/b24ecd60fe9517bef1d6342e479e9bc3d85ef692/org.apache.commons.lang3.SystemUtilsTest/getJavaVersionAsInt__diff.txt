@@ -1,0 +1,31 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Gets the Java version number as an &lt;code&gt;int&lt;/code&gt;.&lt;/p&gt;                |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;Example return values:&lt;/p&gt;                                                          |                                                                                                     
+* &lt;ul&gt;                                                                                         |                                                                                                     
+*  &lt;li&gt;&lt;code&gt;120&lt;/code&gt; for JDK 1.2                                                |                                                                                                     
+*  &lt;li&gt;&lt;code&gt;131&lt;/code&gt; for JDK 1.3.1                                              |                                                                                                     
+* &lt;/ul&gt;                                                                                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;Patch releases are not reported.                                                          |                                                                                                     
+* Zero is returned if {@link #JAVA_VERSION_TRIMMED} is &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;      |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @return the version, for example 131 for JDK 1.3.1                                                 |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private int getJavaVersionAsInt() {                                                                  |                                                                                                     
+if (JAVA_VERSION == null) {                                                                          |                                                                                                     
+return 0;                                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+String str = JAVA_VERSION_TRIMMED.substring(0, 1);                                                   |                                                                                                     
+str = str + JAVA_VERSION_TRIMMED.substring(2, 3);                                                    |                                                                                                     
+if (JAVA_VERSION_TRIMMED.length() &gt;= 5) {                                                         |                                                                                                     
+str = str + JAVA_VERSION_TRIMMED.substring(4, 5);                                                    |                                                                                                     
+} else {                                                                                             |                                                                                                     
+str = str + "0";                                                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     
+try {                                                                                                |                                                                                                     
+return Integer.parseInt(str);                                                                        |                                                                                                     
+} catch (Exception ex) {                                                                             |                                                                                                     
+return 0;                                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,22 @@
+// exclusiveBetween
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate that the specified argument object fall between the two
+ * exclusive values specified; otherwise, throws an exception.</p>
+ *
+ * <pre>Validate.inclusiveBetween(0, 2, 1);</pre>
+ *
+ * @param <T> the type of the argument object
+ * @param start  the exclusive start value, not null
+ * @param end  the exclusive end value, not null
+ * @param value  the object to validate, not null
+ * @throws IllegalArgumentException if the value falls out of the boundaries
+ * @see #exclusiveBetween(Object, Object, Comparable, String, Object...)
+ *
+ * @since 3.0
+ */
+public static <T> void exclusiveBetween(T start, T end, Comparable<T> value) {
+    if (value.compareTo(start) <= 0 || value.compareTo(end) >= 0) {
+        throw new IllegalArgumentException(String.format(DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE, value, start, end));
+    }
+}

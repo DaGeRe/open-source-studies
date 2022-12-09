@@ -1,0 +1,24 @@
+// Boolean utilities                                                                                   // Boolean utilities                                                                                
+// --------------------------------------------------------------------------                          // --------------------------------------------------------------------------                       
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Negates the specified boolean.&lt;/p&gt;                                                    * &lt;p&gt;Negates the specified boolean.&lt;/p&gt;                                                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If {@code null} is passed in, {@code null} will be returned.&lt;/p&gt;                      * &lt;p&gt;If {@code null} is passed in, {@code null} will be returned.&lt;/p&gt;                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;NOTE: This returns null and will throw a NullPointerException if autoboxed to a boolean.    * &lt;p&gt;NOTE: This returns null and will throw a NullPointerException if autoboxed to a boolean. 
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+*   BooleanUtils.negate(Boolean.TRUE)  = Boolean.FALSE;                                                *   BooleanUtils.negate(Boolean.TRUE)  = Boolean.FALSE;                                             
+*   BooleanUtils.negate(Boolean.FALSE) = Boolean.TRUE;                                                 *   BooleanUtils.negate(Boolean.FALSE) = Boolean.TRUE;                                              
+*   BooleanUtils.negate(null)          = null;                                                         *   BooleanUtils.negate(null)          = null;                                                      
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param bool  the Boolean to negate, may be null                                                      * @param bool  the Boolean to negate, may be null                                                   
+* @return the negated Boolean, or {@code null} if {@code null} input                                   * @return the negated Boolean, or {@code null} if {@code null} input                                
+*/                                                                                                     */                                                                                                  
+public static Boolean negate(Boolean bool) {                                                           public static Boolean negate(Boolean bool) {                                                        
+if (bool == null) {                                                                                    if (bool == null) {                                                                                 
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+return (bool.booleanValue() ? Boolean.FALSE : Boolean.TRUE);                                         | return bool.booleanValue() ? Boolean.FALSE : Boolean.TRUE;                                          
+}                                                                                                      }                                                                                                   

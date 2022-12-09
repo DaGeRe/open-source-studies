@@ -1,0 +1,20 @@
+/**
+ * <p>Returns either the passed in CharSequence, or if the CharSequence is
+ * empty or <code>null</code>, the value of <code>defaultStr</code>.</p>
+ *
+ * <pre>
+ * StringUtils.defaultIfEmpty(null, "NULL")  = "NULL"
+ * StringUtils.defaultIfEmpty("", "NULL")    = "NULL"
+ * StringUtils.defaultIfEmpty("bat", "NULL") = "bat"
+ * StringUtils.defaultIfEmpty("", null)      = null
+ * </pre>
+ *
+ * @see StringUtils#defaultString(String, String)
+ * @param str  the CharSequence to check, may be null
+ * @param defaultStr  the default CharSequence to return
+ *  if the input is empty ("") or <code>null</code>, may be null
+ * @return the passed in CharSequence, or the default
+ */
+public static CharSequence defaultIfEmpty(CharSequence str, CharSequence defaultStr) {
+    return StringUtils.isEmpty(str) ? defaultStr : str;
+}

@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------
+public void testSerialization() {
+    CharRange range = new CharRange('a');
+    assertEquals(range, SerializationUtils.clone(range));
+    range = new CharRange('a', 'e');
+    assertEquals(range, SerializationUtils.clone(range));
+    range = new CharRange('a', 'e', true);
+    assertEquals(range, SerializationUtils.clone(range));
+}

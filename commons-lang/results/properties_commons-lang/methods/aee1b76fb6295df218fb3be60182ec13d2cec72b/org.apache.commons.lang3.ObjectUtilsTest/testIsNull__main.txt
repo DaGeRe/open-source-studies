@@ -1,0 +1,8 @@
+// -----------------------------------------------------------------------
+@Test
+public void testIsNull() {
+    Object o = FOO;
+    Object dflt = BAR;
+    assertSame("dflt was not returned when o was null", dflt, ObjectUtils.defaultIfNull(null, dflt));
+    assertSame("dflt was returned when o was not null", o, ObjectUtils.defaultIfNull(o, dflt));
+}

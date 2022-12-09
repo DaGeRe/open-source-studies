@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Sets the field names to exclude.                                                                     * Sets the field names to exclude.                                                                  
+*                                                                                                      *                                                                                                   
+* @param excludeFieldNamesParam                                                                        * @param excludeFieldNamesParam                                                                     
+*            The excludeFieldNames to excluding from toString or &lt;code&gt;null&lt;/code&gt;.        *            The excludeFieldNames to excluding from toString or &lt;code&gt;null&lt;/code&gt;.     
+* @return &lt;code&gt;this&lt;/code&gt;                                                                * @return &lt;code&gt;this&lt;/code&gt;                                                             
+*/                                                                                                     */                                                                                                  
+public ReflectionToStringBuilder setExcludeFieldNames(String[] excludeFieldNamesParam) {             | public ReflectionToStringBuilder&lt;T&gt; setExcludeFieldNames(String[] excludeFieldNamesParam) {   
+if (excludeFieldNamesParam == null) {                                                                  if (excludeFieldNamesParam == null) {                                                               
+this.excludeFieldNames = null;                                                                         this.excludeFieldNames = null;                                                                      
+} else {                                                                                               } else {                                                                                            
+this.excludeFieldNames = toNoNullStringArray(excludeFieldNamesParam);                                  this.excludeFieldNames = toNoNullStringArray(excludeFieldNamesParam);                               
+Arrays.sort(this.excludeFieldNames);                                                                   Arrays.sort(this.excludeFieldNames);                                                                
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

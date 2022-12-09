@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&lt;&gt;Gets a Field value by name. Only the class of the specified                             * &lt;p&lt;&gt;Gets a Field value by name. Only the class of the specified                          
+* object will be considered.                                                                           * object will be considered.                                                                        
+*                                                                                                      *                                                                                                   
+* @param target  the object to reflect, must not be null                                               * @param target  the object to reflect, must not be null                                            
+* @param fieldName  the field name to obtain                                                           * @param fieldName  the field name to obtain                                                        
+* @param forceAccess  whether to break scope restrictions using the                                    * @param forceAccess  whether to break scope restrictions using the                                 
+*  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only             *  &lt;code&gt;setAccessible&lt;/code&gt; method. &lt;code&gt;False&lt;/code&gt; will only          
+*  match public fields.                                                                                *  match public fields.                                                                             
+* @return the Field object                                                                             * @return the Field object                                                                          
+* @throws IllegalArgumentException if &lt;code&gt;target&lt;/code&gt; or &lt;code&gt;fieldName&lt;/c   * @throws IllegalArgumentException if &lt;code&gt;target&lt;/code&gt; or &lt;code&gt;fieldName&lt;/c
+* @throws IllegalAccessException if the field is not made accessible                                   * @throws IllegalAccessException if the field is not made accessible                                
+*/                                                                                                     */                                                                                                  
+public static Object readDeclaredField(Object target, String fieldName, boolean forceAccess) throws    public static Object readDeclaredField(Object target, String fieldName, boolean forceAccess) throws 
+if (target == null) {                                                                                  if (target == null) {                                                                               
+throw new IllegalArgumentException("target object must not be null");                                  throw new IllegalArgumentException("target object must not be null");                               
+}                                                                                                      }                                                                                                   
+Class cls = target.getClass();                                                                       | Class&lt;?&gt; cls = target.getClass();                                                             
+Field field = getDeclaredField(cls, fieldName, forceAccess);                                           Field field = getDeclaredField(cls, fieldName, forceAccess);                                        
+if (field == null) {                                                                                   if (field == null) {                                                                                
+throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName   throw new IllegalArgumentException("Cannot locate declared field " + cls.getName() + "." + fieldName
+}                                                                                                      }                                                                                                   
+// already forced access above, don't repeat it here:                                                  // already forced access above, don't repeat it here:                                               
+return readField(field, target);                                                                       return readField(field, target);                                                                    
+}                                                                                                      }                                                                                                   

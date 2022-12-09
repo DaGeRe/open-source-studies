@@ -1,0 +1,39 @@
+/**
+ * Builds the message containing the contextual information.
+ *
+ * @param baseMessage  the base exception message <b>without</b> context information appended
+ * @return the exception message <b>with</b> context information appended, never null
+ */
+public String getFormattedExceptionMessage(String baseMessage) {
+    StringBuilder buffer = new StringBuilder(256);
+    if (baseMessage != null) {
+        buffer.append(baseMessage);
+    }
+    if (contextValues.size() > 0) {
+        if (buffer.length() > 0) {
+            buffer.append('\n');
+        }
+        buffer.append("Exception Context:\n");
+        Object value;
+        String valueStr;
+        for (final Pair<String, Object> pair : contextValues) {
+            buffer.append("\t[");
+            buffer.append(pair.getKey());
+            buffer.append("=");
+            value = pair.getValue();
+            if (value == null) {
+                buffer.append("null");
+            } else {
+                try {
+                    valueStr = value.toString();
+                } catch (Exception e) {
+                    valueStr = "Exception thrown on toString(): " + ExceptionUtils.getStackTrace(e);
+                }
+                buffer.append(valueStr);
+            }
+            buffer.append("]\n");
+        }
+        buffer.append("---------------------------------");
+    }
+    return buffer.toString();
+}

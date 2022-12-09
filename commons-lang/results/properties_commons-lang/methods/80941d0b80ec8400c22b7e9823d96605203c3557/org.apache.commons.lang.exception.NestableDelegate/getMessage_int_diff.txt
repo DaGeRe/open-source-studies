@@ -1,0 +1,20 @@
+/**
+ * Returns the error message of the <code>Throwable</code> in the chain of <code>Throwable</code>s at the
+ * specified index, numbered from 0.
+ *
+ * @param index
+ *            the index of the <code>Throwable</code> in the chain of <code>Throwable</code>s
+ * @return the error message, or null if the <code>Throwable</code> at the specified index in the chain does not
+ *         contain a message
+ * @throws IndexOutOfBoundsException
+ *             if the <code>index</code> argument is negative or not less than the count of <code>Throwable</code>s
+ *             in the chain
+ * @since 2.0
+ */
+public String getMessage(int index) {
+    Throwable t = this.getThrowable(index);
+    if (Nestable.class.isInstance(t)) {
+        return ((Nestable) t).getMessage(0);
+    }
+    return t.getMessage();
+}

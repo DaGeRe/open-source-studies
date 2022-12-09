@@ -1,0 +1,27 @@
+// notNullElements collection                                                                        |                                                                                                     
+// ---------------------------------------------------------------------------------                 |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          |                                                                                                     
+* if the argument Collection has &lt;code&gt;null&lt;/code&gt; elements or is                        |                                                                                                     
+* &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;                                                           |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* Validate.noNullElements(myCollection, "The collection must not contain null elements");            |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;If the collection is null then the message in the exception is 'The validated object is n |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param collection  the collection to check                                                         |                                                                                                     
+* @param message  the exception message if the collection has                                        |                                                                                                     
+*  &lt;code&gt;null&lt;/code&gt; elements                                                            |                                                                                                     
+* @throws IllegalArgumentException if the collection has                                             |                                                                                                     
+*  &lt;code&gt;null&lt;/code&gt; elements or is &lt;code&gt;null&lt;/code&gt;                        |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static void noNullElements(Collection&lt;?&gt; collection, String message) {                  |                                                                                                     
+Validate.notNull(collection);                                                                        |                                                                                                     
+for (Iterator&lt;?&gt; it = collection.iterator(); it.hasNext(); ) {                                 |                                                                                                     
+if (it.next() == null) {                                                                             |                                                                                                     
+throw new IllegalArgumentException(message);                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

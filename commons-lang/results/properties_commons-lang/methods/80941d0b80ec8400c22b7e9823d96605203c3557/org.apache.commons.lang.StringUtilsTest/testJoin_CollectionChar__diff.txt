@@ -1,0 +1,7 @@
+public void testJoin_CollectionChar() {
+    assertEquals(null, StringUtils.join((Collection) null, ','));
+    assertEquals(TEXT_LIST_CHAR, StringUtils.join(Arrays.asList(ARRAY_LIST), SEPARATOR_CHAR));
+    assertEquals("", StringUtils.join(Arrays.asList(NULL_ARRAY_LIST), SEPARATOR_CHAR));
+    assertEquals("", StringUtils.join(Arrays.asList(EMPTY_ARRAY_LIST), SEPARATOR_CHAR));
+    assertEquals("foo", StringUtils.join(Collections.singleton("foo"), 'x'));
+}

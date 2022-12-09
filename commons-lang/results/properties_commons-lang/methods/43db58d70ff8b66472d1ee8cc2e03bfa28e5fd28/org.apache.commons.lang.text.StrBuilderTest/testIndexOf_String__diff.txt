@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+public void testIndexOf_String() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(0, sb.indexOf("a"));
+    // should work like String#indexOf
+    assertEquals("abab".indexOf("a"), sb.indexOf("a"));
+    assertEquals(0, sb.indexOf("ab"));
+    // should work like String#indexOf
+    assertEquals("abab".indexOf("ab"), sb.indexOf("ab"));
+    assertEquals(1, sb.indexOf("b"));
+    assertEquals("abab".indexOf("b"), sb.indexOf("b"));
+    assertEquals(1, sb.indexOf("ba"));
+    assertEquals("abab".indexOf("ba"), sb.indexOf("ba"));
+    assertEquals(-1, sb.indexOf("z"));
+    assertEquals(-1, sb.indexOf((String) null));
+}

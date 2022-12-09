@@ -1,0 +1,13 @@
+/**
+ * <p>Formats a date/time into a specific pattern in a time zone  and locale.</p>
+ *
+ * @param date  the date to format, not null
+ * @param pattern  the pattern to use to format the date, not null, not null
+ * @param timeZone  the time zone  to use, may be <code>null</code>
+ * @param locale  the locale to use, may be <code>null</code>
+ * @return the formatted date
+ */
+public static String format(Date date, String pattern, TimeZone timeZone, Locale locale) {
+    FastDateFormat df = FastDateFormat.getInstance(pattern, timeZone, locale);
+    return df.format(date);
+}

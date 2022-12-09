@@ -1,0 +1,98 @@
+public void testPow() {
+    Fraction f = null;
+    f = Fraction.getFraction(3, 5);
+    assertEquals(Fraction.ONE, f.pow(0));
+    f = Fraction.getFraction(3, 5);
+    assertSame(f, f.pow(1));
+    assertEquals(f, f.pow(1));
+    f = Fraction.getFraction(3, 5);
+    f = f.pow(2);
+    assertEquals(9, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f = Fraction.getFraction(3, 5);
+    f = f.pow(3);
+    assertEquals(27, f.getNumerator());
+    assertEquals(125, f.getDenominator());
+    f = Fraction.getFraction(3, 5);
+    f = f.pow(-1);
+    assertEquals(5, f.getNumerator());
+    assertEquals(3, f.getDenominator());
+    f = Fraction.getFraction(3, 5);
+    f = f.pow(-2);
+    assertEquals(25, f.getNumerator());
+    assertEquals(9, f.getDenominator());
+    // check unreduced fractions stay that way.
+    f = Fraction.getFraction(6, 10);
+    assertEquals(Fraction.ONE, f.pow(0));
+    f = Fraction.getFraction(6, 10);
+    assertEquals(f, f.pow(1));
+    assertFalse(f.pow(1).equals(Fraction.getFraction(3, 5)));
+    f = Fraction.getFraction(6, 10);
+    f = f.pow(2);
+    assertEquals(9, f.getNumerator());
+    assertEquals(25, f.getDenominator());
+    f = Fraction.getFraction(6, 10);
+    f = f.pow(3);
+    assertEquals(27, f.getNumerator());
+    assertEquals(125, f.getDenominator());
+    f = Fraction.getFraction(6, 10);
+    f = f.pow(-1);
+    assertEquals(10, f.getNumerator());
+    assertEquals(6, f.getDenominator());
+    f = Fraction.getFraction(6, 10);
+    f = f.pow(-2);
+    assertEquals(25, f.getNumerator());
+    assertEquals(9, f.getDenominator());
+    // zero to any positive power is still zero.
+    f = Fraction.getFraction(0, 1231);
+    f = f.pow(1);
+    assertTrue(0 == f.compareTo(Fraction.ZERO));
+    assertEquals(0, f.getNumerator());
+    assertEquals(1231, f.getDenominator());
+    f = f.pow(2);
+    assertTrue(0 == f.compareTo(Fraction.ZERO));
+    assertEquals(0, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    // zero to negative powers should throw an exception
+    try {
+        f = f.pow(-1);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f = f.pow(Integer.MIN_VALUE);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    // one to any power is still one.
+    f = Fraction.getFraction(1, 1);
+    f = f.pow(0);
+    assertEquals(f, Fraction.ONE);
+    f = f.pow(1);
+    assertEquals(f, Fraction.ONE);
+    f = f.pow(-1);
+    assertEquals(f, Fraction.ONE);
+    f = f.pow(Integer.MAX_VALUE);
+    assertEquals(f, Fraction.ONE);
+    f = f.pow(Integer.MIN_VALUE);
+    assertEquals(f, Fraction.ONE);
+    f = Fraction.getFraction(Integer.MAX_VALUE, 1);
+    try {
+        f = f.pow(2);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    // Numerator growing too negative during the pow operation.
+    f = Fraction.getFraction(Integer.MIN_VALUE, 1);
+    try {
+        f = f.pow(3);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    f = Fraction.getFraction(65536, 1);
+    try {
+        f = f.pow(2);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

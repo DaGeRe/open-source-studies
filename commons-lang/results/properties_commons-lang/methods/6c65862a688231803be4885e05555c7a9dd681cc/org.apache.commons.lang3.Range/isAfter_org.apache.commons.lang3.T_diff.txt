@@ -1,0 +1,12 @@
+/**
+ * <p>Checks whether this range is after the specified element.</p>
+ *
+ * @param element  the element to check for, null returns false
+ * @return true if this range is entirely after the specified element
+ */
+public boolean isAfter(T element) {
+    if (element == null) {
+        return false;
+    }
+    return comparator.compare(element, minimum) < 0;
+}

@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a hashCode for the fraction.&lt;/p&gt;                                                 * &lt;p&gt;Gets a hashCode for the fraction.&lt;/p&gt;                                              
+*                                                                                                      *                                                                                                   
+* @return a hash code value for this object                                                            * @return a hash code value for this object                                                         
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public int hashCode() {                                                                                public int hashCode() {                                                                             
+if (hashCode == 0) {                                                                                   if (hashCode == 0) {                                                                                
+// hashcode update should be atomic.                                                                   // hashcode update should be atomic.                                                                
+hashCode = 37 * (37 * 17 + getNumerator()) + getDenominator();                                         hashCode = 37 * (37 * 17 + getNumerator()) + getDenominator();                                      
+}                                                                                                      }                                                                                                   
+return hashCode;                                                                                       return hashCode;                                                                                    
+}                                                                                                      }                                                                                                   

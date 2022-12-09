@@ -1,0 +1,21 @@
+public void testGetChars() {
+    StrBuilder sb = new StrBuilder();
+    char[] input = new char[10];
+    char[] a = sb.getChars(input);
+    assertSame(input, a);
+    assertTrue(Arrays.equals(new char[10], a));
+    sb.append("junit");
+    a = sb.getChars(input);
+    assertSame(input, a);
+    assertTrue(Arrays.equals(new char[] { 'j', 'u', 'n', 'i', 't', 0, 0, 0, 0, 0 }, a));
+    a = sb.getChars(null);
+    assertNotSame(input, a);
+    assertEquals(5, a.length);
+    assertTrue(Arrays.equals("junit".toCharArray(), a));
+    input = new char[5];
+    a = sb.getChars(input);
+    assertSame(input, a);
+    input = new char[4];
+    a = sb.getChars(input);
+    assertNotSame(input, a);
+}

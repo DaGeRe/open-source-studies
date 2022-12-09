@@ -1,0 +1,13 @@
+@Test
+public void testRightPad_StringIntChar() {
+    assertEquals(null, StringUtils.rightPad(null, 5, ' '));
+    assertEquals("     ", StringUtils.rightPad("", 5, ' '));
+    assertEquals("abc  ", StringUtils.rightPad("abc", 5, ' '));
+    assertEquals("abc", StringUtils.rightPad("abc", 2, ' '));
+    assertEquals("abc", StringUtils.rightPad("abc", -1, ' '));
+    assertEquals("abcxx", StringUtils.rightPad("abc", 5, 'x'));
+    // bigger than pad length
+    String str = StringUtils.rightPad("aaa", 10000, 'a');
+    assertEquals(10000, str.length());
+    assertEquals(true, StringUtils.containsOnly(str, new char[] { 'a' }));
+}

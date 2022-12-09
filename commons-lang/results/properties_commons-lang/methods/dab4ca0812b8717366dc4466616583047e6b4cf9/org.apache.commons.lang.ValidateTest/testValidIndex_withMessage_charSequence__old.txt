@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testValidIndex_withMessage_charSequence() {
+    CharSequence str = "Hi";
+    Validate.validIndex(str, 0, "Broken: ");
+    Validate.validIndex(str, 1, "Broken: ");
+    try {
+        Validate.validIndex(str, -1, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: -1", ex.getMessage());
+    }
+    try {
+        Validate.validIndex(str, 2, "Broken: ");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("Broken: 2", ex.getMessage());
+    }
+}

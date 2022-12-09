@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Tests // https://issues.apache.org/jira/browse/LANG-480                                              * Tests // https://issues.apache.org/jira/browse/LANG-480                                           
+*                                                                                                      *                                                                                                   
+* @throws java.io.UnsupportedEncodingException                                                         * @throws java.io.UnsupportedEncodingException                                                      
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testEscapeHtmlHighUnicode() throws java.io.UnsupportedEncodingException {                  public void testEscapeHtmlHighUnicode() throws java.io.UnsupportedEncodingException {               
+// this is the utf8 representation of the character:                                                   // this is the utf8 representation of the character:                                                
+// COUNTING ROD UNIT DIGIT THREE                                                                       // COUNTING ROD UNIT DIGIT THREE                                                                    
+// in unicode                                                                                        | // in Unicode                                                                                       
+// codepoint: U+1D362                                                                                  // codepoint: U+1D362                                                                               
+byte[] data = new byte[] { (byte) 0xF0, (byte) 0x9D, (byte) 0x8D, (byte) 0xA2 };                       byte[] data = new byte[] { (byte) 0xF0, (byte) 0x9D, (byte) 0x8D, (byte) 0xA2 };                    
+String original = new String(data, "UTF8");                                                            String original = new String(data, "UTF8");                                                         
+String escaped = StringEscapeUtils.escapeHtml4(original);                                              String escaped = StringEscapeUtils.escapeHtml4(original);                                           
+assertEquals("High unicode should not have been escaped", original, escaped);                        | assertEquals("High Unicode should not have been escaped", original, escaped);                       
+String unescaped = StringEscapeUtils.unescapeHtml4(escaped);                                           String unescaped = StringEscapeUtils.unescapeHtml4(escaped);                                        
+assertEquals("High unicode should have been unchanged", original, unescaped);                        | assertEquals("High Unicode should have been unchanged", original, unescaped);                       
+// TODO: I think this should hold, needs further investigation                                         // TODO: I think this should hold, needs further investigation                                      
+// String unescapedFromEntity = StringEscapeUtils.unescapeHtml4( "&#119650;" );                        // String unescapedFromEntity = StringEscapeUtils.unescapeHtml4( "&#119650;" );                     
+// assertEquals( "High unicode should have been unescaped", original, unescapedFromEntity);          | // assertEquals( "High Unicode should have been unescaped", original, unescapedFromEntity);         
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,23 @@
+                                                                                                     | @Test                                                                                               
+public void testBetweenWithCompare() {                                                                 public void testBetweenWithCompare() {                                                              
+// TODO add tests with a better comparator                                                             // TODO add tests with a better comparator                                                          
+Comparator&lt;Integer&gt; c = new Comparator&lt;Integer&gt;() {                                        Comparator&lt;Integer&gt; c = new Comparator&lt;Integer&gt;() {                                     
+                                                                                                                                                                                                           
+public int compare(Integer o1, Integer o2) {                                                           public int compare(Integer o1, Integer o2) {                                                        
+// all integers are equal                                                                              // all integers are equal                                                                           
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+Range&lt;Integer&gt; rb = Range.between(-10, 20);                                                      Range&lt;Integer&gt; rb = Range.between(-10, 20);                                                   
+assertFalse("should not contain null", rb.contains(null));                                             assertFalse("should not contain null", rb.contains(null));                                          
+assertTrue("should contain 10", rb.contains(10));                                                      assertTrue("should contain 10", rb.contains(10));                                                   
+assertTrue("should contain -10", rb.contains(-10));                                                    assertTrue("should contain -10", rb.contains(-10));                                                 
+assertFalse("should not contain 21", rb.contains(21));                                                 assertFalse("should not contain 21", rb.contains(21));                                              
+assertFalse("should not contain -11", rb.contains(-11));                                               assertFalse("should not contain -11", rb.contains(-11));                                            
+rb = Range.between(-10, 20, c);                                                                        rb = Range.between(-10, 20, c);                                                                     
+assertFalse("should not contain null", rb.contains(null));                                             assertFalse("should not contain null", rb.contains(null));                                          
+assertTrue("should contain 10", rb.contains(10));                                                      assertTrue("should contain 10", rb.contains(10));                                                   
+assertTrue("should contain -10", rb.contains(-10));                                                    assertTrue("should contain -10", rb.contains(-10));                                                 
+assertTrue("should contain 21", rb.contains(21));                                                      assertTrue("should contain 21", rb.contains(21));                                                   
+assertTrue("should contain -11", rb.contains(-11));                                                    assertTrue("should contain -11", rb.contains(-11));                                                 
+}                                                                                                      }                                                                                                   

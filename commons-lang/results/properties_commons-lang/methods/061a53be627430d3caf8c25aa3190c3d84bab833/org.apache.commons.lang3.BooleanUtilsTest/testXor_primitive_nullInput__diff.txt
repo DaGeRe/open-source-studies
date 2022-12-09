@@ -1,0 +1,11 @@
+// testXor                                                                                             // testXor                                                                                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+@Test                                                                                                | @Test(expected = IllegalArgumentException.class)                                                    
+public void testXor_primitive_nullInput() {                                                            public void testXor_primitive_nullInput() {                                                         
+final boolean[] b = null;                                                                            | BooleanUtils.xor((boolean[]) null);                                                                 
+try {                                                                                                |                                                                                                     
+BooleanUtils.xor(b);                                                                                 |                                                                                                     
+fail("Exception was not thrown for null input.");                                                    |                                                                                                     
+} catch (IllegalArgumentException ex) {                                                              |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

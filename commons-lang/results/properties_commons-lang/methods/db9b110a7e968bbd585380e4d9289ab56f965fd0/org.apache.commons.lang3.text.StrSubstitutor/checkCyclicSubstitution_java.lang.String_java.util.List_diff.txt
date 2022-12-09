@@ -1,0 +1,17 @@
+/**
+ * Checks if the specified variable is already in the stack (list) of variables.
+ *
+ * @param varName  the variable name to check
+ * @param priorVariables  the list of prior variables
+ */
+private void checkCyclicSubstitution(String varName, List<String> priorVariables) {
+    if (priorVariables.contains(varName) == false) {
+        return;
+    }
+    StrBuilder buf = new StrBuilder(256);
+    buf.append("Infinite loop in property interpolation of ");
+    buf.append(priorVariables.remove(0));
+    buf.append(": ");
+    buf.appendWithSeparators(priorVariables, "->");
+    throw new IllegalStateException(buf.toString());
+}

@@ -1,0 +1,22 @@
+/**
+ * <p>Converts a String to upper case as per {@link String#toUpperCase(Locale)}.</p>
+ *
+ * <p>A <code>null</code> input String returns <code>null</code>.</p>
+ *
+ * <pre>
+ * StringUtils.upperCase(null, Locale.ENGLISH)  = null
+ * StringUtils.upperCase("", Locale.ENGLISH)    = ""
+ * StringUtils.upperCase("aBc", Locale.ENGLISH) = "ABC"
+ * </pre>
+ *
+ * @param str  the String to upper case, may be null
+ * @param locale  the locale that defines the case transformation rules, must not be null
+ * @return the upper cased String, <code>null</code> if null String input
+ * @since 3.0
+ */
+public static String upperCase(String str, Locale locale) {
+    if (str == null) {
+        return null;
+    }
+    return str.toUpperCase(locale);
+}

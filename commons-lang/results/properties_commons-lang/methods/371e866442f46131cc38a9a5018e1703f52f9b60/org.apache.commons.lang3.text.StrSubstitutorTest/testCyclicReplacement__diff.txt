@@ -1,0 +1,22 @@
+/**
+ * Tests a cyclic replace operation.
+ * The cycle should be detected and cause an exception to be thrown.
+ */
+public void testCyclicReplacement() {
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("animal", "${critter}");
+    map.put("target", "${pet}");
+    map.put("pet", "${petCharacteristic} dog");
+    map.put("petCharacteristic", "lazy");
+    map.put("critter", "${critterSpeed} ${critterColor} ${critterType}");
+    map.put("critterSpeed", "quick");
+    map.put("critterColor", "brown");
+    map.put("critterType", "${animal}");
+    StrSubstitutor sub = new StrSubstitutor(map);
+    try {
+        sub.replace("The ${animal} jumps over the ${target}.");
+        fail("Cyclic replacement was not detected!");
+    } catch (IllegalStateException ex) {
+        // expected
+    }
+}

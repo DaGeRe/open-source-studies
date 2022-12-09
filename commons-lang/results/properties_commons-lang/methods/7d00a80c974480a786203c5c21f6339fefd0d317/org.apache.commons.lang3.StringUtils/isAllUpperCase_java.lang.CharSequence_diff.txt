@@ -1,0 +1,31 @@
+/**
+ * <p>Checks if the CharSequence contains only uppercase characters.</p>
+ *
+ * <p>{@code null} will return {@code false}.
+ * An empty String (length()=0) will return {@code false}.</p>
+ *
+ * <pre>
+ * StringUtils.isAllUpperCase(null)   = false
+ * StringUtils.isAllUpperCase("")     = false
+ * StringUtils.isAllUpperCase("  ")   = false
+ * StringUtils.isAllUpperCase("ABC")  = true
+ * StringUtils.isAllUpperCase("aBC") = false
+ * </pre>
+ *
+ * @param cs the CharSequence to check, may be null
+ * @return {@code true} if only contains uppercase characters, and is non-null
+ * @since 2.5
+ * @since 3.0 Changed signature from isAllUpperCase(String) to isAllUpperCase(CharSequence)
+ */
+public static boolean isAllUpperCase(CharSequence cs) {
+    if (cs == null || isEmpty(cs)) {
+        return false;
+    }
+    int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if (Character.isUpperCase(cs.charAt(i)) == false) {
+            return false;
+        }
+    }
+    return true;
+}

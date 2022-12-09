@@ -1,0 +1,15 @@
+// Package name
+// ----------------------------------------------------------------------
+/**
+ * <p>Gets the package name of an <code>Object</code>.</p>
+ *
+ * @param object  the class to get the package name for, may be null
+ * @param valueIfNull  the value to return if null
+ * @return the package name of the object, or the null value
+ */
+public static String getPackageName(Object object, String valueIfNull) {
+    if (object == null) {
+        return valueIfNull;
+    }
+    return getPackageName(object.getClass().getName());
+}

@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testNullToEmptyBoolean() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_BOOLEAN_ARRAY, ArrayUtils.nullToEmpty((boolean[]) null));
+    // Test valid array handling
+    boolean[] original = new boolean[] { true, false };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    boolean[] empty = new boolean[] {};
+    boolean[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_BOOLEAN_ARRAY, result);
+    assertTrue(empty != result);
+}

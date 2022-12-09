@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* XXX Default access superclass workaround                                                             * XXX Default access superclass workaround                                                          
+*                                                                                                      *                                                                                                   
+* When a public class has a default access superclass with public                                    | * When a public class has a default access superclass with public members,                          
+* members, these members are accessible. Calling them from                                           | * these members are accessible. Calling them from compiled code works fine.                         
+* compiled code works fine. Unfortunately, on some JVMs, using reflection to invoke these            | * Unfortunately, on some JVMs, using reflection to invoke these members                             
+* members seems to (wrongly) to prevent access even when the                                         | * seems to (wrongly) to prevent access even when the modifer is public.                             
+* modifer is public. Calling setAccessible(true) solves the problem                                  | * Calling setAccessible(true) solves the problem but will only work from                            
+* but will only work from sufficiently privileged code. Better                                       | * sufficiently privileged code. Better workarounds would be gratefully                              
+* workarounds would be gratefully accepted.                                                          | * accepted.                                                                                         
+* @param o the AccessibleObject to set as accessible                                                   * @param o the AccessibleObject to set as accessible                                                
+*/                                                                                                     */                                                                                                  
+static void setAccessibleWorkaround(AccessibleObject o) {                                              static void setAccessibleWorkaround(AccessibleObject o) {                                           
+if (o == null || o.isAccessible()) {                                                                   if (o == null || o.isAccessible()) {                                                                
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+Member m = (Member) o;                                                                                 Member m = (Member) o;                                                                              
+if (Modifier.isPublic(m.getModifiers()) && isPackageAccess(m.getDeclaringClass().getModifiers())) {    if (Modifier.isPublic(m.getModifiers()) && isPackageAccess(m.getDeclaringClass().getModifiers())) { 
+try {                                                                                                  try {                                                                                               
+o.setAccessible(true);                                                                                 o.setAccessible(true);                                                                              
+} catch (SecurityException e) {                                                                        } catch (SecurityException e) {                                                                     
+// ignore in favor of subsequent IllegalAccessException                                                // ignore in favor of subsequent IllegalAccessException                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

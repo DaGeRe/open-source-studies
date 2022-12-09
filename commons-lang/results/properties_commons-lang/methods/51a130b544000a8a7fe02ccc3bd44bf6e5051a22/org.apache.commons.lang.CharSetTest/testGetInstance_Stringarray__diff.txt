@@ -1,0 +1,7 @@
+// -----------------------------------------------------------------------
+public void testGetInstance_Stringarray() {
+    assertEquals(null, CharSet.getInstance((String[]) null));
+    assertEquals("[]", CharSet.getInstance(new String[0]).toString());
+    assertEquals("[]", CharSet.getInstance(new String[] { null }).toString());
+    assertEquals("[a-e]", CharSet.getInstance(new String[] { "a-e" }).toString());
+}

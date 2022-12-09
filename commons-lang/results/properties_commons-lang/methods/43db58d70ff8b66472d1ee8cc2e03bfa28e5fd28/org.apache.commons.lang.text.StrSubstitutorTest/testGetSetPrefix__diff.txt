@@ -1,0 +1,28 @@
+/**
+ * Tests get set.
+ */
+public void testGetSetPrefix() {
+    StrSubstitutor sub = new StrSubstitutor();
+    assertEquals(true, sub.getVariablePrefixMatcher() instanceof StrMatcher.StringMatcher);
+    sub.setVariablePrefix('<');
+    assertEquals(true, sub.getVariablePrefixMatcher() instanceof StrMatcher.CharMatcher);
+    sub.setVariablePrefix("<<");
+    assertEquals(true, sub.getVariablePrefixMatcher() instanceof StrMatcher.StringMatcher);
+    try {
+        sub.setVariablePrefix((String) null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+        // expected
+    }
+    assertEquals(true, sub.getVariablePrefixMatcher() instanceof StrMatcher.StringMatcher);
+    StrMatcher matcher = StrMatcher.commaMatcher();
+    sub.setVariablePrefixMatcher(matcher);
+    assertSame(matcher, sub.getVariablePrefixMatcher());
+    try {
+        sub.setVariablePrefixMatcher((StrMatcher) null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+        // expected
+    }
+    assertSame(matcher, sub.getVariablePrefixMatcher());
+}

@@ -1,0 +1,14 @@
+/**
+ * <p>Append to the <code>toString</code> the end of data indicator.</p>
+ *
+ * @param buffer  the <code>StringBuffer</code> to populate
+ * @param object  the <code>Object</code> to build a
+ *  <code>toString</code> for.
+ */
+public void appendEnd(StringBuffer buffer, Object object) {
+    if (this.fieldSeparatorAtEnd == false) {
+        removeLastFieldSeparator(buffer);
+    }
+    appendContentEnd(buffer);
+    unregister(object);
+}

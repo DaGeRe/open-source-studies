@@ -1,0 +1,29 @@
+                                                                                                     | @Test                                                                                               
+public void testSplit_StringString_StringStringInt() {                                                 public void testSplit_StringString_StringStringInt() {                                              
+assertEquals(null, StringUtils.split(null, "."));                                                      assertEquals(null, StringUtils.split(null, "."));                                                   
+assertEquals(null, StringUtils.split(null, ".", 3));                                                   assertEquals(null, StringUtils.split(null, ".", 3));                                                
+assertEquals(0, StringUtils.split("", ".").length);                                                    assertEquals(0, StringUtils.split("", ".").length);                                                 
+assertEquals(0, StringUtils.split("", ".", 3).length);                                                 assertEquals(0, StringUtils.split("", ".", 3).length);                                              
+innerTestSplit('.', ".", ' ');                                                                         innerTestSplit('.', ".", ' ');                                                                      
+innerTestSplit('.', ".", ',');                                                                         innerTestSplit('.', ".", ',');                                                                      
+innerTestSplit('.', ".,", 'x');                                                                        innerTestSplit('.', ".,", 'x');                                                                     
+for (int i = 0; i &lt; WHITESPACE.length(); i++) {                                                     for (int i = 0; i &lt; WHITESPACE.length(); i++) {                                                  
+for (int j = 0; j &lt; NON_WHITESPACE.length(); j++) {                                                 for (int j = 0; j &lt; NON_WHITESPACE.length(); j++) {                                              
+innerTestSplit(WHITESPACE.charAt(i), null, NON_WHITESPACE.charAt(j));                                  innerTestSplit(WHITESPACE.charAt(i), null, NON_WHITESPACE.charAt(j));                               
+innerTestSplit(WHITESPACE.charAt(i), String.valueOf(WHITESPACE.charAt(i)), NON_WHITESPACE.charAt(j))   innerTestSplit(WHITESPACE.charAt(i), String.valueOf(WHITESPACE.charAt(i)), NON_WHITESPACE.charAt(j))
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+String[] results;                                                                                      String[] results;                                                                                   
+String[] expectedResults = { "ab", "de fg" };                                                          String[] expectedResults = { "ab", "de fg" };                                                       
+results = StringUtils.split("ab   de fg", null, 2);                                                    results = StringUtils.split("ab   de fg", null, 2);                                                 
+assertEquals(expectedResults.length, results.length);                                                  assertEquals(expectedResults.length, results.length);                                               
+for (int i = 0; i &lt; expectedResults.length; i++) {                                                  for (int i = 0; i &lt; expectedResults.length; i++) {                                               
+assertEquals(expectedResults[i], results[i]);                                                          assertEquals(expectedResults[i], results[i]);                                                       
+}                                                                                                      }                                                                                                   
+String[] expectedResults2 = { "ab", "cd:ef" };                                                         String[] expectedResults2 = { "ab", "cd:ef" };                                                      
+results = StringUtils.split("ab:cd:ef", ":", 2);                                                       results = StringUtils.split("ab:cd:ef", ":", 2);                                                    
+assertEquals(expectedResults2.length, results.length);                                                 assertEquals(expectedResults2.length, results.length);                                              
+for (int i = 0; i &lt; expectedResults2.length; i++) {                                                 for (int i = 0; i &lt; expectedResults2.length; i++) {                                              
+assertEquals(expectedResults2[i], results[i]);                                                         assertEquals(expectedResults2[i], results[i]);                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

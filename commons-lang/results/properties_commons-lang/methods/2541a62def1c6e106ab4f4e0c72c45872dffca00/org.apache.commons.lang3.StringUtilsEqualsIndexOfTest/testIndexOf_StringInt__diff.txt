@@ -1,0 +1,23 @@
+public void testIndexOf_StringInt() {
+    assertEquals(-1, StringUtils.indexOf(null, null, 0));
+    assertEquals(-1, StringUtils.indexOf(null, null, -1));
+    assertEquals(-1, StringUtils.indexOf(null, "", 0));
+    assertEquals(-1, StringUtils.indexOf(null, "", -1));
+    assertEquals(-1, StringUtils.indexOf("", null, 0));
+    assertEquals(-1, StringUtils.indexOf("", null, -1));
+    assertEquals(0, StringUtils.indexOf("", "", 0));
+    assertEquals(0, StringUtils.indexOf("", "", -1));
+    assertEquals(0, StringUtils.indexOf("", "", 9));
+    assertEquals(0, StringUtils.indexOf("abc", "", 0));
+    assertEquals(0, StringUtils.indexOf("abc", "", -1));
+    assertEquals(3, StringUtils.indexOf("abc", "", 9));
+    assertEquals(3, StringUtils.indexOf("abc", "", 3));
+    assertEquals(0, StringUtils.indexOf("aabaabaa", "a", 0));
+    assertEquals(2, StringUtils.indexOf("aabaabaa", "b", 0));
+    assertEquals(1, StringUtils.indexOf("aabaabaa", "ab", 0));
+    assertEquals(5, StringUtils.indexOf("aabaabaa", "b", 3));
+    assertEquals(-1, StringUtils.indexOf("aabaabaa", "b", 9));
+    assertEquals(2, StringUtils.indexOf("aabaabaa", "b", -1));
+    assertEquals(2, StringUtils.indexOf("aabaabaa", "", 2));
+    assertEquals(5, StringUtils.indexOf(new StringBuilder("aabaabaa"), "b", 3));
+}

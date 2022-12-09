@@ -1,0 +1,19 @@
+/**
+ * Use {@code java.text.Normalizer#normalize(CharSequence, Normalizer.Form)}
+ * (but be careful, this classe exists in Java 1.3, with an entirely different meaning!)
+ * @param text
+ */
+private static String removeAccentsJava6(CharSequence text) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    /*
+        String decomposed = java.text.Normalizer.normalize(CharSequence, Normalizer.Form.NFD);
+        return java6Pattern.matcher(decomposed).replaceAll("");//$NON-NLS-1$
+        */
+    if (!java6Available || java6NormalizerFormNFD == null) {
+        throw new IllegalStateException("java.text.Normalizer is not available");
+    }
+    String result;
+    result = (String) java6NormalizeMethod.invoke(null, new Object[] { text, java6NormalizerFormNFD });
+    // $NON-NLS-1$
+    result = java6Pattern.matcher(result).replaceAll("");
+    return result;
+}

@@ -1,0 +1,27 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Capitalizes a String changing the first letter to title case as                           |                                                                                                     
+* per {@link Character#toTitleCase(char)}. No other letters are changed.&lt;/p&gt;                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;For a word based algorithm, see {@link WordUtils#capitalize(String)}.                     |                                                                                                     
+* A &lt;code&gt;null&lt;/code&gt; input String returns &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;      |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* StringUtils.capitalize(null)  = null                                                               |                                                                                                     
+* StringUtils.capitalize("")    = ""                                                                 |                                                                                                     
+* StringUtils.capitalize("cat") = "Cat"                                                              |                                                                                                     
+* StringUtils.capitalize("cAt") = "CAt"                                                              |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str  the String to capitalize, may be null                                                  |                                                                                                     
+* @return the capitalized String, &lt;code&gt;null&lt;/code&gt; if null String input                 |                                                                                                     
+* @see WordUtils#capitalize(String)                                                                  |                                                                                                     
+* @see #uncapitalize(String)                                                                         |                                                                                                     
+* @since 2.0                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static String capitalize(String str) {                                                        |                                                                                                     
+int strLen;                                                                                          |                                                                                                     
+if (str == null || (strLen = str.length()) == 0) {                                                   |                                                                                                     
+return str;                                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     
+return new StringBuilder(strLen).append(Character.toTitleCase(str.charAt(0))).append(str.substring(1 |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,28 @@
+// Delete                                                                                              // Delete                                                                                           
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                           * &lt;p&gt;Takes an argument in set-syntax, see evaluateSet,                                        
+* and deletes any of characters present in the specified string.&lt;/p&gt;                             * and deletes any of characters present in the specified string.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* CharSetUtils.delete(null, *)        = null                                                           * CharSetUtils.delete(null, *)        = null                                                        
+* CharSetUtils.delete("", *)          = ""                                                             * CharSetUtils.delete("", *)          = ""                                                          
+* CharSetUtils.delete(*, null)        = *                                                              * CharSetUtils.delete(*, null)        = *                                                           
+* CharSetUtils.delete(*, "")          = *                                                              * CharSetUtils.delete(*, "")          = *                                                           
+* CharSetUtils.delete("hello", "hl")  = "eo"                                                           * CharSetUtils.delete("hello", "hl")  = "eo"                                                        
+* CharSetUtils.delete("hello", "le")  = "ho"                                                           * CharSetUtils.delete("hello", "le")  = "ho"                                                        
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @see CharSet#getInstance(java.lang.String) for set-syntax.                                           * @see CharSet#getInstance(java.lang.String) for set-syntax.                                        
+* @param str  String to delete characters from, may be null                                            * @param str  String to delete characters from, may be null                                         
+* @param set  String set of characters to delete, may be null                                        | * @param set  String[] set of characters to delete, may be null                                     
+* @return the modified String, {@code null} if null string input                                       * @return the modified String, {@code null} if null string input                                    
+*/                                                                                                     */                                                                                                  
+public static String delete(String str, String set) {                                                | public static String delete(String str, String... set) {                                            
+if (StringUtils.isEmpty(str) || StringUtils.isEmpty(set)) {                                          | if (StringUtils.isEmpty(str) || deepEmpty(set)) {                                                   
+return str;                                                                                            return str;                                                                                         
+}                                                                                                      }                                                                                                   
+String[] strs = new String[1];                                                                       | return modify(str, set, false);                                                                     
+strs[0] = set;                                                                                       |                                                                                                     
+return delete(str, strs);                                                                            |                                                                                                     
+}                                                                                                      }                                                                                                   

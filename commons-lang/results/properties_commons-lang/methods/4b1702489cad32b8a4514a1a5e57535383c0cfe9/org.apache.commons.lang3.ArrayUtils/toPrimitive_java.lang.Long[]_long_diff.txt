@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an array of object Long to primitives handling {@code null}.</p>
+ *
+ * <p>This method returns {@code null} for a {@code null} input array.</p>
+ *
+ * @param array  a {@code Long} array, may be {@code null}
+ * @param valueForNull  the value to insert if {@code null} found
+ * @return a {@code long} array, {@code null} if null array input
+ */
+public static long[] toPrimitive(Long[] array, long valueForNull) {
+    if (array == null) {
+        return null;
+    } else if (array.length == 0) {
+        return EMPTY_LONG_ARRAY;
+    }
+    final long[] result = new long[array.length];
+    for (int i = 0; i < array.length; i++) {
+        Long b = array[i];
+        result[i] = (b == null ? valueForNull : b.longValue());
+    }
+    return result;
+}

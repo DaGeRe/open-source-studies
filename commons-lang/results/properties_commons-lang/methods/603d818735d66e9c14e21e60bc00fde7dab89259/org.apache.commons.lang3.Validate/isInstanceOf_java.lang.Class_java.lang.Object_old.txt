@@ -1,0 +1,24 @@
+// isInstanceOf
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validate that the argument is an instance of the specified class; otherwise
+ * throwing an exception. This method is useful when validating according to an arbitrary
+ * class</p>
+ *
+ * <pre>Validate.isInstanceOf(OkClass.class, object);</pre>
+ *
+ * <p>The message of the exception is &quot;The validated object is not an instance of&quot;
+ * followed by the name of the class</p>
+ *
+ * @param type  the class the object must be validated against, not null
+ * @param obj  the object to check, null throws an exception
+ * @throws IllegalArgumentException if argument is not of specified class
+ * @see #isInstanceOf(Class, Object, String, Object...)
+ *
+ * @since 3.0
+ */
+public static void isInstanceOf(Class<?> type, Object obj) {
+    if (type.isInstance(obj) == false) {
+        throw new IllegalArgumentException(String.format(DEFAULT_IS_INSTANCE_OF_EX_MESSAGE, type.getName()));
+    }
+}

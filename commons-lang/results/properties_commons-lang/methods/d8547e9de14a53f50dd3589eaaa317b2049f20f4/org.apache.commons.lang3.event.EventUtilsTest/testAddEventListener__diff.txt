@@ -1,0 +1,10 @@
+public void testAddEventListener() {
+    final PropertyChangeSource src = new PropertyChangeSource();
+    EventCountingInvociationHandler handler = new EventCountingInvociationHandler();
+    PropertyChangeListener listener = handler.createListener(PropertyChangeListener.class);
+    assertEquals(0, handler.getEventCount("propertyChange"));
+    EventUtils.addEventListener(src, PropertyChangeListener.class, listener);
+    assertEquals(0, handler.getEventCount("propertyChange"));
+    src.setProperty("newValue");
+    assertEquals(1, handler.getEventCount("propertyChange"));
+}

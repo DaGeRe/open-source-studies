@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Return the next character in the iteration                                                           * Return the next character in the iteration                                                        
+*                                                                                                      *                                                                                                   
+* @return &lt;code&gt;Character&lt;/code&gt; for the next character                                    * @return &lt;code&gt;Character&lt;/code&gt; for the next character                                 
+*/                                                                                                     */                                                                                                  
+public Object next() {                                                                               | public Character next() {                                                                           
+if (hasNext == false) {                                                                                if (hasNext == false) {                                                                             
+throw new NoSuchElementException();                                                                    throw new NoSuchElementException();                                                                 
+}                                                                                                      }                                                                                                   
+char cur = current;                                                                                    char cur = current;                                                                                 
+prepareNext();                                                                                         prepareNext();                                                                                      
+return Character.valueOf(cur);                                                                         return Character.valueOf(cur);                                                                      
+}                                                                                                      }                                                                                                   

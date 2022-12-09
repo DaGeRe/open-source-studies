@@ -1,0 +1,29 @@
+// isTrue                                                                                            |                                                                                                     
+// ---------------------------------------------------------------------------------                 |                                                                                                     
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise            * &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise         
+* throwing an exception with the specified message. This method is useful when                         * throwing an exception with the specified message. This method is useful when                      
+* validating according to an arbitrary boolean expression, such as validating a                        * validating according to an arbitrary boolean expression, such as validating a                     
+* primitive number or using your own custom validation expression.&lt;/p&gt;                           * primitive number or using your own custom validation expression.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;Validate.isTrue(myObject.isOk(), "The object is not OK: %s", myObject);&lt;/pre&gt;     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * Validate.isTrue(i &gt;= min && i &lt;= max, "The value must be between %d and %d", min, max);     
+                                                                                                     | * Validate.isTrue(myObject.isOk(), "The object is not okay");&lt;/pre&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For performance reasons, the object is passed as a separate parameter and                 |                                                                                                     
+* appended to the exception message only in the case of an error.&lt;/p&gt;                          |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param expression the boolean expression to check                                                    * @param expression the boolean expression to check                                                 
+* @param message the exception message if invalid                                                      * @param message the exception message if invalid                                                   
+* @param value the value to append to the message when invalid                                       | * @param values the optional values for the formatted exception message                             
+* @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                     * @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                  
+* @see #isTrue(boolean)                                                                                * @see #isTrue(boolean)                                                                             
+* @see #isTrue(boolean, String, long)                                                                  * @see #isTrue(boolean, String, long)                                                               
+* @see #isTrue(boolean, String, double)                                                                * @see #isTrue(boolean, String, double)                                                             
+* @see #isTrue(boolean, String, Object...)                                                           |                                                                                                     
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression, String message, Object value) {                        | public static void isTrue(boolean expression, String message, Object... values) {                   
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException(String.format(message, value));                                   | throw new IllegalArgumentException(String.format(message, values));                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,21 @@
+// ----------------------------------------------------------------------------                        // ----------------------------------------------------------------------------                     
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the default &lt;code&gt;ToStringStyle&lt;/code&gt; to use.&lt;/p&gt;                   * &lt;p&gt;Gets the default &lt;code&gt;ToStringStyle&lt;/code&gt; to use.&lt;/p&gt;                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This could allow the &lt;code&gt;ToStringStyle&lt;/code&gt; to be                         | * &lt;p&gt;This method gets a singleton default value, typically for the whole JVM.                 
+* controlled for an entire application with one call.&lt;/p&gt;                                      | * Changing this default should generally only be done during application startup.                   
+                                                                                                     | * It is recommended to pass a &lt;code&gt;ToStringStyle&lt;/code&gt; to the constructor instead     
+                                                                                                     | * of using this global default.&lt;/p&gt;                                                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This might be used to have a verbose                                                      | * &lt;p&gt;This method is thread-safe, as a &lt;code&gt;volatile&lt;/code variable is used internall
+* &lt;code&gt;ToStringStyle&lt;/code&gt; during development and a compact                            |                                                                                                     
+* &lt;code&gt;ToStringStyle&lt;/code&gt; in production.&lt;/p&gt;                                    |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @return the default &lt;code&gt;ToStringStyle&lt;/code&gt;                                         | * &lt;p&gt;One reason for changing the default could be to have a verbose style during              
+                                                                                                     | * development and a compact style in production.&lt;/p&gt;                                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @return the default &lt;code&gt;ToStringStyle&lt;/code&gt;, never null                            
+*/                                                                                                     */                                                                                                  
+public static ToStringStyle getDefaultStyle() {                                                        public static ToStringStyle getDefaultStyle() {                                                     
+return defaultStyle;                                                                                   return defaultStyle;                                                                                
+}                                                                                                      }                                                                                                   

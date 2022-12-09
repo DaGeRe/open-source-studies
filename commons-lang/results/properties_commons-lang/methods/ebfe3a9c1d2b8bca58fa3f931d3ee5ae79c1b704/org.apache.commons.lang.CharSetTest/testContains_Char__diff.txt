@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------
+public void testContains_Char() {
+    CharSet btod = CharSet.getInstance("b-d");
+    CharSet dtob = CharSet.getInstance("d-b");
+    CharSet bcd = CharSet.getInstance("bcd");
+    CharSet bd = CharSet.getInstance("bd");
+    CharSet notbtod = CharSet.getInstance("^b-d");
+    assertEquals(false, btod.contains('a'));
+    assertEquals(true, btod.contains('b'));
+    assertEquals(true, btod.contains('c'));
+    assertEquals(true, btod.contains('d'));
+    assertEquals(false, btod.contains('e'));
+    assertEquals(false, bcd.contains('a'));
+    assertEquals(true, bcd.contains('b'));
+    assertEquals(true, bcd.contains('c'));
+    assertEquals(true, bcd.contains('d'));
+    assertEquals(false, bcd.contains('e'));
+    assertEquals(false, bd.contains('a'));
+    assertEquals(true, bd.contains('b'));
+    assertEquals(false, bd.contains('c'));
+    assertEquals(true, bd.contains('d'));
+    assertEquals(false, bd.contains('e'));
+    assertEquals(true, notbtod.contains('a'));
+    assertEquals(false, notbtod.contains('b'));
+    assertEquals(false, notbtod.contains('c'));
+    assertEquals(false, notbtod.contains('d'));
+    assertEquals(true, notbtod.contains('e'));
+    assertEquals(false, dtob.contains('a'));
+    assertEquals(true, dtob.contains('b'));
+    assertEquals(true, dtob.contains('c'));
+    assertEquals(true, dtob.contains('d'));
+    assertEquals(false, dtob.contains('e'));
+    CharRange[] array = dtob.getCharRanges();
+    assertEquals("[b-d]", dtob.toString());
+    assertEquals(1, array.length);
+}

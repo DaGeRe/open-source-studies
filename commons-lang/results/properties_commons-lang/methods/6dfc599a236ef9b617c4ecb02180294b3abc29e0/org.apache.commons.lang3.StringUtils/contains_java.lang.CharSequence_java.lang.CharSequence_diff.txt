@@ -1,0 +1,27 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Checks if CharSequence contains a search CharSequence, handling {@code null}.            
+                                                                                                     | * This method uses {@link String#indexOf(String)} if possible.&lt;/p&gt;                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;A {@code null} CharSequence will return {@code false}.&lt;/p&gt;                         
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.contains(null, *)     = false                                                         
+                                                                                                     | * StringUtils.contains(*, null)     = false                                                         
+                                                                                                     | * StringUtils.contains("", "")      = true                                                          
+                                                                                                     | * StringUtils.contains("abc", "")   = true                                                          
+                                                                                                     | * StringUtils.contains("abc", "a")  = true                                                          
+                                                                                                     | * StringUtils.contains("abc", "z")  = false                                                         
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param seq  the CharSequence to check, may be null                                                
+                                                                                                     | * @param searchSeq  the CharSequence to find, may be null                                           
+                                                                                                     | * @return true if the CharSequence contains the search CharSequence,                                
+                                                                                                     | *  false if not or {@code null} string input                                                        
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static boolean contains(CharSequence seq, CharSequence searchSeq) {                          
+                                                                                                     | if (seq == null || searchSeq == null) {                                                             
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return indexOfSequence(seq, searchSeq, 0) &gt;= 0;                                                  
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Returns a String representation of the Pair in the form: (L,R)                                       * Returns a String representation of the Pair in the form: (L,R)                                    
+* @return a string for this object                                                                     * @return a string for this object                                                                  
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+StringBuilder builder = new StringBuilder(ClassUtils.getShortClassName(this, null));                 | StringBuilder builder = new StringBuilder(this.getClass().getSimpleName());                         
+builder.append("(");                                                                                   builder.append("(");                                                                                
+builder.append(getLeftElement());                                                                      builder.append(getLeftElement());                                                                   
+builder.append(",");                                                                                   builder.append(",");                                                                                
+builder.append(getRightElement());                                                                     builder.append(getRightElement());                                                                  
+builder.append(")");                                                                                   builder.append(")");                                                                                
+return builder.toString();                                                                             return builder.toString();                                                                          
+}                                                                                                      }                                                                                                   

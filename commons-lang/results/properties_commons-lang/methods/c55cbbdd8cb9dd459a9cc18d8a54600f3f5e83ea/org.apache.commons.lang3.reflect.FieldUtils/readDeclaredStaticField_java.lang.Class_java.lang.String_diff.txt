@@ -1,0 +1,13 @@
+/**
+ * Gets a static Field value by name. The field must be public.
+ * Only the specified class will be considered.
+ *
+ * @param cls  the class to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @return the value of the field
+ * @throws IllegalArgumentException if the class is null, the field name is null or if the field could not be found
+ * @throws IllegalAccessException if the field is not accessible
+ */
+public static Object readDeclaredStaticField(Class<?> cls, String fieldName) throws IllegalAccessException {
+    return readDeclaredStaticField(cls, fieldName, false);
+}

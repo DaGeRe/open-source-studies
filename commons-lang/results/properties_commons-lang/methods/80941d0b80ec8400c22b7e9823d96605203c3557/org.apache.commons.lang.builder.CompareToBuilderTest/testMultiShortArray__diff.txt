@@ -1,0 +1,21 @@
+public void testMultiShortArray() {
+    short[][] array1 = new short[2][2];
+    short[][] array2 = new short[2][2];
+    short[][] array3 = new short[2][3];
+    for (short i = 0; i < array1.length; ++i) {
+        for (short j = 0; j < array1[0].length; j++) {
+            array1[i][j] = (short) ((i + 1) * (j + 1));
+            array2[i][j] = (short) ((i + 1) * (j + 1));
+            array3[i][j] = (short) ((i + 1) * (j + 1));
+        }
+    }
+    array3[1][2] = 100;
+    array3[1][2] = 100;
+    assertTrue(new CompareToBuilder().append(array1, array1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(array1, array2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(array1, array3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(array3, array1).toComparison() > 0);
+    array1[1][1] = 200;
+    assertTrue(new CompareToBuilder().append(array1, array2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(array2, array1).toComparison() < 0);
+}

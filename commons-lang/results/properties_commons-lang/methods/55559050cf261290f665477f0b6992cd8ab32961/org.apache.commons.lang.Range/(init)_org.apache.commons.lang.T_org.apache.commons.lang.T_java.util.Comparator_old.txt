@@ -1,0 +1,16 @@
+private Range(T element1, T element2, Comparator c) {
+    if (element1 == null || element2 == null) {
+        throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ", element2=" + element2);
+    }
+    if (c == null) {
+        throw new IllegalArgumentException("Comparator must not be null");
+    }
+    if (c.compare(element1, element2) < 1) {
+        this.minimum = element1;
+        this.maximum = element2;
+    } else {
+        this.minimum = element2;
+        this.maximum = element1;
+    }
+    this.comparator = c;
+}

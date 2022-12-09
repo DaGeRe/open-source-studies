@@ -1,0 +1,30 @@
+public void testRemoveCharArray() {
+    char[] array;
+    array = ArrayUtils.remove(new char[] { 'a' }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_CHAR_ARRAY, array));
+    assertEquals(Character.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new char[] { 'a', 'b' }, 0);
+    assertTrue(Arrays.equals(new char[] { 'b' }, array));
+    assertEquals(Character.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new char[] { 'a', 'b' }, 1);
+    assertTrue(Arrays.equals(new char[] { 'a' }, array));
+    assertEquals(Character.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new char[] { 'a', 'b', 'c' }, 1);
+    assertTrue(Arrays.equals(new char[] { 'a', 'c' }, array));
+    assertEquals(Character.TYPE, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new char[] { 'a', 'b' }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new char[] { 'a', 'b' }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((char[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

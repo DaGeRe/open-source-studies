@@ -1,0 +1,16 @@
+public void testAddValue() {                                                                           public void testAddValue() {                                                                        
+                                                                                                     | defaultExceptionContext.addValue("test2", "different value");                                       
+String message = defaultExceptionContext.getFormattedExceptionMessage("This is an error");             String message = defaultExceptionContext.getFormattedExceptionMessage("This is an error");          
+assertTrue(message.indexOf("This is an error") &gt;= 0);                                               assertTrue(message.indexOf("This is an error") &gt;= 0);                                            
+assertTrue(message.indexOf("test1") &gt;= 0);                                                          assertTrue(message.indexOf("test1") &gt;= 0);                                                       
+assertTrue(message.indexOf("test2") &gt;= 0);                                                          assertTrue(message.indexOf("test2") &gt;= 0);                                                       
+                                                                                                     | assertTrue(message.indexOf("test2[1]") &gt;= 0);                                                    
+assertTrue(message.indexOf("test Date") &gt;= 0);                                                      assertTrue(message.indexOf("test Date") &gt;= 0);                                                   
+assertTrue(message.indexOf("test Nbr") &gt;= 0);                                                       assertTrue(message.indexOf("test Nbr") &gt;= 0);                                                    
+assertTrue(message.indexOf("test Poorly written obj") &gt;= 0);                                        assertTrue(message.indexOf("test Poorly written obj") &gt;= 0);                                     
+assertTrue(message.indexOf("some value") &gt;= 0);                                                     assertTrue(message.indexOf("some value") &gt;= 0);                                                  
+                                                                                                     | assertTrue(message.indexOf("different value") &gt;= 0);                                             
+assertTrue(message.indexOf("5") &gt;= 0);                                                              assertTrue(message.indexOf("5") &gt;= 0);                                                           
+assertTrue(message.indexOf("Crap") &gt;= 0);                                                           assertTrue(message.indexOf("Crap") &gt;= 0);                                                        
+// contextedException.printStackTrace();                                                             |                                                                                                     
+}                                                                                                      }                                                                                                   

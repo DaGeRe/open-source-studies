@@ -1,0 +1,9 @@
+@Test
+public void testPairOf() throws Exception {
+    MutablePair<Integer, String> pair = MutablePair.of(0, "foo");
+    assertEquals(0, pair.getLeftElement().intValue());
+    assertEquals("foo", pair.getRightElement());
+    MutablePair<Object, String> pair2 = MutablePair.of(null, "bar");
+    assertNull(pair2.getLeftElement());
+    assertEquals("bar", pair2.getRightElement());
+}

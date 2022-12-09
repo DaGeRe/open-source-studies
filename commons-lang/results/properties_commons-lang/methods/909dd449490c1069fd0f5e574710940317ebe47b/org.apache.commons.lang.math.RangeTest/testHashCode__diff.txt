@@ -1,0 +1,10 @@
+/**
+ * Test method for 'org.apache.commons.lang.math.Range.hashCode()'
+ */
+public void testHashCode() {
+    RangeTestFixture r1 = new RangeTestFixture((byte) 0, (byte) 5);
+    RangeTestFixture r2 = new RangeTestFixture((byte) 0, (byte) 5);
+    RangeTestFixture r3 = new RangeTestFixture((byte) 0, (byte) 10);
+    assertEquals(r1.hashCode(), r2.hashCode());
+    assertFalse(r1.hashCode() == r3.hashCode());
+}

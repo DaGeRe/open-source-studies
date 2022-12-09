@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Test method for 'StringUtils.replaceEach(String, String[], String[])'                                * Test method for 'StringUtils.replaceEach(String, String[], String[])'                             
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testReplace_StringStringArrayStringArray() {                                               public void testReplace_StringStringArrayStringArray() {                                            
+// JAVADOC TESTS START                                                                                 // JAVADOC TESTS START                                                                              
+assertNull(StringUtils.replaceEach(null, new String[] { "a" }, new String[] { "b" }));                 assertNull(StringUtils.replaceEach(null, new String[] { "a" }, new String[] { "b" }));              
+assertEquals(StringUtils.replaceEach("", new String[] { "a" }, new String[] { "b" }), "");             assertEquals(StringUtils.replaceEach("", new String[] { "a" }, new String[] { "b" }), "");          
+assertEquals(StringUtils.replaceEach("aba", null, null), "aba");                                       assertEquals(StringUtils.replaceEach("aba", null, null), "aba");                                    
+assertEquals(StringUtils.replaceEach("aba", new String[0], null), "aba");                              assertEquals(StringUtils.replaceEach("aba", new String[0], null), "aba");                           
+assertEquals(StringUtils.replaceEach("aba", null, new String[0]), "aba");                              assertEquals(StringUtils.replaceEach("aba", null, new String[0]), "aba");                           
+assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, null), "aba");                       assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, null), "aba");                    
+assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, new String[] { "" }), "b");          assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, new String[] { "" }), "b");       
+assertEquals(StringUtils.replaceEach("aba", new String[] { null }, new String[] { "a" }), "aba");      assertEquals(StringUtils.replaceEach("aba", new String[] { null }, new String[] { "a" }), "aba");   
+assertEquals(StringUtils.replaceEach("abcde", new String[] { "ab", "d" }, new String[] { "w", "t" })   assertEquals(StringUtils.replaceEach("abcde", new String[] { "ab", "d" }, new String[] { "w", "t" })
+assertEquals(StringUtils.replaceEach("abcde", new String[] { "ab", "d" }, new String[] { "d", "t" })   assertEquals(StringUtils.replaceEach("abcde", new String[] { "ab", "d" }, new String[] { "d", "t" })
+// JAVADOC TESTS END                                                                                   // JAVADOC TESTS END                                                                                
+assertEquals("bcc", StringUtils.replaceEach("abc", new String[] { "a", "b" }, new String[] { "b", "c   assertEquals("bcc", StringUtils.replaceEach("abc", new String[] { "a", "b" }, new String[] { "b", "c
+assertEquals("q651.506bera", StringUtils.replaceEach("d216.102oren", new String[] { "a", "b", "c", "   assertEquals("q651.506bera", StringUtils.replaceEach("d216.102oren", new String[] { "a", "b", "c", "
+// Test null safety inside arrays - LANG-552                                                           // Test null safety inside arrays - LANG-552                                                        
+assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, new String[] { null }), "aba");      assertEquals(StringUtils.replaceEach("aba", new String[] { "a" }, new String[] { null }), "aba");   
+assertEquals(StringUtils.replaceEach("aba", new String[] { "a", "b" }, new String[] { "c", null }),    assertEquals(StringUtils.replaceEach("aba", new String[] { "a", "b" }, new String[] { "c", null }), 
+}                                                                                                      }                                                                                                   

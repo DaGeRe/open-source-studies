@@ -1,0 +1,29 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Performs an xor on an array of Booleans.&lt;/p&gt;                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE                
+                                                                                                     | *   BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE                
+                                                                                                     | *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE                 
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param array  an array of &lt;code&gt;Boolean&lt;code&gt;s                                        
+                                                                                                     | * @return &lt;code&gt;true&lt;/code&gt; if the xor is successful.                                   
+                                                                                                     | * @throws IllegalArgumentException if &lt;code&gt;array&lt;/code&gt; is &lt;code&gt;null&lt;/code&gt
+                                                                                                     | * @throws IllegalArgumentException if &lt;code&gt;array&lt;/code&gt; is empty.                      
+                                                                                                     | * @throws IllegalArgumentException if &lt;code&gt;array&lt;/code&gt; contains a &lt;code&gt;null&lt;
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static Boolean xor(Boolean... array) {                                                       
+                                                                                                     | if (array == null) {                                                                                
+                                                                                                     | throw new IllegalArgumentException("The Array must not be null");                                   
+                                                                                                     | } else if (array.length == 0) {                                                                     
+                                                                                                     | throw new IllegalArgumentException("Array is empty");                                               
+                                                                                                     | }                                                                                                   
+                                                                                                     | boolean[] primitive = null;                                                                         
+                                                                                                     | try {                                                                                               
+                                                                                                     | primitive = ArrayUtils.toPrimitive(array);                                                          
+                                                                                                     | } catch (NullPointerException ex) {                                                                 
+                                                                                                     | throw new IllegalArgumentException("The array must not contain any null elements");                 
+                                                                                                     | }                                                                                                   
+                                                                                                     | return xor(primitive) ? Boolean.TRUE : Boolean.FALSE;                                               
+                                                                                                     | }                                                                                                   

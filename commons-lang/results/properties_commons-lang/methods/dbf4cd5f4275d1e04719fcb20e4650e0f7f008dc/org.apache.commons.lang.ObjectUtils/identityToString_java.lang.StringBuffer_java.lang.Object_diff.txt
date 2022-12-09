@@ -1,0 +1,21 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Appends the toString that would be produced by &lt;code&gt;Object&lt;/code&gt;            |                                                                                                     
+* if a class did not override toString itself. &lt;code&gt;null&lt;/code&gt;                         |                                                                                                     
+* will throw a NullPointerException for either of the two parameters. &lt;/p&gt;                     |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* ObjectUtils.identityToString(buf, "")            = buf.append("java.lang.String@1e23"              |                                                                                                     
+* ObjectUtils.identityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa"              |                                                                                                     
+* ObjectUtils.identityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa")             |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param buffer  the buffer to append to                                                             |                                                                                                     
+* @param object  the object to create a toString for                                                 |                                                                                                     
+* @since 2.4                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static void identityToString(StringBuffer buffer, Object object) {                            |                                                                                                     
+if (object == null) {                                                                                |                                                                                                     
+throw new NullPointerException("Cannot get the toString of a null identity");                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+buffer.append(object.getClass().getName()).append('@').append(Integer.toHexString(System.identityHas |                                                                                                     
+}                                                                                                    |                                                                                                     

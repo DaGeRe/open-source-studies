@@ -1,0 +1,10 @@
+                                                                                                     | @Test                                                                                               
+public void testDefaultIfBlank_StringBuffers() {                                                       public void testDefaultIfBlank_StringBuffers() {                                                    
+assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(""), new StringBuffer("NULL")).toSt   assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(""), new StringBuffer("NULL")).toSt
+assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(" "), new StringBuffer("NULL")).toS   assertEquals("NULL", StringUtils.defaultIfBlank(new StringBuffer(" "), new StringBuffer("NULL")).toS
+assertEquals("abc", StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL")).to   assertEquals("abc", StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL")).to
+assertNull(StringUtils.defaultIfBlank(new StringBuffer(""), null));                                    assertNull(StringUtils.defaultIfBlank(new StringBuffer(""), null));                                 
+// Tests compatibility for the API return type                                                         // Tests compatibility for the API return type                                                      
+StringBuffer s = StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL"));        StringBuffer s = StringUtils.defaultIfBlank(new StringBuffer("abc"), new StringBuffer("NULL"));     
+assertEquals("abc", s.toString());                                                                     assertEquals("abc", s.toString());                                                                  
+}                                                                                                      }                                                                                                   

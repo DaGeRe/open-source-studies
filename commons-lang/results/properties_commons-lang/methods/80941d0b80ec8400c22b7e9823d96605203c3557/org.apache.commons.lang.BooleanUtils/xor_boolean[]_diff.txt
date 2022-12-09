@@ -1,0 +1,39 @@
+// xor methods
+// ----------------------------------------------------------------------
+/**
+ * <p>Performs an xor on a set of booleans.</p>
+ *
+ * <pre>
+ *   BooleanUtils.xor(new boolean[] { true, true })   = false
+ *   BooleanUtils.xor(new boolean[] { false, false }) = false
+ *   BooleanUtils.xor(new boolean[] { true, false })  = true
+ * </pre>
+ *
+ * @param array  an array of <code>boolean<code>s
+ * @return <code>true</code> if the xor is successful.
+ * @throws IllegalArgumentException if <code>array</code> is <code>null</code>
+ * @throws IllegalArgumentException if <code>array</code> is empty.
+ */
+public static boolean xor(boolean[] array) {
+    // Validates input
+    if (array == null) {
+        throw new IllegalArgumentException("The Array must not be null");
+    } else if (array.length == 0) {
+        throw new IllegalArgumentException("Array is empty");
+    }
+    // Loops through array, comparing each item
+    int trueCount = 0;
+    for (int i = 0; i < array.length; i++) {
+        // If item is true, and trueCount is < 1, increments count
+        // Else, xor fails
+        if (array[i]) {
+            if (trueCount < 1) {
+                trueCount++;
+            } else {
+                return false;
+            }
+        }
+    }
+    // Returns true if there was exactly 1 true item
+    return trueCount == 1;
+}

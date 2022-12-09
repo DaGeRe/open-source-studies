@@ -1,0 +1,34 @@
+/**
+ * Replaces within the builder using a matcher.
+ * <p>
+ * Matchers can be used to perform advanced behaviour.
+ * For example you could write a matcher to delete all occurances
+ * where the character 'a' is followed by a number.
+ *
+ * @param matcher  the matcher to use to find the deletion, null causes no action
+ * @param replaceStr  the string to replace the match with, null is a delete
+ * @param from  the start index, must be valid
+ * @param to  the end index (exclusive), must be valid
+ * @param replaceCount  the number of times to replace, -1 for replace all
+ * @return this, to enable chaining
+ * @throws IndexOutOfBoundsException if any index is invalid
+ */
+private StrBuilder replaceImpl(StrMatcher matcher, String replaceStr, int from, int to, int replaceCount) {
+    if (matcher == null || size == 0) {
+        return this;
+    }
+    int replaceLen = (replaceStr == null ? 0 : replaceStr.length());
+    char[] buf = buffer;
+    for (int i = from; i < to && replaceCount != 0; i++) {
+        int removeLen = matcher.isMatch(buf, i, from, to);
+        if (removeLen > 0) {
+            replaceImpl(i, i + removeLen, removeLen, replaceStr, replaceLen);
+            to = to - removeLen + replaceLen;
+            i = i + replaceLen - 1;
+            if (replaceCount > 0) {
+                replaceCount--;
+            }
+        }
+    }
+    return this;
+}

@@ -1,0 +1,59 @@
+/**
+ * <p>Formats an elapsed time into a plurialization correct string.</p>
+ *
+ * <p>This method formats durations using the days and lower fields of the
+ * format pattern. Months and larger are not used.</p>
+ *
+ * @param durationMillis  the elapsed time to report in milliseconds
+ * @param suppressLeadingZeroElements  suppresses leading 0 elements
+ * @param suppressTrailingZeroElements  suppresses trailing 0 elements
+ * @return the formatted text in days/hours/minutes/seconds, not null
+ */
+public static String formatDurationWords(long durationMillis, boolean suppressLeadingZeroElements, boolean suppressTrailingZeroElements) {
+    // This method is generally replacable by the format method, but
+    // there are a series of tweaks and special cases that require
+    // trickery to replicate.
+    String duration = formatDuration(durationMillis, "d' days 'H' hours 'm' minutes 's' seconds'");
+    if (suppressLeadingZeroElements) {
+        // this is a temporary marker on the front. Like ^ in regexp.
+        duration = " " + duration;
+        String tmp = StringUtils.replaceOnce(duration, " 0 days", "");
+        if (tmp.length() != duration.length()) {
+            duration = tmp;
+            tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
+            if (tmp.length() != duration.length()) {
+                duration = tmp;
+                tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+                duration = tmp;
+                if (tmp.length() != duration.length()) {
+                    duration = StringUtils.replaceOnce(tmp, " 0 seconds", "");
+                }
+            }
+        }
+        if (duration.length() != 0) {
+            // strip the space off again
+            duration = duration.substring(1);
+        }
+    }
+    if (suppressTrailingZeroElements) {
+        String tmp = StringUtils.replaceOnce(duration, " 0 seconds", "");
+        if (tmp.length() != duration.length()) {
+            duration = tmp;
+            tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+            if (tmp.length() != duration.length()) {
+                duration = tmp;
+                tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
+                if (tmp.length() != duration.length()) {
+                    duration = StringUtils.replaceOnce(tmp, " 0 days", "");
+                }
+            }
+        }
+    }
+    // handle plurals
+    duration = " " + duration;
+    duration = StringUtils.replaceOnce(duration, " 1 seconds", " 1 second");
+    duration = StringUtils.replaceOnce(duration, " 1 minutes", " 1 minute");
+    duration = StringUtils.replaceOnce(duration, " 1 hours", " 1 hour");
+    duration = StringUtils.replaceOnce(duration, " 1 days", " 1 day");
+    return duration.trim();
+}

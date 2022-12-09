@@ -1,0 +1,13 @@
+public void testTranslate() {
+    assertEquals(null, CharSetUtils.translate(null, null, null));
+    assertEquals("", CharSetUtils.translate("", "a", "b"));
+    assertEquals("jelly", CharSetUtils.translate("hello", "ho", "jy"));
+    assertEquals("jellj", CharSetUtils.translate("hello", "ho", "j"));
+    assertEquals("jelly", CharSetUtils.translate("hello", "ho", "jyx"));
+    assertEquals("\rhello\r", CharSetUtils.translate("\nhello\n", "\n", "\r"));
+    assertEquals("hello", CharSetUtils.translate("hello", "", "x"));
+    assertEquals("hello", CharSetUtils.translate("hello", "", ""));
+    assertEquals("hello", CharSetUtils.translate("hello", "", ""));
+    // From http://issues.apache.org/bugzilla/show_bug.cgi?id=25454
+    assertEquals("q651.506bera", CharSetUtils.translate("d216.102oren", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789", "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM567891234"));
+}

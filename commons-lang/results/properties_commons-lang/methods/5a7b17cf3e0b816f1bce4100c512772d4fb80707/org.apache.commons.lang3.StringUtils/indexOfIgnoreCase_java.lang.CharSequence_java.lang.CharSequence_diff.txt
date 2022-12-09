@@ -1,0 +1,27 @@
+/**
+ * <p>Case in-sensitive find of the first index within a CharSequence.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A negative start position is treated as zero.
+ * An empty ("") search CharSequence always matches.
+ * A start position greater than the string length only matches
+ * an empty search CharSequence.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfIgnoreCase(null, *)          = -1
+ * StringUtils.indexOfIgnoreCase(*, null)          = -1
+ * StringUtils.indexOfIgnoreCase("", "")           = 0
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "a")  = 0
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "b")  = 2
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "ab") = 1
+ * </pre>
+ *
+ * @param str  the CharSequence to check, may be null
+ * @param searchStr  the CharSequence to find, may be null
+ * @return the first index of the search CharSequence,
+ *  -1 if no match or {@code null} string input
+ * @since 2.5
+ */
+public static int indexOfIgnoreCase(CharSequence str, CharSequence searchStr) {
+    return indexOfIgnoreCase(str, searchStr, 0);
+}

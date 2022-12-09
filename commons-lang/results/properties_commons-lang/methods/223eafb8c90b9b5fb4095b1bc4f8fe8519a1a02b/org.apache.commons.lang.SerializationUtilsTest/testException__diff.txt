@@ -1,0 +1,16 @@
+public void testException() {
+    SerializationException serEx;
+    Exception ex = new Exception();
+    serEx = new SerializationException();
+    assertSame(null, serEx.getMessage());
+    assertSame(null, serEx.getCause());
+    serEx = new SerializationException("Message");
+    assertSame("Message", serEx.getMessage());
+    assertSame(null, serEx.getCause());
+    serEx = new SerializationException(ex);
+    assertEquals("java.lang.Exception", serEx.getMessage());
+    assertSame(ex, serEx.getCause());
+    serEx = new SerializationException("Message", ex);
+    assertSame("Message", serEx.getMessage());
+    assertSame(ex, serEx.getCause());
+}

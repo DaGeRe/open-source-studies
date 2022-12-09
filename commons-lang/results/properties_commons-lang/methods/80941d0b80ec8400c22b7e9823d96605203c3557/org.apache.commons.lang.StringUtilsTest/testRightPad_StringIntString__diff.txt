@@ -1,0 +1,12 @@
+public void testRightPad_StringIntString() {
+    assertEquals(null, StringUtils.rightPad(null, 5, "-+"));
+    assertEquals("     ", StringUtils.rightPad("", 5, " "));
+    assertEquals(null, StringUtils.rightPad(null, 8, null));
+    assertEquals("abc-+-+", StringUtils.rightPad("abc", 7, "-+"));
+    assertEquals("abc-+~", StringUtils.rightPad("abc", 6, "-+~"));
+    assertEquals("abc-+", StringUtils.rightPad("abc", 5, "-+~"));
+    assertEquals("abc", StringUtils.rightPad("abc", 2, " "));
+    assertEquals("abc", StringUtils.rightPad("abc", -1, " "));
+    assertEquals("abc  ", StringUtils.rightPad("abc", 5, null));
+    assertEquals("abc  ", StringUtils.rightPad("abc", 5, ""));
+}

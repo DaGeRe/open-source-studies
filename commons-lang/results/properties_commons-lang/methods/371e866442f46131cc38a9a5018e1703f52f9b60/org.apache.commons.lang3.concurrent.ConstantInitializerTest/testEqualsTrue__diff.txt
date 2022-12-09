@@ -1,0 +1,12 @@
+/**
+ * Tests equals() if the expected result is true.
+ */
+@Test
+public void testEqualsTrue() {
+    checkEquals(init, true);
+    ConstantInitializer<Integer> init2 = new ConstantInitializer<Integer>(Integer.valueOf(VALUE.intValue()));
+    checkEquals(init2, true);
+    init = new ConstantInitializer<Integer>(null);
+    init2 = new ConstantInitializer<Integer>(null);
+    checkEquals(init2, true);
+}

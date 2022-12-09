@@ -1,0 +1,10 @@
+public void testUnescapeCsvString() throws Exception {
+    assertEquals("foo.bar", StringEscapeUtils.unescapeCsv("foo.bar"));
+    assertEquals("foo,bar", StringEscapeUtils.unescapeCsv("\"foo,bar\""));
+    assertEquals("foo\nbar", StringEscapeUtils.unescapeCsv("\"foo\nbar\""));
+    assertEquals("foo\rbar", StringEscapeUtils.unescapeCsv("\"foo\rbar\""));
+    assertEquals("foo\"bar", StringEscapeUtils.unescapeCsv("\"foo\"\"bar\""));
+    assertEquals("", StringEscapeUtils.unescapeCsv(""));
+    assertEquals(null, StringEscapeUtils.unescapeCsv(null));
+    assertEquals("\"foo.bar\"", StringEscapeUtils.unescapeCsv("\"foo.bar\""));
+}

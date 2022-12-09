@@ -1,0 +1,37 @@
+/**
+ * <p>Centers a String in a larger String of size <code>size</code>.
+ * Uses a supplied character as the value to pad the String with.</p>
+ *
+ * <p>If the size is less than the String length, the String is returned.
+ * A <code>null</code> String returns <code>null</code>.
+ * A negative size is treated as zero.</p>
+ *
+ * <pre>
+ * StringUtils.center(null, *, *)     = null
+ * StringUtils.center("", 4, ' ')     = "    "
+ * StringUtils.center("ab", -1, ' ')  = "ab"
+ * StringUtils.center("ab", 4, ' ')   = " ab"
+ * StringUtils.center("abcd", 2, ' ') = "abcd"
+ * StringUtils.center("a", 4, ' ')    = " a  "
+ * StringUtils.center("a", 4, 'y')    = "yayy"
+ * </pre>
+ *
+ * @param str  the String to center, may be null
+ * @param size  the int size of new String, negative treated as zero
+ * @param padChar  the character to pad the new String with
+ * @return centered String, <code>null</code> if null String input
+ * @since 2.0
+ */
+public static String center(String str, int size, char padChar) {
+    if (str == null || size <= 0) {
+        return str;
+    }
+    int strLen = str.length();
+    int pads = size - strLen;
+    if (pads <= 0) {
+        return str;
+    }
+    str = leftPad(str, strLen + pads / 2, padChar);
+    str = rightPad(str, size, padChar);
+    return str;
+}

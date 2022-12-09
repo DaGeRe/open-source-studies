@@ -1,0 +1,16 @@
+/**
+ * Tests whether the specified {@code Throwable} is a checked exception. If
+ * not, an exception is thrown.
+ *
+ * @param ex the {@code Throwable} to check
+ * @return a flag whether the passed in exception is a checked exception
+ * @throws IllegalArgumentException if the {@code Throwable} is not a
+ * checked exception
+ */
+static Throwable checkedException(Throwable ex) {
+    if (ex != null && !(ex instanceof RuntimeException) && !(ex instanceof Error)) {
+        return ex;
+    } else {
+        throw new IllegalArgumentException("Not a checked exception: " + ex);
+    }
+}

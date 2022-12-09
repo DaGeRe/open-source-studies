@@ -1,0 +1,8 @@
+public void testToClass_object() {
+    // assertNull(ClassUtils.toClass(null));
+    // explicit cast
+    assertNull(ClassUtils.toClass((Object[]) null));
+    assertSame(ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.toClass(ArrayUtils.EMPTY_OBJECT_ARRAY));
+    assertTrue(Arrays.equals(new Class[] { String.class, Integer.class, Double.class }, ClassUtils.toClass(new Object[] { "Test", Integer.valueOf(1), Double.valueOf(99d) })));
+    assertTrue(Arrays.equals(new Class[] { String.class, null, Double.class }, ClassUtils.toClass(new Object[] { "Test", null, Double.valueOf(99d) })));
+}

@@ -1,0 +1,5 @@
+public void testDefaultIfEmpty_StringBuffers() {
+    assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuffer(""), new StringBuffer("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuffer("abc"), new StringBuffer("NULL")).toString());
+    assertNull(StringUtils.defaultIfEmpty(new StringBuffer(""), null));
+}

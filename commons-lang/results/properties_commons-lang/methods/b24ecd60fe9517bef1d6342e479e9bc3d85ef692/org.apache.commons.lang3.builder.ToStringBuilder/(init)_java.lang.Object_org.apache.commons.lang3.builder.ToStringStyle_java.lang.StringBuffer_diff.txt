@@ -1,0 +1,23 @@
+/**
+ * <p>Constructs a builder for the specified object.</p>
+ *
+ * <p>If the style is <code>null</code>, the default style is used.</p>
+ *
+ * <p>If the buffer is <code>null</code>, a new one is created.</p>
+ *
+ * @param object  the Object to build a <code>toString</code> for, not recommended to be null
+ * @param style  the style of the <code>toString</code> to create, null uses the default style
+ * @param buffer  the <code>StringBuffer</code> to populate, may be null
+ */
+public ToStringBuilder(Object object, ToStringStyle style, StringBuffer buffer) {
+    if (style == null) {
+        style = getDefaultStyle();
+    }
+    if (buffer == null) {
+        buffer = new StringBuffer(512);
+    }
+    this.buffer = buffer;
+    this.style = style;
+    this.object = object;
+    style.appendStart(buffer, object);
+}

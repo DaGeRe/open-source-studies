@@ -1,0 +1,71 @@
+// -----------------------------------------------------------------------
+public void testCapacityAndLength() {
+    StrBuilder sb = new StrBuilder();
+    assertEquals(32, sb.capacity());
+    assertEquals(0, sb.length());
+    assertEquals(0, sb.size());
+    assertTrue(sb.isEmpty());
+    sb.minimizeCapacity();
+    assertEquals(0, sb.capacity());
+    assertEquals(0, sb.length());
+    assertEquals(0, sb.size());
+    assertTrue(sb.isEmpty());
+    sb.ensureCapacity(32);
+    assertTrue(sb.capacity() >= 32);
+    assertEquals(0, sb.length());
+    assertEquals(0, sb.size());
+    assertTrue(sb.isEmpty());
+    sb.append("foo");
+    assertTrue(sb.capacity() >= 32);
+    assertEquals(3, sb.length());
+    assertEquals(3, sb.size());
+    assertTrue(sb.isEmpty() == false);
+    sb.clear();
+    assertTrue(sb.capacity() >= 32);
+    assertEquals(0, sb.length());
+    assertEquals(0, sb.size());
+    assertTrue(sb.isEmpty());
+    sb.append("123456789012345678901234567890123");
+    assertTrue(sb.capacity() > 32);
+    assertEquals(33, sb.length());
+    assertEquals(33, sb.size());
+    assertTrue(sb.isEmpty() == false);
+    sb.ensureCapacity(16);
+    assertTrue(sb.capacity() > 16);
+    assertEquals(33, sb.length());
+    assertEquals(33, sb.size());
+    assertTrue(sb.isEmpty() == false);
+    sb.minimizeCapacity();
+    assertEquals(33, sb.capacity());
+    assertEquals(33, sb.length());
+    assertEquals(33, sb.size());
+    assertTrue(sb.isEmpty() == false);
+    try {
+        sb.setLength(-1);
+        fail("setLength(-1) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    sb.setLength(33);
+    assertEquals(33, sb.capacity());
+    assertEquals(33, sb.length());
+    assertEquals(33, sb.size());
+    assertTrue(sb.isEmpty() == false);
+    sb.setLength(16);
+    assertTrue(sb.capacity() >= 16);
+    assertEquals(16, sb.length());
+    assertEquals(16, sb.size());
+    assertEquals("1234567890123456", sb.toString());
+    assertTrue(sb.isEmpty() == false);
+    sb.setLength(32);
+    assertTrue(sb.capacity() >= 32);
+    assertEquals(32, sb.length());
+    assertEquals(32, sb.size());
+    assertEquals("1234567890123456\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", sb.toString());
+    assertTrue(sb.isEmpty() == false);
+    sb.setLength(0);
+    assertTrue(sb.capacity() >= 32);
+    assertEquals(0, sb.length());
+    assertEquals(0, sb.size());
+    assertTrue(sb.isEmpty());
+}

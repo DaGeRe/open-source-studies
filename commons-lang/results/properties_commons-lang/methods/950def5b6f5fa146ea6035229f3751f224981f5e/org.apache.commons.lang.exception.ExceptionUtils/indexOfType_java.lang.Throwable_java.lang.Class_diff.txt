@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns the (zero based) index of the first &lt;code&gt;Throwable&lt;/code&gt;              * &lt;p&gt;Returns the (zero based) index of the first &lt;code&gt;Throwable&lt;/code&gt;           
+* that matches the specified class or subclass in the exception chain.                                 * that matches the specified class or subclass in the exception chain.                              
+* Subclasses of the specified class do match - see                                                     * Subclasses of the specified class do match - see                                                  
+* {@link #indexOfThrowable(Throwable, Class)} for the opposite.&lt;/p&gt;                              * {@link #indexOfThrowable(Throwable, Class)} for the opposite.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; throwable returns &lt;code&gt;-1&lt;/code&gt;.              * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; throwable returns &lt;code&gt;-1&lt;/code&gt;.           
+* A &lt;code&gt;null&lt;/code&gt; type returns &lt;code&gt;-1&lt;/code&gt;.                            * A &lt;code&gt;null&lt;/code&gt; type returns &lt;code&gt;-1&lt;/code&gt;.                         
+* No match in the chain returns &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;                                 * No match in the chain returns &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;                              
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to inspect, may be null                                              * @param throwable  the throwable to inspect, may be null                                           
+* @param type  the type to search for, subclasses match, null returns -1                               * @param type  the type to search for, subclasses match, null returns -1                            
+* @return the index into the throwable chain, -1 if no match or null input                             * @return the index into the throwable chain, -1 if no match or null input                          
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static int indexOfType(Throwable throwable, Class type) {                                     | public static int indexOfType(Throwable throwable, Class&lt;?&gt; type) {                           
+return indexOf(throwable, type, 0, true);                                                              return indexOf(throwable, type, 0, true);                                                           
+}                                                                                                      }                                                                                                   

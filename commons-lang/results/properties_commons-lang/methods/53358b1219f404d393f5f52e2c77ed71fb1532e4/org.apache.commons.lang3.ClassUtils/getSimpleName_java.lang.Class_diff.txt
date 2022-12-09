@@ -1,0 +1,14 @@
+/**
+ * <p>Null-safe version of <code>aClass.getSimpleName()</code></p>
+ *
+ * @param cls the class for which to get the simple name.
+ * @return the simple class name.
+ * @since 3.0
+ * @see Class#getSimpleName()
+ */
+public static String getSimpleName(Class<?> cls) {
+    if (cls == null) {
+        return StringUtils.EMPTY;
+    }
+    return cls.getSimpleName();
+}

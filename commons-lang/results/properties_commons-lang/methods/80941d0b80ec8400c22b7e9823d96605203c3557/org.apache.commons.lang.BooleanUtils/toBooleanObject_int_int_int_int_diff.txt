@@ -1,0 +1,27 @@
+/**
+ * <p>Converts an int to a Boolean specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBooleanObject(0, 0, 2, 3) = Boolean.TRUE
+ *   BooleanUtils.toBooleanObject(2, 1, 2, 3) = Boolean.FALSE
+ *   BooleanUtils.toBooleanObject(3, 1, 2, 3) = null
+ * </pre>
+ *
+ * @param value  the Integer to convert
+ * @param trueValue  the value to match for <code>true</code>
+ * @param falseValue  the value to match for <code>false</code>
+ * @param nullValue  the value to to match for <code>null</code>
+ * @return Boolean.TRUE, Boolean.FALSE, or <code>null</code>
+ * @throws IllegalArgumentException if no match
+ */
+public static Boolean toBooleanObject(int value, int trueValue, int falseValue, int nullValue) {
+    if (value == trueValue) {
+        return Boolean.TRUE;
+    } else if (value == falseValue) {
+        return Boolean.FALSE;
+    } else if (value == nullValue) {
+        return null;
+    }
+    // no match
+    throw new IllegalArgumentException("The Integer did not match any specified value");
+}

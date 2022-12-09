@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testLongArrayArray() {                                                                     public void testLongArrayArray() {                                                                  
+long[][] array = new long[][] { { 1, 2 }, null, { 5 } };                                               long[][] array = new long[][] { { 1, 2 }, null, { 5 } };                                            
+assertEquals(baseStr + "[[[1, 2], %NULL%, [5]]]", new ToStringBuilder(base).append(array).toString()   assertEquals(baseStr + "[[[1, 2], %NULL%, [5]]]", new ToStringBuilder(base).append(array).toString()
+assertEquals(baseStr + "[[[1, 2], %NULL%, [5]]]", new ToStringBuilder(base).append((Object) array).t   assertEquals(baseStr + "[[[1, 2], %NULL%, [5]]]", new ToStringBuilder(base).append((Object) array).t
+array = null;                                                                                          array = null;                                                                                       
+assertEquals(baseStr + "[%NULL%]", new ToStringBuilder(base).append(array).toString());                assertEquals(baseStr + "[%NULL%]", new ToStringBuilder(base).append(array).toString());             
+assertEquals(baseStr + "[%NULL%]", new ToStringBuilder(base).append((Object) array).toString());       assertEquals(baseStr + "[%NULL%]", new ToStringBuilder(base).append((Object) array).toString());    
+}                                                                                                      }                                                                                                   

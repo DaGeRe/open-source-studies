@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+/**
+ * Gets the character at the specified index.
+ *
+ * @see #setCharAt(int, char)
+ * @see #deleteCharAt(int)
+ * @param index  the index to retrieve, must be valid
+ * @return the character at the index
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+public char charAt(int index) {
+    if (index < 0 || index >= length()) {
+        throw new StringIndexOutOfBoundsException(index);
+    }
+    return buffer[index];
+}

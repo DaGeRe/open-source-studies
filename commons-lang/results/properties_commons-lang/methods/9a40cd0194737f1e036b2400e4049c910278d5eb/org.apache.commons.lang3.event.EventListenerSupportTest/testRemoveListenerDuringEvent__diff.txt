@@ -1,0 +1,9 @@
+public void testRemoveListenerDuringEvent() {
+    final EventListenerSupport<ActionListener> listenerSupport = EventListenerSupport.create(ActionListener.class);
+    for (int i = 0; i < 10; ++i) {
+        addDeregisterListener(listenerSupport);
+    }
+    assertEquals(listenerSupport.getListenerCount(), 10);
+    listenerSupport.fire().actionPerformed(new ActionEvent("Hello", 0, "Hello"));
+    assertEquals(listenerSupport.getListenerCount(), 0);
+}

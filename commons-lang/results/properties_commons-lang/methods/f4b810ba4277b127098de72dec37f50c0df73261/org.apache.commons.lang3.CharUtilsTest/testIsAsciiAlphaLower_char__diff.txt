@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsAsciiAlphaLower_char() {                                                             public void testIsAsciiAlphaLower_char() {                                                          
+assertEquals(true, CharUtils.isAsciiAlphaLower('a'));                                                | assertTrue(CharUtils.isAsciiAlphaLower('a'));                                                       
+assertEquals(false, CharUtils.isAsciiAlphaLower('A'));                                               | assertFalse(CharUtils.isAsciiAlphaLower('A'));                                                      
+assertEquals(false, CharUtils.isAsciiAlphaLower('3'));                                               | assertFalse(CharUtils.isAsciiAlphaLower('3'));                                                      
+assertEquals(false, CharUtils.isAsciiAlphaLower('-'));                                               | assertFalse(CharUtils.isAsciiAlphaLower('-'));                                                      
+assertEquals(false, CharUtils.isAsciiAlphaLower('\n'));                                              | assertFalse(CharUtils.isAsciiAlphaLower('\n'));                                                     
+assertEquals(false, CharUtils.isAsciiAlphaLower(CHAR_COPY));                                         | assertFalse(CharUtils.isAsciiAlphaLower(CHAR_COPY));                                                
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+if (i &gt;= 'a' && i &lt;= 'z') {                                                                      if (i &gt;= 'a' && i &lt;= 'z') {                                                                   
+assertEquals(true, CharUtils.isAsciiAlphaLower((char) i));                                           | assertTrue(CharUtils.isAsciiAlphaLower((char) i));                                                  
+} else {                                                                                               } else {                                                                                            
+assertEquals(false, CharUtils.isAsciiAlphaLower((char) i));                                          | assertFalse(CharUtils.isAsciiAlphaLower((char) i));                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

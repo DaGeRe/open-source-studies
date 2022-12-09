@@ -1,0 +1,21 @@
+/**
+ * <p>Converts a Boolean to an int specifying the conversion values.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toInteger(Boolean.TRUE, 1, 0, 2)  = 1
+ *   BooleanUtils.toInteger(Boolean.FALSE, 1, 0, 2) = 0
+ *   BooleanUtils.toInteger(null, 1, 0, 2)          = 2
+ * </pre>
+ *
+ * @param bool  the Boolean to convert
+ * @param trueValue  the value to return if {@code true}
+ * @param falseValue  the value to return if {@code false}
+ * @param nullValue  the value to return if {@code null}
+ * @return the appropriate value
+ */
+public static int toInteger(Boolean bool, int trueValue, int falseValue, int nullValue) {
+    if (bool == null) {
+        return nullValue;
+    }
+    return bool.booleanValue() ? trueValue : falseValue;
+}

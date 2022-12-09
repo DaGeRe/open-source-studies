@@ -1,0 +1,11 @@
+public void testBasicTrimmed1() {
+    String input = "a: b :  ";
+    StrTokenizer tok = new StrTokenizer(input, ':');
+    tok.setTrimmerMatcher(StrMatcher.trimMatcher());
+    tok.setIgnoreEmptyTokens(false);
+    tok.setEmptyTokenAsNull(true);
+    assertEquals("a", tok.next());
+    assertEquals("b", tok.next());
+    assertEquals(null, tok.next());
+    assertEquals(false, tok.hasNext());
+}

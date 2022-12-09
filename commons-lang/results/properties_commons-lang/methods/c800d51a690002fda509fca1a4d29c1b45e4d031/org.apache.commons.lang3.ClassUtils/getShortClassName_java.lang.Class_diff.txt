@@ -1,0 +1,16 @@
+/**
+ * <p>Gets the class name minus the package name from a {@code Class}.</p>
+ *
+ * <p>Consider using the Java 5 API {@link Class#getSimpleName()} instead.
+ * The one known difference is that this code will return {@code "Map.Entry"} while
+ * the {@code java.lang.Class} variant will simply return {@code "Entry"}. </p>
+ *
+ * @param cls  the class to get the short name for.
+ * @return the class name without the package name or an empty string
+ */
+public static String getShortClassName(Class<?> cls) {
+    if (cls == null) {
+        return StringUtils.EMPTY;
+    }
+    return getShortClassName(cls.getName());
+}

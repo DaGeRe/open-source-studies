@@ -1,0 +1,8 @@
+/**
+ * Tests key replace changing map after initialization (not recommended).
+ */
+public void testReplaceChangedMap() {
+    StrSubstitutor sub = new StrSubstitutor(values);
+    values.put("target", "moon");
+    assertEquals("The quick brown fox jumps over the moon.", sub.replace("The ${animal} jumps over the ${target}."));
+}

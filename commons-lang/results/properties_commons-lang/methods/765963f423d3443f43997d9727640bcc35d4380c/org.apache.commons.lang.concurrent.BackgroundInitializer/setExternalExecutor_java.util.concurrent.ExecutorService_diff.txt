@@ -1,0 +1,20 @@
+/**
+ * Sets an {@code ExecutorService} to be used by this class. The {@code
+ * ExecutorService} passed to this method is used for executing the
+ * background task. Thus it is possible to re-use an already existing
+ * {@code ExecutorService} or to use a specially configured one. If no
+ * {@code ExecutorService} is set, this instance creates a temporary one and
+ * destroys it after background initialization is complete. Note that this
+ * method must be called before {@link #start()}; otherwise an exception is
+ * thrown.
+ *
+ * @param externalExecutor the {@code ExecutorService} to be used
+ * @throws IllegalStateException if this initializer has already been
+ * started
+ */
+public final synchronized void setExternalExecutor(ExecutorService externalExecutor) {
+    if (isStarted()) {
+        throw new IllegalStateException("Cannot set ExecutorService after start()!");
+    }
+    this.externalExecutor = externalExecutor;
+}

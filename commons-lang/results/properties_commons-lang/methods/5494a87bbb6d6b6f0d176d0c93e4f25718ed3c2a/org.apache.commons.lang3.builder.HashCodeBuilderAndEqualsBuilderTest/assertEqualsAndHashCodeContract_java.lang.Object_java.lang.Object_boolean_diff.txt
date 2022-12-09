@@ -1,0 +1,16 @@
+/**
+ * Asserts that if <code>lhs</code> equals <code>rhs</code>
+ * then their hash codes MUST be identical.
+ *
+ * @param lhs The Left-Hand-Side of the equals test
+ * @param rhs The Right-Hand-Side of the equals test
+ * @param testTransients wether to test transient fields
+ */
+public void assertEqualsAndHashCodeContract(Object lhs, Object rhs, boolean testTransients) {
+    if (EqualsBuilder.reflectionEquals(lhs, rhs, testTransients)) {
+        // test a couple of times for consistency.
+        assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHashCode(rhs, testTransients));
+        assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHashCode(rhs, testTransients));
+        assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHashCode(rhs, testTransients));
+    }
+}

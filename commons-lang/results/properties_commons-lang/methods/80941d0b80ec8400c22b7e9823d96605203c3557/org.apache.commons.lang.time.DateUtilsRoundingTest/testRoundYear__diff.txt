@@ -1,0 +1,13 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.Year
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundYear() throws Exception {
+    final int calendarField = Calendar.YEAR;
+    Date roundedUpDate = dateTimeParser.parse("January 1, 2008 0:00:00.000");
+    Date roundedDownDate = targetYearDate;
+    Date lastRoundedDownDate = dateTimeParser.parse("June 30, 2007 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+}

@@ -1,0 +1,30 @@
+                                                                                                     | @Test                                                                                               
+public void testGetDeclaredFieldForceAccess() {                                                        public void testGetDeclaredFieldForceAccess() {                                                     
+assertEquals(PublicChild.class, FieldUtils.getDeclaredField(PublicChild.class, "VALUE", true).getDec   assertEquals(PublicChild.class, FieldUtils.getDeclaredField(PublicChild.class, "VALUE", true).getDec
+assertNull(FieldUtils.getDeclaredField(PublicChild.class, "s", true));                                 assertNull(FieldUtils.getDeclaredField(PublicChild.class, "s", true));                              
+assertNull(FieldUtils.getDeclaredField(PublicChild.class, "b", true));                                 assertNull(FieldUtils.getDeclaredField(PublicChild.class, "b", true));                              
+assertNull(FieldUtils.getDeclaredField(PublicChild.class, "i", true));                                 assertNull(FieldUtils.getDeclaredField(PublicChild.class, "i", true));                              
+assertNull(FieldUtils.getDeclaredField(PublicChild.class, "d", true));                                 assertNull(FieldUtils.getDeclaredField(PublicChild.class, "d", true));                              
+assertNull(FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "VALUE", true));                   assertNull(FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "VALUE", true));                
+assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "   assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "
+assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "   assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "
+assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "   assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "
+assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "   assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "
+assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "VALUE", true));                  assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "VALUE", true));               
+assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,   assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,
+assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,   assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,
+assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,   assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,
+assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,   assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class,
+try {                                                                                                  try {                                                                                               
+FieldUtils.getDeclaredField(null, "none", true);                                                       FieldUtils.getDeclaredField(null, "none", true);                                                    
+fail("null class should cause an IllegalArgumentException");                                           fail("null class should cause an IllegalArgumentException");                                        
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+FieldUtils.getDeclaredField(PublicChild.class, null, true);                                            FieldUtils.getDeclaredField(PublicChild.class, null, true);                                         
+fail("null field name should cause an IllegalArgumentException");                                      fail("null field name should cause an IllegalArgumentException");                                   
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+// expected                                                                                            // expected                                                                                         
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

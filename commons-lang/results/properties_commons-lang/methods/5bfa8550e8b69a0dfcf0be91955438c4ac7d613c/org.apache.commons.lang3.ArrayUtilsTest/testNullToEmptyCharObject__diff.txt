@@ -1,0 +1,12 @@
+public void testNullToEmptyCharObject() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_CHARACTER_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Character[]) null));
+    // Test valid array handling
+    Character[] original = new Character[] { 'a', 'b' };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    Character[] empty = new Character[] {};
+    Character[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_CHARACTER_OBJECT_ARRAY, result);
+    assertTrue(empty != result);
+}

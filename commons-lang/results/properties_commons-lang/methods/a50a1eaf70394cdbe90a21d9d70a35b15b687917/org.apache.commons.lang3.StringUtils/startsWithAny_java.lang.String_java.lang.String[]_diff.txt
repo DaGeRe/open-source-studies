@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Check if a String starts with any of an array of specified strings.&lt;/p&gt;               * &lt;p&gt;Check if a String starts with any of an array of specified strings.&lt;/p&gt;            
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.startsWithAny(null, null)      = false                                                   * StringUtils.startsWithAny(null, null)      = false                                                
+* StringUtils.startsWithAny(null, new String[] {"abc"})  = false                                       * StringUtils.startsWithAny(null, new String[] {"abc"})  = false                                    
+* StringUtils.startsWithAny("abcxyz", null)     = false                                                * StringUtils.startsWithAny("abcxyz", null)     = false                                             
+* StringUtils.startsWithAny("abcxyz", new String[] {""}) = false                                       * StringUtils.startsWithAny("abcxyz", new String[] {""}) = false                                    
+* StringUtils.startsWithAny("abcxyz", new String[] {"abc"}) = true                                     * StringUtils.startsWithAny("abcxyz", new String[] {"abc"}) = true                                  
+* StringUtils.startsWithAny("abcxyz", new String[] {null, "xyz", "abc"}) = true                        * StringUtils.startsWithAny("abcxyz", new String[] {null, "xyz", "abc"}) = true                     
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param string  the String to check, may be null                                                      * @param string  the String to check, may be null                                                   
+* @param searchStrings the Strings to find, may be null or empty                                       * @param searchStrings the Strings to find, may be null or empty                                    
+* @return &lt;code&gt;true&lt;/code&gt; if the String starts with any of the the prefixes, case inse   * @return &lt;code&gt;true&lt;/code&gt; if the String starts with any of the the prefixes, case inse
+*  both &lt;code&gt;null&lt;/code&gt;                                                                  *  both &lt;code&gt;null&lt;/code&gt;                                                               
+* @since 2.5                                                                                           * @since 2.5                                                                                        
+*/                                                                                                     */                                                                                                  
+public static boolean startsWithAny(String string, String[] searchStrings) {                         | public static boolean startsWithAny(String string, String... searchStrings) {                       
+if (isEmpty(string) || ArrayUtils.isEmpty(searchStrings)) {                                            if (isEmpty(string) || ArrayUtils.isEmpty(searchStrings)) {                                         
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+for (int i = 0; i &lt; searchStrings.length; i++) {                                                    for (int i = 0; i &lt; searchStrings.length; i++) {                                                 
+String searchString = searchStrings[i];                                                                String searchString = searchStrings[i];                                                             
+if (StringUtils.startsWith(string, searchString)) {                                                    if (StringUtils.startsWith(string, searchString)) {                                                 
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   

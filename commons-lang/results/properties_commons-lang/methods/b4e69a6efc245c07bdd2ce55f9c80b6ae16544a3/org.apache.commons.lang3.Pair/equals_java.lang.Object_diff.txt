@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+if (obj == this) {                                                                                     if (obj == this) {                                                                                  
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+if (obj instanceof Pair&lt;?, ?&gt; == false) {                                                        if (obj instanceof Pair&lt;?, ?&gt; == false) {                                                     
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+Pair&lt;?, ?&gt; other = (Pair&lt;?, ?&gt;) obj;                                                       Pair&lt;?, ?&gt; other = (Pair&lt;?, ?&gt;) obj;                                                    
+return ObjectUtils.equals(left, other.left) && ObjectUtils.equals(right, other.right);               | return ObjectUtils.equals(getLeftElement(), other.getLeftElement()) && ObjectUtils.equals(getRightEl
+}                                                                                                      }                                                                                                   

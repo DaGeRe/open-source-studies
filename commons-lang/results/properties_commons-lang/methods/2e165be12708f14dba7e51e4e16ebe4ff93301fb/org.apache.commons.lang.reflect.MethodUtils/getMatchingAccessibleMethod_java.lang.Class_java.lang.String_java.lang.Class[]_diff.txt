@@ -1,0 +1,50 @@
+/**
+ * <p>Find an accessible method that matches the given name and has compatible parameters.
+ * Compatible parameters mean that every method parameter is assignable from
+ * the given parameters.
+ * In other words, it finds a method with the given name
+ * that will take the parameters given.<p>
+ *
+ * <p>This method is used by
+ * {@link
+ * #invokeMethod(Object object, String methodName, Object[] args, Class[] parameterTypes)}.
+ *
+ * <p>This method can match primitive parameter by passing in wrapper classes.
+ * For example, a <code>Boolean</code> will match a primitive <code>boolean</code>
+ * parameter.
+ *
+ * @param cls find method in this class
+ * @param methodName find method with this name
+ * @param parameterTypes find method with most compatible parameters
+ * @return The accessible method
+ */
+public static Method getMatchingAccessibleMethod(Class cls, String methodName, Class[] parameterTypes) {
+    try {
+        Method method = cls.getMethod(methodName, parameterTypes);
+        MemberUtils.setAccessibleWorkaround(method);
+        return method;
+    } catch (NoSuchMethodException e) {
+        /* SWALLOW */
+    }
+    // search through all methods
+    Method bestMatch = null;
+    Method[] methods = cls.getMethods();
+    for (int i = 0, size = methods.length; i < size; i++) {
+        if (methods[i].getName().equals(methodName)) {
+            // compare parameters
+            if (ClassUtils.isAssignable(parameterTypes, methods[i].getParameterTypes(), true)) {
+                // get accessible version of method
+                Method accessibleMethod = getAccessibleMethod(methods[i]);
+                if (accessibleMethod != null) {
+                    if (bestMatch == null || MemberUtils.compareParameterTypes(accessibleMethod.getParameterTypes(), bestMatch.getParameterTypes(), parameterTypes) < 0) {
+                        bestMatch = accessibleMethod;
+                    }
+                }
+            }
+        }
+    }
+    if (bestMatch != null) {
+        MemberUtils.setAccessibleWorkaround(bestMatch);
+    }
+    return bestMatch;
+}

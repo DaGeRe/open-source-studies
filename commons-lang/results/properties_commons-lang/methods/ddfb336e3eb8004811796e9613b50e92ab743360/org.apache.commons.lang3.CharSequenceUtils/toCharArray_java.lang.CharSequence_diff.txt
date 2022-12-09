@@ -1,0 +1,18 @@
+/**
+ * Green implementation of toCharArray.
+ *
+ * @param cs the {@code CharSequence} to be processed
+ * @return the resulting char array
+ */
+static char[] toCharArray(CharSequence cs) {
+    if (cs instanceof String) {
+        return ((String) cs).toCharArray();
+    } else {
+        int sz = cs.length();
+        char[] array = new char[cs.length()];
+        for (int i = 0; i < sz; i++) {
+            array[i] = cs.charAt(i);
+        }
+        return array;
+    }
+}

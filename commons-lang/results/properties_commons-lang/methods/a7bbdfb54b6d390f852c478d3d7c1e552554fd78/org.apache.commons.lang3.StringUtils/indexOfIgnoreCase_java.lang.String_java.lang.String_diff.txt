@@ -1,0 +1,27 @@
+/**
+ * <p>Case in-sensitive find of the first index within a String.</p>
+ *
+ * <p>A <code>null</code> String will return <code>-1</code>.
+ * A negative start position is treated as zero.
+ * An empty ("") search String always matches.
+ * A start position greater than the string length only matches
+ * an empty search String.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfIgnoreCase(null, *)          = -1
+ * StringUtils.indexOfIgnoreCase(*, null)          = -1
+ * StringUtils.indexOfIgnoreCase("", "")           = 0
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "a")  = 0
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "b")  = 2
+ * StringUtils.indexOfIgnoreCase("aabaabaa", "ab") = 1
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param searchStr  the String to find, may be null
+ * @return the first index of the search String,
+ *  -1 if no match or <code>null</code> string input
+ * @since 3.0
+ */
+public static int indexOfIgnoreCase(String str, String searchStr) {
+    return indexOfIgnoreCase(str, searchStr, 0);
+}

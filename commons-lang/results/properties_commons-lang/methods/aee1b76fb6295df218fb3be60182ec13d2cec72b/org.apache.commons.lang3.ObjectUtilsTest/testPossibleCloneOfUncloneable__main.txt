@@ -1,0 +1,13 @@
+/**
+ * Tests {@link ObjectUtils#cloneIfPossible(Object)} with an uncloneable object.
+ */
+@Test(expected = NoSuchMethodException.class)
+public void testPossibleCloneOfUncloneable() throws Throwable {
+    final UncloneableString string = new UncloneableString("apache");
+    try {
+        ObjectUtils.cloneIfPossible(string);
+        fail("Thrown " + CloneFailedException.class.getName() + " expected");
+    } catch (final CloneFailedException e) {
+        throw e.getCause();
+    }
+}

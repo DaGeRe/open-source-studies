@@ -1,0 +1,33 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;                                                                                          |                                                                                                     
+* Checks if the CharSequence contains any character in the given set of characters.                  |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;                                                                                          |                                                                                                     
+* A {@code null} CharSequence will return {@code false}. A {@code null} search CharSequence will ret |                                                                                                     
+* {@code false}.                                                                                     |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* StringUtils.containsAny(null, *)            = false                                                |                                                                                                     
+* StringUtils.containsAny("", *)              = false                                                |                                                                                                     
+* StringUtils.containsAny(*, null)            = false                                                |                                                                                                     
+* StringUtils.containsAny(*, "")              = false                                                |                                                                                                     
+* StringUtils.containsAny("zzabyycdxx", "za") = true                                                 |                                                                                                     
+* StringUtils.containsAny("zzabyycdxx", "by") = true                                                 |                                                                                                     
+* StringUtils.containsAny("aba","z")          = false                                                |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param cs                                                                                          |                                                                                                     
+*            the CharSequence to check, may be null                                                  |                                                                                                     
+* @param searchChars                                                                                 |                                                                                                     
+*            the chars to search for, may be null                                                    |                                                                                                     
+* @return the {@code true} if any of the chars are found, {@code false} if no match or null input    |                                                                                                     
+* @since 2.4                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static boolean containsAny(CharSequence cs, CharSequence searchChars) {                       |                                                                                                     
+if (searchChars == null) {                                                                           |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+return containsAny(cs, toCharArraySequence(searchChars));                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

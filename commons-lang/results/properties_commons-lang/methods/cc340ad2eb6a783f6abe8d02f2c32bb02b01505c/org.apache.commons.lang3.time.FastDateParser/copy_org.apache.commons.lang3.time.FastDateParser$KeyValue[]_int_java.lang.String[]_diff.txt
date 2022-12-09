@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Create key / value pairs from values                                                              
+                                                                                                     | * @param fieldKeyValues The destination array                                                       
+                                                                                                     | * @param offset The offset into the destination array                                               
+                                                                                                     | * @param values The values to use to create key / value pairs.  This parameter may be null.         
+                                                                                                     | * @return The offset into the destination array                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static int copy(KeyValue[] fieldKeyValues, int offset, String[] values) {                   
+                                                                                                     | if (values != null) {                                                                               
+                                                                                                     | for (int i = 0; i &lt; values.length; ++i) {                                                        
+                                                                                                     | String value = values[i];                                                                           
+                                                                                                     | if (value.length() &gt; 0) {                                                                        
+                                                                                                     | fieldKeyValues[offset++] = new KeyValue(value, i);                                                  
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return offset;                                                                                      
+                                                                                                     | }                                                                                                   

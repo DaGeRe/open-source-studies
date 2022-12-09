@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Instantiates ContextedRuntimeException with message, but without cause.                              * Instantiates ContextedRuntimeException with message, but without cause.                           
+* &lt;p&gt;DefaultExceptionContext used to store and format context information.&lt;/p&gt;           | * &lt;p&gt;                                                                                         
+* @param message The exception message                                                               | * The context information is stored using a default implementation.                                 
+* @since 3.0                                                                                         | *                                                                                                   
+                                                                                                     | * @param message  the exception message, may be null                                                
+*/                                                                                                     */                                                                                                  
+public ContextedRuntimeException(String message) {                                                     public ContextedRuntimeException(String message) {                                                  
+super(message);                                                                                        super(message);                                                                                     
+                                                                                                     | exceptionContext = new DefaultExceptionContext();                                                   
+}                                                                                                      }                                                                                                   

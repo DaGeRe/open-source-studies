@@ -1,0 +1,13 @@
+/**
+ * Sets the variable prefix to use.
+ * <p>
+ * The variable prefix is the characer or characters that identify the
+ * start of a variable. This method allows a single character prefix to
+ * be easily set.
+ *
+ * @param prefix  the prefix character to use
+ * @return this, to enable chaining
+ */
+public StrSubstitutor setVariablePrefix(char prefix) {
+    return setVariablePrefixMatcher(StrMatcher.charMatcher(prefix));
+}

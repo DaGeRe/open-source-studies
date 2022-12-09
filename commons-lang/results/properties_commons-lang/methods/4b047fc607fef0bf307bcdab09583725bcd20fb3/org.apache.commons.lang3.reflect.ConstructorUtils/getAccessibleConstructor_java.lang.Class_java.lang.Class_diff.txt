@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Finds a constructor given a class and signature, checking accessibility.</p>
+ *
+ * <p>This finds the constructor and ensures that it is accessible.
+ * The constructor signature must match the parameter types exactly.</p>
+ *
+ * @param <T> the constructor type
+ * @param cls  the class to find a constructor for, not null
+ * @param parameterTypes  the array of parameter types, null treated as empty
+ * @return the constructor, null if no matching accessible constructor found
+ * @see Class#getConstructor
+ * @see #getAccessibleConstructor(java.lang.reflect.Constructor)
+ */
+public static <T> Constructor<T> getAccessibleConstructor(Class<T> cls, Class<?>... parameterTypes) {
+    try {
+        return getAccessibleConstructor(cls.getConstructor(parameterTypes));
+    } catch (NoSuchMethodException e) {
+        return null;
+    }
+}

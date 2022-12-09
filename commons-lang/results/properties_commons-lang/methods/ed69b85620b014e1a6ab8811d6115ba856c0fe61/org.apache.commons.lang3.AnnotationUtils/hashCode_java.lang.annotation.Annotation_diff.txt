@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Generate a hashcode for the given annotation; dynamically created                                  | * &lt;p&gt;Generate a hash code for the given annotation.&lt;/p&gt;                                 
+* {@link Annotation} instances are always proxy objects which cannot be                              |                                                                                                     
+* depended upon to know how to implement {@link Annotation#hashCode()} per                           |                                                                                                     
+* spec.                                                                                              |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param a the Annotation for a hashcode calculation is desired                                      | * &lt;p&gt;Dynamically created {@link Annotation} instances are always proxy                        
+* @return the calculated hashcode                                                                    | * objects which cannot be depended upon to know how to implement                                    
+* @throws IllegalArgumentException                                                                   | * {@link Annotation#hashCode()} correctly.&lt;/p&gt;                                                
+* @throws IllegalAccessException                                                                     | *                                                                                                   
+* @throws InvocationTargetException                                                                  | * @param a the Annotation for a hash code calculation is desired, not null                          
+                                                                                                     | * @return the calculated hash code                                                                  
+                                                                                                     | * @throws IllegalAccessException if thrown during annotation access                                 
+                                                                                                     | * @throws InvocationTargetException if thrown during annotation access                              
+*/                                                                                                     */                                                                                                  
+public static int hashCode(Annotation a) throws IllegalArgumentException, IllegalAccessException, In | public static int hashCode(Annotation a) throws IllegalAccessException, InvocationTargetException { 
+int result = 0;                                                                                        int result = 0;                                                                                     
+Class&lt;? extends Annotation&gt; type = a.annotationType();                                           Class&lt;? extends Annotation&gt; type = a.annotationType();                                        
+for (Method m : type.getDeclaredMethods()) {                                                           for (Method m : type.getDeclaredMethods()) {                                                        
+Object value = m.invoke(a);                                                                            Object value = m.invoke(a);                                                                         
+if (value == null) {                                                                                   if (value == null) {                                                                                
+throw new IllegalStateException(String.format("Annotation method %s returned null", m));               throw new IllegalStateException(String.format("Annotation method %s returned null", m));            
+}                                                                                                      }                                                                                                   
+result += hashMember(m.getName(), value);                                                              result += hashMember(m.getName(), value);                                                           
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

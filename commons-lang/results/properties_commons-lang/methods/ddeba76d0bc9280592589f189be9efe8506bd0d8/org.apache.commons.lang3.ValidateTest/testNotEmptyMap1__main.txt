@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+public void testNotEmptyMap1() {
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    try {
+        Validate.notEmpty((Map<?, ?>) null);
+        fail("Expecting NullPointerException");
+    } catch (NullPointerException ex) {
+        assertEquals("The validated map is empty", ex.getMessage());
+    }
+    try {
+        Validate.notEmpty(map);
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+        assertEquals("The validated map is empty", ex.getMessage());
+    }
+    map.put("ll", Integer.valueOf(8));
+    Validate.notEmpty(map);
+    Map<String, Integer> test = Validate.notEmpty(map);
+    assertSame(map, test);
+}

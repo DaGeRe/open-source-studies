@@ -1,0 +1,22 @@
+public void testChomp() {
+    String[][] chompCases = { { FOO_UNCAP + "\r\n", FOO_UNCAP }, { FOO_UNCAP + "\n", FOO_UNCAP }, { FOO_UNCAP + "\r", FOO_UNCAP }, { FOO_UNCAP + " \r", FOO_UNCAP + " " }, { FOO_UNCAP, FOO_UNCAP }, { FOO_UNCAP + "\n\n", FOO_UNCAP + "\n" }, { FOO_UNCAP + "\r\n\r\n", FOO_UNCAP + "\r\n" }, { "foo\nfoo", "foo\nfoo" }, { "foo\n\rfoo", "foo\n\rfoo" }, { "\n", "" }, { "\r", "" }, { "a", "a" }, { "\r\n", "" }, { "", "" }, { null, null }, { FOO_UNCAP + "\n\r", FOO_UNCAP + "\n" } };
+    for (String[] chompCase : chompCases) {
+        String original = chompCase[0];
+        String expectedResult = chompCase[1];
+        assertEquals("chomp(String) failed", expectedResult, StringUtils.chomp(original));
+    }
+    assertEquals("chomp(String, String) failed", "foo", StringUtils.chomp("foobar", "bar"));
+    assertEquals("chomp(String, String) failed", "foobar", StringUtils.chomp("foobar", "baz"));
+    assertEquals("chomp(String, String) failed", "foo", StringUtils.chomp("foo", "foooo"));
+    assertEquals("chomp(String, String) failed", "foobar", StringUtils.chomp("foobar", ""));
+    assertEquals("chomp(String, String) failed", "foobar", StringUtils.chomp("foobar", null));
+    assertEquals("chomp(String, String) failed", "", StringUtils.chomp("", "foo"));
+    assertEquals("chomp(String, String) failed", "", StringUtils.chomp("", null));
+    assertEquals("chomp(String, String) failed", "", StringUtils.chomp("", ""));
+    assertEquals("chomp(String, String) failed", null, StringUtils.chomp(null, "foo"));
+    assertEquals("chomp(String, String) failed", null, StringUtils.chomp(null, null));
+    assertEquals("chomp(String, String) failed", null, StringUtils.chomp(null, ""));
+    assertEquals("chomp(String, String) failed", "", StringUtils.chomp("foo", "foo"));
+    assertEquals("chomp(String, String) failed", " ", StringUtils.chomp(" foo", "foo"));
+    assertEquals("chomp(String, String) failed", "foo ", StringUtils.chomp("foo ", "foo"));
+}

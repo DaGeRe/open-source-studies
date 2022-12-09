@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Does the <code>CharSet</code> contain the specified
+ * character <code>ch</code>.</p>
+ *
+ * @param ch  the character to check for
+ * @return <code>true</code> if the set contains the characters
+ */
+public boolean contains(char ch) {
+    for (Iterator<CharRange> it = set.iterator(); it.hasNext(); ) {
+        CharRange range = it.next();
+        if (range.contains(ch)) {
+            return true;
+        }
+    }
+    return false;
+}

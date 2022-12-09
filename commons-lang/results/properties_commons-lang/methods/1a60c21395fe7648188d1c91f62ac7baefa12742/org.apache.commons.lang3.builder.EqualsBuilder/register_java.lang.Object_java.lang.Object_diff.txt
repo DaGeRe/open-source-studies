@@ -1,0 +1,19 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;                                                                                         
+                                                                                                     | * Registers the given object pair.                                                                  
+                                                                                                     | * Used by the reflection methods to avoid infinite loops.                                           
+                                                                                                     | * &lt;/p&gt;                                                                                        
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param lhs &lt;code&gt;this&lt;/code&gt; object to register                                       
+                                                                                                     | * @param rhs the other object to register                                                           
+                                                                                                     | */                                                                                                  
+                                                                                                     | static void register(Object lhs, Object rhs) {                                                      
+                                                                                                     | synchronized (HashCodeBuilder.class) {                                                              
+                                                                                                     | if (getRegistry() == null) {                                                                        
+                                                                                                     | REGISTRY.set(new HashSet&lt;Pair&lt;IDKey, IDKey&gt;&gt;());                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | Set&lt;Pair&lt;IDKey, IDKey&gt;&gt; registry = getRegistry();                                       
+                                                                                                     | Pair&lt;IDKey, IDKey&gt; pair = getRegisterPair(lhs, rhs);                                          
+                                                                                                     | registry.add(pair);                                                                                 
+                                                                                                     | }                                                                                                   

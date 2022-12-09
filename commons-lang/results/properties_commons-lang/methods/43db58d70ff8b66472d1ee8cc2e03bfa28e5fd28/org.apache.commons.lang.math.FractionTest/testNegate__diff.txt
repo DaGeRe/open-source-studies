@@ -1,0 +1,22 @@
+public void testNegate() {
+    Fraction f = null;
+    f = Fraction.getFraction(50, 75);
+    f = f.negate();
+    assertEquals(-50, f.getNumerator());
+    assertEquals(75, f.getDenominator());
+    f = Fraction.getFraction(-50, 75);
+    f = f.negate();
+    assertEquals(50, f.getNumerator());
+    assertEquals(75, f.getDenominator());
+    // large values
+    f = Fraction.getFraction(Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
+    f = f.negate();
+    assertEquals(Integer.MIN_VALUE + 2, f.getNumerator());
+    assertEquals(Integer.MAX_VALUE, f.getDenominator());
+    f = Fraction.getFraction(Integer.MIN_VALUE, 1);
+    try {
+        f = f.negate();
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

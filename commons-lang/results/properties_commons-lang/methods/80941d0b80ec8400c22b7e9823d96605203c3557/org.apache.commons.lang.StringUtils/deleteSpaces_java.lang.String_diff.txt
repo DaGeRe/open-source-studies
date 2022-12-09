@@ -1,0 +1,34 @@
+// Delete
+// -----------------------------------------------------------------------
+/**
+ * <p>Deletes all 'space' characters from a String as defined by
+ * {@link Character#isSpace(char)}.</p>
+ *
+ * <p>This is the only StringUtils method that uses the
+ * <code>isSpace</code> definition. You are advised to use
+ * {@link #deleteWhitespace(String)} instead as whitespace is much
+ * better localized.</p>
+ *
+ * <pre>
+ * StringUtils.deleteSpaces(null)           = null
+ * StringUtils.deleteSpaces("")             = ""
+ * StringUtils.deleteSpaces("abc")          = "abc"
+ * StringUtils.deleteSpaces(" \t  abc \n ") = "abc"
+ * StringUtils.deleteSpaces("ab  c")        = "abc"
+ * StringUtils.deleteSpaces("a\nb\tc     ") = "abc"
+ * </pre>
+ *
+ * <p>Spaces are defined as <code>{' ', '\t', '\r', '\n', '\b'}</code>
+ * in line with the deprecated <code>isSpace</code> method.</p>
+ *
+ * @param str  the String to delete spaces from, may be null
+ * @return the String without 'spaces', <code>null</code> if null String input
+ * @deprecated Use the better localized {@link #deleteWhitespace(String)}.
+ *             Method will be removed in Commons Lang 3.0.
+ */
+public static String deleteSpaces(String str) {
+    if (str == null) {
+        return null;
+    }
+    return CharSetUtils.delete(str, " \t\r\n\b");
+}

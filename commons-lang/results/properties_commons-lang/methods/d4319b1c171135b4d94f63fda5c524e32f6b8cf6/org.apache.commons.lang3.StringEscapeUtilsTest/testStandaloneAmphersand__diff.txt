@@ -1,0 +1,9 @@
+// Tests issue #38569                                                                                  // Tests issue #38569                                                                               
+// http://issues.apache.org/bugzilla/show_bug.cgi?id=38569                                             // http://issues.apache.org/bugzilla/show_bug.cgi?id=38569                                          
+                                                                                                     | @Test                                                                                               
+public void testStandaloneAmphersand() {                                                               public void testStandaloneAmphersand() {                                                            
+assertEquals("&lt;P&O&gt;", StringEscapeUtils.unescapeHtml4("&lt;P&O&gt;"));                           assertEquals("&lt;P&O&gt;", StringEscapeUtils.unescapeHtml4("&lt;P&O&gt;"));                        
+assertEquals("test & &lt;", StringEscapeUtils.unescapeHtml4("test & &lt;"));                           assertEquals("test & &lt;", StringEscapeUtils.unescapeHtml4("test & &lt;"));                        
+assertEquals("&lt;P&O&gt;", StringEscapeUtils.unescapeXml("&lt;P&O&gt;"));                             assertEquals("&lt;P&O&gt;", StringEscapeUtils.unescapeXml("&lt;P&O&gt;"));                          
+assertEquals("test & &lt;", StringEscapeUtils.unescapeXml("test & &lt;"));                             assertEquals("test & &lt;", StringEscapeUtils.unescapeXml("test & &lt;"));                          
+}                                                                                                      }                                                                                                   

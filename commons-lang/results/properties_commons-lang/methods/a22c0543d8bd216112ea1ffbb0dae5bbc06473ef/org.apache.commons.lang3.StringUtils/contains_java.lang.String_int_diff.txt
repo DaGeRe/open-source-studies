@@ -1,0 +1,27 @@
+// Contains
+// -----------------------------------------------------------------------
+/**
+ * <p>Checks if String contains a search character, handling <code>null</code>.
+ * This method uses {@link String#indexOf(int)}.</p>
+ *
+ * <p>A <code>null</code> or empty ("") String will return <code>false</code>.</p>
+ *
+ * <pre>
+ * StringUtils.contains(null, *)    = false
+ * StringUtils.contains("", *)      = false
+ * StringUtils.contains("abc", 'a') = true
+ * StringUtils.contains("abc", 'z') = false
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param searchChar  the character to find
+ * @return true if the String contains the search character,
+ *  false if not or <code>null</code> string input
+ * @since 2.0
+ */
+public static boolean contains(String str, int searchChar) {
+    if (isEmpty(str)) {
+        return false;
+    }
+    return str.indexOf(searchChar) >= 0;
+}

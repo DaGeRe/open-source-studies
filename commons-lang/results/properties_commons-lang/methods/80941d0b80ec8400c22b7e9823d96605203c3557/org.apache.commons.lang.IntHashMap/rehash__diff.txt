@@ -1,0 +1,26 @@
+/**
+ * <p>Increases the capacity of and internally reorganizes this
+ * hashtable, in order to accommodate and access its entries more
+ * efficiently.</p>
+ *
+ * <p>This method is called automatically when the number of keys
+ * in the hashtable exceeds this hashtable's capacity and load
+ * factor.</p>
+ */
+protected void rehash() {
+    int oldCapacity = table.length;
+    Entry[] oldMap = table;
+    int newCapacity = oldCapacity * 2 + 1;
+    Entry[] newMap = new Entry[newCapacity];
+    threshold = (int) (newCapacity * loadFactor);
+    table = newMap;
+    for (int i = oldCapacity; i-- > 0; ) {
+        for (Entry old = oldMap[i]; old != null; ) {
+            Entry e = old;
+            old = old.next;
+            int index = (e.hash & 0x7FFFFFFF) % newCapacity;
+            e.next = newMap[index];
+            newMap[index] = e;
+        }
+    }
+}

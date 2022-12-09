@@ -1,0 +1,5 @@
+public void testEscapeHtmlVersions() throws Exception {
+    assertEquals("&Beta;", StringEscapeUtils.escapeHtml("\u0392"));
+    assertEquals("\u0392", StringEscapeUtils.unescapeHtml("&Beta;"));
+    // todo: refine API for escaping/unescaping specific HTML versions
+}

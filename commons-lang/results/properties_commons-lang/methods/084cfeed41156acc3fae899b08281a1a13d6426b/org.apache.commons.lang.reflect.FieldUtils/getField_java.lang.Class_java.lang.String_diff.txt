@@ -1,0 +1,14 @@
+/**
+ * Gets an accessible <code>Field</code> by name repecting scope.
+ * Superclasses/interfaces will be considered.
+ *
+ * @param cls  the class to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @return the Field object
+ * @throws IllegalArgumentException if the class or field name is null
+ */
+public static Field getField(Class cls, String fieldName) {
+    Field field = getField(cls, fieldName, false);
+    MemberUtils.setAccessibleWorkaround(field);
+    return field;
+}

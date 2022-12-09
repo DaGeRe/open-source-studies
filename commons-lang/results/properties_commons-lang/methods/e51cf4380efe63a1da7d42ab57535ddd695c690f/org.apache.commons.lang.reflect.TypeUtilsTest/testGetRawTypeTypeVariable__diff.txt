@@ -1,0 +1,7 @@
+@Test
+public void testGetRawTypeTypeVariable() throws Exception {
+    assertEquals(String.class, TypeUtils.getRawType(StringParameterizedChild.class, genericParentT));
+    assertEquals(String.class, TypeUtils.getRawType(stringParentField.getGenericType(), genericParentT));
+    assertEquals(Foo.class, TypeUtils.getRawType(foosField.getGenericType(), iterableType));
+    assertEquals(Foo.class, TypeUtils.getRawType(foosField.getGenericType(), listType));
+}

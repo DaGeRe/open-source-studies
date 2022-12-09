@@ -1,0 +1,27 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Uncapitalizes a String changing the first letter to title case as                        
+                                                                                                     | * per {@link Character#toLowerCase(char)}. No other letters are changed.&lt;/p&gt;                  
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;For a word based algorithm, see {@link org.apache.commons.lang3.text.WordUtils#uncapitali
+                                                                                                     | * A {@code null} input String returns {@code null}.&lt;/p&gt;                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.uncapitalize(null)  = null                                                            
+                                                                                                     | * StringUtils.uncapitalize("")    = ""                                                              
+                                                                                                     | * StringUtils.uncapitalize("Cat") = "cat"                                                           
+                                                                                                     | * StringUtils.uncapitalize("CAT") = "cAT"                                                           
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param str the String to uncapitalize, may be null                                                
+                                                                                                     | * @return the uncapitalized String, {@code null} if null String input                               
+                                                                                                     | * @see org.apache.commons.lang3.text.WordUtils#uncapitalize(String)                                 
+                                                                                                     | * @see #capitalize(String)                                                                          
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static String uncapitalize(String str) {                                                     
+                                                                                                     | int strLen;                                                                                         
+                                                                                                     | if (str == null || (strLen = str.length()) == 0) {                                                  
+                                                                                                     | return str;                                                                                         
+                                                                                                     | }                                                                                                   
+                                                                                                     | return new StringBuilder(strLen).append(Character.toLowerCase(str.charAt(0))).append(str.substring(1
+                                                                                                     | }                                                                                                   

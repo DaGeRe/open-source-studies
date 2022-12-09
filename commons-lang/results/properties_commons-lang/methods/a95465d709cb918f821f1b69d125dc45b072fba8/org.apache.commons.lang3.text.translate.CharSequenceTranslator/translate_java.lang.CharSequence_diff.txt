@@ -1,0 +1,19 @@
+/**
+ * Helper for non-Writer usage.
+ * @param input CharSequence to be translated
+ * @return String output of translation
+ */
+public final String translate(CharSequence input) {
+    if (input == null) {
+        return null;
+    }
+    try {
+        // TODO: Make the 2 part of the API???
+        StringWriter writer = new StringWriter(input.length() * 2);
+        translate(input, writer);
+        return writer.toString();
+    } catch (IOException ioe) {
+        // this should never ever happen while writing to a StringWriter
+        throw new RuntimeException(ioe);
+    }
+}

@@ -1,0 +1,22 @@
+/**
+ * <p>Converts an Integer to a Boolean using the convention that <code>zero</code>
+ * is <code>false</code>.</p>
+ *
+ * <p><code>null</code> will be converted to <code>null</code>.</p>
+ *
+ * <pre>
+ *   BooleanUtils.toBoolean(new Integer(0))    = Boolean.FALSE
+ *   BooleanUtils.toBoolean(new Integer(1))    = Boolean.TRUE
+ *   BooleanUtils.toBoolean(new Integer(null)) = null
+ * </pre>
+ *
+ * @param value  the Integer to convert
+ * @return Boolean.TRUE if non-zero, Boolean.FALSE if zero,
+ *  <code>null</code> if <code>null</code> input
+ */
+public static Boolean toBooleanObject(Integer value) {
+    if (value == null) {
+        return null;
+    }
+    return value.intValue() == 0 ? Boolean.FALSE : Boolean.TRUE;
+}

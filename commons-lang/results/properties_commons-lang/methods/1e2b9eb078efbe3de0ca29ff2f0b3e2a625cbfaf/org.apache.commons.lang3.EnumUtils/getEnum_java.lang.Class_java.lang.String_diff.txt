@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Gets the &lt;code&gt;enum&lt;/code&gt; for the class, returning &lt;code&gt;null&lt;/code&gt; if n | * &lt;p&gt;Gets the enum for the class, returning {@code null} if not found.&lt;/p&gt;              
+* &lt;p&gt;                                                                                          |                                                                                                     
+* This method differs from {@link Enum#valueOf} in that it does not throw an exception               |                                                                                                     
+* for an invalid enum name.                                                                          |                                                                                                     
+*                                                                                                      *                                                                                                   
+* @param enumClass  the class of the &lt;code&gt;enum&lt;/code&gt; to get, not null                  | * &lt;p&gt;This method differs from {@link Enum#valueOf} in that it does not throw an exception     
+* @param enumName   the enum name                                                                    | * for an invalid enum name.&lt;/p&gt;                                                               
+* @return the enum or null if not found                                                              | *                                                                                                   
+                                                                                                     | * @param enumClass  the class of the enum to query, not null                                        
+                                                                                                     | * @param enumName   the enum name, null returns null                                                
+                                                                                                     | * @return the enum, null if not found                                                               
+*/                                                                                                     */                                                                                                  
+public static &lt;E extends Enum&lt;E&gt;&gt; E getEnum(Class&lt;E&gt; enumClass, String enumName) {   public static &lt;E extends Enum&lt;E&gt;&gt; E getEnum(Class&lt;E&gt; enumClass, String enumName) {
+                                                                                                     | if (enumName == null) {                                                                             
+                                                                                                     | return null;                                                                                        
+                                                                                                     | }                                                                                                   
+try {                                                                                                  try {                                                                                               
+return Enum.valueOf(enumClass, enumName);                                                              return Enum.valueOf(enumClass, enumName);                                                           
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

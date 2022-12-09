@@ -1,0 +1,18 @@
+/**
+ * <p>
+ * Decides if the Java version matches.
+ * </p>
+ * <p>
+ * This method is package private instead of private to support unit test invocation.
+ * </p>
+ *
+ * @param version the actual Java version
+ * @param versionPrefix the prefix for the expected Java version
+ * @return true if matches, or false if not or can't determine
+ */
+static boolean isJavaVersionMatch(String version, String versionPrefix) {
+    if (version == null) {
+        return false;
+    }
+    return version.startsWith(versionPrefix);
+}

@@ -1,0 +1,7 @@
+public void testAtLeast() {
+    assertFalse("1.2 at least 1.5 passed", JAVA_1_2.atLeast(JAVA_1_5));
+    assertTrue("1.5 at least 1.2 failed", JAVA_1_5.atLeast(JAVA_1_2));
+    assertFalse("1.6 at least 1.7 passed", JAVA_1_6.atLeast(JAVA_1_7));
+    assertTrue("0.9 at least 1.5 failed", JAVA_0_9.atLeast(JAVA_1_5));
+    assertFalse("0.9 at least 1.6 passed", JAVA_0_9.atLeast(JAVA_1_6));
+}

@@ -1,0 +1,27 @@
+public void testNullDate() {
+    try {
+        DateUtils.getFragmentInMilliseconds((Date) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInSeconds((Date) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInMinutes((Date) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInHours((Date) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+    try {
+        DateUtils.getFragmentInDays((Date) null, Calendar.MILLISECOND);
+        fail();
+    } catch (IllegalArgumentException iae) {
+    }
+}

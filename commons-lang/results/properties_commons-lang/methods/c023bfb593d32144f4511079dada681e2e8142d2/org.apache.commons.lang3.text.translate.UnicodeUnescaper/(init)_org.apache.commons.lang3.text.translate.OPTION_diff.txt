@@ -1,0 +1,18 @@
+/**                                                                                                  |                                                                                                     
+* Create a UnicodeUnescaper.                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* The constructor takes a list of options, only one of which is currently                            |                                                                                                     
+* available (whether to expect a plus sign after the 'u').                                           |                                                                                                     
+*                                                                                                    |                                                                                                     
+* For example, to handle "\\u+0047":                                                                 |                                                                                                     
+*    new UnicodeUnescaper(UnicodeUnescaper.OPTION.escapePlus)                                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param options to apply to this unescaper                                                          |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public UnicodeUnescaper(OPTION... options) {                                                         |                                                                                                     
+if (options.length &gt; 0) {                                                                         |                                                                                                     
+this.options = EnumSet.copyOf(Arrays.asList(options));                                               |                                                                                                     
+} else {                                                                                             |                                                                                                     
+this.options = null;                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

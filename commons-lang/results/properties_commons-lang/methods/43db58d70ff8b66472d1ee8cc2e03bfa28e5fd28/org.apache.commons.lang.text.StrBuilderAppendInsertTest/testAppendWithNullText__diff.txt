@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+public void testAppendWithNullText() {
+    StrBuilder sb = new StrBuilder();
+    sb.setNullText("NULL");
+    assertEquals("", sb.toString());
+    sb.appendNull();
+    assertEquals("NULL", sb.toString());
+    sb.append((Object) null);
+    assertEquals("NULLNULL", sb.toString());
+    sb.append(FOO);
+    assertEquals("NULLNULLfoo", sb.toString());
+    sb.append((String) null);
+    assertEquals("NULLNULLfooNULL", sb.toString());
+    sb.append("");
+    assertEquals("NULLNULLfooNULL", sb.toString());
+    sb.append("bar");
+    assertEquals("NULLNULLfooNULLbar", sb.toString());
+    sb.append((StringBuffer) null);
+    assertEquals("NULLNULLfooNULLbarNULL", sb.toString());
+    sb.append(new StringBuffer("baz"));
+    assertEquals("NULLNULLfooNULLbarNULLbaz", sb.toString());
+}

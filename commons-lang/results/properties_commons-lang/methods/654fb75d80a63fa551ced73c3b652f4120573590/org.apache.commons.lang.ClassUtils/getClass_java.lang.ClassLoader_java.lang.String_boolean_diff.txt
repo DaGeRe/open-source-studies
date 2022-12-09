@@ -1,0 +1,23 @@
+// Class loading                                                                                       // Class loading                                                                                    
+// ----------------------------------------------------------------------                              // ----------------------------------------------------------------------                           
+/**                                                                                                    /**                                                                                                 
+* Returns the class represented by &lt;code&gt;className&lt;/code&gt; using the                        * Returns the class represented by &lt;code&gt;className&lt;/code&gt; using the                     
+* &lt;code&gt;classLoader&lt;/code&gt;.  This implementation supports names like                       * &lt;code&gt;classLoader&lt;/code&gt;.  This implementation supports names like                    
+* "&lt;code&gt;java.lang.String[]&lt;/code&gt;" as well as "&lt;code&gt;[Ljava.lang.String;&lt;/code   * "&lt;code&gt;java.lang.String[]&lt;/code&gt;" as well as "&lt;code&gt;[Ljava.lang.String;&lt;/code
+*                                                                                                      *                                                                                                   
+* @param classLoader  the class loader to use to load the class                                        * @param classLoader  the class loader to use to load the class                                     
+* @param className  the class name                                                                     * @param className  the class name                                                                  
+* @param initialize  whether the class must be initialized                                             * @param initialize  whether the class must be initialized                                          
+* @return the class represented by &lt;code&gt;className&lt;/code&gt; using the &lt;code&gt;classLoa   * @return the class represented by &lt;code&gt;className&lt;/code&gt; using the &lt;code&gt;classLoa
+* @throws ClassNotFoundException if the class is not found                                             * @throws ClassNotFoundException if the class is not found                                          
+*/                                                                                                     */                                                                                                  
+public static Class getClass(ClassLoader classLoader, String className, boolean initialize) throws C | public static Class&lt;?&gt; getClass(ClassLoader classLoader, String className, boolean initialize)
+Class clazz;                                                                                         | Class&lt;?&gt; clazz;                                                                               
+if (abbreviationMap.containsKey(className)) {                                                          if (abbreviationMap.containsKey(className)) {                                                       
+String clsName = "[" + abbreviationMap.get(className);                                                 String clsName = "[" + abbreviationMap.get(className);                                              
+clazz = Class.forName(clsName, initialize, classLoader).getComponentType();                            clazz = Class.forName(clsName, initialize, classLoader).getComponentType();                         
+} else {                                                                                               } else {                                                                                            
+clazz = Class.forName(toCanonicalName(className), initialize, classLoader);                            clazz = Class.forName(toCanonicalName(className), initialize, classLoader);                         
+}                                                                                                      }                                                                                                   
+return clazz;                                                                                          return clazz;                                                                                       
+}                                                                                                      }                                                                                                   

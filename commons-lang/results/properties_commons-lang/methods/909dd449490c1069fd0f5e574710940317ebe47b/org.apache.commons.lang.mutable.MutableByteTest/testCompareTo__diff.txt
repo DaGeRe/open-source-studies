@@ -1,0 +1,21 @@
+public void testCompareTo() {                                                                          public void testCompareTo() {                                                                       
+final MutableByte mutNum = new MutableByte((byte) 0);                                                  final MutableByte mutNum = new MutableByte((byte) 0);                                               
+assertEquals((byte) 0, mutNum.compareTo(new MutableByte((byte) 0)));                                   assertEquals((byte) 0, mutNum.compareTo(new MutableByte((byte) 0)));                                
+assertEquals((byte) +1, mutNum.compareTo(new MutableByte((byte) -1)));                                 assertEquals((byte) +1, mutNum.compareTo(new MutableByte((byte) -1)));                              
+assertEquals((byte) -1, mutNum.compareTo(new MutableByte((byte) 1)));                                  assertEquals((byte) -1, mutNum.compareTo(new MutableByte((byte) 1)));                               
+try {                                                                                                  try {                                                                                               
+mutNum.compareTo(null);                                                                                mutNum.compareTo(null);                                                                             
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+mutNum.compareTo(new Byte((byte) 0));                                                                | mutNum.compareTo(Byte.valueOf((byte) 0));                                                           
+fail();                                                                                                fail();                                                                                             
+} catch (ClassCastException ex) {                                                                      } catch (ClassCastException ex) {                                                                   
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+mutNum.compareTo("0");                                                                                 mutNum.compareTo("0");                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (ClassCastException ex) {                                                                      } catch (ClassCastException ex) {                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

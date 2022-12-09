@@ -1,0 +1,37 @@
+/**
+ * <p>Creates a <code>Fraction</code> instance with the 3 parts
+ * of a fraction X Y/Z.</p>
+ *
+ * <p>The negative sign must be passed in on the whole number part.</p>
+ *
+ * @param whole  the whole number, for example the one in 'one and three sevenths'
+ * @param numerator  the numerator, for example the three in 'one and three sevenths'
+ * @param denominator  the denominator, for example the seven in 'one and three sevenths'
+ * @return a new fraction instance
+ * @throws ArithmeticException if the denomiator is <code>zero</code>
+ * @throws ArithmeticException if the denominator is negative
+ * @throws ArithmeticException if the numerator is negative
+ * @throws ArithmeticException if the resulting numerator exceeds
+ *  <code>Integer.MAX_VALUE</code>
+ */
+public static Fraction getFraction(int whole, int numerator, int denominator) {
+    if (denominator == 0) {
+        throw new ArithmeticException("The denominator must not be zero");
+    }
+    if (denominator < 0) {
+        throw new ArithmeticException("The denominator must not be negative");
+    }
+    if (numerator < 0) {
+        throw new ArithmeticException("The numerator must not be negative");
+    }
+    long numeratorValue;
+    if (whole < 0) {
+        numeratorValue = whole * (long) denominator - numerator;
+    } else {
+        numeratorValue = whole * (long) denominator + numerator;
+    }
+    if (numeratorValue < Integer.MIN_VALUE || numeratorValue > Integer.MAX_VALUE) {
+        throw new ArithmeticException("Numerator too large to represent as an Integer.");
+    }
+    return new Fraction((int) numeratorValue, denominator);
+}

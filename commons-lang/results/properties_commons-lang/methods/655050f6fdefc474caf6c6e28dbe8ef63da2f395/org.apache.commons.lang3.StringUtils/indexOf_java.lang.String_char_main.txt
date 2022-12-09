@@ -1,0 +1,27 @@
+// IndexOf
+// -----------------------------------------------------------------------
+/**
+ * <p>Finds the first index within a String, handling <code>null</code>.
+ * This method uses {@link String#indexOf(int)}.</p>
+ *
+ * <p>A <code>null</code> or empty ("") String will return <code>INDEX_NOT_FOUND (-1)</code>.</p>
+ *
+ * <pre>
+ * StringUtils.indexOf(null, *)         = -1
+ * StringUtils.indexOf("", *)           = -1
+ * StringUtils.indexOf("aabaabaa", 'a') = 0
+ * StringUtils.indexOf("aabaabaa", 'b') = 2
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param searchChar  the character to find
+ * @return the first index of the search character,
+ *  -1 if no match or <code>null</code> string input
+ * @since 2.0
+ */
+public static int indexOf(String str, char searchChar) {
+    if (isEmpty(str)) {
+        return INDEX_NOT_FOUND;
+    }
+    return str.indexOf(searchChar);
+}

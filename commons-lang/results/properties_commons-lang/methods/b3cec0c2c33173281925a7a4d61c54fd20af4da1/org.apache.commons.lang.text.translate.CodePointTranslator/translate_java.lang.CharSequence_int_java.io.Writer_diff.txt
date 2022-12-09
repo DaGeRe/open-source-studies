@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Implementation of translate that maps onto the abstract translate(int, Writer) method.               * Implementation of translate that maps onto the abstract translate(int, Writer) method.            
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public final int translate(CharSequence input, int index, Writer out) throws IOException {             public final int translate(CharSequence input, int index, Writer out) throws IOException {          
+int codepoint = Character.codePointAt(input, index);                                                   int codepoint = Character.codePointAt(input, index);                                                
+boolean consumed = translate(codepoint, out);                                                          boolean consumed = translate(codepoint, out);                                                       
+if (consumed) {                                                                                        if (consumed) {                                                                                     
+return 1;                                                                                              return 1;                                                                                           
+} else {                                                                                               } else {                                                                                            
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

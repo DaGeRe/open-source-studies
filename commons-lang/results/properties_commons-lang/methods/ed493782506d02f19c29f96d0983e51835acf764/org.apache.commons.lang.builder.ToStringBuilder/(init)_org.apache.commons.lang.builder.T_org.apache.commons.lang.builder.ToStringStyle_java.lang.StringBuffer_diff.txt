@@ -1,0 +1,25 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Constructor for &lt;code&gt;ToStringBuilder&lt;/code&gt;.&lt;/p&gt;                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the style is &lt;code&gt;null&lt;/code&gt;, the default style is used.&lt;/p&gt;      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the buffer is &lt;code&gt;null&lt;/code&gt;, a new one is created.&lt;/p&gt;          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param object  the Object to build a &lt;code&gt;toString&lt;/code&gt; for                        
+                                                                                                     | * @param style  the style of the &lt;code&gt;toString&lt;/code&gt; to create,                       
+                                                                                                     | *  may be &lt;code&gt;null&lt;/code&gt;                                                             
+                                                                                                     | * @param buffer  the &lt;code&gt;StringBuffer&lt;/code&gt; to populate, may be                      
+                                                                                                     | *  &lt;code&gt;null&lt;/code&gt;                                                                    
+                                                                                                     | */                                                                                                  
+                                                                                                     | public ToStringBuilder(T object, ToStringStyle style, StringBuffer buffer) {                        
+                                                                                                     | if (style == null) {                                                                                
+                                                                                                     | style = getDefaultStyle();                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (buffer == null) {                                                                               
+                                                                                                     | buffer = new StringBuffer(512);                                                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | this.buffer = buffer;                                                                               
+                                                                                                     | this.style = style;                                                                                 
+                                                                                                     | this.object = object;                                                                               
+                                                                                                     | style.appendStart(buffer, object);                                                                  
+                                                                                                     | }                                                                                                   

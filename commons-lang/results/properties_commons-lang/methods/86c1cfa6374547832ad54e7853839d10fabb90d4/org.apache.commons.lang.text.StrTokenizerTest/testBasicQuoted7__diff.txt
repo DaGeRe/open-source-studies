@@ -1,0 +1,9 @@
+public void testBasicQuoted7() {
+    String input = "a:\"There's a reason here\":b";
+    StrTokenizer tok = new StrTokenizer(input, ':');
+    tok.setQuoteMatcher(StrMatcher.quoteMatcher());
+    assertEquals("a", tok.next());
+    assertEquals("There's a reason here", tok.next());
+    assertEquals("b", tok.next());
+    assertEquals(false, tok.hasNext());
+}

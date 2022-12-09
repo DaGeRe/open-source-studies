@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* Adds a contextual label-value pair into this context.                                                * Adds a contextual label-value pair into this context.                                             
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* This label-value pair provides information useful for debugging.                                   | * This label-value pair provides information useful for debugging. If the                           
+                                                                                                     | * label already exists and the provided information is different, the                               
+                                                                                                     | * label will be added with an appended index.                                                       
+                                                                                                     | * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param label  the label of the item to add, null not recommended                                     * @param label  the label of the item to add, null not recommended                                  
+* @param value  the value of item to add, may be null                                                  * @param value  the value of item to add, may be null                                               
+* @return this, for method chaining                                                                    * @return this, for method chaining                                                                 
+*/                                                                                                     */                                                                                                  
+public ExceptionContext addValue(String label, Object value) {                                         public ExceptionContext addValue(String label, Object value) {                                      
+contextValueMap.put(label, value);                                                                   | String key = label;                                                                                 
+                                                                                                     | int i = 0;                                                                                          
+                                                                                                     | while (contextValueMap.containsKey(key)) {                                                          
+                                                                                                     | Object information = contextValueMap.get(key);                                                      
+                                                                                                     | if ((value == null && information == null) || (value != null && value.equals(information)))         
+return this;                                                                                           return this;                                                                                        
+                                                                                                     | key = label + "[" + ++i + "]";                                                                      
+}                                                                                                      }                                                                                                   
+                                                                                                     | contextValueMap.put(key, value);                                                                    
+                                                                                                     | return this;                                                                                        
+                                                                                                     | }                                                                                                   

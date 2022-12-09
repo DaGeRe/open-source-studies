@@ -1,0 +1,19 @@
+/**
+ * <p>Validate that the specified argument collection is neither {@code null}
+ * nor a size of zero (no elements); otherwise throwing an exception.
+ *
+ * <pre>Validate.notEmpty(myCollection);</pre>
+ *
+ * <p>The message in the exception is &quot;The validated collection is
+ * empty&quot;.</p>
+ *
+ * @param <T> the collection type
+ * @param collection  the collection to check, validated not null by this method
+ * @return the validated collection (never {@code null} method for chaining)
+ * @throws NullPointerException if the collection is {@code null}
+ * @throws IllegalArgumentException if the collection is empty
+ * @see #notEmpty(Collection, String, Object...)
+ */
+public static <T extends Collection<?>> T notEmpty(T collection) {
+    return notEmpty(collection, DEFAULT_NOT_EMPTY_COLLECTION_EX_MESSAGE);
+}

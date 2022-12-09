@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Removes all occurrences of a character from within the source string.&lt;/p&gt;             * &lt;p&gt;Removes all occurrences of a character from within the source string.&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; source string will return &lt;code&gt;null&lt;/code&gt;.    * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; source string will return &lt;code&gt;null&lt;/code&gt;. 
+* An empty ("") source string will return the empty string.&lt;/p&gt;                                  * An empty ("") source string will return the empty string.&lt;/p&gt;                               
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.remove(null, *)       = null                                                             * StringUtils.remove(null, *)       = null                                                          
+* StringUtils.remove("", *)         = ""                                                               * StringUtils.remove("", *)         = ""                                                            
+* StringUtils.remove("queued", 'u') = "qeed"                                                           * StringUtils.remove("queued", 'u') = "qeed"                                                        
+* StringUtils.remove("queued", 'z') = "queued"                                                         * StringUtils.remove("queued", 'z') = "queued"                                                      
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param str  the source String to search, may be null                                                 * @param str  the source String to search, may be null                                              
+* @param remove  the char to search for and remove, may be null                                        * @param remove  the char to search for and remove, may be null                                     
+* @return the substring with the char removed if found,                                                * @return the substring with the char removed if found,                                             
+*  &lt;code&gt;null&lt;/code&gt; if null String input                                                  *  &lt;code&gt;null&lt;/code&gt; if null String input                                               
+* @since 2.1                                                                                           * @since 2.1                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String remove(String str, char remove) {                                                 public static String remove(String str, char remove) {                                              
+if (isEmpty(str) || str.indexOf(remove) == -1) {                                                     | if (isEmpty(str) || str.indexOf(remove) == INDEX_NOT_FOUND) {                                       
+return str;                                                                                            return str;                                                                                         
+}                                                                                                      }                                                                                                   
+char[] chars = str.toCharArray();                                                                      char[] chars = str.toCharArray();                                                                   
+int pos = 0;                                                                                           int pos = 0;                                                                                        
+for (int i = 0; i &lt; chars.length; i++) {                                                            for (int i = 0; i &lt; chars.length; i++) {                                                         
+if (chars[i] != remove) {                                                                              if (chars[i] != remove) {                                                                           
+chars[pos++] = chars[i];                                                                               chars[pos++] = chars[i];                                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return new String(chars, 0, pos);                                                                      return new String(chars, 0, pos);                                                                   
+}                                                                                                      }                                                                                                   

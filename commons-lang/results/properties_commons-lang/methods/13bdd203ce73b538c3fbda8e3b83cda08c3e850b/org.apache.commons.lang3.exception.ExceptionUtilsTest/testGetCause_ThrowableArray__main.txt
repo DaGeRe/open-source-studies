@@ -1,0 +1,18 @@
+// Specifically tests the deprecated methods
+@SuppressWarnings("deprecation")
+public void testGetCause_ThrowableArray() {
+    assertSame(null, ExceptionUtils.getCause(null, null));
+    assertSame(null, ExceptionUtils.getCause(null, new String[0]));
+    // not known type, so match on supplied method names
+    // default names
+    assertSame(nested, ExceptionUtils.getCause(withCause, null));
+    assertSame(null, ExceptionUtils.getCause(withCause, new String[0]));
+    assertSame(null, ExceptionUtils.getCause(withCause, new String[] { null }));
+    assertSame(nested, ExceptionUtils.getCause(withCause, new String[] { "getCause" }));
+    // not known type, so match on supplied method names
+    assertSame(null, ExceptionUtils.getCause(withoutCause, null));
+    assertSame(null, ExceptionUtils.getCause(withoutCause, new String[0]));
+    assertSame(null, ExceptionUtils.getCause(withoutCause, new String[] { null }));
+    assertSame(null, ExceptionUtils.getCause(withoutCause, new String[] { "getCause" }));
+    assertSame(null, ExceptionUtils.getCause(withoutCause, new String[] { "getTargetException" }));
+}

@@ -1,0 +1,11 @@
+/**
+ * <p>Formats a date/time into a specific pattern using the UTC time zone.</p>
+ *
+ * @param millis  the date to format expressed in milliseconds
+ * @param pattern  the pattern to use to format the date, not null
+ * @param locale  the locale to use, may be <code>null</code>
+ * @return the formatted date
+ */
+public static String formatUTC(long millis, String pattern, Locale locale) {
+    return format(new Date(millis), pattern, DateUtils.UTC_TIME_ZONE, locale);
+}

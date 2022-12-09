@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Get a custom format from a format description.                                                       * Get a custom format from a format description.                                                    
+*                                                                                                      *                                                                                                   
+* @param desc String                                                                                   * @param desc String                                                                                
+* @return Format                                                                                       * @return Format                                                                                    
+*/                                                                                                     */                                                                                                  
+private Format getFormat(String desc) {                                                                private Format getFormat(String desc) {                                                             
+if (registry != null) {                                                                                if (registry != null) {                                                                             
+String name = desc;                                                                                    String name = desc;                                                                                 
+String args = null;                                                                                    String args = null;                                                                                 
+int i = desc.indexOf(START_FMT);                                                                       int i = desc.indexOf(START_FMT);                                                                    
+if (i &gt; 0) {                                                                                        if (i &gt; 0) {                                                                                     
+name = desc.substring(0, i).trim();                                                                    name = desc.substring(0, i).trim();                                                                 
+args = desc.substring(i + 1).trim();                                                                   args = desc.substring(i + 1).trim();                                                                
+}                                                                                                      }                                                                                                   
+FormatFactory factory = (FormatFactory) registry.get(name);                                          | FormatFactory factory = registry.get(name);                                                         
+if (factory != null) {                                                                                 if (factory != null) {                                                                              
+return factory.getFormat(name, args, getLocale());                                                     return factory.getFormat(name, args, getLocale());                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

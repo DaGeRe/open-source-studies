@@ -1,0 +1,59 @@
+@Test
+public void testWriteDeclaredNamedField() throws Exception {
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "s", "S");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "b", Boolean.TRUE);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "i", Integer.valueOf(1));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(publicChild, "d", Double.valueOf(1.0));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "s", "S");
+    assertEquals("S", FieldUtils.readDeclaredField(publiclyShadowedChild, "s"));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "b", Boolean.FALSE);
+    assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(publiclyShadowedChild, "b"));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "i", Integer.valueOf(0));
+    assertEquals(Integer.valueOf(0), FieldUtils.readDeclaredField(publiclyShadowedChild, "i"));
+    FieldUtils.writeDeclaredField(publiclyShadowedChild, "d", Double.valueOf(0.0));
+    assertEquals(Double.valueOf(0.0), FieldUtils.readDeclaredField(publiclyShadowedChild, "d"));
+    try {
+        FieldUtils.writeDeclaredField(privatelyShadowedChild, "s", "S");
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(privatelyShadowedChild, "b", Boolean.TRUE);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(privatelyShadowedChild, "i", Integer.valueOf(1));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeDeclaredField(privatelyShadowedChild, "d", Double.valueOf(1.0));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

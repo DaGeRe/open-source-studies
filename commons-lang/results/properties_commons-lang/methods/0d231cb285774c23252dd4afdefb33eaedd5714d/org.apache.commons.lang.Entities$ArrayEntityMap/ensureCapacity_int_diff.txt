@@ -1,0 +1,17 @@
+/**
+ * Verifies the capacity of the entity array, adjusting the size if necessary.
+ *
+ * @param capacity
+ *            size the array should be
+ */
+protected void ensureCapacity(int capacity) {
+    if (capacity > names.length) {
+        int newSize = Math.max(capacity, size + growBy);
+        String[] newNames = new String[newSize];
+        System.arraycopy(names, 0, newNames, 0, size);
+        names = newNames;
+        int[] newValues = new int[newSize];
+        System.arraycopy(values, 0, newValues, 0, size);
+        values = newValues;
+    }
+}

@@ -1,0 +1,18 @@
+                                                                                                     | // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Adds information helpful to a developer in diagnosing and correcting                                 * Adds information helpful to a developer in diagnosing and correcting                              
+* the problem.  For the information to be meaningful, the value passed                                 * the problem.  For the information to be meaningful, the value passed                              
+* should have a reasonable toString() implementation.                                                  * should have a reasonable toString() implementation.                                               
+*                                                                                                    | * &lt;p&gt;                                                                                         
+* &lt;p&gt;Note:  If the value provided isn't Serializable, one solution would be                    | * Note:  If the value provided isn't Serializable, one solution would be                            
+* to provide its toString() if it has a meaningful implementation or                                   * to provide its toString() if it has a meaningful implementation or                                
+* individual properties of the value object instead.&lt;/p&gt;                                       | * individual properties of the value object instead.                                                
+* @param label  a textual label associated with information                                          | *                                                                                                   
+* @param value  information needed to understand exception.  May be &lt;code&gt;null&lt;/code&gt;.   | * @param label  a textual label associated with information, null not recommended                   
+* @return this                                                                                       | * @param value  information needed to understand exception, may be null                             
+* @since 3.0                                                                                         | * @return this, for method chaining                                                                 
+*/                                                                                                     */                                                                                                  
+public ContextedException addLabeledValue(String label, Serializable value) {                          public ContextedException addLabeledValue(String label, Serializable value) {                       
+this.exceptionContext.addLabeledValue(label, value);                                                 | exceptionContext.addLabeledValue(label, value);                                                     
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+public void test_getShortCanonicalName_Object() {
+    assertEquals("<null>", ClassUtils.getShortCanonicalName(null, "<null>"));
+    assertEquals("ClassUtils", ClassUtils.getShortCanonicalName(new ClassUtils(), "<null>"));
+    assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName(new ClassUtils[0], "<null>"));
+    assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName(new ClassUtils[0][0], "<null>"));
+    assertEquals("int[]", ClassUtils.getShortCanonicalName(new int[0], "<null>"));
+    assertEquals("int[][]", ClassUtils.getShortCanonicalName(new int[0][0], "<null>"));
+}

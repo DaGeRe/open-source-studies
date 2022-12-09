@@ -1,0 +1,10 @@
+public Object invoke(final Object proxy, final Method method, final Object[] parameters) throws Thro   public Object invoke(final Object proxy, final Method method, final Object[] parameters) throws Thro
+if (eventTypes.isEmpty() || eventTypes.contains(method.getName())) {                                   if (eventTypes.isEmpty() || eventTypes.contains(method.getName())) {                                
+if (hasMatchingParametersMethod(method)) {                                                             if (hasMatchingParametersMethod(method)) {                                                          
+return MethodUtils.invokeMethod(target, methodName, parameters);                                       return MethodUtils.invokeMethod(target, methodName, parameters);                                    
+} else {                                                                                               } else {                                                                                            
+return MethodUtils.invokeMethod(target, methodName, new Object[] {});                                | return MethodUtils.invokeMethod(target, methodName);                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

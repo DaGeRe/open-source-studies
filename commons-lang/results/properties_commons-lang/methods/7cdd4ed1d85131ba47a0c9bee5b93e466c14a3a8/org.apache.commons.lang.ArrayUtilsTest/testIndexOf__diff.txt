@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testIndexOf() {
+    Object[] array = new Object[] { "0", "1", "2", "3", null, "0" };
+    assertEquals(-1, ArrayUtils.indexOf(null, null));
+    assertEquals(-1, ArrayUtils.indexOf(null, "0"));
+    assertEquals(-1, ArrayUtils.indexOf(new Object[0], "0"));
+    assertEquals(0, ArrayUtils.indexOf(array, "0"));
+    assertEquals(1, ArrayUtils.indexOf(array, "1"));
+    assertEquals(2, ArrayUtils.indexOf(array, "2"));
+    assertEquals(3, ArrayUtils.indexOf(array, "3"));
+    assertEquals(4, ArrayUtils.indexOf(array, null));
+    assertEquals(-1, ArrayUtils.indexOf(array, "notInArray"));
+}

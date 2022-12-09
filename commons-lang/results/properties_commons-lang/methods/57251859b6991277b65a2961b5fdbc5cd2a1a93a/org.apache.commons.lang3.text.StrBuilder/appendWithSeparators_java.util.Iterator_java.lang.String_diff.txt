@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Appends an iterator placing separators between each value, but                                       * Appends an iterator placing separators between each value, but                                    
+* not before the first or after the last.                                                              * not before the first or after the last.                                                           
+* Appending a null iterator will have no effect.                                                       * Appending a null iterator will have no effect.                                                    
+* Each object is appended using {@link #append(Object)}.                                               * Each object is appended using {@link #append(Object)}.                                            
+*                                                                                                      *                                                                                                   
+* @param it  the iterator to append                                                                    * @param it  the iterator to append                                                                 
+* @param separator  the separator to use, null means no separator                                      * @param separator  the separator to use, null means no separator                                   
+* @return this, to enable chaining                                                                     * @return this, to enable chaining                                                                  
+*/                                                                                                     */                                                                                                  
+public StrBuilder appendWithSeparators(Iterator&lt;?&gt; it, String separator) {                       public StrBuilder appendWithSeparators(Iterator&lt;?&gt; it, String separator) {                    
+if (it != null) {                                                                                      if (it != null) {                                                                                   
+separator = separator == null ? "" : separator;                                                      | separator = ObjectUtils.toString(separator);                                                        
+while (it.hasNext()) {                                                                                 while (it.hasNext()) {                                                                              
+append(it.next());                                                                                     append(it.next());                                                                                  
+if (it.hasNext()) {                                                                                    if (it.hasNext()) {                                                                                 
+append(separator);                                                                                     append(separator);                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return this;                                                                                           return this;                                                                                        
+}                                                                                                      }                                                                                                   

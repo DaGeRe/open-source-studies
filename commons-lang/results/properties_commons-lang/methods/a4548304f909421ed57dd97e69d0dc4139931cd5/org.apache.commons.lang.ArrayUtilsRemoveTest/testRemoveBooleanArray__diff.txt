@@ -1,0 +1,30 @@
+public void testRemoveBooleanArray() {
+    boolean[] array;
+    array = ArrayUtils.remove(new boolean[] { true }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_BOOLEAN_ARRAY, array));
+    assertEquals(Boolean.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new boolean[] { true, false }, 0);
+    assertTrue(Arrays.equals(new boolean[] { false }, array));
+    assertEquals(Boolean.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new boolean[] { true, false }, 1);
+    assertTrue(Arrays.equals(new boolean[] { true }, array));
+    assertEquals(Boolean.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new boolean[] { true, false, true }, 1);
+    assertTrue(Arrays.equals(new boolean[] { true, true }, array));
+    assertEquals(Boolean.TYPE, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new boolean[] { true, false }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new boolean[] { true, false }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((boolean[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

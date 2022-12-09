@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Finds a &lt;code&gt;Throwable&lt;/code&gt; by method name.&lt;/p&gt;                        * &lt;p&gt;Finds a &lt;code&gt;Throwable&lt;/code&gt; by method name.&lt;/p&gt;                     
+*                                                                                                      *                                                                                                   
+* @param throwable  the exception to examine                                                           * @param throwable  the exception to examine                                                        
+* @param methodName  the name of the method to find and invoke                                         * @param methodName  the name of the method to find and invoke                                      
+* @return the wrapped exception, or &lt;code&gt;null&lt;/code&gt; if not found                         * @return the wrapped exception, or &lt;code&gt;null&lt;/code&gt; if not found                      
+*/                                                                                                     */                                                                                                  
+                                                                                                     | // TODO: Remove in Lang 4.0                                                                         
+private static Throwable getCauseUsingMethodName(Throwable throwable, String methodName) {             private static Throwable getCauseUsingMethodName(Throwable throwable, String methodName) {          
+Method method = null;                                                                                  Method method = null;                                                                               
+try {                                                                                                  try {                                                                                               
+method = throwable.getClass().getMethod(methodName, (Class[]) null);                                   method = throwable.getClass().getMethod(methodName, (Class[]) null);                                
+} catch (NoSuchMethodException ignored) {                                                              } catch (NoSuchMethodException ignored) {                                                           
+// exception ignored                                                                                   // exception ignored                                                                                
+} catch (SecurityException ignored) {                                                                  } catch (SecurityException ignored) {                                                               
+// exception ignored                                                                                   // exception ignored                                                                                
+}                                                                                                      }                                                                                                   
+if (method != null && Throwable.class.isAssignableFrom(method.getReturnType())) {                      if (method != null && Throwable.class.isAssignableFrom(method.getReturnType())) {                   
+try {                                                                                                  try {                                                                                               
+return (Throwable) method.invoke(throwable, ArrayUtils.EMPTY_OBJECT_ARRAY);                            return (Throwable) method.invoke(throwable, ArrayUtils.EMPTY_OBJECT_ARRAY);                         
+} catch (IllegalAccessException ignored) {                                                             } catch (IllegalAccessException ignored) {                                                          
+// exception ignored                                                                                   // exception ignored                                                                                
+} catch (IllegalArgumentException ignored) {                                                           } catch (IllegalArgumentException ignored) {                                                        
+// exception ignored                                                                                   // exception ignored                                                                                
+} catch (InvocationTargetException ignored) {                                                          } catch (InvocationTargetException ignored) {                                                       
+// exception ignored                                                                                   // exception ignored                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

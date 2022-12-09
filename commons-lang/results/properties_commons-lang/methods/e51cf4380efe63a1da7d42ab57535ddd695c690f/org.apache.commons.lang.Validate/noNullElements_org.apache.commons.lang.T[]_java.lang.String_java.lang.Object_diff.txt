@@ -1,0 +1,33 @@
+                                                                                                     | // notNullElements array                                                                            
+                                                                                                     | // ---------------------------------------------------------------------------------                
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Validate that the specified argument array is neither                                    
+                                                                                                     | * &lt;code&gt;null&lt;/code&gt; nor contains any elements that are &lt;code&gt;null&lt;/code&gt;;   
+                                                                                                     | * otherwise throwing an exception with the specified message.                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;Validate.noNullElements(myArray, "The array contain null at position %d");&lt;/pre&gt; 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the array is &lt;code&gt;null&lt;/code&gt;, then the message in the exception         
+                                                                                                     | * is &quot;The validated object is null&quot;.&lt;/p&gt;                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the array has a &lt;code&gt;null&lt;/code&gt; element, then the iteration             
+                                                                                                     | * index of the invalid element is appended to the &lt;code&gt;values&lt;/code&gt;                   
+                                                                                                     | * argument.&lt;/p&gt;                                                                               
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param &lt;T&gt; the array type                                                                   
+                                                                                                     | * @param array the array to check                                                                   
+                                                                                                     | * @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)             
+                                                                                                     | * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+                                                                                                     | * @throws IllegalArgumentException if an element is &lt;code&gt;null&lt;/code&gt;                   
+                                                                                                     | * @see #noNullElements(Object[])                                                                    
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T&gt; T[] noNullElements(T[] array, String message, Object... values) {           
+                                                                                                     | Validate.notNull(array);                                                                            
+                                                                                                     | for (int i = 0; i &lt; array.length; i++) {                                                         
+                                                                                                     | if (array[i] == null) {                                                                             
+                                                                                                     | Object[] values2 = ArrayUtils.add(values, i);                                                       
+                                                                                                     | throw new IllegalArgumentException(String.format(message, values2));                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return array;                                                                                       
+                                                                                                     | }                                                                                                   

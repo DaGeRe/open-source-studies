@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public int read(char[] b, int off, int len) {                                                          public int read(char[] b, int off, int len) {                                                       
+if (off &lt; 0 || len &lt; 0 || off &gt; b.length || (off + len) &gt; b.length || (off + len) &lt; 0   if (off &lt; 0 || len &lt; 0 || off &gt; b.length || (off + len) &gt; b.length || (off + len) &lt; 0
+throw new IndexOutOfBoundsException();                                                                 throw new IndexOutOfBoundsException();                                                              
+}                                                                                                      }                                                                                                   
+if (len == 0) {                                                                                        if (len == 0) {                                                                                     
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+if (pos &gt;= StrBuilder.this.size()) {                                                                if (pos &gt;= StrBuilder.this.size()) {                                                             
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+if (pos + len &gt; size()) {                                                                           if (pos + len &gt; size()) {                                                                        
+len = StrBuilder.this.size() - pos;                                                                    len = StrBuilder.this.size() - pos;                                                                 
+}                                                                                                      }                                                                                                   
+StrBuilder.this.getChars(pos, pos + len, b, off);                                                      StrBuilder.this.getChars(pos, pos + len, b, off);                                                   
+pos += len;                                                                                            pos += len;                                                                                         
+return len;                                                                                            return len;                                                                                         
+}                                                                                                      }                                                                                                   

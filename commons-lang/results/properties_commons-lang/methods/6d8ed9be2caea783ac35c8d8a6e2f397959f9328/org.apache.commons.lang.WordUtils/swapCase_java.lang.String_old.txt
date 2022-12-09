@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Swaps the case of a String using a word based algorithm.</p>
+ *
+ * <ul>
+ *  <li>Upper case character converts to Lower case</li>
+ *  <li>Title case character converts to Lower case</li>
+ *  <li>Lower case character after Whitespace or at start converts to Title case</li>
+ *  <li>Other Lower case character converts to Upper case</li>
+ * </ul>
+ *
+ * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.
+ * A <code>null</code> input String returns <code>null</code>.</p>
+ *
+ * <pre>
+ * StringUtils.swapCase(null)                 = null
+ * StringUtils.swapCase("")                   = ""
+ * StringUtils.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
+ * </pre>
+ *
+ * @param str  the String to swap case, may be null
+ * @return the changed String, <code>null</code> if null String input
+ */
+public static String swapCase(String str) {
+    int strLen;
+    if (str == null || (strLen = str.length()) == 0) {
+        return str;
+    }
+    StringBuffer buffer = new StringBuffer(strLen);
+    boolean whitespace = true;
+    char ch = 0;
+    char tmp = 0;
+    for (int i = 0; i < strLen; i++) {
+        ch = str.charAt(i);
+        if (Character.isUpperCase(ch)) {
+            tmp = Character.toLowerCase(ch);
+        } else if (Character.isTitleCase(ch)) {
+            tmp = Character.toLowerCase(ch);
+        } else if (Character.isLowerCase(ch)) {
+            if (whitespace) {
+                tmp = Character.toTitleCase(ch);
+            } else {
+                tmp = Character.toUpperCase(ch);
+            }
+        } else {
+            tmp = ch;
+        }
+        buffer.append(tmp);
+        whitespace = Character.isWhitespace(ch);
+    }
+    return buffer.toString();
+}

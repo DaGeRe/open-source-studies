@@ -1,0 +1,19 @@
+// Basics
+// -----------------------------------------------------------------------
+/**
+ * <p>Compares two CharRange objects, returning true if they represent
+ * exactly the same range of characters defined in the same way.</p>
+ *
+ * @param obj  the object to compare to
+ * @return true if equal
+ */
+public boolean equals(Object obj) {
+    if (obj == this) {
+        return true;
+    }
+    if (obj instanceof CharRange == false) {
+        return false;
+    }
+    CharRange other = (CharRange) obj;
+    return start == other.start && end == other.end && negated == other.negated;
+}

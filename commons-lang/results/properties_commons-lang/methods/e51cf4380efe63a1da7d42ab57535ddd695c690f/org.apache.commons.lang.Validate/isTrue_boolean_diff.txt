@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;          | * &lt;p&gt;Validate that the argument condition is &lt;code&gt;true&lt;/code&gt;; otherwise         
+* if the test result is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                    | * throwing an exception. This method is useful when validating according                            
+                                                                                                     | * to an arbitrary boolean expression, such as validating a                                          
+                                                                                                     | * primitive number or using your own custom validation expression.&lt;/p&gt;                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This is used when validating according to an arbitrary boolean expression,                |                                                                                                     
+* such as validating a primitive number or using your own custom validation                          |                                                                                                     
+* expression.&lt;/p&gt;                                                                              |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* Validate.isTrue( i &gt; 0 );                                                                       | * Validate.isTrue(i &gt; 0);                                                                        
+* Validate.isTrue( myObject.isOk() );                                                                | * Validate.isTrue(myObject.isOk());&lt;/pre&gt;                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is 'The validated expression is false'.&lt;/p&gt;            | * &lt;p&gt;The message of the exception is &quot;The validated expression is                        
+                                                                                                     | * false&quot;.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* @param expression  a boolean expression                                                            | * @param expression the boolean expression to check                                                 
+* @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                     * @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                  
+                                                                                                     | * @see #isTrue(boolean, String, long)                                                               
+                                                                                                     | * @see #isTrue(boolean, String, double)                                                             
+                                                                                                     | * @see #isTrue(boolean, String, Object)                                                             
+                                                                                                     | * @see #isTrue(boolean, String, Object...)                                                          
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression) {                                                        public static void isTrue(boolean expression) {                                                     
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException("The validated expression is false");                             | throw new IllegalArgumentException(DEFAULT_IS_TRUE_EXCEPTION_MESSAGE);                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

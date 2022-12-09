@@ -1,0 +1,14 @@
+/**
+ * Returns the {@code ConcurrentException} object that was thrown by the
+ * {@code BackgroundInitializer} with the given name. If this
+ * initializer did not throw an exception, the return value is
+ * <b>null</b>. If the name cannot be resolved, an exception is thrown.
+ *
+ * @param name the name of the {@code BackgroundInitializer}
+ * @return the exception thrown by this initializer
+ * @throws NoSuchElementException if the name cannot be resolved
+ */
+public ConcurrentException getException(String name) {
+    checkName(name);
+    return exceptions.get(name);
+}

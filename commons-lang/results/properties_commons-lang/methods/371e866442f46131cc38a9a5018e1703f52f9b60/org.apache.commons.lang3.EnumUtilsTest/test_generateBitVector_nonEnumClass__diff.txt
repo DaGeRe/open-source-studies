@@ -1,0 +1,9 @@
+@SuppressWarnings("unchecked")
+@Test(expected = IllegalArgumentException.class)
+public void test_generateBitVector_nonEnumClass() {
+    @SuppressWarnings("rawtypes")
+    Class rawType = Object.class;
+    @SuppressWarnings("rawtypes")
+    List rawList = new ArrayList();
+    EnumUtils.generateBitVector(rawType, rawList);
+}

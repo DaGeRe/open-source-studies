@@ -1,0 +1,34 @@
+/**
+ * <p>Checks if the CharSequence contains only Unicode letters and
+ * space (' ').</p>
+ *
+ * <p>{@code null} will return {@code false}
+ * An empty CharSequence (length()=0) will return {@code true}.</p>
+ *
+ * <pre>
+ * StringUtils.isAlphaSpace(null)   = false
+ * StringUtils.isAlphaSpace("")     = true
+ * StringUtils.isAlphaSpace("  ")   = true
+ * StringUtils.isAlphaSpace("abc")  = true
+ * StringUtils.isAlphaSpace("ab c") = true
+ * StringUtils.isAlphaSpace("ab2c") = false
+ * StringUtils.isAlphaSpace("ab-c") = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @return {@code true} if only contains letters and space,
+ *  and is non-null
+ * @since 3.0 Changed signature from isAlphaSpace(String) to isAlphaSpace(CharSequence)
+ */
+public static boolean isAlphaSpace(CharSequence cs) {
+    if (cs == null) {
+        return false;
+    }
+    int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if ((Character.isLetter(cs.charAt(i)) == false) && (cs.charAt(i) != ' ')) {
+            return false;
+        }
+    }
+    return true;
+}

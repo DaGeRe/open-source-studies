@@ -1,0 +1,31 @@
+@Test
+public void testRemoveFloatArray() {
+    float[] array;
+    array = ArrayUtils.remove(new float[] { 1 }, 0);
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_FLOAT_ARRAY, array));
+    assertEquals(Float.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new float[] { 1, 2 }, 0);
+    assertTrue(Arrays.equals(new float[] { 2 }, array));
+    assertEquals(Float.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new float[] { 1, 2 }, 1);
+    assertTrue(Arrays.equals(new float[] { 1 }, array));
+    assertEquals(Float.TYPE, array.getClass().getComponentType());
+    array = ArrayUtils.remove(new float[] { 1, 2, 1 }, 1);
+    assertTrue(Arrays.equals(new float[] { 1, 1 }, array));
+    assertEquals(Float.TYPE, array.getClass().getComponentType());
+    try {
+        ArrayUtils.remove(new float[] { 1, 2 }, -1);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove(new float[] { 1, 2 }, 2);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+    try {
+        ArrayUtils.remove((float[]) null, 0);
+        fail("IndexOutOfBoundsException expected");
+    } catch (IndexOutOfBoundsException e) {
+    }
+}

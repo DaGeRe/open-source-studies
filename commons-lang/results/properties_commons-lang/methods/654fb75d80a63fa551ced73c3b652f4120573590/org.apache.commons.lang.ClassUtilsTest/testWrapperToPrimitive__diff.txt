@@ -1,0 +1,9 @@
+public void testWrapperToPrimitive() {
+    // an array with classes to convert
+    final Class[] primitives = { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.TYPE, Long.TYPE, Float.TYPE, Double.TYPE };
+    for (int i = 0; i < primitives.length; i++) {
+        Class wrapperCls = ClassUtils.primitiveToWrapper(primitives[i]);
+        assertFalse("Still primitive", wrapperCls.isPrimitive());
+        assertEquals(wrapperCls + " -> " + primitives[i], primitives[i], ClassUtils.wrapperToPrimitive(wrapperCls));
+    }
+}

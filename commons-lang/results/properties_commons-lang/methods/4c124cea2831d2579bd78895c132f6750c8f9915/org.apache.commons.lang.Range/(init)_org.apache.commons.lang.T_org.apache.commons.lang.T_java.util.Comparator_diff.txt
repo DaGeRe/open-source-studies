@@ -1,0 +1,29 @@
+/**
+ * <p>Constructs a new <code>Range</code> with the specified
+ * minimum and maximum values (both inclusive).</p>
+ * <p>The range uses the passed in <code>Comparator</code> to
+ * determine where values lie in the range.</p>
+ *
+ * <p>The arguments may be passed in the order (min,max) or (max,min). The
+ * getMinimum and getMaximum methods will return the correct values.</p>
+ *
+ * @param element1  first value that defines the edge of the range, inclusive
+ * @param element2  second value that defines the edge of the range, inclusive
+ * @throws IllegalArgumentException if either value is <code>null</code>
+ */
+public Range(T element1, T element2, Comparator c) {
+    if (element1 == null || element2 == null) {
+        throw new IllegalArgumentException("Elements in a range must not be null: element1=" + element1 + ", element2=" + element2);
+    }
+    if (c == null) {
+        throw new IllegalArgumentException("Comparator must not be null");
+    }
+    if (c.compare(element1, element2) < 1) {
+        this.minimum = element1;
+        this.maximum = element2;
+    } else {
+        this.minimum = element2;
+        this.maximum = element1;
+    }
+    this.comparator = c;
+}

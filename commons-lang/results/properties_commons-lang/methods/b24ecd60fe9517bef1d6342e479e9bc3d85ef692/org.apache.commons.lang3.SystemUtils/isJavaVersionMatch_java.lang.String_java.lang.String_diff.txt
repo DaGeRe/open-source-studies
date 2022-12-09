@@ -1,0 +1,20 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;                                                                                         
+                                                                                                     | * Decides if the Java version matches.                                                              
+                                                                                                     | * &lt;/p&gt;                                                                                        
+                                                                                                     | * &lt;p&gt;                                                                                         
+                                                                                                     | * This method is package private instead of private to support unit test invocation.                
+                                                                                                     | * &lt;/p&gt;                                                                                        
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param version                                                                                    
+                                                                                                     | *            the actual Java version                                                                
+                                                                                                     | * @param versionPrefix                                                                              
+                                                                                                     | *            the prefix for the expected Java version                                               
+                                                                                                     | * @return true if matches, or false if not or can't determine                                       
+                                                                                                     | */                                                                                                  
+                                                                                                     | static boolean isJavaVersionMatch(String version, String versionPrefix) {                           
+                                                                                                     | if (version == null) {                                                                              
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return version.startsWith(versionPrefix);                                                           
+                                                                                                     | }                                                                                                   

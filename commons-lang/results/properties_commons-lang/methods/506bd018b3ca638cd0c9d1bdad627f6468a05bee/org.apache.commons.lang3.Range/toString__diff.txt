@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                              * &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p   * &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p
+*                                                                                                      *                                                                                                   
+* @return the &lt;code&gt;String&lt;/code&gt; representation of this range                             * @return the &lt;code&gt;String&lt;/code&gt; representation of this range                          
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+StringBuilder buf = new StringBuilder(32);                                                             StringBuilder buf = new StringBuilder(32);                                                          
+buf.append("Range[");                                                                                  buf.append("Range[");                                                                               
+buf.append(getMinimum());                                                                            | buf.append(this.minimum);                                                                           
+buf.append(',');                                                                                       buf.append(',');                                                                                    
+buf.append(getMaximum());                                                                            | buf.append(this.maximum);                                                                           
+buf.append(']');                                                                                       buf.append(']');                                                                                    
+return buf.toString();                                                                                 return buf.toString();                                                                              
+}                                                                                                      }                                                                                                   

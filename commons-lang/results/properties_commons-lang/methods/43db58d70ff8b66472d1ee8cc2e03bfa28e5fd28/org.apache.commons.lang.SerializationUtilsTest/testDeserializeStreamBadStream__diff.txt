@@ -1,0 +1,8 @@
+public void testDeserializeStreamBadStream() throws Exception {
+    try {
+        SerializationUtils.deserialize(new ByteArrayInputStream(new byte[0]));
+    } catch (SerializationException ex) {
+        return;
+    }
+    fail();
+}

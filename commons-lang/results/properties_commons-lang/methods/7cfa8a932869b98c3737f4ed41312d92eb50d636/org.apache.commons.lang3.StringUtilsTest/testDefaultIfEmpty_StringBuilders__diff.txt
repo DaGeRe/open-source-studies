@@ -1,0 +1,5 @@
+public void testDefaultIfEmpty_StringBuilders() {
+    assertEquals("NULL", StringUtils.defaultIfEmpty(new StringBuilder(""), new StringBuilder("NULL")).toString());
+    assertEquals("abc", StringUtils.defaultIfEmpty(new StringBuilder("abc"), new StringBuilder("NULL")).toString());
+    assertNull(StringUtils.defaultIfEmpty(new StringBuilder(""), null));
+}

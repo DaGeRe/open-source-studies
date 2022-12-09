@@ -1,0 +1,9 @@
+@Test
+public void testReflectionCharArrayArray() {
+    char[][] array = new char[][] { { 'A', 'B' }, null, { 'p' } };
+    String baseStr = this.toBaseString(array);
+    assertEquals(baseStr + "[{{A,B},<null>,{p}}]", ToStringBuilder.reflectionToString(array));
+    array = null;
+    assertReflectionArray("<null>", array);
+    this.validateNullToStringStyleRegistry();
+}

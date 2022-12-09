@@ -1,0 +1,35 @@
+/**
+ * Generate a string representation of an Annotation, as suggested by
+ * {@link Annotation#toString()}.
+ * @param a the annotation of which a string representation is desired
+ * @return String
+ */
+public static String toString(final Annotation a) {
+    return new StringBuilder(a.annotationType().getName()).insert(0, '@').append('(').append(StringUtils.join(new Iterable<String>() {
+
+        public Iterator<String> iterator() {
+            final Method[] methods = a.annotationType().getDeclaredMethods();
+            return new Iterator<String>() {
+
+                int pos = 0;
+
+                public boolean hasNext() {
+                    return pos < methods.length;
+                }
+
+                public String next() {
+                    Method m = methods[pos++];
+                    try {
+                        return new StringBuilder(m.getName()).append('=').append(m.invoke(a)).toString();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                public void remove() {
+                    throw new UnsupportedOperationException();
+                }
+            };
+        }
+    }, ", ")).append(')').toString();
+}

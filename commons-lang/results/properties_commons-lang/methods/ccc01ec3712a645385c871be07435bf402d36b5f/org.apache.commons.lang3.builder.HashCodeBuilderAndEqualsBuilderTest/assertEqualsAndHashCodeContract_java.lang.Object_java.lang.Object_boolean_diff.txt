@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Asserts that if &lt;code&gt;lhs&lt;/code&gt; equals &lt;code&gt;rhs&lt;/code&gt;                     * Asserts that if &lt;code&gt;lhs&lt;/code&gt; equals &lt;code&gt;rhs&lt;/code&gt;                  
+* then their hash codes MUST be identical.                                                             * then their hash codes MUST be identical.                                                          
+*                                                                                                      *                                                                                                   
+* @param lhs The Left-Hand-Side of the equals test                                                     * @param lhs The Left-Hand-Side of the equals test                                                  
+* @param rhs The Right-Hand-Side of the equals test                                                    * @param rhs The Right-Hand-Side of the equals test                                                 
+* @param testTransients wether to test transient fields                                                * @param testTransients wether to test transient fields                                             
+*/                                                                                                     */                                                                                                  
+public void assertEqualsAndHashCodeContract(Object lhs, Object rhs, boolean testTransients) {        | private void assertEqualsAndHashCodeContract(Object lhs, Object rhs, boolean testTransients) {      
+if (EqualsBuilder.reflectionEquals(lhs, rhs, testTransients)) {                                        if (EqualsBuilder.reflectionEquals(lhs, rhs, testTransients)) {                                     
+// test a couple of times for consistency.                                                             // test a couple of times for consistency.                                                          
+assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash   assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash
+assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash   assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash
+assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash   assertEquals(HashCodeBuilder.reflectionHashCode(lhs, testTransients), HashCodeBuilder.reflectionHash
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

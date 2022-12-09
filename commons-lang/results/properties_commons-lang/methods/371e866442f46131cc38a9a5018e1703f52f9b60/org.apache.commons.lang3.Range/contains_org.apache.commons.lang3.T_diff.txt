@@ -1,0 +1,14 @@
+// Element tests                                                                                       // Element tests                                                                                    
+// --------------------------------------------------------------------                                // --------------------------------------------------------------------                             
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks whether the specified element occurs within this range.&lt;/p&gt;                    * &lt;p&gt;Checks whether the specified element occurs within this range.&lt;/p&gt;                 
+*                                                                                                      *                                                                                                   
+* @param element  the element to check for, null returns false                                         * @param element  the element to check for, null returns false                                      
+* @return true if the specified element occurs within this range                                       * @return true if the specified element occurs within this range                                    
+*/                                                                                                     */                                                                                                  
+public boolean contains(T element) {                                                                   public boolean contains(T element) {                                                                
+if (element == null) {                                                                                 if (element == null) {                                                                              
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return (comparator.compare(element, minimum) &gt; -1) && (comparator.compare(element, maximum) &lt;  | return comparator.compare(element, minimum) &gt; -1 && comparator.compare(element, maximum) &lt; 1; 
+}                                                                                                      }                                                                                                   

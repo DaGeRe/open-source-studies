@@ -1,0 +1,51 @@
+@Test
+public void testWriteNamedField() throws Exception {
+    FieldUtils.writeField(publicChild, "s", "S");
+    assertEquals("S", FieldUtils.readField(publicChild, "s"));
+    try {
+        FieldUtils.writeField(publicChild, "b", Boolean.TRUE);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeField(publicChild, "i", new Integer(1));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeField(publicChild, "d", new Double(1.0));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    FieldUtils.writeField(publiclyShadowedChild, "s", "S");
+    assertEquals("S", FieldUtils.readField(publiclyShadowedChild, "s"));
+    FieldUtils.writeField(publiclyShadowedChild, "b", Boolean.FALSE);
+    assertEquals(Boolean.FALSE, FieldUtils.readField(publiclyShadowedChild, "b"));
+    FieldUtils.writeField(publiclyShadowedChild, "i", new Integer(0));
+    assertEquals(new Integer(0), FieldUtils.readField(publiclyShadowedChild, "i"));
+    FieldUtils.writeField(publiclyShadowedChild, "d", new Double(0.0));
+    assertEquals(new Double(0.0), FieldUtils.readField(publiclyShadowedChild, "d"));
+    FieldUtils.writeField(privatelyShadowedChild, "s", "S");
+    assertEquals("S", FieldUtils.readField(privatelyShadowedChild, "s"));
+    try {
+        FieldUtils.writeField(privatelyShadowedChild, "b", Boolean.TRUE);
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeField(privatelyShadowedChild, "i", new Integer(1));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        FieldUtils.writeField(privatelyShadowedChild, "d", new Double(1.0));
+        fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

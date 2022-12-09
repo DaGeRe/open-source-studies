@@ -1,0 +1,10 @@
+// -------------------------------------------------------------------------
+public void test_isInnerClass_Class() {
+    assertEquals(true, ClassUtils.isInnerClass(Inner.class));
+    assertEquals(true, ClassUtils.isInnerClass(Map.Entry.class));
+    assertEquals(true, ClassUtils.isInnerClass(new Cloneable() {
+    }.getClass()));
+    assertEquals(false, ClassUtils.isInnerClass(this.getClass()));
+    assertEquals(false, ClassUtils.isInnerClass(String.class));
+    assertEquals(false, ClassUtils.isInnerClass(null));
+}

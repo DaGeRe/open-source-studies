@@ -1,0 +1,15 @@
+/**
+ * testLowYearPadding showed that the date was buggy
+ * This test confirms it, getting 366 back as a date
+ */
+@Test
+public void testSimpleDate() {
+    Calendar cal = Calendar.getInstance();
+    DatePrinter format = getInstance(YYYY_MM_DD);
+    cal.set(2004, 11, 31);
+    assertEquals("2004/12/31", format.format(cal));
+    cal.set(999, 11, 31);
+    assertEquals("0999/12/31", format.format(cal));
+    cal.set(1, 2, 2);
+    assertEquals("0001/03/02", format.format(cal));
+}

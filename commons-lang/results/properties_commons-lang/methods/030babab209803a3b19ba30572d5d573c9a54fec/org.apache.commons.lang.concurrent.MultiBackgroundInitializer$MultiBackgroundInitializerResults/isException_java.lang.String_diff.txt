@@ -1,0 +1,12 @@
+/**
+ * Returns a flag whether the {@code BackgroundInitializer} with the
+ * given name caused an exception.
+ *
+ * @param name the name of the {@code BackgroundInitializer}
+ * @return a flag whether this initializer caused an exception
+ * @throws NoSuchElementException if the name cannot be resolved
+ */
+public boolean isException(String name) {
+    checkName(name);
+    return exceptions.containsKey(name);
+}

@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                              * &lt;p&gt;Gets the range as a &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p   * &lt;p&gt;The format of the String is 'Range[&lt;i&gt;min&lt;/i&gt;,&lt;i&gt;max&lt;/i&gt;]'.&lt;/p
+*                                                                                                      *                                                                                                   
+* @return the &lt;code&gt;String&lt;/code&gt; representation of this range                             * @return the &lt;code&gt;String&lt;/code&gt; representation of this range                          
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+if (toString == null) {                                                                                if (toString == null) {                                                                             
+StringBuffer buf = new StringBuffer(32);                                                             | StringBuilder buf = new StringBuilder(32);                                                          
+buf.append("Range[");                                                                                  buf.append("Range[");                                                                               
+buf.append(min);                                                                                       buf.append(min);                                                                                    
+buf.append(',');                                                                                       buf.append(',');                                                                                    
+buf.append(max);                                                                                       buf.append(max);                                                                                    
+buf.append(']');                                                                                       buf.append(']');                                                                                    
+toString = buf.toString();                                                                             toString = buf.toString();                                                                          
+}                                                                                                      }                                                                                                   
+return toString;                                                                                       return toString;                                                                                    
+}                                                                                                      }                                                                                                   

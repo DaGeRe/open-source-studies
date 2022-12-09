@@ -1,0 +1,13 @@
+/**
+ * Creates a new instance of {@code BackgroundInitializer} and initializes
+ * it with the given {@code ExecutorService}. If the {@code ExecutorService}
+ * is not null, the background task for initializing this object will be
+ * scheduled at this service. Otherwise a new temporary {@code
+ * ExecutorService} is created.
+ *
+ * @param exec an external {@code ExecutorService} to be used for task
+ * execution
+ */
+protected BackgroundInitializer(ExecutorService exec) {
+    setExternalExecutor(exec);
+}

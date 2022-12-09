@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testSubarrayObject() {                                                                     public void testSubarrayObject() {                                                                  
+Object[] nullArray = null;                                                                             Object[] nullArray = null;                                                                          
+Object[] objectArray = { "a", "b", "c", "d", "e", "f" };                                               Object[] objectArray = { "a", "b", "c", "d", "e", "f" };                                            
+assertEquals("0 start, mid end", "abcd", StringUtils.join(ArrayUtils.subarray(objectArray, 0, 4)));    assertEquals("0 start, mid end", "abcd", StringUtils.join(ArrayUtils.subarray(objectArray, 0, 4))); 
+assertEquals("0 start, length end", "abcdef", StringUtils.join(ArrayUtils.subarray(objectArray, 0, o   assertEquals("0 start, length end", "abcdef", StringUtils.join(ArrayUtils.subarray(objectArray, 0, o
+assertEquals("mid start, mid end", "bcd", StringUtils.join(ArrayUtils.subarray(objectArray, 1, 4)));   assertEquals("mid start, mid end", "bcd", StringUtils.join(ArrayUtils.subarray(objectArray, 1, 4)));
+assertEquals("mid start, length end", "bcdef", StringUtils.join(ArrayUtils.subarray(objectArray, 1,    assertEquals("mid start, length end", "bcdef", StringUtils.join(ArrayUtils.subarray(objectArray, 1, 
+assertNull("null input", ArrayUtils.subarray(nullArray, 0, 3));                                        assertNull("null input", ArrayUtils.subarray(nullArray, 0, 3));                                     
+assertEquals("empty array", "", StringUtils.join(ArrayUtils.subarray(ArrayUtils.EMPTY_OBJECT_ARRAY,    assertEquals("empty array", "", StringUtils.join(ArrayUtils.subarray(ArrayUtils.EMPTY_OBJECT_ARRAY, 
+assertEquals("start &gt; end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 4, 2)));          assertEquals("start &gt; end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 4, 2)));       
+assertEquals("start == end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 3, 3)));            assertEquals("start == end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 3, 3)));         
+assertEquals("start undershoot, normal end", "abcd", StringUtils.join(ArrayUtils.subarray(objectArra   assertEquals("start undershoot, normal end", "abcd", StringUtils.join(ArrayUtils.subarray(objectArra
+assertEquals("start overshoot, any end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 33, 4   assertEquals("start overshoot, any end", "", StringUtils.join(ArrayUtils.subarray(objectArray, 33, 4
+assertEquals("normal start, end overshoot", "cdef", StringUtils.join(ArrayUtils.subarray(objectArray   assertEquals("normal start, end overshoot", "cdef", StringUtils.join(ArrayUtils.subarray(objectArray
+assertEquals("start undershoot, end overshoot", "abcdef", StringUtils.join(ArrayUtils.subarray(objec   assertEquals("start undershoot, end overshoot", "abcdef", StringUtils.join(ArrayUtils.subarray(objec
+// array type tests                                                                                    // array type tests                                                                                 
+Date[] dateArray = { new java.sql.Date(new Date().getTime()), new Date(), new Date(), new Date(), ne   Date[] dateArray = { new java.sql.Date(new Date().getTime()), new Date(), new Date(), new Date(), ne
+assertSame("Object type", Object.class, ArrayUtils.subarray(objectArray, 2, 4).getClass().getCompone   assertSame("Object type", Object.class, ArrayUtils.subarray(objectArray, 2, 4).getClass().getCompone
+assertSame("java.util.Date type", java.util.Date.class, ArrayUtils.subarray(dateArray, 1, 4).getClas   assertSame("java.util.Date type", java.util.Date.class, ArrayUtils.subarray(dateArray, 1, 4).getClas
+assertNotSame("java.sql.Date type", java.sql.Date.class, ArrayUtils.subarray(dateArray, 1, 4).getCla   assertNotSame("java.sql.Date type", java.sql.Date.class, ArrayUtils.subarray(dateArray, 1, 4).getCla
+try {                                                                                                  try {                                                                                               
+Object dummy = (java.sql.Date[]) ArrayUtils.subarray(dateArray, 1, 3);                               | @SuppressWarnings("unused")                                                                         
+                                                                                                     | java.sql.Date[] dummy = (java.sql.Date[]) ArrayUtils.subarray(dateArray, 1, 3);                     
+fail("Invalid downcast");                                                                              fail("Invalid downcast");                                                                           
+} catch (ClassCastException e) {                                                                       } catch (ClassCastException e) {                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

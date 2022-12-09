@@ -1,0 +1,29 @@
+public void testSubclassInvocationHandling() throws PropertyVetoException {                            public void testSubclassInvocationHandling() throws PropertyVetoException {                         
+@SuppressWarnings("serial")                                                                            @SuppressWarnings("serial")                                                                         
+EventListenerSupport&lt;VetoableChangeListener&gt; eventListenerSupport = new EventListenerSupport&l   EventListenerSupport&lt;VetoableChangeListener&gt; eventListenerSupport = new EventListenerSupport&l
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+protected java.lang.reflect.InvocationHandler createInvocationHandler() {                              protected java.lang.reflect.InvocationHandler createInvocationHandler() {                           
+return new ProxyInvocationHandler() {                                                                  return new ProxyInvocationHandler() {                                                               
+                                                                                                                                                                                                           
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                 
+return "vetoableChange".equals(method.getName()) && "Hour".equals(((PropertyChangeEvent) args[0]).ge   return "vetoableChange".equals(method.getName()) && "Hour".equals(((PropertyChangeEvent) args[0]).ge
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+VetoableChangeListener listener = EasyMock.createNiceMock(VetoableChangeListener.class);               VetoableChangeListener listener = EasyMock.createNiceMock(VetoableChangeListener.class);            
+eventListenerSupport.addListener(listener);                                                            eventListenerSupport.addListener(listener);                                                         
+Object source = new Date();                                                                            Object source = new Date();                                                                         
+PropertyChangeEvent ignore = new PropertyChangeEvent(source, "Hour", 5, 6);                            PropertyChangeEvent ignore = new PropertyChangeEvent(source, "Hour", 5, 6);                         
+PropertyChangeEvent respond = new PropertyChangeEvent(source, "Day", 6, 7);                            PropertyChangeEvent respond = new PropertyChangeEvent(source, "Day", 6, 7);                         
+listener.vetoableChange(respond);                                                                      listener.vetoableChange(respond);                                                                   
+EasyMock.replay(listener);                                                                             EasyMock.replay(listener);                                                                          
+eventListenerSupport.fire().vetoableChange(ignore);                                                    eventListenerSupport.fire().vetoableChange(ignore);                                                 
+eventListenerSupport.fire().vetoableChange(respond);                                                   eventListenerSupport.fire().vetoableChange(respond);                                                
+EasyMock.verify(listener);                                                                             EasyMock.verify(listener);                                                                          
+}                                                                                                      }                                                                                                   

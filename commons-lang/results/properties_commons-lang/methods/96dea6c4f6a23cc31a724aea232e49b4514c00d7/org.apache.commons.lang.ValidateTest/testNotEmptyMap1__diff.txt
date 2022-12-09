@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNotEmptyMap1() {                                                                       public void testNotEmptyMap1() {                                                                    
+Map map = new HashMap();                                                                             | Map&lt;String, Integer&gt; map = new HashMap&lt;String, Integer&gt;();                              
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty((Map) null);                                                                       | Validate.notEmpty((Map&lt;?, ?&gt;) null);                                                          
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated map is empty", ex.getMessage());                                           assertEquals("The validated map is empty", ex.getMessage());                                        
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.notEmpty(map);                                                                                Validate.notEmpty(map);                                                                             
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated map is empty", ex.getMessage());                                           assertEquals("The validated map is empty", ex.getMessage());                                        
+}                                                                                                      }                                                                                                   
+map.put("ll", new Integer(8));                                                                         map.put("ll", new Integer(8));                                                                      
+Validate.notEmpty(map);                                                                                Validate.notEmpty(map);                                                                             
+}                                                                                                      }                                                                                                   

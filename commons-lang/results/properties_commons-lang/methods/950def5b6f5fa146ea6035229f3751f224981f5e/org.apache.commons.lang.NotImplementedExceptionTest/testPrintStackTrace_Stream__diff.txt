@@ -1,0 +1,7 @@
+public void testPrintStackTrace_Stream() {
+    NotImplementedException ex = new NotImplementedException(new Exception("nested 1", new RuntimeException("nested 2")));
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    ex.printStackTrace(ps);
+    assertTrue(baos.toString().length() > 0);
+}

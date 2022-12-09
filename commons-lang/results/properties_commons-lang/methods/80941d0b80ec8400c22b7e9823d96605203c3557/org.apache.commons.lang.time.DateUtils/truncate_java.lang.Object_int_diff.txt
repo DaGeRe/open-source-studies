@@ -1,0 +1,32 @@
+/**
+ * <p>Truncate this date, leaving the field specified as the most
+ * significant field.</p>
+ *
+ * <p>For example, if you had the datetime of 28 Mar 2002
+ * 13:45:01.231, if you passed with HOUR, it would return 28 Mar
+ * 2002 13:00:00.000.  If this was passed with MONTH, it would
+ * return 1 Mar 2002 0:00:00.000.</p>
+ *
+ * @param date  the date to work with, either <code>Date</code>
+ *  or <code>Calendar</code>
+ * @param field  the field from <code>Calendar</code>
+ *  or <code>SEMI_MONTH</code>
+ * @return the rounded date
+ * @throws IllegalArgumentException if the date
+ *  is <code>null</code>
+ * @throws ClassCastException if the object type is not a
+ *  <code>Date</code> or <code>Calendar</code>
+ * @throws ArithmeticException if the year is over 280 million
+ */
+public static Date truncate(Object date, int field) {
+    if (date == null) {
+        throw new IllegalArgumentException("The date must not be null");
+    }
+    if (date instanceof Date) {
+        return truncate((Date) date, field);
+    } else if (date instanceof Calendar) {
+        return truncate((Calendar) date, field).getTime();
+    } else {
+        throw new ClassCastException("Could not truncate " + date);
+    }
+}

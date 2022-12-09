@@ -1,0 +1,14 @@
+/**
+ * Replace MessageFormat(String, Locale) constructor (not available until JDK 1.4).
+ * @param pattern string
+ * @param locale Locale
+ * @return MessageFormat
+ */
+private MessageFormat createMessageFormat(String pattern, Locale locale) {
+    MessageFormat result = new MessageFormat(pattern);
+    if (locale != null) {
+        result.setLocale(locale);
+        result.applyPattern(pattern);
+    }
+    return result;
+}

@@ -1,0 +1,35 @@
+/**
+ * <p>Case insensitive removal of a substring if it is at the end of a source string,
+ * otherwise returns the source string.</p>
+ *
+ * <p>A <code>null</code> source string will return <code>null</code>.
+ * An empty ("") source string will return the empty string.
+ * A <code>null</code> search string will return the source string.</p>
+ *
+ * <pre>
+ * StringUtils.removeEndEndIgnoreCase(null, *)      = null
+ * StringUtils.removeEndEndIgnoreCase("", *)        = ""
+ * StringUtils.removeEndEndIgnoreCase(*, null)      = *
+ * StringUtils.removeEndEndIgnoreCase("www.domain.com", ".com.")  = "www.domain.com"
+ * StringUtils.removeEndEndIgnoreCase("www.domain.com", ".com")   = "www.domain"
+ * StringUtils.removeEndEndIgnoreCase("www.domain.com", "domain") = "www.domain.com"
+ * StringUtils.removeEndEndIgnoreCase("abc", "")    = "abc"
+ * StringUtils.removeEndIgnoreCase("www.domain.com", ".COM") = "www.domain")
+ * StringUtils.removeEndIgnoreCase("www.domain.COM", ".com") = "www.domain")
+ * </pre>
+ *
+ * @param str  the source String to search, may be null
+ * @param remove  the String to search for (case insensitive) and remove, may be null
+ * @return the substring with the string removed if found,
+ *  <code>null</code> if null String input
+ * @since 2.4
+ */
+public static String removeEndIgnoreCase(String str, String remove) {
+    if (isEmpty(str) || isEmpty(remove)) {
+        return str;
+    }
+    if (endsWithIgnoreCase(str, remove)) {
+        return str.substring(0, str.length() - remove.length());
+    }
+    return str;
+}

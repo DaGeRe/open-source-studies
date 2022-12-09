@@ -1,0 +1,12 @@
+public void testNullToEmptyBooleanObject() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_BOOLEAN_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Boolean[]) null));
+    // Test valid array handling
+    Boolean[] original = new Boolean[] { Boolean.TRUE, Boolean.FALSE };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    Boolean[] empty = new Boolean[] {};
+    Boolean[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_BOOLEAN_OBJECT_ARRAY, result);
+    assertTrue(empty != result);
+}

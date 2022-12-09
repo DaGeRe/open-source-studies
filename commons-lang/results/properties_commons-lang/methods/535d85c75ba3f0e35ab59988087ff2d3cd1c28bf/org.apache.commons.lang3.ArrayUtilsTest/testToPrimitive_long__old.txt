@@ -1,0 +1,13 @@
+// testToPrimitive/Object for long
+// -----------------------------------------------------------------------
+public void testToPrimitive_long() {
+    final Long[] b = null;
+    assertEquals(null, ArrayUtils.toPrimitive(b));
+    assertSame(ArrayUtils.EMPTY_LONG_ARRAY, ArrayUtils.toPrimitive(new Long[0]));
+    assertTrue(Arrays.equals(new long[] { Long.MIN_VALUE, Long.MAX_VALUE, 9999999 }, ArrayUtils.toPrimitive(new Long[] { new Long(Long.MIN_VALUE), new Long(Long.MAX_VALUE), new Long(9999999) })));
+    try {
+        ArrayUtils.toPrimitive(new Long[] { new Long(Long.MIN_VALUE), null });
+        fail();
+    } catch (NullPointerException ex) {
+    }
+}

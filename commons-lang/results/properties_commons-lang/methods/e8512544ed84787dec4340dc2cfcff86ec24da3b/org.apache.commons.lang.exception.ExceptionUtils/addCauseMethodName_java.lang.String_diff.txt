@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Adds to the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&gt   * &lt;p&gt;Adds to the list of method names used in the search for &lt;code&gt;Throwable&lt;/code&gt
+* objects.&lt;/p&gt;                                                                                   * objects.&lt;/p&gt;                                                                                
+*                                                                                                      *                                                                                                   
+* @param methodName  the methodName to add to the list, &lt;code&gt;null&lt;/code&gt;                  * @param methodName  the methodName to add to the list, &lt;code&gt;null&lt;/code&gt;               
+*  and empty strings are ignored                                                                       *  and empty strings are ignored                                                                    
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void addCauseMethodName(String methodName) {                                             public static void addCauseMethodName(String methodName) {                                          
+if (StringUtils.isNotEmpty(methodName) && !isCauseMethodName(methodName)) {                            if (StringUtils.isNotEmpty(methodName) && !isCauseMethodName(methodName)) {                         
+List&lt;String&gt; list = getCauseMethodNameList();                                                    List&lt;String&gt; list = getCauseMethodNameList();                                                 
+if (list.add(methodName)) {                                                                            if (list.add(methodName)) {                                                                         
+synchronized (CAUSE_METHOD_NAMES) {                                                                  | synchronized (CAUSE_METHOD_NAMES_LOCK) {                                                            
+CAUSE_METHOD_NAMES = toArray(list);                                                                    CAUSE_METHOD_NAMES = toArray(list);                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

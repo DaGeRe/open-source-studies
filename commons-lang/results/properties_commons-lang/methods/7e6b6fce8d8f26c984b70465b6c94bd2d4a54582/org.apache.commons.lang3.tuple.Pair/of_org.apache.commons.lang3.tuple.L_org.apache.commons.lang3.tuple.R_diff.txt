@@ -1,0 +1,15 @@
+/**
+ * <p>Obtains an immutable pair of from two objects inferring the generic types.</p>
+ *
+ * <p>This factory allows the pair to be created using inference to
+ * obtain the generic types.</p>
+ *
+ * @param <L> the left element type
+ * @param <R> the right element type
+ * @param left  the left element, may be null
+ * @param right  the right element, may be null
+ * @return a pair formed from the two parameters, not null
+ */
+public static <L, R> Pair<L, R> of(L left, R right) {
+    return new ImmutablePair<L, R>(left, right);
+}

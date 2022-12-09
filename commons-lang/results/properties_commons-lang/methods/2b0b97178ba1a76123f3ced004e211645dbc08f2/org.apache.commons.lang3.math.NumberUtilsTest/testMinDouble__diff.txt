@@ -1,0 +1,19 @@
+                                                                                                     | @Test                                                                                               
+public void testMinDouble() {                                                                          public void testMinDouble() {                                                                       
+final double[] d = null;                                                                               final double[] d = null;                                                                            
+try {                                                                                                  try {                                                                                               
+NumberUtils.min(d);                                                                                    NumberUtils.min(d);                                                                                 
+fail("No exception was thrown for null input.");                                                       fail("No exception was thrown for null input.");                                                    
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+NumberUtils.min(new double[0]);                                                                        NumberUtils.min(new double[0]);                                                                     
+fail("No exception was thrown for empty input.");                                                      fail("No exception was thrown for empty input.");                                                   
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+assertEquals("min(double[]) failed for array length 1", 5.12, NumberUtils.min(new double[] { 5.12 })   assertEquals("min(double[]) failed for array length 1", 5.12, NumberUtils.min(new double[] { 5.12 })
+assertEquals("min(double[]) failed for array length 2", 6.23, NumberUtils.min(new double[] { 6.23, 9   assertEquals("min(double[]) failed for array length 2", 6.23, NumberUtils.min(new double[] { 6.23, 9
+assertEquals("min(double[]) failed for array length 5", -10.45, NumberUtils.min(new double[] { -10.4   assertEquals("min(double[]) failed for array length 5", -10.45, NumberUtils.min(new double[] { -10.4
+assertEquals(-10, NumberUtils.min(new double[] { -10, -5, 0, 5, 10 }), 0.0001);                        assertEquals(-10, NumberUtils.min(new double[] { -10, -5, 0, 5, 10 }), 0.0001);                     
+assertEquals(-10, NumberUtils.min(new double[] { -5, 0, -10, 5, 10 }), 0.0001);                        assertEquals(-10, NumberUtils.min(new double[] { -5, 0, -10, 5, 10 }), 0.0001);                     
+}                                                                                                      }                                                                                                   

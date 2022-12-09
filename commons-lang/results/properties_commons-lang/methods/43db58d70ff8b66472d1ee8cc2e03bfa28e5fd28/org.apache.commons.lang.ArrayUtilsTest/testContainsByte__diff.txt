@@ -1,0 +1,10 @@
+public void testContainsByte() {
+    byte[] array = null;
+    assertEquals(false, ArrayUtils.contains(array, (byte) 1));
+    array = new byte[] { 0, 1, 2, 3, 0 };
+    assertEquals(true, ArrayUtils.contains(array, (byte) 0));
+    assertEquals(true, ArrayUtils.contains(array, (byte) 1));
+    assertEquals(true, ArrayUtils.contains(array, (byte) 2));
+    assertEquals(true, ArrayUtils.contains(array, (byte) 3));
+    assertEquals(false, ArrayUtils.contains(array, (byte) 99));
+}

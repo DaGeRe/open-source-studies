@@ -1,0 +1,20 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Validate that the specified argument is not &lt;code&gt;null&lt;/code&gt;;               
+                                                                                                     | * otherwise throwing an exception with the specified message.                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;Validate.notNull(myObject, "The object must not be null");&lt;/pre&gt;                 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param &lt;T&gt; the object type                                                                  
+                                                                                                     | * @param object the object to check                                                                 
+                                                                                                     | * @param message the exception message if invalid                                                   
+                                                                                                     | * @param values the optional values for the formatted exception message                             
+                                                                                                     | * @return the validated object (never &lt;code&gt;null&lt;/code&gt; for method chaining)            
+                                                                                                     | * @throws NullPointerException if the object is &lt;code&gt;null&lt;/code&gt;                       
+                                                                                                     | * @see #notNull(Object)                                                                             
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T&gt; T notNull(T object, String message, Object... values) {                     
+                                                                                                     | if (object == null) {                                                                               
+                                                                                                     | throw new NullPointerException(String.format(message, values));                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | return object;                                                                                      
+                                                                                                     | }                                                                                                   

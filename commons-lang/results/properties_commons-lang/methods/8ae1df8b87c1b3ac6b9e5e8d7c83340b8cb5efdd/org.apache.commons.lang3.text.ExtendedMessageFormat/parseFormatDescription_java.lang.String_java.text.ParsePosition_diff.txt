@@ -1,0 +1,30 @@
+/**
+ * Parse the format component of a format element.
+ *
+ * @param pattern string to parse
+ * @param pos current parse position
+ * @return Format description String
+ */
+private String parseFormatDescription(String pattern, ParsePosition pos) {
+    int start = pos.getIndex();
+    seekNonWs(pattern, pos);
+    int text = pos.getIndex();
+    int depth = 1;
+    for (; pos.getIndex() < pattern.length(); next(pos)) {
+        switch(pattern.charAt(pos.getIndex())) {
+            case START_FE:
+                depth++;
+                break;
+            case END_FE:
+                depth--;
+                if (depth == 0) {
+                    return pattern.substring(text, pos.getIndex());
+                }
+                break;
+            case QUOTE:
+                getQuotedString(pattern, pos, false);
+                break;
+        }
+    }
+    throw new IllegalArgumentException("Unterminated format element at position " + start);
+}

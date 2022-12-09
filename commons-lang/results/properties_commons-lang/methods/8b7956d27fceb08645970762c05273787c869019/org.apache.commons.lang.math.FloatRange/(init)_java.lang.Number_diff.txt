@@ -1,0 +1,24 @@
+/**
+ * <p>Constructs a new <code>FloatRange</code> using the specified
+ * number as both the minimum and maximum in this range.</p>
+ *
+ * @param number  the number to use for this range, must not
+ *  be <code>null</code>
+ * @throws IllegalArgumentException if the number is <code>null</code>
+ * @throws IllegalArgumentException if the number is <code>NaN</code>
+ */
+public FloatRange(Number number) {
+    super();
+    if (number == null) {
+        throw new IllegalArgumentException("The number must not be null");
+    }
+    this.min = number.floatValue();
+    this.max = number.floatValue();
+    if (Float.isNaN(min) || Float.isNaN(max)) {
+        throw new IllegalArgumentException("The number must not be NaN");
+    }
+    if (number instanceof Float) {
+        this.minObject = (Float) number;
+        this.maxObject = (Float) number;
+    }
+}

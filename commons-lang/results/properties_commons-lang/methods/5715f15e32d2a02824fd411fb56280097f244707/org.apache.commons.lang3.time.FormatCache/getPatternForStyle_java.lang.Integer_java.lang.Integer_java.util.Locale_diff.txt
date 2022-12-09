@@ -1,0 +1,36 @@
+/**
+ * <p>Gets a date/time format for the specified styles and locale.</p>
+ *
+ * @param dateStyle  date style: FULL, LONG, MEDIUM, or SHORT, null indicates no date in format
+ * @param timeStyle  time style: FULL, LONG, MEDIUM, or SHORT, null indicates no time in format
+ * @param locale  The non-null locale of the desired format
+ * @return a localized standard date/time format
+ * @throws IllegalArgumentException if the Locale has no date/time pattern defined
+ */
+public static String getPatternForStyle(Integer dateStyle, Integer timeStyle, Locale locale) {
+    MultipartKey key = new MultipartKey(dateStyle, timeStyle, locale);
+    String pattern = cDateTimeInstanceCache.get(key);
+    if (pattern == null) {
+        try {
+            DateFormat formatter;
+            if (dateStyle == null) {
+                formatter = DateFormat.getTimeInstance(timeStyle, locale);
+            } else if (timeStyle == null) {
+                formatter = DateFormat.getDateInstance(dateStyle, locale);
+            } else {
+                formatter = DateFormat.getDateTimeInstance(dateStyle, timeStyle, locale);
+            }
+            pattern = ((SimpleDateFormat) formatter).toPattern();
+            String previous = cDateTimeInstanceCache.putIfAbsent(key, pattern);
+            if (previous != null) {
+                // even though it doesn't matter if another thread put the pattern
+                // it's still good practice to return the String instance that is
+                // actually in the ConcurrentMap
+                pattern = previous;
+            }
+        } catch (ClassCastException ex) {
+            throw new IllegalArgumentException("No date time pattern for locale: " + locale);
+        }
+    }
+    return pattern;
+}

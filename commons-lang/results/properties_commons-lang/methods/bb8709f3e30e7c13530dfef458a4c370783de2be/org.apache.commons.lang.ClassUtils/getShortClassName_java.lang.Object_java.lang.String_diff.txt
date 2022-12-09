@@ -1,0 +1,15 @@
+// Short class name                                                                                    // Short class name                                                                                 
+// ----------------------------------------------------------------------                              // ----------------------------------------------------------------------                           
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets the class name minus the package name for an &lt;code&gt;Object&lt;/code&gt;.&lt;/p&   * &lt;p&gt;Gets the class name minus the package name for an &lt;code&gt;Object&lt;/code&gt;.&lt;/p&
+*                                                                                                      *                                                                                                   
+* @param object  the class to get the short name for, may be null                                      * @param object  the class to get the short name for, may be null                                   
+* @param valueIfNull  the value to return if null                                                      * @param valueIfNull  the value to return if null                                                   
+* @return the class name of the object without the package name, or the null value                     * @return the class name of the object without the package name, or the null value                  
+*/                                                                                                     */                                                                                                  
+public static String getShortClassName(Object object, String valueIfNull) {                            public static String getShortClassName(Object object, String valueIfNull) {                         
+if (object == null) {                                                                                  if (object == null) {                                                                               
+return valueIfNull;                                                                                    return valueIfNull;                                                                                 
+}                                                                                                      }                                                                                                   
+return getShortClassName(object.getClass().getName());                                               | return getShortClassName(object.getClass());                                                        
+}                                                                                                      }                                                                                                   

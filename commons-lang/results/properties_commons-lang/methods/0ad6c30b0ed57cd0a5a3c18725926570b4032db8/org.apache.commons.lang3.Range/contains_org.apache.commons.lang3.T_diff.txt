@@ -1,0 +1,16 @@
+// Include tests                                                                                     | // Element tests                                                                                    
+// --------------------------------------------------------------------                                // --------------------------------------------------------------------                             
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Tests whether the specified element occurs within this range.&lt;/p&gt;                   | * &lt;p&gt;Checks whether the specified element occurs within this range.&lt;/p&gt;                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null} is handled and returns {@code false}.&lt;/p&gt;                              | * @param element  the element to check for, null returns false                                      
+*                                                                                                    | * @return true if the specified element occurs within this range                                    
+* @param element  the element to test, may be {@code null}                                           |                                                                                                     
+* @return {@code true} if the specified element occurs within this range                             |                                                                                                     
+*/                                                                                                     */                                                                                                  
+public boolean contains(T element) {                                                                   public boolean contains(T element) {                                                                
+if (element == null) {                                                                                 if (element == null) {                                                                              
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return (comparator.compare(element, this.minimum) &gt; -1) && (comparator.compare(element, this.maxi | return (comparator.compare(element, minimum) &gt; -1) && (comparator.compare(element, maximum) &lt; 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Performs the formatting by applying the rules to the                                        * &lt;p&gt;Performs the formatting by applying the rules to the                                     
+* specified calendar.&lt;/p&gt;                                                                        * specified calendar.&lt;/p&gt;                                                                     
+*                                                                                                      *                                                                                                   
+* @param calendar  the calendar to format                                                              * @param calendar  the calendar to format                                                           
+* @param buf  the buffer to format into                                                                * @param buf  the buffer to format into                                                             
+* @return the specified string buffer                                                                  * @return the specified string buffer                                                               
+*/                                                                                                     */                                                                                                  
+protected StringBuffer applyRules(Calendar calendar, StringBuffer buf) {                               protected StringBuffer applyRules(Calendar calendar, StringBuffer buf) {                            
+for (Rule rule : mRules) {                                                                           | return printer.applyRules(calendar, buf);                                                           
+rule.appendTo(buf, calendar);                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+return buf;                                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     

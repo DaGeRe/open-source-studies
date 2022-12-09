@@ -1,0 +1,11 @@
+public void testStopWatchSimpleGet() {
+    StopWatch watch = new StopWatch();
+    assertEquals(0, watch.getTime());
+    assertEquals("0:00:00.000", watch.toString());
+    watch.start();
+    try {
+        Thread.sleep(500);
+    } catch (InterruptedException ex) {
+    }
+    assertTrue(watch.getTime() < 2000);
+}

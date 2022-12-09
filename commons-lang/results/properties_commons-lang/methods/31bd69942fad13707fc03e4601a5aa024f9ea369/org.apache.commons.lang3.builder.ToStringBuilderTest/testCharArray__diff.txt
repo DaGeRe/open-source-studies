@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testCharArray() {                                                                          public void testCharArray() {                                                                       
+char[] array = new char[] { 'A', '2', '_', 'D' };                                                      char[] array = new char[] { 'A', '2', '_', 'D' };                                                   
+assertEquals(baseStr + "[{A,2,_,D}]", new ToStringBuilder(base).append(array).toString());             assertEquals(baseStr + "[{A,2,_,D}]", new ToStringBuilder(base).append(array).toString());          
+assertEquals(baseStr + "[{A,2,_,D}]", new ToStringBuilder(base).append((Object) array).toString());    assertEquals(baseStr + "[{A,2,_,D}]", new ToStringBuilder(base).append((Object) array).toString()); 
+array = null;                                                                                          array = null;                                                                                       
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append(array).toString());          assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append(array).toString());       
+assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) array).toString()   assertEquals(baseStr + "[&lt;null&gt;]", new ToStringBuilder(base).append((Object) array).toString()
+}                                                                                                      }                                                                                                   

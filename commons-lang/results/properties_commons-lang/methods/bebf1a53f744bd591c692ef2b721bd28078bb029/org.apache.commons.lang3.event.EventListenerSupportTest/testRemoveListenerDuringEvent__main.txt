@@ -1,0 +1,9 @@
+public void testRemoveListenerDuringEvent() throws PropertyVetoException {
+    final EventListenerSupport<VetoableChangeListener> listenerSupport = EventListenerSupport.create(VetoableChangeListener.class);
+    for (int i = 0; i < 10; ++i) {
+        addDeregisterListener(listenerSupport);
+    }
+    assertEquals(listenerSupport.getListenerCount(), 10);
+    listenerSupport.fire().vetoableChange(new PropertyChangeEvent(new Date(), "Day", 4, 5));
+    assertEquals(listenerSupport.getListenerCount(), 0);
+}

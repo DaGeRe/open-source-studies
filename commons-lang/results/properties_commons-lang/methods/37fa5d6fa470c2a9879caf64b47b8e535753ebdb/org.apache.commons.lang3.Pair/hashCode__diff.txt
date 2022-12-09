@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                      | * &lt;p&gt;Returns a suitable hash code.                                                            
+                                                                                                     | * The hash code follows the definition in {@code Map.Entry}.&lt;/p&gt;                              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @return the hash code                                                                             
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public int hashCode() {                                                                                public int hashCode() {                                                                             
+// TODO should the hashCodeBuilder be seeded per concrete type?                                      | // see Map.Entry API specification                                                                  
+return new HashCodeBuilder().append(getLeftElement()).append(getRightElement()).toHashCode();        | return (getKey() == null ? 0 : getKey().hashCode()) ^ (getValue() == null ? 0 : getValue().hashCode(
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,16 @@
+/**
+ * Learn whether the specified type is permitted as an annotation member.
+ * These include {@link String}, {@link Class}, primitive types,
+ * {@link Annotation}s, {@link Enum}s, and arrays of same.
+ * @param type to check
+ * @return boolean
+ */
+public static boolean isValidAnnotationMemberType(Class<?> type) {
+    if (type == null) {
+        return false;
+    }
+    if (type.isArray()) {
+        type = type.getComponentType();
+    }
+    return type.isPrimitive() || type.isEnum() || type.isAnnotation() || String.class.equals(type) || Class.class.equals(type);
+}

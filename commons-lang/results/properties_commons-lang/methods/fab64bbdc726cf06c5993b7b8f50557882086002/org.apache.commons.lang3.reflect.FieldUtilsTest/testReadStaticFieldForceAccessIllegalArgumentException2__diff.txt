@@ -1,0 +1,6 @@
+@Test(expected = IllegalArgumentException.class)
+public void testReadStaticFieldForceAccessIllegalArgumentException2() throws Exception {
+    Field nonStaticField = FieldUtils.getField(PublicChild.class, "s", true);
+    assumeNotNull(nonStaticField);
+    FieldUtils.readStaticField(nonStaticField);
+}

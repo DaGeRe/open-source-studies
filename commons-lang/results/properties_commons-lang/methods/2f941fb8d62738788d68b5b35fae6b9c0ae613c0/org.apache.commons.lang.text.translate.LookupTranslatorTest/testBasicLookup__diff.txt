@@ -1,0 +1,8 @@
+public void testBasicLookup() throws IOException {                                                     public void testBasicLookup() throws IOException {                                                  
+String input = "one";                                                                                |                                                                                                     
+LookupTranslator lt = new LookupTranslator(new CharSequence[][] { { "one", "two" } });                 LookupTranslator lt = new LookupTranslator(new CharSequence[][] { { "one", "two" } });              
+StringWriter out = new StringWriter();                                                                 StringWriter out = new StringWriter();                                                              
+int result = lt.translate("one", 0, out);                                                              int result = lt.translate("one", 0, out);                                                           
+assertEquals("Incorrect codepoint consumption", 3, result);                                            assertEquals("Incorrect codepoint consumption", 3, result);                                         
+assertEquals("Incorrect value", "two", out.toString());                                                assertEquals("Incorrect value", "two", out.toString());                                             
+}                                                                                                      }                                                                                                   

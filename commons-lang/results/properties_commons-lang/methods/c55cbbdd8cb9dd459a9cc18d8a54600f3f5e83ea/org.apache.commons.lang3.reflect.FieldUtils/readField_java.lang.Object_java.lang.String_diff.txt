@@ -1,0 +1,11 @@
+/**
+ * Reads the named public field. Superclasses will be considered.
+ * @param target  the object to reflect, must not be null
+ * @param fieldName  the field name to obtain
+ * @return the value of the field
+ * @throws IllegalArgumentException if the class or field name is null
+ * @throws IllegalAccessException if the named field is not public
+ */
+public static Object readField(Object target, String fieldName) throws IllegalAccessException {
+    return readField(target, fieldName, false);
+}

@@ -1,0 +1,23 @@
+/**
+ * <p>Converts the character to a String that contains the one character.</p>
+ *
+ * <p>For ASCII 7 bit characters, this uses a cache that will return the
+ * same String object each time.</p>
+ *
+ * <p>If {@code null} is passed in, {@code null} will be returned.</p>
+ *
+ * <pre>
+ *   CharUtils.toString(null) = null
+ *   CharUtils.toString(' ')  = " "
+ *   CharUtils.toString('A')  = "A"
+ * </pre>
+ *
+ * @param ch  the character to convert
+ * @return a String containing the one specified character
+ */
+public static String toString(Character ch) {
+    if (ch == null) {
+        return null;
+    }
+    return toString(ch.charValue());
+}

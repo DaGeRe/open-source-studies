@@ -1,0 +1,13 @@
+// Reflection hierarchy tests                                                                          // Reflection hierarchy tests                                                                       
+public void testReflectionHierarchyArrayList() {                                                       public void testReflectionHierarchyArrayList() {                                                    
+List&lt;Object&gt; base = new ArrayList&lt;Object&gt;();                                               List&lt;Object&gt; base = new ArrayList&lt;Object&gt;();                                            
+String baseStr = this.toBaseString(base);                                                              String baseStr = this.toBaseString(base);                                                           
+assertEquals(baseStr + "[elementData={&lt;null&gt;,&lt;null&gt;,&lt;null&gt;,&lt;null&gt;,&lt;null&g | String result = ToStringBuilder.reflectionToString(base, null, true);                               
+                                                                                                     | assertTrue(StringUtils.startsWith(result, baseStr + "["));                                          
+                                                                                                     | assertTrue(StringUtils.contains(result, "elementData={&lt;null&gt;,&lt;null&gt;,&lt;null&gt;,&lt;nul
+                                                                                                     | assertTrue(StringUtils.contains(result, "size=0"));                                                 
+                                                                                                     | assertTrue(StringUtils.contains(result, "modCount=0"));                                             
+                                                                                                     | assertTrue(StringUtils.endsWith(result, "]"));                                                      
+assertEquals(baseStr + "[size=0]", ToStringBuilder.reflectionToString(base, null, false));             assertEquals(baseStr + "[size=0]", ToStringBuilder.reflectionToString(base, null, false));          
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

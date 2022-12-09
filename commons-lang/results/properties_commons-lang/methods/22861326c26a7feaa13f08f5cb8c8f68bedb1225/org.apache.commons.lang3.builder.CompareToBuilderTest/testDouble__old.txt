@@ -1,0 +1,19 @@
+public void testDouble() {
+    double o1 = 1;
+    double o2 = 2;
+    assertTrue(new CompareToBuilder().append(o1, o1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(o1, o2).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(o2, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Double.MAX_VALUE).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(Double.MAX_VALUE, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(o1, Double.MIN_VALUE).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(Double.MIN_VALUE, o1).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(Double.NaN, Double.NaN).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(Double.NaN, Double.MAX_VALUE).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(Double.POSITIVE_INFINITY, Double.MAX_VALUE).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(Double.NEGATIVE_INFINITY, Double.MIN_VALUE).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(o1, Double.NaN).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(Double.NaN, o1).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(-0.0, 0.0).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(0.0, -0.0).toComparison() > 0);
+}

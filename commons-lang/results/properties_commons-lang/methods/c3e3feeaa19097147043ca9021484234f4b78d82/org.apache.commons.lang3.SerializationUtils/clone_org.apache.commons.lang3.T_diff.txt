@@ -1,0 +1,19 @@
+                                                                                                     | // Clone                                                                                            
+                                                                                                     | // -----------------------------------------------------------------------                          
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Deep clone an &lt;code&gt;Object&lt;/code&gt; using serialization.&lt;/p&gt;             
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;This is many times slower than writing clone methods by hand                             
+                                                                                                     | * on all objects in your object graph. However, for complex object                                  
+                                                                                                     | * graphs, or for those that don't support deep cloning this can                                     
+                                                                                                     | * be a simple alternative implementation. Of course all the objects                                 
+                                                                                                     | * must be &lt;code&gt;Serializable&lt;/code&gt;.&lt;/p&gt;                                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param object  the &lt;code&gt;Serializable&lt;/code&gt; object to clone                          
+                                                                                                     | * @return the cloned object                                                                         
+                                                                                                     | * @throws SerializationException (runtime) if the serialization fails                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | public static &lt;T extends Serializable&gt; T clone(T object) {                                    
+                                                                                                     | return (T) deserialize(serialize(object));                                                          
+                                                                                                     | }                                                                                                   

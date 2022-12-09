@@ -1,0 +1,23 @@
+public void testBinaryIntMap() throws Exception {
+    Entities.BinaryEntityMap map = new Entities.BinaryEntityMap(2);
+    checkSomeEntityMap(map);
+    Entities.BinaryEntityMap map1 = new Entities.BinaryEntityMap();
+    checkSomeEntityMap(map1);
+    // value cannot be added twice
+    map1.add("baz4a", 4);
+    map1.add("baz4b", 4);
+    assertEquals(-1, map1.value("baz4b"));
+    assertEquals("baz4a", map1.name(4));
+    assertNull(map1.name(99));
+    Entities.BinaryEntityMap map2 = new Entities.BinaryEntityMap();
+    map2.add("val1", 1);
+    map2.add("val2", 2);
+    map2.add("val3", 3);
+    map2.add("val4", 4);
+    map2.add("val5", 5);
+    assertEquals("val5", map2.name(5));
+    assertEquals("val4", map2.name(4));
+    assertEquals("val3", map2.name(3));
+    assertEquals("val2", map2.name(2));
+    assertEquals("val1", map2.name(1));
+}

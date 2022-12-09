@@ -1,0 +1,11 @@
+public void testConstructor1b() {
+    IntRange nr = new IntRange(five);
+    assertSame(five, nr.getMinimumNumber());
+    assertSame(five, nr.getMaximumNumber());
+    Range r = new IntRange(nonComparableNumber);
+    try {
+        new IntRange(null);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+}

@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testValidIndex_withMessage_collection() {                                                  public void testValidIndex_withMessage_collection() {                                               
+Collection&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                         Collection&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                      
+coll.add(null);                                                                                        coll.add(null);                                                                                     
+coll.add(null);                                                                                        coll.add(null);                                                                                     
+Validate.validIndex(coll, 0, "Broken: ");                                                              Validate.validIndex(coll, 0, "Broken: ");                                                           
+Validate.validIndex(coll, 1, "Broken: ");                                                              Validate.validIndex(coll, 1, "Broken: ");                                                           
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(coll, -1, "Broken: ");                                                             Validate.validIndex(coll, -1, "Broken: ");                                                          
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting IndexOutOfBoundsException");                                                        
+} catch (IllegalArgumentException ex) {                                                              | } catch (IndexOutOfBoundsException ex) {                                                            
+assertEquals("Broken: -1", ex.getMessage());                                                         | assertEquals("Broken: ", ex.getMessage());                                                          
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+Validate.validIndex(coll, 2, "Broken: ");                                                              Validate.validIndex(coll, 2, "Broken: ");                                                           
+fail("Expecting IllegalArgumentException");                                                          | fail("Expecting IndexOutOfBoundsException");                                                        
+} catch (IllegalArgumentException ex) {                                                              | } catch (IndexOutOfBoundsException ex) {                                                            
+assertEquals("Broken: 2", ex.getMessage());                                                          | assertEquals("Broken: ", ex.getMessage());                                                          
+}                                                                                                      }                                                                                                   
+List&lt;String&gt; strColl = Arrays.asList(new String[] { "Hi" });                                     List&lt;String&gt; strColl = Arrays.asList(new String[] { "Hi" });                                  
+List&lt;String&gt; test = Validate.validIndex(strColl, 0, "Message");                                  List&lt;String&gt; test = Validate.validIndex(strColl, 0, "Message");                               
+assertSame(strColl, test);                                                                             assertSame(strColl, test);                                                                          
+}                                                                                                      }                                                                                                   

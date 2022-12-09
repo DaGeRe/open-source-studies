@@ -1,0 +1,24 @@
+// StripAll
+// -----------------------------------------------------------------------
+/**
+ * <p>Strips whitespace from the start and end of every String in an array.
+ * Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+ *
+ * <p>A new array is returned each time, except for length zero.
+ * A <code>null</code> array will return <code>null</code>.
+ * An empty array will return itself.
+ * A <code>null</code> array entry will be ignored.</p>
+ *
+ * <pre>
+ * StringUtils.stripAll(null)             = null
+ * StringUtils.stripAll([])               = []
+ * StringUtils.stripAll(["abc", "  abc"]) = ["abc", "abc"]
+ * StringUtils.stripAll(["abc  ", null])  = ["abc", null]
+ * </pre>
+ *
+ * @param strs  the array to remove whitespace from, may be null
+ * @return the stripped Strings, <code>null</code> if null array input
+ */
+public static String[] stripAll(String[] strs) {
+    return stripAll(strs, null);
+}

@@ -1,0 +1,37 @@
+/**
+ * <p>Worker method for the <code>indexOfType</code> methods.</p>
+ *
+ * @param throwable  the throwable to inspect, may be null
+ * @param type  the type to search for, subclasses match, null returns -1
+ * @param fromIndex  the (zero based) index of the starting position,
+ *  negative treated as zero, larger than chain size returns -1
+ * @param subclass if <code>true</code>, compares with {@link Class#isAssignableFrom(Class)}, otherwise compares
+ * using references
+ * @return index of the <code>type</code> within throwables nested withing the specified <code>throwable</code>
+ */
+private static int indexOf(Throwable throwable, Class<?> type, int fromIndex, boolean subclass) {
+    if (throwable == null || type == null) {
+        return -1;
+    }
+    if (fromIndex < 0) {
+        fromIndex = 0;
+    }
+    Throwable[] throwables = ExceptionUtils.getThrowables(throwable);
+    if (fromIndex >= throwables.length) {
+        return -1;
+    }
+    if (subclass) {
+        for (int i = fromIndex; i < throwables.length; i++) {
+            if (type.isAssignableFrom(throwables[i].getClass())) {
+                return i;
+            }
+        }
+    } else {
+        for (int i = fromIndex; i < throwables.length; i++) {
+            if (type.equals(throwables[i].getClass())) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}

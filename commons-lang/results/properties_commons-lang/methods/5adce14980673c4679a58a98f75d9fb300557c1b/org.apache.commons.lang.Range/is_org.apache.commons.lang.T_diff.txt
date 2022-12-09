@@ -1,0 +1,13 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Constructs a new &lt;code&gt;Range&lt;/code&gt; using the specified                      
+                                                                                                     | * element as both the minimum and maximum in this range.&lt;/p&gt;                                  
+                                                                                                     | * &lt;p&gt;The range uses the natural ordering of the elements to                                   
+                                                                                                     | * determine where values lie in the range.&lt;/p&gt;                                                
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param element  the value to use for this range, must not be &lt;code&gt;null&lt;/code&gt;        
+                                                                                                     | * @throws IllegalArgumentException if the value is &lt;code&gt;null&lt;/code&gt;                    
+                                                                                                     | * @throws ClassCastException if the value is not Comparable                                         
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T extends Comparable&gt; Range is(T element) {                                    
+                                                                                                     | return new Range(element, element, ComparableComparator.INSTANCE);                                  
+                                                                                                     | }                                                                                                   

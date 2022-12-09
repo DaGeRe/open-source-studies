@@ -1,0 +1,26 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;                                                                                          |                                                                                                     
+* Unescapes the escaped entities in the &lt;code&gt;String&lt;/code&gt; passed and writes the result |                                                                                                     
+* &lt;code&gt;Writer&lt;/code&gt; passed.                                                            |                                                                                                     
+* &lt;/p&gt;                                                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param writer                                                                                      |                                                                                                     
+*            The &lt;code&gt;Writer&lt;/code&gt; to write the results to; assumed to be non-null.    |                                                                                                     
+* @param str                                                                                         |                                                                                                     
+*            The source &lt;code&gt;String&lt;/code&gt; to unescape; assumed to be non-null.         |                                                                                                     
+* @throws IOException                                                                                |                                                                                                     
+*             when &lt;code&gt;Writer&lt;/code&gt; passed throws the exception from calls to the {@l |                                                                                                     
+*             methods.                                                                               |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @see #escape(String)                                                                               |                                                                                                     
+* @see Writer                                                                                        |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public void unescape(Writer writer, String str) throws IOException {                                 |                                                                                                     
+int firstAmp = str.indexOf('&');                                                                     |                                                                                                     
+if (firstAmp &lt; 0) {                                                                               |                                                                                                     
+writer.write(str);                                                                                   |                                                                                                     
+return;                                                                                              |                                                                                                     
+} else {                                                                                             |                                                                                                     
+doUnescape(writer, str, firstAmp);                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

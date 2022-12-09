@@ -1,0 +1,16 @@
+@Test
+public void testIsAsciiControl_char() {
+    assertFalse(CharUtils.isAsciiControl('a'));
+    assertFalse(CharUtils.isAsciiControl('A'));
+    assertFalse(CharUtils.isAsciiControl('3'));
+    assertFalse(CharUtils.isAsciiControl('-'));
+    assertTrue(CharUtils.isAsciiControl('\n'));
+    assertFalse(CharUtils.isAsciiControl(CHAR_COPY));
+    for (int i = 0; i < 196; i++) {
+        if (i < 32 || i == 127) {
+            assertTrue(CharUtils.isAsciiControl((char) i));
+        } else {
+            assertFalse(CharUtils.isAsciiControl((char) i));
+        }
+    }
+}

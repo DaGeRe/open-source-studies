@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testAppendWithSeparators_Array() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendWithSeparators((Object[]) null, ",");
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendWithSeparators(new Object[0], ",");
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendWithSeparators(new Object[] { "foo", "bar", "baz" }, ",");
+    assertEquals("foo,bar,baz", sb.toString());
+    sb.clear();
+    sb.appendWithSeparators(new Object[] { "foo", "bar", "baz" }, null);
+    assertEquals("foobarbaz", sb.toString());
+    sb.clear();
+    sb.appendWithSeparators(new Object[] { "foo", null, "baz" }, ",");
+    assertEquals("foo,,baz", sb.toString());
+}

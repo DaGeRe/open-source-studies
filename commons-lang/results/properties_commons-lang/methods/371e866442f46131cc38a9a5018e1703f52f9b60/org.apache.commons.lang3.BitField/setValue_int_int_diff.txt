@@ -1,0 +1,13 @@
+/**
+ * <p>Replaces the bits with new values.</p>
+ *
+ * @see #getValue(int)
+ * @param holder the int data containing the bits we're
+ *  interested in
+ * @param value the new value for the specified bits
+ * @return the value of holder with the bits from the value
+ *  parameter replacing the old bits
+ */
+public int setValue(int holder, int value) {
+    return (holder & ~_mask) | ((value << _shift_count) & _mask);
+}

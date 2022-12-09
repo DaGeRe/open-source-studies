@@ -1,0 +1,22 @@
+/**
+ * Prepare the next character in the range.
+ */
+private void prepareNext() {
+    if (range.negated) {
+        if (current == Character.MAX_VALUE) {
+            hasNext = false;
+        } else if (current + 1 == range.start) {
+            if (range.end == Character.MAX_VALUE) {
+                hasNext = false;
+            } else {
+                current = (char) (range.end + 1);
+            }
+        } else {
+            current = (char) (current + 1);
+        }
+    } else if (current < range.end) {
+        current = (char) (current + 1);
+    } else {
+        hasNext = false;
+    }
+}

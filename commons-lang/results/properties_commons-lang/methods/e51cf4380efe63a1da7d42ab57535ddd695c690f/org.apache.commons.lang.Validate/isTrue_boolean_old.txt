@@ -1,0 +1,23 @@
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the test result is <code>false</code>.</p>
+ *
+ * <p>This is used when validating according to an arbitrary boolean expression,
+ * such as validating a primitive number or using your own custom validation
+ * expression.</p>
+ *
+ * <pre>
+ * Validate.isTrue( i > 0 );
+ * Validate.isTrue( myObject.isOk() );
+ * </pre>
+ *
+ * <p>The message in the exception is 'The validated expression is false'.</p>
+ *
+ * @param expression  a boolean expression
+ * @throws IllegalArgumentException if expression is <code>false</code>
+ */
+public static void isTrue(boolean expression) {
+    if (expression == false) {
+        throw new IllegalArgumentException("The validated expression is false");
+    }
+}

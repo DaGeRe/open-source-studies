@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------
+public void testAppendln_String() {
+    final int[] count = new int[2];
+    StrBuilder sb = new StrBuilder() {
+
+        @Override
+        public StrBuilder append(String str) {
+            count[0]++;
+            return super.append(str);
+        }
+
+        @Override
+        public StrBuilder appendNewLine() {
+            count[1]++;
+            return super.appendNewLine();
+        }
+    };
+    sb.appendln("foo");
+    assertEquals("foo" + SEP, sb.toString());
+    // appendNewLine() calls append(String)
+    assertEquals(2, count[0]);
+    assertEquals(1, count[1]);
+}

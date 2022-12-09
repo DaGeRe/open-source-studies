@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testNotBlankMsgBlankStringWithWhitespacesShouldThrow() {
+    // given
+    String string = "   ";
+    try {
+        // when
+        Validate.notBlank(string, "Message");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // then
+        assertEquals("Message", e.getMessage());
+    }
+}

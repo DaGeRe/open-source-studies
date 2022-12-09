@@ -1,0 +1,21 @@
+// Defaulting
+// -----------------------------------------------------------------------
+/**
+ * <p>Returns a default value if the object passed is
+ * <code>null</code>.</p>
+ *
+ * <pre>
+ * ObjectUtils.defaultIfNull(null, null)      = null
+ * ObjectUtils.defaultIfNull(null, "")        = ""
+ * ObjectUtils.defaultIfNull(null, "zz")      = "zz"
+ * ObjectUtils.defaultIfNull("abc", *)        = "abc"
+ * ObjectUtils.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
+ * </pre>
+ *
+ * @param object  the <code>Object</code> to test, may be <code>null</code>
+ * @param defaultValue  the default value to return, may be <code>null</code>
+ * @return <code>object</code> if it is not <code>null</code>, defaultValue otherwise
+ */
+public static Object defaultIfNull(Object object, Object defaultValue) {
+    return object != null ? object : defaultValue;
+}

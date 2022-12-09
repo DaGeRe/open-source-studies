@@ -1,0 +1,29 @@
+/**
+ * <p>Returns new instance of <code>klazz</code> created using the actual arguments <code>args</code>.
+ * The formal parameter types are inferred from the actual values of <code>args</code>.
+ * See {@link #invokeExactConstructor(Class, Object[], Class[])} for more details.</p>
+ *
+ * <p>The signatures should match exactly.</p>
+ *
+ * @param cls the class to be constructed.
+ * @param args actual argument array
+ * @return new instance of <code>klazz</code>
+ *
+ * @throws NoSuchMethodException If the constructor cannot be found
+ * @throws IllegalAccessException If an error occurs accessing the constructor
+ * @throws InvocationTargetException If an error occurs invoking the constructor
+ * @throws InstantiationException If an error occurs instantiating the class
+ *
+ * @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])
+ */
+public static Object invokeExactConstructor(Class<?> cls, Object[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    if (null == args) {
+        args = ArrayUtils.EMPTY_OBJECT_ARRAY;
+    }
+    int arguments = args.length;
+    Class<?>[] parameterTypes = new Class[arguments];
+    for (int i = 0; i < arguments; i++) {
+        parameterTypes[i] = args[i].getClass();
+    }
+    return invokeExactConstructor(cls, args, parameterTypes);
+}

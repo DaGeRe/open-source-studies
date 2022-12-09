@@ -1,0 +1,30 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Copies the given array and adds the given element at the end of the new array.&lt;/p&gt; 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;The new array contains the same elements of the input                                    
+                                                                                                     | * array plus the given element in the last position. The component type of                          
+                                                                                                     | * the new array is the same as that of the input array.&lt;/p&gt;                                   
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;If the input array is &lt;code&gt;null&lt;/code&gt;, a new one element array is returned 
+                                                                                                     | *  whose component type is the same as the element.&lt;/p&gt;                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * ArrayUtils.add(null, null)      = [null]                                                          
+                                                                                                     | * ArrayUtils.add(null, "a")       = ["a"]                                                           
+                                                                                                     | * ArrayUtils.add(["a"], null)     = ["a", null]                                                     
+                                                                                                     | * ArrayUtils.add(["a"], "b")      = ["a", "b"]                                                      
+                                                                                                     | * ArrayUtils.add(["a", "b"], "c") = ["a", "b", "c"]                                                 
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param array  the array to "add" the element to, may be &lt;code&gt;null&lt;/code&gt;             
+                                                                                                     | * @param element  the object to add                                                                 
+                                                                                                     | * @return A new array containing the existing elements plus the new element                         
+                                                                                                     | * @since 2.1                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+                                                                                                     | public static &lt;T&gt; T[] add(T[] array, T element) {                                             
+                                                                                                     | Class&lt;?&gt; type = array != null ? array.getClass() : (element != null ? element.getClass() : Obj
+                                                                                                     | T[] newArray = (T[]) copyArrayGrow1(array, type);                                                   
+                                                                                                     | newArray[newArray.length - 1] = element;                                                            
+                                                                                                     | return newArray;                                                                                    
+                                                                                                     | }                                                                                                   

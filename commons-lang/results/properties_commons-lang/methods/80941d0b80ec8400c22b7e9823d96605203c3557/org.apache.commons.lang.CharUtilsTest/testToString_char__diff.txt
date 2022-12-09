@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+public void testToString_char() {
+    assertEquals("a", CharUtils.toString('a'));
+    assertSame(CharUtils.toString('a'), CharUtils.toString('a'));
+    for (int i = 0; i < 128; i++) {
+        String str = CharUtils.toString((char) i);
+        String str2 = CharUtils.toString((char) i);
+        assertSame(str, str2);
+        assertEquals(1, str.length());
+        assertEquals(i, str.charAt(0));
+    }
+    for (int i = 128; i < 196; i++) {
+        String str = CharUtils.toString((char) i);
+        String str2 = CharUtils.toString((char) i);
+        assertEquals(str, str2);
+        assertTrue(str != str2);
+        assertEquals(1, str.length());
+        assertEquals(i, str.charAt(0));
+        assertEquals(1, str2.length());
+        assertEquals(i, str2.charAt(0));
+    }
+}

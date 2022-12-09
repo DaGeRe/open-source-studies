@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Test a nasty combination of arrays and Objects pointing to each other.                               * Test a nasty combination of arrays and Objects pointing to each other.                            
+* objects[0] -&gt; SimpleReflectionTestFixture[ o -&gt; objects ]                                      * objects[0] -&gt; SimpleReflectionTestFixture[ o -&gt; objects ]                                   
+*                                                                                                      *                                                                                                   
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Test                                                                                               
+public void testReflectionArrayAndObjectCycle() throws Exception {                                     public void testReflectionArrayAndObjectCycle() throws Exception {                                  
+Object[] objects = new Object[1];                                                                      Object[] objects = new Object[1];                                                                   
+SimpleReflectionTestFixture simple = new SimpleReflectionTestFixture(objects);                         SimpleReflectionTestFixture simple = new SimpleReflectionTestFixture(objects);                      
+objects[0] = simple;                                                                                   objects[0] = simple;                                                                                
+assertEquals(this.toBaseString(objects) + "[{" + this.toBaseString(simple) + "[o=" + this.toBaseStri   assertEquals(this.toBaseString(objects) + "[{" + this.toBaseString(simple) + "[o=" + this.toBaseStri
+assertEquals(this.toBaseString(simple) + "[o={" + this.toBaseString(simple) + "}]", ToStringBuilder.   assertEquals(this.toBaseString(simple) + "[o={" + this.toBaseString(simple) + "}]", ToStringBuilder.
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+public void testReflectionDoubleArrayArray() {                                                         public void testReflectionDoubleArrayArray() {                                                      
+double[][] array = new double[][] { { 1.0, 2.29686 }, null, { Double.NaN } };                          double[][] array = new double[][] { { 1.0, 2.29686 }, null, { Double.NaN } };                       
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{{1.0,2.29686},&lt;null&gt;,{NaN}}]", ToStringBuilder.reflectionToString(ar   assertEquals(baseStr + "[{{1.0,2.29686},&lt;null&gt;,{NaN}}]", ToStringBuilder.reflectionToString(ar
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

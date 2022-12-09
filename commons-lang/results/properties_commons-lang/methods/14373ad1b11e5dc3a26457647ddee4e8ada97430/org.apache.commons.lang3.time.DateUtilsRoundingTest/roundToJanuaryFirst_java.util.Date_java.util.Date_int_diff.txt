@@ -1,0 +1,31 @@
+/**
+ * Any January 1 could be considered as the ultimate extreme.
+ * Instead of comparing the results if the input has a difference of 1 millisecond we check the output to be exactly January first.
+ *
+ * @param minDate
+ * @param maxDate
+ * @param calendarField
+ * @since 3.0
+ */
+protected void roundToJanuaryFirst(Date minDate, Date maxDate, int calendarField) {
+    assertEquals("Rounding " + fdf.format(januaryOneDate) + " as Date with CalendarField-value " + calendarField + " must return itself", januaryOneDate, DateUtils.round(januaryOneDate, calendarField));
+    assertEquals(januaryOneDate, DateUtils.round(minDate, calendarField));
+    assertEquals(januaryOneDate, DateUtils.round(maxDate, calendarField));
+    Calendar minCalendar = Calendar.getInstance();
+    minCalendar.setTime(minDate);
+    Calendar maxCalendar = Calendar.getInstance();
+    maxCalendar.setTime(maxDate);
+    assertEquals("Rounding " + fdf.format(januaryOneCalendar) + " as Date with CalendarField-value " + calendarField + " must return itself", januaryOneCalendar, DateUtils.round(januaryOneCalendar, calendarField));
+    assertEquals(januaryOneCalendar, DateUtils.round(minCalendar, calendarField));
+    assertEquals(januaryOneCalendar, DateUtils.round(maxCalendar, calendarField));
+    Date toPrevRoundDate = DateUtils.addMilliseconds(minDate, -1);
+    Date toNextRoundDate = DateUtils.addMilliseconds(maxDate, 1);
+    assertFalse(fdf.format(minDate) + " is not an lower-extreme when rounding as Date with CalendarField-value " + calendarField, januaryOneDate.equals(DateUtils.round(toPrevRoundDate, calendarField)));
+    assertFalse(fdf.format(maxDate) + " is not an upper-extreme when rounding as Date with CalendarField-value " + calendarField, januaryOneDate.equals(DateUtils.round(toNextRoundDate, calendarField)));
+    Calendar toPrevRoundCalendar = Calendar.getInstance();
+    toPrevRoundCalendar.setTime(toPrevRoundDate);
+    Calendar toNextRoundCalendar = Calendar.getInstance();
+    toNextRoundCalendar.setTime(toNextRoundDate);
+    assertFalse(fdf.format(minCalendar) + " is not an lower-extreme when rounding as Date with CalendarField-value " + calendarField, januaryOneDate.equals(DateUtils.round(toPrevRoundDate, calendarField)));
+    assertFalse(fdf.format(maxCalendar) + " is not an upper-extreme when rounding as Date with CalendarField-value " + calendarField, januaryOneDate.equals(DateUtils.round(toNextRoundDate, calendarField)));
+}

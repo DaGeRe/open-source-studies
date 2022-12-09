@@ -1,0 +1,22 @@
+public void testSameLengthByte() {
+    byte[] nullArray = null;
+    byte[] emptyArray = new byte[0];
+    byte[] oneArray = new byte[] { 3 };
+    byte[] twoArray = new byte[] { 4, 6 };
+    assertEquals(true, ArrayUtils.isSameLength(nullArray, nullArray));
+    assertEquals(true, ArrayUtils.isSameLength(nullArray, emptyArray));
+    assertEquals(false, ArrayUtils.isSameLength(nullArray, oneArray));
+    assertEquals(false, ArrayUtils.isSameLength(nullArray, twoArray));
+    assertEquals(true, ArrayUtils.isSameLength(emptyArray, nullArray));
+    assertEquals(true, ArrayUtils.isSameLength(emptyArray, emptyArray));
+    assertEquals(false, ArrayUtils.isSameLength(emptyArray, oneArray));
+    assertEquals(false, ArrayUtils.isSameLength(emptyArray, twoArray));
+    assertEquals(false, ArrayUtils.isSameLength(oneArray, nullArray));
+    assertEquals(false, ArrayUtils.isSameLength(oneArray, emptyArray));
+    assertEquals(true, ArrayUtils.isSameLength(oneArray, oneArray));
+    assertEquals(false, ArrayUtils.isSameLength(oneArray, twoArray));
+    assertEquals(false, ArrayUtils.isSameLength(twoArray, nullArray));
+    assertEquals(false, ArrayUtils.isSameLength(twoArray, emptyArray));
+    assertEquals(false, ArrayUtils.isSameLength(twoArray, oneArray));
+    assertEquals(true, ArrayUtils.isSameLength(twoArray, twoArray));
+}

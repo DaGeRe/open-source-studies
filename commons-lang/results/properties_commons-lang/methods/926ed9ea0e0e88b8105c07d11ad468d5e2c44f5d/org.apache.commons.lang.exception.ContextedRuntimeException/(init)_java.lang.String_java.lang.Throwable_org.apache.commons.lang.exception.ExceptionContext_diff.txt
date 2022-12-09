@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Instantiates ContextedRuntimeException with cause, message, and ExceptionContext.                    * Instantiates ContextedRuntimeException with cause, message, and ExceptionContext.                 
+* @param message The exception message                                                               | *                                                                                                   
+* @param cause Exception creating need for ContextedRuntimeException                                 | * @param message  the exception message, may be null                                                
+* @param context Context used to store additional information                                        | * @param cause  the underlying cause of the exception, may be null                                  
+* @since 3.0                                                                                         | * @param context  the context used to store the additional information, null uses default implementa
+*/                                                                                                     */                                                                                                  
+public ContextedRuntimeException(String message, Throwable cause, ExceptionContext context) {          public ContextedRuntimeException(String message, Throwable cause, ExceptionContext context) {       
+super(message, cause);                                                                                 super(message, cause);                                                                              
+if (context != null) {                                                                               | if (context == null) {                                                                              
+this.exceptionContext = context;                                                                     | context = new DefaultExceptionContext();                                                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | exceptionContext = context;                                                                         
+}                                                                                                      }                                                                                                   

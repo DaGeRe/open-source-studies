@@ -1,0 +1,31 @@
+                                                                                                     | @Test                                                                                               
+public void testRemoveByteArray() {                                                                    public void testRemoveByteArray() {                                                                 
+byte[] array;                                                                                          byte[] array;                                                                                       
+array = ArrayUtils.remove(new byte[] { 1 }, 0);                                                        array = ArrayUtils.remove(new byte[] { 1 }, 0);                                                     
+assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                         assertTrue(Arrays.equals(ArrayUtils.EMPTY_BYTE_ARRAY, array));                                      
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new byte[] { 1, 2 }, 0);                                                     array = ArrayUtils.remove(new byte[] { 1, 2 }, 0);                                                  
+assertTrue(Arrays.equals(new byte[] { 2 }, array));                                                    assertTrue(Arrays.equals(new byte[] { 2 }, array));                                                 
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new byte[] { 1, 2 }, 1);                                                     array = ArrayUtils.remove(new byte[] { 1, 2 }, 1);                                                  
+assertTrue(Arrays.equals(new byte[] { 1 }, array));                                                    assertTrue(Arrays.equals(new byte[] { 1 }, array));                                                 
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+array = ArrayUtils.remove(new byte[] { 1, 2, 1 }, 1);                                                  array = ArrayUtils.remove(new byte[] { 1, 2, 1 }, 1);                                               
+assertTrue(Arrays.equals(new byte[] { 1, 1 }, array));                                                 assertTrue(Arrays.equals(new byte[] { 1, 1 }, array));                                              
+assertEquals(Byte.TYPE, array.getClass().getComponentType());                                          assertEquals(Byte.TYPE, array.getClass().getComponentType());                                       
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove(new byte[] { 1, 2 }, -1);                                                            ArrayUtils.remove(new byte[] { 1, 2 }, -1);                                                         
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove(new byte[] { 1, 2 }, 2);                                                             ArrayUtils.remove(new byte[] { 1, 2 }, 2);                                                          
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+ArrayUtils.remove((byte[]) null, 0);                                                                   ArrayUtils.remove((byte[]) null, 0);                                                                
+fail("IndexOutOfBoundsException expected");                                                            fail("IndexOutOfBoundsException expected");                                                         
+} catch (IndexOutOfBoundsException e) {                                                                } catch (IndexOutOfBoundsException e) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

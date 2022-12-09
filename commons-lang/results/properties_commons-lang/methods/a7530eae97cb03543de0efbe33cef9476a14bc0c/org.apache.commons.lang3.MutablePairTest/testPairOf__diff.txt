@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void testPairOf() throws Exception {                                                            public void testPairOf() throws Exception {                                                         
+MutablePair&lt;Integer, String&gt; pair = MutablePair.of(0, "foo");                                    MutablePair&lt;Integer, String&gt; pair = MutablePair.of(0, "foo");                                 
+assertEquals(0, pair.getLeftElement().intValue());                                                   | assertEquals(0, pair.getLeft().intValue());                                                         
+assertEquals("foo", pair.getRightElement());                                                         | assertEquals("foo", pair.getRight());                                                               
+MutablePair&lt;Object, String&gt; pair2 = MutablePair.of(null, "bar");                                 MutablePair&lt;Object, String&gt; pair2 = MutablePair.of(null, "bar");                              
+assertNull(pair2.getLeftElement());                                                                  | assertNull(pair2.getLeft());                                                                        
+assertEquals("bar", pair2.getRightElement());                                                        | assertEquals("bar", pair2.getRight());                                                              
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,25 @@
+/**
+ * <p>Creates a long bit vector representation of the given subset of an Enum.</p>
+ *
+ * <p>This generates a value that is usable by {@link EnumUtils#processBitVector}.</p>
+ *
+ * <p>Do not use this method if you have more than 64 values in your Enum, as this
+ * would create a value greater than a long can hold.</p>
+ *
+ * @param enumClass the class of the enum we are working with, not {@code null}
+ * @param values    the values we want to convert, not {@code null}
+ * @param <E>       the type of the enumeration
+ * @return a long whose binary value represents the given set of enum values.
+ * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}
+ * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values
+ * @since 3.0.1
+ */
+public static <E extends Enum<E>> long generateBitVector(Class<E> enumClass, Iterable<E> values) {
+    checkBitVectorable(enumClass);
+    Validate.notNull(values);
+    long total = 0;
+    for (E constant : values) {
+        total |= (1 << constant.ordinal());
+    }
+    return total;
+}

@@ -1,0 +1,14 @@
+/**
+ * Tests background processing if an external executor service is provided.
+ */
+public void testInitializeExternalExec() throws ConcurrentException {
+    ExecutorService exec = Executors.newCachedThreadPool();
+    try {
+        initializer = new MultiBackgroundInitializer(exec);
+        checkInitialize();
+        assertEquals("Wrong executor", exec, initializer.getActiveExecutor());
+        assertFalse("Executor was shutdown", exec.isShutdown());
+    } finally {
+        exec.shutdown();
+    }
+}

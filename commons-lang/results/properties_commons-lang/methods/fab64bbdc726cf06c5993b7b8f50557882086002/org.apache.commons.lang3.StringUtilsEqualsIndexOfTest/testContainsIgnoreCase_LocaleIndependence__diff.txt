@@ -1,0 +1,19 @@
+public void testContainsIgnoreCase_LocaleIndependence() {                                              public void testContainsIgnoreCase_LocaleIndependence() {                                           
+Locale orig = Locale.getDefault();                                                                     Locale orig = Locale.getDefault();                                                                  
+Locale[] locales = { Locale.ENGLISH, new Locale("tr"), Locale.getDefault() };                          Locale[] locales = { Locale.ENGLISH, new Locale("tr"), Locale.getDefault() };                       
+String[][] tdata = { { "i", "I" }, { "I", "i" }, { "\u03C2", "\u03C3" }, { "\u03A3", "\u03C2" }, { "   String[][] tdata = { { "i", "I" }, { "I", "i" }, { "\u03C2", "\u03C3" }, { "\u03A3", "\u03C2" }, { "
+String[][] fdata = { { "\u00DF", "SS" } };                                                             String[][] fdata = { { "\u00DF", "SS" } };                                                          
+try {                                                                                                  try {                                                                                               
+for (int i = 0; i &lt; locales.length; i++) {                                                        | for (Locale locale : locales) {                                                                     
+Locale.setDefault(locales[i]);                                                                       | Locale.setDefault(locale);                                                                          
+for (int j = 0; j &lt; tdata.length; j++) {                                                            for (int j = 0; j &lt; tdata.length; j++) {                                                         
+assertTrue(Locale.getDefault() + ": " + j + " " + tdata[j][0] + " " + tdata[j][1], StringUtils.conta   assertTrue(Locale.getDefault() + ": " + j + " " + tdata[j][0] + " " + tdata[j][1], StringUtils.conta
+}                                                                                                      }                                                                                                   
+for (int j = 0; j &lt; fdata.length; j++) {                                                            for (int j = 0; j &lt; fdata.length; j++) {                                                         
+assertFalse(Locale.getDefault() + ": " + j + " " + fdata[j][0] + " " + fdata[j][1], StringUtils.cont   assertFalse(Locale.getDefault() + ": " + j + " " + fdata[j][0] + " " + fdata[j][1], StringUtils.cont
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} finally {                                                                                            } finally {                                                                                         
+Locale.setDefault(orig);                                                                               Locale.setDefault(orig);                                                                            
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

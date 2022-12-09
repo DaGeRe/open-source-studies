@@ -1,0 +1,16 @@
+public void testAddObjectArrayShort() {
+    short[] newArray;
+    newArray = ArrayUtils.add((short[]) null, (short) 0);
+    assertTrue(Arrays.equals(new short[] { 0 }, newArray));
+    assertEquals(Short.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add((short[]) null, (short) 1);
+    assertTrue(Arrays.equals(new short[] { 1 }, newArray));
+    assertEquals(Short.TYPE, newArray.getClass().getComponentType());
+    short[] array1 = new short[] { 1, 2, 3 };
+    newArray = ArrayUtils.add(array1, (short) 0);
+    assertTrue(Arrays.equals(new short[] { 1, 2, 3, 0 }, newArray));
+    assertEquals(Short.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add(array1, (short) 4);
+    assertTrue(Arrays.equals(new short[] { 1, 2, 3, 4 }, newArray));
+    assertEquals(Short.TYPE, newArray.getClass().getComponentType());
+}

@@ -1,0 +1,13 @@
+@Test
+public void test_generateBitVectorFromArray() {
+    assertEquals(0L, EnumUtils.generateBitVector(Traffic.class));
+    assertEquals(1L, EnumUtils.generateBitVector(Traffic.class, Traffic.RED));
+    assertEquals(2L, EnumUtils.generateBitVector(Traffic.class, Traffic.AMBER));
+    assertEquals(4L, EnumUtils.generateBitVector(Traffic.class, Traffic.GREEN));
+    assertEquals(3L, EnumUtils.generateBitVector(Traffic.class, Traffic.RED, Traffic.AMBER));
+    assertEquals(5L, EnumUtils.generateBitVector(Traffic.class, Traffic.RED, Traffic.GREEN));
+    assertEquals(6L, EnumUtils.generateBitVector(Traffic.class, Traffic.AMBER, Traffic.GREEN));
+    assertEquals(7L, EnumUtils.generateBitVector(Traffic.class, Traffic.RED, Traffic.AMBER, Traffic.GREEN));
+    // gracefully handles duplicates:
+    assertEquals(7L, EnumUtils.generateBitVector(Traffic.class, Traffic.RED, Traffic.AMBER, Traffic.GREEN, Traffic.GREEN));
+}

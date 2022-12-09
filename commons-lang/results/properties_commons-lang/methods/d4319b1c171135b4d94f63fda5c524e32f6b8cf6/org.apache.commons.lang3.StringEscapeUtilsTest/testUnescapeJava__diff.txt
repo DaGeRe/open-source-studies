@@ -1,0 +1,33 @@
+                                                                                                     | @Test                                                                                               
+public void testUnescapeJava() throws IOException {                                                    public void testUnescapeJava() throws IOException {                                                 
+assertEquals(null, StringEscapeUtils.unescapeJava(null));                                              assertEquals(null, StringEscapeUtils.unescapeJava(null));                                           
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.UNESCAPE_JAVA.translate(null, null);                                                 StringEscapeUtils.UNESCAPE_JAVA.translate(null, null);                                              
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.UNESCAPE_JAVA.translate("", null);                                                   StringEscapeUtils.UNESCAPE_JAVA.translate("", null);                                                
+fail();                                                                                                fail();                                                                                             
+} catch (IOException ex) {                                                                             } catch (IOException ex) {                                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.unescapeJava("\\u02-3");                                                             StringEscapeUtils.unescapeJava("\\u02-3");                                                          
+fail();                                                                                                fail();                                                                                             
+} catch (RuntimeException ex) {                                                                        } catch (RuntimeException ex) {                                                                     
+}                                                                                                      }                                                                                                   
+assertUnescapeJava("", "");                                                                            assertUnescapeJava("", "");                                                                         
+assertUnescapeJava("test", "test");                                                                    assertUnescapeJava("test", "test");                                                                 
+assertUnescapeJava("\ntest\b", "\\ntest\\b");                                                          assertUnescapeJava("\ntest\b", "\\ntest\\b");                                                       
+assertUnescapeJava("\u123425foo\ntest\b", "\\u123425foo\\ntest\\b");                                   assertUnescapeJava("\u123425foo\ntest\b", "\\u123425foo\\ntest\\b");                                
+assertUnescapeJava("'\foo\teste\r", "\\'\\foo\\teste\\r");                                             assertUnescapeJava("'\foo\teste\r", "\\'\\foo\\teste\\r");                                          
+assertUnescapeJava("", "\\");                                                                          assertUnescapeJava("", "\\");                                                                       
+// foo                                                                                                 // foo                                                                                              
+assertUnescapeJava("lowercase unicode", "\uABCDx", "\\uabcdx");                                        assertUnescapeJava("lowercase unicode", "\uABCDx", "\\uabcdx");                                     
+assertUnescapeJava("uppercase unicode", "\uABCDx", "\\uABCDx");                                        assertUnescapeJava("uppercase unicode", "\uABCDx", "\\uABCDx");                                     
+assertUnescapeJava("unicode as final character", "\uABCD", "\\uabcd");                                 assertUnescapeJava("unicode as final character", "\uABCD", "\\uabcd");                              
+}                                                                                                      }                                                                                                   

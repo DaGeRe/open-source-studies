@@ -1,0 +1,19 @@
+public void testPrimitivesToWrappers() {
+    // test null
+    assertNull("null -> null", ClassUtils.primitivesToWrappers(null));
+    // test empty array
+    assertEquals("empty -> empty", ArrayUtils.EMPTY_CLASS_ARRAY, ClassUtils.primitivesToWrappers(ArrayUtils.EMPTY_CLASS_ARRAY));
+    // test an array of various classes
+    final Class<?>[] primitives = new Class[] { Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.TYPE, Long.TYPE, Double.TYPE, Float.TYPE, String.class, ClassUtils.class };
+    Class<?>[] wrappers = ClassUtils.primitivesToWrappers(primitives);
+    for (int i = 0; i < primitives.length; i++) {
+        // test each returned wrapper
+        Class<?> primitive = primitives[i];
+        Class<?> expectedWrapper = ClassUtils.primitiveToWrapper(primitive);
+        assertEquals(primitive + " -> " + expectedWrapper, expectedWrapper, wrappers[i]);
+    }
+    // test an array of no primitive classes
+    final Class<?>[] noPrimitives = new Class[] { String.class, ClassUtils.class, Void.TYPE };
+    // This used to return the exact same array, but no longer does.
+    assertNotSame("unmodified", noPrimitives, ClassUtils.primitivesToWrappers(noPrimitives));
+}

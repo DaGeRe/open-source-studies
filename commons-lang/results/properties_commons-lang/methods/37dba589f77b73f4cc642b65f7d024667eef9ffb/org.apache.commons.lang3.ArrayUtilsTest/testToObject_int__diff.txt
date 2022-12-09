@@ -1,0 +1,6 @@
+public void testToObject_int() {                                                                       public void testToObject_int() {                                                                    
+final int[] b = null;                                                                                  final int[] b = null;                                                                               
+assertEquals(null, ArrayUtils.toObject(b));                                                            assertEquals(null, ArrayUtils.toObject(b));                                                         
+assertSame(ArrayUtils.EMPTY_INTEGER_OBJECT_ARRAY, ArrayUtils.toObject(new int[0]));                    assertSame(ArrayUtils.EMPTY_INTEGER_OBJECT_ARRAY, ArrayUtils.toObject(new int[0]));                 
+assertTrue(Arrays.equals(new Integer[] { Integer.MIN_VALUE, Integer.MAX_VALUE, 9999999 }, ArrayUtils | assertTrue(Arrays.equals(new Integer[] { new Integer(Integer.MIN_VALUE), new Integer(Integer.MAX_VAL
+}                                                                                                      }                                                                                                   

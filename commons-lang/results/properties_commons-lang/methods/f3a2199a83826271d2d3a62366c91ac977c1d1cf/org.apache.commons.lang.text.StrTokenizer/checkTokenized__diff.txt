@@ -1,0 +1,17 @@
+// Implementation                                                                                      // Implementation                                                                                   
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Checks if tokenization has been done, and if not then do it.                                         * Checks if tokenization has been done, and if not then do it.                                      
+*/                                                                                                     */                                                                                                  
+private void checkTokenized() {                                                                        private void checkTokenized() {                                                                     
+if (tokens == null) {                                                                                  if (tokens == null) {                                                                               
+if (chars == null) {                                                                                   if (chars == null) {                                                                                
+// still call tokenize as subclass may do some work                                                    // still call tokenize as subclass may do some work                                                 
+List split = tokenize(null, 0, 0);                                                                   | List&lt;String&gt; split = tokenize(null, 0, 0);                                                    
+tokens = (String[]) split.toArray(new String[split.size()]);                                         | tokens = split.toArray(new String[split.size()]);                                                   
+} else {                                                                                               } else {                                                                                            
+List split = tokenize(chars, 0, chars.length);                                                       | List&lt;String&gt; split = tokenize(chars, 0, chars.length);                                        
+tokens = (String[]) split.toArray(new String[split.size()]);                                         | tokens = split.toArray(new String[split.size()]);                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

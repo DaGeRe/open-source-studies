@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testBooleanArrayAsObject() {                                                               public void testBooleanArrayAsObject() {                                                            
+boolean[] obj = new boolean[2];                                                                        boolean[] obj = new boolean[2];                                                                     
+assertEquals((17 * 37 + 1) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());   assertEquals((17 * 37 + 1) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+obj[0] = true;                                                                                         obj[0] = true;                                                                                      
+assertEquals((17 * 37 + 0) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());   assertEquals((17 * 37 + 0) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+obj[1] = false;                                                                                        obj[1] = false;                                                                                     
+assertEquals((17 * 37 + 0) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());   assertEquals((17 * 37 + 0) * 37 + 1, new HashCodeBuilder(17, 37).append((Object) obj).toHashCode());
+}                                                                                                      }                                                                                                   

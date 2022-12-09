@@ -1,0 +1,13 @@
+/**
+ * Tests handleCauseUnchecked() if the cause is an unchecked exception.
+ */
+@Test
+public void testHandleCauseUncheckedUncheckedException() {
+    RuntimeException rex = new RuntimeException("Test");
+    try {
+        ConcurrentUtils.handleCauseUnchecked(new ExecutionException(rex));
+        fail("Runtime exception not thrown!");
+    } catch (RuntimeException r) {
+        assertEquals("Wrong exception", rex, r);
+    }
+}

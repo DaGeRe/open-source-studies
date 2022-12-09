@@ -1,0 +1,15 @@
+/**
+ * <p>Constructs a <code>UnicodeEscaper</code> for the specified range. This is
+ * the underlying method for the other constructors/builders. The <code>below</code>
+ * and <code>above</code> boundaries are inclusive when <code>between</code> is
+ * <code>true</code> and exclusive when it is <code>false</code>. </p>
+ *
+ * @param below int value representing the lowest codepoint boundary
+ * @param above int value representing the highest codepoint boundary
+ * @param between whether to escape between the boundaries or outside them
+ */
+private UnicodeEscaper(int below, int above, boolean between) {
+    this.below = below;
+    this.above = above;
+    this.between = between;
+}

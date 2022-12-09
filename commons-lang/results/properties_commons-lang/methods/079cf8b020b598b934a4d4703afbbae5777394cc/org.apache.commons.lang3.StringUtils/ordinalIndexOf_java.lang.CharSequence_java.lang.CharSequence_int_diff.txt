@@ -1,0 +1,36 @@
+/**
+ * <p>Finds the n-th index within a CharSequence, handling {@code null}.
+ * This method uses {@link String#indexOf(String)} if possible.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.ordinalIndexOf(null, *, *)          = -1
+ * StringUtils.ordinalIndexOf(*, null, *)          = -1
+ * StringUtils.ordinalIndexOf("", "", *)           = 0
+ * StringUtils.ordinalIndexOf("aabaabaa", "a", 1)  = 0
+ * StringUtils.ordinalIndexOf("aabaabaa", "a", 2)  = 1
+ * StringUtils.ordinalIndexOf("aabaabaa", "b", 1)  = 2
+ * StringUtils.ordinalIndexOf("aabaabaa", "b", 2)  = 5
+ * StringUtils.ordinalIndexOf("aabaabaa", "ab", 1) = 1
+ * StringUtils.ordinalIndexOf("aabaabaa", "ab", 2) = 4
+ * StringUtils.ordinalIndexOf("aabaabaa", "", 1)   = 0
+ * StringUtils.ordinalIndexOf("aabaabaa", "", 2)   = 0
+ * </pre>
+ *
+ * <p>Note that 'head(CharSequence str, int n)' may be implemented as: </p>
+ *
+ * <pre>
+ *   str.substring(0, lastOrdinalIndexOf(str, "\n", n))
+ * </pre>
+ *
+ * @param str  the CharSequence to check, may be null
+ * @param searchStr  the CharSequence to find, may be null
+ * @param ordinal  the n-th {@code searchStr} to find
+ * @return the n-th index of the search CharSequence,
+ *  {@code -1} ({@code INDEX_NOT_FOUND}) if no match or {@code null} string input
+ * @since 2.1
+ */
+public static int ordinalIndexOf(CharSequence str, CharSequence searchStr, int ordinal) {
+    return ordinalIndexOf(str, searchStr, ordinal, false);
+}

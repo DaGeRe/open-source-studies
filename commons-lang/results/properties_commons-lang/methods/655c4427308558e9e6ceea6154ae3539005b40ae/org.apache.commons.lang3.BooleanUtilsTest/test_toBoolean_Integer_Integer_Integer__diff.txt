@@ -1,0 +1,19 @@
+                                                                                                     | @Test                                                                                               
+public void test_toBoolean_Integer_Integer_Integer() {                                                 public void test_toBoolean_Integer_Integer_Integer() {                                              
+Integer six = new Integer(6);                                                                          Integer six = new Integer(6);                                                                       
+Integer seven = new Integer(7);                                                                        Integer seven = new Integer(7);                                                                     
+assertEquals(true, BooleanUtils.toBoolean((Integer) null, null, seven));                               assertEquals(true, BooleanUtils.toBoolean((Integer) null, null, seven));                            
+assertEquals(false, BooleanUtils.toBoolean((Integer) null, six, null));                                assertEquals(false, BooleanUtils.toBoolean((Integer) null, six, null));                             
+try {                                                                                                  try {                                                                                               
+BooleanUtils.toBoolean(null, six, seven);                                                              BooleanUtils.toBoolean(null, six, seven);                                                           
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+assertEquals(true, BooleanUtils.toBoolean(new Integer(6), six, seven));                                assertEquals(true, BooleanUtils.toBoolean(new Integer(6), six, seven));                             
+assertEquals(false, BooleanUtils.toBoolean(new Integer(7), six, seven));                               assertEquals(false, BooleanUtils.toBoolean(new Integer(7), six, seven));                            
+try {                                                                                                  try {                                                                                               
+BooleanUtils.toBoolean(new Integer(8), six, seven);                                                    BooleanUtils.toBoolean(new Integer(8), six, seven);                                                 
+fail();                                                                                                fail();                                                                                             
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

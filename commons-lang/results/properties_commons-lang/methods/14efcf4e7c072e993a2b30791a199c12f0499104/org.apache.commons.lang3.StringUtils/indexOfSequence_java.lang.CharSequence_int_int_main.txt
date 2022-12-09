@@ -1,0 +1,19 @@
+// The following methods are used to support basic java.lang.String functionality
+// for CharSequences
+// Used by the indexOf(CharSequence methods) as a green implementation of indexOf
+static int indexOfSequence(CharSequence cs, int searchChar, int start) {
+    if (cs instanceof String) {
+        return ((String) cs).indexOf(searchChar, start);
+    } else {
+        int sz = cs.length();
+        if (start < 0) {
+            start = 0;
+        }
+        for (int i = start; i < sz; i++) {
+            if (cs.charAt(i) == searchChar) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}

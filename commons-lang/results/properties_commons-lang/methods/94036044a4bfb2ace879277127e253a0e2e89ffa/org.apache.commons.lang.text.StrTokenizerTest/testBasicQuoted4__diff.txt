@@ -1,0 +1,11 @@
+public void testBasicQuoted4() {
+    String input = "a: 'b' 'c' :d";
+    StrTokenizer tok = new StrTokenizer(input, ':', '\'');
+    tok.setTrimmerMatcher(StrMatcher.trimMatcher());
+    tok.setIgnoreEmptyTokens(false);
+    tok.setEmptyTokenAsNull(true);
+    assertEquals("a", tok.next());
+    assertEquals("b c", tok.next());
+    assertEquals("d", tok.next());
+    assertEquals(false, tok.hasNext());
+}

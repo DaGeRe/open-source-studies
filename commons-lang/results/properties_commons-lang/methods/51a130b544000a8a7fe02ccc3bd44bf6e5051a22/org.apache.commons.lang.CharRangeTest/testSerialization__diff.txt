@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testSerialization() {                                                                      public void testSerialization() {                                                                   
+CharRange range = new CharRange('a');                                                                | CharRange range = CharRange.is('a');                                                                
+assertEquals(range, SerializationUtils.clone(range));                                                  assertEquals(range, SerializationUtils.clone(range));                                               
+range = new CharRange('a', 'e');                                                                     | range = CharRange.isIn('a', 'e');                                                                   
+assertEquals(range, SerializationUtils.clone(range));                                                  assertEquals(range, SerializationUtils.clone(range));                                               
+range = new CharRange('a', 'e', true);                                                               | range = CharRange.isNotIn('a', 'e');                                                                
+assertEquals(range, SerializationUtils.clone(range));                                                  assertEquals(range, SerializationUtils.clone(range));                                               
+}                                                                                                      }                                                                                                   

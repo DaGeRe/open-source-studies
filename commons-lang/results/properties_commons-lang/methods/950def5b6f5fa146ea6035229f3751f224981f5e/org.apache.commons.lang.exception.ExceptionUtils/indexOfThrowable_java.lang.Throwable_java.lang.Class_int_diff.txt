@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns the (zero based) index of the first &lt;code&gt;Throwable&lt;/code&gt;              * &lt;p&gt;Returns the (zero based) index of the first &lt;code&gt;Throwable&lt;/code&gt;           
+* that matches the specified type in the exception chain from                                          * that matches the specified type in the exception chain from                                       
+* a specified index.                                                                                   * a specified index.                                                                                
+* Subclasses of the specified class do not match - see                                                 * Subclasses of the specified class do not match - see                                              
+* {@link #indexOfType(Throwable, Class, int)} for the opposite.&lt;/p&gt;                              * {@link #indexOfType(Throwable, Class, int)} for the opposite.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; throwable returns &lt;code&gt;-1&lt;/code&gt;.              * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; throwable returns &lt;code&gt;-1&lt;/code&gt;.           
+* A &lt;code&gt;null&lt;/code&gt; type returns &lt;code&gt;-1&lt;/code&gt;.                            * A &lt;code&gt;null&lt;/code&gt; type returns &lt;code&gt;-1&lt;/code&gt;.                         
+* No match in the chain returns &lt;code&gt;-1&lt;/code&gt;.                                           * No match in the chain returns &lt;code&gt;-1&lt;/code&gt;.                                        
+* A negative start index is treated as zero.                                                           * A negative start index is treated as zero.                                                        
+* A start index greater than the number of throwables returns &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;   * A start index greater than the number of throwables returns &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to inspect, may be null                                              * @param throwable  the throwable to inspect, may be null                                           
+* @param clazz  the class to search for, subclasses do not match, null returns -1                      * @param clazz  the class to search for, subclasses do not match, null returns -1                   
+* @param fromIndex  the (zero based) index of the starting position,                                   * @param fromIndex  the (zero based) index of the starting position,                                
+*  negative treated as zero, larger than chain size returns -1                                         *  negative treated as zero, larger than chain size returns -1                                      
+* @return the index into the throwable chain, -1 if no match or null input                             * @return the index into the throwable chain, -1 if no match or null input                          
+*/                                                                                                     */                                                                                                  
+public static int indexOfThrowable(Throwable throwable, Class clazz, int fromIndex) {                | public static int indexOfThrowable(Throwable throwable, Class&lt;?&gt; clazz, int fromIndex) {      
+return indexOf(throwable, clazz, fromIndex, false);                                                    return indexOf(throwable, clazz, fromIndex, false);                                                 
+}                                                                                                      }                                                                                                   

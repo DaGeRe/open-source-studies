@@ -1,0 +1,23 @@
+/**
+ * Appends a iterable placing separators between each value, but
+ * not before the first or after the last.
+ * Appending a null iterable will have no effect.
+ * Each object is appended using {@link #append(Object)}.
+ *
+ * @param iterable  the iterable to append
+ * @param separator  the separator to use, null means no separator
+ * @return this, to enable chaining
+ */
+public StrBuilder appendWithSeparators(Iterable<?> iterable, String separator) {
+    if (iterable != null) {
+        separator = separator == null ? "" : separator;
+        Iterator<?> it = iterable.iterator();
+        while (it.hasNext()) {
+            append(it.next());
+            if (it.hasNext()) {
+                append(separator);
+            }
+        }
+    }
+    return this;
+}

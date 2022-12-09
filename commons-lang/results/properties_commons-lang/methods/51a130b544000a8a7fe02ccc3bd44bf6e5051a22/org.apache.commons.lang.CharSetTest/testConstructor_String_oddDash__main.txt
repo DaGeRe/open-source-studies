@@ -1,0 +1,38 @@
+public void testConstructor_String_oddDash() {
+    CharSet set;
+    CharRange[] array;
+    set = CharSet.getInstance("-");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    set = CharSet.getInstance("--");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    set = CharSet.getInstance("---");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    set = CharSet.getInstance("----");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    set = CharSet.getInstance("-a");
+    array = set.getCharRanges();
+    assertEquals(2, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));
+    set = CharSet.getInstance("a-");
+    array = set.getCharRanges();
+    assertEquals(2, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('a')));
+    assertEquals(true, ArrayUtils.contains(array, CharRange.is('-')));
+    set = CharSet.getInstance("a--");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('a', '-')));
+    set = CharSet.getInstance("--a");
+    array = set.getCharRanges();
+    assertEquals(1, array.length);
+    assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('-', 'a')));
+}

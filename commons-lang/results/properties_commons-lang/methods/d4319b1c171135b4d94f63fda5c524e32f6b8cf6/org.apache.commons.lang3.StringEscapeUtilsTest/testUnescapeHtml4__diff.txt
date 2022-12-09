@@ -1,0 +1,24 @@
+                                                                                                     | @Test                                                                                               
+public void testUnescapeHtml4() {                                                                      public void testUnescapeHtml4() {                                                                   
+for (int i = 0; i &lt; htmlEscapes.length; ++i) {                                                      for (int i = 0; i &lt; htmlEscapes.length; ++i) {                                                   
+String message = htmlEscapes[i][0];                                                                    String message = htmlEscapes[i][0];                                                                 
+String expected = htmlEscapes[i][2];                                                                   String expected = htmlEscapes[i][2];                                                                
+String original = htmlEscapes[i][1];                                                                   String original = htmlEscapes[i][1];                                                                
+assertEquals(message, expected, StringEscapeUtils.unescapeHtml4(original));                            assertEquals(message, expected, StringEscapeUtils.unescapeHtml4(original));                         
+StringWriter sw = new StringWriter();                                                                  StringWriter sw = new StringWriter();                                                               
+try {                                                                                                  try {                                                                                               
+StringEscapeUtils.UNESCAPE_HTML4.translate(original, sw);                                              StringEscapeUtils.UNESCAPE_HTML4.translate(original, sw);                                           
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+}                                                                                                      }                                                                                                   
+String actual = original == null ? null : sw.toString();                                               String actual = original == null ? null : sw.toString();                                            
+assertEquals(message, expected, actual);                                                               assertEquals(message, expected, actual);                                                            
+}                                                                                                      }                                                                                                   
+// \u00E7 is a cedilla (c with wiggle under)                                                           // \u00E7 is a cedilla (c with wiggle under)                                                        
+// note that the test string must be 7-bit-clean (unicode escaped) or else it will compile incorrect   // note that the test string must be 7-bit-clean (unicode escaped) or else it will compile incorrect
+// on some locales                                                                                     // on some locales                                                                                  
+assertEquals("funny chars pass through OK", "Fran\u00E7ais", StringEscapeUtils.unescapeHtml4("Fran\u   assertEquals("funny chars pass through OK", "Fran\u00E7ais", StringEscapeUtils.unescapeHtml4("Fran\u
+assertEquals("Hello&;World", StringEscapeUtils.unescapeHtml4("Hello&;World"));                         assertEquals("Hello&;World", StringEscapeUtils.unescapeHtml4("Hello&;World"));                      
+assertEquals("Hello&#;World", StringEscapeUtils.unescapeHtml4("Hello&#;World"));                       assertEquals("Hello&#;World", StringEscapeUtils.unescapeHtml4("Hello&#;World"));                    
+assertEquals("Hello&# ;World", StringEscapeUtils.unescapeHtml4("Hello&# ;World"));                     assertEquals("Hello&# ;World", StringEscapeUtils.unescapeHtml4("Hello&# ;World"));                  
+assertEquals("Hello&##;World", StringEscapeUtils.unescapeHtml4("Hello&##;World"));                     assertEquals("Hello&##;World", StringEscapeUtils.unescapeHtml4("Hello&##;World"));                  
+}                                                                                                      }                                                                                                   

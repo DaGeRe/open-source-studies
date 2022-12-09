@@ -1,0 +1,28 @@
+// Centering
+// -----------------------------------------------------------------------
+/**
+ * <p>Centers a String in a larger String of size {@code size}
+ * using the space character (' ').<p>
+ *
+ * <p>If the size is less than the String length, the String is returned.
+ * A {@code null} String returns {@code null}.
+ * A negative size is treated as zero.</p>
+ *
+ * <p>Equivalent to {@code center(str, size, " ")}.</p>
+ *
+ * <pre>
+ * StringUtils.center(null, *)   = null
+ * StringUtils.center("", 4)     = "    "
+ * StringUtils.center("ab", -1)  = "ab"
+ * StringUtils.center("ab", 4)   = " ab "
+ * StringUtils.center("abcd", 2) = "abcd"
+ * StringUtils.center("a", 4)    = " a  "
+ * </pre>
+ *
+ * @param seq  the CharSequence to center, may be null
+ * @param size  the int size of new String, negative treated as zero
+ * @return centered String, {@code null} if null String input
+ */
+public static String center(CharSequence seq, int size) {
+    return center(seq, size, ' ');
+}

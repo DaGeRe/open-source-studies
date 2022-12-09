@@ -1,0 +1,51 @@
+/**
+ * Prints the stack trace of this exception to the specified
+ * writer. If the Throwable class has a <code>getCause</code>
+ * method (i.e. running on jre1.4 or higher), this method just
+ * uses Throwable's printStackTrace() method. Otherwise, generates
+ * the stack-trace, by taking into account the 'topDown' and
+ * 'trimStackFrames' parameters. The topDown and trimStackFrames
+ * are set to 'true' by default (produces jre1.4-like stack trace).
+ *
+ * @param out <code>PrintWriter</code> to use for output.
+ */
+public void printStackTrace(PrintWriter out) {
+    Throwable throwable = this.nestable;
+    // if running on jre1.4 or higher, use default printStackTrace
+    if (ExceptionUtils.isThrowableNested()) {
+        if (throwable instanceof Nestable) {
+            ((Nestable) throwable).printPartialStackTrace(out);
+        } else {
+            throwable.printStackTrace(out);
+        }
+        return;
+    }
+    // generating the nested stack trace
+    List stacks = new ArrayList();
+    while (throwable != null) {
+        String[] st = getStackFrames(throwable);
+        stacks.add(st);
+        throwable = ExceptionUtils.getCause(throwable);
+    }
+    // If NOT topDown, reverse the stack
+    String separatorLine = "Caused by: ";
+    if (!topDown) {
+        separatorLine = "Rethrown as: ";
+        Collections.reverse(stacks);
+    }
+    // Remove the repeated lines in the stack
+    if (trimStackFrames) {
+        trimStackFrames(stacks);
+    }
+    synchronized (out) {
+        for (Iterator iter = stacks.iterator(); iter.hasNext(); ) {
+            String[] st = (String[]) iter.next();
+            for (int i = 0, len = st.length; i < len; i++) {
+                out.println(st[i]);
+            }
+            if (iter.hasNext()) {
+                out.print(separatorLine);
+            }
+        }
+    }
+}

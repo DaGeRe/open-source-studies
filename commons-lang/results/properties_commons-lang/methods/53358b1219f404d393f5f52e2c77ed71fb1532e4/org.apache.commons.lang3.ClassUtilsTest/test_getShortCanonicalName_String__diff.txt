@@ -1,0 +1,15 @@
+public void test_getShortCanonicalName_String() {                                                      public void test_getShortCanonicalName_String() {                                                   
+assertEquals("ClassUtils", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils"));   assertEquals("ClassUtils", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils"));
+assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName("[Lorg.apache.commons.lang3.ClassUtils   assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName("[Lorg.apache.commons.lang3.ClassUtils
+assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName("[[Lorg.apache.commons.lang3.ClassUt   assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName("[[Lorg.apache.commons.lang3.ClassUt
+assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils[]   assertEquals("ClassUtils[]", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils[]
+assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils   assertEquals("ClassUtils[][]", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUtils
+assertEquals("int[]", ClassUtils.getShortCanonicalName("[I"));                                         assertEquals("int[]", ClassUtils.getShortCanonicalName("[I"));                                      
+assertEquals("int[][]", ClassUtils.getShortCanonicalName("[[I"));                                      assertEquals("int[][]", ClassUtils.getShortCanonicalName("[[I"));                                   
+assertEquals("int[]", ClassUtils.getShortCanonicalName("int[]"));                                      assertEquals("int[]", ClassUtils.getShortCanonicalName("int[]"));                                   
+assertEquals("int[][]", ClassUtils.getShortCanonicalName("int[][]"));                                  assertEquals("int[][]", ClassUtils.getShortCanonicalName("int[][]"));                               
+                                                                                                     | // Inner types                                                                                      
+                                                                                                     | assertEquals("ClassUtilsTest.6", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.ClassUti
+                                                                                                     | assertEquals("ClassUtilsTest.5Named", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.Cla
+                                                                                                     | assertEquals("ClassUtilsTest.Inner", ClassUtils.getShortCanonicalName("org.apache.commons.lang3.Clas
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,17 @@
+/**
+ * Reset this tokenizer, giving it a new input string to parse.
+ * In this manner you can re-use a tokenizer with the same settings
+ * on multiple input lines.
+ *
+ * @param input  the new string to tokenize, null sets no text to parse
+ * @return this, to enable chaining
+ */
+public StrTokenizer reset(String input) {
+    reset();
+    if (input != null) {
+        this.chars = input.toCharArray();
+    } else {
+        this.chars = null;
+    }
+    return this;
+}

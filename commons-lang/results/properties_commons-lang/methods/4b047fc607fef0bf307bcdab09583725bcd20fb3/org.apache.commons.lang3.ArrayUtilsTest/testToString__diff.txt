@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------
+public void testToString() {
+    assertEquals("{}", ArrayUtils.toString(null));
+    assertEquals("{}", ArrayUtils.toString(new Object[0]));
+    assertEquals("{}", ArrayUtils.toString(new String[0]));
+    assertEquals("{<null>}", ArrayUtils.toString(new String[] { null }));
+    assertEquals("{pink,blue}", ArrayUtils.toString(new String[] { "pink", "blue" }));
+    assertEquals("<empty>", ArrayUtils.toString(null, "<empty>"));
+    assertEquals("{}", ArrayUtils.toString(new Object[0], "<empty>"));
+    assertEquals("{}", ArrayUtils.toString(new String[0], "<empty>"));
+    assertEquals("{<null>}", ArrayUtils.toString(new String[] { null }, "<empty>"));
+    assertEquals("{pink,blue}", ArrayUtils.toString(new String[] { "pink", "blue" }, "<empty>"));
+}

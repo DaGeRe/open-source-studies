@@ -1,0 +1,17 @@
+/**
+ * Appends each item in an iterator to the builder without any separators.
+ * Appending a null iterator will have no effect.
+ * Each object is appended using {@link #append(Object)}.
+ *
+ * @param it  the iterator to append
+ * @return this, to enable chaining
+ * @since 2.3
+ */
+public StrBuilder appendAll(Iterator it) {
+    if (it != null) {
+        while (it.hasNext()) {
+            append(it.next());
+        }
+    }
+    return this;
+}

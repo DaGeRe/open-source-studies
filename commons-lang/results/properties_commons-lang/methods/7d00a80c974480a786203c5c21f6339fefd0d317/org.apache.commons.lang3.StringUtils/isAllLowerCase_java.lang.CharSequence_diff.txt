@@ -1,0 +1,31 @@
+/**
+ * <p>Checks if the CharSequence contains only lowercase characters.</p>
+ *
+ * <p>{@code null} will return {@code false}.
+ * An empty CharSequence (length()=0) will return {@code false}.</p>
+ *
+ * <pre>
+ * StringUtils.isAllLowerCase(null)   = false
+ * StringUtils.isAllLowerCase("")     = false
+ * StringUtils.isAllLowerCase("  ")   = false
+ * StringUtils.isAllLowerCase("abc")  = true
+ * StringUtils.isAllLowerCase("abC") = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @return {@code true} if only contains lowercase characters, and is non-null
+ * @since 2.5
+ * @since 3.0 Changed signature from isAllLowerCase(String) to isAllLowerCase(CharSequence)
+ */
+public static boolean isAllLowerCase(CharSequence cs) {
+    if (cs == null || isEmpty(cs)) {
+        return false;
+    }
+    int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if (Character.isLowerCase(cs.charAt(i)) == false) {
+            return false;
+        }
+    }
+    return true;
+}

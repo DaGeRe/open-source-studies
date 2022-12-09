@@ -1,0 +1,18 @@
+@Test
+public void testGetDeclaredFieldForceAccess() {
+    assertEquals(PublicChild.class, FieldUtils.getDeclaredField(PublicChild.class, "VALUE", true).getDeclaringClass());
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "s", true));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "b", true));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "i", true));
+    assertNull(FieldUtils.getDeclaredField(PublicChild.class, "d", true));
+    assertNull(FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "VALUE", true));
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "s", true).getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "b", true).getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "i", true).getDeclaringClass());
+    assertEquals(PubliclyShadowedChild.class, FieldUtils.getDeclaredField(PubliclyShadowedChild.class, "d", true).getDeclaringClass());
+    assertNull(FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "VALUE", true));
+    assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "s", true).getDeclaringClass());
+    assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "b", true).getDeclaringClass());
+    assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "i", true).getDeclaringClass());
+    assertEquals(PrivatelyShadowedChild.class, FieldUtils.getDeclaredField(PrivatelyShadowedChild.class, "d", true).getDeclaringClass());
+}

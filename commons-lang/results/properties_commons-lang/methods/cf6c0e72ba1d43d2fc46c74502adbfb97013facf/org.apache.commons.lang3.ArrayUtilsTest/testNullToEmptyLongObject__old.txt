@@ -1,0 +1,12 @@
+public void testNullToEmptyLongObject() {
+    // Test null handling
+    assertEquals(ArrayUtils.EMPTY_LONG_OBJECT_ARRAY, ArrayUtils.nullToEmpty((Long[]) null));
+    // Test valid array handling
+    Long[] original = new Long[] { 1L, 2L };
+    assertEquals(original, ArrayUtils.nullToEmpty(original));
+    // Test empty array handling
+    Long[] empty = new Long[] {};
+    Long[] result = ArrayUtils.nullToEmpty(empty);
+    assertEquals(ArrayUtils.EMPTY_LONG_OBJECT_ARRAY, result);
+    assertTrue(empty != result);
+}

@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testPairOf() throws Exception {                                                            public void testPairOf() throws Exception {                                                         
+ImmutablePair&lt;Integer, String&gt; pair = ImmutablePair.of(0, "foo");                                ImmutablePair&lt;Integer, String&gt; pair = ImmutablePair.of(0, "foo");                             
+assertEquals(0, pair.left.intValue());                                                                 assertEquals(0, pair.left.intValue());                                                              
+assertEquals(0, pair.getLeftElement().intValue());                                                   | assertEquals(0, pair.getLeft().intValue());                                                         
+assertEquals("foo", pair.right);                                                                       assertEquals("foo", pair.right);                                                                    
+assertEquals("foo", pair.getRightElement());                                                         | assertEquals("foo", pair.getRight());                                                               
+ImmutablePair&lt;Object, String&gt; pair2 = ImmutablePair.of(null, "bar");                             ImmutablePair&lt;Object, String&gt; pair2 = ImmutablePair.of(null, "bar");                          
+assertNull(pair2.left);                                                                                assertNull(pair2.left);                                                                             
+assertNull(pair2.getLeftElement());                                                                  | assertNull(pair2.getLeft());                                                                        
+assertEquals("bar", pair2.right);                                                                      assertEquals("bar", pair2.right);                                                                   
+assertEquals("bar", pair2.getRightElement());                                                        | assertEquals("bar", pair2.getRight());                                                              
+}                                                                                                      }                                                                                                   

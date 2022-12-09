@@ -1,0 +1,10 @@
+public void testMaximumDouble() {
+    double low = 12.3;
+    double mid = 12.3 + 1;
+    double high = 12.3 + 2;
+    assertEquals(high, NumberUtils.max(low, mid, high), 0.0001);
+    assertEquals(high, NumberUtils.max(mid, low, high), 0.0001);
+    assertEquals(high, NumberUtils.max(mid, high, low), 0.0001);
+    assertEquals(mid, NumberUtils.max(low, mid, low), 0.0001);
+    assertEquals(high, NumberUtils.max(high, mid, high), 0.0001);
+}

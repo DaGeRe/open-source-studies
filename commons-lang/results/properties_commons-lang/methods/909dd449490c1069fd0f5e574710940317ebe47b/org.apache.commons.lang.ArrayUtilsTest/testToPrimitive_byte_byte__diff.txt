@@ -1,0 +1,7 @@
+public void testToPrimitive_byte_byte() {                                                              public void testToPrimitive_byte_byte() {                                                           
+final Byte[] b = null;                                                                                 final Byte[] b = null;                                                                              
+assertEquals(null, ArrayUtils.toPrimitive(b, Byte.MIN_VALUE));                                         assertEquals(null, ArrayUtils.toPrimitive(b, Byte.MIN_VALUE));                                      
+assertSame(ArrayUtils.EMPTY_BYTE_ARRAY, ArrayUtils.toPrimitive(new Byte[0], (byte) 1));                assertSame(ArrayUtils.EMPTY_BYTE_ARRAY, ArrayUtils.toPrimitive(new Byte[0], (byte) 1));             
+assertTrue(Arrays.equals(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.t | assertTrue(Arrays.equals(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.t
+assertTrue(Arrays.equals(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.t | assertTrue(Arrays.equals(new byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE, (byte) 9999999 }, ArrayUtils.t
+}                                                                                                      }                                                                                                   

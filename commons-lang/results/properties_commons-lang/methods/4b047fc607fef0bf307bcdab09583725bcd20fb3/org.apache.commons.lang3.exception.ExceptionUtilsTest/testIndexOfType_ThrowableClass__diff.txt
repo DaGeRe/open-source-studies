@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------
+public void testIndexOfType_ThrowableClass() {
+    assertEquals(-1, ExceptionUtils.indexOfType(null, null));
+    assertEquals(-1, ExceptionUtils.indexOfType(null, NestableException.class));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, null));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, ExceptionWithCause.class));
+    assertEquals(-1, ExceptionUtils.indexOfType(withoutCause, NestableException.class));
+    assertEquals(0, ExceptionUtils.indexOfType(withoutCause, ExceptionWithoutCause.class));
+    assertEquals(-1, ExceptionUtils.indexOfType(nested, null));
+    assertEquals(-1, ExceptionUtils.indexOfType(nested, ExceptionWithCause.class));
+    assertEquals(0, ExceptionUtils.indexOfType(nested, NestableException.class));
+    assertEquals(1, ExceptionUtils.indexOfType(nested, ExceptionWithoutCause.class));
+    assertEquals(-1, ExceptionUtils.indexOfType(withCause, null));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, ExceptionWithCause.class));
+    assertEquals(1, ExceptionUtils.indexOfType(withCause, NestableException.class));
+    assertEquals(2, ExceptionUtils.indexOfType(withCause, ExceptionWithoutCause.class));
+    assertEquals(0, ExceptionUtils.indexOfType(withCause, Exception.class));
+}

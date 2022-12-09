@@ -1,0 +1,11 @@
+@Test
+public void testPairOf() throws Exception {
+    Pair<Integer, String> pair = Pair.of(0, "foo");
+    assertTrue(pair instanceof ImmutablePair<?, ?>);
+    assertEquals(0, ((ImmutablePair<Integer, String>) pair).left.intValue());
+    assertEquals("foo", ((ImmutablePair<Integer, String>) pair).right);
+    Pair<Object, String> pair2 = Pair.of(null, "bar");
+    assertTrue(pair2 instanceof ImmutablePair<?, ?>);
+    assertNull(((ImmutablePair<Object, String>) pair2).left);
+    assertEquals("bar", ((ImmutablePair<Object, String>) pair2).right);
+}

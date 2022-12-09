@@ -1,0 +1,18 @@
+/**
+ * Tests whether the original priority is not changed if no priority is
+ * specified.
+ */
+@Test
+public void testNewThreadNoPriority() {
+    ThreadFactory wrapped = EasyMock.createMock(ThreadFactory.class);
+    Runnable r = EasyMock.createMock(Runnable.class);
+    final int orgPriority = Thread.NORM_PRIORITY + 1;
+    Thread t = new Thread();
+    t.setPriority(orgPriority);
+    EasyMock.expect(wrapped.newThread(r)).andReturn(t);
+    EasyMock.replay(wrapped, r);
+    BasicThreadFactory factory = builder.wrappedFactory(wrapped).build();
+    assertSame("Wrong thread", t, factory.newThread(r));
+    assertEquals("Wrong priority", orgPriority, t.getPriority());
+    EasyMock.verify(wrapped, r);
+}

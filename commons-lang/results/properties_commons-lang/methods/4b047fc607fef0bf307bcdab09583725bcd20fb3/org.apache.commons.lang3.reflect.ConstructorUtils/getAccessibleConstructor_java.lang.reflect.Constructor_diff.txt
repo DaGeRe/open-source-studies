@@ -1,0 +1,13 @@
+/**
+ * <p>Checks if the specified constructor is accessible.</p>
+ *
+ * <p>This simply ensures that the constructor is accessible.</p>
+ *
+ * @param <T> the constructor type
+ * @param ctor  the prototype constructor object, not null
+ * @return the constructor, null if no matching accessible constructor found
+ * @see java.lang.SecurityManager
+ */
+public static <T> Constructor<T> getAccessibleConstructor(Constructor<T> ctor) {
+    return MemberUtils.isAccessible(ctor) && Modifier.isPublic(ctor.getDeclaringClass().getModifiers()) ? ctor : null;
+}

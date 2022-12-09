@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Define the lookup table to be used in translation                                                    * Define the lookup table to be used in translation                                                 
+*                                                                                                      *                                                                                                   
+* @param lookup CharSequence[][] table of size [*][2]                                                  * @param lookup CharSequence[][] table of size [*][2]                                               
+*/                                                                                                     */                                                                                                  
+public LookupTranslator(CharSequence[][] lookup) {                                                     public LookupTranslator(CharSequence[][] lookup) {                                                  
+lookupMap = new HashMap&lt;CharSequence, CharSequence&gt;();                                           lookupMap = new HashMap&lt;CharSequence, CharSequence&gt;();                                        
+                                                                                                     | int _shortest = Integer.MAX_VALUE;                                                                  
+                                                                                                     | int _longest = 0;                                                                                   
+for (CharSequence[] seq : lookup) {                                                                    for (CharSequence[] seq : lookup) {                                                                 
+this.lookupMap.put(seq[0], seq[1]);                                                                    this.lookupMap.put(seq[0], seq[1]);                                                                 
+int sz = seq[0].length();                                                                              int sz = seq[0].length();                                                                           
+if (sz &lt; shortest) {                                                                              | if (sz &lt; _shortest) {                                                                            
+shortest = sz;                                                                                       | _shortest = sz;                                                                                     
+}                                                                                                      }                                                                                                   
+if (sz &gt; longest) {                                                                               | if (sz &gt; _longest) {                                                                             
+longest = sz;                                                                                        | _longest = sz;                                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+                                                                                                     | shortest = _shortest;                                                                               
+                                                                                                     | longest = _longest;                                                                                 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,31 @@
+/**
+ * <p>Produces a <code>List</code> of stack frames - the message
+ * is not included. Only the trace of the specified exception is
+ * returned, any caused by trace is stripped.</p>
+ *
+ * <p>This works in most cases - it will only fail if the exception
+ * message contains a line that starts with:
+ * <code>&quot;&nbsp;&nbsp;&nbsp;at&quot;.</code></p>
+ *
+ * @param t is any throwable
+ * @return List of stack frames
+ */
+static List getStackFrameList(Throwable t) {
+    String stackTrace = getStackTrace(t);
+    String linebreak = SystemUtils.LINE_SEPARATOR;
+    StringTokenizer frames = new StringTokenizer(stackTrace, linebreak);
+    List list = new ArrayList();
+    boolean traceStarted = false;
+    while (frames.hasMoreTokens()) {
+        String token = frames.nextToken();
+        // Determine if the line starts with <whitespace>at
+        int at = token.indexOf("at");
+        if (at != -1 && token.substring(0, at).trim().length() == 0) {
+            traceStarted = true;
+            list.add(token);
+        } else if (traceStarted) {
+            break;
+        }
+    }
+    return list;
+}

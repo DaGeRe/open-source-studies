@@ -1,0 +1,18 @@
+@Test
+public void testRemoveElementObjectArray() {
+    Object[] array;
+    array = ArrayUtils.removeElement((Object[]) null, "a");
+    assertNull(array);
+    array = ArrayUtils.removeElement(ArrayUtils.EMPTY_OBJECT_ARRAY, "a");
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_OBJECT_ARRAY, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new Object[] { "a" }, "a");
+    assertTrue(Arrays.equals(ArrayUtils.EMPTY_OBJECT_ARRAY, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new Object[] { "a", "b" }, "a");
+    assertTrue(Arrays.equals(new Object[] { "b" }, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+    array = ArrayUtils.removeElement(new Object[] { "a", "b", "a" }, "a");
+    assertTrue(Arrays.equals(new Object[] { "b", "a" }, array));
+    assertEquals(Object.class, array.getClass().getComponentType());
+}

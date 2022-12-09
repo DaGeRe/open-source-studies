@@ -1,0 +1,31 @@
+public void testSerialization() throws IOException, ClassNotFoundException, PropertyVetoException {
+    EventListenerSupport<VetoableChangeListener> listenerSupport = EventListenerSupport.create(VetoableChangeListener.class);
+    listenerSupport.addListener(new VetoableChangeListener() {
+
+        public void vetoableChange(PropertyChangeEvent e) {
+        }
+    });
+    listenerSupport.addListener(EasyMock.createNiceMock(VetoableChangeListener.class));
+    // serialize:
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+    objectOutputStream.writeObject(listenerSupport);
+    objectOutputStream.close();
+    // deserialize:
+    @SuppressWarnings("unchecked")
+    EventListenerSupport<VetoableChangeListener> deserializedListenerSupport = (EventListenerSupport<VetoableChangeListener>) new ObjectInputStream(new ByteArrayInputStream(outputStream.toByteArray())).readObject();
+    // make sure we get a listener array back, of the correct component type, and that it contains only the serializable mock
+    VetoableChangeListener[] listeners = deserializedListenerSupport.getListeners();
+    assertEquals(VetoableChangeListener.class, listeners.getClass().getComponentType());
+    assertEquals(1, listeners.length);
+    // now verify that the mock still receives events; we can infer that the proxy was correctly reconstituted
+    VetoableChangeListener listener = listeners[0];
+    PropertyChangeEvent evt = new PropertyChangeEvent(new Date(), "Day", 7, 9);
+    listener.vetoableChange(evt);
+    EasyMock.replay(listener);
+    deserializedListenerSupport.fire().vetoableChange(evt);
+    EasyMock.verify(listener);
+    // remove listener and verify we get an empty array of listeners
+    deserializedListenerSupport.removeListener(listener);
+    assertEquals(0, deserializedListenerSupport.getListeners().length);
+}

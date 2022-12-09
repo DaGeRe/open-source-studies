@@ -1,0 +1,8 @@
+// -----------------------------------------------------------------------
+public void testStrip_String() {
+    assertEquals(null, StringUtils.strip(null));
+    assertEquals("", StringUtils.strip(""));
+    assertEquals("", StringUtils.strip("        "));
+    assertEquals("abc", StringUtils.strip("  abc  "));
+    assertEquals(StringUtilsTest.NON_WHITESPACE, StringUtils.strip(StringUtilsTest.WHITESPACE + StringUtilsTest.NON_WHITESPACE + StringUtilsTest.WHITESPACE));
+}

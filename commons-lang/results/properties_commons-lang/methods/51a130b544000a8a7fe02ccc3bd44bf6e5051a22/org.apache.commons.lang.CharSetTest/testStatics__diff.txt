@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testStatics() {                                                                            public void testStatics() {                                                                         
+CharRange[] array;                                                                                     CharRange[] array;                                                                                  
+array = CharSet.EMPTY.getCharRanges();                                                                 array = CharSet.EMPTY.getCharRanges();                                                              
+assertEquals(0, array.length);                                                                         assertEquals(0, array.length);                                                                      
+array = CharSet.ASCII_ALPHA.getCharRanges();                                                           array = CharSet.ASCII_ALPHA.getCharRanges();                                                        
+assertEquals(2, array.length);                                                                         assertEquals(2, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a', 'z')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('a', 'z')));                           
+assertEquals(true, ArrayUtils.contains(array, new CharRange('A', 'Z')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('A', 'Z')));                           
+array = CharSet.ASCII_ALPHA_LOWER.getCharRanges();                                                     array = CharSet.ASCII_ALPHA_LOWER.getCharRanges();                                                  
+assertEquals(1, array.length);                                                                         assertEquals(1, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('a', 'z')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('a', 'z')));                           
+array = CharSet.ASCII_ALPHA_UPPER.getCharRanges();                                                     array = CharSet.ASCII_ALPHA_UPPER.getCharRanges();                                                  
+assertEquals(1, array.length);                                                                         assertEquals(1, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('A', 'Z')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('A', 'Z')));                           
+array = CharSet.ASCII_NUMERIC.getCharRanges();                                                         array = CharSet.ASCII_NUMERIC.getCharRanges();                                                      
+assertEquals(1, array.length);                                                                         assertEquals(1, array.length);                                                                      
+assertEquals(true, ArrayUtils.contains(array, new CharRange('0', '9')));                             | assertEquals(true, ArrayUtils.contains(array, CharRange.isIn('0', '9')));                           
+}                                                                                                      }                                                                                                   

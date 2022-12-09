@@ -1,0 +1,54 @@
+public void testDivide() {
+    Fraction f = null;
+    Fraction f1 = null;
+    Fraction f2 = null;
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.getFraction(2, 5);
+    f = f1.divideBy(f2);
+    assertEquals(3, f.getNumerator());
+    assertEquals(2, f.getDenominator());
+    f1 = Fraction.getFraction(3, 5);
+    f2 = Fraction.ZERO;
+    try {
+        f = f1.divideBy(f2);
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    f1 = Fraction.getFraction(0, 5);
+    f2 = Fraction.getFraction(2, 7);
+    f = f1.divideBy(f2);
+    assertSame(Fraction.ZERO, f);
+    f1 = Fraction.getFraction(2, 7);
+    f2 = Fraction.ONE;
+    f = f1.divideBy(f2);
+    assertEquals(2, f.getNumerator());
+    assertEquals(7, f.getDenominator());
+    f1 = Fraction.getFraction(1, Integer.MAX_VALUE);
+    f = f1.divideBy(f1);
+    assertEquals(1, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f1 = Fraction.getFraction(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    f2 = Fraction.getFraction(1, Integer.MAX_VALUE);
+    f = f1.divideBy(f2);
+    assertEquals(Integer.MIN_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    try {
+        f.divideBy(null);
+        fail("IllegalArgumentException");
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        f1 = Fraction.getFraction(1, Integer.MAX_VALUE);
+        // should overflow
+        f = f1.divideBy(f1.invert());
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+    try {
+        f1 = Fraction.getFraction(1, -Integer.MAX_VALUE);
+        // should overflow
+        f = f1.divideBy(f1.invert());
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

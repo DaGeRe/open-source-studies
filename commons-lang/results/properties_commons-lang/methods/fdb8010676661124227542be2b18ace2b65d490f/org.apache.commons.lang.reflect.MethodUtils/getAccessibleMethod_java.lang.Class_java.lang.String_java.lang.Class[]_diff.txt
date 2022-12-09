@@ -1,0 +1,19 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Return an accessible method (that is, one that can be invoked via                         |                                                                                                     
+* reflection) with given name and parameters.  If no such method                                     |                                                                                                     
+* can be found, return &lt;code&gt;null&lt;/code&gt;.                                                |                                                                                                     
+* This is just a convenient wrapper for                                                              |                                                                                                     
+* {@link #getAccessibleMethod(Method method)}.&lt;/p&gt;                                             |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param cls get method from this class                                                              |                                                                                                     
+* @param methodName get method with this name                                                        |                                                                                                     
+* @param parameterTypes with these parameters types                                                  |                                                                                                     
+* @return The accessible method                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static Method getAccessibleMethod(Class cls, String methodName, Class[] parameterTypes) {     |                                                                                                     
+try {                                                                                                |                                                                                                     
+return getAccessibleMethod(cls.getMethod(methodName, parameterTypes));                               |                                                                                                     
+} catch (NoSuchMethodException e) {                                                                  |                                                                                                     
+return (null);                                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

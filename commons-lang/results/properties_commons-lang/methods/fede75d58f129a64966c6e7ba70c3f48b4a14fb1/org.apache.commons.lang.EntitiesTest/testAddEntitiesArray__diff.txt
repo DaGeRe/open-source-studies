@@ -1,0 +1,9 @@
+public void testAddEntitiesArray() throws Exception {
+    String[][] array = { { "foo", "100" }, { "bar", "101" } };
+    Entities e = new Entities();
+    e.addEntities(array);
+    assertEquals("foo", e.entityName(100));
+    assertEquals("bar", e.entityName(101));
+    assertEquals(100, e.entityValue("foo"));
+    assertEquals(101, e.entityValue("bar"));
+}

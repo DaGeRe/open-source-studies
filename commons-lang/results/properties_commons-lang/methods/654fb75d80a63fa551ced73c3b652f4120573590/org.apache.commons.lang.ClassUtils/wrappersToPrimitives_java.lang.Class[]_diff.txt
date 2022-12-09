@@ -1,0 +1,27 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Converts the specified array of wrapper Class objects to an array of                      |                                                                                                     
+* its corresponding primitive Class objects.&lt;/p&gt;                                               |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;This method invokes &lt;code&gt;wrapperToPrimitive()&lt;/code&gt; for each element        |                                                                                                     
+* of the passed in array.&lt;/p&gt;                                                                  |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param classes  the class array to convert, may be null or empty                                   |                                                                                                     
+* @return an array which contains for each given class, the primitive class or                       |                                                                                                     
+* &lt;b&gt;null&lt;/b&gt; if the original class is not a wrapper class. &lt;code&gt;null&lt;/code&gt |                                                                                                     
+* Empty array if an empty array passed in.                                                           |                                                                                                     
+* @see #wrapperToPrimitive(Class)                                                                    |                                                                                                     
+* @since 2.4                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static Class[] wrappersToPrimitives(Class[] classes) {                                        |                                                                                                     
+if (classes == null) {                                                                               |                                                                                                     
+return null;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (classes.length == 0) {                                                                           |                                                                                                     
+return classes;                                                                                      |                                                                                                     
+}                                                                                                    |                                                                                                     
+Class[] convertedClasses = new Class[classes.length];                                                |                                                                                                     
+for (int i = 0; i &lt; classes.length; i++) {                                                        |                                                                                                     
+convertedClasses[i] = wrapperToPrimitive(classes[i]);                                                |                                                                                                     
+}                                                                                                    |                                                                                                     
+return convertedClasses;                                                                             |                                                                                                     
+}                                                                                                    |                                                                                                     

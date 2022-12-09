@@ -1,0 +1,33 @@
+/**
+ * Tests the get() method if waiting for the initialization is interrupted.
+ */
+public void testGetInterruptedException() throws Exception {
+    ExecutorService exec = Executors.newSingleThreadExecutor();
+    final BackgroundInitializerTestImpl init = new BackgroundInitializerTestImpl(exec);
+    final CountDownLatch latch1 = new CountDownLatch(1);
+    init.shouldSleep = true;
+    init.start();
+    final AtomicReference<InterruptedException> iex = new AtomicReference<InterruptedException>();
+    Thread getThread = new Thread() {
+
+        @Override
+        public void run() {
+            try {
+                init.get();
+            } catch (ConcurrentException cex) {
+                if (cex.getCause() instanceof InterruptedException) {
+                    iex.set((InterruptedException) cex.getCause());
+                }
+            } finally {
+                assertTrue("Thread not interrupted", isInterrupted());
+                latch1.countDown();
+            }
+        }
+    };
+    getThread.start();
+    getThread.interrupt();
+    latch1.await();
+    exec.shutdownNow();
+    exec.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+    assertNotNull("No interrupted exception", iex.get());
+}

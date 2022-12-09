@@ -1,0 +1,7 @@
+                                                                                                     | @Test                                                                                               
+public void test_toStringExcludeCollection() {                                                         public void test_toStringExcludeCollection() {                                                      
+List&lt;String&gt; excludeList = new ArrayList&lt;String&gt;();                                        List&lt;String&gt; excludeList = new ArrayList&lt;String&gt;();                                     
+excludeList.add(SECRET_FIELD);                                                                         excludeList.add(SECRET_FIELD);                                                                      
+String toString = ReflectionToStringBuilder.toStringExclude(new TestFixture(), excludeList);           String toString = ReflectionToStringBuilder.toStringExclude(new TestFixture(), excludeList);        
+this.validateSecretFieldAbsent(toString);                                                              this.validateSecretFieldAbsent(toString);                                                           
+}                                                                                                      }                                                                                                   

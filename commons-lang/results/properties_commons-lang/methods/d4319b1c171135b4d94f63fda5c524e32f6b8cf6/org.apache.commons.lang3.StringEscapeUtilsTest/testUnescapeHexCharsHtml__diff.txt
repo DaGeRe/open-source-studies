@@ -1,0 +1,15 @@
+                                                                                                     | @Test                                                                                               
+public void testUnescapeHexCharsHtml() {                                                               public void testUnescapeHexCharsHtml() {                                                            
+// Simple easy to grok test                                                                            // Simple easy to grok test                                                                         
+assertEquals("hex number unescape", "\u0080\u009F", StringEscapeUtils.unescapeHtml4("&#x80;&#x9F;"))   assertEquals("hex number unescape", "\u0080\u009F", StringEscapeUtils.unescapeHtml4("&#x80;&#x9F;"))
+assertEquals("hex number unescape", "\u0080\u009F", StringEscapeUtils.unescapeHtml4("&#X80;&#X9F;"))   assertEquals("hex number unescape", "\u0080\u009F", StringEscapeUtils.unescapeHtml4("&#X80;&#X9F;"))
+// Test all Character values:                                                                          // Test all Character values:                                                                       
+for (char i = Character.MIN_VALUE; i &lt; Character.MAX_VALUE; i++) {                                  for (char i = Character.MIN_VALUE; i &lt; Character.MAX_VALUE; i++) {                               
+Character c1 = new Character(i);                                                                       Character c1 = new Character(i);                                                                    
+Character c2 = new Character((char) (i + 1));                                                          Character c2 = new Character((char) (i + 1));                                                       
+String expected = c1.toString() + c2.toString();                                                       String expected = c1.toString() + c2.toString();                                                    
+String escapedC1 = "&#x" + Integer.toHexString((c1.charValue())) + ";";                                String escapedC1 = "&#x" + Integer.toHexString((c1.charValue())) + ";";                             
+String escapedC2 = "&#x" + Integer.toHexString((c2.charValue())) + ";";                                String escapedC2 = "&#x" + Integer.toHexString((c2.charValue())) + ";";                             
+assertEquals("hex number unescape index " + (int) i, expected, StringEscapeUtils.unescapeHtml4(escap   assertEquals("hex number unescape index " + (int) i, expected, StringEscapeUtils.unescapeHtml4(escap
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

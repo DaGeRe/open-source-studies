@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Convenience method returning new instance of &lt;code&gt;klazz&lt;/code&gt; using a singl   * &lt;p&gt;Convenience method returning new instance of &lt;code&gt;klazz&lt;/code&gt; using a singl
+* The formal parameter type is inferred from the actual values of &lt;code&gt;arg&lt;/code&gt;.        * The formal parameter type is inferred from the actual values of &lt;code&gt;arg&lt;/code&gt;.     
+* See {@link #invokeExactConstructor(Class, Object[], Class[])} for more details.&lt;/p&gt;            * See {@link #invokeExactConstructor(Class, Object[], Class[])} for more details.&lt;/p&gt;         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The signatures should match exactly.&lt;/p&gt;                                              * &lt;p&gt;The signatures should match exactly.&lt;/p&gt;                                           
+*                                                                                                      *                                                                                                   
+* @param cls the class to be constructed.                                                              * @param cls the class to be constructed.                                                           
+* @param arg the actual argument                                                                       * @param arg the actual argument                                                                    
+* @return new instance of &lt;code&gt;klazz&lt;/code&gt;                                               * @return new instance of &lt;code&gt;klazz&lt;/code&gt;                                            
+*                                                                                                      *                                                                                                   
+* @throws NoSuchMethodException If the constructor cannot be found                                     * @throws NoSuchMethodException If the constructor cannot be found                                  
+* @throws IllegalAccessException If an error occurs accessing the constructor                          * @throws IllegalAccessException If an error occurs accessing the constructor                       
+* @throws InvocationTargetException If an error occurs invoking the constructor                        * @throws InvocationTargetException If an error occurs invoking the constructor                     
+* @throws InstantiationException If an error occurs instantiating the class                            * @throws InstantiationException If an error occurs instantiating the class                         
+*                                                                                                      *                                                                                                   
+* @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])                 * @see #invokeExactConstructor(java.lang.Class, java.lang.Object[], java.lang.Class[])              
+*/                                                                                                     */                                                                                                  
+public static Object invokeExactConstructor(Class cls, Object arg) throws NoSuchMethodException, Ill | public static Object invokeExactConstructor(Class&lt;?&gt; cls, Object arg) throws NoSuchMethodExcep
+return invokeExactConstructor(cls, new Object[] { arg });                                              return invokeExactConstructor(cls, new Object[] { arg });                                           
+}                                                                                                      }                                                                                                   

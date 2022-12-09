@@ -1,0 +1,6 @@
+public void testContextedExceptionString() {                                                           public void testContextedExceptionString() {                                                        
+contextedRuntimeException = new ContextedRuntimeException(TEST_MESSAGE);                             | exceptionContext = new ContextedRuntimeException(TEST_MESSAGE);                                     
+assertEquals(TEST_MESSAGE, contextedRuntimeException.getMessage());                                  | assertEquals(TEST_MESSAGE, exceptionContext.getMessage());                                          
+String trace = ExceptionUtils.getStackTrace(contextedRuntimeException);                              | String trace = ExceptionUtils.getStackTrace(exceptionContext);                                      
+assertTrue(trace.indexOf(TEST_MESSAGE) &gt;= 0);                                                       assertTrue(trace.indexOf(TEST_MESSAGE) &gt;= 0);                                                    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,27 @@
+// LastIndexOf
+// -----------------------------------------------------------------------
+/**
+ * <p>Finds the last index within a CharSequence, handling {@code null}.
+ * This method uses {@link String#lastIndexOf(int)} if possible.</p>
+ *
+ * <p>A {@code null} or empty ("") CharSequence will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.lastIndexOf(null, *)         = -1
+ * StringUtils.lastIndexOf("", *)           = -1
+ * StringUtils.lastIndexOf("aabaabaa", 'a') = 7
+ * StringUtils.lastIndexOf("aabaabaa", 'b') = 5
+ * </pre>
+ *
+ * @param seq  the CharSequence to check, may be null
+ * @param searchChar  the character to find
+ * @return the last index of the search character,
+ *  -1 if no match or {@code null} string input
+ * @since 2.0
+ */
+public static int lastIndexOf(CharSequence seq, int searchChar) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return StringUtils.lastIndexOfSequence(seq, searchChar, seq.length());
+}

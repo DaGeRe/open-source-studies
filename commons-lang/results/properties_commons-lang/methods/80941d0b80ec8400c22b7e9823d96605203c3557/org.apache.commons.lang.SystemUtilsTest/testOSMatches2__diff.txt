@@ -1,0 +1,20 @@
+public void testOSMatches2() {
+    OS_NAME = null;
+    OS_VERSION = null;
+    assertEquals(false, getOSMatches("Windows 9", "4.1"));
+    OS_NAME = "Windows 95";
+    OS_VERSION = "4.0";
+    assertEquals(false, getOSMatches("Windows 9", "4.1"));
+    OS_NAME = "Windows 95";
+    OS_VERSION = "4.1";
+    assertEquals(true, getOSMatches("Windows 9", "4.1"));
+    OS_NAME = "Windows 98";
+    OS_VERSION = "4.1";
+    assertEquals(true, getOSMatches("Windows 9", "4.1"));
+    OS_NAME = "Windows NT";
+    OS_VERSION = "4.0";
+    assertEquals(false, getOSMatches("Windows 9", "4.1"));
+    OS_NAME = "OS/2";
+    OS_VERSION = "4.0";
+    assertEquals(false, getOSMatches("Windows 9", "4.1"));
+}

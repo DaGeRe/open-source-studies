@@ -1,0 +1,13 @@
+/**
+ * Tests the calendar iterator for month-based ranges
+ */
+public void testMonthIterator() throws Exception {
+    Iterator<?> it = DateUtils.iterator(date1, DateUtils.RANGE_MONTH_SUNDAY);
+    assertWeekIterator(it, dateParser.parse("January 27, 2002"), dateParser.parse("March 2, 2002"));
+    it = DateUtils.iterator(date1, DateUtils.RANGE_MONTH_MONDAY);
+    assertWeekIterator(it, dateParser.parse("January 28, 2002"), dateParser.parse("March 3, 2002"));
+    it = DateUtils.iterator(date2, DateUtils.RANGE_MONTH_SUNDAY);
+    assertWeekIterator(it, dateParser.parse("October 28, 2001"), dateParser.parse("December 1, 2001"));
+    it = DateUtils.iterator(date2, DateUtils.RANGE_MONTH_MONDAY);
+    assertWeekIterator(it, dateParser.parse("October 29, 2001"), dateParser.parse("December 2, 2001"));
+}

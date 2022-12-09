@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Generate a string representation of an Annotation, as suggested by                          * &lt;p&gt;Generate a string representation of an Annotation, as suggested by                       
+* {@link Annotation#toString()}.&lt;/p&gt;                                                             * {@link Annotation#toString()}.&lt;/p&gt;                                                          
+*                                                                                                      *                                                                                                   
+* @param a the annotation of which a string representation is desired                                  * @param a the annotation of which a string representation is desired                               
+* @return the standard string representation of an annotation, not null                                * @return the standard string representation of an annotation, not null                             
+*/                                                                                                     */                                                                                                  
+public static String toString(final Annotation a) {                                                    public static String toString(final Annotation a) {                                                 
+ToStringBuilder builder = new ToStringBuilder(a, TO_STRING_STYLE);                                     ToStringBuilder builder = new ToStringBuilder(a, TO_STRING_STYLE);                                  
+for (Method m : a.annotationType().getDeclaredMethods()) {                                             for (Method m : a.annotationType().getDeclaredMethods()) {                                          
+if (m.getParameterTypes().length &gt; 0) {                                                             if (m.getParameterTypes().length &gt; 0) {                                                          
+// wtf?                                                                                                // wtf?                                                                                             
+continue;                                                                                              continue;                                                                                           
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+builder.append(m.getName(), m.invoke(a));                                                              builder.append(m.getName(), m.invoke(a));                                                           
+} catch (RuntimeException e) {                                                                       | } catch (RuntimeException ex) {                                                                     
+throw e;                                                                                             | throw ex;                                                                                           
+} catch (Exception e) {                                                                              | } catch (Exception ex) {                                                                            
+throw new RuntimeException(e);                                                                       | throw new RuntimeException(ex);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return builder.build();                                                                                return builder.build();                                                                             
+}                                                                                                      }                                                                                                   

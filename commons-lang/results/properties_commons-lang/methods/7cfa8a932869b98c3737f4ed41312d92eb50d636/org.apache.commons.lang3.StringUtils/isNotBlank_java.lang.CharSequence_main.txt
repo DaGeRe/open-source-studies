@@ -1,0 +1,19 @@
+/**
+ * <p>Checks if a CharSequence is not empty (""), not null and not whitespace only.</p>
+ *
+ * <pre>
+ * StringUtils.isNotBlank(null)      = false
+ * StringUtils.isNotBlank("")        = false
+ * StringUtils.isNotBlank(" ")       = false
+ * StringUtils.isNotBlank("bob")     = true
+ * StringUtils.isNotBlank("  bob  ") = true
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @return <code>true</code> if the CharSequence is
+ *  not empty and not null and not whitespace
+ * @since 2.0
+ */
+public static boolean isNotBlank(CharSequence cs) {
+    return !StringUtils.isBlank(cs);
+}

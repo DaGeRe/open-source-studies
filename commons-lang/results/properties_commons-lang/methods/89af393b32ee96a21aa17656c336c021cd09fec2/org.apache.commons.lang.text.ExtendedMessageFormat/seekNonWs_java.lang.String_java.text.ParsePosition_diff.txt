@@ -1,0 +1,14 @@
+/**
+ * Consume whitespace from the current parse position.
+ *
+ * @param pattern String to read
+ * @param pos current position
+ */
+private void seekNonWs(String pattern, ParsePosition pos) {
+    int len = 0;
+    char[] buffer = pattern.toCharArray();
+    do {
+        len = StrMatcher.splitMatcher().isMatch(buffer, pos.getIndex());
+        pos.setIndex(pos.getIndex() + len);
+    } while (len > 0 && pos.getIndex() < pattern.length());
+}

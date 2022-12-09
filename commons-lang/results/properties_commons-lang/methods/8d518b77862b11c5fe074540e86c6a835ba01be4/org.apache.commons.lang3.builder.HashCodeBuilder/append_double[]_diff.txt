@@ -1,0 +1,19 @@
+/**
+ * <p>
+ * Append a <code>hashCode</code> for a <code>double</code> array.
+ * </p>
+ *
+ * @param array
+ *            the array to add to the <code>hashCode</code>
+ * @return this
+ */
+public HashCodeBuilder append(double[] array) {
+    if (array == null) {
+        iTotal = iTotal * iConstant;
+    } else {
+        for (int i = 0; i < array.length; i++) {
+            append(array[i]);
+        }
+    }
+    return this;
+}

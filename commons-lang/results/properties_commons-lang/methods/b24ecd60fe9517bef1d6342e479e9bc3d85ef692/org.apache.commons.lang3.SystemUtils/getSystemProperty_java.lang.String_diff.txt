@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a System property, defaulting to &lt;code&gt;null&lt;/code&gt; if the property       | * &lt;p&gt;                                                                                         
+* cannot be read.&lt;/p&gt;                                                                          | * Gets a System property, defaulting to &lt;code&gt;null&lt;/code&gt; if the property cannot be read
+                                                                                                     | * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If a &lt;code&gt;SecurityException&lt;/code&gt; is caught, the return                     | * &lt;p&gt;                                                                                         
+* value is &lt;code&gt;null&lt;/code&gt; and a message is written to &lt;code&gt;System.err&lt;/code | * If a &lt;code&gt;SecurityException&lt;/code&gt; is caught, the return value is &lt;code&gt;null&lt
+                                                                                                     | * &lt;code&gt;System.err&lt;/code&gt;.                                                              
+                                                                                                     | * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param property the system property name                                                           | * @param property                                                                                   
+                                                                                                     | *            the system property name                                                               
+* @return the system property value or &lt;code&gt;null&lt;/code&gt; if a security problem occurs      * @return the system property value or &lt;code&gt;null&lt;/code&gt; if a security problem occurs   
+*/                                                                                                     */                                                                                                  
+private static String getSystemProperty(String property) {                                             private static String getSystemProperty(String property) {                                          
+try {                                                                                                  try {                                                                                               
+return System.getProperty(property);                                                                   return System.getProperty(property);                                                                
+} catch (SecurityException ex) {                                                                       } catch (SecurityException ex) {                                                                    
+// we are not allowed to look at this property                                                         // we are not allowed to look at this property                                                      
+System.err.println("Caught a SecurityException reading the system property '" + property + "'; the S   System.err.println("Caught a SecurityException reading the system property '" + property + "'; the S
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

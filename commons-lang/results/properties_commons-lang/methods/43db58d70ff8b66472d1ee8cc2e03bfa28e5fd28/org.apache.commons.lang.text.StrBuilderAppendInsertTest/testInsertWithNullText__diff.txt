@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------
+public void testInsertWithNullText() {
+    StrBuilder sb = new StrBuilder();
+    sb.setNullText("null");
+    sb.append("barbaz");
+    assertEquals("barbaz", sb.toString());
+    try {
+        sb.insert(-1, FOO);
+        fail("insert(-1, Object) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    try {
+        sb.insert(7, FOO);
+        fail("insert(7, Object) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    sb.insert(0, (Object) null);
+    assertEquals("nullbarbaz", sb.toString());
+    sb.insert(0, FOO);
+    assertEquals("foonullbarbaz", sb.toString());
+    sb.clear();
+    sb.append("barbaz");
+    assertEquals("barbaz", sb.toString());
+    try {
+        sb.insert(-1, "foo");
+        fail("insert(-1, String) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    try {
+        sb.insert(7, "foo");
+        fail("insert(7, String) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+    sb.insert(0, (String) null);
+    assertEquals("nullbarbaz", sb.toString());
+    sb.insert(0, "foo");
+    assertEquals("foonullbarbaz", sb.toString());
+    sb.insert(0, (char[]) null);
+    assertEquals("nullfoonullbarbaz", sb.toString());
+    sb.insert(0, (char[]) null, 0, 0);
+    assertEquals("nullnullfoonullbarbaz", sb.toString());
+}

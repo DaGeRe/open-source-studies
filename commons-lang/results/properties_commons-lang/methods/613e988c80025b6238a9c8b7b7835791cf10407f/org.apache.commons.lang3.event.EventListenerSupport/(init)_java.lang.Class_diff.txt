@@ -1,0 +1,15 @@
+/**
+ * Creates an EventListenerSupport object which supports the provided
+ * listener interface.
+ *
+ * @param listenerInterface the type of listener interface that will receive
+ *        events posted using this class.
+ *
+ * @throws NullPointerException if <code>listenerInterface</code> is
+ *         <code>null</code>.
+ * @throws IllegalArgumentException if <code>listenerInterface</code> is
+ *         not an interface.
+ */
+public EventListenerSupport(Class<L> listenerInterface) {
+    this(listenerInterface, Thread.currentThread().getContextClassLoader());
+}

@@ -1,0 +1,23 @@
+public void testContainsNone_String() {
+    String str1 = "a";
+    String str2 = "b";
+    String str3 = "ab.";
+    String chars1 = "b";
+    String chars2 = ".";
+    String chars3 = "cd";
+    assertEquals(true, StringUtils.containsNone(null, (String) null));
+    assertEquals(true, StringUtils.containsNone("", (String) null));
+    assertEquals(true, StringUtils.containsNone(null, ""));
+    assertEquals(true, StringUtils.containsNone(str1, ""));
+    assertEquals(true, StringUtils.containsNone("", ""));
+    assertEquals(true, StringUtils.containsNone("", chars1));
+    assertEquals(true, StringUtils.containsNone(str1, chars1));
+    assertEquals(true, StringUtils.containsNone(str1, chars2));
+    assertEquals(true, StringUtils.containsNone(str1, chars3));
+    assertEquals(false, StringUtils.containsNone(str2, chars1));
+    assertEquals(true, StringUtils.containsNone(str2, chars2));
+    assertEquals(true, StringUtils.containsNone(str2, chars3));
+    assertEquals(false, StringUtils.containsNone(str3, chars1));
+    assertEquals(false, StringUtils.containsNone(str3, chars2));
+    assertEquals(true, StringUtils.containsNone(str3, chars3));
+}

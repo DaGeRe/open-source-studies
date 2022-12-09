@@ -1,0 +1,12 @@
+/**
+ * Instantiates ContextedRuntimeException with cause and message.
+ * <p>
+ * The context information is stored using a default implementation.
+ *
+ * @param message  the exception message, may be null
+ * @param cause  the underlying cause of the exception, may be null
+ */
+public ContextedRuntimeException(String message, Throwable cause) {
+    super(message, cause);
+    exceptionContext = new DefaultExceptionContext();
+}

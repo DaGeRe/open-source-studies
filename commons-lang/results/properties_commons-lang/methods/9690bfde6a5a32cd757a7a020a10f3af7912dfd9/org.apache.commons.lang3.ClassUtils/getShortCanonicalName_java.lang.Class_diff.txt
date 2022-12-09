@@ -1,0 +1,13 @@
+/**
+ * <p>Gets the canonical name minus the package name from a {@code Class}.</p>
+ *
+ * @param cls  the class to get the short name for.
+ * @return the canonical name without the package name or an empty string
+ * @since 2.4
+ */
+public static String getShortCanonicalName(Class<?> cls) {
+    if (cls == null) {
+        return StringUtils.EMPTY;
+    }
+    return getShortCanonicalName(cls.getName());
+}

@@ -1,0 +1,13 @@
+/**
+ * See http://java.sun.com/developer/technicalArticles/Intl/Supplementary/
+ */
+public void testContainsAny_StringCharArrayWithBadSupplementaryChars() {
+    // Test edge case: 1/2 of a (broken) supplementary char
+    assertEquals(false, StringUtils.containsAny(CharUSuppCharHigh, CharU20001.toCharArray()));
+    assertEquals(false, StringUtils.containsAny("abc" + CharUSuppCharHigh + "xyz", CharU20001.toCharArray()));
+    assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+    assertEquals(false, StringUtils.containsAny(CharUSuppCharLow, CharU20001.toCharArray()));
+    assertEquals(false, StringUtils.containsAny(CharU20001, CharUSuppCharHigh.toCharArray()));
+    assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+    assertEquals(true, StringUtils.containsAny(CharU20001, CharUSuppCharLow.toCharArray()));
+}

@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+/**
+ * Gets a short message summarising the exception.
+ * <p>
+ * The message returned is of the form
+ * {ClassNameWithoutPackage}: {ThrowableMessage}
+ *
+ * @param th  the throwable to get a message for, null returns empty string
+ * @return the message, non-null
+ * @since Commons Lang 2.2
+ */
+public static String getMessage(Throwable th) {
+    if (th == null) {
+        return "";
+    }
+    String clsName = ClassUtils.getShortClassName(th, null);
+    String msg = th.getMessage();
+    return clsName + ": " + StringUtils.defaultString(msg);
+}

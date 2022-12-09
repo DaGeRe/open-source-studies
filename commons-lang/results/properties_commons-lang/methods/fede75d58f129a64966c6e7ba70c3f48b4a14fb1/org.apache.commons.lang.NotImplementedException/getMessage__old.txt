@@ -1,0 +1,15 @@
+/**
+ * Gets the combined the error message of this and any nested errors.
+ *
+ * @return the error message
+ * @since 2.1
+ */
+public String getMessage() {
+    if (super.getMessage() != null) {
+        return super.getMessage();
+    } else if (cause != null) {
+        return cause.toString();
+    } else {
+        return null;
+    }
+}

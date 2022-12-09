@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Initializes the instance for first use.&lt;/p&gt;                                           * &lt;p&gt;Initializes the instance for first use.&lt;/p&gt;                                        
+*/                                                                                                     */                                                                                                  
+protected void init() {                                                                                protected void init() {                                                                             
+List rulesList = parsePattern();                                                                     | List&lt;Rule&gt; rulesList = parsePattern();                                                        
+mRules = (Rule[]) rulesList.toArray(new Rule[rulesList.size()]);                                     | mRules = rulesList.toArray(new Rule[rulesList.size()]);                                             
+int len = 0;                                                                                           int len = 0;                                                                                        
+for (int i = mRules.length; --i &gt;= 0; ) {                                                           for (int i = mRules.length; --i &gt;= 0; ) {                                                        
+len += mRules[i].estimateLength();                                                                     len += mRules[i].estimateLength();                                                                  
+}                                                                                                      }                                                                                                   
+mMaxLengthEstimate = len;                                                                              mMaxLengthEstimate = len;                                                                           
+}                                                                                                      }                                                                                                   

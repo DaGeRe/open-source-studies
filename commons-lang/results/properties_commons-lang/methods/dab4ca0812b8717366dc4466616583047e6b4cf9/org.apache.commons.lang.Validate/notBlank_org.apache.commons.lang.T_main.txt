@@ -1,0 +1,18 @@
+/**
+ * <p>Validate an argument, throwing <code>IllegalArgumentException</code>
+ * if the argument String is blank (<code>null</code>, empty or whitespace).</p>
+ *
+ * <pre>
+ * Validate.notBlank(myString);
+ * </pre>
+ *
+ * <p>The message in the exception is 'The validated string is blank'.</p>
+ *
+ * @param string  the string to check is not blank
+ * @return the input string, never <code>null</code> or blank, for chaining
+ * @throws IllegalArgumentException if the string is blank
+ * @see StringUtils#isBlank(CharSequence)
+ */
+public static <T extends CharSequence> T notBlank(T string) {
+    return notBlank(string, "The validated string is blank");
+}

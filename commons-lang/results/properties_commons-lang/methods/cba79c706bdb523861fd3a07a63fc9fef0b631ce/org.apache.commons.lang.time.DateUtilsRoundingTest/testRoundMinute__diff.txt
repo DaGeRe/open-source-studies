@@ -1,0 +1,21 @@
+/**
+ * Tests DateUtils.round()-method with Calendar.MINUTE
+ * Includes rounding the extremes of one minute
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundMinute() throws Exception {
+    final int calendarField = Calendar.MINUTE;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 8:16:00.000");
+    roundedDownDate = targetMinuteDate;
+    lastRoundedDownDate = dateTimeParser.parse("June 1, 2008 8:15:29.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 31, 2007 23:59:30.000");
+    maxDate = dateTimeParser.parse("January 1, 2008 0:00:29.999");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

@@ -1,0 +1,20 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Returns either the passed in CharSequence, or if the CharSequence is                     
+                                                                                                     | * empty or &lt;code&gt;null&lt;/code&gt;, the value of &lt;code&gt;defaultStr&lt;/code&gt;.&lt;/p&gt
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.defaultIfEmpty(null, "NULL")  = "NULL"                                                
+                                                                                                     | * StringUtils.defaultIfEmpty("", "NULL")    = "NULL"                                                
+                                                                                                     | * StringUtils.defaultIfEmpty("bat", "NULL") = "bat"                                                 
+                                                                                                     | * StringUtils.defaultIfEmpty("", null)      = null                                                  
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @see StringUtils#defaultString(String, String)                                                    
+                                                                                                     | * @param str  the CharSequence to check, may be null                                                
+                                                                                                     | * @param defaultStr  the default CharSequence to return                                             
+                                                                                                     | *  if the input is empty ("") or &lt;code&gt;null&lt;/code&gt;, may be null                         
+                                                                                                     | * @return the passed in CharSequence, or the default                                                
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;T extends CharSequence&gt; T defaultIfEmpty(T str, T defaultStr) {                
+                                                                                                     | return StringUtils.isEmpty(str) ? defaultStr : str;                                                 
+                                                                                                     | }                                                                                                   

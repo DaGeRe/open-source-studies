@@ -1,0 +1,24 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Tests whether the specified range overlaps with this range.&lt;/p&gt;                       * &lt;p&gt;Tests whether the specified range overlaps with this range.&lt;/p&gt;                    
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The exact comparison implementation varies by subclass. It is                             |                                                                                                     
+* intended that an &lt;code&gt;int&lt;/code&gt; specific subclass will compare using                 |                                                                                                     
+* &lt;code&gt;int&lt;/code&gt; comparison.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;&lt;code&gt;null&lt;/code&gt; is handled and returns &lt;code&gt;false&lt;/code&gt;.&lt;/   * &lt;p&gt;&lt;code&gt;null&lt;/code&gt; is handled and returns &lt;code&gt;false&lt;/code&gt;.&lt;/
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This implementation uses the {@link #contains(Object)} and                                |                                                                                                     
+* {@link #containsRange(Range)} methods.                                                             |                                                                                                     
+* Subclasses may be able to optimise this.&lt;/p&gt;                                                 |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param range  the range to test, may be &lt;code&gt;null&lt;/code&gt;                                * @param range  the range to test, may be &lt;code&gt;null&lt;/code&gt;                             
+* @return &lt;code&gt;true&lt;/code&gt; if the specified range overlaps with this                      * @return &lt;code&gt;true&lt;/code&gt; if the specified range overlaps with this                   
+*  range; otherwise, &lt;code&gt;false&lt;/code&gt;                                                    *  range; otherwise, &lt;code&gt;false&lt;/code&gt;                                                 
+* @throws IllegalArgumentException if the &lt;code&gt;Range&lt;/code&gt; cannot be compared            * @throws IllegalArgumentException if the &lt;code&gt;Range&lt;/code&gt; cannot be compared         
+*/                                                                                                     */                                                                                                  
+public boolean overlapsRange(Range&lt;T&gt; range) {                                                   public boolean overlapsRange(Range&lt;T&gt; range) {                                                
+if (range == null) {                                                                                   if (range == null) {                                                                                
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+return range.contains(getMinimum()) || range.contains(getMaximum()) || contains(range.getMinimum());   return range.contains(getMinimum()) || range.contains(getMaximum()) || contains(range.getMinimum());
+}                                                                                                      }                                                                                                   

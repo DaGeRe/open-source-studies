@@ -1,0 +1,28 @@
+// Replace, character based
+// -----------------------------------------------------------------------
+/**
+ * <p>Replaces all occurrences of a character in a String with another.
+ * This is a null-safe version of {@link String#replace(char, char)}.</p>
+ *
+ * <p>A <code>null</code> string input returns <code>null</code>.
+ * An empty ("") string input returns an empty string.</p>
+ *
+ * <pre>
+ * StringUtils.replaceChars(null, *, *)        = null
+ * StringUtils.replaceChars("", *, *)          = ""
+ * StringUtils.replaceChars("abcba", 'b', 'y') = "aycya"
+ * StringUtils.replaceChars("abcba", 'z', 'y') = "abcba"
+ * </pre>
+ *
+ * @param str  String to replace characters in, may be null
+ * @param searchChar  the character to search for, may be null
+ * @param replaceChar  the character to replace, may be null
+ * @return modified String, <code>null</code> if null string input
+ * @since 2.0
+ */
+public static String replaceChars(String str, char searchChar, char replaceChar) {
+    if (str == null) {
+        return null;
+    }
+    return str.replace(searchChar, replaceChar);
+}

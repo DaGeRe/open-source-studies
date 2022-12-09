@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate that the specified argument array is neither &lt;code&gt;null&lt;/code&gt;         * &lt;p&gt;Validate that the specified argument array is neither &lt;code&gt;null&lt;/code&gt;      
+* nor a length of zero (no elements); otherwise throwing an exception.                                 * nor a length of zero (no elements); otherwise throwing an exception.                              
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;Validate.notEmpty(myArray);&lt;/pre&gt;                                                   * &lt;pre&gt;Validate.notEmpty(myArray);&lt;/pre&gt;                                                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The message in the exception is &quot;The validated array is                                * &lt;p&gt;The message in the exception is &quot;The validated array is                             
+* empty&quot;.                                                                                         * empty&quot;.                                                                                      
+*                                                                                                      *                                                                                                   
+* @param &lt;T&gt; the array type                                                                      * @param &lt;T&gt; the array type                                                                   
+* @param array the array to check                                                                      * @param array the array to check                                                                   
+* @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)                * @return the validated array (never &lt;code&gt;null&lt;/code&gt; method for chaining)             
+* @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                           * @throws NullPointerException if the array is &lt;code&gt;null&lt;/code&gt;                        
+* @throws IllegalArgumentException if the array is empty                                               * @throws IllegalArgumentException if the array is empty                                            
+* @see #notEmpty(Object[], String, Object...)                                                          * @see #notEmpty(Object[], String, Object...)                                                       
+*/                                                                                                     */                                                                                                  
+public static &lt;T&gt; T[] notEmpty(T[] array) {                                                      public static &lt;T&gt; T[] notEmpty(T[] array) {                                                   
+return notEmpty(array, DEFAULT_NOT_EMPTY_ARRAY_EXCEPTION_MESSAGE);                                   | return notEmpty(array, DEFAULT_NOT_EMPTY_ARRAY_EX_MESSAGE);                                         
+}                                                                                                      }                                                                                                   

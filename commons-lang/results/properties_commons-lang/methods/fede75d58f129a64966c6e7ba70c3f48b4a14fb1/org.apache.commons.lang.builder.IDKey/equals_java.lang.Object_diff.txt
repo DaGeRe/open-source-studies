@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* checks if instances are equal                                                                        * checks if instances are equal                                                                     
+* @param other                                                                                         * @param other                                                                                      
+* @return if the instances are for the same object                                                     * @return if the instances are for the same object                                                  
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @Override                                                                                           
+public boolean equals(Object other) {                                                                  public boolean equals(Object other) {                                                               
+if (!(other instanceof IDKey)) {                                                                       if (!(other instanceof IDKey)) {                                                                    
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+IDKey idKey = (IDKey) other;                                                                           IDKey idKey = (IDKey) other;                                                                        
+if (id != idKey.id) {                                                                                  if (id != idKey.id) {                                                                               
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+// Note that identity equals is used.                                                                  // Note that identity equals is used.                                                               
+return value == idKey.value;                                                                           return value == idKey.value;                                                                        
+}                                                                                                      }                                                                                                   

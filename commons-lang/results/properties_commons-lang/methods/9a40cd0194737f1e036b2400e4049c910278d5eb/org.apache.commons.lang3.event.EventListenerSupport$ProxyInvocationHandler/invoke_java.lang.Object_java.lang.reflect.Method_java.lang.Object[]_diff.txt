@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Propagates the method call to all registered listeners in place of                                
+                                                                                                     | * the proxy listener object.                                                                        
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param proxy the proxy object representing a listener on which the                                
+                                                                                                     | *        invocation was called.                                                                     
+                                                                                                     | * @param method the listener method that will be called on all of the                               
+                                                                                                     | *        listeners.                                                                                 
+                                                                                                     | * @param args event arguments to propogate to the listeners.                                        
+                                                                                                     | */                                                                                                  
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                 
+for (L listener : listeners) {                                                                         for (L listener : listeners) {                                                                      
+method.invoke(listener, args);                                                                         method.invoke(listener, args);                                                                      
+}                                                                                                      }                                                                                                   
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   

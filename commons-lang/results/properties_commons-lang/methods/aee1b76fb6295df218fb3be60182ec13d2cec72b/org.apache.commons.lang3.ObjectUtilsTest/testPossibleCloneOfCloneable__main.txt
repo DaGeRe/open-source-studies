@@ -1,0 +1,9 @@
+/**
+ * Tests {@link ObjectUtils#cloneIfPossible(Object)} with a cloneable object.
+ */
+@Test
+public void testPossibleCloneOfCloneable() {
+    final CloneableString string = new CloneableString("apache");
+    final CloneableString stringClone = ObjectUtils.cloneIfPossible(string);
+    assertEquals("apache", stringClone.getValue());
+}

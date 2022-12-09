@@ -1,0 +1,22 @@
+public void testObjectArray() {
+    TestObject[] obj1 = new TestObject[2];
+    obj1[0] = new TestObject(4);
+    obj1[1] = new TestObject(5);
+    TestObject[] obj2 = new TestObject[2];
+    obj2[0] = new TestObject(4);
+    obj2[1] = new TestObject(5);
+    TestObject[] obj3 = new TestObject[3];
+    obj3[0] = new TestObject(4);
+    obj3[1] = new TestObject(5);
+    obj3[2] = new TestObject(6);
+    assertTrue(new CompareToBuilder().append(obj1, obj1).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(obj1, obj3).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj3, obj1).toComparison() > 0);
+    obj1[1] = new TestObject(7);
+    assertTrue(new CompareToBuilder().append(obj1, obj2).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append(obj2, obj1).toComparison() < 0);
+    assertTrue(new CompareToBuilder().append(obj1, null).toComparison() > 0);
+    assertTrue(new CompareToBuilder().append((Object[]) null, (Object[]) null).toComparison() == 0);
+    assertTrue(new CompareToBuilder().append(null, obj1).toComparison() < 0);
+}

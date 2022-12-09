@@ -1,0 +1,7 @@
+public void testConstructor_Throwable2() {
+    Exception npe = new NullPointerException();
+    NotImplementedException ex = new NotImplementedException(npe);
+    assertEquals("Code is not implemented", ex.getMessage());
+    assertSame(npe, ex.getCause());
+    assertEquals("Code is not implemented", ex.getMessage());
+}

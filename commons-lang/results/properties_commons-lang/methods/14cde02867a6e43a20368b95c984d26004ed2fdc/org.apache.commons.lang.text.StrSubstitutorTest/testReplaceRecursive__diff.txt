@@ -1,0 +1,14 @@
+/**
+ * Tests simple recursive replace.
+ */
+public void testReplaceRecursive() {
+    values.put("animal", "${critter}");
+    values.put("target", "${pet}");
+    values.put("pet", "${petCharacteristic} dog");
+    values.put("petCharacteristic", "lazy");
+    values.put("critter", "${critterSpeed} ${critterColor} ${critterType}");
+    values.put("critterSpeed", "quick");
+    values.put("critterColor", "brown");
+    values.put("critterType", "fox");
+    doTestReplace("The quick brown fox jumps over the lazy dog.", "The ${animal} jumps over the ${target}.", true);
+}

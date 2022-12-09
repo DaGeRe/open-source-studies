@@ -1,0 +1,24 @@
+public void testGetSet() {
+    final MutableShort mutNum = new MutableShort((short) 0);
+    assertEquals((short) 0, new MutableShort().shortValue());
+    assertEquals(new Short((short) 0), new MutableShort().getValue());
+    mutNum.setValue((short) 1);
+    assertEquals((short) 1, mutNum.shortValue());
+    assertEquals(new Short((short) 1), mutNum.getValue());
+    mutNum.setValue(new Short((short) 2));
+    assertEquals((short) 2, mutNum.shortValue());
+    assertEquals(new Short((short) 2), mutNum.getValue());
+    mutNum.setValue(new MutableShort((short) 3));
+    assertEquals((short) 3, mutNum.shortValue());
+    assertEquals(new Short((short) 3), mutNum.getValue());
+    try {
+        mutNum.setValue(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        mutNum.setValue("0");
+        fail();
+    } catch (ClassCastException ex) {
+    }
+}

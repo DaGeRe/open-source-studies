@@ -1,0 +1,45 @@
+public void testIndexOfThrowable() {
+    Nestable n = null;
+    NestableDelegate d = null;
+    String[] msgs = null;
+    Class[] throwables = null;
+    msgs = new String[5];
+    msgs[0] = "level 1";
+    msgs[1] = "level 2";
+    msgs[2] = null;
+    msgs[3] = "level 4";
+    msgs[4] = "level 5";
+    throwables = new Class[5];
+    throwables[0] = NestableDelegateTester1.class;
+    throwables[1] = NestableDelegateTester2.class;
+    throwables[2] = NestableDelegateTester1.class;
+    throwables[3] = NestableDelegateTester2.class;
+    throwables[4] = EOFException.class;
+    int[] indexes = { 0, 1, 0, 1, 4 };
+    n = new NestableDelegateTester1(msgs[0], new NestableDelegateTester2(msgs[1], new NestableDelegateTester1(new NestableDelegateTester2(msgs[3], new EOFException(msgs[4])))));
+    d = new NestableDelegate(n);
+    for (int i = 0; i < throwables.length; i++) {
+        doNestableDelegateIndexOfThrowable(d, throwables[i], 0, indexes[i], msgs[indexes[i]]);
+    }
+    doNestableDelegateIndexOfThrowable(d, NestableDelegateTester2.class, 2, 3, msgs[3]);
+    doNestableDelegateIndexOfThrowable(d, NestableDelegateTester1.class, 1, 2, msgs[2]);
+    doNestableDelegateIndexOfThrowable(d, NestableDelegateTester1.class, 3, -1, null);
+    doNestableDelegateIndexOfThrowable(d, NestableDelegateTester1.class, 4, -1, null);
+    doNestableDelegateIndexOfThrowable(d, EOFException.class, 2, 4, msgs[4]);
+    doNestableDelegateIndexOfThrowable(d, IOException.class, 2, 4, msgs[4]);
+    doNestableDelegateIndexOfThrowable(d, Exception.class, 2, 2, msgs[2]);
+    doNestableDelegateIndexOfThrowable(d, Exception.class, 0, 0, msgs[0]);
+    doNestableDelegateIndexOfThrowable(d, java.util.Date.class, 0, -1, null);
+    doNestableDelegateIndexOfThrowable(d, null, 0, -1, null);
+    // Test for index out of bounds
+    try {
+        int index = d.indexOfThrowable(NestableDelegateTester1.class, -1);
+        fail("method should have thrown IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException iooob) {
+    }
+    try {
+        int index = d.indexOfThrowable(NestableDelegateTester1.class, 5);
+        fail("method should have thrown IndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException iooob) {
+    }
+}

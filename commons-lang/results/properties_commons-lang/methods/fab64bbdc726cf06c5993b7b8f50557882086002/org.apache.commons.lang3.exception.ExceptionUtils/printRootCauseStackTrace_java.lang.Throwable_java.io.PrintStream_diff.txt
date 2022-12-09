@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Prints a compact stack trace for the root cause of a throwable.&lt;/p&gt;                   * &lt;p&gt;Prints a compact stack trace for the root cause of a throwable.&lt;/p&gt;                
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The compact stack trace starts with the root cause and prints                               * &lt;p&gt;The compact stack trace starts with the root cause and prints                            
+* stack frames up to the place where it was caught and wrapped.                                        * stack frames up to the place where it was caught and wrapped.                                     
+* Then it prints the wrapped exception and continues with stack frames                                 * Then it prints the wrapped exception and continues with stack frames                              
+* until the wrapper exception is caught and wrapped again, etc.&lt;/p&gt;                              * until the wrapper exception is caught and wrapped again, etc.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The output of this method is consistent across JDK versions.                                * &lt;p&gt;The output of this method is consistent across JDK versions.                             
+* Note that this is the opposite order to the JDK1.4 display.&lt;/p&gt;                                * Note that this is the opposite order to the JDK1.4 display.&lt;/p&gt;                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The method is equivalent to &lt;code&gt;printStackTrace&lt;/code&gt; for throwables         * &lt;p&gt;The method is equivalent to &lt;code&gt;printStackTrace&lt;/code&gt; for throwables      
+* that don't have nested causes.&lt;/p&gt;                                                             * that don't have nested causes.&lt;/p&gt;                                                          
+*                                                                                                      *                                                                                                   
+* @param throwable  the throwable to output, may be null                                               * @param throwable  the throwable to output, may be null                                            
+* @param stream  the stream to output to, may not be null                                              * @param stream  the stream to output to, may not be null                                           
+* @throws IllegalArgumentException if the stream is &lt;code&gt;null&lt;/code&gt;                      * @throws IllegalArgumentException if the stream is &lt;code&gt;null&lt;/code&gt;                   
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+*/                                                                                                     */                                                                                                  
+public static void printRootCauseStackTrace(Throwable throwable, PrintStream stream) {                 public static void printRootCauseStackTrace(Throwable throwable, PrintStream stream) {              
+if (throwable == null) {                                                                               if (throwable == null) {                                                                            
+return;                                                                                                return;                                                                                             
+}                                                                                                      }                                                                                                   
+if (stream == null) {                                                                                  if (stream == null) {                                                                               
+throw new IllegalArgumentException("The PrintStream must not be null");                                throw new IllegalArgumentException("The PrintStream must not be null");                             
+}                                                                                                      }                                                                                                   
+String[] trace = getRootCauseStackTrace(throwable);                                                    String[] trace = getRootCauseStackTrace(throwable);                                                 
+for (int i = 0; i &lt; trace.length; i++) {                                                          | for (String element : trace) {                                                                      
+stream.println(trace[i]);                                                                            | stream.println(element);                                                                            
+}                                                                                                      }                                                                                                   
+stream.flush();                                                                                        stream.flush();                                                                                     
+}                                                                                                      }                                                                                                   

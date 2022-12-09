@@ -1,0 +1,26 @@
+public void testDeprecatedOverlayString_StringStringIntInt() {
+    assertEquals("overlayString(String, String, int, int) failed", "foo foor baz", StringUtils.overlayString(SENTENCE_UNCAP, FOO_UNCAP, 4, 6));
+    assertEquals("abef", StringUtils.overlayString("abcdef", "", 2, 4));
+    assertEquals("abzzzzef", StringUtils.overlayString("abcdef", "zzzz", 2, 4));
+    assertEquals("abcdzzzzcdef", StringUtils.overlayString("abcdef", "zzzz", 4, 2));
+    try {
+        StringUtils.overlayString(null, "zzzz", 2, 4);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        StringUtils.overlayString("abcdef", null, 2, 4);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        StringUtils.overlayString("abcdef", "zzzz", -1, 4);
+        fail();
+    } catch (IndexOutOfBoundsException ex) {
+    }
+    try {
+        StringUtils.overlayString("abcdef", "zzzz", 2, 8);
+        fail();
+    } catch (IndexOutOfBoundsException ex) {
+    }
+}

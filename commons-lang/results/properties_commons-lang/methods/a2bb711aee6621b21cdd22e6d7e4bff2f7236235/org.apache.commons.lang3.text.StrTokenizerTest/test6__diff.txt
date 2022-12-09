@@ -1,0 +1,24 @@
+public void test6() {
+    String input = "a;b; c;\"d;\"\"e\";f; ; ;";
+    StrTokenizer tok = new StrTokenizer(input);
+    tok.setDelimiterChar(';');
+    tok.setQuoteChar('"');
+    tok.setIgnoredMatcher(StrMatcher.trimMatcher());
+    tok.setIgnoreEmptyTokens(false);
+    // tok.setTreatingEmptyAsNull(true);
+    String[] tokens = tok.getTokenArray();
+    String[] expected = new String[] { "a", "b", " c", "d;\"e", "f", null, null, null };
+    int nextCount = 0;
+    while (tok.hasNext()) {
+        tok.next();
+        nextCount++;
+    }
+    int prevCount = 0;
+    while (tok.hasPrevious()) {
+        tok.previous();
+        prevCount++;
+    }
+    assertEquals(ArrayUtils.toString(tokens), expected.length, tokens.length);
+    assertTrue("could not cycle through entire token list" + " using the 'hasNext' and 'next' methods", nextCount == expected.length);
+    assertTrue("could not cycle through entire token list" + " using the 'hasPrevious' and 'previous' methods", prevCount == expected.length);
+}

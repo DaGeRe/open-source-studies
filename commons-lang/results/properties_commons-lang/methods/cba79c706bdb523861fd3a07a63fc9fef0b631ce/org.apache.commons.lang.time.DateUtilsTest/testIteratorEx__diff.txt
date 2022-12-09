@@ -1,0 +1,29 @@
+/**
+ * Tests the iterator exceptions
+ */
+public void testIteratorEx() throws Exception {
+    try {
+        DateUtils.iterator(Calendar.getInstance(), -9999);
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.iterator((Date) null, DateUtils.RANGE_WEEK_CENTER);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.iterator((Calendar) null, DateUtils.RANGE_WEEK_CENTER);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.iterator((Object) null, DateUtils.RANGE_WEEK_CENTER);
+        fail();
+    } catch (IllegalArgumentException ex) {
+    }
+    try {
+        DateUtils.iterator("", DateUtils.RANGE_WEEK_CENTER);
+        fail();
+    } catch (ClassCastException ex) {
+    }
+}

@@ -1,0 +1,29 @@
+/**
+ * <p>Performs an xor on an array of Booleans.</p>
+ *
+ * <pre>
+ *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE
+ *   BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE
+ *   BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE
+ * </pre>
+ *
+ * @param array  an array of <code>Boolean<code>s
+ * @return <code>true</code> if the xor is successful.
+ * @throws IllegalArgumentException if <code>array</code> is <code>null</code>
+ * @throws IllegalArgumentException if <code>array</code> is empty.
+ * @throws IllegalArgumentException if <code>array</code> contains a <code>null</code>
+ */
+public static Boolean xor(Boolean[] array) {
+    if (array == null) {
+        throw new IllegalArgumentException("The Array must not be null");
+    } else if (array.length == 0) {
+        throw new IllegalArgumentException("Array is empty");
+    }
+    boolean[] primitive = null;
+    try {
+        primitive = ArrayUtils.toPrimitive(array);
+    } catch (NullPointerException ex) {
+        throw new IllegalArgumentException("The array must not contain any null elements");
+    }
+    return xor(primitive) ? Boolean.TRUE : Boolean.FALSE;
+}

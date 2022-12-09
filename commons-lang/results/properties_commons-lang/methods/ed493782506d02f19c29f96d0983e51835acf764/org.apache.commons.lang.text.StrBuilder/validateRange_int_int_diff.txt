@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+/**
+ * Validates parameters defining a range of the builder.
+ *
+ * @param startIndex  the start index, inclusive, must be valid
+ * @param endIndex  the end index, exclusive, must be valid except
+ *  that if too large it is treated as end of string
+ * @return the new string
+ * @throws IndexOutOfBoundsException if the index is invalid
+ */
+protected int validateRange(int startIndex, int endIndex) {
+    if (startIndex < 0) {
+        throw new StringIndexOutOfBoundsException(startIndex);
+    }
+    if (endIndex > size) {
+        endIndex = size;
+    }
+    if (startIndex > endIndex) {
+        throw new StringIndexOutOfBoundsException("end < start");
+    }
+    return endIndex;
+}

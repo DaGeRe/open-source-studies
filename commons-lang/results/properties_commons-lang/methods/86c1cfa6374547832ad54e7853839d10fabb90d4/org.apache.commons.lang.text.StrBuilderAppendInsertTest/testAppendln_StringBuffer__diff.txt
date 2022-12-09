@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+public void testAppendln_StringBuffer() {
+    final int[] count = new int[2];
+    StrBuilder sb = new StrBuilder() {
+
+        @Override
+        public StrBuilder append(StringBuffer str) {
+            count[0]++;
+            return super.append(str);
+        }
+
+        @Override
+        public StrBuilder appendNewLine() {
+            count[1]++;
+            return super.appendNewLine();
+        }
+    };
+    sb.appendln(new StringBuffer("foo"));
+    assertEquals("foo" + SEP, sb.toString());
+    assertEquals(1, count[0]);
+    assertEquals(1, count[1]);
+}

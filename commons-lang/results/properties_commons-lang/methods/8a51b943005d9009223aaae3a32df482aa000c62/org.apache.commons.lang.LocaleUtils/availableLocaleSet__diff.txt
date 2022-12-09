@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Obtains an unmodifiable set of installed locales.&lt;/p&gt;                                 * &lt;p&gt;Obtains an unmodifiable set of installed locales.&lt;/p&gt;                              
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This method is a wrapper around {@link Locale#getAvailableLocales()}.                       * &lt;p&gt;This method is a wrapper around {@link Locale#getAvailableLocales()}.                    
+* It is more efficient, as the JDK method must create a new array each                                 * It is more efficient, as the JDK method must create a new array each                              
+* time it is called.&lt;/p&gt;                                                                         * time it is called.&lt;/p&gt;                                                                      
+*                                                                                                      *                                                                                                   
+* @return the unmodifiable set of available locales                                                    * @return the unmodifiable set of available locales                                                 
+*/                                                                                                     */                                                                                                  
+public static synchronized Set availableLocaleSet() {                                                | public static synchronized Set&lt;Locale&gt; availableLocaleSet() {                                 
+Set set = cAvailableLocaleSet;                                                                       | Set&lt;Locale&gt; set = cAvailableLocaleSet;                                                        
+if (set == null) {                                                                                     if (set == null) {                                                                                  
+set = new HashSet(availableLocaleList());                                                            | set = new HashSet&lt;Locale&gt;(availableLocaleList());                                             
+set = Collections.unmodifiableSet(set);                                                                set = Collections.unmodifiableSet(set);                                                             
+cAvailableLocaleSet = set;                                                                             cAvailableLocaleSet = set;                                                                          
+}                                                                                                      }                                                                                                   
+return set;                                                                                            return set;                                                                                         
+}                                                                                                      }                                                                                                   

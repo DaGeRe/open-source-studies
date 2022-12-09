@@ -1,0 +1,17 @@
+public void testHashCode() {
+    CharRange rangea = CharRange.is('a');
+    CharRange rangeae = CharRange.isIn('a', 'e');
+    CharRange rangenotbf = CharRange.isIn('b', 'f');
+    assertEquals(true, rangea.hashCode() == rangea.hashCode());
+    assertEquals(true, rangea.hashCode() == CharRange.is('a').hashCode());
+    assertEquals(true, rangeae.hashCode() == rangeae.hashCode());
+    assertEquals(true, rangeae.hashCode() == CharRange.isIn('a', 'e').hashCode());
+    assertEquals(true, rangenotbf.hashCode() == rangenotbf.hashCode());
+    assertEquals(true, rangenotbf.hashCode() == CharRange.isIn('b', 'f').hashCode());
+    assertEquals(false, rangea.hashCode() == rangeae.hashCode());
+    assertEquals(false, rangea.hashCode() == rangenotbf.hashCode());
+    assertEquals(false, rangeae.hashCode() == rangea.hashCode());
+    assertEquals(false, rangeae.hashCode() == rangenotbf.hashCode());
+    assertEquals(false, rangenotbf.hashCode() == rangea.hashCode());
+    assertEquals(false, rangenotbf.hashCode() == rangeae.hashCode());
+}

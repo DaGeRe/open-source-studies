@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------
+public void testAppendln_Object() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendln((Object) null);
+    assertEquals("" + SEP, sb.toString());
+    sb.appendln(FOO);
+    assertEquals(SEP + "foo" + SEP, sb.toString());
+    sb.appendln(new Integer(6));
+    assertEquals(SEP + "foo" + SEP + "6" + SEP, sb.toString());
+}

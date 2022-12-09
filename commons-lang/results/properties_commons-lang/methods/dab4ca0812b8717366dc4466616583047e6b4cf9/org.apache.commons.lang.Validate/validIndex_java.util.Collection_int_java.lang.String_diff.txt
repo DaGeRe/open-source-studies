@@ -1,0 +1,22 @@
+// validIndex collection                                                                             |                                                                                                     
+// ---------------------------------------------------------------------------------                 |                                                                                                     
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt; if the   |                                                                                                     
+* index for the argument collection is invalid or if the collection is &lt;code&gt;null&lt;/code&gt; |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* Validate.validIndex(myCollection, 2, "The collection index is invalid: ");                         |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;If the collection is null then the message in the exception is 'The validated object is n |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param coll  the collection to check, not null                                                     |                                                                                                     
+* @param message  the exception message if the collection index is invalid                           |                                                                                                     
+* @throws IllegalArgumentException if the collection index is invalid or null                        |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static void validIndex(Collection&lt;?&gt; coll, int index, String message) {                 |                                                                                                     
+Validate.notNull(coll);                                                                              |                                                                                                     
+if (index &lt; 0 || index &gt;= coll.size()) {                                                       |                                                                                                     
+throw new IllegalArgumentException(message + index);                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

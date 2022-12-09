@@ -1,0 +1,30 @@
+/**                                                                                                  |                                                                                                     
+* &lt;p&gt;Checks if the String contains only lowercase characters.&lt;/p&gt;                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;p&gt;&lt;code&gt;null&lt;/code&gt; will return &lt;code&gt;false&lt;/code&gt;.                 |                                                                                                     
+* An empty String ("") will return &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* &lt;pre&gt;                                                                                        |                                                                                                     
+* StringUtils.isAllLowerCase(null)   = false                                                         |                                                                                                     
+* StringUtils.isAllLowerCase("")     = false                                                         |                                                                                                     
+* StringUtils.isAllLowerCase("  ")   = false                                                         |                                                                                                     
+* StringUtils.isAllLowerCase("abc")  = true                                                          |                                                                                                     
+* StringUtils.isAllLowerCase("abC") = false                                                          |                                                                                                     
+* &lt;/pre&gt;                                                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param str  the String to check, may be null                                                       |                                                                                                     
+* @return &lt;code&gt;true&lt;/code&gt; if only contains lowercase characters, and is non-null       |                                                                                                     
+* @since 2.5                                                                                         |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static boolean isAllLowerCase(String str) {                                                   |                                                                                                     
+if (str == null || isEmpty(str)) {                                                                   |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+int sz = str.length();                                                                               |                                                                                                     
+for (int i = 0; i &lt; sz; i++) {                                                                    |                                                                                                     
+if (Character.isLowerCase(str.charAt(i)) == false) {                                                 |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return true;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

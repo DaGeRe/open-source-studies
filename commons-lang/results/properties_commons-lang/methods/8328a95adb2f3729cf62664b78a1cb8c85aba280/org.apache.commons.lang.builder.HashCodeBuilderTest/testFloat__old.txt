@@ -1,0 +1,6 @@
+public void testFloat() {
+    assertEquals(17 * 37, new HashCodeBuilder(17, 37).append((float) 0f).toHashCode());
+    float f = 1234.89f;
+    int i = Float.floatToIntBits(f);
+    assertEquals(17 * 37 + i, new HashCodeBuilder(17, 37).append(f).toHashCode());
+}

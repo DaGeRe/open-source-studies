@@ -1,0 +1,17 @@
+@Test
+public void testAddObjectArrayChar() {
+    char[] newArray;
+    newArray = ArrayUtils.add((char[]) null, (char) 0);
+    assertTrue(Arrays.equals(new char[] { 0 }, newArray));
+    assertEquals(Character.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add((char[]) null, (char) 1);
+    assertTrue(Arrays.equals(new char[] { 1 }, newArray));
+    assertEquals(Character.TYPE, newArray.getClass().getComponentType());
+    char[] array1 = new char[] { 1, 2, 3 };
+    newArray = ArrayUtils.add(array1, (char) 0);
+    assertTrue(Arrays.equals(new char[] { 1, 2, 3, 0 }, newArray));
+    assertEquals(Character.TYPE, newArray.getClass().getComponentType());
+    newArray = ArrayUtils.add(array1, (char) 4);
+    assertTrue(Arrays.equals(new char[] { 1, 2, 3, 4 }, newArray));
+    assertEquals(Character.TYPE, newArray.getClass().getComponentType());
+}

@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using JavaScript String rules   * &lt;p&gt;Escapes the characters in a &lt;code&gt;String&lt;/code&gt; using JavaScript String rules
+* to a &lt;code&gt;Writer&lt;/code&gt;.&lt;/p&gt;                                                      * to a &lt;code&gt;Writer&lt;/code&gt;.&lt;/p&gt;                                                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; string input has no effect.&lt;/p&gt;                       * &lt;p&gt;A &lt;code&gt;null&lt;/code&gt; string input has no effect.&lt;/p&gt;                    
+*                                                                                                      *                                                                                                   
+* @see #escapeJavaScript(java.lang.String)                                                             * @see #escapeJavaScript(java.lang.String)                                                          
+* @param out  Writer to write escaped string into                                                      * @param out  Writer to write escaped string into                                                   
+* @param str  String to escape values in, may be null                                                  * @param str  String to escape values in, may be null                                               
+* @throws IllegalArgumentException if the Writer is &lt;code&gt;null&lt;/code&gt;                      * @throws IllegalArgumentException if the Writer is &lt;code&gt;null&lt;/code&gt;                   
+* @throws IOException if error occurs on underlying Writer                                             * @throws IOException if error occurs on underlying Writer                                          
+*/                                                                                                     */                                                                                                  
+public static void escapeJavaScript(Writer out, String str) throws IOException {                       public static void escapeJavaScript(Writer out, String str) throws IOException {                    
+escapeJavaStyleString(out, str, true, true);                                                         | EscapeUtils.ESCAPE_ECMASCRIPT.translate(str, out);                                                  
+}                                                                                                      }                                                                                                   

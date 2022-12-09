@@ -1,0 +1,25 @@
+/**
+ * <p>Creates a <code>Fraction</code> instance with the 2 parts
+ * of a fraction Y/Z.</p>
+ *
+ * <p>Any negative signs are resolved to be on the numerator.</p>
+ *
+ * @param numerator  the numerator, for example the three in 'three sevenths'
+ * @param denominator  the denominator, for example the seven in 'three sevenths'
+ * @return a new fraction instance
+ * @throws ArithmeticException if the denominator is <code>zero</code>
+ * or the denominator is {@code negative} and the numerator is {@code Integer#MIN_VALUE}
+ */
+public static Fraction getFraction(int numerator, int denominator) {
+    if (denominator == 0) {
+        throw new ArithmeticException("The denominator must not be zero");
+    }
+    if (denominator < 0) {
+        if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {
+            throw new ArithmeticException("overflow: can't negate");
+        }
+        numerator = -numerator;
+        denominator = -denominator;
+    }
+    return new Fraction(numerator, denominator);
+}

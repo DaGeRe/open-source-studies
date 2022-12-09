@@ -1,0 +1,26 @@
+                                                                                                     | // -----------------------------------------------------------------------                          
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Used by the indexOf(CharSequence methods) as a green implementation of                            
+                                                                                                     | * indexOf.                                                                                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param cs the {@code CharSequence} to be processed                                                
+                                                                                                     | * @param searchChar the char to be searched for                                                     
+                                                                                                     | * @param start the start index                                                                      
+                                                                                                     | * @return the index where the search char was found                                                 
+                                                                                                     | */                                                                                                  
+                                                                                                     | static int indexOfSequence(CharSequence cs, int searchChar, int start) {                            
+                                                                                                     | if (cs instanceof String) {                                                                         
+                                                                                                     | return ((String) cs).indexOf(searchChar, start);                                                    
+                                                                                                     | } else {                                                                                            
+                                                                                                     | int sz = cs.length();                                                                               
+                                                                                                     | if (start &lt; 0) {                                                                                 
+                                                                                                     | start = 0;                                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | for (int i = start; i &lt; sz; i++) {                                                               
+                                                                                                     | if (cs.charAt(i) == searchChar) {                                                                   
+                                                                                                     | return i;                                                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return -1;                                                                                          
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+/**
+ * Appends an array placing separators between each value, but
+ * not before the first or after the last.
+ * Appending a null array will have no effect.
+ * Each object is appended using {@link #append(Object)}.
+ *
+ * @param array  the array to append
+ * @param separator  the separator to use, null means no separator
+ * @return this, to enable chaining
+ */
+public StrBuilder appendWithSeparators(Object[] array, String separator) {
+    if (array != null && array.length > 0) {
+        separator = ObjectUtils.toString(separator);
+        append(array[0]);
+        for (int i = 1; i < array.length; i++) {
+            append(separator);
+            append(array[i]);
+        }
+    }
+    return this;
+}

@@ -1,0 +1,21 @@
+/**
+ * <p>Takes an argument in set-syntax, see evaluateSet,
+ * and deletes any of characters present in the specified string.</p>
+ *
+ * <p>An example would be:</p>
+ * <ul>
+ *  <li>delete(&quot;hello&quot;, {&quot;c-f&quot;, &quot;o&quot;}) returns
+ *   &quot;hll&quot;</li>
+ * </ul>
+ *
+ * @see CharSet#getInstance(java.lang.String) for set-syntax.
+ * @param str  String to delete characters from, may be null
+ * @param set  String[] set of characters to delete, may be null
+ * @return the modified String, {@code null} if null string input
+ */
+public static String delete(String str, String[] set) {
+    if (StringUtils.isEmpty(str) || ArrayUtils.isEmpty(set)) {
+        return str;
+    }
+    return modify(str, set, false);
+}

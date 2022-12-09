@@ -1,0 +1,14 @@
+/**
+ * <p>Tests whether the specified element occurs before this range.</p>
+ *
+ * <p>{@code null} is handled and returns {@code false}.</p>
+ *
+ * @param element  the element to test, may be {@code null}
+ * @return {@code true} if the specified element occurs before this range
+ */
+public boolean elementBefore(T element) {
+    if (element == null) {
+        return false;
+    }
+    return this.comparator.compare(element, this.minimum) < 0;
+}

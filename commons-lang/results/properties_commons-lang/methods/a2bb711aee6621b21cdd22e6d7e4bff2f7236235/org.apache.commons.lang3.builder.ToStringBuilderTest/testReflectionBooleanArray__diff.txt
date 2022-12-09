@@ -1,0 +1,8 @@
+public void testReflectionBooleanArray() {                                                             public void testReflectionBooleanArray() {                                                          
+boolean[] array = new boolean[] { true, false, false };                                                boolean[] array = new boolean[] { true, false, false };                                             
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{true,false,false}]", ToStringBuilder.reflectionToString(array));             assertEquals(baseStr + "[{true,false,false}]", ToStringBuilder.reflectionToString(array));          
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

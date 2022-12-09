@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------
+public void testContains_Char() {
+    CharRange range = new CharRange('c');
+    assertEquals(false, range.contains('b'));
+    assertEquals(true, range.contains('c'));
+    assertEquals(false, range.contains('d'));
+    assertEquals(false, range.contains('e'));
+    range = new CharRange('c', 'd');
+    assertEquals(false, range.contains('b'));
+    assertEquals(true, range.contains('c'));
+    assertEquals(true, range.contains('d'));
+    assertEquals(false, range.contains('e'));
+    range = new CharRange('d', 'c');
+    assertEquals(false, range.contains('b'));
+    assertEquals(true, range.contains('c'));
+    assertEquals(true, range.contains('d'));
+    assertEquals(false, range.contains('e'));
+    range = new CharRange('c', 'd', false);
+    assertEquals(false, range.contains('b'));
+    assertEquals(true, range.contains('c'));
+    assertEquals(true, range.contains('d'));
+    assertEquals(false, range.contains('e'));
+    range = new CharRange('c', 'd', true);
+    assertEquals(true, range.contains('b'));
+    assertEquals(false, range.contains('c'));
+    assertEquals(false, range.contains('d'));
+    assertEquals(true, range.contains('e'));
+    assertEquals(true, range.contains((char) 0));
+    assertEquals(true, range.contains(Character.MAX_VALUE));
+}

@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Registers the given object. Used by the reflection methods to avoid infinite loops.                  * Registers the given object. Used by the reflection methods to avoid infinite loops.               
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param value                                                                                         * @param value                                                                                      
+*            The object to register.                                                                   *            The object to register.                                                                
+*/                                                                                                     */                                                                                                  
+static void register(Object value) {                                                                   static void register(Object value) {                                                                
+                                                                                                     | synchronized (HashCodeBuilder.class) {                                                              
+                                                                                                     | if (getRegistry() == null) {                                                                        
+                                                                                                     | REGISTRY.set(new HashSet&lt;IDKey&gt;());                                                           
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+getRegistry().add(new IDKey(value));                                                                   getRegistry().add(new IDKey(value));                                                                
+}                                                                                                      }                                                                                                   

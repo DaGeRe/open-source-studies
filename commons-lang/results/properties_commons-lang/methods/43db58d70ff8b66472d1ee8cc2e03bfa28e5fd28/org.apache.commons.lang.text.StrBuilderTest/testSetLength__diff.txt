@@ -1,0 +1,19 @@
+public void testSetLength() {
+    StrBuilder sb = new StrBuilder();
+    sb.append("Hello");
+    // shorten
+    sb.setLength(2);
+    assertEquals("He", sb.toString());
+    // no change
+    sb.setLength(2);
+    assertEquals("He", sb.toString());
+    // lengthen
+    sb.setLength(3);
+    assertEquals("He\0", sb.toString());
+    try {
+        sb.setLength(-1);
+        fail("setLength(-1) expected StringIndexOutOfBoundsException");
+    } catch (IndexOutOfBoundsException e) {
+        // expected
+    }
+}

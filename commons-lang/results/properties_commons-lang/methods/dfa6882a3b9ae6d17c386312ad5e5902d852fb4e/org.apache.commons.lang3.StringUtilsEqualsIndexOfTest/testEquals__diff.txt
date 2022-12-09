@@ -1,0 +1,15 @@
+public void testEquals() {                                                                             public void testEquals() {                                                                          
+assertEquals(true, StringUtils.equals(null, null));                                                  | final CharSequence fooCs = FOO, barCs = BAR, foobarCs = FOOBAR;                                     
+assertEquals(true, StringUtils.equals(FOO, FOO));                                                    | assertTrue(StringUtils.equals(null, null));                                                         
+assertEquals(true, StringUtils.equals(FOO, new String(new char[] { 'f', 'o', 'o' })));               | assertTrue(StringUtils.equals(fooCs, fooCs));                                                       
+assertEquals(false, StringUtils.equals(FOO, new String(new char[] { 'f', 'O', 'O' })));              | assertTrue(StringUtils.equals(fooCs, (CharSequence) new StringBuilder(FOO)));                       
+assertEquals(false, StringUtils.equals(FOO, BAR));                                                   | assertTrue(StringUtils.equals(fooCs, (CharSequence) new String(new char[] { 'f', 'o', 'o' })));     
+assertEquals(false, StringUtils.equals(FOO, null));                                                  | assertTrue(StringUtils.equals(fooCs, (CharSequence) new CustomCharSequence(FOO)));                  
+assertEquals(false, StringUtils.equals(null, FOO));                                                  | assertTrue(StringUtils.equals((CharSequence) new CustomCharSequence(FOO), fooCs));                  
+                                                                                                     | assertFalse(StringUtils.equals(fooCs, (CharSequence) new String(new char[] { 'f', 'O', 'O' })));    
+                                                                                                     | assertFalse(StringUtils.equals(fooCs, barCs));                                                      
+                                                                                                     | assertFalse(StringUtils.equals(fooCs, null));                                                       
+                                                                                                     | assertFalse(StringUtils.equals(null, fooCs));                                                       
+                                                                                                     | assertFalse(StringUtils.equals(fooCs, foobarCs));                                                   
+                                                                                                     | assertFalse(StringUtils.equals(foobarCs, fooCs));                                                   
+}                                                                                                      }                                                                                                   

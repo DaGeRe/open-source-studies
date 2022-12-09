@@ -1,0 +1,44 @@
+/**
+ * When using this basetest all extremes are tested.<br>
+ * It will test the Date, Calendar and Object-implementation<br>
+ * lastRoundDownDate should round down to roundedDownDate<br>
+ * lastRoundDownDate + 1 millisecond should round up to roundedUpDate
+ *
+ * @param roundedUpDate the next rounded date after <strong>roundedDownDate</strong> when using <strong>calendarField</strong>
+ * @param roundedDownDate the result if <strong>lastRoundDownDate</strong> was rounded with <strong>calendarField</strong>
+ * @param lastRoundDownDate rounding this value with <strong>calendarField</strong> will result in <strong>roundedDownDate</strong>
+ * @param calendarField
+ * @since 3.0
+ */
+protected void baseRoundTest(final Date roundedUpDate, final Date roundedDownDate, final Date lastRoundDownDate, final int calendarField) {
+    Date firstRoundUpDate = DateUtils.addMilliseconds(lastRoundDownDate, 1);
+    // Date-comparison
+    assertEquals(roundedDownDate, DateUtils.round(roundedDownDate, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round(roundedUpDate, calendarField));
+    assertEquals(roundedDownDate, DateUtils.round(lastRoundDownDate, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round(firstRoundUpDate, calendarField));
+    // Calendar-initiations
+    Calendar roundedUpCalendar, roundedDownCalendar, lastRoundDownCalendar, firstRoundUpCalendar;
+    roundedDownCalendar = Calendar.getInstance();
+    roundedUpCalendar = Calendar.getInstance();
+    lastRoundDownCalendar = Calendar.getInstance();
+    firstRoundUpCalendar = Calendar.getInstance();
+    roundedDownCalendar.setTime(roundedDownDate);
+    roundedUpCalendar.setTime(roundedUpDate);
+    lastRoundDownCalendar.setTime(lastRoundDownDate);
+    firstRoundUpCalendar.setTime(firstRoundUpDate);
+    // Calendar-comparison
+    assertEquals(roundedDownCalendar, DateUtils.round(roundedDownCalendar, calendarField));
+    assertEquals(roundedUpCalendar, DateUtils.round(roundedUpCalendar, calendarField));
+    assertEquals(roundedDownCalendar, DateUtils.round(lastRoundDownCalendar, calendarField));
+    assertEquals(roundedUpCalendar, DateUtils.round(firstRoundUpCalendar, calendarField));
+    // Object-comparison
+    assertEquals(roundedDownDate, DateUtils.round((Object) roundedDownDate, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round((Object) roundedUpDate, calendarField));
+    assertEquals(roundedDownDate, DateUtils.round((Object) lastRoundDownDate, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round((Object) firstRoundUpDate, calendarField));
+    assertEquals(roundedDownDate, DateUtils.round((Object) roundedDownCalendar, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round((Object) roundedUpCalendar, calendarField));
+    assertEquals(roundedDownDate, DateUtils.round((Object) lastRoundDownDate, calendarField));
+    assertEquals(roundedUpDate, DateUtils.round((Object) firstRoundUpDate, calendarField));
+}

@@ -1,0 +1,8 @@
+                                                                                                     | @Test                                                                                               
+public void testGetAccessibleInterfaceMethodFromDescription() throws Exception {                       public void testGetAccessibleInterfaceMethodFromDescription() throws Exception {                    
+Class&lt;?&gt;[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };                                         Class&lt;?&gt;[][] p = { ArrayUtils.EMPTY_CLASS_ARRAY, null };                                      
+for (Class&lt;?&gt;[] element : p) {                                                                   for (Class&lt;?&gt;[] element : p) {                                                                
+Method accessibleMethod = MethodUtils.getAccessibleMethod(TestMutable.class, "getValue", element);     Method accessibleMethod = MethodUtils.getAccessibleMethod(TestMutable.class, "getValue", element);  
+assertSame(Mutable.class, accessibleMethod.getDeclaringClass());                                       assertSame(Mutable.class, accessibleMethod.getDeclaringClass());                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

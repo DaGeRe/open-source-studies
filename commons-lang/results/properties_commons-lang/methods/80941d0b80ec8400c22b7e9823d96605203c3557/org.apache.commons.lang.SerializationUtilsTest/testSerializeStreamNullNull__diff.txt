@@ -1,0 +1,9 @@
+public void testSerializeStreamNullNull() throws Exception {
+    ByteArrayOutputStream streamTest = new ByteArrayOutputStream();
+    try {
+        SerializationUtils.serialize(null, null);
+    } catch (IllegalArgumentException ex) {
+        return;
+    }
+    fail();
+}

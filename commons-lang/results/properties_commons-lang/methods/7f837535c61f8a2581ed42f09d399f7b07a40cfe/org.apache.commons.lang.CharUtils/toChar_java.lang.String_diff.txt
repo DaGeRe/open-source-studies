@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Converts the String to a char using the first character, throwing
+ * an exception on empty Strings.</p>
+ *
+ * <pre>
+ *   CharUtils.toChar(null) = IllegalArgumentException
+ *   CharUtils.toChar("")   = IllegalArgumentException
+ *   CharUtils.toChar("A")  = 'A'
+ *   CharUtils.toChar("BA") = 'B'
+ * </pre>
+ *
+ * @param str  the character to convert
+ * @return the char value of the first letter of the String
+ * @throws IllegalArgumentException if the String is empty
+ */
+public static char toChar(String str) {
+    if (StringUtils.isEmpty(str)) {
+        throw new IllegalArgumentException("The String must not be empty");
+    }
+    return str.charAt(0);
+}

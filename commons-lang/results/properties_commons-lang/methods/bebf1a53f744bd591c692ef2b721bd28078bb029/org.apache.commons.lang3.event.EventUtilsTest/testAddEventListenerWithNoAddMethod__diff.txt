@@ -1,0 +1,11 @@
+public void testAddEventListenerWithNoAddMethod() {                                                    public void testAddEventListenerWithNoAddMethod() {                                                 
+final PropertyChangeSource src = new PropertyChangeSource();                                           final PropertyChangeSource src = new PropertyChangeSource();                                        
+EventCountingInvociationHandler handler = new EventCountingInvociationHandler();                       EventCountingInvociationHandler handler = new EventCountingInvociationHandler();                    
+ActionListener listener = handler.createListener(ActionListener.class);                              | ObjectChangeListener listener = handler.createListener(ObjectChangeListener.class);                 
+try {                                                                                                  try {                                                                                               
+EventUtils.addEventListener(src, ActionListener.class, listener);                                    | EventUtils.addEventListener(src, ObjectChangeListener.class, listener);                             
+fail("Should not be allowed to add a listener to an object that doesn't support it.");                 fail("Should not be allowed to add a listener to an object that doesn't support it.");              
+} catch (IllegalArgumentException e) {                                                                 } catch (IllegalArgumentException e) {                                                              
+assertEquals("Class " + src.getClass().getName() + " does not have a public add" + ActionListener.cl | assertEquals("Class " + src.getClass().getName() + " does not have a public add" + ObjectChangeListe
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

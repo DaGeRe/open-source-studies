@@ -1,0 +1,12 @@
+// ----------------------------------------------------------------                                    // ----------------------------------------------------------------                                 
+public void testConstructors() {                                                                       public void testConstructors() {                                                                    
+assertEquals((byte) 0, new MutableByte().byteValue());                                                 assertEquals((byte) 0, new MutableByte().byteValue());                                              
+assertEquals((byte) 1, new MutableByte((byte) 1).byteValue());                                         assertEquals((byte) 1, new MutableByte((byte) 1).byteValue());                                      
+assertEquals((byte) 2, new MutableByte(new Byte((byte) 2)).byteValue());                             | assertEquals((byte) 2, new MutableByte(Byte.valueOf((byte) 2)).byteValue());                        
+assertEquals((byte) 3, new MutableByte(new MutableByte((byte) 3)).byteValue());                        assertEquals((byte) 3, new MutableByte(new MutableByte((byte) 3)).byteValue());                     
+try {                                                                                                  try {                                                                                               
+new MutableByte(null);                                                                                 new MutableByte(null);                                                                              
+fail();                                                                                                fail();                                                                                             
+} catch (NullPointerException ex) {                                                                    } catch (NullPointerException ex) {                                                                 
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

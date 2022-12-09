@@ -1,0 +1,17 @@
+/**
+ * <p>Obtains the value for the specified BitField, appropriately
+ * shifted right, as a short.</p>
+ *
+ * <p>Many users of a BitField will want to treat the specified
+ * bits as an int value, and will not want to be aware that the
+ * value is stored as a BitField (and so shifted left so many
+ * bits).</p>
+ *
+ * @see #setShortValue(short,short)
+ * @param holder the short data containing the bits we're
+ *  interested in
+ * @return the selected bits, shifted right appropriately
+ */
+public short getShortValue(short holder) {
+    return (short) getValue(holder);
+}

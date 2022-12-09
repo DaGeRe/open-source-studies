@@ -1,0 +1,16 @@
+// Basics
+// -----------------------------------------------------------------------
+/**
+ * <p>Compares two objects for equality.</p>
+ *
+ * @param obj  the object to compare to
+ * @return {@code true} if equal
+ */
+@Override
+public boolean equals(Object obj) {
+    if (obj instanceof FastDatePrinter == false) {
+        return false;
+    }
+    FastDatePrinter other = (FastDatePrinter) obj;
+    return mPattern.equals(other.mPattern) && mTimeZone.equals(other.mTimeZone) && mLocale.equals(other.mLocale);
+}

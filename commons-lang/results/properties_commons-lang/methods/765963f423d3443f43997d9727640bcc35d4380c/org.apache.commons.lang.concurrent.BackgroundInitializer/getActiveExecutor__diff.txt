@@ -1,0 +1,12 @@
+/**
+ * Returns the {@code ExecutorService} that is actually used for executing
+ * the background task. This method can be called after {@link #start()}
+ * (before {@code start()} it returns <b>null</b>). If an external executor
+ * was set, this is also the active executor. Otherwise this method returns
+ * the temporary executor that was created by this object.
+ *
+ * @return the {@code ExecutorService} for executing the background task
+ */
+protected synchronized final ExecutorService getActiveExecutor() {
+    return executor;
+}

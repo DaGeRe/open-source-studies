@@ -1,0 +1,13 @@
+@Test
+public void testLeftPad_StringIntChar() {
+    assertEquals(null, StringUtils.leftPad(null, 5, ' '));
+    assertEquals("     ", StringUtils.leftPad("", 5, ' '));
+    assertEquals("  abc", StringUtils.leftPad("abc", 5, ' '));
+    assertEquals("xxabc", StringUtils.leftPad("abc", 5, 'x'));
+    assertEquals("\uffff\uffffabc", StringUtils.leftPad("abc", 5, '\uffff'));
+    assertEquals("abc", StringUtils.leftPad("abc", 2, ' '));
+    // bigger than pad length
+    String str = StringUtils.leftPad("aaa", 10000, 'a');
+    assertEquals(10000, str.length());
+    assertEquals(true, StringUtils.containsOnly(str, new char[] { 'a' }));
+}

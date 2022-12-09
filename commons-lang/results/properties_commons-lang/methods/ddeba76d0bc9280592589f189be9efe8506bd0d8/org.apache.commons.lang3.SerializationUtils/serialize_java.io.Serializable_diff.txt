@@ -1,0 +1,13 @@
+/**
+ * <p>Serializes an {@code Object} to a byte array for
+ * storage/serialization.</p>
+ *
+ * @param obj  the object to serialize to bytes
+ * @return a byte[] with the converted Serializable
+ * @throws SerializationException (runtime) if the serialization fails
+ */
+public static byte[] serialize(Serializable obj) {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
+    serialize(obj, baos);
+    return baos.toByteArray();
+}

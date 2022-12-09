@@ -1,0 +1,21 @@
+/**
+ * <p>
+ * Get the split time on the stopwatch in nanoseconds.
+ * </p>
+ *
+ * <p>
+ * This is the time between start and latest split.
+ * </p>
+ *
+ * @return the split time in nanoseconds
+ *
+ * @throws IllegalStateException
+ *             if the StopWatch has not yet been split.
+ * @since 3.0
+ */
+public long getSplitNanoTime() {
+    if (this.splitState != STATE_SPLIT) {
+        throw new IllegalStateException("Stopwatch must be split to get the split time. ");
+    }
+    return this.stopTime - this.startTime;
+}

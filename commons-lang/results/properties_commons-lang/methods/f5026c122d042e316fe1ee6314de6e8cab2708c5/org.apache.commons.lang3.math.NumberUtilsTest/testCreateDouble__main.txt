@@ -1,0 +1,10 @@
+@Test
+public void testCreateDouble() {
+    assertEquals("createDouble(String) failed", Double.valueOf("1234.5"), NumberUtils.createDouble("1234.5"));
+    assertEquals("createDouble(null) failed", null, NumberUtils.createDouble(null));
+    this.testCreateDoubleFailure("");
+    this.testCreateDoubleFailure(" ");
+    this.testCreateDoubleFailure("\b\t\n\f\r");
+    // Funky whitespaces
+    this.testCreateDoubleFailure("\u00A0\uFEFF\u000B\u000C\u001C\u001D\u001E\u001F");
+}

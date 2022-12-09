@@ -1,0 +1,32 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if the CharSequence contains only whitespace.&lt;/p&gt;                              * &lt;p&gt;Checks if the CharSequence contains only whitespace.&lt;/p&gt;                           
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;{@code null} will return {@code false}.                                                     * &lt;p&gt;{@code null} will return {@code false}.                                                  
+* An empty CharSequence (length()=0) will return {@code true}.&lt;/p&gt;                               * An empty CharSequence (length()=0) will return {@code true}.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* StringUtils.isWhitespace(null)   = false                                                             * StringUtils.isWhitespace(null)   = false                                                          
+* StringUtils.isWhitespace("")     = true                                                              * StringUtils.isWhitespace("")     = true                                                           
+* StringUtils.isWhitespace("  ")   = true                                                              * StringUtils.isWhitespace("  ")   = true                                                           
+* StringUtils.isWhitespace("abc")  = false                                                             * StringUtils.isWhitespace("abc")  = false                                                          
+* StringUtils.isWhitespace("ab2c") = false                                                             * StringUtils.isWhitespace("ab2c") = false                                                          
+* StringUtils.isWhitespace("ab-c") = false                                                             * StringUtils.isWhitespace("ab-c") = false                                                          
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* @param cs  the CharSequence to check, may be null                                                    * @param cs  the CharSequence to check, may be null                                                 
+* @return {@code true} if only contains whitespace, and is non-null                                    * @return {@code true} if only contains whitespace, and is non-null                                 
+* @since 2.0                                                                                           * @since 2.0                                                                                        
+* @since 3.0 Changed signature from isWhitespace(String) to isWhitespace(CharSequence)                 * @since 3.0 Changed signature from isWhitespace(String) to isWhitespace(CharSequence)              
+*/                                                                                                     */                                                                                                  
+public static boolean isWhitespace(CharSequence cs) {                                                  public static boolean isWhitespace(CharSequence cs) {                                               
+if (cs == null) {                                                                                      if (cs == null) {                                                                                   
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+int sz = cs.length();                                                                                  int sz = cs.length();                                                                               
+for (int i = 0; i &lt; sz; i++) {                                                                      for (int i = 0; i &lt; sz; i++) {                                                                   
+if ((Character.isWhitespace(cs.charAt(i)) == false)) {                                               | if (Character.isWhitespace(cs.charAt(i)) == false) {                                                
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   

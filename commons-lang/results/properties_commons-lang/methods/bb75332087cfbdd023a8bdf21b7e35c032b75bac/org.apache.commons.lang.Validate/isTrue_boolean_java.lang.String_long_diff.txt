@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;            * &lt;p&gt;Validate an argument, throwing &lt;code&gt;IllegalArgumentException&lt;/code&gt;         
+* if the test result is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                      * if the test result is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;                                   
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;This is used when validating according to an arbitrary boolean expression,                  * &lt;p&gt;This is used when validating according to an arbitrary boolean expression,               
+* such as validating a primitive number or using your own custom validation                            * such as validating a primitive number or using your own custom validation                         
+* expression.&lt;/p&gt;                                                                                * expression.&lt;/p&gt;                                                                             
+*                                                                                                      *                                                                                                   
+* &lt;pre&gt;                                                                                          * &lt;pre&gt;                                                                                       
+* Validate.isTrue( i &gt; 0, "The value must be greater than zero: ", i);                              * Validate.isTrue( i &gt; 0, "The value must be greater than zero: ", i);                           
+* &lt;/pre&gt;                                                                                         * &lt;/pre&gt;                                                                                      
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For performance reasons, the long value is passed as a separate parameter and               * &lt;p&gt;For performance reasons, the long value is passed as a separate parameter and            
+* appended to the message string only in the case of an error.&lt;/p&gt;                               * appended to the message string only in the case of an error.&lt;/p&gt;                            
+*                                                                                                      *                                                                                                   
+* @param expression  a boolean expression                                                              * @param expression  a boolean expression                                                           
+* @param message  the exception message you would like to see if the expression is &lt;code&gt;false   * @param message  the exception message you would like to see if the expression is &lt;code&gt;false
+* @param value  the value to append to the message in case of error                                    * @param value  the value to append to the message in case of error                                 
+* @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                     * @throws IllegalArgumentException if expression is &lt;code&gt;false&lt;/code&gt;                  
+*/                                                                                                     */                                                                                                  
+public static void isTrue(boolean expression, String message, long value) {                            public static void isTrue(boolean expression, String message, long value) {                         
+if (expression == false) {                                                                             if (expression == false) {                                                                          
+throw new IllegalArgumentException(getMessage(message, value));                                      | throw new IllegalArgumentException(message + value);                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

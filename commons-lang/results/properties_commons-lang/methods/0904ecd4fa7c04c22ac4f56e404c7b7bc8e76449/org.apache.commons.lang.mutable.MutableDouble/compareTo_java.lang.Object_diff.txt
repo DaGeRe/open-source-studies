@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Compares this mutable to another in ascending order.                                                 * Compares this mutable to another in ascending order.                                              
+*                                                                                                      *                                                                                                   
+* @param obj                                                                                           * @param obj                                                                                        
+*            the mutable to compare to                                                                 *            the mutable to compare to                                                              
+* @return negative if this is less, zero if equal, positive if greater                                 * @return negative if this is less, zero if equal, positive if greater                              
+* @throws ClassCastException if the argument is not a MutableDouble                                    * @throws ClassCastException if the argument is not a MutableDouble                                 
+*/                                                                                                     */                                                                                                  
+public int compareTo(Object obj) {                                                                     public int compareTo(Object obj) {                                                                  
+MutableDouble other = (MutableDouble) obj;                                                             MutableDouble other = (MutableDouble) obj;                                                          
+double anotherVal = other.value;                                                                       double anotherVal = other.value;                                                                    
+return NumberUtils.compare(value, anotherVal);                                                       | return Double.compare(value, anotherVal);                                                           
+}                                                                                                      }                                                                                                   

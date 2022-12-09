@@ -1,0 +1,9 @@
+                                                                                                     | @Test                                                                                               
+public void testReflectionObjectArray() {                                                              public void testReflectionObjectArray() {                                                           
+Object[] array = new Object[] { null, base, new int[] { 3, 6 } };                                      Object[] array = new Object[] { null, base, new int[] { 3, 6 } };                                   
+String baseStr = this.toBaseString(array);                                                             String baseStr = this.toBaseString(array);                                                          
+assertEquals(baseStr + "[{&lt;null&gt;,5,{3,6}}]", ToStringBuilder.reflectionToString(array));         assertEquals(baseStr + "[{&lt;null&gt;,5,{3,6}}]", ToStringBuilder.reflectionToString(array));      
+array = null;                                                                                          array = null;                                                                                       
+assertReflectionArray("&lt;null&gt;", array);                                                          assertReflectionArray("&lt;null&gt;", array);                                                       
+this.validateNullToStringStyleRegistry();                                                              this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

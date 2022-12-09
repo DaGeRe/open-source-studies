@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* Returns &lt;code&gt;true&lt;/code&gt; if the registry contains the given object pair.                * Returns &lt;code&gt;true&lt;/code&gt; if the registry contains the given object pair.             
+* Used by the reflection methods to avoid infinite loops.                                              * Used by the reflection methods to avoid infinite loops.                                           
+* Objects might be swapped therefore a check is needed if the object pair                              * Objects might be swapped therefore a check is needed if the object pair                           
+* is registered in given or swapped order.                                                             * is registered in given or swapped order.                                                          
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* @param lhs &lt;code&gt;this&lt;/code&gt; object to lookup in registry                                * @param lhs &lt;code&gt;this&lt;/code&gt; object to lookup in registry                             
+* @param rhs the other object to lookup on registry                                                    * @param rhs the other object to lookup on registry                                                 
+* @return boolean &lt;code&gt;true&lt;/code&gt; if the registry contains the given object.             * @return boolean &lt;code&gt;true&lt;/code&gt; if the registry contains the given object.          
+* @since 3.0                                                                                           * @since 3.0                                                                                        
+*/                                                                                                     */                                                                                                  
+static boolean isRegistered(Object lhs, Object rhs) {                                                  static boolean isRegistered(Object lhs, Object rhs) {                                               
+Set&lt;Pair&lt;IDKey, IDKey&gt;&gt; registry = getRegistry();                                          Set&lt;Pair&lt;IDKey, IDKey&gt;&gt; registry = getRegistry();                                       
+Pair&lt;IDKey, IDKey&gt; pair = getRegisterPair(lhs, rhs);                                             Pair&lt;IDKey, IDKey&gt; pair = getRegisterPair(lhs, rhs);                                          
+Pair&lt;IDKey, IDKey&gt; swappedPair = Pair.of(pair.getLeftElement(), pair.getRightElement());       | Pair&lt;IDKey, IDKey&gt; swappedPair = Pair.of(pair.getLeft(), pair.getRight());                    
+return registry != null && (registry.contains(pair) || registry.contains(swappedPair));                return registry != null && (registry.contains(pair) || registry.contains(swappedPair));             
+}                                                                                                      }                                                                                                   

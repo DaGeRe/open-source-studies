@@ -1,0 +1,11 @@
+/**
+ * Initialize transient fields.
+ * @param listenerInterface the class of the listener interface
+ * @param classLoader the class loader to be used
+ */
+private void initializeTransientFields(Class<L> listenerInterface, ClassLoader classLoader) {
+    @SuppressWarnings("unchecked")
+    L[] array = (L[]) Array.newInstance(listenerInterface, 0);
+    this.prototypeArray = array;
+    createProxy(listenerInterface, classLoader);
+}

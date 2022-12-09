@@ -1,0 +1,8 @@
+// ----------------------------------------------------------------                                    // ----------------------------------------------------------------                                 
+public void testConstructors() {                                                                       public void testConstructors() {                                                                    
+assertEquals(null, new MutableObject&lt;String&gt;().getValue());                                      assertEquals(null, new MutableObject&lt;String&gt;().getValue());                                   
+Integer i = new Integer(6);                                                                          | Integer i = Integer.valueOf(6);                                                                     
+assertSame(i, new MutableObject&lt;Integer&gt;(i).getValue());                                         assertSame(i, new MutableObject&lt;Integer&gt;(i).getValue());                                      
+assertSame("HI", new MutableObject&lt;String&gt;("HI").getValue());                                    assertSame("HI", new MutableObject&lt;String&gt;("HI").getValue());                                 
+assertSame(null, new MutableObject&lt;Object&gt;(null).getValue());                                    assertSame(null, new MutableObject&lt;Object&gt;(null).getValue());                                 
+}                                                                                                      }                                                                                                   

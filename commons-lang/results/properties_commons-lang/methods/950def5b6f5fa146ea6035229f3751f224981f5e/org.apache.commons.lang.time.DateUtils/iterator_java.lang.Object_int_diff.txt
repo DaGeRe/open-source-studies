@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;This constructs an &lt;code&gt;Iterator&lt;/code&gt; over each day in a date                * &lt;p&gt;This constructs an &lt;code&gt;Iterator&lt;/code&gt; over each day in a date             
+* range defined by a focus date and range style.&lt;/p&gt;                                             * range defined by a focus date and range style.&lt;/p&gt;                                          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;For instance, passing Thursday, July 4, 2002 and a                                          * &lt;p&gt;For instance, passing Thursday, July 4, 2002 and a                                       
+* &lt;code&gt;RANGE_MONTH_SUNDAY&lt;/code&gt; will return an &lt;code&gt;Iterator&lt;/code&gt;         * &lt;code&gt;RANGE_MONTH_SUNDAY&lt;/code&gt; will return an &lt;code&gt;Iterator&lt;/code&gt;      
+* that starts with Sunday, June 30, 2002 and ends with Saturday, August 3,                             * that starts with Sunday, June 30, 2002 and ends with Saturday, August 3,                          
+* 2002, returning a Calendar instance for each intermediate day.&lt;/p&gt;                             * 2002, returning a Calendar instance for each intermediate day.&lt;/p&gt;                          
+*                                                                                                      *                                                                                                   
+* @param focus  the date to work with, either                                                          * @param focus  the date to work with, either                                                       
+*  &lt;code&gt;Date&lt;/code&gt; or &lt;code&gt;Calendar&lt;/code&gt;                                  *  &lt;code&gt;Date&lt;/code&gt; or &lt;code&gt;Calendar&lt;/code&gt;                               
+* @param rangeStyle  the style constant to use. Must be one of the range                               * @param rangeStyle  the style constant to use. Must be one of the range                            
+* styles listed for the {@link #iterator(Calendar, int)} method.                                       * styles listed for the {@link #iterator(Calendar, int)} method.                                    
+* @return the date iterator                                                                            * @return the date iterator                                                                         
+* @throws IllegalArgumentException if the date                                                         * @throws IllegalArgumentException if the date                                                      
+*  is &lt;code&gt;null&lt;/code&gt;                                                                    *  is &lt;code&gt;null&lt;/code&gt;                                                                 
+* @throws ClassCastException if the object type is                                                     * @throws ClassCastException if the object type is                                                  
+*  not a &lt;code&gt;Date&lt;/code&gt; or &lt;code&gt;Calendar&lt;/code&gt;                            *  not a &lt;code&gt;Date&lt;/code&gt; or &lt;code&gt;Calendar&lt;/code&gt;                         
+*/                                                                                                     */                                                                                                  
+public static Iterator iterator(Object focus, int rangeStyle) {                                      | public static Iterator&lt;?&gt; iterator(Object focus, int rangeStyle) {                            
+if (focus == null) {                                                                                   if (focus == null) {                                                                                
+throw new IllegalArgumentException("The date must not be null");                                       throw new IllegalArgumentException("The date must not be null");                                    
+}                                                                                                      }                                                                                                   
+if (focus instanceof Date) {                                                                           if (focus instanceof Date) {                                                                        
+return iterator((Date) focus, rangeStyle);                                                             return iterator((Date) focus, rangeStyle);                                                          
+} else if (focus instanceof Calendar) {                                                                } else if (focus instanceof Calendar) {                                                             
+return iterator((Calendar) focus, rangeStyle);                                                         return iterator((Calendar) focus, rangeStyle);                                                      
+} else {                                                                                               } else {                                                                                            
+throw new ClassCastException("Could not iterate based on " + focus);                                   throw new ClassCastException("Could not iterate based on " + focus);                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

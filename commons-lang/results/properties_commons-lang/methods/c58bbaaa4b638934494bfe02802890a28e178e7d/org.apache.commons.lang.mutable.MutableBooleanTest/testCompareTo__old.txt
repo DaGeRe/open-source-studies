@@ -1,0 +1,23 @@
+public void testCompareTo() {
+    final MutableBoolean mutBool = new MutableBoolean(false);
+    assertEquals(0, mutBool.compareTo(new MutableBoolean(false)));
+    assertEquals(-1, mutBool.compareTo(new MutableBoolean(true)));
+    mutBool.setValue(true);
+    assertEquals(+1, mutBool.compareTo(new MutableBoolean(false)));
+    assertEquals(0, mutBool.compareTo(new MutableBoolean(true)));
+    try {
+        mutBool.compareTo(null);
+        fail();
+    } catch (NullPointerException ex) {
+    }
+    try {
+        mutBool.compareTo(Boolean.FALSE);
+        fail();
+    } catch (ClassCastException ex) {
+    }
+    try {
+        mutBool.compareTo("false");
+        fail();
+    } catch (ClassCastException ex) {
+    }
+}

@@ -1,0 +1,9 @@
+@Test
+public void testCharArrayArray() {
+    char[][] array = new char[][] { { 'A', 'B' }, null, { 'p' } };
+    assertEquals(baseStr + "[{{A,B},<null>,{p}}]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[{{A,B},<null>,{p}}]", new ToStringBuilder(base).append((Object) array).toString());
+    array = null;
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append(array).toString());
+    assertEquals(baseStr + "[<null>]", new ToStringBuilder(base).append((Object) array).toString());
+}

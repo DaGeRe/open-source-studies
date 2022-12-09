@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Returns a &lt;code&gt;String&lt;/code&gt; value for a CSV column enclosed in double quote   * &lt;p&gt;Returns a &lt;code&gt;String&lt;/code&gt; value for a CSV column enclosed in double quote
+* if required.&lt;/p&gt;                                                                               * if required.&lt;/p&gt;                                                                            
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the value contains a comma, newline or double quote, then the                            * &lt;p&gt;If the value contains a comma, newline or double quote, then the                         
+*    String value is returned enclosed in double quotes.&lt;/p&gt;                                     *    String value is returned enclosed in double quotes.&lt;/p&gt;                                  
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Any double quote characters in the value are escaped with another double quote.&lt;/p&gt;   * &lt;p&gt;Any double quote characters in the value are escaped with another double quote.&lt;/p&gt;
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;If the value does not contain a comma, newline or double quote, then the                    * &lt;p&gt;If the value does not contain a comma, newline or double quote, then the                 
+*    String value is returned unchanged.&lt;/p&gt;                                                     *    String value is returned unchanged.&lt;/p&gt;                                                  
+* &lt;/p&gt;                                                                                           * &lt;/p&gt;                                                                                        
+*                                                                                                      *                                                                                                   
+* see &lt;a href="http://en.wikipedia.org/wiki/Comma-separated_values"&gt;Wikipedia&lt;/a&gt; and      * see &lt;a href="http://en.wikipedia.org/wiki/Comma-separated_values"&gt;Wikipedia&lt;/a&gt; and   
+* &lt;a href="http://tools.ietf.org/html/rfc4180"&gt;RFC 4180&lt;/a&gt;.                               * &lt;a href="http://tools.ietf.org/html/rfc4180"&gt;RFC 4180&lt;/a&gt;.                            
+*                                                                                                      *                                                                                                   
+* @param str the input CSV column String, may be null                                                  * @param str the input CSV column String, may be null                                               
+* @return the input String, enclosed in double quotes if the value contains a comma,                   * @return the input String, enclosed in double quotes if the value contains a comma,                
+* newline or double quote, &lt;code&gt;null&lt;/code&gt; if null string input                          * newline or double quote, &lt;code&gt;null&lt;/code&gt; if null string input                       
+* @since 2.4                                                                                           * @since 2.4                                                                                        
+*/                                                                                                     */                                                                                                  
+public static String escapeCsv(String str) {                                                           public static String escapeCsv(String str) {                                                        
+return EscapeUtils.ESCAPE_CSV.translate(str);                                                        | return EscapeUtils.escapeCsv(str);                                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------
+public void testAppendFixedWidthPadRight() {
+    StrBuilder sb = new StrBuilder();
+    sb.appendFixedWidthPadRight("foo", -1, '-');
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 0, '-');
+    assertEquals("", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 1, '-');
+    assertEquals("f", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 2, '-');
+    assertEquals("fo", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 3, '-');
+    assertEquals("foo", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 4, '-');
+    assertEquals("foo-", sb.toString());
+    sb.clear();
+    sb.appendFixedWidthPadRight("foo", 10, '-');
+    assertEquals(10, sb.length());
+    // 1234567890
+    assertEquals("foo-------", sb.toString());
+    sb.clear();
+    sb.setNullText("null");
+    sb.appendFixedWidthPadRight(null, 5, '-');
+    assertEquals("null-", sb.toString());
+}

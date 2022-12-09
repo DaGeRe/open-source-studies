@@ -1,0 +1,23 @@
+// isAssignableFrom
+// ---------------------------------------------------------------------------------
+/**
+ * Validates that the argument can be converted to the specified class, if not, throws an exception.
+ *
+ * <p>This method is useful when validating that there will be no casting errors.</p>
+ *
+ * <pre>Validate.isAssignableFrom(SuperClass.class, object.getClass());</pre>
+ *
+ * <p>The message format of the exception is &quot;Cannot assign {type} to {superType}&quot;</p>
+ *
+ * @param superType  the class the class must be validated against, not null
+ * @param type  the class to check, not null
+ * @throws IllegalArgumentException if type argument is not assignable to the specified superType
+ * @see #isAssignableFrom(Class, Class, String, Object...)
+ *
+ * @since 3.0
+ */
+public static void isAssignableFrom(Class<?> superType, Class<?> type) {
+    if (superType.isAssignableFrom(type) == false) {
+        throw new IllegalArgumentException(String.format(DEFAULT_IS_ASSIGNABLE_EX_MESSAGE, type == null ? "null" : type.getName(), superType.getName()));
+    }
+}

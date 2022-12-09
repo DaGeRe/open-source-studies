@@ -1,0 +1,25 @@
+@Test
+public void testWriteField() throws Exception {
+    Field field = parentClass.getDeclaredField("s");
+    FieldUtils.writeField(field, publicChild, "S");
+    assertEquals("S", field.get(publicChild));
+    field = parentClass.getDeclaredField("b");
+    try {
+        FieldUtils.writeField(field, publicChild, Boolean.TRUE);
+        fail("Expected IllegalAccessException");
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    field = parentClass.getDeclaredField("i");
+    try {
+        FieldUtils.writeField(field, publicChild, Integer.valueOf(Integer.MAX_VALUE));
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+    field = parentClass.getDeclaredField("d");
+    try {
+        FieldUtils.writeField(field, publicChild, Double.valueOf(Double.MAX_VALUE));
+    } catch (IllegalAccessException e) {
+        // pass
+    }
+}

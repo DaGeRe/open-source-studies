@@ -1,0 +1,36 @@
+/**
+ * <p>Finds the index of the given object in the array starting at the given index.</p>
+ *
+ * <p>This method returns {@link #INDEX_NOT_FOUND} ({@code -1}) for a {@code null} input array.</p>
+ *
+ * <p>A negative startIndex is treated as zero. A startIndex larger than the array
+ * length will return {@link #INDEX_NOT_FOUND} ({@code -1}).</p>
+ *
+ * @param array  the array to search through for the object, may be {@code null}
+ * @param objectToFind  the object to find, may be {@code null}
+ * @param startIndex  the index to start searching at
+ * @return the index of the object within the array starting at the index,
+ *  {@link #INDEX_NOT_FOUND} ({@code -1}) if not found or {@code null} array input
+ */
+public static int indexOf(Object[] array, Object objectToFind, int startIndex) {
+    if (array == null) {
+        return INDEX_NOT_FOUND;
+    }
+    if (startIndex < 0) {
+        startIndex = 0;
+    }
+    if (objectToFind == null) {
+        for (int i = startIndex; i < array.length; i++) {
+            if (array[i] == null) {
+                return i;
+            }
+        }
+    } else if (array.getClass().getComponentType().isInstance(objectToFind)) {
+        for (int i = startIndex; i < array.length; i++) {
+            if (objectToFind.equals(array[i])) {
+                return i;
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

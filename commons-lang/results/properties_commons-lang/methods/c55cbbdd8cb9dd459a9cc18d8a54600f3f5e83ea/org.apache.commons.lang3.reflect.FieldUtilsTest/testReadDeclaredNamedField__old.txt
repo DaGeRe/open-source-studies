@@ -1,0 +1,66 @@
+public void testReadDeclaredNamedField() throws Exception {
+    try {
+        FieldUtils.readDeclaredField(publicChild, null);
+        fail("a null field name should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        FieldUtils.readDeclaredField((Object) null, "none");
+        fail("a null target should cause an IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // expected
+    }
+    try {
+        assertEquals("s", FieldUtils.readDeclaredField(publicChild, "s"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals("ss", FieldUtils.readDeclaredField(publiclyShadowedChild, "s"));
+    try {
+        assertEquals("s", FieldUtils.readDeclaredField(privatelyShadowedChild, "s"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(publicChild, "b"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(Boolean.TRUE, FieldUtils.readDeclaredField(publiclyShadowedChild, "b"));
+    try {
+        assertEquals(Boolean.FALSE, FieldUtils.readDeclaredField(privatelyShadowedChild, "b"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(I0, FieldUtils.readDeclaredField(publicChild, "i"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(I1, FieldUtils.readDeclaredField(publiclyShadowedChild, "i"));
+    try {
+        assertEquals(I0, FieldUtils.readDeclaredField(privatelyShadowedChild, "i"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    try {
+        assertEquals(D0, FieldUtils.readDeclaredField(publicChild, "d"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+    assertEquals(D1, FieldUtils.readDeclaredField(publiclyShadowedChild, "d"));
+    try {
+        assertEquals(D0, FieldUtils.readDeclaredField(privatelyShadowedChild, "d"));
+        fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // pass
+    }
+}

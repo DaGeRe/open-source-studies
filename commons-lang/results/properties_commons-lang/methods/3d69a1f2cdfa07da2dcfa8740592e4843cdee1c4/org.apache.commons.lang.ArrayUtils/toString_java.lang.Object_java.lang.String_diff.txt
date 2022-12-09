@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Outputs an array as a String handling &lt;code&gt;null&lt;/code&gt;s.&lt;/p&gt;             * &lt;p&gt;Outputs an array as a String handling &lt;code&gt;null&lt;/code&gt;s.&lt;/p&gt;          
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Multi-dimensional arrays are handled correctly, including                                   * &lt;p&gt;Multi-dimensional arrays are handled correctly, including                                
+* multi-dimensional primitive arrays.&lt;/p&gt;                                                        * multi-dimensional primitive arrays.&lt;/p&gt;                                                     
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The format is that of Java source code, for example &lt;code&gt;{a,b}&lt;/code&gt;.&lt;/p   * &lt;p&gt;The format is that of Java source code, for example &lt;code&gt;{a,b}&lt;/code&gt;.&lt;/p
+*                                                                                                      *                                                                                                   
+* @param array  the array to get a toString for, may be &lt;code&gt;null&lt;/code&gt;                  * @param array  the array to get a toString for, may be &lt;code&gt;null&lt;/code&gt;               
+* @param stringIfNull  the String to return if the array is &lt;code&gt;null&lt;/code&gt;              * @param stringIfNull  the String to return if the array is &lt;code&gt;null&lt;/code&gt;           
+* @return a String representation of the array                                                         * @return a String representation of the array                                                      
+*/                                                                                                     */                                                                                                  
+                                                                                                     | @SuppressWarnings("unchecked")                                                                      
+public static String toString(Object array, String stringIfNull) {                                     public static String toString(Object array, String stringIfNull) {                                  
+if (array == null) {                                                                                   if (array == null) {                                                                                
+return stringIfNull;                                                                                   return stringIfNull;                                                                                
+}                                                                                                      }                                                                                                   
+return new ToStringBuilder(array, ToStringStyle.SIMPLE_STYLE).append(array).toString();                return new ToStringBuilder(array, ToStringStyle.SIMPLE_STYLE).append(array).toString();             
+}                                                                                                      }                                                                                                   

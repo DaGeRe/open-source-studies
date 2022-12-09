@@ -1,0 +1,10 @@
+// Reflection cycle tests                                                                              // Reflection cycle tests                                                                           
+/**                                                                                                    /**                                                                                                 
+* Test an array element pointing to its container.                                                     * Test an array element pointing to its container.                                                  
+*/                                                                                                     */                                                                                                  
+public void testReflectionArrayCycle() throws Exception {                                              public void testReflectionArrayCycle() throws Exception {                                           
+Object[] objects = new Object[1];                                                                      Object[] objects = new Object[1];                                                                   
+objects[0] = objects;                                                                                  objects[0] = objects;                                                                               
+assertEquals(this.toBaseString(objects) + "[{" + this.toBaseString(objects) + "}]", ToStringBuilder.   assertEquals(this.toBaseString(objects) + "[{" + this.toBaseString(objects) + "}]", ToStringBuilder.
+this.validateEmptyToStringStyleRegistry();                                                           | this.validateNullToStringStyleRegistry();                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,12 @@
+public void testContains_StrMatcher() {
+    StrBuilder sb = new StrBuilder("abcdefghijklmnopqrstuvwxyz");
+    assertEquals(true, sb.contains(StrMatcher.charMatcher('a')));
+    assertEquals(true, sb.contains(StrMatcher.stringMatcher("pq")));
+    assertEquals(true, sb.contains(StrMatcher.charMatcher('z')));
+    assertEquals(false, sb.contains(StrMatcher.stringMatcher("zy")));
+    assertEquals(false, sb.contains((StrMatcher) null));
+    sb = new StrBuilder();
+    assertEquals(false, sb.contains(A_NUMBER_MATCHER));
+    sb.append("B A1 C");
+    assertEquals(true, sb.contains(A_NUMBER_MATCHER));
+}

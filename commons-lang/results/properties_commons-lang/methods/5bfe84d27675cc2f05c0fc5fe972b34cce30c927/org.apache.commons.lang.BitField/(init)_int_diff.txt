@@ -1,0 +1,19 @@
+/**
+ * <p>Creates a BitField instance.</p>
+ *
+ * @param mask the mask specifying which bits apply to this
+ *  BitField. Bits that are set in this mask are the bits
+ *  that this BitField operates on
+ */
+public BitField(int mask) {
+    _mask = mask;
+    int count = 0;
+    int bit_pattern = mask;
+    if (bit_pattern != 0) {
+        while ((bit_pattern & 1) == 0) {
+            count++;
+            bit_pattern >>= 1;
+        }
+    }
+    _shift_count = count;
+}

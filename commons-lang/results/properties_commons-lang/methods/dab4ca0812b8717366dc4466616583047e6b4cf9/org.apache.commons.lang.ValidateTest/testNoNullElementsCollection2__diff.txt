@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+public void testNoNullElementsCollection2() {                                                          public void testNoNullElementsCollection2() {                                                       
+List&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                               List&lt;String&gt; coll = new ArrayList&lt;String&gt;();                                            
+coll.add("a");                                                                                         coll.add("a");                                                                                      
+coll.add("b");                                                                                         coll.add("b");                                                                                      
+Validate.noNullElements(coll, "MSG");                                                                  Validate.noNullElements(coll, "MSG");                                                               
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements((Collection&lt;?&gt;) null, "MSG");                                            Validate.noNullElements((Collection&lt;?&gt;) null, "MSG");                                         
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("The validated object is null", ex.getMessage());                                         assertEquals("The validated object is null", ex.getMessage());                                      
+}                                                                                                      }                                                                                                   
+coll.set(1, null);                                                                                     coll.set(1, null);                                                                                  
+try {                                                                                                  try {                                                                                               
+Validate.noNullElements(coll, "MSG");                                                                  Validate.noNullElements(coll, "MSG");                                                               
+fail("Expecting IllegalArgumentException");                                                            fail("Expecting IllegalArgumentException");                                                         
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+assertEquals("MSG", ex.getMessage());                                                                  assertEquals("MSG", ex.getMessage());                                                               
+}                                                                                                      }                                                                                                   
+                                                                                                     | coll.set(1, "b");                                                                                   
+                                                                                                     | List&lt;String&gt; test = Validate.noNullElements(coll, "Message");                                 
+                                                                                                     | assertSame(coll, test);                                                                             
+}                                                                                                      }                                                                                                   

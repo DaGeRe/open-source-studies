@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------
+/**
+ * Creates a new instance of this Tokenizer. The new instance is reset so
+ * that it will be at the start of the token list.
+ * If a {@link CloneNotSupportedException} is caught, return <code>null</code>.
+ *
+ * @return a new instance of this Tokenizer which has been reset.
+ */
+public Object clone() {
+    try {
+        return cloneReset();
+    } catch (CloneNotSupportedException ex) {
+        return null;
+    }
+}

@@ -1,0 +1,32 @@
+// Constructor
+// -----------------------------------------------------------------------
+/**
+ * <p>Constructs a new FastDateFormat.</p>
+ *
+ * @param pattern  {@link java.text.SimpleDateFormat} compatible
+ *  pattern
+ * @param timeZone  time zone to use, <code>null</code> means use
+ *  default for <code>Date</code> and value within for
+ *  <code>Calendar</code>
+ * @param locale  locale, <code>null</code> means use system
+ *  default
+ * @throws IllegalArgumentException if pattern is invalid or
+ *  <code>null</code>
+ */
+protected FastDateFormat(String pattern, TimeZone timeZone, Locale locale) {
+    super();
+    if (pattern == null) {
+        throw new IllegalArgumentException("The pattern must not be null");
+    }
+    mPattern = pattern;
+    mTimeZoneForced = (timeZone != null);
+    if (timeZone == null) {
+        timeZone = TimeZone.getDefault();
+    }
+    mTimeZone = timeZone;
+    mLocaleForced = (locale != null);
+    if (locale == null) {
+        locale = Locale.getDefault();
+    }
+    mLocale = locale;
+}

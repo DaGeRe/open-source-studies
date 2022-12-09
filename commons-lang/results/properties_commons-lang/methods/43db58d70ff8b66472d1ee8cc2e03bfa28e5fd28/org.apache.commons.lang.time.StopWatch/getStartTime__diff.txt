@@ -1,0 +1,15 @@
+/**
+ * Returns the time this stopwatch was started.
+ *
+ * @return the time this stopwatch was started
+ * @throws IllegalStateException
+ *             if this StopWatch has not been started
+ * @since 2.4
+ */
+public long getStartTime() {
+    if (this.runningState == STATE_UNSTARTED) {
+        throw new IllegalStateException("Stopwatch has not been started");
+    }
+    // System.nanoTime is for elapsed time
+    return this.startTimeMillis;
+}

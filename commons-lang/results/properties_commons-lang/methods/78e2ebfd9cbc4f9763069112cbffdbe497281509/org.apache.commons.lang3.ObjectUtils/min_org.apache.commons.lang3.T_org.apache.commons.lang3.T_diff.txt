@@ -1,0 +1,26 @@
+// Min/Max                                                                                             // Min/Max                                                                                          
+// -----------------------------------------------------------------------                             // -----------------------------------------------------------------------                          
+/**                                                                                                    /**                                                                                                 
+* Null safe comparison of Comparables.                                                                 * Null safe comparison of Comparables.                                                              
+*                                                                                                      *                                                                                                   
+* @param c1  the first comparable, may be null                                                       | * @param values the set of comparable values, may be null                                           
+* @param c2  the second comparable, may be null                                                      |                                                                                                     
+* @return                                                                                              * @return                                                                                           
+*  &lt;ul&gt;                                                                                          *  &lt;ul&gt;                                                                                       
+*   &lt;li&gt;If both objects are non-null and unequal, the lesser object.                           | *   &lt;li&gt;If any objects are non-null and unequal, the lesser object.                           
+*   &lt;li&gt;If both objects are non-null and equal, c1.                                            | *   &lt;li&gt;If all objects are non-null and equal, the first.                                     
+*   &lt;li&gt;If one of the comparables is null, the non-null object.                                | *   &lt;li&gt;If any of the comparables are null, the lesser of the non-null object.                
+*   &lt;li&gt;If both the comparables are null, null is returned.                                    | *   &lt;li&gt;If all the comparables are null, null is returned.                                    
+*  &lt;/ul&gt;                                                                                         *  &lt;/ul&gt;                                                                                      
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends Comparable&lt;? super T&gt;&gt; T min(T c1, T c2) {                      | public static &lt;T extends Comparable&lt;? super T&gt;&gt; T min(T... values) {                    
+return compare(c1, c2, true) &lt;= 0 ? c1 : c2;                                                      | T result = null;                                                                                    
+                                                                                                     | if (values != null) {                                                                               
+                                                                                                     | for (T value : values) {                                                                            
+                                                                                                     | if (compare(value, result, true) &lt; 0) {                                                          
+                                                                                                     | result = value;                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return result;                                                                                      
+                                                                                                     | }                                                                                                   

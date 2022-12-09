@@ -1,0 +1,17 @@
+@Test
+public void testRemoveEnd() {
+    // StringUtils.removeEnd("", *)        = ""
+    assertNull(StringUtils.removeEnd(null, null));
+    assertNull(StringUtils.removeEnd(null, ""));
+    assertNull(StringUtils.removeEnd(null, "a"));
+    // StringUtils.removeEnd(*, null)      = *
+    assertEquals(StringUtils.removeEnd("", null), "");
+    assertEquals(StringUtils.removeEnd("", ""), "");
+    assertEquals(StringUtils.removeEnd("", "a"), "");
+    // All others:
+    assertEquals(StringUtils.removeEnd("www.domain.com.", ".com"), "www.domain.com.");
+    assertEquals(StringUtils.removeEnd("www.domain.com", ".com"), "www.domain");
+    assertEquals(StringUtils.removeEnd("www.domain", ".com"), "www.domain");
+    assertEquals(StringUtils.removeEnd("domain.com", ""), "domain.com");
+    assertEquals(StringUtils.removeEnd("domain.com", null), "domain.com");
+}

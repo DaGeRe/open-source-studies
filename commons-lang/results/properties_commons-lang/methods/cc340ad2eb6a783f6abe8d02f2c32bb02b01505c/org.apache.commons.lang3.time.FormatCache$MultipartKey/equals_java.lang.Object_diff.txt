@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean equals(Object obj) {                                                                    public boolean equals(Object obj) {                                                                 
+if (this == obj) {                                                                                   | // Eliminate the usual boilerplate because                                                          
+return true;                                                                                         | // this inner static class is only used in a generic ConcurrentHashMap                              
+}                                                                                                    | // which will not compare against other Object types                                                
+if (obj instanceof MultipartKey == false) {                                                          |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+return Arrays.equals(keys, ((MultipartKey) obj).keys);                                                 return Arrays.equals(keys, ((MultipartKey) obj).keys);                                              
+}                                                                                                      }                                                                                                   

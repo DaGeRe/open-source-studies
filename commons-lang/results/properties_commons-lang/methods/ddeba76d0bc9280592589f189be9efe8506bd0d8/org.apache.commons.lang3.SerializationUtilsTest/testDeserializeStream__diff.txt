@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------
+public void testDeserializeStream() throws Exception {
+    ByteArrayOutputStream streamReal = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(streamReal);
+    oos.writeObject(iMap);
+    oos.flush();
+    oos.close();
+    ByteArrayInputStream inTest = new ByteArrayInputStream(streamReal.toByteArray());
+    Object test = SerializationUtils.deserialize(inTest);
+    assertNotNull(test);
+    assertTrue(test instanceof HashMap<?, ?>);
+    assertTrue(test != iMap);
+    HashMap<?, ?> testMap = (HashMap<?, ?>) test;
+    assertEquals(iString, testMap.get("FOO"));
+    assertTrue(iString != testMap.get("FOO"));
+    assertEquals(iInteger, testMap.get("BAR"));
+    assertTrue(iInteger != testMap.get("BAR"));
+    assertEquals(iMap, testMap);
+}

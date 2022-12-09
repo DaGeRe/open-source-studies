@@ -1,0 +1,7 @@
+public void testSetCause() {
+    Exception cause = new ExceptionWithoutCause();
+    assertEquals(true, ExceptionUtils.setCause(new ExceptionWithCause(null), cause));
+    if (SystemUtils.isJavaVersionAtLeast(140)) {
+        assertEquals(true, ExceptionUtils.setCause(new ExceptionWithoutCause(), cause));
+    }
+}

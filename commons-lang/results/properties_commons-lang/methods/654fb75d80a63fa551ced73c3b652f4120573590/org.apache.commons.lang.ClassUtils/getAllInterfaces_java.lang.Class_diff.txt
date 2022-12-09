@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Gets a &lt;code&gt;List&lt;/code&gt; of all interfaces implemented by the given             * &lt;p&gt;Gets a &lt;code&gt;List&lt;/code&gt; of all interfaces implemented by the given          
+* class and its superclasses.&lt;/p&gt;                                                                * class and its superclasses.&lt;/p&gt;                                                             
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;The order is determined by looking through each interface in turn as                        * &lt;p&gt;The order is determined by looking through each interface in turn as                     
+* declared in the source file and following its hierarchy up. Then each                                * declared in the source file and following its hierarchy up. Then each                             
+* superclass is considered in the same way. Later duplicates are ignored,                              * superclass is considered in the same way. Later duplicates are ignored,                           
+* so the order is maintained.&lt;/p&gt;                                                                * so the order is maintained.&lt;/p&gt;                                                             
+*                                                                                                      *                                                                                                   
+* @param cls  the class to look up, may be &lt;code&gt;null&lt;/code&gt;                               * @param cls  the class to look up, may be &lt;code&gt;null&lt;/code&gt;                            
+* @return the &lt;code&gt;List&lt;/code&gt; of interfaces in order,                                    * @return the &lt;code&gt;List&lt;/code&gt; of interfaces in order,                                 
+*  &lt;code&gt;null&lt;/code&gt; if null input                                                         *  &lt;code&gt;null&lt;/code&gt; if null input                                                      
+*/                                                                                                     */                                                                                                  
+public static List getAllInterfaces(Class cls) {                                                     | public static List&lt;Class&lt;?&gt;&gt; getAllInterfaces(Class&lt;?&gt; cls) {                     
+if (cls == null) {                                                                                     if (cls == null) {                                                                                  
+return null;                                                                                           return null;                                                                                        
+}                                                                                                      }                                                                                                   
+List list = new ArrayList();                                                                         | List&lt;Class&lt;?&gt;&gt; list = new ArrayList&lt;Class&lt;?&gt;&gt;();                            
+while (cls != null) {                                                                                  while (cls != null) {                                                                               
+Class[] interfaces = cls.getInterfaces();                                                            | Class&lt;?&gt;[] interfaces = cls.getInterfaces();                                                  
+for (int i = 0; i &lt; interfaces.length; i++) {                                                       for (int i = 0; i &lt; interfaces.length; i++) {                                                    
+if (list.contains(interfaces[i]) == false) {                                                           if (list.contains(interfaces[i]) == false) {                                                        
+list.add(interfaces[i]);                                                                               list.add(interfaces[i]);                                                                            
+}                                                                                                      }                                                                                                   
+List superInterfaces = getAllInterfaces(interfaces[i]);                                              | List&lt;Class&lt;?&gt;&gt; superInterfaces = getAllInterfaces(interfaces[i]);                       
+for (Iterator it = superInterfaces.iterator(); it.hasNext(); ) {                                     | for (Iterator&lt;Class&lt;?&gt;&gt; it = superInterfaces.iterator(); it.hasNext(); ) {              
+Class intface = (Class) it.next();                                                                   | Class&lt;?&gt; intface = it.next();                                                                 
+if (list.contains(intface) == false) {                                                                 if (list.contains(intface) == false) {                                                              
+list.add(intface);                                                                                     list.add(intface);                                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+cls = cls.getSuperclass();                                                                             cls = cls.getSuperclass();                                                                          
+}                                                                                                      }                                                                                                   
+return list;                                                                                           return list;                                                                                        
+}                                                                                                      }                                                                                                   

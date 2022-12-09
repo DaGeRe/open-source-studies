@@ -1,0 +1,34 @@
+/**
+ * <p>Checks if the CharSequence contains only unicode letters or digits.</p>
+ *
+ * <p><code>null</code> will return <code>false</code>.
+ * An empty CharSequence (length()=0) will return <code>false</code>.</p>
+ *
+ * <pre>
+ * StringUtils.isAlphanumeric(null)   = false
+ * StringUtils.isAlphanumeric("")     = false
+ * StringUtils.isAlphanumeric("  ")   = false
+ * StringUtils.isAlphanumeric("abc")  = true
+ * StringUtils.isAlphanumeric("ab c") = false
+ * StringUtils.isAlphanumeric("ab2c") = true
+ * StringUtils.isAlphanumeric("ab-c") = false
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @return <code>true</code> if only contains letters or digits,
+ *  and is non-null
+ * @since 3.0 Changed signature from isAlphanumeric(String) to isAlphanumeric(CharSequence)
+ * @since 3.0 Changed "" to return false and not true
+ */
+public static boolean isAlphanumeric(CharSequence cs) {
+    if (cs == null || cs.length() == 0) {
+        return false;
+    }
+    int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if (Character.isLetterOrDigit(cs.charAt(i)) == false) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,0 +1,37 @@
+public void testJavaVersionAsInt() {
+    JAVA_VERSION = null;
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(0, getJavaVersionAsInt());
+    JAVA_VERSION = "1.1";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(110, getJavaVersionAsInt());
+    JAVA_VERSION = "1.2";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(120, getJavaVersionAsInt());
+    JAVA_VERSION = "1.3.0";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(130, getJavaVersionAsInt());
+    JAVA_VERSION = "1.3.1";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(131, getJavaVersionAsInt());
+    JAVA_VERSION = "1.4.0";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(140, getJavaVersionAsInt());
+    JAVA_VERSION = "1.4.1";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(141, getJavaVersionAsInt());
+    JAVA_VERSION = "1.5.0";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(150, getJavaVersionAsInt());
+    JAVA_VERSION = "1.6.0";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(160, getJavaVersionAsInt());
+    // HP-UX
+    JAVA_VERSION = "JavaVM-1.3.1";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(131, getJavaVersionAsInt());
+    // error
+    JAVA_VERSION = "XXX-1.3.x";
+    JAVA_VERSION_TRIMMED = getJavaVersionTrimmed();
+    assertEquals(0, getJavaVersionAsInt());
+}

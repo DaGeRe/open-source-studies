@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* &lt;p&gt;Checks if one &lt;code&gt;Class&lt;/code&gt; can be assigned to a variable of               * &lt;p&gt;Checks if one &lt;code&gt;Class&lt;/code&gt; can be assigned to a variable of            
+* another &lt;code&gt;Class&lt;/code&gt;.&lt;/p&gt;                                                    * another &lt;code&gt;Class&lt;/code&gt;.&lt;/p&gt;                                                 
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Unlike the {@link Class#isAssignableFrom(java.lang.Class)} method,                          * &lt;p&gt;Unlike the {@link Class#isAssignableFrom(java.lang.Class)} method,                       
+* this method takes into account widenings of primitive classes and                                    * this method takes into account widenings of primitive classes and                                 
+* &lt;code&gt;null&lt;/code&gt;s.&lt;/p&gt;                                                            * &lt;code&gt;null&lt;/code&gt;s.&lt;/p&gt;                                                         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Primitive widenings allow an int to be assigned to a long, float or                         * &lt;p&gt;Primitive widenings allow an int to be assigned to a long, float or                      
+* double. This method returns the correct result for these cases.&lt;/p&gt;                            * double. This method returns the correct result for these cases.&lt;/p&gt;                         
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;&lt;code&gt;Null&lt;/code&gt; may be assigned to any reference type. This method            * &lt;p&gt;&lt;code&gt;Null&lt;/code&gt; may be assigned to any reference type. This method         
+* will return &lt;code&gt;true&lt;/code&gt; if &lt;code&gt;null&lt;/code&gt; is passed in and the      * will return &lt;code&gt;true&lt;/code&gt; if &lt;code&gt;null&lt;/code&gt; is passed in and the   
+* toClass is non-primitive.&lt;/p&gt;                                                                  * toClass is non-primitive.&lt;/p&gt;                                                               
+*                                                                                                      *                                                                                                   
+* &lt;p&gt;Specifically, this method tests whether the type represented by the                         * &lt;p&gt;Specifically, this method tests whether the type represented by the                      
+* specified &lt;code&gt;Class&lt;/code&gt; parameter can be converted to the type                      * specified &lt;code&gt;Class&lt;/code&gt; parameter can be converted to the type                   
+* represented by this &lt;code&gt;Class&lt;/code&gt; object via an identity conversion                 * represented by this &lt;code&gt;Class&lt;/code&gt; object via an identity conversion              
+* widening primitive or widening reference conversion. See                                             * widening primitive or widening reference conversion. See                                          
+* &lt;em&gt;&lt;a href="http://java.sun.com/docs/books/jls/"&gt;The Java Language Specification&lt;/   * &lt;em&gt;&lt;a href="http://java.sun.com/docs/books/jls/"&gt;The Java Language Specification&lt;/
+* sections 5.1.1, 5.1.2 and 5.1.4 for details.&lt;/p&gt;                                               * sections 5.1.1, 5.1.2 and 5.1.4 for details.&lt;/p&gt;                                            
+*                                                                                                      *                                                                                                   
+* @param cls  the Class to check, may be null                                                          * @param cls  the Class to check, may be null                                                       
+* @param toClass  the Class to try to assign into, returns false if null                               * @param toClass  the Class to try to assign into, returns false if null                            
+* @return &lt;code&gt;true&lt;/code&gt; if assignment possible                                         * @return &lt;code&gt;true&lt;/code&gt; if assignment possible                                      
+*/                                                                                                     */                                                                                                  
+// TODO when we bump the major version we should default autoboxing to true on platforms &gt;= 1.5     // TODO when we bump the major version we should default autoboxing to true on platforms &gt;= 1.5  
+public static boolean isAssignable(Class cls, Class toClass) {                                       | public static boolean isAssignable(Class&lt;?&gt; cls, Class&lt;?&gt; toClass) {                    
+return isAssignable(cls, toClass, false);                                                              return isAssignable(cls, toClass, false);                                                           
+}                                                                                                      }                                                                                                   

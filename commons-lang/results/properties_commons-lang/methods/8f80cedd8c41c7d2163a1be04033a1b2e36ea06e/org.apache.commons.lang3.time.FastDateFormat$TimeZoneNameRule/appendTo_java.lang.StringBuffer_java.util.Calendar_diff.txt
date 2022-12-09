@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+public void appendTo(StringBuffer buffer, Calendar calendar) {
+    if (mTimeZoneForced) {
+        if (mTimeZone.useDaylightTime() && calendar.get(Calendar.DST_OFFSET) != 0) {
+            buffer.append(mDaylight);
+        } else {
+            buffer.append(mStandard);
+        }
+    } else {
+        TimeZone timeZone = calendar.getTimeZone();
+        if (timeZone.useDaylightTime() && calendar.get(Calendar.DST_OFFSET) != 0) {
+            buffer.append(getTimeZoneDisplay(timeZone, true, mStyle, mLocale));
+        } else {
+            buffer.append(getTimeZoneDisplay(timeZone, false, mStyle, mLocale));
+        }
+    }
+}

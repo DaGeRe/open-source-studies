@@ -1,0 +1,19 @@
+                                                                                                     | @Test                                                                                               
+public void testMaxDouble() {                                                                          public void testMaxDouble() {                                                                       
+final double[] d = null;                                                                               final double[] d = null;                                                                            
+try {                                                                                                  try {                                                                                               
+NumberUtils.max(d);                                                                                    NumberUtils.max(d);                                                                                 
+fail("No exception was thrown for null input.");                                                       fail("No exception was thrown for null input.");                                                    
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+try {                                                                                                  try {                                                                                               
+NumberUtils.max(new double[0]);                                                                        NumberUtils.max(new double[0]);                                                                     
+fail("No exception was thrown for empty input.");                                                      fail("No exception was thrown for empty input.");                                                   
+} catch (IllegalArgumentException ex) {                                                                } catch (IllegalArgumentException ex) {                                                             
+}                                                                                                      }                                                                                                   
+assertEquals("max(double[]) failed for array length 1", 5.1f, NumberUtils.max(new double[] { 5.1f })   assertEquals("max(double[]) failed for array length 1", 5.1f, NumberUtils.max(new double[] { 5.1f })
+assertEquals("max(double[]) failed for array length 2", 9.2f, NumberUtils.max(new double[] { 6.3f, 9   assertEquals("max(double[]) failed for array length 2", 9.2f, NumberUtils.max(new double[] { 6.3f, 9
+assertEquals("max(double[]) failed for float length 5", 10.4f, NumberUtils.max(new double[] { -10.5f   assertEquals("max(double[]) failed for float length 5", 10.4f, NumberUtils.max(new double[] { -10.5f
+assertEquals(10, NumberUtils.max(new double[] { -10, -5, 0, 5, 10 }), 0.0001);                         assertEquals(10, NumberUtils.max(new double[] { -10, -5, 0, 5, 10 }), 0.0001);                      
+assertEquals(10, NumberUtils.max(new double[] { -5, 0, 10, 5, -10 }), 0.0001);                         assertEquals(10, NumberUtils.max(new double[] { -5, 0, 10, 5, -10 }), 0.0001);                      
+}                                                                                                      }                                                                                                   

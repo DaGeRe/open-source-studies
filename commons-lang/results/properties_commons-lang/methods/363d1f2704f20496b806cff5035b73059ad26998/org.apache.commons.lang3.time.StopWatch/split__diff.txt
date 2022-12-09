@@ -1,0 +1,20 @@
+/**
+ * <p>
+ * Split the time.
+ * </p>
+ *
+ * <p>
+ * This method sets the stop time of the watch to allow a time to be extracted. The start time is unaffected,
+ * enabling {@link #unsplit()} to continue the timing from the original start point.
+ * </p>
+ *
+ * @throws IllegalStateException
+ *             if the StopWatch is not running.
+ */
+public void split() {
+    if (this.runningState != STATE_RUNNING) {
+        throw new IllegalStateException("Stopwatch is not running. ");
+    }
+    this.stopTime = System.nanoTime();
+    this.splitState = STATE_SPLIT;
+}

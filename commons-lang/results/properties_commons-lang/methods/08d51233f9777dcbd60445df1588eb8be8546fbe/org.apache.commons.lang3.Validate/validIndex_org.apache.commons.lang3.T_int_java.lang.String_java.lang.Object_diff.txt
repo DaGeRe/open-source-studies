@@ -1,0 +1,27 @@
+// validIndex collection
+// ---------------------------------------------------------------------------------
+/**
+ * <p>Validates that the index is within the bounds of the argument
+ * collection; otherwise throwing an exception with the specified message.</p>
+ *
+ * <pre>Validate.validIndex(myCollection, 2, "The collection index is invalid: ");</pre>
+ *
+ * <p>If the collection is <code>null</code>, then the message of the
+ * exception is &quot;The validated object is null&quot;.</p>
+ *
+ * @param <T> the collection type
+ * @param collection the collection to check
+ * @param index the index
+ * @param message the exception message if invalid
+ * @return the validated collection (never <code>null</code> for chaining)
+ * @throws NullPointerException if the collection is <code>null</code>
+ * @throws IndexOutOfBoundsException if the index is invalid
+ * @see #validIndex(Collection, int)
+ */
+public static <T extends Collection<?>> T validIndex(T collection, int index, String message, Object... values) {
+    Validate.notNull(collection);
+    if (index < 0 || index >= collection.size()) {
+        throw new IndexOutOfBoundsException(String.format(message, values));
+    }
+    return collection;
+}

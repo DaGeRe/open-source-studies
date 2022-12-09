@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------                           | @Test                                                                                               
+public void testIsAsciiPrintable_char() {                                                              public void testIsAsciiPrintable_char() {                                                           
+assertEquals(true, CharUtils.isAsciiPrintable('a'));                                                   assertEquals(true, CharUtils.isAsciiPrintable('a'));                                                
+assertEquals(true, CharUtils.isAsciiPrintable('A'));                                                   assertEquals(true, CharUtils.isAsciiPrintable('A'));                                                
+assertEquals(true, CharUtils.isAsciiPrintable('3'));                                                   assertEquals(true, CharUtils.isAsciiPrintable('3'));                                                
+assertEquals(true, CharUtils.isAsciiPrintable('-'));                                                   assertEquals(true, CharUtils.isAsciiPrintable('-'));                                                
+assertEquals(false, CharUtils.isAsciiPrintable('\n'));                                                 assertEquals(false, CharUtils.isAsciiPrintable('\n'));                                              
+assertEquals(false, CharUtils.isAscii(CHAR_COPY));                                                     assertEquals(false, CharUtils.isAscii(CHAR_COPY));                                                  
+for (int i = 0; i &lt; 196; i++) {                                                                     for (int i = 0; i &lt; 196; i++) {                                                                  
+if (i &gt;= 32 && i &lt;= 126) {                                                                       if (i &gt;= 32 && i &lt;= 126) {                                                                    
+assertEquals(true, CharUtils.isAsciiPrintable((char) i));                                              assertEquals(true, CharUtils.isAsciiPrintable((char) i));                                           
+} else {                                                                                               } else {                                                                                            
+assertEquals(false, CharUtils.isAsciiPrintable((char) i));                                             assertEquals(false, CharUtils.isAsciiPrintable((char) i));                                          
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

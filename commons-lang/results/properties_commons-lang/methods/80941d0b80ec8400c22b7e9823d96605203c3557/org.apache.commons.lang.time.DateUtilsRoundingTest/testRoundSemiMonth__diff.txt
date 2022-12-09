@@ -1,0 +1,57 @@
+/**
+ * Tests DateUtils.round()-method with DateUtils.SEMI_MONTH
+ * Includes rounding months with 28, 29, 30 and 31 days, each with first and second half
+ * Includes rounding to January 1
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testRoundSemiMonth() throws Exception {
+    final int calendarField = DateUtils.SEMI_MONTH;
+    Date roundedUpDate, roundedDownDate, lastRoundedDownDate;
+    Date minDate, maxDate;
+    // month with 28 days (1)
+    roundedUpDate = dateTimeParser.parse("February 16, 2007 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 1, 2007 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 8, 2007 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 28 days (2)
+    roundedUpDate = dateTimeParser.parse("March 1, 2007 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 16, 2007 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 23, 2007 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 29 days (1)
+    roundedUpDate = dateTimeParser.parse("February 16, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 8, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 29 days (2)
+    roundedUpDate = dateTimeParser.parse("March 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("February 16, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("February 23, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 30 days (1)
+    roundedUpDate = dateTimeParser.parse("April 16, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("April 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("April 8, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 30 days (2)
+    roundedUpDate = dateTimeParser.parse("May 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("April 16, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("April 23, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 31 days (1)
+    roundedUpDate = dateTimeParser.parse("May 16, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("May 1, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("May 8, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // month with 31 days (2)
+    roundedUpDate = dateTimeParser.parse("June 1, 2008 0:00:00.000");
+    roundedDownDate = dateTimeParser.parse("May 16, 2008 0:00:00.000");
+    lastRoundedDownDate = dateTimeParser.parse("May 23, 2008 23:59:59.999");
+    baseRoundTest(roundedUpDate, roundedDownDate, lastRoundedDownDate, calendarField);
+    // round to January 1
+    minDate = dateTimeParser.parse("December 24, 2007 00:00:00.000");
+    maxDate = dateTimeParser.parse("January 8, 2008 23:59:59.999");
+    roundToJanuaryFirst(minDate, maxDate, calendarField);
+}

@@ -1,0 +1,7 @@
+@Test
+public void testXor_object_validInput_2items() {
+    assertTrue("True result for (true, true)", !BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE }).booleanValue());
+    assertTrue("True result for (false, false)", !BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }).booleanValue());
+    assertTrue("False result for (true, false)", BooleanUtils.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE }).booleanValue());
+    assertTrue("False result for (false, true)", BooleanUtils.xor(new Boolean[] { Boolean.FALSE, Boolean.TRUE }).booleanValue());
+}

@@ -1,0 +1,15 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Compares this mutable to another in ascending order.                                              
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param obj                                                                                        
+                                                                                                     | *            the mutable to compare to                                                              
+                                                                                                     | * @return zero if this object represents the same boolean value as the argument; a positive value if
+                                                                                                     | *         represents true and the argument represents false; and a negative value if this object rep
+                                                                                                     | *         and the argument represents true                                                          
+                                                                                                     | * @throws ClassCastException                                                                        
+                                                                                                     | *             if the argument is not a MutableInt                                                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | public int compareTo(MutableBoolean other) {                                                        
+                                                                                                     | boolean anotherVal = other.value;                                                                   
+                                                                                                     | return value == anotherVal ? 0 : (value ? 1 : -1);                                                  
+                                                                                                     | }                                                                                                   

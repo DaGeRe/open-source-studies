@@ -1,0 +1,38 @@
+/**
+ * <p>Introspects the <code>Throwable</code> to obtain the cause.</p>
+ *
+ * <ol>
+ * <li>Try known exception types.</li>
+ * <li>Try the supplied array of method names.</li>
+ * <li>Try the field 'detail'.</li>
+ * </ol>
+ *
+ * <p>A <code>null</code> set of method names means use the default set.
+ * A <code>null</code> in the set of method names will be ignored.</p>
+ *
+ * @param throwable  the throwable to introspect for a cause, may be null
+ * @param methodNames  the method names, null treated as default set
+ * @return the cause of the <code>Throwable</code>,
+ *  <code>null</code> if none found or null throwable input
+ * @since 1.0
+ * @deprecated This feature will be removed in Lang 4.0
+ */
+@Deprecated
+public static Throwable getCause(Throwable throwable, String[] methodNames) {
+    if (throwable == null) {
+        return null;
+    }
+    if (methodNames == null) {
+        methodNames = CAUSE_METHOD_NAMES;
+    }
+    for (int i = 0; i < methodNames.length; i++) {
+        String methodName = methodNames[i];
+        if (methodName != null) {
+            Throwable cause = getCauseUsingMethodName(throwable, methodName);
+            if (cause != null) {
+                return cause;
+            }
+        }
+    }
+    return null;
+}

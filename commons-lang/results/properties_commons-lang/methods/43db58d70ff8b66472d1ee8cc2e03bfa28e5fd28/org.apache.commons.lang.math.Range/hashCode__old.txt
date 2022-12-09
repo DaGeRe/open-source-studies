@@ -1,0 +1,16 @@
+/**
+ * <p>Gets a hashCode for the range.</p>
+ *
+ * <p>This implementation uses the {@link #getMinimumNumber()} and
+ * {@link #getMaximumNumber()} methods.
+ * Subclasses may be able to optimise this.</p>
+ *
+ * @return a hash code value for this object
+ */
+public int hashCode() {
+    int result = 17;
+    result = 37 * result + getClass().hashCode();
+    result = 37 * result + getMinimumNumber().hashCode();
+    result = 37 * result + getMaximumNumber().hashCode();
+    return result;
+}

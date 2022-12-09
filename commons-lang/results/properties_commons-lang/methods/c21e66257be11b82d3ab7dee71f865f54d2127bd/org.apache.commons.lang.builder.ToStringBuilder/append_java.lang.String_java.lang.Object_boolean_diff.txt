@@ -1,0 +1,14 @@
+/**
+ * <p>Append to the <code>toString</code> an <code>Object</code>
+ * value.</p>
+ *
+ * @param fieldName  the field name
+ * @param obj  the value to add to the <code>toString</code>
+ * @param fullDetail  <code>true</code> for detail,
+ *  <code>false</code> for summary info
+ * @return this
+ */
+public ToStringBuilder<T> append(String fieldName, Object obj, boolean fullDetail) {
+    style.append(buffer, fieldName, obj, Boolean.valueOf(fullDetail));
+    return this;
+}

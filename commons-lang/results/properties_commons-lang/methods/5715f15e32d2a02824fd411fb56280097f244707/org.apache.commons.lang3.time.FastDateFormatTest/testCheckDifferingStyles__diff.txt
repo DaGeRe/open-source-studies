@@ -1,0 +1,13 @@
+@Test
+public void testCheckDifferingStyles() {
+    FastDateFormat shortShort = FastDateFormat.getDateTimeInstance(FastDateFormat.SHORT, FastDateFormat.SHORT, Locale.US);
+    FastDateFormat shortLong = FastDateFormat.getDateTimeInstance(FastDateFormat.SHORT, FastDateFormat.LONG, Locale.US);
+    FastDateFormat longShort = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.SHORT, Locale.US);
+    FastDateFormat longLong = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.LONG, Locale.US);
+    assertFalse(shortShort.equals(shortLong));
+    assertFalse(shortShort.equals(longShort));
+    assertFalse(shortShort.equals(longLong));
+    assertFalse(shortLong.equals(longShort));
+    assertFalse(shortLong.equals(longLong));
+    assertFalse(longShort.equals(longLong));
+}

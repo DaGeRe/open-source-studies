@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Tests constant future.                                                                               * Tests constant future.                                                                            
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testConstantFuture_null() throws Exception {                                               public void testConstantFuture_null() throws Exception {                                            
+Integer value = null;                                                                                  Integer value = null;                                                                               
+Future&lt;Integer&gt; test = ConcurrentUtils.constantFuture(value);                                    Future&lt;Integer&gt; test = ConcurrentUtils.constantFuture(value);                                 
+assertEquals(true, test.isDone());                                                                   | assertTrue(test.isDone());                                                                          
+assertSame(value, test.get());                                                                         assertSame(value, test.get());                                                                      
+assertSame(value, test.get(1000, TimeUnit.SECONDS));                                                   assertSame(value, test.get(1000, TimeUnit.SECONDS));                                                
+assertSame(value, test.get(1000, null));                                                               assertSame(value, test.get(1000, null));                                                            
+assertEquals(false, test.isCancelled());                                                             | assertFalse(test.isCancelled());                                                                    
+assertEquals(false, test.cancel(true));                                                              | assertFalse(test.cancel(true));                                                                     
+assertEquals(false, test.cancel(false));                                                             | assertFalse(test.cancel(false));                                                                    
+}                                                                                                      }                                                                                                   

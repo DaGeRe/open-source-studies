@@ -1,0 +1,37 @@
+/**
+ * When using this basetest all extremes are tested.<br>
+ * It will test the Date, Calendar and Object-implementation<br>
+ * lastTruncateDate should round down to truncatedDate<br>
+ * lastTruncateDate + 1 millisecond should never round down to truncatedDate
+ *
+ * @param truncatedDate expected Date when <strong>lastTruncateDate</strong> is truncated with <strong>calendarField</strong>
+ * @param lastTruncateDate the last possible Date which will truncate to <strong>truncatedDate</strong> with <strong>calendarField</strong>
+ * @param calendarField a Calendar.field value
+ * @since 3.0
+ */
+protected void baseTruncateTest(final Date truncatedDate, final Date lastTruncateDate, final int calendarField) {
+    Date nextTruncateDate = DateUtils.addMilliseconds(lastTruncateDate, 1);
+    // Date-comparison
+    assertEquals("Truncating " + fdf.format(truncatedDate) + " as Date with CalendarField-value " + calendarField + " must return itself", truncatedDate, DateUtils.truncate(truncatedDate, calendarField));
+    assertEquals(truncatedDate, DateUtils.truncate(lastTruncateDate, calendarField));
+    assertFalse(fdf.format(lastTruncateDate) + " is not an extreme when truncating as Date with CalendarField-value " + calendarField, truncatedDate.equals(DateUtils.truncate(nextTruncateDate, calendarField)));
+    // Calendar-initiations
+    Calendar truncatedCalendar, lastTruncateCalendar, nextTruncateCalendar;
+    truncatedCalendar = Calendar.getInstance();
+    lastTruncateCalendar = Calendar.getInstance();
+    nextTruncateCalendar = Calendar.getInstance();
+    truncatedCalendar.setTime(truncatedDate);
+    lastTruncateCalendar.setTime(lastTruncateDate);
+    nextTruncateCalendar.setTime(nextTruncateDate);
+    // Calendar-comparison
+    assertEquals("Truncating " + fdf.format(truncatedCalendar) + " as Calendar with CalendarField-value " + calendarField + " must return itself", truncatedCalendar, DateUtils.truncate(truncatedCalendar, calendarField));
+    assertEquals(truncatedCalendar, DateUtils.truncate(lastTruncateCalendar, calendarField));
+    assertFalse(fdf.format(lastTruncateCalendar) + " is not an extreme when truncating as Calendar with CalendarField-value " + calendarField, truncatedCalendar.equals(DateUtils.truncate(nextTruncateCalendar, calendarField)));
+    // Object-comparison
+    assertEquals("Truncating " + fdf.format(truncatedDate) + " as Date cast to Object with CalendarField-value " + calendarField + " must return itself as Date", truncatedDate, DateUtils.truncate((Object) truncatedDate, calendarField));
+    assertEquals(truncatedDate, DateUtils.truncate((Object) lastTruncateDate, calendarField));
+    assertFalse(fdf.format(lastTruncateDate) + " is not an extreme when truncating as Date cast to Object with CalendarField-value " + calendarField, truncatedDate.equals(DateUtils.truncate((Object) nextTruncateDate, calendarField)));
+    assertEquals("Truncating " + fdf.format(truncatedCalendar) + " as Calendar cast to Object with CalendarField-value " + calendarField + " must return itself as Date", truncatedDate, DateUtils.truncate((Object) truncatedCalendar, calendarField));
+    assertEquals(truncatedDate, DateUtils.truncate((Object) lastTruncateCalendar, calendarField));
+    assertFalse(fdf.format(lastTruncateCalendar) + " is not an extreme when truncating as Calendar cast to Object with CalendarField-value " + calendarField, truncatedDate.equals(DateUtils.truncate((Object) nextTruncateCalendar, calendarField)));
+}

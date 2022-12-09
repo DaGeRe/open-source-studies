@@ -1,0 +1,25 @@
+public void testAbs() {
+    Fraction f = null;
+    f = Fraction.getFraction(50, 75);
+    f = f.abs();
+    assertEquals(50, f.getNumerator());
+    assertEquals(75, f.getDenominator());
+    f = Fraction.getFraction(-50, 75);
+    f = f.abs();
+    assertEquals(50, f.getNumerator());
+    assertEquals(75, f.getDenominator());
+    f = Fraction.getFraction(Integer.MAX_VALUE, 1);
+    f = f.abs();
+    assertEquals(Integer.MAX_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction(Integer.MAX_VALUE, -1);
+    f = f.abs();
+    assertEquals(Integer.MAX_VALUE, f.getNumerator());
+    assertEquals(1, f.getDenominator());
+    f = Fraction.getFraction(Integer.MIN_VALUE, 1);
+    try {
+        f = f.abs();
+        fail("expecting ArithmeticException");
+    } catch (ArithmeticException ex) {
+    }
+}

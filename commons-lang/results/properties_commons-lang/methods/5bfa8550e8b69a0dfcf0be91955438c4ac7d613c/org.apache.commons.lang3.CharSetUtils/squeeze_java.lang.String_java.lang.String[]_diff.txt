@@ -1,0 +1,36 @@
+/**
+ * <p>Squeezes any repetitions of a character that is mentioned in the
+ * supplied set.</p>
+ *
+ * <p>An example is:</p>
+ * <ul>
+ *   <li>squeeze(&quot;hello&quot;, {&quot;el&quot;}) => &quot;helo&quot;</li>
+ * </ul>
+ *
+ * @see CharSet#getInstance(java.lang.String) for set-syntax.
+ * @param str  the string to squeeze, may be null
+ * @param set  the character set to use for manipulation, may be null
+ * @return modified String, <code>null</code> if null string input
+ */
+public static String squeeze(String str, String[] set) {
+    if (StringUtils.isEmpty(str) || ArrayUtils.isEmpty(set)) {
+        return str;
+    }
+    CharSet chars = CharSet.getInstance(set);
+    StringBuilder buffer = new StringBuilder(str.length());
+    char[] chrs = str.toCharArray();
+    int sz = chrs.length;
+    char lastChar = ' ';
+    char ch = ' ';
+    for (int i = 0; i < sz; i++) {
+        ch = chrs[i];
+        if (chars.contains(ch)) {
+            if ((ch == lastChar) && (i != 0)) {
+                continue;
+            }
+        }
+        buffer.append(ch);
+        lastChar = ch;
+    }
+    return buffer.toString();
+}

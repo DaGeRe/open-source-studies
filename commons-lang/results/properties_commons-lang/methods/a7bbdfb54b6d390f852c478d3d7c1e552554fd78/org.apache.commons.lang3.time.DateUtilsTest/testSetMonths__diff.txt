@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------
+public void testSetMonths() throws Exception {
+    Date base = new Date(MILLIS_TEST);
+    Date result = DateUtils.setMonths(base, 5);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 5, 5, 4, 3, 2, 1);
+    result = DateUtils.setMonths(base, 1);
+    assertNotSame(base, result);
+    assertDate(base, 2000, 6, 5, 4, 3, 2, 1);
+    assertDate(result, 2000, 1, 5, 4, 3, 2, 1);
+    try {
+        result = DateUtils.setMonths(base, 12);
+        fail("DateUtils.setMonths did not throw an expected IllegalArguementException.");
+    } catch (IllegalArgumentException e) {
+    }
+}

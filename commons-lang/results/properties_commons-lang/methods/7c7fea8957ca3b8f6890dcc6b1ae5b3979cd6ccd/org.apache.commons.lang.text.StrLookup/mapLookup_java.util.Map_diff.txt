@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Returns a lookup which looks up values using a map.                                                  * Returns a lookup which looks up values using a map.                                               
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* If the map is null, then null will be returned from every lookup.                                    * If the map is null, then null will be returned from every lookup.                                 
+* The map result object is converted to a string using toString().                                     * The map result object is converted to a string using toString().                                  
+*                                                                                                      *                                                                                                   
+* @param map  the map of keys to values, may be null                                                   * @param map  the map of keys to values, may be null                                                
+* @return a lookup using the map, not null                                                             * @return a lookup using the map, not null                                                          
+*/                                                                                                     */                                                                                                  
+public static StrLookup mapLookup(Map map) {                                                         | public static &lt;V&gt; StrLookup mapLookup(Map&lt;String, V&gt; map) {                             
+return new MapStrLookup(map);                                                                        | return new MapStrLookup&lt;V&gt;(map);                                                              
+}                                                                                                      }                                                                                                   

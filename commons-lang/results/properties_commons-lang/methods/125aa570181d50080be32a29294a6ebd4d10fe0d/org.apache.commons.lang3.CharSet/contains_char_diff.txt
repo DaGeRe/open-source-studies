@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------
+/**
+ * <p>Does the {@code CharSet} contain the specified
+ * character {@code ch}.</p>
+ *
+ * @param ch  the character to check for
+ * @return {@code true} if the set contains the characters
+ */
+public boolean contains(char ch) {
+    for (CharRange range : set) {
+        if (range.contains(ch)) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,11 @@
+/**
+ * Initializes the availableLocaleList. It is separate from availableLocaleList()
+ * to avoid the synchronized block affecting normal use, yet synchronized and
+ * lazy loading to avoid a static block affecting other methods in this class.
+ */
+private static synchronized void initAvailableLocaleList() {
+    if (cAvailableLocaleList == null) {
+        List<Locale> list = Arrays.asList(Locale.getAvailableLocales());
+        cAvailableLocaleList = Collections.unmodifiableList(list);
+    }
+}

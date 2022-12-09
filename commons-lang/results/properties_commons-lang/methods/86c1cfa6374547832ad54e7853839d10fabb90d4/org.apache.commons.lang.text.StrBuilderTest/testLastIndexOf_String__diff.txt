@@ -1,0 +1,15 @@
+public void testLastIndexOf_String() {
+    StrBuilder sb = new StrBuilder("abab");
+    assertEquals(2, sb.lastIndexOf("a"));
+    // should work like String#lastIndexOf
+    assertEquals("abab".lastIndexOf("a"), sb.lastIndexOf("a"));
+    assertEquals(2, sb.lastIndexOf("ab"));
+    // should work like String#lastIndexOf
+    assertEquals("abab".lastIndexOf("ab"), sb.lastIndexOf("ab"));
+    assertEquals(3, sb.lastIndexOf("b"));
+    assertEquals("abab".lastIndexOf("b"), sb.lastIndexOf("b"));
+    assertEquals(1, sb.lastIndexOf("ba"));
+    assertEquals("abab".lastIndexOf("ba"), sb.lastIndexOf("ba"));
+    assertEquals(-1, sb.lastIndexOf("z"));
+    assertEquals(-1, sb.lastIndexOf((String) null));
+}

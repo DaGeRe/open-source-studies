@@ -1,0 +1,39 @@
+/**
+ * <p>Appends to the <code>builder</code> the deep comparison of
+ * two <code>float</code> arrays.</p>
+ *
+ * <ol>
+ *  <li>Check if arrays are the same using <code>==</code></li>
+ *  <li>Check if for <code>null</code>, <code>null</code> is less than non-<code>null</code></li>
+ *  <li>Check array length, a shorter length array is less than a longer length array</li>
+ *  <li>Check array contents element by element using {@link #append(float, float)}</li>
+ * </ol>
+ *
+ * @param lhs  left-hand array
+ * @param rhs  right-hand array
+ * @return this - used to chain append calls
+ */
+public CompareToBuilder append(float[] lhs, float[] rhs) {
+    if (comparison != 0) {
+        return this;
+    }
+    if (lhs == rhs) {
+        return this;
+    }
+    if (lhs == null) {
+        comparison = -1;
+        return this;
+    }
+    if (rhs == null) {
+        comparison = +1;
+        return this;
+    }
+    if (lhs.length != rhs.length) {
+        comparison = (lhs.length < rhs.length) ? -1 : +1;
+        return this;
+    }
+    for (int i = 0; i < lhs.length && comparison == 0; i++) {
+        append(lhs[i], rhs[i]);
+    }
+    return this;
+}

@@ -1,0 +1,28 @@
+/**
+ * Generate 1000 values for nextLong and check that
+ * p(value < long.MAXVALUE/2) ~ 0.5. Use chi-square test
+ * with df = 2-1 = 1
+ * @param rnd Random to use if not null
+ */
+private void tstNextLong(Random rnd) {
+    int[] expected = new int[] { 500, 500 };
+    int[] observed = new int[] { 0, 0 };
+    long result = 0;
+    long midPoint = Long.MAX_VALUE / 2;
+    for (int i = 0; i < 1000; i++) {
+        if (rnd == null) {
+            result = Math.abs(RandomUtils.nextLong());
+        } else {
+            result = Math.abs(RandomUtils.nextLong(rnd));
+        }
+        if (result < midPoint) {
+            observed[0]++;
+        } else {
+            observed[1]++;
+        }
+    }
+    /* Use ChiSquare dist with df = 2-1 = 1, alpha = .001
+         * Change to 6.64 for alpha = .01  
+         */
+    assertTrue("chi-square test -- will fail about 1 in 1000 times", chiSquare(expected, observed) < 10.83);
+}

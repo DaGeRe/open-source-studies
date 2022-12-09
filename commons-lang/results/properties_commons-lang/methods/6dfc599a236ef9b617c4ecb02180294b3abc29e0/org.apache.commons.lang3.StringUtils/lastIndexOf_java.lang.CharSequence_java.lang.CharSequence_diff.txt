@@ -1,0 +1,28 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * &lt;p&gt;Finds the last index within a CharSequence, handling {@code null}.                       
+                                                                                                     | * This method uses {@link String#lastIndexOf(String)} if possible.&lt;/p&gt;                        
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;p&gt;A {@code null} CharSequence will return {@code -1}.&lt;/p&gt;                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * &lt;pre&gt;                                                                                       
+                                                                                                     | * StringUtils.lastIndexOf(null, *)          = -1                                                    
+                                                                                                     | * StringUtils.lastIndexOf(*, null)          = -1                                                    
+                                                                                                     | * StringUtils.lastIndexOf("", "")           = 0                                                     
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", "a")  = 7                                                     
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", "b")  = 5                                                     
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", "ab") = 4                                                     
+                                                                                                     | * StringUtils.lastIndexOf("aabaabaa", "")   = 8                                                     
+                                                                                                     | * &lt;/pre&gt;                                                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param seq  the CharSequence to check, may be null                                                
+                                                                                                     | * @param searchSeq  the CharSequence to find, may be null                                           
+                                                                                                     | * @return the last index of the search String,                                                      
+                                                                                                     | *  -1 if no match or {@code null} string input                                                      
+                                                                                                     | * @since 2.0                                                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static int lastIndexOf(CharSequence seq, CharSequence searchSeq) {                           
+                                                                                                     | if (seq == null || searchSeq == null) {                                                             
+                                                                                                     | return INDEX_NOT_FOUND;                                                                             
+                                                                                                     | }                                                                                                   
+                                                                                                     | return StringUtils.lastIndexOfSequence(seq, searchSeq, seq.length());                               
+                                                                                                     | }                                                                                                   

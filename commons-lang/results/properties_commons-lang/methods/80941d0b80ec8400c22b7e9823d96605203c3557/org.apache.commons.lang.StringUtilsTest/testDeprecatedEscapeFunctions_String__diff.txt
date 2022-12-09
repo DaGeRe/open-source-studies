@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------
+public void testDeprecatedEscapeFunctions_String() {
+    assertEquals("", StringUtils.escape(""));
+    assertEquals("abc", StringUtils.escape("abc"));
+    assertEquals("\\t", StringUtils.escape("\t"));
+    assertEquals("\\\\", StringUtils.escape("\\"));
+    assertEquals("\\\\\\b\\t\\r", StringUtils.escape("\\\b\t\r"));
+    assertEquals("\\u1234", StringUtils.escape("\u1234"));
+    assertEquals("\\u0234", StringUtils.escape("\u0234"));
+    assertEquals("\\u00FD", StringUtils.escape("\u00fd"));
+}

@@ -1,0 +1,6 @@
+public void testBelow() throws IOException {
+    UnicodeEscaper nee = UnicodeEscaper.below('F');
+    String input = "ADFGZ";
+    String result = nee.translate(input);
+    assertEquals("Failed to escape unicode characters via the below method", "\\u0041\\u0044FGZ", result);
+}

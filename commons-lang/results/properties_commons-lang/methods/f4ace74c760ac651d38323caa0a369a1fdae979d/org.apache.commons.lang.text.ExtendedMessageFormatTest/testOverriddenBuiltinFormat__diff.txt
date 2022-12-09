@@ -1,0 +1,22 @@
+public void testOverriddenBuiltinFormat() {                                                            public void testOverriddenBuiltinFormat() {                                                         
+Calendar cal = Calendar.getInstance();                                                                 Calendar cal = Calendar.getInstance();                                                              
+cal.set(2007, Calendar.JANUARY, 23);                                                                   cal.set(2007, Calendar.JANUARY, 23);                                                                
+Object[] args = new Object[] { cal.getTime() };                                                        Object[] args = new Object[] { cal.getTime() };                                                     
+Locale[] availableLocales = DateFormat.getAvailableLocales();                                          Locale[] availableLocales = DateFormat.getAvailableLocales();                                       
+Map registry = Collections.singletonMap("date", new OverrideShortDateFormatFactory());               | Map&lt;String, ? extends FormatFactory&gt; registry = Collections.singletonMap("date", new OverrideS
+// check the non-overridden builtins:                                                                  // check the non-overridden builtins:                                                               
+checkBuiltInFormat("1: {0,date}", registry, args, availableLocales);                                   checkBuiltInFormat("1: {0,date}", registry, args, availableLocales);                                
+checkBuiltInFormat("2: {0,date,medium}", registry, args, availableLocales);                            checkBuiltInFormat("2: {0,date,medium}", registry, args, availableLocales);                         
+checkBuiltInFormat("3: {0,date,long}", registry, args, availableLocales);                              checkBuiltInFormat("3: {0,date,long}", registry, args, availableLocales);                           
+checkBuiltInFormat("4: {0,date,full}", registry, args, availableLocales);                              checkBuiltInFormat("4: {0,date,full}", registry, args, availableLocales);                           
+checkBuiltInFormat("5: {0,date,d MMM yy}", registry, args, availableLocales);                          checkBuiltInFormat("5: {0,date,d MMM yy}", registry, args, availableLocales);                       
+// check the overridden format:                                                                        // check the overridden format:                                                                     
+for (int i = -1; i &lt; availableLocales.length; i++) {                                                for (int i = -1; i &lt; availableLocales.length; i++) {                                             
+Locale locale = i &lt; 0 ? null : availableLocales[i];                                                 Locale locale = i &lt; 0 ? null : availableLocales[i];                                              
+MessageFormat dateDefault = createMessageFormat("{0,date}", locale);                                   MessageFormat dateDefault = createMessageFormat("{0,date}", locale);                                
+String pattern = "{0,date,short}";                                                                     String pattern = "{0,date,short}";                                                                  
+ExtendedMessageFormat dateShort = new ExtendedMessageFormat(pattern, locale, registry);                ExtendedMessageFormat dateShort = new ExtendedMessageFormat(pattern, locale, registry);             
+assertEquals("overridden date,short format", dateDefault.format(args), dateShort.format(args));        assertEquals("overridden date,short format", dateDefault.format(args), dateShort.format(args));     
+assertEquals("overridden date,short pattern", pattern, dateShort.toPattern());                         assertEquals("overridden date,short pattern", pattern, dateShort.toPattern());                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

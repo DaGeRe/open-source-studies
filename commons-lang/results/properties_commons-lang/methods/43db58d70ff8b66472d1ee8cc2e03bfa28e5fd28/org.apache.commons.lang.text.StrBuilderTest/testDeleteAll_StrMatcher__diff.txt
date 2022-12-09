@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------
+public void testDeleteAll_StrMatcher() {
+    StrBuilder sb = new StrBuilder("A0xA1A2yA3");
+    sb.deleteAll((StrMatcher) null);
+    assertEquals("A0xA1A2yA3", sb.toString());
+    sb.deleteAll(A_NUMBER_MATCHER);
+    assertEquals("xy", sb.toString());
+    sb = new StrBuilder("Ax1");
+    sb.deleteAll(A_NUMBER_MATCHER);
+    assertEquals("Ax1", sb.toString());
+    sb = new StrBuilder("");
+    sb.deleteAll(A_NUMBER_MATCHER);
+    assertEquals("", sb.toString());
+}

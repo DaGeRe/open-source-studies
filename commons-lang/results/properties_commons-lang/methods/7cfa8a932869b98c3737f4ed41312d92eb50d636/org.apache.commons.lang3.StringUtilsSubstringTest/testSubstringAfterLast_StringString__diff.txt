@@ -1,0 +1,17 @@
+public void testSubstringAfterLast_StringString() {
+    assertEquals("baz", StringUtils.substringAfterLast("fooXXbarXXbaz", "XX"));
+    assertEquals(null, StringUtils.substringAfterLast(null, null));
+    assertEquals(null, StringUtils.substringAfterLast(null, ""));
+    assertEquals(null, StringUtils.substringAfterLast(null, "XX"));
+    assertEquals("", StringUtils.substringAfterLast("", null));
+    assertEquals("", StringUtils.substringAfterLast("", ""));
+    assertEquals("", StringUtils.substringAfterLast("", "a"));
+    assertEquals("", StringUtils.substringAfterLast("foo", null));
+    assertEquals("", StringUtils.substringAfterLast("foo", "b"));
+    assertEquals("t", StringUtils.substringAfterLast("foot", "o"));
+    assertEquals("bc", StringUtils.substringAfterLast("abc", "a"));
+    assertEquals("a", StringUtils.substringAfterLast("abcba", "b"));
+    assertEquals("", StringUtils.substringAfterLast("abc", "c"));
+    assertEquals("", StringUtils.substringAfterLast("", "d"));
+    assertEquals("", StringUtils.substringAfterLast("abc", ""));
+}

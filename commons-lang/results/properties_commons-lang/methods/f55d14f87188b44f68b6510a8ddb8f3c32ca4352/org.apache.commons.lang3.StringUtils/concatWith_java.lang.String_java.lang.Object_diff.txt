@@ -1,0 +1,21 @@
+/**
+ * <p>Joins the provided elements into a single String, with the specified
+ * separator between each element. </p>
+ *
+ * <p>No separator is added before or after the joined String.
+ * Null objects or empty string elements are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.concatWith(".", "a", "b", "c") = "a.b.c"
+ * StringUtils.concatWith("", null, "", "a") = "a"
+ * </pre>
+ *
+ * @param separator the value to put between elements
+ * @param elements  the values to join together
+ * @return the concatenated String
+ * @since 3.0
+ */
+public static String concatWith(String separator, Object... elements) {
+    return join(elements, separator);
+}

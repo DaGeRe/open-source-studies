@@ -1,0 +1,8 @@
+public void testBasic3() {
+    String input = "a \nb\u0001\fc";
+    StrTokenizer tok = new StrTokenizer(input);
+    assertEquals("a", tok.next());
+    assertEquals("b\u0001", tok.next());
+    assertEquals("c", tok.next());
+    assertEquals(false, tok.hasNext());
+}

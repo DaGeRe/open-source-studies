@@ -1,0 +1,10 @@
+public void testMatchesPattern() {
+    CharSequence str = "hi";
+    Validate.matchesPattern(str, "[a-z]*");
+    try {
+        Validate.matchesPattern(str, "[0-9]*");
+        fail("Expecting IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        assertEquals("The string hi does not match the pattern [0-9]*", e.getMessage());
+    }
+}

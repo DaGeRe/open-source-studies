@@ -1,0 +1,15 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Appends part of a CharSequence to this string builder.                                            
+                                                                                                     | * Appending null will call {@link #appendNull()}.                                                   
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param seq  the CharSequence to append                                                            
+                                                                                                     | * @param startIndex  the start index, inclusive, must be valid                                      
+                                                                                                     | * @param length  the length to append, must be valid                                                
+                                                                                                     | * @return this, to enable chaining                                                                  
+                                                                                                     | */                                                                                                  
+                                                                                                     | public StrBuilder append(CharSequence seq, int startIndex, int length) {                            
+                                                                                                     | if (seq == null) {                                                                                  
+                                                                                                     | return appendNull();                                                                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | return append(seq.toString(), startIndex, length);                                                  
+                                                                                                     | }                                                                                                   

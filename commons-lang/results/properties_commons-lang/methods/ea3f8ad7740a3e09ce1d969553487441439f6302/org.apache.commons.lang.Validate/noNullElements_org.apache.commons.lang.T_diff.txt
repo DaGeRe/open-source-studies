@@ -1,0 +1,24 @@
+/**
+ * <p>Validate that the specified argument collection is neither
+ * <code>null</code> nor contains any elements that are <code>null</code>;
+ * otherwise throwing an exception.
+ *
+ * <pre>Validate.noNullElements(myCollection);</pre>
+ *
+ * <p>If the collection is <code>null</code>, then the message in the exception
+ * is &quot;The validated object is null&quot;.</p>
+ *
+ * <p>If the array has a <code>null</code> element, then the message in the
+ * exception is &quot;The validated collection contains null element at index:
+ * &quot followed by the index.</p>
+ *
+ * @param <T> the collection type
+ * @param collection the collection to check
+ * @return the validated collection (never <code>null</code> method for chaining)
+ * @throws NullPointerException if the array is <code>null</code>
+ * @throws IllegalArgumentException if an element is <code>null</code>
+ * @see #noNullElements(Collection, String, Object...)
+ */
+public static <T extends Collection<?>> T noNullElements(T collection) {
+    return noNullElements(collection, DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EXCEPTION_MESSAGE);
+}

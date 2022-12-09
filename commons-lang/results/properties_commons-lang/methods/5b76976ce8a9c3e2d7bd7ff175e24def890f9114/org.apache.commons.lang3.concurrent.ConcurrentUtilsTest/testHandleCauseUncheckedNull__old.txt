@@ -1,0 +1,10 @@
+/**
+ * Tests handleCauseUnchecked() for a null parameter or a null cause. In
+ * this case the method should do nothing. We can only test that no
+ * exception is thrown.
+ */
+@Test
+public void testHandleCauseUncheckedNull() throws ConcurrentException {
+    ConcurrentUtils.handleCauseUnchecked(null);
+    ConcurrentUtils.handleCauseUnchecked(new ExecutionException("Test", null));
+}

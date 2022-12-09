@@ -1,0 +1,6 @@
+// testGetCause
+public void testGetCause() {
+    final Throwable t = new NullPointerException();
+    final Nestable n = new UnhandledException(t);
+    assertEquals(t, n.getCause());
+}

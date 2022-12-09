@@ -1,0 +1,27 @@
+// endsWith
+// -----------------------------------------------------------------------
+/**
+ * <p>Check if a String ends with a specified suffix.</p>
+ *
+ * <p>{@code null}s are handled without exceptions. Two {@code null}
+ * references are considered to be equal. The comparison is case sensitive.</p>
+ *
+ * <pre>
+ * StringUtils.endsWith(null, null)      = true
+ * StringUtils.endsWith(null, "def")     = false
+ * StringUtils.endsWith("abcdef", null)  = false
+ * StringUtils.endsWith("abcdef", "def") = true
+ * StringUtils.endsWith("ABCDEF", "def") = false
+ * StringUtils.endsWith("ABCDEF", "cde") = false
+ * </pre>
+ *
+ * @see java.lang.String#endsWith(String)
+ * @param str  the String to check, may be null
+ * @param suffix the suffix to find, may be null
+ * @return {@code true} if the String ends with the suffix, case sensitive, or
+ *  both {@code null}
+ * @since 2.4
+ */
+public static boolean endsWith(String str, String suffix) {
+    return endsWith(str, suffix, false);
+}

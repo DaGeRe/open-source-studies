@@ -1,0 +1,11 @@
+/**
+ * Test DateUtils.truncate()-method with Calendar.HOUR_OF_DAY
+ *
+ * @throws Exception
+ * @since 3.0
+ */
+public void testTruncateHourOfDay() throws Exception {
+    final int calendarField = Calendar.HOUR_OF_DAY;
+    Date lastTruncateDate = dateTimeParser.parse("June 1, 2008 8:59:59.999");
+    baseTruncateTest(targetHourOfDayDate, lastTruncateDate, calendarField);
+}

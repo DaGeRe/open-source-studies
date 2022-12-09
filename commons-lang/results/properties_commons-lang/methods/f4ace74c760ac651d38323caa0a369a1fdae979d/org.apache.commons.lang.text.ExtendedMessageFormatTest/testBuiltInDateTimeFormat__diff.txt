@@ -1,0 +1,21 @@
+/**
+ * Test the built in date/time formats
+ */
+public void testBuiltInDateTimeFormat() {
+    Calendar cal = Calendar.getInstance();
+    cal.set(2007, Calendar.JANUARY, 23, 18, 33, 05);
+    Object[] args = new Object[] { cal.getTime() };
+    Locale[] availableLocales = DateFormat.getAvailableLocales();
+    checkBuiltInFormat("1: {0,date,short}", args, availableLocales);
+    checkBuiltInFormat("2: {0,date,medium}", args, availableLocales);
+    checkBuiltInFormat("3: {0,date,long}", args, availableLocales);
+    checkBuiltInFormat("4: {0,date,full}", args, availableLocales);
+    checkBuiltInFormat("5: {0,date,d MMM yy}", args, availableLocales);
+    checkBuiltInFormat("6: {0,time,short}", args, availableLocales);
+    checkBuiltInFormat("7: {0,time,medium}", args, availableLocales);
+    checkBuiltInFormat("8: {0,time,long}", args, availableLocales);
+    checkBuiltInFormat("9: {0,time,full}", args, availableLocales);
+    checkBuiltInFormat("10: {0,time,HH:mm}", args, availableLocales);
+    checkBuiltInFormat("11: {0,date}", args, availableLocales);
+    checkBuiltInFormat("12: {0,time}", args, availableLocales);
+}
